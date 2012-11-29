@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="com.online.model.ConfigRestaurant" table="mt_config_restaurant">
+		<id name="id" type="integer">
+			<column name="MT_RESTAURANT_ID" />
+			<generator class="increment" />
+		</id>
+		<property name="idRestaurant" type="integer" lazy="false" >
+			<column name="RESTAURANT_ID" length="45" not-null="true" />
+		</property>
+		
+		<property name="obert" type="boolean" lazy="false" >
+			<column name="OBERT" not-null="true" />
+		</property>		
+		<property name="data" type="date" lazy="false" >
+			<column name="FECHA"  not-null="true" />
+		</property>		
+		 <set name="restaurants" table="restaurants_obertura" inverse="true" lazy="true" fetch="select" >
+            <key>
+                <column name="MT_RESTAURANT_ID" not-null="true" />
+            </key>
+            <many-to-many entity-name="com.online.model.Restaurant">
+                <column name="RESTAURANT_ID" not-null="true" />
+            </many-to-many>
+        </set>
+	</class>
+</hibernate-mapping>

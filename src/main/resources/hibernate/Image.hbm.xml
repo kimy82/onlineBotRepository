@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="com.online.model.Image" table="images">
+		<id name="id" type="integer">
+			<column name="IMAGE_ID" />
+			<generator class="increment" />
+		</id>
+		<property name="image" type="binary" lazy="true" length="9999999999" >
+			<column name="IMAGE" not-null="true" sql-type="blob" />
+		</property>
+		<property name="descripcio" type="string">
+			<column name="DESCRIPCIO" not-null="true" />
+		</property>		
+	</class>
+</hibernate-mapping>

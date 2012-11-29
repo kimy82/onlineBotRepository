@@ -1,0 +1,34 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="com.online.model.Promocio" table="promocions" discriminator-value="p" >
+		<id name="id" type="integer">
+			<column name="PROMOCIO_ID" />
+			<generator class="increment" />
+		</id>
+		<discriminator column="DISCRIMINATOR" type="string" />
+		<property name="nom" type="string">
+			<column name="NOM" length="200" not-null="true" />
+		</property>
+		<property name="tipuDescompte" type="string">
+			<column name="TIPUS_DESCOMPTE" length="200" not-null="true" />
+		</property>
+		<property name="descompteImport" type="double">
+			<column name="DESCOMPTE" length="200" not-null="true" />
+		</property>
+		<subclass name="com.online.model.PromocioAPartirDe" extends="com.online.model.Promocio"
+			discriminator-value="papd">
+			<property name="importAPartirDe" type="double" column="IMPORT_A_PARTIR_DE" />
+			<property name="dia" type="date" column="dia" />
+		</subclass>
+
+		<subclass name="com.online.model.PromocioNumComandes"
+			extends="com.online.model.Promocio" discriminator-value="pnc">
+			<property name="numComandes" type="integer" column="NUM_COMANDES" />
+			<property name="temps" type="integer" column="TEMPS" />
+		</subclass>
+
+	</class>
+</hibernate-mapping>

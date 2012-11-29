@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+"-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+"http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+
+	<package name="admin" namespace="/admin" extends="struts-default">
+		
+		<!-- Result type per l'accio ImageAction -->
+		<result-types>
+			<result-type name="imageResult"
+				class="com.online.result.CustomImageBytesResult" />
+		</result-types>
+		
+		<!-- Action menu principal Admin -->
+		<action name="menu" class="com.online.action.admin.WelcomeAdminAction"
+			method="execute">
+			<result name="success">/pages/admin/welcome.jsp</result>
+			<result name="error">/error.jsp</result>		
+		</action>
+		
+		<!-- Actions usuaris -->
+		<action name="usuaris" class="com.online.action.admin.MantenimentUsuarisAction"
+			method="execute">
+			<result name="success">/pages/admin/usuaris/consultaUsuaris.jsp</result>
+			<result name="error">/error.jsp</result>		
+		</action>		
+		<action name="ajaxTableUsuarisAction"
+			class="com.online.action.admin.MantenimentUsuarisAction" method="ajaxTableUsuarisAction">
+		</action>
+		<action name="ajaxDeleteUserAction"
+			class="com.online.action.admin.MantenimentUsuarisAction" method="ajaxDeleteUserAction">
+		</action>
+		
+		<!-- Actions per restaurants -->
+		<action name="restaurants"
+			class="com.online.action.admin.MantenimentRestaurantsAction" method="consultaRestaurants">
+			<result name="success">/pages/admin/restaurants/consulta/consultaRestaurants.jsp
+			</result>
+			<result name="error">error.jsp</result>		
+		</action>
+		<action name="newRestaurant"
+			class="com.online.action.admin.MantenimentRestaurantsAction" method="newRestaurant">
+			<result name="success">/pages/admin/restaurants/newRestaurant/newRestaurant.jsp
+			</result>
+			<result name="error">/error.jsp</result>		
+		</action>		
+		<action name="saveRestaurant"
+			class="com.online.action.admin.MantenimentRestaurantsAction" method="saveRestaurant">
+			<interceptor-ref name="defaultStack" />
+			<interceptor-ref name="fileUpload">
+				<param name="maximumSize">2097152</param>
+				<param name="allowedTypes">
+					image/png,image/gif,image/jpeg,image/pjpeg
+				</param>
+			</interceptor-ref>
+			<result name="success">/pages/admin/restaurants/consulta/consultaRestaurants.jsp
+			</result>
+			<result name="error">/error.jsp</result>		
+		</action>
+		<action name="saveNewRestaurant"
+			class="com.online.action.admin.MantenimentRestaurantsAction" method="saveNewRestaurant">
+			<interceptor-ref name="defaultStack" />
+			<interceptor-ref name="fileUpload">
+				<param name="maximumSize">2097152</param>
+				<param name="allowedTypes">
+					image/png,image/gif,image/jpeg,image/pjpeg
+				</param>
+			</interceptor-ref>
+			<result name="success">/pages/admin/restaurants/consulta/consultaRestaurants.jsp</result>
+			<result name="error">/error.jsp</result>					
+		</action>				
+
+		<!-- Consultes AJAX manteniment restaurants -->
+		<action name="ajaxTableRestaurantsAction"
+			class="com.online.action.admin.MantenimentRestaurantsAction" method="ajaxTableRestaurants">
+		</action>
+		<action name="ajaxDeleteRestaurantAction"
+			class="com.online.action.admin.MantenimentRestaurantsAction" method="ajaxDeleteRestaurantAction">
+		</action>
+		<action name="ajaxLoadRestaurantAction"
+			class="com.online.action.admin.MantenimentRestaurantsAction" method="ajaxLoadRestaurantAction">
+		</action>
+		<action name="ajaxTablePlatsAction"
+			class="com.online.action.admin.MantenimentRestaurantsAction" method="ajaxTablePlatsAction">
+		</action>
+		
+		<!-- Action que carrega image de la BBDD -->
+		<action name="ImageAction" class="com.online.image.ImageAction">
+			<result name="success" type="imageResult">
+			</result>
+		</action>
+		
+		<!-- Actions per plats  -->
+		<action name="saveNewPlat"
+			class="com.online.action.admin.MantenimentPlatsAction" method="saveNewPlat">
+			<interceptor-ref name="defaultStack" />
+			<interceptor-ref name="fileUpload">
+				<param name="maximumSize">2097152</param>
+				<param name="allowedTypes">
+					image/png,image/gif,image/jpeg,image/pjpeg
+				</param>
+			</interceptor-ref>
+			<result name="success">/pages/admin/restaurants/consulta/consultaRestaurants.jsp
+			</result>
+			<result name="error">/error.jsp</result>		
+		</action>
+		<action name="plats" class="com.online.action.admin.MantenimentPlatsAction"
+			method="consultaPlats">
+			<result name="success">/pages/admin/restaurants/newplat/plats.jsp</result>
+			<result name="error">/error.jsp</result>		
+		</action>
+		<action name="plat" class="com.online.action.admin.MantenimentPlatsAction"
+			method="execute">
+			<result name="success">/pages/admin/restaurants/newplat/plats.jsp</result>
+			<result name="error">/error.jsp</result>		
+		</action>
+		<action name="ajaxDeletePlatAction"
+			class="com.online.action.admin.MantenimentPlatsAction" method="ajaxDeletePlatAction">
+		</action>
+		
+		<!-- Actions per config -->
+		<action name="config" class="com.online.action.admin.MantenimentConfigAction"
+			method="execute">
+			<result name="success">/pages/admin/restaurants/configRestaurant/configuracio.jsp</result>		
+		</action>
+		<action name="saveConfig"
+			class="com.online.action.admin.MantenimentConfigAction" method="saveConfig">
+			<interceptor-ref name="defaultStack" />			
+			<result name="success">/pages/admin/restaurants/configRestaurant/configuracio.jsp</result>
+			<result name="error">/error.jsp</result>		
+		</action>
+		<action name="loadMotersAndConfig"
+			class="com.online.action.admin.MantenimentConfigAction" method="loadMotersAndConfig">
+		</action>
+		
+		<!-- Actions per newsletter -->
+		<action name="newsletter" class="com.online.action.admin.NewsletterAction"
+			method="execute">
+			<result name="success">/pages/admin/usuaris/newsletter/newsletter.jsp</result>		
+		</action>
+		<action name="ajaxSendLetterAction"
+			class="com.online.action.admin.NewsletterAction" method="ajaxSendLetterAction">
+		</action>
+		
+		<!-- Actions per promocions -->
+		<action name="promocions" class="com.online.action.admin.MantenimentPromocionsAction"
+			method="execute">
+			<result name="success">/pages/admin/restaurants/promocions/promocio.jsp</result>		
+		</action>
+		<action name="ajaxTablePromos"
+			class="com.online.action.admin.MantenimentPromocionsAction" method="ajaxTablePromos">
+		</action>	
+		<action name="ajaxDeletePromocio"
+			class="com.online.action.admin.MantenimentPromocionsAction" method="ajaxDeletePromocio">
+		</action>
+		<action name="updatePromocio"
+			class="com.online.action.admin.MantenimentPromocionsAction" method="updatePromocio">
+		</action>
+		<action name="savePromocio"
+			class="com.online.action.admin.MantenimentPromocionsAction" method="savePromocio">
+		</action>
+	</package>
+</struts>

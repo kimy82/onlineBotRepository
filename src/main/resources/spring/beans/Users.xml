@@ -1,0 +1,18 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+xsi:schemaLocation="http://www.springframework.org/schema/beans
+http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
+
+	<!-- Stock business object -->
+   <bean id="usersBo" class="com.online.bo.impl.UsersBoImpl" >
+   		<property name="usersDao" ref="usersDao" />
+   		<property name="sendingEmailService" ref="sendingEmailService" />
+   </bean>
+ 
+   <!-- Stock Data Access Object -->
+   <bean id="usersDao" class="com.online.dao.impl.UsersDaoImpl" >
+   		<property name="sessionFactory" ref="sessionFactory"></property>
+   </bean>
+   
+   		
+</beans>

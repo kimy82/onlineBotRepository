@@ -1,0 +1,47 @@
+   
+   .hand_cursor {
+     cursor: pointer; cursor: hand
+   }
+        
+ 
+  TABLE.datepickerViewDays { 
+          border-bottom: black 1px solid; border-left: black 1px solid; background-color: white; font-family: Verdana; color: black; font-size: 9pt; border-top: black 1px solid; border-right: black 1px solid;
+  }
+
+  TABLE.datepickerViewDays thead tr th.datepickerMonth {
+          font-family: Calibri; color: white; font-size: 15pt; font-weight:bold;        
+          border-bottom-style: solid; border-right-style: solid; background-color: black; border-top-style: solid; 
+          height: 12pt; border-left-style: solid;            
+    
+  }
+
+  TABLE.datepickerViewDays thead tr.datepickerDoW th   {
+     background-color: #a5a5a5; font-family: Calibri; height: 15pt; color: white; font-size: 8pt; font-weight: bold;
+  }
+
+  DIV.datepickerContainer table {
+          width:290px;
+  }
+
+  TBODY.datepickerDays {
+    height:25px
+  }
+
+  TBODY.datepickerDays TD.datepickerNotInMonth {
+      background-color: #d8d8d8; color: black; text-decoration: none;
+  }
+
+  TBODY.datepickerDays TD.datepickerSpecial {
+      border-bottom-color: white; background-color: #f2dbdb; border-top-color: white; color: black; border-right-color: white; border-left-color: white; text-decoration: none;            
+  }
+
+  TBODY.datepickerDays TD.datepickerWeekend {
+        background-color: #ddd8c2; width: 14%; color: black; text-decoration: none;  
+  }  
+  
+  TBODY.datepickerDays TD.datepickerSelectedOk {
+       background-color: #dbe5f1;
+       color:black;
+       
+  }
+       

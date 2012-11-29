@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+"-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+"http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+	<constant name="struts.devMode" value="true" />
+	<constant name="struts.action.extension" value="action" />
+	<constant name="struts.custom.i18n.resources" value="MessageResources" />
+	
+	<package name="default" namespace="/" extends="struts-default">
+		
+		<action name="login" class="login" method="login" >
+			<result name="success" >/pages/login/login.jsp</result>
+		</action>
+		<action name="registerUser" class="com.online.action.LoginAction" method="registerUser" >
+			<interceptor-ref name="defaultStack" />
+			<result name="success" >/pages/login/inside.jsp</result>
+			<result name="input">/pages/login/register.jsp</result>	
+			<result name="error">error.jsp</result>		
+		</action>
+		<action name="preRegisterUser" >
+			<result>/pages/login/register.jsp</result>
+		</action>
+		<action name="loginfailed" class="com.online.action.LoginAction" method="loginfailed" >
+			<result name="success" >/pages/login/login.jsp</result>
+		</action>
+		
+		<action name="logout" class="com.online.action.LoginAction" method="logout" >
+			<result name="success">/welcome.jsp</result>
+		</action>
+		<action name="preRecoverAcount" >
+			<result>/pages/login/recoverAccount.jsp</result>
+		</action>
+		<action name="recoverAccount" class="com.online.action.LoginAction" method="recoverAccount" >
+			<interceptor-ref name="defaultStack" />
+			<result name="success" >/welcome.jsp</result>
+			<result name="input">/pages/login/recoverAccount.jsp</result>
+			<result name="error">error.jsp</result>	
+			<result name="notfound">/pages/login/notFound.jsp</result>
+		</action>
+		
+	</package>
+	
+	<!-- Accions protegides dins el rol d'usuari -->
+	<include file="struts/struts-users.xml"></include>
+	<include file="struts/struts-admin.xml"></include>
+	
+	
+
+</struts>
