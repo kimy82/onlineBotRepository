@@ -1,7 +1,7 @@
 ///////////////////////////////////
 //variables per textos en locale
 var initTableParams=null ;
-function InitTableParams(txtlast,txtnext,txtprevious,txtfirst,txtloading,txtborrat,txtconfirmborrapromo){		
+function InitTableParams(txtlast,txtnext,txtprevious,txtfirst,txtloading,txtborrat,txtconfirmborrapromo,txterrordouble,txterrornumber){		
 		this.txtlast=txtlast;
 		this.txtnext=txtnext;
 		this.txtprevious=txtprevious;
@@ -9,7 +9,29 @@ function InitTableParams(txtlast,txtnext,txtprevious,txtfirst,txtloading,txtborr
 		this.txtloading=txtloading;
 		this.txtborrat=txtborrat;	
 		this.txtconfirmborrapromo= txtconfirmborrapromo;
+		this.txterrordouble=txterrordouble;
+		this.txterrornumber=txterrornumber;
 }
+
+//per el formulari
+function onlyDouble(value,id){
+	  if(value =='' || /^[0-9]*\.[0-9]*$/.test(value)){
+		$('#'+id).css('border', 'solid 1px rgb(135,155,179)');
+	}else{
+		$('#'+id).css('border', 'solid 1px red');
+		alert(initTableParams.txterrordouble);
+	}
+}  
+
+function onlyEntero(value,id){
+	  if(value =='' || /^[0-9]*$/.test(value)){
+		$('#'+id).css('border', 'solid 1px rgb(135,155,179)');
+	}else{
+		$('#'+id).css('border', 'solid 1px red');
+		alert(initTableParams.txterrornumber);
+	}
+}
+
 function opendivNewPromo(){
 	resetForm();
 	$("#infopromonew").show('slow');

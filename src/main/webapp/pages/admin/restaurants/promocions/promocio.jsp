@@ -15,6 +15,14 @@
 <script src="<c:url value='/js/jquery/jquery.ui.core.js' />" type="text/javascript"></script>
 <script src="<c:url value='/js/jquery/jquery.dataTables.js'/>" type="text/javascript"></script>
 
+<!-- Calendari -->  
+<link rel="stylesheet" type="text/css" media="all" href="<c:url value='/css/calendar-blau.css' />" title="win2k-cold-1" />
+<script type="text/javascript" src="<c:url value='/js/calendari/calendar.js'/>"></script>
+<script type="text/javascript" src="<c:url value='/js/calendari/calendar-cat.js'/>"></script>
+<script type="text/javascript" src="<c:url value='/js/calendari/calendar-es.js'/>"></script>
+<script type="text/javascript" src="<c:url value='/js/calendari/calendar-idioma.js'/>"></script>		
+<script type="text/javascript" src="<c:url value='/js/calendari/calendar-setup.js'/>"></script>
+
 <script type="text/javascript" src="<c:url value='/pages/admin/restaurants/promocions/jspromocio.js' />"></script>
 
 <link
@@ -29,7 +37,9 @@
 			"<s:text  name='datatables.paginate.first'/>",
 			"<s:text  name='datatables.loading'/>",
 			"<s:text  name='txt.avis.borrat'/>",
-			"<s:text  name='promo.confirm.borra'/>");
+			"<s:text  name='promo.confirm.borra'/>",
+			"<s:text  name='.error.double'/>",
+			"<s:text  name='txt.error.number'/>");
 </script>
 </head>
 <body>
@@ -41,7 +51,7 @@
 			<h2>
 				<s:text name="mant.promos.title" />
 				<a href="#" onclick="opendivNewPromo();" ><s:text name="promo.new" /></a>
-			</h2>
+			</h2> 
 	
 			<div id="errorsajax">
 				<label style="color: red" id="errorsajaxlabel"></label>
@@ -74,11 +84,11 @@
 			         </tr>
 			    </table>		
 				
-					<h1>Dades generals</h1>
+					<h1><s:text name="txt.promo.dades.generals" /></h1>
 					
-					<label for="apd" >Promoció a partir de:</label>
+					<label for="apd" ><s:text name="txt.promo.tipus.promo.1" /></label>
 					<input type="radio" value="apd" onclick="openDivTipuPromo(this.id)" name="promo" id="apd" ></input>
-					<label for="pnc" >Promoció per numero de comandes:</label>
+					<label for="pnc" ><s:text name="txt.promo.tipus.promo.2" /></label>
 					<input type="radio" value="pnc" onclick="openDivTipuPromo(this.id)" name="promo" id="pnc" ></input>
 					
 					<div id="apd_div">
@@ -86,9 +96,12 @@
 							<s:textfield key="promocioAPartirDe.nom" id="nompromo_apd"  ></s:textfield>
 							<s:select list="tipusDescompteList" key="promocioAPartirDe.tipuDescompte" listKey="descripcio" listValue="descripcio">					
 							</s:select>					
-							<s:textfield key="promocioAPartirDe.descompteImport"  id="descompteImport_apd" ></s:textfield>																	
-							<s:textfield key="promocioAPartirDe.importAPartirDe"  id="importAPartirDe" ></s:textfield>
-							<s:textfield key="promocioAPartirDe.dia"  id="dia" ></s:textfield>	
+							<s:textfield key="promocioAPartirDe.descompteImport"  id="descompteImport_apd" onblur="onlyDouble(this.value,this.id)" ></s:textfield>																	
+							<s:textfield key="promocioAPartirDe.importAPartirDe"  id="importAPartirDe"  onblur="onlyDouble(this.value,this.id)" ></s:textfield>
+							<s:textfield key="promocioAPartirDe.dia"  id="dia" maxlength="10" size="12" onfocus="blur()" ></s:textfield>	
+							<div style="position:absolute; ;top: 440px; left: 960px;">
+								<img  src="<c:url value='/images/calendar/calendar_full.png'/>"  id="llencadorData" >
+							</div>												
 							<s:hidden key="promocioAPartirDe.id" id="id_apd" ></s:hidden>			
 								<s:submit></s:submit>
 						</s:form>			
@@ -98,9 +111,9 @@
 							<s:textfield key="promocioNumComandes.nom" id="nompromo_pnc"  ></s:textfield>
 							<s:select list="tipusDescompteList" key="promocioNumComandes.tipuDescompte" listKey="descripcio" listValue="descripcio">					
 							</s:select>										
-							<s:textfield key="promocioNumComandes.descompteImport"  id="descompteImport_pnc" ></s:textfield>	
-							<s:textfield key="promocioNumComandes.numComandes"  id="numComandes" ></s:textfield>
-							<s:textfield key="promocioNumComandes.temps"  id="temps" ></s:textfield>
+							<s:textfield key="promocioNumComandes.descompteImport"  id="descompteImport_pnc"  onblur="onlyDouble(this.value,this.id)" ></s:textfield>	
+							<s:textfield key="promocioNumComandes.numComandes"  id="numComandes"  onblur="onlyEntero(this.value,this.id)" ></s:textfield>
+							<s:textfield key="promocioNumComandes.temps"  id="temps"  onblur="onlyEntero(this.value,this.id)" ></s:textfield>
 							<s:hidden key="promocioNumComandes.id" id="id_pnc" ></s:hidden>
 								<s:submit></s:submit>
 						</s:form>		
@@ -112,5 +125,16 @@
 		</div>
 	</div>
 </div>
+<script>			
+
+//---------------------------------------------------------------------------------------------------------------------
+    Calendar.setup({
+        inputField    	:    "dia",      // id del campo de texto
+        ifFormat       	:    "%d-%m-%Y",          // formato de la fecha, cuando se escriba en el campo de texto
+        button         	:    "llencadorData",          // el id del botón que lanzará el calendario
+        locale 		   	:    "ca_ES"
+    });
+//---------------------------------------------------------------------------------------------------------------------
+</script>  
 </body>
 </html>
