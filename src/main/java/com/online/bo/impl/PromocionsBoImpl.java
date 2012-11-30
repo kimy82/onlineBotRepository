@@ -31,11 +31,12 @@ public class PromocionsBoImpl implements PromocionsBo{
 		promocionsDao.delete(promocio);
 	}
 
-	public Promocio load( Integer id ) throws BOException{
+	public <E extends Promocio> E load( Integer id ) throws BOException{
 
 		if (id == null)
 			throw new BOException("NUll id to load");
-		return promocionsDao.load(id);
+		E p =  promocionsDao.load(id);
+		return p;
 
 	}
 	
