@@ -3,31 +3,31 @@
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 
 <hibernate-mapping>
-	<class name="com.online.model.Promocio" table="promocions" discriminator-value="p" >
+	<class name="com.online.model.Promocio" table="promocions" discriminator-value="p" lazy="false" >
 		<id name="id" type="integer">
 			<column name="PROMOCIO_ID" />
 			<generator class="increment" />
 		</id>
 		<discriminator column="DISCRIMINATOR" type="string" />
-		<property name="nom" type="string">
+		<property name="nom" type="string" lazy="false" >
 			<column name="NOM" length="200" not-null="true" />
 		</property>
-		<property name="tipuDescompte" type="string">
+		<property name="tipuDescompte" type="string" lazy="false" >
 			<column name="TIPUS_DESCOMPTE" length="200" not-null="true" />
 		</property>
-		<property name="descompteImport" type="double">
+		<property name="descompteImport" type="double" lazy="false" >
 			<column name="DESCOMPTE" length="200" not-null="true" />
 		</property>
 		<subclass name="com.online.model.PromocioAPartirDe" extends="com.online.model.Promocio"
-			discriminator-value="papd">
-			<property name="importAPartirDe" type="double" column="IMPORT_A_PARTIR_DE" />
-			<property name="dia" type="date" column="dia" />
+			discriminator-value="papd" lazy="false" >
+			<property name="importAPartirDe" type="double" column="IMPORT_A_PARTIR_DE" lazy="false" />
+			<property name="dia" type="date" column="dia" lazy="false" />
 		</subclass>
 
 		<subclass name="com.online.model.PromocioNumComandes"
-			extends="com.online.model.Promocio" discriminator-value="pnc">
-			<property name="numComandes" type="integer" column="NUM_COMANDES" />
-			<property name="temps" type="integer" column="TEMPS" />
+			extends="com.online.model.Promocio" discriminator-value="pnc" lazy="false" >
+			<property name="numComandes" type="integer" column="NUM_COMANDES" lazy="false" />
+			<property name="temps" type="integer" column="TEMPS" lazy="false" />
 		</subclass>
 
 	</class>

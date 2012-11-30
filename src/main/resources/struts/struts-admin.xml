@@ -157,9 +157,19 @@
 		</action>
 		<action name="updatePromocio"
 			class="com.online.action.admin.MantenimentPromocionsAction" method="updatePromocio">
+			<result name="success">/pages/admin/restaurants/promocions/promocio.jsp</result>
 		</action>
-		<action name="savePromocio"
-			class="com.online.action.admin.MantenimentPromocionsAction" method="savePromocio">
+		<action name="savePromocioNumComandes"
+			class="com.online.action.admin.MantenimentPromocionsAction" method="savePromocioNumComandes">
+			<result name="success">/pages/admin/restaurants/promocions/promocio.jsp</result>
 		</action>
+		<action name="savePromocioAPartirDe"
+			class="com.online.action.admin.MantenimentPromocionsAction" method="savePromocioAPartirDe">
+			<result name="success">/pages/admin/restaurants/promocions/promocio.jsp</result>
+		</action>
+		<action name="ajaxLoadPromoAction"
+			class="com.online.action.admin.MantenimentPromocionsAction" method="ajaxLoadPromoAction">
+		</action>
+		
 	</package>
 </struts>
