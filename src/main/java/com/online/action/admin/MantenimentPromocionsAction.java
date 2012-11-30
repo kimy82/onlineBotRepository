@@ -56,7 +56,9 @@ public class MantenimentPromocionsAction extends ActionSupport implements Servle
 
 		ServletOutputStream out = null;
 		String json = "";
-
+ 
+ 
+ 
 		try {
 			out = this.response.getOutputStream();
 			inizializeTableParams();
