@@ -10,11 +10,81 @@ function InitTableParams(txtlast,txtnext,txtprevious,txtfirst,txtloading,txtborr
 		this.txtborrat=txtborrat;	
 		this.txtconfirmborrapromo= txtconfirmborrapromo;
 }
+function opendivNewPromo(){
+	resetForm();
+	$("#infopromonew").show('slow');
+	$("#pnc_div").hide();
+	$("#apd_div").hide();
+}
+
+function resetForm(){
+		$("#nompromo_apd").val("");
+		$("#tipuDescompte_apd").val("");
+		$("#descompteImport_apd").val("");
+		$("#importAPartirDe").val("");
+		$("#dia").val("");
+		$("#nompromo_pnc").val("")
+ 		$("#tipuDescompte_pnc").val("");
+ 		$("#descompteImport_pnc").val("");
+ 		$("#numComandes").val("");
+ 		$("#temps").val("");
+ 		$("#id_apd").val("");
+ 		$("#id_pnc").val("");
+}
+
+function openDivTipuPromo(id){
+	
+	if(id=='pnc'){
+		$("#pnc_div").show('slow');
+		$("#apd_div").hide();
+	}else{
+		$("#apd_div").show('slow');
+		$("#pnc_div").hide();
+	}
+}
 
 function reloadTablePromos(){
 	oTablePromos.fnDeleteRow( 0 );
 }
-
+function goToPromocio(id){
+	data ="idPromocio="+id;
+	$.ajax({
+		  type: "POST",
+		  url: '/onlineBot/admin/ajaxLoadPromoAction.action',
+		  dataType: 'json',
+		  data: data,
+		  success: function(json){	
+			  if(json==null || json.error!=null){
+     				$("#errorsajaxlabel").text(json.error);
+     				$("#errorsajax").show();
+     			}else{
+					 	if(json.tipus=='apd'){
+					 		$("#id_apd").val(json.id);
+					 		$("#nompromo_apd").val(json.nom);
+					 		$("#tipuDescompte_apd").val(json.tipuDescompte);
+					 		$("#descompteImport_apd").val(json.descompteImport);
+					 		$("#importAPartirDe").val(json.importAPartirDe);
+					 		$("#dia").val(json.dia);
+					 		$("#infopromonew").show('slow');
+					 		$("#apd").click();
+					 	}
+					 	if(json.tipus=='pnc'){
+					 		$("#id_pnc").val("");
+					 		$("#nompromo_pnc").val(json.nom)
+					 		$("#tipuDescompte_pnc").val(json.tipuDescompte);
+					 		$("#descompteImport_pnc").val(json.descompteImport);
+					 		$("#numComandes").val(json.numComandes);
+					 		$("#temps").val(json.temps);
+					 		$("#infopromonew").show('slow');
+					 		$("#pnc").click();
+					 	}					 					 										 					 						 					 						  
+     			}				
+		  },
+		  error: function(e){   $("#errorsajaxlabel").text("Error in ajax call");
+  								$("#errorsajax").show();  		
+		  					}
+		});	
+}
 function deletePromocio(id){
 	 var where_to= confirm(initTableParams.txtconfirmborrapromo);
 	  if (where_to== false)
@@ -100,22 +170,8 @@ $(document).ready(function() {
 		    	}
 			} );
 		
-		//per agafar click en qualsevol part de la row
-		$("#tbl_promos tbody").click(function(event) {
-			$(oTableRest.fnSettings().aoData).each(function (){	
-				$(this.nTr).addClass('select_ro');
-			});
-			$(event.target.parentNode).removeClass('odd');
-			$(event.target.parentNode).removeClass('even');
-			
-			var id=event.target.parentNode.firstChild.id;
-			showDivRestaurant(id);
-		
-		});
-		
-		
+				
 		//ocultem divs
-		$("#infopromo").hide();
 		$("#infopromonew").hide();
 		$("#errorsajax").hide();
 

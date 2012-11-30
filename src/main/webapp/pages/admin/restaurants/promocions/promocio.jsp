@@ -61,27 +61,7 @@
 					<tbody>
 					</tbody>
 				</table>
-			</div>
-			<div id="infopromo">
-				 <table class="noborder"  style="background-color:rgb(192,192,192)">
-			         <tr>
-				          <td colspan="3" >
-				         	     <h1 class="capcalera" style="display:inline;padding:0px">
-				         	      	<s:text name="mant.promo.info.title" />
-				         	     </h1>
-				    	  </td>
-			       	 
-			         </tr>
-			    </table>		
-				<s:form action="updatePromocio" method="POST" enctype="multipart/form-data" >
-					<s:textfield key="promocio.nom" id="nompromo"  ></s:textfield>
-					<s:textarea key="promocio.tipuDescompte" id="tipuDescompte" cols="40" rows="4" ></s:textarea>				
-					<s:hidden key="promocio.descompteImport"  id="descompteImport" ></s:hidden>								
-					<s:hidden key="promocio.id"  id="idpromo" ></s:hidden>
-					<s:submit></s:submit>
-				</s:form>
-				<br>						
-			</div>			
+			</div>					
 				<div id="infopromonew">
 				 <table class="noborder"  style="background-color:rgb(192,192,192)">
 			         <tr>
@@ -93,13 +73,40 @@
 			       	 
 			         </tr>
 			    </table>		
-				<s:form action="savePromocio" method="POST" enctype="multipart/form-data" >
-					<s:textfield key="promocio.nom" id="nompromo"  ></s:textfield>
-					<s:textarea key="promocio.tipuDescompte" id="tipuDescompte" cols="40" rows="4" ></s:textarea>				
-					<s:hidden key="promocio.descompteImport"  id="descompteImport" ></s:hidden>								
-					<s:hidden key="promocio.id"  id="idpromo" ></s:hidden>
-					<s:submit></s:submit>
-				</s:form>
+				
+					<h1>Dades generals</h1>
+					
+					<label for="apd" >Promoció a partir de:</label>
+					<input type="radio" value="apd" onclick="openDivTipuPromo(this.id)" name="promo" id="apd" ></input>
+					<label for="pnc" >Promoció per numero de comandes:</label>
+					<input type="radio" value="pnc" onclick="openDivTipuPromo(this.id)" name="promo" id="pnc" ></input>
+					
+					<div id="apd_div">
+						<s:form action="savePromocioAPartirDe" method="POST" enctype="multipart/form-data" >
+							<s:textfield key="promocioAPartirDe.nom" id="nompromo_apd"  ></s:textfield>
+							<s:select list="tipusDescompteList" key="promocioAPartirDe.tipuDescompte" listKey="descripcio" listValue="descripcio">					
+							</s:select>					
+							<s:textfield key="promocioAPartirDe.descompteImport"  id="descompteImport_apd" ></s:textfield>																	
+							<s:textfield key="promocioAPartirDe.importAPartirDe"  id="importAPartirDe" ></s:textfield>
+							<s:textfield key="promocioAPartirDe.dia"  id="dia" ></s:textfield>	
+							<s:hidden key="promocioAPartirDe.id" id="id_apd" ></s:hidden>			
+								<s:submit></s:submit>
+						</s:form>			
+					</div>					
+					<div id="pnc_div">
+						<s:form action="savePromocioNumComandes" method="POST" enctype="multipart/form-data" >
+							<s:textfield key="promocioNumComandes.nom" id="nompromo_pnc"  ></s:textfield>
+							<s:select list="tipusDescompteList" key="promocioNumComandes.tipuDescompte" listKey="descripcio" listValue="descripcio">					
+							</s:select>										
+							<s:textfield key="promocioNumComandes.descompteImport"  id="descompteImport_pnc" ></s:textfield>	
+							<s:textfield key="promocioNumComandes.numComandes"  id="numComandes" ></s:textfield>
+							<s:textfield key="promocioNumComandes.temps"  id="temps" ></s:textfield>
+							<s:hidden key="promocioNumComandes.id" id="id_pnc" ></s:hidden>
+								<s:submit></s:submit>
+						</s:form>		
+					</div>
+					
+					
 				<br>						
 			</div>
 		</div>
