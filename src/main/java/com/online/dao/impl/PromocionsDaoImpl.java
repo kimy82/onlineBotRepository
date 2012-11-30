@@ -3,10 +3,13 @@ package com.online.dao.impl;
 import java.util.List;
 
 import org.hibernate.Session;
+import org.springframework.orm.hibernate3.HibernateObjectRetrievalFailureException;
 import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
 
 import com.online.dao.PromocionsDao;
 import com.online.model.Promocio;
+import com.online.model.PromocioAPartirDe;
+import com.online.model.PromocioNumComandes;
 
 public class PromocionsDaoImpl extends HibernateDaoSupport implements PromocionsDao{
 	
@@ -32,8 +35,16 @@ public class PromocionsDaoImpl extends HibernateDaoSupport implements Promocions
 						
 	}
 
-	public Promocio load(Integer id){
-		return getHibernateTemplate().load(Promocio.class, id);
+	@SuppressWarnings("unchecked")
+	public <E extends Promocio> E load(Integer id){
+		try{
+			PromocioNumComandes pnum = getHibernateTemplate().load(PromocioNumComandes.class, id);
+			return (E) pnum;
+		}catch(HibernateObjectRetrievalFailureException e){
+			PromocioAPartirDe papd = getHibernateTemplate().load(PromocioAPartirDe.class, id);
+			return (E) papd;
+		}
+		
 	}
 
 	public List<Promocio> getAll(){
