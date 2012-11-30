@@ -12,7 +12,7 @@ public interface PromocionsDao{
 
 	void delete( Promocio promocio );
 
-	Promocio load( Integer id );
+	<E extends Promocio> E load( Integer id );
 	
 	List<Promocio> getAll();
 }

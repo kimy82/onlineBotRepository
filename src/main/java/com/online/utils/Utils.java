@@ -2,10 +2,13 @@ package com.online.utils;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.util.ArrayList;
+import java.util.List;
 
 import com.google.gson.JsonElement;
 import com.google.gson.JsonParseException;
 import com.google.gson.JsonParser;
+import com.online.pojos.Basic;
 
 public class Utils{
 
@@ -39,5 +42,13 @@ public class Utils{
 		   } 
 
 		   return valid;
+	}
+	
+	public static List<Basic> getTipusDescompte(){
+		
+		List<Basic> tipusDescompte = new ArrayList<Basic>();
+		tipusDescompte.add(new Basic(1,"tant per cent %"));
+		tipusDescompte.add(new Basic(2,"quantitat en euros"));
+		return tipusDescompte;
 	}
 }

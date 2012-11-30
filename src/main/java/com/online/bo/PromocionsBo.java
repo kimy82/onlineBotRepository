@@ -15,6 +15,6 @@ public interface PromocionsBo{
 	
 	List<Promocio> getAll();
 
-	Promocio load( Integer id ) throws BOException;
+	<E extends Promocio> E load( Integer id ) throws BOException;
 
 }
