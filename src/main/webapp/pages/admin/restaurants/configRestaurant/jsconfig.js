@@ -31,11 +31,8 @@ function loadMotersAndConfig(idRestaurant){
 				  if(json!=null && json.error!=null){
 	   				$("#errorsajaxlabel").text(json.error);
 	   				$("#errorsajax").show();
-	   			}else{
-	   				if(json.numeroMoters==null){
-	   					$("#numMoters").val("");
-	   				}
-	   				$("#numMoters").val(json.numeroMoters);
+	   			}else{	   				
+	   			
 					if(json.obert==true){
 						$("#obert").prop('checked', true);
 					}else{

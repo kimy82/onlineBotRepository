@@ -54,8 +54,7 @@
 					<s:select multiple="true" list="restaurantBasicList" key="idRestaurants" listKey="id" listValue="descripcio" onclick="loadMotersAndConfig(this.value)" >					
 					</s:select>
 					
-					<s:checkbox key="configRestaurant.obert" id="obert" ></s:checkbox>	
-					<s:textfield key="moter.numeroMoters" id="numMoters" onblur=" " ></s:textfield>		
+					<s:checkbox key="configRestaurant.obert" id="obert" ></s:checkbox>					
 					<s:hidden key="dia" id="selectedDia" ></s:hidden>				
 										
 					<s:submit></s:submit>

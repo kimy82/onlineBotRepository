@@ -22,7 +22,6 @@ public class Restaurant implements Serializable{
 	private String					descripcio;
 
 	protected Set<Plat>				plats				= new HashSet<Plat>(0);
-	protected Set<Moters>			moters				= new HashSet<Moters>(0);
 	protected Set<ConfigRestaurant>	configRestaurants	= new HashSet<ConfigRestaurant>(0);
 
 	private Image					foto;
@@ -90,16 +89,6 @@ public class Restaurant implements Serializable{
 	public void setFoto( Image foto ){
 
 		this.foto = foto;
-	}
-
-	public Set<Moters> getMoters(){
-	
-		return moters;
-	}
-
-	public void setMoters( Set<Moters> moters ){
-	
-		this.moters = moters;
 	}
 
 	public Set<ConfigRestaurant> getConfigRestaurants(){

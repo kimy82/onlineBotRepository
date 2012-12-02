@@ -55,9 +55,6 @@ public class RestaurantsDaoImpl extends HibernateDaoSupport implements Restauran
 		if (initPlats)
 			Hibernate.initialize(restaurant.getPlats());
 
-		if (initMoters)
-			Hibernate.initialize(restaurant.getMoters());
-
 		if (initConfig)
 			Hibernate.initialize(restaurant.getConfigRestaurants());
 		

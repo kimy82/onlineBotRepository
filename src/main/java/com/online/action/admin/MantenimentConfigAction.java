@@ -37,13 +37,11 @@ public class MantenimentConfigAction extends ActionSupport implements ServletRes
 	 */
 	private static final long	serialVersionUID	= 1L;
 	private RestaurantsBo		restaurantsBo;
-	private MotersBo			motersBo;
 	private ConfigRestaurantBo	configRestaurantBo;
 
 	private String				dia;
 	private String				idRestaurants;
 	private Integer				idRestaurant		= null;
-	private Moters				moter				= new Moters();
 	private ConfigRestaurant	configRestaurant	= new ConfigRestaurant();
 
 	private List<Basic>			restaurantBasicList	= new LinkedList<Basic>();
@@ -61,29 +59,15 @@ public class MantenimentConfigAction extends ActionSupport implements ServletRes
 	public String saveConfig(){
 
 		try {
-			if (this.moter != null && this.moter.getNumeroMoters() != null && this.configRestaurant != null) {
+			if ( this.configRestaurant != null) {
 
 				if (!this.idRestaurants.isEmpty()) {
 					String[] stringRestaurants = this.idRestaurants.split(",");
 					for (String idStringRestaurant : stringRestaurants) {
-						Moters moterToSave = new Moters();
+						
 						Restaurant restaurant = this.restaurantsBo.load(Integer.parseInt(idStringRestaurant.trim()), false, true, true);
 
-						Date date = getDate(this.dia);
-						moterToSave.setData(date);
-					//	moterToSave.setIdRestaurant(Integer.parseInt(idStringRestaurant));
-						moterToSave.setNumeroMoters(this.moter.getNumeroMoters());
-
-						Moters moterInDB = this.motersBo.load(date, Integer.parseInt(idStringRestaurant));
-
-						if (moterInDB == null) {
-							this.motersBo.save(moterToSave);
-							Set<Moters> moters = restaurant.getMoters();
-							moters.add(moterToSave);
-						} else {
-							moterInDB.setNumeroMoters(moterToSave.getNumeroMoters());
-							this.motersBo.update(moterInDB);
-						}
+						Date date = getDate(this.dia);															
 
 						ConfigRestaurant configRestToSave = new ConfigRestaurant();
 						configRestToSave.setData(date);
@@ -100,7 +84,7 @@ public class MantenimentConfigAction extends ActionSupport implements ServletRes
 							this.configRestaurantBo.update(configRestaurantInDB);
 						}
 
-						if (configRestaurantInDB == null || moterInDB == null) {
+						if (configRestaurantInDB == null) {
 							this.restaurantsBo.update(restaurant);
 						}
 
@@ -141,17 +125,12 @@ public class MantenimentConfigAction extends ActionSupport implements ServletRes
 				json.append(createEmptyJSON());
 			} else {
 				Date date = getDate(this.dia);
-				Moters moter = this.motersBo.load(date, this.idRestaurant);
 				ConfigRestaurant connfigrestaurant = this.configRestaurantBo.load(date, this.idRestaurant);
-				if (moter == null || connfigrestaurant == null) {
+				if ( connfigrestaurant == null) {
 					json = new StringBuffer(createEmptyJSON());
 				} else {
-					Gson gson = new GsonBuilder().setPrettyPrinting().excludeFieldsWithoutExposeAnnotation().create();
-					json.append(gson.toJson(moter));
-					json.setLength(json.length() - 1);
-					json.append(",");
-					StringBuffer jsonconfig = new StringBuffer(gson.toJson(connfigrestaurant));
-					json.append(jsonconfig.substring(1));
+					Gson gson = new GsonBuilder().setPrettyPrinting().excludeFieldsWithoutExposeAnnotation().create();					
+					json = new StringBuffer(gson.toJson(connfigrestaurant));					
 				}
 
 			}
@@ -243,11 +222,6 @@ public class MantenimentConfigAction extends ActionSupport implements ServletRes
 		this.idRestaurants = idRestaurants;
 	}
 
-	public void setMotersBo( MotersBo motersBo ){
-
-		this.motersBo = motersBo;
-	}
-
 	public void setConfigRestaurantBo( ConfigRestaurantBo configRestaurantBo ){
 
 		this.configRestaurantBo = configRestaurantBo;
@@ -261,11 +235,6 @@ public class MantenimentConfigAction extends ActionSupport implements ServletRes
 	public void setDia( String dia ){
 
 		this.dia = dia;
-	}
-
-	public void setMoter( Moters moter ){
-
-		this.moter = moter;
 	}
 
 	public void setConfigRestaurant( ConfigRestaurant configRestaurant ){

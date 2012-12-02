@@ -26,15 +26,6 @@
                 <column name="PLAT_ID" not-null="true" />
             </many-to-many>
         </set>
-        <set name="moters" table="restaurants_moters" 
-        	inverse="false" lazy="true" fetch="select" cascade="delete" >
-            <key>
-                <column name="RESTAURANT_ID" not-null="true" />
-            </key>
-            <many-to-many entity-name="com.online.model.Moters">
-                <column name="MT_MOTER_ID" not-null="true" />
-            </many-to-many>
-        </set>
         <set name="configRestaurants" table="restaurants_obertura" 
         	inverse="false" lazy="true" fetch="select" cascade="delete" >
             <key>
