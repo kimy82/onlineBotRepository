@@ -16,8 +16,8 @@ public class PromocionsBoImpl implements PromocionsBo{
 	public void save( Promocio promocio) throws BOException{
 
 		checkPromocio(promocio);
-		promocionsDao.save(promocio);
-	}
+		promocionsDao.save(promocio); 
+	} 
 
 	public void update(Promocio promocio) throws BOException{
 

@@ -15,10 +15,14 @@ import com.online.exceptions.GeneralException;
 import com.online.model.Users;
 import com.opensymphony.xwork2.ActionSupport;
 
-@SuppressWarnings("serial")
+
 public class NewsletterAction extends ActionSupport implements ServletResponseAware, ServletRequestAware{
 
 
+	/**
+	 * 
+	 */
+	private static final long	serialVersionUID	= 1L;
 	HttpServletResponse			response;
 	HttpServletRequest			request;
 	

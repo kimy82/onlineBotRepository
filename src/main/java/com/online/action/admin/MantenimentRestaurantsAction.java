@@ -32,6 +32,9 @@ import com.opensymphony.xwork2.ActionSupport;
 
 public class MantenimentRestaurantsAction extends ActionSupport implements ServletResponseAware, ServletRequestAware{
 
+
+	
+
 	/**
 	 * 
 	 */

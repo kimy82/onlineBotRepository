@@ -20,6 +20,7 @@ public class UsersDaoImpl extends HibernateDaoSupport implements UsersDao{
 		UserRole userRole = new UserRole(); 		
 		userRole.setRole("ROLE_USER");
 		userRole.setIdUser(user.getId());
+		userRole.setId(user.getId());
 		
 		getHibernateTemplate().save(userRole);				
 		
@@ -34,6 +35,7 @@ public class UsersDaoImpl extends HibernateDaoSupport implements UsersDao{
 		Session session = this.getSessionFactory().openSession();
 		session.beginTransaction();
 		Users userToDelete = (Users)session.load(Users.class, user.getId());
+		session.delete(userToDelete.getUserRole());
 		session.delete(userToDelete);						
 		session.getTransaction().commit();
 		session.close();

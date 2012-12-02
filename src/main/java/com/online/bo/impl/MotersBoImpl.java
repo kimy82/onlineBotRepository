@@ -40,7 +40,7 @@ public class MotersBoImpl implements MotersBo{
 
 	private void checkMoterToSave( Moters moter ) throws BOException{
 
-		if (moter == null || moter.getId() == null || moter.getNumeroMoters() == null || moter.getData() == null) {
+		if (moter == null || moter.getNumeroMoters() == null || moter.getData() == null) {
 			throw new BOException("Null moter to save");
 		}
 	}

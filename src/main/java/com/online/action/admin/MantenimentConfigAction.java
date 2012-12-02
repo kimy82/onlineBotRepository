@@ -8,8 +8,6 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Set;
 
-import javassist.Modifier;
-
 import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -31,9 +29,13 @@ import com.online.pojos.Basic;
 import com.opensymphony.xwork2.Action;
 import com.opensymphony.xwork2.ActionSupport;
 
-@SuppressWarnings("serial")
+
 public class MantenimentConfigAction extends ActionSupport implements ServletResponseAware, ServletRequestAware{
 
+	/**
+	 * 
+	 */
+	private static final long	serialVersionUID	= 1L;
 	private RestaurantsBo		restaurantsBo;
 	private MotersBo			motersBo;
 	private ConfigRestaurantBo	configRestaurantBo;
@@ -69,7 +71,7 @@ public class MantenimentConfigAction extends ActionSupport implements ServletRes
 
 						Date date = getDate(this.dia);
 						moterToSave.setData(date);
-						moterToSave.setIdRestaurant(Integer.parseInt(idStringRestaurant));
+					//	moterToSave.setIdRestaurant(Integer.parseInt(idStringRestaurant));
 						moterToSave.setNumeroMoters(this.moter.getNumeroMoters());
 
 						Moters moterInDB = this.motersBo.load(date, Integer.parseInt(idStringRestaurant));

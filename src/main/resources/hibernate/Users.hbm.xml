@@ -18,6 +18,6 @@
 			<column name="ENABLED" length="2" not-null="true" />
 		</property>
 		<many-to-one name="userRole" class="com.online.model.UserRole" 
-				 column="USER_ID" not-null="true" cascade="all" unique="true" insert="false" update="false" />
+				 column="USER_ID" not-null="true" cascade="all" lazy="false" unique="true" insert="false" update="false" />
 	</class>
 </hibernate-mapping>

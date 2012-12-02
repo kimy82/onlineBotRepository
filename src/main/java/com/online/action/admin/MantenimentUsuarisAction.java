@@ -23,9 +23,13 @@ import com.online.pojos.RestaurantTable;
 import com.online.pojos.UsersTable;
 import com.opensymphony.xwork2.ActionSupport;
 
-@SuppressWarnings("serial")
+
 public class MantenimentUsuarisAction extends ActionSupport implements ServletResponseAware, ServletRequestAware{
 
+	/**
+	 * 
+	 */
+	private static final long	serialVersionUID	= 1L;
 	HttpServletResponse		response;
 	HttpServletRequest		request;
 	

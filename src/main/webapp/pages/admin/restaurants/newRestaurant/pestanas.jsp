@@ -6,5 +6,6 @@
       <li id="pestanya.mto" class="seleccionat" ><a href="#"><s:text name="mant.restaurants.menu.newRest" /></a></li>
       <li id="pestanya.mto" ><a href="<c:url value='plats.action' />"><s:text name="mant.restaurants.menu.newPlat" /></a></li>        
       <li id="pestanya.mto" ><a href="<c:url value='config.action' />"><s:text name="txt.pestana.config" /></a></li>
+      <li id="pestanya.mto"><a href="<c:url value='configMoters.action' />"><s:text name="txt.pestana.moters" /></a></li>
       <li id="pestanya.mto" ><a href="<c:url value='promocions.action' />"><s:text name="txt.pestana.promo" /></a></li>  
       </ul>

@@ -10,7 +10,7 @@
 <td><a href="<c:url value='usuaris.action' />" >M. Usuaris</a></td>
 </tr>
 <tr>
-<td><a href="<c:url value='mantenimentPlats.action' />" >M. Plats</a></td>
+<td><a href="<c:url value='plats.action' />" >M. Plats</a></td>
 </tr>
 <tr>
 <td><a href="<c:url value='restaurants.action' />" >M. Resta</a></td>

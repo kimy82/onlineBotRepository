@@ -8,9 +8,9 @@
 			<column name="MT_MOTER_ID" />
 			<generator class="increment" />
 		</id>
-		<property name="idRestaurant" type="integer" lazy="false" >
+		<!-- property name="idRestaurant" type="integer" lazy="false" >
 			<column name="RESTAURANT_ID"  not-null="true" />
-		</property>
+		</property -->
 		
 		<property name="numeroMoters" type="integer" lazy="false" >
 			<column name="NUM_MOTERS" not-null="true" />
@@ -18,13 +18,16 @@
 		<property name="data" type="date" lazy="false" >
 			<column name="FECHA"  not-null="true" />
 		</property>		
-		 <set name="restaurants" table="restaurants_moters" inverse="true" lazy="true" fetch="select" >
+		<property name="hora" type="string" lazy="false" >
+			<column name="HORA"  not-null="true" />
+		</property>		
+		 <!-- set name="restaurants" table="restaurants_moters" inverse="true" lazy="true" fetch="select" >
             <key>
                 <column name="MT_MOTER_ID" not-null="true" />
             </key>
             <many-to-many entity-name="com.online.model.Restaurant">
                 <column name="RESTAURANT_ID" not-null="true" />
             </many-to-many>
-        </set>
+        </set -->
 	</class>
 </hibernate-mapping>

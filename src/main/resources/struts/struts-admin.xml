@@ -135,6 +135,16 @@
 			class="com.online.action.admin.MantenimentConfigAction" method="loadMotersAndConfig">
 		</action>
 		
+			<!-- Actions per config Moters-->
+		<action name="configMoters" class="com.online.action.admin.MantenimentConfigMotersAction"
+			method="execute">
+			<result name="success">/pages/admin/restaurants/configMoters/configMoters.jsp</result>		
+		</action>
+		<action name="ajaxTableMotersAction"
+			class="com.online.action.admin.MantenimentConfigMotersAction" method="ajaxTableMotersAction">
+		</action>
+		
+		
 		<!-- Actions per newsletter -->
 		<action name="newsletter" class="com.online.action.admin.NewsletterAction"
 			method="execute">

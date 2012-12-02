@@ -16,14 +16,16 @@ public class Moters implements Serializable{
 
 	private Integer				id;
 
-	private Integer				idRestaurant;
+//	private Integer				idRestaurant;
 
 	@Expose
 	private Integer				numeroMoters;
 
 	private Date				data;
-	
-	protected Set<Restaurant>	restaurants			= new HashSet<Restaurant>(0);
+
+	private String				hora;
+
+//	protected Set<Restaurant>	restaurants			= new HashSet<Restaurant>(0);
 
 	// CONSTRUCTORS
 
@@ -45,7 +47,7 @@ public class Moters implements Serializable{
 		this.id = id;
 	}
 
-	public Integer getIdRestaurant(){
+	/*public Integer getIdRestaurant(){
 
 		return idRestaurant;
 	}
@@ -53,7 +55,7 @@ public class Moters implements Serializable{
 	public void setIdRestaurant( Integer idRestaurant ){
 
 		this.idRestaurant = idRestaurant;
-	}
+	}*/
 
 	public Integer getNumeroMoters(){
 
@@ -75,15 +77,24 @@ public class Moters implements Serializable{
 		this.data = data;
 	}
 
-	public Set<Restaurant> getRestaurants(){
-	
+/*	public Set<Restaurant> getRestaurants(){
+
 		return restaurants;
 	}
 
 	public void setRestaurants( Set<Restaurant> restaurants ){
-	
+
 		this.restaurants = restaurants;
+	}*/
+
+	public String getHora(){
+	
+		return hora;
 	}
 
+	public void setHora( String hora ){
 	
+		this.hora = hora;
+	}
+
 }
