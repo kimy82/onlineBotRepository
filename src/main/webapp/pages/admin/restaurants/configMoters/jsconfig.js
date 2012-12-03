@@ -10,6 +10,26 @@ function InitTableParams(txtdadesCargades,txtlast,txtnext,txtprevious,txtfirst,t
 	this.txtloading=txtloading;
 	this.txtborrat=txtborrat;
 }
+var rowsObj=null;
+
+function Rows(){
+	  this.miArray = new Array();
+	  Rows.prototype.nrows=0;
+	  this.setRow= function(row){
+			 this.miArray[this.nrows]=row;
+			 this.nrows += 1;
+	  };	 
+	  this.deleteRow= function(pos){
+		   this.miArray = this.miArray.splice(pos,1);
+			 this.nrowss -=1;			
+	  };	
+}
+
+function Row(position, dia){
+	
+	this.position=position;
+	this.dia=dia;
+}
 
 function saveMoters(id){
 	numMot = $("#"+id).val();
@@ -101,10 +121,10 @@ $(document).ready(function() {
 				      }
 				    },
 				"sScrollY": "800",		    
-				"sScrollX": "152",	
+				"sScrollX": "352",	
 			    "bScrollCollapse": true,
 	    		"bProcessing": false,
-	    		"bServerSide": true,
+	    		"bServerSide": false,
 	    		"sAjaxSource": '/onlineBot/admin/ajaxTableMotersAction.action',
 	    		"fnServerData": function( sUrl, aoData, fnCallback) {  
 	    			if(dia=='')return;
@@ -132,12 +152,14 @@ $(document).ready(function() {
 		} );
 	
 	
+	
 });
 
 //afegeix una fila a la taula de moters
 function fnClickAddRow(ddmmyyyy) {
 	
 		data ="dia="+ddmmyyyy;
+		var n ="";
 		var json="";
 		$.ajax({
 			  type: "POST",
@@ -149,20 +171,18 @@ function fnClickAddRow(ddmmyyyy) {
 	   				$("#errorsajaxlabel").text(json.error);
 	   				$("#errorsajax").show();
 	   			}else{	   					   			
-	   				$('#oTableMoters').dataTable().fnAddData( [json.aaData[0].dia,json.aaData[0].h0800,json.aaData[0].h0830,json.aaData[0].h0900,json.aaData[0].h0930, 
-	   				                                           json.aaData[0].h1000, json.aaData[0].h1030,json.aaData[0].h1100,json.aaData[0].h1130,json.aaData[0].h1200,
-	   				                                           json.aaData[0].h1230,json.aaData[0].h1300,json.aaData[0].h1330,json.aaData[0].h01400, json.aaData[0].h1430,
-	   				                                           json.aaData[0].h1500,json.aaData[0].h1530,json.aaData[0].h1600,json.aaData[0].h1630,json.aaData[0].h1700,
-	   				                                           json.aaData[0].h1730, json.aaData[0].h1800,json.aaData[0].h1830,json.aaData[0].h1900,json.aaData[0].h1930,
-	   				                                           json.aaData[0].h2000, json.aaData[0].h2030,json.aaData[0].h2100,json.aaData[0].h2130,json.aaData[0].h2200,
-	   				                                           json.aaData[0].h2230,json.aaData[0].h2300,json.aaData[0].h2330,json.aaData[0].h2400] );
-	   				giCount++;
+	   				var ai =oTableMoters.fnAddData( [json.aaData[0]] );
+	   				n = oTableMoters.fnSettings().aoData[ ai[0] ].nTr;
+	   				
 	   			}				
 			  },
 			  error: function(e){   $("#errorsajaxlabel").text("Error in ajax call");
 									$("#errorsajax").show();  		
 			  					}
 			});
+		
+		//	var tbody = document.getElementById("tbl_moters").tBodies[0];
+		//	tbody.appendChild(n);
 }
 
 function pad(str,ch,len) { 
@@ -250,7 +270,7 @@ var datepicker=null;
                      $(".datepickerDays tr td").removeClass("green");                     
                      if(! $(this).hasClass("datepickerNotInMonth")){
                     	 if($(this).hasClass("border_selected")){                    
-                    		 $(this).removeClass("border_selected");
+                    		 $(this).removeClass("border_selected");                    		 
                     		 return;
                     	 }                    	                    	
                     	 $(this).addClass("border_selected");

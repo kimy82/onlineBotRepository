@@ -113,40 +113,40 @@ public class ConfigMotersTable{
 
 	// CONSTRUCTORS
 	public ConfigMotersTable(String dia) {
-
-		this.h0800="<input type=\"text\" id=\"0800_"+this.dia+"\" value=\"0\" onblur=\"saveMoters(this.id)\" />";
-		this.h0830="<input type=\"text\" id=\"0830_"+this.dia+"\" value=\"0\" onblur=\"saveMoters(this.id)\" />";
-		this.h0900="<input type=\"text\" id=\"0900_"+this.dia+"\" value=\"0\" onblur=\"saveMoters(this.id)\" />";
-		this.h0930="<input type=\"text\" id=\"0930_"+this.dia+"\" value=\"0\" onblur=\"saveMoters(this.id)\" />";
-		this.h1000="<input type=\"text\" id=\"1000_"+this.dia+"\" value=\"0\" onblur=\"saveMoters(this.id)\" />";
-		this.h1030="<input type=\"text\" id=\"1030_"+this.dia+"\" value=\"0\" onblur=\"saveMoters(this.id)\" />";
-		this.h1100="<input type=\"text\" id=\"1100_"+this.dia+"\" value=\"0\" onblur=\"saveMoters(this.id)\" />";
-		this.h1130="<input type=\"text\" id=\"1130_"+this.dia+"\" value=\"0\" onblur=\"saveMoters(this.id)\" />";
-		this.h1200="<input type=\"text\" id=\"1200_"+this.dia+"\" value=\"0\" onblur=\"saveMoters(this.id)\" />";
-		this.h1230="<input type=\"text\" id=\"1230_"+this.dia+"\" value=\"0\" onblur=\"saveMoters(this.id)\" />";
-		this.h1300="<input type=\"text\" id=\"1300_"+this.dia+"\" value=\"0\" onblur=\"saveMoters(this.id)\" />";
-		this.h1330="<input type=\"text\" id=\"1330_"+this.dia+"\" value=\"0\" onblur=\"saveMoters(this.id)\" />";
-		this.h1400="<input type=\"text\" id=\"1400_"+this.dia+"\" value=\"0\" onblur=\"saveMoters(this.id)\" />";
-		this.h1430="<input type=\"text\" id=\"1430_"+this.dia+"\" value=\"0\" onblur=\"saveMoters(this.id)\" />";
-		this.h1500="<input type=\"text\" id=\"1500_"+this.dia+"\" value=\"0\" onblur=\"saveMoters(this.id)\" />";
-		this.h1530="<input type=\"text\" id=\"1530_"+this.dia+"\" value=\"0\" onblur=\"saveMoters(this.id)\" />";
-		this.h1600="<input type=\"text\" id=\"1600_"+this.dia+"\" value=\"0\" onblur=\"saveMoters(this.id)\" />";
-		this.h1630="<input type=\"text\" id=\"1630_"+this.dia+"\" value=\"0\" onblur=\"saveMoters(this.id)\" />";
-		this.h1700="<input type=\"text\" id=\"1700_"+this.dia+"\" value=\"0\" onblur=\"saveMoters(this.id)\" />";
-		this.h1730="<input type=\"text\" id=\"1730_"+this.dia+"\" value=\"0\" onblur=\"saveMoters(this.id)\" />";
-		this.h1800="<input type=\"text\" id=\"1800_"+this.dia+"\" value=\"0\" onblur=\"saveMoters(this.id)\" />";
-		this.h1830="<input type=\"text\" id=\"1830_"+this.dia+"\" value=\"0\" onblur=\"saveMoters(this.id)\" />";
-		this.h1900="<input type=\"text\" id=\"1900_"+this.dia+"\" value=\"0\" onblur=\"saveMoters(this.id)\" />";
-		this.h1930="<input type=\"text\" id=\"1930_"+this.dia+"\" value=\"0\" onblur=\"saveMoters(this.id)\" />";
-		this.h2000="<input type=\"text\" id=\"2000_"+this.dia+"\" value=\"0\" onblur=\"saveMoters(this.id)\" />";
-		this.h2030="<input type=\"text\" id=\"2030_"+this.dia+"\" value=\"0\" onblur=\"saveMoters(this.id)\" />";
-		this.h2100="<input type=\"text\" id=\"2100_"+this.dia+"\" value=\"0\" onblur=\"saveMoters(this.id)\" />";
-		this.h2130="<input type=\"text\" id=\"2130_"+this.dia+"\" value=\"0\" onblur=\"saveMoters(this.id)\" />";
-		this.h2200="<input type=\"text\" id=\"2200_"+this.dia+"\" value=\"0\" onblur=\"saveMoters(this.id)\" />";
-		this.h2230="<input type=\"text\" id=\"2230_"+this.dia+"\" value=\"0\" onblur=\"saveMoters(this.id)\" />";
-		this.h2300="<input type=\"text\" id=\"2300_"+this.dia+"\" value=\"0\" onblur=\"saveMoters(this.id)\" />";
-		this.h2330="<input type=\"text\" id=\"2330_"+this.dia+"\" value=\"0\" onblur=\"saveMoters(this.id)\" />";
-		this.h2400="<input type=\"text\" id=\"2400_"+this.dia+"\" value=\"0\" onblur=\"saveMoters(this.id)\" />";
+		this.dia=dia;
+		this.h0800="<input type=\"text\" style=\"width: 20px;\" id=\"0800_"+this.dia+"\" value=\"0\" /><a href=\"#\" onclick=\"saveMoters('0800_"+this.dia+"');\"><img src=\"../admin/images/save.png\" /><a/>";
+		this.h0830="<input type=\"text\" style=\"width: 20px;\" id=\"0830_"+this.dia+"\" value=\"0\" /><a href=\"#\" onclick=\"saveMoters('0830_"+this.dia+"');\"><img src=\"../admin/images/save.png\" /><a/>";
+		this.h0900="<input type=\"text\" style=\"width: 20px;\" id=\"0900_"+this.dia+"\" value=\"0\" /><a href=\"#\" onclick=\"saveMoters('0900_"+this.dia+"');\"><img src=\"../admin/images/save.png\" /><a/>";
+		this.h0930="<input type=\"text\" style=\"width: 20px;\" id=\"0930_"+this.dia+"\" value=\"0\" /><a href=\"#\" onclick=\"saveMoters('0930_"+this.dia+"');\"><img src=\"../admin/images/save.png\" /><a/>";
+		this.h1000="<input type=\"text\" style=\"width: 20px;\" id=\"1000_"+this.dia+"\" value=\"0\" /><a href=\"#\" onclick=\"saveMoters('1000_"+this.dia+"');\"><img src=\"../admin/images/save.png\" /><a/>";
+		this.h1030="<input type=\"text\" style=\"width: 20px;\" id=\"1030_"+this.dia+"\" value=\"0\" /><a href=\"#\" onclick=\"saveMoters('1030_"+this.dia+"');\"><img src=\"../admin/images/save.png\" /><a/>";
+		this.h1100="<input type=\"text\" style=\"width: 20px;\" id=\"1100_"+this.dia+"\" value=\"0\" /><a href=\"#\" onclick=\"saveMoters('1100_"+this.dia+"');\"><img src=\"../admin/images/save.png\" /><a/>";
+		this.h1130="<input type=\"text\" style=\"width: 20px;\" id=\"1130_"+this.dia+"\" value=\"0\" /><a href=\"#\" onclick=\"saveMoters('1130_"+this.dia+"');\"><img src=\"../admin/images/save.png\" /><a/>";
+		this.h1200="<input type=\"text\" style=\"width: 20px;\" id=\"1200_"+this.dia+"\" value=\"0\" /><a href=\"#\" onclick=\"saveMoters('1200_"+this.dia+"');\"><img src=\"../admin/images/save.png\" /><a/>";
+		this.h1230="<input type=\"text\" style=\"width: 20px;\" id=\"1230_"+this.dia+"\" value=\"0\" /><a href=\"#\" onclick=\"saveMoters('1230_"+this.dia+"');\"><img src=\"../admin/images/save.png\" /><a/>";
+		this.h1300="<input type=\"text\" style=\"width: 20px;\" id=\"1300_"+this.dia+"\" value=\"0\" /><a href=\"#\" onclick=\"saveMoters('1300_"+this.dia+"');\"><img src=\"../admin/images/save.png\" /><a/>";
+		this.h1330="<input type=\"text\" style=\"width: 20px;\" id=\"1330_"+this.dia+"\" value=\"0\" /><a href=\"#\" onclick=\"saveMoters('1330_"+this.dia+"');\"><img src=\"../admin/images/save.png\" /><a/>";
+		this.h1400="<input type=\"text\" style=\"width: 20px;\" id=\"1400_"+this.dia+"\" value=\"0\" /><a href=\"#\" onclick=\"saveMoters('1400_"+this.dia+"');\"><img src=\"../admin/images/save.png\" /><a/>";
+		this.h1430="<input type=\"text\" style=\"width: 20px;\" id=\"1430_"+this.dia+"\" value=\"0\" /><a href=\"#\" onclick=\"saveMoters('1430_"+this.dia+"');\"><img src=\"../admin/images/save.png\" /><a/>";
+		this.h1500="<input type=\"text\" style=\"width: 20px;\" id=\"1500_"+this.dia+"\" value=\"0\" /><a href=\"#\" onclick=\"saveMoters('1500_"+this.dia+"');\"><img src=\"../admin/images/save.png\" /><a/>";
+		this.h1530="<input type=\"text\" style=\"width: 20px;\" id=\"1530_"+this.dia+"\" value=\"0\" /><a href=\"#\" onclick=\"saveMoters('1530_"+this.dia+"');\"><img src=\"../admin/images/save.png\" /><a/>";
+		this.h1600="<input type=\"text\" style=\"width: 20px;\" id=\"1600_"+this.dia+"\" value=\"0\" /><a href=\"#\" onclick=\"saveMoters('1600_"+this.dia+"');\"><img src=\"../admin/images/save.png\" /><a/>";
+		this.h1630="<input type=\"text\" style=\"width: 20px;\" id=\"1630_"+this.dia+"\" value=\"0\" /><a href=\"#\" onclick=\"saveMoters('1630_"+this.dia+"');\"><img src=\"../admin/images/save.png\" /><a/>";
+		this.h1700="<input type=\"text\" style=\"width: 20px;\" id=\"1700_"+this.dia+"\" value=\"0\" /><a href=\"#\" onclick=\"saveMoters('1700_"+this.dia+"');\"><img src=\"../admin/images/save.png\" /><a/>";
+		this.h1730="<input type=\"text\" style=\"width: 20px;\" id=\"1730_"+this.dia+"\" value=\"0\" /><a href=\"#\" onclick=\"saveMoters('1730_"+this.dia+"');\"><img src=\"../admin/images/save.png\" /><a/>";
+		this.h1800="<input type=\"text\" style=\"width: 20px;\" id=\"1800_"+this.dia+"\" value=\"0\" /><a href=\"#\" onclick=\"saveMoters('1800_"+this.dia+"');\"><img src=\"../admin/images/save.png\" /><a/>";
+		this.h1830="<input type=\"text\" style=\"width: 20px;\" id=\"1830_"+this.dia+"\" value=\"0\" /><a href=\"#\" onclick=\"saveMoters('1830_"+this.dia+"');\"><img src=\"../admin/images/save.png\" /><a/>";
+		this.h1900="<input type=\"text\" style=\"width: 20px;\" id=\"1900_"+this.dia+"\" value=\"0\" /><a href=\"#\" onclick=\"saveMoters('1900_"+this.dia+"');\"><img src=\"../admin/images/save.png\" /><a/>";
+		this.h1930="<input type=\"text\" style=\"width: 20px;\" id=\"1930_"+this.dia+"\" value=\"0\"  /><a href=\"#\" onclick=\"saveMoters('1930_"+this.dia+"');\"><img src=\"../admin/images/save.png\" /><a/>";
+		this.h2000="<input type=\"text\" style=\"width: 20px;\" id=\"2000_"+this.dia+"\" value=\"0\"  /><a href=\"#\" onclick=\"saveMoters('2000_"+this.dia+"');\"><img src=\"../admin/images/save.png\" /><a/>";
+		this.h2030="<input type=\"text\" style=\"width: 20px;\" id=\"2030_"+this.dia+"\" value=\"0\" /><a href=\"#\" onclick=\"saveMoters('2030_"+this.dia+"');\"><img src=\"../admin/images/save.png\" /><a/>";
+		this.h2100="<input type=\"text\" style=\"width: 20px;\" id=\"2100_"+this.dia+"\" value=\"0\" /><a href=\"#\" onclick=\"saveMoters('2100_"+this.dia+"');\"><img src=\"../admin/images/save.png\" /><a/>";
+		this.h2130="<input type=\"text\" style=\"width: 20px;\" id=\"2130_"+this.dia+"\" value=\"0\"  /><a href=\"#\" onclick=\"saveMoters('2130_"+this.dia+"');\"><img src=\"../admin/images/save.png\" /><a/>";
+		this.h2200="<input type=\"text\" style=\"width: 20px;\" id=\"2200_"+this.dia+"\" value=\"0\" /><a href=\"#\" onclick=\"saveMoters('2200_"+this.dia+"');\"><img src=\"../admin/images/save.png\" /><a/>";
+		this.h2230="<input type=\"text\" style=\"width: 20px;\" id=\"2230_"+this.dia+"\" value=\"0\" /><a href=\"#\" onclick=\"saveMoters('2230_"+this.dia+"');\"><img src=\"../admin/images/save.png\" /><a/>";
+		this.h2300="<input type=\"text\" style=\"width: 20px;\" id=\"2300_"+this.dia+"\" value=\"0\"  /><a href=\"#\" onclick=\"saveMoters('2300_"+this.dia+"');\"><img src=\"../admin/images/save.png\" /><a/>";
+		this.h2330="<input type=\"text\" style=\"width: 20px;\" id=\"2330_"+this.dia+"\" value=\"0\"  /><a href=\"#\" onclick=\"saveMoters('2330_"+this.dia+"');\"><img src=\"../admin/images/save.png\" /><a/>";
+		this.h2400="<input type=\"text\" style=\"width: 20px;\" id=\"2400_"+this.dia+"\" value=\"0\"  /><a href=\"#\" onclick=\"saveMoters('2400_"+this.dia+"');\"><img src=\"../admin/images/save.png\" /><a/>";
 	}
 
 	// GETTERS i SETTERS
