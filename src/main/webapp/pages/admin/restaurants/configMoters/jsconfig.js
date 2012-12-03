@@ -1,7 +1,7 @@
 ///////////////////////////////////
 //variables per textos en locale
 var initTableParams=null ;
-function InitTableParams(txtdadesCargades){		
+function InitTableParams(txtdadesCargades,txtlast,txtnext,txtprevious,txtfirst,txtloading,txtborrat){		
 	this.txtdadesCargades=txtdadesCargades;
 	this.txtlast=txtlast;
 	this.txtnext=txtnext;
@@ -10,9 +10,33 @@ function InitTableParams(txtdadesCargades){
 	this.txtloading=txtloading;
 	this.txtborrat=txtborrat;
 }
+
+function saveMoters(id){
+	numMot = $("#"+id).val();
+	
+	 data ="id="+id+"&num="+numMot;
+		$.ajax({
+			  type: "POST",
+			  url: '/onlineBot/admin/saveMoters.action',
+			  dataType: 'json',
+			  data: data,
+			  success: function(json){	
+				  if(json!=null && json.error!=null){
+	   				$("#errorsajaxlabel").text(json.error);
+	   				$("#errorsajax").show();
+	   			}else{	   					   			
+					alert("Saved");
+	   			}				
+			  },
+			  error: function(e){   $("#errorsajaxlabel").text("Error in ajax call");
+									$("#errorsajax").show();  		
+			  					}
+			});
+}
 //Variable per taula moters
 var  oTableMoters=null;
 var dia=null;
+var giCount = 2;
 //Inicialitza el calendari
 $(document).ready(function() {
 	now=new Date();
@@ -20,17 +44,22 @@ $(document).ready(function() {
     document.getElementById('div_calendar').innerHTML='';
 	loadCalendar("ca");		
 	var txtDia =now.getDate();  
-	dia=txtDia;
-	clickDay(txtDia);
+	var txtyear = now.getFullYear();
+    var txtmonth = now.getMonth()+1;                         
+    var dia = txtDia+'-'+txtmonth+'-'+txtyear;
+	
+	
+	//clickDay(txtDia);
 	
 	//taula dels moters
 	oTableMoters =$("#tbl_moters").dataTable( {
 				"iDisplayLength": 22,
 				 "aoColumns" : [
 				                  { "mDataProp":"dia","bSortable": false, sWidth: '50px' },
-				                  { "mDataProp":"h8000", "bSortable": false, sWidth: '50px' },
-				                  { "mDataProp":"h8030", "bSortable": false, sWidth: '20px' },
-				                  { "mDataProp":"h9000", "bSortable": false, sWidth: '20px' },
+				                  { "mDataProp":"h0800", "bSortable": false, sWidth: '50px' },
+				                  { "mDataProp":"h0830", "bSortable": false, sWidth: '20px' },
+				                  { "mDataProp":"h0900", "bSortable": false, sWidth: '20px' },
+				                  { "mDataProp":"h0930", "bSortable": false, sWidth: '20px' },
 				                  { "mDataProp":"h1000", "bSortable": false, sWidth: '20px' },
 				                  { "mDataProp":"h1030", "bSortable": false, sWidth: '20px' },
 				                  { "mDataProp":"h1100", "bSortable": false, sWidth: '20px' },
@@ -71,7 +100,7 @@ $(document).ready(function() {
 				        "sPrevious": "<img src='/onlineBot/images/icono-paginador-anterior.gif' style='vertical-align:middle'>&nbsp;"+initTableParams.txtprevious
 				      }
 				    },
-				"sScrollY": "100",		    
+				"sScrollY": "800",		    
 				"sScrollX": "152",	
 			    "bScrollCollapse": true,
 	    		"bProcessing": false,
@@ -91,7 +120,7 @@ $(document).ready(function() {
 	                		$("#errorsajax").show();
 	           			}else{
 		            		fnCallback(json);
-		            		("#tbl_restaurants_paginate").hide();
+		            		$("#tbl_moters_paginate").hide();
 	           			}            	
 	            	},
 	            	"error":function(e){ 
@@ -105,31 +134,29 @@ $(document).ready(function() {
 	
 });
 
-//Funcio que s'executa quan es selecciona un restaurant del select multiple
-function loadMotersAndConfig(idRestaurant){
+//afegeix una fila a la taula de moters
+function fnClickAddRow(ddmmyyyy) {
 	
-	 var dia = $("#selectedDia").val();
-	 data ="id="+idRestaurant+"&dia="+dia;
+		data ="dia="+ddmmyyyy;
+		var json="";
 		$.ajax({
 			  type: "POST",
-			  url: '/onlineBot/admin/loadMotersAndConfig.action',
+			  url: '/onlineBot/admin/ajaxTableMotersAction.action',
 			  dataType: 'json',
 			  data: data,
 			  success: function(json){	
 				  if(json!=null && json.error!=null){
 	   				$("#errorsajaxlabel").text(json.error);
 	   				$("#errorsajax").show();
-	   			}else{
-	   				if(json.numeroMoters==null){
-	   					$("#numMoters").val("");
-	   				}
-	   				$("#numMoters").val(json.numeroMoters);
-					if(json.obert==true){
-						$("#obert").prop('checked', true);
-					}else{
-						$("#obert").prop('checked', false);
-					}
-					alert(initTableParams.txtdadesCargades);
+	   			}else{	   					   			
+	   				$('#oTableMoters').dataTable().fnAddData( [json.aaData[0].dia,json.aaData[0].h0800,json.aaData[0].h0830,json.aaData[0].h0900,json.aaData[0].h0930, 
+	   				                                           json.aaData[0].h1000, json.aaData[0].h1030,json.aaData[0].h1100,json.aaData[0].h1130,json.aaData[0].h1200,
+	   				                                           json.aaData[0].h1230,json.aaData[0].h1300,json.aaData[0].h1330,json.aaData[0].h01400, json.aaData[0].h1430,
+	   				                                           json.aaData[0].h1500,json.aaData[0].h1530,json.aaData[0].h1600,json.aaData[0].h1630,json.aaData[0].h1700,
+	   				                                           json.aaData[0].h1730, json.aaData[0].h1800,json.aaData[0].h1830,json.aaData[0].h1900,json.aaData[0].h1930,
+	   				                                           json.aaData[0].h2000, json.aaData[0].h2030,json.aaData[0].h2100,json.aaData[0].h2130,json.aaData[0].h2200,
+	   				                                           json.aaData[0].h2230,json.aaData[0].h2300,json.aaData[0].h2330,json.aaData[0].h2400] );
+	   				giCount++;
 	   			}				
 			  },
 			  error: function(e){   $("#errorsajaxlabel").text("Error in ajax call");
@@ -219,9 +246,13 @@ var datepicker=null;
 					
              $(".datepickerDays tr td").addClass("hand_cursor").click(function() {
             	 	
-                     $(".datepickerDays tr td").removeClass("border_selected");
+                     
                      $(".datepickerDays tr td").removeClass("green");                     
                      if(! $(this).hasClass("datepickerNotInMonth")){
+                    	 if($(this).hasClass("border_selected")){                    
+                    		 $(this).removeClass("border_selected");
+                    		 return;
+                    	 }                    	                    	
                     	 $(this).addClass("border_selected");
                          clickDay($("span",this).html());	 
                      }else{                    	 
@@ -243,21 +274,14 @@ var datepicker=null;
            var ddmmyyyy = txtDia+'-'+month+'-'+year;
            
            
+           
            $("#selectedDia").val(ddmmyyyy);
            $("#datePicked").text(ddmmyyyy);
-           $("#config_rest").show('slow');          							
+           fnClickAddRow(ddmmyyyy);    							
                                                
 		}
 		
-		function fnClickAddRow() {
-			$('#example').dataTable().fnAddData( [
-				giCount+".1",
-				giCount+".2",
-				giCount+".3",
-				giCount+".4" ] );
-			
-			giCount++;
-		}
+	
 
 //JS BUTTONS
 ButtonPanel = Ext.extend(Ext.Panel, {

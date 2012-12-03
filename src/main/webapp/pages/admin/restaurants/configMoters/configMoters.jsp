@@ -17,9 +17,10 @@
     <script type="text/javascript" src="<c:url value='/js/ext/ext-base.js'/>"></script>
     <script type="text/javascript" src="<c:url value='/js/ext/ext-all-debug.js'/>"></script>  	
 	<script src="<c:url value='/pages/admin/restaurants/configMoters/jsconfig.js'/>" type="text/javascript"></script>    
+	<script src="<c:url value='/js/jquery/jquery.dataTables.js'/>" type="text/javascript"></script>
 	
 	<script language="javascript">
-		var initTableParams = new InitTableParams("<s:text  name='txt.dades.cargades'/>,
+		var initTableParams = new InitTableParams("<s:text  name='txt.dades.cargades'/>",
 													"<s:text  name='datatables.paginate.last'/>",
 													"<s:text  name='datatables.paginate.next'/>",
 													"<s:text  name='datatables.paginate.previous'/>",
@@ -43,6 +44,7 @@
 			</div>
 			<br>
     <center>  	
+    
      <c:import url="calendar.jsp" />  
 	<div id="config_rest">
 		<table class="noborder"  style="background-color:rgb(192,192,192)">
@@ -56,8 +58,8 @@
 			         </tr>
 			    </table>
 			    
-				<div  style="width:700px;" alig="center" >
-					<table class="selecciom dataTable" id="tbl_moters" width="700px">
+				<div  style="width:950px;" alig="center" >
+					<table class="selecciom dataTable" id="tbl_moters">
 						<thead>
 							<tr>
 								<th><s:text name="mant.moters.dia" /></th>

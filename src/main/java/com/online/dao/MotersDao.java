@@ -1,6 +1,7 @@
 package com.online.dao;
 
 import java.util.Date;
+import java.util.List;
 
 import com.online.model.Moters;
 
@@ -12,5 +13,7 @@ public interface MotersDao{
 
 	Moters load( Integer id );
 	
-	Moters load( Date date, Integer idrestaurant );
+	Moters load( String hora, Date dia );
+	
+	List<Moters> load( Date date );
 }

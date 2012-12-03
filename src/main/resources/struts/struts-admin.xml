@@ -143,6 +143,10 @@
 		<action name="ajaxTableMotersAction"
 			class="com.online.action.admin.MantenimentConfigMotersAction" method="ajaxTableMotersAction">
 		</action>
+		<action name="saveMoters"
+			class="com.online.action.admin.MantenimentConfigMotersAction" method="saveMoters">
+		</action>
+		
 		
 		
 		<!-- Actions per newsletter -->

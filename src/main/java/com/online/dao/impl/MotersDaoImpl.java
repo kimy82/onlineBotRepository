@@ -26,18 +26,30 @@ public class MotersDaoImpl extends HibernateDaoSupport implements MotersDao{
 		return getHibernateTemplate().load(Moters.class, id);
 	}
 	
-	public Moters load( Date date, Integer idrestaurant ){
+	public List<Moters> load( Date date ){
 		Session session = this.getSessionFactory().openSession();
 
 		session.beginTransaction();
 		@SuppressWarnings("unchecked")
-		List<Moters> motersList = (List<Moters>) session.createQuery("from Moters mts where mts.data= ? and mts.idRestaurant= ?").setDate(0, date).setInteger(1, idrestaurant).list();
+		List<Moters> motersList = (List<Moters>) session.createQuery("from Moters mts where mts.data= ? ").setDate(0, date).list();
 		if (motersList.isEmpty())
-			return null;
-		Moters moter = motersList.get(0);
-				
+			return null;						
 		session.close();
 
-		return moter;
+		return motersList;
+	}
+
+	public Moters load( String hora, Date dia ){
+
+		Session session = this.getSessionFactory().openSession();
+
+		session.beginTransaction();
+		@SuppressWarnings("unchecked")
+		List<Moters> motersList = (List<Moters>) session.createQuery("from Moters mts where mts.data= ? and mts.hora= ? ").setDate(0, dia).setString(1, hora).list();
+		if (motersList.isEmpty())
+			return null;						
+		session.close();
+
+		return motersList.get(0);
 	}
 }

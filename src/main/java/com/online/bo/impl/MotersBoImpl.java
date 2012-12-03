@@ -1,6 +1,7 @@
 package com.online.bo.impl;
 
 import java.util.Date;
+import java.util.List;
 
 import com.online.bo.MotersBo;
 import com.online.dao.MotersDao;
@@ -30,12 +31,19 @@ public class MotersBoImpl implements MotersBo{
 
 	}
 
-	public Moters load( Date date, Integer idrestaurant ) throws BOException{
+	public List<Moters> load( Date date ) throws BOException{
 
-		if (date == null || idrestaurant==null) return null; 		
-		return motersDao.load(date,idrestaurant);
+		if (date == null) return null; 		
+		return motersDao.load(date);
 
 	}
+	
+	public Moters load( String hora, Date dia ) throws BOException{
+
+		if (dia == null || hora==null || hora.equals("")) return null; 		
+		return motersDao.load( hora, dia );
+	}
+
 	// PRIVATE METHODS
 
 	private void checkMoterToSave( Moters moter ) throws BOException{
@@ -59,4 +67,5 @@ public class MotersBoImpl implements MotersBo{
 		this.motersDao = motersDao;
 	}
 
+	
 }

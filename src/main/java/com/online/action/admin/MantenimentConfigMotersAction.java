@@ -2,11 +2,8 @@ package com.online.action.admin;
 
 import java.io.IOException;
 import java.util.Calendar;
-import java.util.Collections;
 import java.util.Date;
-import java.util.LinkedList;
 import java.util.List;
-import java.util.Set;
 
 import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletRequest;
@@ -17,18 +14,12 @@ import org.apache.struts2.interceptor.ServletResponseAware;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import com.online.bo.ConfigRestaurantBo;
 import com.online.bo.MotersBo;
-import com.online.bo.RestaurantsBo;
-import com.online.exceptions.BOException;
 import com.online.exceptions.GeneralException;
-import com.online.model.ConfigRestaurant;
+import com.online.exceptions.WrongParamException;
 import com.online.model.Moters;
-import com.online.model.Restaurant;
-import com.online.pojos.Basic;
-import com.opensymphony.xwork2.Action;
+import com.online.pojos.ConfigMotersTable;
 import com.opensymphony.xwork2.ActionSupport;
-
 
 public class MantenimentConfigMotersAction extends ActionSupport implements ServletResponseAware, ServletRequestAware{
 
@@ -37,21 +28,238 @@ public class MantenimentConfigMotersAction extends ActionSupport implements Serv
 	 */
 	private static final long	serialVersionUID	= 1L;
 	private MotersBo			motersBo;
-	
 
 	private String				dia;
+	private Integer				numMoters			= null;
 	private Moters				moter				= new Moters();
+	private Date				date;
+	private String				hora;
+	
+	private String			sEcho;
+	private int				lenght			= 0;
+	private int				inici			= 0;
+	private String			sortDireccio	= null;
 
 	HttpServletResponse			response;
 	HttpServletRequest			request;
 
 	public String execute(){
-		
+
 		return SUCCESS;
 
 	}
 
-		// private methods
+	public String saveMoters(){
+
+		ServletOutputStream out = null;
+		String json = "";
+
+		try {
+			out = this.response.getOutputStream();
+			inizializeMotersParams();
+			Moters moter = this.motersBo.load(this.hora, this.date);
+			if(moter==null){
+				moter = new Moters();
+				moter.setData(this.date);
+				moter.setHora(this.hora);
+				moter.setNumeroMoters(this.numMoters);
+				this.motersBo.save(moter);
+			}else{
+				moter.setNumeroMoters(this.numMoters);
+				this.motersBo.update(moter);
+			}
+			json = "{\"ok\" : \"ok\"}";
+		} catch (WrongParamException e) {
+			json = createErrorJSON("error in ajax action: wrong params");
+		} catch (Exception e) {
+			json = createErrorJSON("error in ajax action");
+		}
+
+		try {
+			out.print(json);
+		} catch (IOException e) {
+			throw new GeneralException(e, "possibly ServletOutputStream null");
+		}
+		return null;
+	}
+
+	public String ajaxTableMotersAction(){
+
+		ServletOutputStream out = null;
+		String json = "";
+
+		try {
+			out = this.response.getOutputStream();
+			inizializeTableMotersParams();
+			json = searchInfoANDcreateJSONForMoters();
+		} catch (WrongParamException e) {
+			json = createErrorJSON("error in ajax action: wrong params");
+		} catch (Exception e) {
+			json = createErrorJSON("error in ajax action");
+		}
+
+		try {
+			out.print(json);
+		} catch (IOException e) {
+			throw new GeneralException(e, "possibly ServletOutputStream null");
+		}
+		return null;
+	}
+
+	// private methods
+	private void inizializeMotersParams() throws NumberFormatException,WrongParamException{
+		
+		this.numMoters = request.getParameter("num")!=null && !request.getParameter("num").equals("")? Integer.parseInt(request.getParameter("num")) : null;
+		String horaDia= request.getParameter("id");
+		String[] horaDiaVec = horaDia.split("_");
+		if(horaDiaVec.length!=2){
+			throw new WrongParamException("Hora o dia mal informats");
+		}else{
+			this.date= getDate(horaDiaVec[1]);
+			this.hora = horaDiaVec[0];
+		}
+	}
+
+	private String searchInfoANDcreateJSONForMoters(){
+
+		List<Moters> motersForDate = this.motersBo.load(getDate(this.dia));
+		ConfigMotersTable configMotersTable = new ConfigMotersTable(this.dia);
+		configMotersTable.setDia(this.dia);
+		if(motersForDate==null || motersForDate.isEmpty()){
+			Gson gson = new GsonBuilder().setPrettyPrinting().create();
+			return createJSONForTable(gson.toJson(configMotersTable));
+		}
+		for (Moters moter : motersForDate) {
+			if (moter.getHora().equals("0800")) {
+				configMotersTable.setH0800("<input type=\"text\" id=\"0800_" + this.dia + "\" value=\"" + moter.getNumeroMoters()
+						+ "\" style=\"width: 20px;\" onblur=\"saveMoters(this.id)\" />");
+			} else if (moter.getHora().equals("0830")) {
+				configMotersTable.setH0830("<input type=\"text\" id=\"0830_" + this.dia + "\" value=\"" + moter.getNumeroMoters()
+						+ "\" style=\"width: 20px;\" onblur=\"saveMoters(this.id)\" />");
+			} else if (moter.getHora().equals("0900")) {
+				configMotersTable.setH0900("<input type=\"text\" id=\"0900_" + this.dia + "\" value=\"" + moter.getNumeroMoters()
+						+ "\" style=\"width: 20px;\" onblur=\"saveMoters(this.id)\" />");
+			} else if (moter.getHora().equals("0930")) {
+				configMotersTable.setH0930("<input type=\"text\" id=\"0930_" + this.dia + "\" value=\"" + moter.getNumeroMoters()
+						+ "\" style=\"width: 20px;\" onblur=\"saveMoters(this.id)\" />");
+			} else if (moter.getHora().equals("1000")) {
+				configMotersTable.setH1000("<input type=\"text\" id=\"1000_" + this.dia + "\" value=\"" + moter.getNumeroMoters()
+						+ "\" style=\"width: 20px;\" onblur=\"saveMoters(this.id)\" />");
+			} else if (moter.getHora().equals("1030")) {
+				configMotersTable.setH1030("<input type=\"text\" id=\"1030_" + this.dia + "\" value=\"" + moter.getNumeroMoters()
+						+ "\" style=\"width: 20px;\" onblur=\"saveMoters(this.id)\" />");
+			} else if (moter.getHora().equals("1100")) {
+				configMotersTable.setH1100("<input type=\"text\" id=\"1100_" + this.dia + "\" value=\"" + moter.getNumeroMoters()
+						+ "\" style=\"width: 20px;\" onblur=\"saveMoters(this.id)\" />");
+			} else if (moter.getHora().equals("1130")) {
+				configMotersTable.setH1130("<input type=\"text\" id=\"1130_" + this.dia + "\" value=\"" + moter.getNumeroMoters()
+						+ "\" style=\"width: 20px;\" onblur=\"saveMoters(this.id)\" />");
+			} else if (moter.getHora().equals("1200")) {
+				configMotersTable.setH1200("<input type=\"text\" id=\"1200_" + this.dia + "\" value=\"" + moter.getNumeroMoters()
+						+ "\" style=\"width: 20px;\" onblur=\"saveMoters(this.id)\" />");
+			} else if (moter.getHora().equals("1230")) {
+				configMotersTable.setH1230("<input type=\"text\" id=\"1230_" + this.dia + "\" value=\"" + moter.getNumeroMoters()
+						+ "\" style=\"width: 20px;\" onblur=\"saveMoters(this.id)\" />");
+			} else if (moter.getHora().equals("1300")) {
+				configMotersTable.setH1300("<input type=\"text\" id=\"1300_" + this.dia + "\" value=\"" + moter.getNumeroMoters()
+						+ "\" style=\"width: 20px;\" onblur=\"saveMoters(this.id)\" />");
+			} else if (moter.getHora().equals("1330")) {
+				configMotersTable.setH1330("<input type=\"text\" id=\"1330_" + this.dia + "\" value=\"" + moter.getNumeroMoters()
+						+ "\" style=\"width: 20px;\" onblur=\"saveMoters(this.id)\" />");
+			} else if (moter.getHora().equals("1400")) {
+				configMotersTable.setH1400("<input type=\"text\" id=\"1400_" + this.dia + "\" value=\"" + moter.getNumeroMoters()
+						+ "\" style=\"width: 20px;\" onblur=\"saveMoters(this.id)\" />");
+			} else if (moter.getHora().equals("1430")) {
+				configMotersTable.setH1430("<input type=\"text\" id=\"1430_" + this.dia + "\" value=\"" + moter.getNumeroMoters()
+						+ "\" style=\"width: 20px;\" onblur=\"saveMoters(this.id)\" />");
+			} else if (moter.getHora().equals("1500")) {
+				configMotersTable.setH1500("<input type=\"text\" id=\"1500_" + this.dia + "\" value=\"" + moter.getNumeroMoters()
+						+ "\" style=\"width: 20px;\" onblur=\"saveMoters(this.id)\" />");
+			} else if (moter.getHora().equals("1530")) {
+				configMotersTable.setH1530("<input type=\"text\" id=\"1530_" + this.dia + "\" value=\"" + moter.getNumeroMoters()
+						+ "\" style=\"width: 20px;\" onblur=\"saveMoters(this.id)\" />");
+			} else if (moter.getHora().equals("1600")) {
+				configMotersTable.setH1600("<input type=\"text\" id=\"1600_" + this.dia + "\" value=\"" + moter.getNumeroMoters()
+						+ "\" style=\"width: 20px;\" onblur=\"saveMoters(this.id)\" />");
+			} else if (moter.getHora().equals("1630")) {
+				configMotersTable.setH1630("<input type=\"text\" id=\"1630_" + this.dia + "\" value=\"" + moter.getNumeroMoters()
+						+ "\" style=\"width: 20px;\" onblur=\"saveMoters(this.id)\" />");
+			} else if (moter.getHora().equals("1700")) {
+				configMotersTable.setH1700("<input type=\"text\" id=\"1700_" + this.dia + "\" value=\"" + moter.getNumeroMoters()
+						+ "\" style=\"width: 20px;\" onblur=\"saveMoters(this.id)\" />");
+			} else if (moter.getHora().equals("1730")) {
+				configMotersTable.setH1730("<input type=\"text\" id=\"1730_" + this.dia + "\" value=\"" + moter.getNumeroMoters()
+						+ "\" style=\"width: 20px;\" onblur=\"saveMoters(this.id)\" />");
+			} else if (moter.getHora().equals("1800")) {
+				configMotersTable.setH1800("<input type=\"text\" id=\"1800_" + this.dia + "\" value=\"" + moter.getNumeroMoters()
+						+ "\" style=\"width: 20px;\" onblur=\"saveMoters(this.id)\" />");
+			} else if (moter.getHora().equals("1830")) {
+				configMotersTable.setH1830("<input type=\"text\" id=\"1830_" + this.dia + "\" value=\"" + moter.getNumeroMoters()
+						+ "\" style=\"width: 20px;\" onblur=\"saveMoters(this.id)\" />");
+			} else if (moter.getHora().equals("1900")) {
+				configMotersTable.setH1900("<input type=\"text\" id=\"1900_" + this.dia + "\" value=\"" + moter.getNumeroMoters()
+						+ "\" style=\"width: 20px;\" onblur=\"saveMoters(this.id)\" />");
+			} else if (moter.getHora().equals("1930")) {
+				configMotersTable.setH1930("<input type=\"text\" id=\"1930_" + this.dia + "\" value=\"" + moter.getNumeroMoters()
+						+ "\" style=\"width: 20px;\" onblur=\"saveMoters(this.id)\" />");
+			} else if (moter.getHora().equals("2000")) {
+				configMotersTable.setH2000("<input type=\"text\" id=\"2000_" + this.dia + "\" value=\"" + moter.getNumeroMoters()
+						+ "\" style=\"width: 20px;\" onblur=\"saveMoters(this.id)\" />");
+			} else if (moter.getHora().equals("2030")) {
+				configMotersTable.setH2030("<input type=\"text\" id=\"2030_" + this.dia + "\" value=\"" + moter.getNumeroMoters()
+						+ "\" onblur=\"saveMoters(this.id)\" />");
+			} else if (moter.getHora().equals("2100")) {
+				configMotersTable.setH2100("<input type=\"text\" id=\"2100_" + this.dia + "\" value=\"" + moter.getNumeroMoters()
+						+ "\" style=\"width: 20px;\" onblur=\"saveMoters(this.id)\" />");
+			} else if (moter.getHora().equals("2130")) {
+				configMotersTable.setH2130("<input type=\"text\" id=\"2130_" + this.dia + "\" value=\"" + moter.getNumeroMoters()
+						+ "\" style=\"width: 20px;\" onblur=\"saveMoters(this.id)\" />");
+			} else if (moter.getHora().equals("2200")) {
+				configMotersTable.setH2200("<input type=\"text\" id=\"2200_" + this.dia + "\" value=\"" + moter.getNumeroMoters()
+						+ "\" style=\"width: 20px;\" onblur=\"saveMoters(this.id)\" />");
+			} else if (moter.getHora().equals("2230")) {
+				configMotersTable.setH2230("<input type=\"text\" id=\"2230_" + this.dia + "\" value=\"" + moter.getNumeroMoters()
+						+ "\" style=\"width: 20px;\" onblur=\"saveMoters(this.id)\" />");
+			} else if (moter.getHora().equals("2300")) {
+				configMotersTable.setH2300("<input type=\"text\" id=\"2300_" + this.dia + "\" value=\"" + moter.getNumeroMoters()
+						+ "\" style=\"width: 20px;\" onblur=\"saveMoters(this.id)\" />");
+			} else if (moter.getHora().equals("2330")) {
+				configMotersTable.setH2330("<input type=\"text\" id=\"2330_" + this.dia + "\" value=\"" + moter.getNumeroMoters()
+						+ "\" style=\"width: 20px;\" onblur=\"saveMoters(this.id)\" />");
+			} else if (moter.getHora().equals("2400")) {
+				configMotersTable.setH2400("<input type=\"text\" id=\"2400_" + this.dia + "\" value=\"" + moter.getNumeroMoters()
+						+ "\" style=\"width: 20px;\" onblur=\"saveMoters(this.id)\" />");
+			}
+		}
+
+		Gson gson = new GsonBuilder().setPrettyPrinting().create();
+		return createJSONForTable(gson.toJson(configMotersTable));
+
+	}
+	
+	private String createJSONForTable(String json){
+		StringBuffer jsonSB = new StringBuffer("{");
+		jsonSB.append("\"sEcho\": " + sEcho + ", \"iTotalRecords\":\"1\", \"iTotalDisplayRecords\":\"1\", \"aaData\": [");
+		jsonSB.append(json);
+		jsonSB.append("]}");
+		return jsonSB.toString();
+	}
+
+	private void inizializeTableMotersParams() throws WrongParamException{
+
+		this.dia = this.request.getParameter("dia") == null || this.request.getParameter("dia").equals("") ? null : this.request
+				.getParameter("dia");
+		this.sEcho = request.getParameter("sEcho");
+		this.lenght = (request.getParameter("iDisplayLength") == null) ? 10 : Integer.parseInt(request.getParameter("iDisplayLength"));
+		this.inici = (request.getParameter("iDisplayStart") == null) ? 0 : Integer.parseInt(request.getParameter("iDisplayStart"));
+		this.sortDireccio = request.getParameter("sSortDir_0");
+		if (this.sortDireccio == null)
+			this.sortDireccio = "ASC";
+
+		if (this.dia == null) {
+			throw new WrongParamException("No hi ha dia");
+		}
+	}
 
 	private String createErrorJSON( String error ){
 
@@ -61,6 +269,23 @@ public class MantenimentConfigMotersAction extends ActionSupport implements Serv
 		return jsonSB.toString();
 	}
 
+	private Date getDate( String dia ) throws RuntimeException{
+
+		String[] diaS = dia.split("-");
+		if (diaS.length != 3) {
+			throw new RuntimeException("wrong dia");
+		}
+
+		String numDia = diaS[0];
+		String month = diaS[1];
+		String year = diaS[2];
+
+		Calendar calendar = Calendar.getInstance();
+		calendar.set(Integer.parseInt(year), Integer.parseInt(month), Integer.parseInt(numDia));
+		return calendar.getTime();
+
+	}
+
 	private String createEmptyJSON(){
 
 		StringBuffer jsonSB = new StringBuffer("{");
@@ -68,18 +293,13 @@ public class MantenimentConfigMotersAction extends ActionSupport implements Serv
 		return jsonSB.toString();
 	}
 
-	
 	// Getters i setters
-
-
-
 
 	public void setMotersBo( MotersBo motersBo ){
 
 		this.motersBo = motersBo;
 	}
 
-	
 	public String getDia(){
 
 		return dia;
@@ -94,7 +314,6 @@ public class MantenimentConfigMotersAction extends ActionSupport implements Serv
 
 		this.moter = moter;
 	}
-
 
 	public void setServletResponse( HttpServletResponse response ){
 
