@@ -30,6 +30,8 @@ public class Plat implements Serializable{
 	
 	protected Image				foto;
 	
+	protected String			tipus;
+	
 
 	protected Set<Restaurant>		restaurants			= new HashSet<Restaurant>(0);
 
@@ -108,6 +110,16 @@ public class Plat implements Serializable{
 	public void setRestaurants( Set<Restaurant> restaurants ){
 	
 		this.restaurants = restaurants;
+	}
+
+	public String getTipus(){
+	
+		return tipus;
+	}
+
+	public void setTipus( String tipus ){
+	
+		this.tipus = tipus;
 	}
 
 	

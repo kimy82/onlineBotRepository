@@ -62,7 +62,8 @@
 					</s:select>
 					<s:textfield key="plat.nom" id="nomplat" onkeyup="return ismaxlength(this,100)"  ></s:textfield>
 					<s:textarea key="plat.descripcio" id="descplat" cols="40" rows="4" onkeyup="return ismaxlength(this,1000)" ></s:textarea>	
-					<s:textfield key="plat.preu" onblur=" onlyDouble(this.value, this.id)" ></s:textfield>						
+					<s:textfield key="plat.preu" onblur=" onlyDouble(this.value, this.id)" ></s:textfield>
+					<s:select list="tipusPlat" key="plat.tipus" listKey="descripcio" listValue="descripcio" headerKey="" headerValue="" ></s:select>											
 					<s:file name="fileUpload" label="Escull una fotografia" size="40" />					
 					<s:submit></s:submit>
 				</s:form>			

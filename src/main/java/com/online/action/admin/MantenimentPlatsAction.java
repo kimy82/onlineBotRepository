@@ -23,6 +23,7 @@ import com.online.model.Image;
 import com.online.model.Plat;
 import com.online.model.Restaurant;
 import com.online.pojos.Basic;
+import com.online.utils.Constants;
 import com.opensymphony.xwork2.Action;
 import com.opensymphony.xwork2.ActionSupport;
 
@@ -47,6 +48,7 @@ public class MantenimentPlatsAction extends ActionSupport implements ServletResp
 	private Long			idPlat=null;
 
 	private List<Basic>		restaurantBasicList	= new LinkedList<Basic>();
+	private List<Basic>		tipusPlat	= new LinkedList<Basic>();
 
 	public String execute(){
 
@@ -68,6 +70,11 @@ public class MantenimentPlatsAction extends ActionSupport implements ServletResp
 				}
 			}
 			Collections.sort(restaurantBasicList);
+			
+			this.tipusPlat.add(new Basic(1,Constants.TIPUS_PLAT_PRIMER));
+			this.tipusPlat.add(new Basic(1,Constants.TIPUS_PLAT_SEGON));
+			this.tipusPlat.add(new Basic(1,Constants.TIPUS_PLAT_POSTRE));
+			
 		} catch (BOException boe) {
 			addActionError(boe.getMessage());
 			return ERROR;
@@ -121,7 +128,8 @@ public class MantenimentPlatsAction extends ActionSupport implements ServletResp
 						Plat platToSave = new Plat();
 						platToSave.setDescripcio(this.plat.getDescripcio());
 						platToSave.setNom(this.plat.getNom());
-						platToSave.setPreu(this.plat.getPreu());				
+						platToSave.setPreu(this.plat.getPreu());			
+						platToSave.setTipus(this.plat.getTipus());
 						Image image = getImageFromUpload();
 						platToSave.setFoto(image);
 						this.platsBo.save(platToSave);						
@@ -290,6 +298,16 @@ public class MantenimentPlatsAction extends ActionSupport implements ServletResp
 	public void setIdRestaurants( String idRestaurants ){
 	
 		this.idRestaurants = idRestaurants;
+	}
+
+	public List<Basic> getTipusPlat(){
+	
+		return tipusPlat;
+	}
+
+	public void setTipusPlat( List<Basic> tipusPlat ){
+	
+		this.tipusPlat = tipusPlat;
 	}
 
 	
