@@ -20,13 +20,7 @@
 	<script src="<c:url value='/js/jquery/jquery.dataTables.js'/>" type="text/javascript"></script>
 	
 	<script language="javascript">
-		var initTableParams = new InitTableParams("<s:text  name='txt.dades.cargades'/>",
-													"<s:text  name='datatables.paginate.last'/>",
-													"<s:text  name='datatables.paginate.next'/>",
-													"<s:text  name='datatables.paginate.previous'/>",
-													"<s:text  name='datatables.paginate.first'/>",
-													"<s:text  name='datatables.loading'/>",
-													"<s:text  name='txt.avis.borrat'/>");
+		var initTableParams = new InitTableParams("<s:text  name='txt.dades.cargades'/>","<s:text  name='datatables.paginate.last'/>","<s:text  name='datatables.paginate.next'/>","<s:text  name='datatables.paginate.previous'/>","<s:text  name='datatables.paginate.first'/>","<s:text  name='datatables.loading'/>","<s:text  name='txt.avis.borrat'/>");
 	</script>
 </head>
 
@@ -64,10 +58,10 @@
 						<thead>
 							<tr>
 								<th><s:text name="mant.moters.dia" /></th>
-								<th>8:00</th>
-								<th>8:30</th>	
-								<th>9:00</th>
-								<th>9:30</th>
+								<th>08:00</th>
+								<th>08:30</th>	
+								<th>09:00</th>
+								<th>09:30</th>
 								<th>10:00</th>
 								<th>10:30</th>
 								<th>11:00</th>

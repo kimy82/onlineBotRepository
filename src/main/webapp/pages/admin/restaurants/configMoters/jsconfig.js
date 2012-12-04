@@ -1,7 +1,8 @@
 ///////////////////////////////////
 //variables per textos en locale
 var initTableParams=null ;
-function InitTableParams(txtdadesCargades,txtlast,txtnext,txtprevious,txtfirst,txtloading,txtborrat){		
+function InitTableParams(txtdadesCargades,txtlast,txtnext,txtprevious,txtfirst,txtloading,txtborrat){
+	
 	this.txtdadesCargades=txtdadesCargades;
 	this.txtlast=txtlast;
 	this.txtnext=txtnext;
@@ -10,28 +11,9 @@ function InitTableParams(txtdadesCargades,txtlast,txtnext,txtprevious,txtfirst,t
 	this.txtloading=txtloading;
 	this.txtborrat=txtborrat;
 }
-var rowsObj=null;
-
-function Rows(){
-	  this.miArray = new Array();
-	  Rows.prototype.nrows=0;
-	  this.setRow= function(row){
-			 this.miArray[this.nrows]=row;
-			 this.nrows += 1;
-	  };	 
-	  this.deleteRow= function(pos){
-		   this.miArray = this.miArray.splice(pos,1);
-			 this.nrowss -=1;			
-	  };	
-}
-
-function Row(position, dia){
-	
-	this.position=position;
-	this.dia=dia;
-}
 
 function saveMoters(id){
+	
 	numMot = $("#"+id).val();
 	
 	 data ="id="+id+"&num="+numMot;
@@ -155,6 +137,27 @@ $(document).ready(function() {
 	
 });
 
+//borra una fila de la taula
+function deleteRow(txtDia){
+	
+	  var year = now.getFullYear();
+      var month = now.getMonth()+1;                             
+      var ddmmyyyy = txtDia+'-'+month+'-'+year;
+      
+      var idTodelete="";
+      
+      $.each(oTableMoters.fnGetData(),function(indice,tr) {
+    	  var dia = tr.dia;    	  
+    	  if(dia==ddmmyyyy){    		  
+    		  idTodelete=indice;    		  
+    	  }
+    	});
+      
+      if(idTodelete!=""){
+    	  oTableMoters.fnDeleteRow(idTodelete);
+      }
+}
+
 //afegeix una fila a la taula de moters
 function fnClickAddRow(ddmmyyyy) {
 	
@@ -270,7 +273,8 @@ var datepicker=null;
                      $(".datepickerDays tr td").removeClass("green");                     
                      if(! $(this).hasClass("datepickerNotInMonth")){
                     	 if($(this).hasClass("border_selected")){                    
-                    		 $(this).removeClass("border_selected");                    		 
+                    		 $(this).removeClass("border_selected");  
+                    		 deleteRow($("span",this).html());
                     		 return;
                     	 }                    	                    	
                     	 $(this).addClass("border_selected");
@@ -287,6 +291,7 @@ var datepicker=null;
 		}
 		
 		function clickDay(txtDia) {
+			
            var year = now.getFullYear();
            var month = now.getMonth()+1;
           
@@ -305,6 +310,7 @@ var datepicker=null;
 
 //JS BUTTONS
 ButtonPanel = Ext.extend(Ext.Panel, {
+	
 	id: 'panelb',
   layout:'table',
   defaultType: 'button',
