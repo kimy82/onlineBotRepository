@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="com.online.model.Beguda" table="begudes" lazy="false" >
+		<id name="id" type="java.lang.Long">
+			<column name="BEGUDA_ID" />
+			<generator class="increment" />
+		</id>
+		<property name="nom" type="string" lazy="false" >
+			<column name="NOM" length="200" not-null="true" />
+		</property>		
+		<property name="descripcio" type="string" lazy="false" >
+			<column name="DESCRIPCIO" length="1000" not-null="true" />
+		</property>		
+		<property name="tipus" type="string" lazy="false" >
+			<column name="TIPUS" length="200" not-null="false" />
+		</property>	
+		<property name="preu" type="double" lazy="false" >
+			<column name="PREU"  not-null="true" />
+		</property>				
+	</class>
+</hibernate-mapping>

@@ -185,5 +185,24 @@
 			class="com.online.action.admin.MantenimentPromocionsAction" method="ajaxLoadPromoAction">
 		</action>
 		
+		<!-- Actions per begudes -->
+		<action name="begudes" class="com.online.action.admin.MantenimentBegudaAction"
+			method="execute">
+			<result name="success">/pages/admin/restaurants/begudes/begudes.jsp</result>		
+		</action>
+		<action name="ajaxTableBegudes"
+			class="com.online.action.admin.MantenimentBegudaAction" method="ajaxTableBegudes">
+		</action>	
+		<action name="ajaxDeleteBeguda"
+			class="com.online.action.admin.MantenimentBegudaAction" method="ajaxDeleteBeguda">
+		</action>
+		<action name="saveBeguda"
+			class="com.online.action.admin.MantenimentBegudaAction" method="saveBeguda">
+			<result name="success">/pages/admin/restaurants/begudes/begudes.jsp</result>
+		</action>
+		<action name="ajaxLoadBegudaAction"
+			class="com.online.action.admin.MantenimentBegudaAction" method="ajaxLoadBegudaAction">
+		</action>
+		
 	</package>
 </struts>

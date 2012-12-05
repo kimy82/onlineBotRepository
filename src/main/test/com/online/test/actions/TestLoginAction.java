@@ -10,7 +10,6 @@ import com.online.action.LoginAction;
 import com.online.bo.UsersBo;
 import com.online.exceptions.BOException;
 import com.online.model.Users;
-import com.online.utils.Utils;
 import com.opensymphony.xwork2.ActionProxy;
 
 
@@ -110,8 +109,8 @@ public class TestLoginAction extends StrutsSpringTestCase {
 		UsersBo mockUsersBo = mock(UsersBo.class);
 		Mockito.when(mockUsersBo.findByUsername("usernameProva")).thenReturn(userfound);
 		Mockito.when(mockUsersBo.changeUserPasswordRandomly(Mockito.any(Users.class))).thenReturn("password");		
-		Mockito.doNothing().when(mockUsersBo).sendEmail(Mockito.anyString());
-		
+		Mockito.doNothing().when(mockUsersBo).sendEmail(Mockito.anyString(),Mockito.anyString());
+		  
 		
 		ActionProxy proxy = getActionProxy("/recoverAccount.action");
     	LoginAction action = (LoginAction) proxy.getAction();

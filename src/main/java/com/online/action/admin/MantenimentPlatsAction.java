@@ -120,8 +120,7 @@ public class MantenimentPlatsAction extends ActionSupport implements ServletResp
 		try {
 			if (this.plat != null) {
 
-			
-			
+						
 				if(!this.idRestaurants.isEmpty()){
 					String[] stringRestaurants = this.idRestaurants.split(",");
 					for(String idStringRestaurant : stringRestaurants ){

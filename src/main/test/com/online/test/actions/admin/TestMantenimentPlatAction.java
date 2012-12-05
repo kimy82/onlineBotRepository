@@ -21,6 +21,8 @@ import com.opensymphony.xwork2.ActionProxy;
 public class TestMantenimentPlatAction extends StrutsSpringTestCase{
 
 	private final Plat plat = new Plat(new Long(1),"nom_prova",2.3);
+	private final Restaurant restaurant = new Restaurant(1,"Rest_1");
+	
 	
 	@Test
 	public void testconsultaPlatsEmptyList() throws Exception{
@@ -82,15 +84,24 @@ public class TestMantenimentPlatAction extends StrutsSpringTestCase{
 	public void testSaveNewPlatNotNull() throws Exception{
 		
 		PlatsBo mockPlatsBo = mock(PlatsBo.class);		
+		RestaurantsBo mockRestaurantsBo = mock(RestaurantsBo.class);
+		
+		
+		Mockito.when(mockRestaurantsBo.load(1,true,false,false)).thenReturn(this.restaurant);
+		Mockito.when(mockRestaurantsBo.load(2,true,false,false)).thenReturn(this.restaurant);
+
+		Mockito.doNothing().when(mockRestaurantsBo).update(Mockito.any(Restaurant.class));
 		Mockito.doNothing().when(mockPlatsBo).save(Mockito.any(Plat.class));
 		
 		ActionProxy proxy = getActionProxy("/admin/saveNewPlat.action");
-		MantenimentPlatsAction action = (MantenimentPlatsAction) proxy.getAction();
+		MantenimentPlatsAction action = (MantenimentPlatsAction) proxy.getAction();		
 		action.setPlatsBo(mockPlatsBo);
+		action.setRestaurantsBo(mockRestaurantsBo);
 		Plat plat = new Plat(null,"nom_plat",10.0);
 		plat.setDescripcio("descripcio_plat");
+		plat.setTipus("tipus");
 		action.setPlat(plat);
-		
+		action.setIdRestaurants("1,2");
 		String result = proxy.execute();
 		assertEquals("success", result);
 		
@@ -121,7 +132,7 @@ public class TestMantenimentPlatAction extends StrutsSpringTestCase{
 	@Test
 	public void testAjaxDeletePlatActionWrongParams() throws Exception{
 
-		request.setParameter("idRestaurant", "1gfgfd");
+		request.setParameter("idRestaurant", "1");
 		request.setParameter("idPlat", "1");
 		
 		PlatsBo mockPlatsBo = mock(PlatsBo.class);				
@@ -133,7 +144,9 @@ public class TestMantenimentPlatAction extends StrutsSpringTestCase{
 		action.setPlatsBo(mockPlatsBo);
 
 		String result = proxy.execute();
+		
 		assertEquals(null, result);
+		
 	}
 	
 	@Test

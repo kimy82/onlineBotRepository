@@ -62,8 +62,8 @@ public class TestMotersBO{
 	
 	@Test(expected = BOException.class)
 	public void testLoadIdNullMoter(){
-
-		this.motersBo.load(null);
+		Integer prova=null;
+		this.motersBo.load(prova); 
 	}
 
 	

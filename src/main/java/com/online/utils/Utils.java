@@ -51,4 +51,12 @@ public class Utils{
 		tipusDescompte.add(new Basic(2,"quantitat en euros"));
 		return tipusDescompte;
 	}
+	
+	public static List<Basic> inizializeListTipusBeguda(){
+		List<Basic> tipusBegudaList = new ArrayList<Basic>(); 
+		tipusBegudaList.add(new Basic(1,Constants.TIPUS_BEGUDA_REFRESC));
+		tipusBegudaList.add(new Basic(2,Constants.TIPUS_BEGUDA_VI));
+		tipusBegudaList.add(new Basic(3,Constants.TIPUS_BEGUDA_CAVA));
+		return tipusBegudaList;
+	}
 }

@@ -21,6 +21,7 @@
 	<import resource="../beans/Moters.xml"/>
 	<import resource="../beans/ConfigRestaurant.xml"/>
 	<import resource="../beans/Promocions.xml"/>
+	<import resource="../beans/Beguda.xml"/>
 	
 	<!-- Action struts beans -->
 	<bean id="login" class="com.online.action.LoginAction">
