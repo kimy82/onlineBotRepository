@@ -144,8 +144,19 @@ public class MantenimentConfigMotersAction extends ActionSupport implements Serv
 		
 			
 			
-			String[] DiaIniVec = this.moterRang.getDiaIni().split("-");
-			String[] DiaFiVec  = this.moterRang.getDiaFi().split("-");
+			String[] diaIniVec = this.moterRang.getDiaIni().split("-");
+			String[] diaFiVec  = this.moterRang.getDiaFi().split("-");
+			if(diaIniVec[1].equals(diaFiVec[1])){
+				//tenen el mateix mes
+				int diaIterator=1;
+				int diaIni =Integer.parseInt(diaIniVec[0]);
+				int diaFi = Integer.parseInt(diaFiVec[0]);
+				for(diaIterator= diaIni ; diaIterator<= diaFi; diaIterator++){
+					/*int horaIni=this.moterRang.getHoraIni().split(":");
+					for(diaIni)*/
+					
+				}
+			}
 			}
 		
 		
