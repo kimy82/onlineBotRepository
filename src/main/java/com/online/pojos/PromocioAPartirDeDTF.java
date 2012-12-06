@@ -1,8 +1,8 @@
-package com.online.model;
+package com.online.pojos;
 
-import java.util.Date;
+import com.online.model.Promocio;
 
-public class PromocioAPartirDe extends Promocio {
+public class PromocioAPartirDeDTF extends Promocio {
 
 	/**
 	 * 
@@ -10,10 +10,10 @@ public class PromocioAPartirDe extends Promocio {
 	private static final long serialVersionUID = 1L;
 
 	private Double importAPartirDe;
-	private Date dia;
+	private String diaString;
 
 	// CONSTRUCTORS
-	public PromocioAPartirDe() {
+	public PromocioAPartirDeDTF() {
 
 		super();
 	}
@@ -29,13 +29,13 @@ public class PromocioAPartirDe extends Promocio {
 		this.importAPartirDe = importAPartirDe;
 	}
 
-	public Date getDia() {
-
-		return dia;
+	public String getDiaString() {
+		return diaString;
 	}
 
-	public void setDia(Date dia) {
+	public void setDiaString(String diaString) {
+		this.diaString = diaString;
 
-		this.dia = dia;
 	}
+
 }

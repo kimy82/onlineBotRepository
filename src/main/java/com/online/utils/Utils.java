@@ -4,6 +4,7 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
@@ -66,5 +67,46 @@ public class Utils{
 		SimpleDateFormat df = new SimpleDateFormat("dd-MM-yyyy");
 		return df.format(data);
 		
+	}
+	
+	public static Date getDate(String date){
+		String[] dateString = date.split("-");
+		if(dateString.length==3){
+			String dia =dateString[0];
+			String mes = dateString[1];
+			String any = dateString[2];
+			Calendar cal = Calendar.getInstance();
+			cal.set(Calendar.DAY_OF_MONTH,Integer.parseInt(dia));
+			cal.set(Calendar.MONTH, Integer.parseInt(mes));
+			cal.set(Calendar.YEAR, Integer.parseInt(any));
+			return cal.getTime();
+		}
+		return null;
+		
+	}
+	
+	public static List<Basic> getHoraList(){
+		
+		List<Basic> horaList = new ArrayList<Basic>();
+		
+		horaList.add(new Basic(1,Constants.H0800));
+		horaList.add(new Basic(1,Constants.H0900));
+		horaList.add(new Basic(1,Constants.H1000));
+		horaList.add(new Basic(1,Constants.H1100));
+		horaList.add(new Basic(1,Constants.H1200));
+		horaList.add(new Basic(1,Constants.H1300));
+		horaList.add(new Basic(1,Constants.H1400));
+		horaList.add(new Basic(1,Constants.H1500));
+		horaList.add(new Basic(1,Constants.H1600));
+		horaList.add(new Basic(1,Constants.H1700));
+		horaList.add(new Basic(1,Constants.H1800));
+		horaList.add(new Basic(1,Constants.H1900));
+		horaList.add(new Basic(1,Constants.H2000));
+		horaList.add(new Basic(1,Constants.H2100));
+		horaList.add(new Basic(1,Constants.H2200));
+		horaList.add(new Basic(1,Constants.H2300));
+		horaList.add(new Basic(1,Constants.H2400));
+				
+		return horaList;
 	}
 }

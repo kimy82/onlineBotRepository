@@ -1,6 +1,7 @@
 package com.online.action.admin;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
@@ -15,10 +16,14 @@ import org.apache.struts2.interceptor.ServletResponseAware;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.online.bo.MotersBo;
+import com.online.exceptions.BOException;
 import com.online.exceptions.GeneralException;
 import com.online.exceptions.WrongParamException;
 import com.online.model.Moters;
+import com.online.pojos.Basic;
 import com.online.pojos.ConfigMotersTable;
+import com.online.pojos.MotersRang;
+import com.online.utils.Utils;
 import com.opensymphony.xwork2.ActionSupport;
 
 public class MantenimentConfigMotersAction extends ActionSupport implements ServletResponseAware, ServletRequestAware{
@@ -32,8 +37,11 @@ public class MantenimentConfigMotersAction extends ActionSupport implements Serv
 	private String				dia;
 	private Integer				numMoters			= null;
 	private Moters				moter				= new Moters();
+	private MotersRang			moterRang			=new MotersRang();
 	private Date				date;
 	private String				hora;
+	
+	private List<Basic>     horaList = new ArrayList<Basic>();
 	
 	private String			sEcho;
 	private int				lenght			= 0;
@@ -44,9 +52,29 @@ public class MantenimentConfigMotersAction extends ActionSupport implements Serv
 	HttpServletRequest			request;
 
 	public String execute(){
-
+		
+		this.horaList= Utils.getHoraList();
 		return SUCCESS;
 
+	}
+	
+	public String saveConfigMotersForRang(){
+		
+		this.horaList= Utils.getHoraList();
+		try{
+		
+			if(this.moterRang==null){
+				return ERROR;
+			}
+			
+			processMoterRang();
+			
+		} catch (BOException boe){
+			throw boe;
+		} catch (Exception e) {
+			throw new GeneralException(e, "Error ");
+		}
+		return SUCCESS;
 	}
 
 	public String saveMoters(){
@@ -107,6 +135,21 @@ public class MantenimentConfigMotersAction extends ActionSupport implements Serv
 	}
 
 	// private methods
+	
+	private void processMoterRang(){
+		if(this.moterRang.getDiaIni()!=null && !this.moterRang.getDiaIni().equals("") 
+				&& this.moterRang.getDiaFi()!=null && !this.moterRang.getDiaFi().equals("")
+				&& this.moterRang.getHoraIni()!=null && !this.moterRang.getHoraIni().equals("")
+				&& this.moterRang.getHoraFi()!=null && !this.moterRang.getHoraFi().equals("")){
+		
+			
+			
+			String[] DiaIniVec = this.moterRang.getDiaIni().split("-");
+			String[] DiaFiVec  = this.moterRang.getDiaFi().split("-");
+			}
+		
+		
+	}
 	private void inizializeMotersParams() throws NumberFormatException,WrongParamException{
 		
 		this.numMoters = request.getParameter("num")!=null && !request.getParameter("num").equals("")? Integer.parseInt(request.getParameter("num")) : null;
@@ -334,5 +377,23 @@ public class MantenimentConfigMotersAction extends ActionSupport implements Serv
 
 		return this.request;
 	}
+
+	public MotersRang getMoterRang() {
+		return moterRang;
+	}
+
+	public void setMoterRang(MotersRang moterRang) {
+		this.moterRang = moterRang;
+	}
+
+	public List<Basic> getHoraList() {
+		return horaList;
+	}
+
+	public void setHoraList(List<Basic> horaList) {
+		this.horaList = horaList;
+	}
+	
+	
 
 }

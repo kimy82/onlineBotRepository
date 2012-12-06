@@ -22,6 +22,7 @@ import com.online.model.Promocio;
 import com.online.model.PromocioAPartirDe;
 import com.online.model.PromocioNumComandes;
 import com.online.pojos.Basic;
+import com.online.pojos.PromocioAPartirDeDTF;
 import com.online.pojos.PromocioTable;
 import com.online.utils.Utils;
 import com.opensymphony.xwork2.Action;
@@ -43,7 +44,7 @@ public class MantenimentPromocionsAction extends ActionSupport implements Servle
 
 	private PromocionsBo		promocionsBo;
 	private Promocio			promocio			= new Promocio();
-	private PromocioAPartirDe	promocioAPartirDe	= new PromocioAPartirDe();
+	private PromocioAPartirDeDTF	promocioAPartirDeDTF	= new PromocioAPartirDeDTF();
 	private PromocioNumComandes	promocioNumComandes	= new PromocioNumComandes();
 
 	private List<Basic>			tipusDescompteList	= new ArrayList<Basic>();
@@ -88,16 +89,24 @@ public class MantenimentPromocionsAction extends ActionSupport implements Servle
 		String json = "";
 		try {
 			out = this.response.getOutputStream();
+			Gson gson = new GsonBuilder().setPrettyPrinting().create();
 			inizializeParamIdPromo();
 			E promo = this.promocionsBo.load(this.idPromo);
-			Gson gson = new GsonBuilder().setPrettyPrinting().create();
-			jsonSB.append(gson.toJson(promo));
-			jsonSB.setLength(jsonSB.length() - 1);
 			if (promo instanceof PromocioAPartirDe) {
+				PromocioAPartirDeDTF prDTF = new PromocioAPartirDeDTF();
+				PromocioAPartirDe pr = (PromocioAPartirDe) promo;
+				String data = Utils.formatDate(pr.getDia());
+				BeanUtils.copyProperties(pr, prDTF);
+				prDTF.setDiaString(data);
+				jsonSB.append(gson.toJson(prDTF));
+				jsonSB.setLength(jsonSB.length() - 1);
 				jsonSB.append(",\"tipus\" :\"apd\" }");
-			} else if (promo instanceof PromocioNumComandes) {
+			}else{
+				jsonSB.append(gson.toJson(promo));
+				jsonSB.setLength(jsonSB.length() - 1);
 				jsonSB.append(",\"tipus\" :\"pnc\" }");
 			}
+						
 			json = jsonSB.toString();
 		} catch (BOException boe) {
 			json = createErrorJSON("error in ajax action: Error in BO");
@@ -178,14 +187,16 @@ public class MantenimentPromocionsAction extends ActionSupport implements Servle
 
 		try {
 
-			if (this.promocioAPartirDe == null) {
+			if (this.promocioAPartirDeDTF == null) {
 				addActionError("Error saving promocio");
 				return Action.ERROR;
 			}
 
-			PromocioAPartirDe promApartirDe = new PromocioAPartirDe();
-			BeanUtils.copyProperties(this.promocioAPartirDe, promApartirDe);
-			if (this.promocioAPartirDe.getId() == null)
+			PromocioAPartirDe promApartirDe = new PromocioAPartirDe();			
+			BeanUtils.copyProperties(this.promocioAPartirDeDTF, promApartirDe);			
+			promApartirDe =transformStringTODateInPromoDTF(promApartirDe);
+			
+			if (promApartirDe.getId() == null)
 				this.promocionsBo.save(promApartirDe);
 			else
 				this.promocionsBo.update(promApartirDe);
@@ -207,6 +218,12 @@ public class MantenimentPromocionsAction extends ActionSupport implements Servle
 
 	// Private methods
 
+	private PromocioAPartirDe transformStringTODateInPromoDTF(PromocioAPartirDe promApartirDe){
+		if(this.promocioAPartirDeDTF.getDiaString()!=null && !this.promocioAPartirDeDTF.getDiaString().equals(""))
+			promApartirDe.setDia(Utils.getDate(this.promocioAPartirDeDTF.getDiaString()));
+		
+			return promApartirDe;
+	}
 	private void inizializeParamIdPromo() throws NumberFormatException{
 
 		this.idPromo = (request.getParameter("idPromocio") == null || request.getParameter("idPromocio").toString().equals("")) ? null
@@ -301,14 +318,14 @@ public class MantenimentPromocionsAction extends ActionSupport implements Servle
 		this.promocio = promocio;
 	}
 
-	public PromocioAPartirDe getPromocioAPartirDe(){
+	public PromocioAPartirDeDTF getPromocioAPartirDeDTF(){
 
-		return promocioAPartirDe;
+		return promocioAPartirDeDTF;
 	}
 
-	public void setPromocioAPartirDe( PromocioAPartirDe promocioAPartirDe ){
+	public void setPromocioAPartirDeDTF( PromocioAPartirDeDTF promocioAPartirDeDTF ){
 
-		this.promocioAPartirDe = promocioAPartirDe;
+		this.promocioAPartirDeDTF = promocioAPartirDeDTF;
 	}
 
 	public PromocioNumComandes getPromocioNumComandes(){
