@@ -95,7 +95,7 @@ function deleteBeguda(id){
 	  }
 	  else {
 		
-			data ="idPromocio="+id;
+			data ="idBeguda="+id;
 			$.ajax({
 				  type: "POST",
 				  url: '/onlineBot/admin/ajaxDeleteBeguda.action',

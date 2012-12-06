@@ -49,6 +49,7 @@ public class MantenimentPromocionsAction extends ActionSupport implements Servle
 	private List<Basic>			tipusDescompteList	= new ArrayList<Basic>();
 
 	private Integer				idPromo				= null;
+	
 
 	public String execute(){
 
@@ -188,7 +189,8 @@ public class MantenimentPromocionsAction extends ActionSupport implements Servle
 				this.promocionsBo.save(promApartirDe);
 			else
 				this.promocionsBo.update(promApartirDe);
-
+			
+			this.tipusDescompteList = Utils.getTipusDescompte();
 		} catch (BOException boe) {
 			addActionError(boe.getMessage());
 			return ERROR;

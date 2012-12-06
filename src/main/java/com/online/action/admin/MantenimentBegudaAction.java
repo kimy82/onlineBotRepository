@@ -100,7 +100,7 @@ public class MantenimentBegudaAction extends ActionSupport implements ServletRes
 
 	public String saveBeguda(){
 		try {
-
+			this.tipusBegudaList = Utils.inizializeListTipusBeguda();
 			if (this.beguda == null) {
 				addActionError("Error saving beguda");
 				return Action.ERROR;

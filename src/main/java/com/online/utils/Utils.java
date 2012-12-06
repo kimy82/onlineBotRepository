@@ -2,7 +2,9 @@ package com.online.utils;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import com.google.gson.JsonElement;
@@ -58,5 +60,11 @@ public class Utils{
 		tipusBegudaList.add(new Basic(2,Constants.TIPUS_BEGUDA_VI));
 		tipusBegudaList.add(new Basic(3,Constants.TIPUS_BEGUDA_CAVA));
 		return tipusBegudaList;
+	}
+	
+	public static String formatDate(Date data){
+		SimpleDateFormat df = new SimpleDateFormat("dd-MM-yyyy");
+		return df.format(data);
+		
 	}
 }

@@ -58,8 +58,8 @@
 			</div>
 			<br>
 	
-	  		 <div  style="width:500px;" alig="center">
-				<table class="selecciom dataTable" id="tbl_promos" width="500px">
+	  		 <div  style="width:800px;" alig="center">
+				<table class="selecciom dataTable" id="tbl_promos" width="800px">
 					<thead>
 						<tr>
 							<th><s:text name="mant.promo.table.nom" /></th>
@@ -98,10 +98,11 @@
 							</s:select>					
 							<s:textfield key="promocioAPartirDe.descompteImport"  id="descompteImport_apd" onblur="onlyDouble(this.value,this.id)" ></s:textfield>																	
 							<s:textfield key="promocioAPartirDe.importAPartirDe"  id="importAPartirDe"  onblur="onlyDouble(this.value,this.id)" ></s:textfield>
-							<s:textfield key="promocioAPartirDe.dia"  id="dia" maxlength="10" size="12" onfocus="blur()" ></s:textfield>	
-							<div style="position:absolute; ;top: 440px; left: 960px;">
-								<img  src="<c:url value='/images/calendar/calendar_full.png'/>"  id="llencadorData" >
-							</div>												
+							<tr>
+							<td><s:text name="promocioAPartirDe.diaString" ></s:text></td>
+							<td><s:textfield key="promocioAPartirDe.diaString"  id="dia" maxlength="10" size="12" onfocus="blur()" theme="simple" ></s:textfield>
+							<img  src="<c:url value='/images/calendar/calendar_full.png'/>"  id="llencadorData" ></td>
+							</tr>
 							<s:hidden key="promocioAPartirDe.id" id="id_apd" ></s:hidden>			
 								<s:submit></s:submit>
 						</s:form>			
