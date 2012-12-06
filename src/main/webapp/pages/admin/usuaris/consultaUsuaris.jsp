@@ -44,8 +44,8 @@
 			</div>
 			<br>
 	
-	  		 <div  style="width:800px;" alig="center">
-				<table class="selecciom dataTable" id="tbl_usuaris" width="800px">
+	  		 <div  style="width:800px; height: 500px;" alig="center">
+				<table class="selecciom dataTable" id="tbl_usuaris" style="height: 500px;" width="800px">
 					<thead>
 						<tr>
 							<th><s:text name="mant.user.table.username" /></th>

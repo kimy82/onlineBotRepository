@@ -140,6 +140,10 @@
 			method="execute">
 			<result name="success">/pages/admin/restaurants/configMoters/configMoters.jsp</result>		
 		</action>
+		<action name="saveConfigMotersForRang" class="com.online.action.admin.MantenimentConfigMotersAction"
+			method="saveConfigMotersForRang">
+			<result name="success">/pages/admin/restaurants/configMoters/configMoters.jsp</result>		
+		</action>
 		<action name="ajaxTableMotersAction"
 			class="com.online.action.admin.MantenimentConfigMotersAction" method="ajaxTableMotersAction">
 		</action>

@@ -1,14 +1,14 @@
 ///////////////////////////////////
 //variables per textos en locale
 var initTableParams=null ;
-function InitTableParams(txtlast,txtnext,txtprevious,txtfirst,txtloading,txtborrat,txtconfirmborrapromo,txterrordouble,txterrornumber){		
+function InitTableParams(txtlast,txtnext,txtprevious,txtfirst,txtloading,txtborrat,txtconfirmborrabeguda,txterrordouble,txterrornumber){		
 		this.txtlast=txtlast;
 		this.txtnext=txtnext;
 		this.txtprevious=txtprevious;
 		this.txtfirst=txtfirst;
 		this.txtloading=txtloading;
 		this.txtborrat=txtborrat;	
-		this.txtconfirmborrapromo= txtconfirmborrapromo;
+		this.txtconfirmborrabeguga= txtconfirmborrabeguda;
 		this.txterrordouble=txterrordouble;
 		this.txterrornumber=txterrornumber;
 }
@@ -88,7 +88,7 @@ function showDivBeguda(id){
 }
 
 function deleteBeguda(id){
-	 var where_to= confirm(initTableParams.txtconfirmborrapromo);
+	 var where_to= confirm(initTableParams.txtconfirmborrabeguda);
 	  if (where_to== false)
 	  {
 		    return;

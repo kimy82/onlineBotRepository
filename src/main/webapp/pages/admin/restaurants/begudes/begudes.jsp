@@ -29,8 +29,8 @@
 			"<s:text  name='datatables.paginate.first'/>",
 			"<s:text  name='datatables.loading'/>",
 			"<s:text  name='txt.avis.borrat'/>",
-			"<s:text  name='promo.confirm.borra'/>",
-			"<s:text  name='.error.double'/>",
+			"<s:text  name='beguda.confirm.borra'/>",
+			"<s:text  name='error.double'/>",
 			"<s:text  name='txt.error.number'/>");
 </script>
 </head>

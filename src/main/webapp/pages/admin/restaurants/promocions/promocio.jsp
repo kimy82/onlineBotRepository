@@ -93,17 +93,17 @@
 					
 					<div id="apd_div">
 						<s:form action="savePromocioAPartirDe" method="POST" enctype="multipart/form-data" >
-							<s:textfield key="promocioAPartirDe.nom" id="nompromo_apd"  ></s:textfield>
-							<s:select list="tipusDescompteList" key="promocioAPartirDe.tipuDescompte" listKey="descripcio" listValue="descripcio">					
+							<s:textfield key="promocioAPartirDeDTF.nom" id="nompromo_apd"  ></s:textfield>
+							<s:select list="tipusDescompteList" key="promocioAPartirDeDTF.tipuDescompte" listKey="descripcio" listValue="descripcio">					
 							</s:select>					
-							<s:textfield key="promocioAPartirDe.descompteImport"  id="descompteImport_apd" onblur="onlyDouble(this.value,this.id)" ></s:textfield>																	
-							<s:textfield key="promocioAPartirDe.importAPartirDe"  id="importAPartirDe"  onblur="onlyDouble(this.value,this.id)" ></s:textfield>
+							<s:textfield key="promocioAPartirDeDTF.descompteImport"  id="descompteImport_apd" onblur="onlyDouble(this.value,this.id)" ></s:textfield>																	
+							<s:textfield key="promocioAPartirDeDTF.importAPartirDe"  id="importAPartirDe"  onblur="onlyDouble(this.value,this.id)" ></s:textfield>
 							<tr>
-							<td><s:text name="promocioAPartirDe.diaString" ></s:text></td>
-							<td><s:textfield key="promocioAPartirDe.diaString"  id="dia" maxlength="10" size="12" onfocus="blur()" theme="simple" ></s:textfield>
+							<td><s:text name="promocioAPartirDeDTF.diaString" ></s:text></td>
+							<td><s:textfield key="promocioAPartirDeDTF.diaString"  id="dia" maxlength="10" size="12" onfocus="blur()" theme="simple" ></s:textfield>
 							<img  src="<c:url value='/images/calendar/calendar_full.png'/>"  id="llencadorData" ></td>
 							</tr>
-							<s:hidden key="promocioAPartirDe.id" id="id_apd" ></s:hidden>			
+							<s:hidden key="promocioAPartirDeDTF.id" id="id_apd" ></s:hidden>			
 								<s:submit></s:submit>
 						</s:form>			
 					</div>					

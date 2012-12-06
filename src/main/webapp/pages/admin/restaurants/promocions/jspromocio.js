@@ -86,7 +86,7 @@ function goToPromocio(id){
 					 		$("#tipuDescompte_apd").val(json.tipuDescompte);
 					 		$("#descompteImport_apd").val(json.descompteImport);
 					 		$("#importAPartirDe").val(json.importAPartirDe);
-					 		$("#dia").val(json.dia);
+					 		$("#dia").val(json.diaString);
 					 		$("#infopromonew").show('slow');
 					 		$("#apd").click();
 					 	}

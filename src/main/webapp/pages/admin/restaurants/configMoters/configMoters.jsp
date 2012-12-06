@@ -19,6 +19,14 @@
 	<script src="<c:url value='/pages/admin/restaurants/configMoters/jsconfig.js'/>" type="text/javascript"></script>    
 	<script src="<c:url value='/js/jquery/jquery.dataTables.js'/>" type="text/javascript"></script>
 	
+	<!-- Calendari -->  
+	<link rel="stylesheet" type="text/css" media="all" href="<c:url value='/css/calendar-blau.css' />" title="win2k-cold-1" />
+	<script type="text/javascript" src="<c:url value='/js/calendari/calendar.js'/>"></script>
+	<script type="text/javascript" src="<c:url value='/js/calendari/calendar-cat.js'/>"></script>
+	<script type="text/javascript" src="<c:url value='/js/calendari/calendar-es.js'/>"></script>
+	<script type="text/javascript" src="<c:url value='/js/calendari/calendar-idioma.js'/>"></script>		
+	<script type="text/javascript" src="<c:url value='/js/calendari/calendar-setup.js'/>"></script>
+	
 	<script language="javascript">
 		var initTableParams = new InitTableParams("<s:text  name='txt.dades.cargades'/>","<s:text  name='datatables.paginate.last'/>","<s:text  name='datatables.paginate.next'/>","<s:text  name='datatables.paginate.previous'/>","<s:text  name='datatables.paginate.first'/>","<s:text  name='datatables.loading'/>","<s:text  name='txt.avis.borrat'/>");
 	</script>
@@ -96,12 +104,55 @@
 						<tbody>
 						</tbody>
 					</table>
-				</div>	
+				</div>
+				
+				<s:form action="saveConfigMotersForRang" method="POST" enctype="multipart/form-data" >
+							<tr>
+								<td><s:text name="motersRang.diaIni" ></s:text></td>
+								<td><s:textfield key="motersRang.diaIni"  id="diaIni" maxlength="10" size="12" onfocus="blur()" theme="simple" ></s:textfield>
+									<img  src="<c:url value='/images/calendar/calendar_full.png'/>"  id="llencadorData1" ></td>
+								<td><s:text name="motersRang.diaFi" ></s:text></td>
+								<td><s:textfield key="motersRang.diaFi"  id="diaFi" maxlength="10" size="12" onfocus="blur()" theme="simple" ></s:textfield>
+									<img  src="<c:url value='/images/calendar/calendar_full.png'/>"  id="llencadorData2" ></td>
+								<td><s:text name="motersRang.horaIni" ></s:text></td>										
+								<td>
+									<s:select list="horaList" key="motersRang.horaIni" listKey="descripcio" listValue="descripcio" theme="simple" >					
+									</s:select>
+								</td>
+								<td><s:text name="motersRang.horaFi" ></s:text></td>										
+								<td>
+									<s:select list="horaList" key="motersRang.horaFi" listKey="descripcio" listValue="descripcio" theme="simple" >					
+									</s:select>
+								</td>						
+								<td><s:text name="motersRang.numMoters" ></s:text></td>
+								<td>
+									<s:textfield key="motersRang.numMoters" ></s:textfield>
+								</td>
+							</tr>
+							<s:submit></s:submit>
+				</s:form>	
 	</div>
 		      	
 </center>
 </div>
 </div>
+<script>			
 
+//---------------------------------------------------------------------------------------------------------------------
+    Calendar.setup({
+        inputField    	:    "diaIni",      // id del campo de texto
+        ifFormat       	:    "%d-%m-%Y",          // formato de la fecha, cuando se escriba en el campo de texto
+        button         	:    "llencadorData1",          // el id del botón que lanzará el calendario
+        locale 		   	:    "ca_ES"
+    });
+    
+    Calendar.setup({
+        inputField    	:    "diaFi",      // id del campo de texto
+        ifFormat       	:    "%d-%m-%Y",          // formato de la fecha, cuando se escriba en el campo de texto
+        button         	:    "llencadorData2",          // el id del botón que lanzará el calendario
+        locale 		   	:    "ca_ES"
+    });
+//---------------------------------------------------------------------------------------------------------------------
+</script>  
 </body>
 </html>
