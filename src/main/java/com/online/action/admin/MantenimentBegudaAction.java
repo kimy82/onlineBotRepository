@@ -220,11 +220,7 @@ public class MantenimentBegudaAction extends ActionSupport implements ServletRes
 	}
 
 	// SETTERS
-	public void setServletResponse( HttpServletResponse response ){
-
-		this.response = response;
-	}
-
+	
 	public Long getIdBeguda(){
 
 		return idBeguda;
@@ -243,6 +239,10 @@ public class MantenimentBegudaAction extends ActionSupport implements ServletRes
 	public HttpServletResponse getServletResponse(){
 
 		return this.response;
+	}
+	public void setServletResponse( HttpServletResponse response ){
+
+		this.response = response;
 	}
 
 	public void setServletRequest( HttpServletRequest request ){

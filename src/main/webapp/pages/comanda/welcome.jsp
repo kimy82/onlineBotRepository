@@ -33,32 +33,65 @@
     width: 500px;
 }
 .abs{
-position: absolute;
-top: 20px;
-right: 50px;
-width: 400px;
-height: 200px;
+	position: absolute;
+	top: 20px;
+	right: 50px;
+	width: 400px;
+	height: 200px;
 }
 </style>
 <script>
 $(function() {
-    $( ".selector" ).draggable();
+	
+	var originalTop=null;
+	var originalLeft =null;
+	
+    $( ".selector" ).draggable({
+    	 start: function(event, ui) {
+				
+ 	    	 var id= $(this).attr("id");
+ 		 	 originalTop = $("#"+id).position().top;
+ 		   	 originalLeft = $("#"+id).position().left;
+ 	    }, 	  
+ 	    stop: function(event, ui) { 	
+ 	    	$(this).appendTo("#draggables_pl");  	    	
+ 	    }
+    });
     $( "#droppable" ).droppable({
         drop: function( event, ui ) {
-            $( this ).addClass( "ui-state-highlight" );
-              
-              alert( "Dropped!" );
+            
+            var item_id = ui.draggable.attr("id");            
+            data ="idPlat="+item_id+"&idComanda="+$("#numComanda").val();
+        	$.ajax({
+        		  type: "POST",
+        		  url: '/onlineBot/comanda/ajaxLoadPlat.action',
+        		  dataType: 'json',
+        		  data: data,
+        		  success: function(json){	
+        			  if(json==null || json.error!=null){
+             				$("#errorsajaxlabel").text(json.error);
+             				$("#errorsajax").show();
+             			}else{
+             				if(json.alerta!=null){
+             					
+             				}else{
+        					 	json.numPlats;
+             				}
+             			}				
+        		  },
+        		  error: function(e){   $("#errorsajaxlabel").text("Error in ajax call");
+          								$("#errorsajax").show();  		
+        		  					}
+        		});	
+             
         }
     });
 });
-function change(){
-	 $( "#droppable" ).addClass( "ui-state-highlight" );
-}
 
 </script>
 </head>
 <body>
-
+<div id="draggables_pl" style="width: 500px; height: 400px; overflow: scroll;" align="left" >
 <s:iterator value="platList" var="plat">
 <div class="selector ui-widget-content" id="draggable${plat.id}" >
 	<table>
@@ -74,8 +107,11 @@ function change(){
 	</table>
 </div>
 </s:iterator>
-<div id="droppable" onmouseover="change();" class="ui-widget-header abs">
+</div>
+<div id="droppable"  class="ui-widget-header abs">
     <image src="<c:url value='/images/shopping_cart.png' />" ></image>
+	    <label id="numComanda"></label>
+	    <label id="numplats" ></label>
 </div>
 </body>
 </html>
