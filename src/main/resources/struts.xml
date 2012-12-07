@@ -45,6 +45,7 @@
 	<!-- Accions protegides dins el rol d'usuari -->
 	<include file="struts/struts-users.xml"></include>
 	<include file="struts/struts-admin.xml"></include>
+	<include file="struts/struts-comanda.xml"></include>
 	
 	
 

@@ -6,7 +6,7 @@
 <br>
 <table>
 			<tr>
-				<td colspan='2'><a name="login" type="button" href="<c:url value='/user/Welcome.action'/>" >Login</a>
+				<td colspan='2'><a name="login" type="button" href="<c:url value='/user/Welcome.action'/>" >Dades personals</a>
 				</td>
 			</tr>
 </table>			

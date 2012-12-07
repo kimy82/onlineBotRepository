@@ -19,8 +19,6 @@ import com.online.exceptions.BOException;
 import com.online.exceptions.GeneralException;
 import com.online.exceptions.ImageException;
 import com.online.model.Beguda;
-import com.online.model.Image;
-import com.online.model.Restaurant;
 import com.online.pojos.Basic;
 import com.online.pojos.BegudaTable;
 import com.online.utils.Utils;
@@ -135,6 +133,7 @@ public class MantenimentBegudaAction extends ActionSupport implements ServletRes
 		String json = "";
 
 		try {
+			
 			out = this.response.getOutputStream();
 			inizializeParamIDBeguda();
 			Beguda beguda = this.begudaBo.load(this.idBeguda);

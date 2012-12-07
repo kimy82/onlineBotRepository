@@ -26,7 +26,7 @@ public class TestMantenimentRestaurantsAction extends StrutsSpringTestCase{
 	public void testsaveRestaurantNullId() throws Exception{
 
 		RestaurantsBo mockRestaurantsBo = mock(RestaurantsBo.class);
-		Mockito.when(mockRestaurantsBo.load(null,Mockito.anyBoolean(),Mockito.anyBoolean(),Mockito.anyBoolean())).thenReturn(null);
+		Mockito.when(mockRestaurantsBo.load(null,true,false,false)).thenReturn(null);
 
 		ActionProxy proxy = getActionProxy("/admin/saveRestaurant.action");
 		MantenimentRestaurantsAction action = (MantenimentRestaurantsAction) proxy.getAction();
@@ -43,7 +43,7 @@ public class TestMantenimentRestaurantsAction extends StrutsSpringTestCase{
 	public void testsaveRestaurantNull() throws Exception{
 
 		RestaurantsBo mockRestaurantsBo = mock(RestaurantsBo.class);
-		Mockito.when(mockRestaurantsBo.load(null,Mockito.anyBoolean(),Mockito.anyBoolean(),Mockito.anyBoolean())).thenReturn(null);
+		Mockito.when(mockRestaurantsBo.load(null,true,false,false)).thenReturn(null);
 
 		ActionProxy proxy = getActionProxy("/admin/saveRestaurant.action");
 		MantenimentRestaurantsAction action = (MantenimentRestaurantsAction) proxy.getAction();
@@ -60,7 +60,7 @@ public class TestMantenimentRestaurantsAction extends StrutsSpringTestCase{
 	public void testsaveRestaurant() throws Exception{
 
 		RestaurantsBo mockRestaurantsBo = mock(RestaurantsBo.class);
-		Mockito.when(mockRestaurantsBo.load(null,Mockito.anyBoolean(),Mockito.anyBoolean(),Mockito.anyBoolean())).thenReturn(null);
+		Mockito.when(mockRestaurantsBo.load(null,true,false,false)).thenReturn(null);
 		Mockito.doThrow(new BOException()).when(mockRestaurantsBo).update(null);
 		Mockito.doNothing().when(mockRestaurantsBo).update(Mockito.any(Restaurant.class));
 		
@@ -124,7 +124,7 @@ public class TestMantenimentRestaurantsAction extends StrutsSpringTestCase{
 		Restaurant restaurant = new Restaurant(1,"nom_prova");
 		restaurant.setDescripcio("decripcio");
 		RestaurantsBo mockRestaurantsBo = mock(RestaurantsBo.class);
-		Mockito.when(mockRestaurantsBo.load(null,Mockito.anyBoolean(),Mockito.anyBoolean(),Mockito.anyBoolean())).thenReturn(null);
+		Mockito.when(mockRestaurantsBo.load(null,true,false,false)).thenReturn(null);
 		Mockito.when(mockRestaurantsBo.load(Mockito.anyInt(),Mockito.anyBoolean(),Mockito.anyBoolean(),Mockito.anyBoolean())).thenReturn(restaurant);
 		request.setParameter("id", "1");
 
@@ -146,7 +146,7 @@ public class TestMantenimentRestaurantsAction extends StrutsSpringTestCase{
 		Restaurant restaurant = new Restaurant(1,"nom_prova");
 		restaurant.setDescripcio("decripcio");
 		RestaurantsBo mockRestaurantsBo = mock(RestaurantsBo.class);
-		Mockito.when(mockRestaurantsBo.load(null,Mockito.anyBoolean(),Mockito.anyBoolean(),Mockito.anyBoolean())).thenReturn(null);
+		Mockito.when(mockRestaurantsBo.load(null,true,false,false)).thenReturn(null);
 		Mockito.when(mockRestaurantsBo.load(Mockito.anyInt(),Mockito.anyBoolean(),Mockito.anyBoolean(),Mockito.anyBoolean())).thenReturn(restaurant);
 
 		
@@ -330,25 +330,6 @@ public class TestMantenimentRestaurantsAction extends StrutsSpringTestCase{
 		assertEquals(null, result);
 	}
 	
-	@Test
-	public void testAjaxDeleteRestaurantActionWrongParams() throws Exception{
-
-		request.setParameter("idRestaurant", "1as");
-		
-		RestaurantsBo mockRestaurantsBo = mock(RestaurantsBo.class);
-		
-		
-		//Mockito.when(mockRestaurantsBo.delete(restaurant)).thenReturn(restaurantList);
-
-		ActionProxy proxy = getActionProxy("/admin/ajaxDeleteRestaurantAction.action");
-
-		MantenimentRestaurantsAction action = (MantenimentRestaurantsAction) proxy.getAction();
-
-		action.setRestaurantsBo(mockRestaurantsBo);
-
-		String result = proxy.execute();
-		assertEquals(null, result);
-	}
 	
 	@Test
 	public void testAjaxDeleteRestaurantAction() throws Exception{
@@ -365,7 +346,7 @@ public class TestMantenimentRestaurantsAction extends StrutsSpringTestCase{
 		MantenimentRestaurantsAction action = (MantenimentRestaurantsAction) proxy.getAction();
 
 		action.setRestaurantsBo(mockRestaurantsBo);
-
+		
 		String result = proxy.execute();
 		assertEquals(null, result);
 	}

@@ -1,5 +1,7 @@
 package com.online.bo.impl;
 
+import java.util.List;
+
 import com.online.bo.PlatsBo;
 import com.online.dao.PlatsDao;
 import com.online.exceptions.BOException;
@@ -35,6 +37,11 @@ public class PlatsBoImpl implements PlatsBo{
 
 	}
 
+	public List<Plat> getAll() throws BOException{
+		
+		return this.platsDao.getAll();
+	}
+	
 	// PRIVATE METHODS
 	private void checkPlat( Plat plat ) throws BOException{
 

@@ -203,6 +203,7 @@
 		<action name="saveBeguda"
 			class="com.online.action.admin.MantenimentBegudaAction" method="saveBeguda">
 			<result name="success">/pages/admin/restaurants/begudes/begudes.jsp</result>
+			<result name="error">/error.jsp</result>
 		</action>
 		<action name="ajaxLoadBegudaAction"
 			class="com.online.action.admin.MantenimentBegudaAction" method="ajaxLoadBegudaAction">

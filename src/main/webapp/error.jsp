@@ -12,8 +12,7 @@
 }
 </style>
 <body>
-<h2>Error in Aplication</h2>
-
+<img src="/images/error/500.png" />
 <br>
 <s:if test="hasActionErrors()">
    <div class="errors">

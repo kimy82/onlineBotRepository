@@ -47,7 +47,7 @@
 			<br>
     <center>  	
     
-     <c:import url="calendar.jsp" />  
+    
 	<div id="config_rest">
 		<table class="noborder"  style="background-color:rgb(192,192,192)">
 			         <tr>
@@ -59,9 +59,35 @@
 			       	 
 			         </tr>
 			    </table>
-			    
-				<div  style="width:950px; height: 500px;" alig="center" >
-				
+			    <div  style="width:950px; height: 300px;" alig="center" >
+			    		<s:form action="saveConfigMotersForRang" method="POST" enctype="multipart/form-data" >
+							<tr>
+								<td><s:text name="motersRang.diaIni" ></s:text></td>
+								<td><s:textfield key="motersRang.diaIni"  id="diaIni" maxlength="10" size="12" onfocus="blur()" theme="simple" ></s:textfield>
+									<img  src="<c:url value='/images/calendar/calendar_full.png'/>"  id="llencadorData1" ></td>
+								<td><s:text name="motersRang.diaFi" ></s:text></td>
+								<td><s:textfield key="motersRang.diaFi"  id="diaFi" maxlength="10" size="12" onfocus="blur()" theme="simple" ></s:textfield>
+									<img  src="<c:url value='/images/calendar/calendar_full.png'/>"  id="llencadorData2" ></td>
+								<td><s:text name="motersRang.horaIni" ></s:text></td>										
+								<td>
+									<s:select list="horaList" key="motersRang.horaIni" listKey="descripcio" listValue="descripcio" theme="simple" >					
+									</s:select>
+								</td>
+								<td><s:text name="motersRang.horaFi" ></s:text></td>										
+								<td>
+									<s:select list="horaList" key="motersRang.horaFi" listKey="descripcio" listValue="descripcio" theme="simple" >					
+									</s:select>
+								</td>						
+								<td><s:text name="motersRang.numMoters" ></s:text></td>
+								<td>
+									<s:textfield key="motersRang.numMoters" ></s:textfield>
+								</td>
+							</tr>
+							<s:submit></s:submit>
+						</s:form>	
+			    </div>
+				<div  style="width:950px; height: 300px;" alig="center" >
+				  <c:import url="calendar.jsp" /> 
 					<table class="selecciom dataTable" id="tbl_moters">
 						<thead>
 							<tr>
@@ -106,31 +132,7 @@
 					</table>
 				</div>
 				
-				<s:form action="saveConfigMotersForRang" method="POST" enctype="multipart/form-data" >
-							<tr>
-								<td><s:text name="motersRang.diaIni" ></s:text></td>
-								<td><s:textfield key="motersRang.diaIni"  id="diaIni" maxlength="10" size="12" onfocus="blur()" theme="simple" ></s:textfield>
-									<img  src="<c:url value='/images/calendar/calendar_full.png'/>"  id="llencadorData1" ></td>
-								<td><s:text name="motersRang.diaFi" ></s:text></td>
-								<td><s:textfield key="motersRang.diaFi"  id="diaFi" maxlength="10" size="12" onfocus="blur()" theme="simple" ></s:textfield>
-									<img  src="<c:url value='/images/calendar/calendar_full.png'/>"  id="llencadorData2" ></td>
-								<td><s:text name="motersRang.horaIni" ></s:text></td>										
-								<td>
-									<s:select list="horaList" key="motersRang.horaIni" listKey="descripcio" listValue="descripcio" theme="simple" >					
-									</s:select>
-								</td>
-								<td><s:text name="motersRang.horaFi" ></s:text></td>										
-								<td>
-									<s:select list="horaList" key="motersRang.horaFi" listKey="descripcio" listValue="descripcio" theme="simple" >					
-									</s:select>
-								</td>						
-								<td><s:text name="motersRang.numMoters" ></s:text></td>
-								<td>
-									<s:textfield key="motersRang.numMoters" ></s:textfield>
-								</td>
-							</tr>
-							<s:submit></s:submit>
-				</s:form>	
+		
 	</div>
 		      	
 </center>

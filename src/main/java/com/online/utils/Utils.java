@@ -85,6 +85,14 @@ public class Utils{
 		
 	}
 	
+	public static Date getData(String dia, String mes, String any){
+		Calendar cal = Calendar.getInstance();
+		cal.set(Calendar.DAY_OF_MONTH,Integer.parseInt(dia));
+		cal.set(Calendar.MONTH, Integer.parseInt(mes));
+		cal.set(Calendar.YEAR, Integer.parseInt(any));
+		return cal.getTime();
+	}
+	
 	public static List<Basic> getHoraList(){
 		
 		List<Basic> horaList = new ArrayList<Basic>();

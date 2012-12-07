@@ -1,5 +1,7 @@
 package com.online.bo;
 
+import java.util.List;
+
 import com.online.exceptions.BOException;
 import com.online.model.Plat;
 
@@ -12,5 +14,7 @@ public interface PlatsBo{
 	void delete( Plat plat ) throws BOException;
 
 	Plat load( Long id ) throws BOException;
+	
+	List<Plat> getAll() throws BOException;
 
 }

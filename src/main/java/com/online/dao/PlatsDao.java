@@ -1,5 +1,8 @@
 package com.online.dao;
 
+import java.util.List;
+
+import com.online.exceptions.BOException;
 import com.online.model.Plat;
 
 public interface PlatsDao{
@@ -11,4 +14,6 @@ public interface PlatsDao{
 	void delete( Plat plat );
 
 	Plat load( Long id );
+	
+	List<Plat> getAll();
 }

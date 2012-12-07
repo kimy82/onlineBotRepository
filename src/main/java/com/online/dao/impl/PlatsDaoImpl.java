@@ -1,11 +1,15 @@
 package com.online.dao.impl;
 
+import java.util.List;
+
 import org.hibernate.SQLQuery;
 import org.hibernate.Session;
 import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
 
 import com.online.dao.PlatsDao;
+import com.online.exceptions.BOException;
 import com.online.model.Plat;
+import com.online.model.Restaurant;
 
 public class PlatsDaoImpl extends HibernateDaoSupport implements PlatsDao{
 	
@@ -31,8 +35,11 @@ public class PlatsDaoImpl extends HibernateDaoSupport implements PlatsDao{
 		
 		session.close();
 						
+	}
+	
+	public List<Plat> getAll(){
 		
-		//getHibernateTemplate().delete(plat);
+		return getHibernateTemplate().loadAll(Plat.class);
 	}
 
 	public Plat load(Long id){
