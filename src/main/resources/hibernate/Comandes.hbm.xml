@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="com.online.model.Restaurant" table="restaurants">
+		<id name="id" type="java.lang.Long">
+			<column name="COMANDA_ID" />
+			<generator class="increment" />
+		</id>
+		<property name="hora" type="string">
+			<column name="HORA" length="45" not-null="true" />
+		</property>
+		<property name="dia" type="date">
+			<column name="DIA"  not-null="true"/>
+		</property>
+		<property name="preu" type="double" lazy="false" >
+			<column name="PREU"  not-null="true" />
+		</property>
+		<property name="observacions" type="string">
+			<column name="HORA" length="1000" not-null="true" />
+		</property>
+		 <set name="plats" table="comanda_plats" 
+        	inverse="false" lazy="false" fetch="select" cascade="save">
+            <key>
+                <column name="COMANDA_ID" not-null="true" />
+            </key>
+            <many-to-many entity-name="com.online.model.Plat">
+                <column name="PLAT_ID" not-null="true" />
+            </many-to-many>
+        </set>
+	</class>
+</hibernate-mapping>

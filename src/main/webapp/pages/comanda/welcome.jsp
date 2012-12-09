@@ -40,7 +40,7 @@
 	height: 200px;
 }
 </style>
-<script>
+<script type="text/javascript" >
 $(function() {
 	
 	var originalTop=null;
@@ -60,8 +60,9 @@ $(function() {
     $( "#droppable" ).droppable({
         drop: function( event, ui ) {
             
-            var item_id = ui.draggable.attr("id");            
-            data ="idPlat="+item_id+"&idComanda="+$("#numComanda").val();
+            var item_id = ui.draggable.attr("id");  
+            var rawPlat = item_id.split("_")
+            data ="idPlat="+rawPlat[1]+"&idComanda="+$("#numComanda").val();
         	$.ajax({
         		  type: "POST",
         		  url: '/onlineBot/comanda/ajaxLoadPlat.action',
@@ -91,9 +92,9 @@ $(function() {
 </script>
 </head>
 <body>
-<div id="draggables_pl" style="width: 500px; height: 400px; overflow: scroll;" align="left" >
+<div id="draggables_pl" style="width: 500px; height: 400px;" align="left" >
 <s:iterator value="platList" var="plat">
-<div class="selector ui-widget-content" id="draggable${plat.id}" >
+<div class="selector ui-widget-content" id="draggable_${plat.id}" >
 	<table>
 		<tr>
 			<td>${plat.nom}</td>
@@ -107,11 +108,14 @@ $(function() {
 	</table>
 </div>
 </s:iterator>
-</div>
+
 <div id="droppable"  class="ui-widget-header abs">
     <image src="<c:url value='/images/shopping_cart.png' />" ></image>
 	    <label id="numComanda"></label>
 	    <label id="numplats" ></label>
 </div>
+
+</div>
+
 </body>
 </html>
