@@ -96,7 +96,7 @@ public class Comandes implements Serializable{
 	}
 
 	public void setObservacions( String observacions ){
-
+ 
 		this.observacions = observacions;
 	}
 

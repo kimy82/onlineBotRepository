@@ -9,7 +9,7 @@
 			<generator class="increment" />
 		</id>
 		<property name="hora" type="string">
-			<column name="HORA" length="45" />
+			<column name="HORA" length="45" /> 
 		</property>
 		<property name="dia" type="date">
 			<column name="DIA"  />

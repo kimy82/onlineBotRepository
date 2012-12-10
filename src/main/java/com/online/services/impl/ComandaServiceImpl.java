@@ -71,7 +71,7 @@ public class ComandaServiceImpl implements ComandaService{
 		
 		boolean valid =Utils.isValidJSON(json.toString());
 		
-		return json.toString();
+		return json.toString(); 
 		
 	}
 	
