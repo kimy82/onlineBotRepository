@@ -8,10 +8,12 @@ import java.util.Set;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.google.gson.annotations.Expose;
 import com.online.exceptions.ComandaException;
 import com.online.model.Plat;
 import com.online.model.Restaurant;
 import com.online.services.ComandaService;
+import com.online.utils.Utils;
 
 public class ComandaServiceImpl implements ComandaService{
 	
@@ -52,7 +54,7 @@ public class ComandaServiceImpl implements ComandaService{
 		return moreThanTwo;
 	}
 
-	public String createJSONForShoppingCart(Set<Plat> platList) throws ComandaException{
+	public String createJSONForShoppingCart(Set<Plat> platList, Long id) throws ComandaException{
 		
 		Double preuComanda= 0.0;
 		List<String> platsSring = new ArrayList<String>();
@@ -60,34 +62,43 @@ public class ComandaServiceImpl implements ComandaService{
 			preuComanda = preuComanda +pl.getPreu();	
 			platsSring.add(pl.getNom());
 		}
-		ComandaCart comandaCart= new  ComandaCart(preuComanda, platsSring, platsSring.size());
+		ComandaCart comandaCart= new  ComandaCart(String.valueOf(preuComanda), platsSring,String.valueOf(platsSring.size()));
 		
-		Gson gson = new GsonBuilder().setPrettyPrinting().create();
-		return gson.toJson(comandaCart);		
+		Gson gson = new GsonBuilder().setPrettyPrinting().excludeFieldsWithoutExposeAnnotation().create();
+		StringBuffer json= new StringBuffer(gson.toJson(comandaCart));
+		json.setLength(json.length()-1);
+		
+		json.append(", \"numComanda\" : \""+id+"\" }");
+		
+		boolean valid =Utils.isValidJSON(json.toString());
+		
+		return json.toString();
 		
 	}
 	
 	public class ComandaCart{
 	
-		private Double preu=0.0;
+		@Expose
+		private String preu="0.0";
 		
+		@Expose
 		private List<String> platsNames = new ArrayList<String>();
 		
-		private Integer numPlats=0;
+		@Expose
+		private String numPlats="0";
 
-		public ComandaCart(Double preu, List<String> platsNames,
-				Integer numPlats) {
-			super();
+		public ComandaCart(String preu, List<String> platsNames,
+				String numPlats) {			
 			this.preu = preu;
 			this.platsNames = platsNames;
 			this.numPlats = numPlats;
 		}
 
-		public Double getPreu() {
+		public String getPreu() {
 			return preu;
 		}
 
-		public void setPreu(Double preu) {
+		public void setPreu(String preu) {
 			this.preu = preu;
 		}
 
@@ -99,11 +110,11 @@ public class ComandaServiceImpl implements ComandaService{
 			this.platsNames = platsNames;
 		}
 
-		public Integer getNumPlats() {
+		public String getNumPlats() {
 			return numPlats;
 		}
 
-		public void setNumPlats(Integer numPlats) {
+		public void setNumPlats(String numPlats) {
 			this.numPlats = numPlats;
 		}
 		

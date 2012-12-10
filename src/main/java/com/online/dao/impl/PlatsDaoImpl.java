@@ -2,12 +2,12 @@ package com.online.dao.impl;
 
 import java.util.List;
 
+import org.hibernate.Hibernate;
 import org.hibernate.SQLQuery;
 import org.hibernate.Session;
 import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
 
 import com.online.dao.PlatsDao;
-import com.online.exceptions.BOException;
 import com.online.model.Plat;
 import com.online.model.Restaurant;
 
@@ -47,7 +47,23 @@ public class PlatsDaoImpl extends HibernateDaoSupport implements PlatsDao{
 	}
 
 
+	public Plat loadLaziFalse(Long id){
+		Session session = this.getSessionFactory().openSession();
+
+		session.beginTransaction();
+		@SuppressWarnings("unchecked")
+		List<Plat> platsList = (List<Plat>) session.createQuery("from Plat plts where plts.id=" + id).list();
+		if (platsList.isEmpty())
+			return null;
+		Plat plat = platsList.get(0);
 	
+		Hibernate.initialize(plat.getRestaurants());
+		
+		session.close();
+
+		return plat;
+	}
+
 	
 
 }

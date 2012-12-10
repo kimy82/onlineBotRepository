@@ -29,12 +29,15 @@ public class PlatsBoImpl implements PlatsBo{
 		platsDao.delete(plat);
 	}
 
-	public Plat load( Long id ) throws BOException{
+	public Plat load( Long id ,boolean lazy) throws BOException{
 
 		if (id == null)
 			throw new BOException("NUll id to load");
-		return platsDao.load(id);
-
+		
+		if(lazy)
+			return platsDao.load(id);
+		else
+			return platsDao.loadLaziFalse(id);
 	}
 
 	public List<Plat> getAll() throws BOException{

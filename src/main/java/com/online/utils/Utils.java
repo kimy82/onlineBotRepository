@@ -39,6 +39,7 @@ public class Utils{
 		      final JsonParser parser = new JsonParser();
 		     JsonElement jsonElement =  parser.parse(json);
 		     valid = jsonElement.isJsonObject();
+
 		     
 		   } catch (JsonParseException jpe) {
 		      valid=false;

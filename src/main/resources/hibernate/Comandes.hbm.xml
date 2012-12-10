@@ -3,25 +3,25 @@
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 
 <hibernate-mapping>
-	<class name="com.online.model.Restaurant" table="restaurants">
+	<class name="com.online.model.Comandes" table="comandes">
 		<id name="id" type="java.lang.Long">
 			<column name="COMANDA_ID" />
 			<generator class="increment" />
 		</id>
 		<property name="hora" type="string">
-			<column name="HORA" length="45" not-null="true" />
+			<column name="HORA" length="45" />
 		</property>
 		<property name="dia" type="date">
-			<column name="DIA"  not-null="true"/>
+			<column name="DIA"  />
 		</property>
 		<property name="preu" type="double" lazy="false" >
 			<column name="PREU"  not-null="true" />
 		</property>
 		<property name="observacions" type="string">
-			<column name="HORA" length="1000" not-null="true" />
+			<column name="OBSERVACIONS" length="1000" />
 		</property>
 		 <set name="plats" table="comanda_plats" 
-        	inverse="false" lazy="false" fetch="select" cascade="save">
+        	inverse="false" lazy="false" fetch="select" cascade="save-update">
             <key>
                 <column name="COMANDA_ID" not-null="true" />
             </key>

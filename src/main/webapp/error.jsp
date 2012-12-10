@@ -12,7 +12,7 @@
 }
 </style>
 <body>
-<img src="/images/error/500.png" />
+<img src="<c:url value='/images/error/500.png' />" alt="error" width="900px;" />
 <br>
 <s:if test="hasActionErrors()">
    <div class="errors">

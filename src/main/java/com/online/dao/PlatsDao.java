@@ -12,6 +12,8 @@ public interface PlatsDao{
 	void update( Plat plat );
 
 	void delete( Plat plat );
+	
+	Plat loadLaziFalse(Long id);
 
 	Plat load( Long id );
 	

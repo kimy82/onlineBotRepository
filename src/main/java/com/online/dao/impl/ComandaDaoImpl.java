@@ -2,11 +2,13 @@ package com.online.dao.impl;
 
 import java.util.List;
 
+import org.hibernate.Hibernate;
 import org.hibernate.Session;
 import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
 
 import com.online.dao.ComandaDao;
 import com.online.model.Comandes;
+import com.online.model.Plat;
 
 public class ComandaDaoImpl extends HibernateDaoSupport implements ComandaDao{
 	
@@ -34,10 +36,17 @@ public class ComandaDaoImpl extends HibernateDaoSupport implements ComandaDao{
 
 	public Comandes  load(Long id){
 		
+		
 		Session session = this.getSessionFactory().openSession();
 		session.beginTransaction();
 		
 		Comandes comandes =(Comandes) session.load(Comandes.class, id);							
+		
+		Hibernate.initialize(comandes.getPlats());
+		
+		for(Plat pl : comandes.getPlats()){
+			Hibernate.initialize(pl.getRestaurants());	
+		}		
 		
 		session.close();
 		

@@ -13,7 +13,7 @@ public interface PlatsBo{
 
 	void delete( Plat plat ) throws BOException;
 
-	Plat load( Long id ) throws BOException;
+	Plat load( Long id ,boolean lazy) throws BOException; 
 	
 	List<Plat> getAll() throws BOException;
 

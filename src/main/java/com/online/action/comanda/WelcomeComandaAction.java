@@ -62,30 +62,32 @@ public class WelcomeComandaAction extends ActionSupport implements ServletRespon
 		
 		try {
 			
-		
+			out = this.response.getOutputStream();
 			inizilizeDadesComanda();
 			if(this.idComanda!=null){
 				//recuperem la comanda i afegim plat
 				Comandes comanda = this.comandaBo.load(this.idComanda);
 				Set<Plat> platList =comanda.getPlats();
-				Plat platToAdd = this.platsBo.load(this.idPlat);
+				Plat platToAdd = this.platsBo.load(this.idPlat,false);
 				if(!comandaService.checkPlatForMoreThanTwoRestaurants(platList, platToAdd)){
 					platList.add(platToAdd);
 					comanda.setPlats(platList);
 					this.comandaBo.update(comanda);
 				}
 				
-				json= this.comandaService.createJSONForShoppingCart(platList);
+				json= this.comandaService.createJSONForShoppingCart(platList, comanda.getId());
 				
 			}else{
 				//creem comanda i afegim plat
 				Comandes comanda = new Comandes();
+				comanda.setPreu(0.0);
 				Set<Plat> platList = new HashSet<Plat>();
-				Plat platToAdd = this.platsBo.load(this.idPlat);
+				Plat platToAdd = this.platsBo.load(this.idPlat, false);
 				platList.add(platToAdd);
 				this.comandaBo.save(comanda);
+			
 				
-				json= this.comandaService.createJSONForShoppingCart(platList);
+				json= this.comandaService.createJSONForShoppingCart(platList,comanda.getId());
 			}
 		} catch (ComandaException ce){
 			json = createErrorJSON("error in comanda service action");

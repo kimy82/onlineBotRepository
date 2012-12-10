@@ -62,7 +62,7 @@ $(function() {
             
             var item_id = ui.draggable.attr("id");  
             var rawPlat = item_id.split("_")
-            data ="idPlat="+rawPlat[1]+"&idComanda="+$("#numComanda").val();
+            data ="idPlat="+rawPlat[1]+"&idComanda="+$("#numComanda").text();
         	$.ajax({
         		  type: "POST",
         		  url: '/onlineBot/comanda/ajaxLoadPlat.action',
@@ -74,9 +74,11 @@ $(function() {
              				$("#errorsajax").show();
              			}else{
              				if(json.alerta!=null){
-             					
+             					alert(json.alerta);
              				}else{
-        					 	json.numPlats;
+             					$("#numComanda").text(json.numComanda);
+             					$("#numplats").text(json.numPlats);
+             					$("#preu").text(json.preu);
              				}
              			}				
         		  },
@@ -111,8 +113,12 @@ $(function() {
 
 <div id="droppable"  class="ui-widget-header abs">
     <image src="<c:url value='/images/shopping_cart.png' />" ></image>
-	    <label id="numComanda"></label>
-	    <label id="numplats" ></label>
+    	<br>
+	    Num comanda:<label id="numComanda"></label>
+	    <br>
+	    Núm Palts: <label id="numplats" ></label>
+	    <br>
+	    Precio: <label id="preu" ></label>
 </div>
 
 </div>

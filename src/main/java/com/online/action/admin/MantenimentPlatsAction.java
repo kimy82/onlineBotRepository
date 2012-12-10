@@ -95,7 +95,7 @@ public class MantenimentPlatsAction extends ActionSupport implements ServletResp
 			out = this.response.getOutputStream();
 
 			inizializeParamsTODeletePlat();			
-			Plat plat = this.platsBo.load(this.idPlat);
+			Plat plat = this.platsBo.load(this.idPlat,true);
 			this.platsBo.delete(plat);
 			
 

@@ -27,6 +27,9 @@
 <tr>
 <td><a href="<c:url value='begudes.action' />" >M. begudes</a></td>
 </tr>
+<tr>
+<td><a href="<c:url value='presentacio.action' />" >M. Presentaio</a></td>
+</tr>
 </table>
 </body>
 </html>

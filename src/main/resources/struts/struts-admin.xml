@@ -209,5 +209,23 @@
 			class="com.online.action.admin.MantenimentBegudaAction" method="ajaxLoadBegudaAction">
 		</action>
 		
+		<!-- Actions per la presentacio -->
+		<action name="presentacio" class="com.online.action.admin.MantenimentPresentacioAction"
+			method="execute">
+			<result name="success">/pages/admin/presentacio/presentacio.jsp</result>		
+		</action>
+		<action name="newFotoPresentacio"
+			class="com.online.action.admin.MantenimentPresentacioAction" method="newFotoPresentacio">
+			<interceptor-ref name="defaultStack" />
+			<interceptor-ref name="fileUpload">
+				<param name="maximumSize">2097152</param>
+				<param name="allowedTypes">
+					image/png,image/gif,image/jpeg,image/pjpeg
+				</param>
+			</interceptor-ref>
+			<result name="success">/pages/admin/presentacio/presentacio.jsp
+			</result>
+			<result name="error">/error.jsp</result>		
+		</action>
 	</package>
 </struts>

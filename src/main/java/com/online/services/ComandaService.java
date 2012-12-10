@@ -10,6 +10,7 @@ public interface ComandaService{
 
 	public boolean checkPlatForMoreThanTwoRestaurants(Set<Plat> platList, Plat plat) throws ComandaException;
 	
-	public String createJSONForShoppingCart(Set<Plat> platList) throws ComandaException;
+	public String createJSONForShoppingCart(Set<Plat> platList, Long id) throws ComandaException;
 
 }
+ 
