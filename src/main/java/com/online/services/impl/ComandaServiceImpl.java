@@ -19,8 +19,8 @@ public class ComandaServiceImpl implements ComandaService{
 	
 	
 	
-	public boolean checkPlatForMoreThanTwoRestaurants(Set<Plat> platList, Plat plat) throws ComandaException{
-		
+	public boolean checkPlatForMoreThanTwoRestaurants(List<Plat> platList, Plat plat) throws ComandaException{ 
+		 
 		boolean moreThanTwo= false;
 		
 		Set<String> restaurants = new HashSet<String>();
@@ -54,12 +54,11 @@ public class ComandaServiceImpl implements ComandaService{
 		return moreThanTwo;
 	}
 
-	public String createJSONForShoppingCart(Set<Plat> platList, Long id) throws ComandaException{
+	public String createJSONForShoppingCart(List<Plat> platList, Long id) throws ComandaException{
 		
 		Double preuComanda= 0.0;
 		List<String> platsSring = new ArrayList<String>();
 		for(Plat pl : platList){			
-			preuComanda = preuComanda +pl.getPreu();	
 			platsSring.add(pl.getNom());
 		}
 		ComandaCart comandaCart= new  ComandaCart(String.valueOf(preuComanda), platsSring,String.valueOf(platsSring.size()));
@@ -75,6 +74,16 @@ public class ComandaServiceImpl implements ComandaService{
 		return json.toString();
 		
 	}
+	
+	public boolean checkPlatInList(List<Plat> platList, Plat plat) throws ComandaException{
+		for(Plat plt : platList){
+			if(plt.getId().equals(plat.getId())){
+				return true;
+			}
+		}
+		return false;
+	}
+	
 	
 	public class ComandaCart{
 	

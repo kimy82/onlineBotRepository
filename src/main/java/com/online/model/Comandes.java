@@ -2,42 +2,39 @@ package com.online.model;
 
 import java.io.Serializable;
 import java.util.Date;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.LinkedList;
+import java.util.List;
 
 import com.google.gson.annotations.Expose;
 
 public class Comandes implements Serializable{
-
-	
-
 
 	/**
 	 * 
 	 */
 	private static final long	serialVersionUID	= 1L;
 
-	
 	@Expose
 	private Long				id;
-	
+
 	@Expose
 	private String				hora;
-	
+
 	@Expose
 	private Date				dia;
-	
+
 	@Expose
-	private Double				preu;	
-	
+	private Double				preu;
+
+	private String				repetits;
+
 	@Expose
 	protected String			observacions;
-	
-	protected Set<Plat>				plats				= new HashSet<Plat>(0);
-	
+
+	protected List<Plat>		plats				= new LinkedList<Plat>();
 
 	// CONSTRUCTORS
-	 
+
 	public Comandes() {
 
 		super();
@@ -47,7 +44,7 @@ public class Comandes implements Serializable{
 	public Comandes( Long id, String hora, Date dia, Double preu ) {
 
 		this.id = id;
-		this.dia= dia;
+		this.dia = dia;
 		this.hora = hora;
 		this.preu = preu;
 	}
@@ -73,37 +70,56 @@ public class Comandes implements Serializable{
 		this.preu = preu;
 	}
 
-	public String getHora() {
+	public String getHora(){
+
 		return hora;
 	}
 
-	public void setHora(String hora) {
+	public void setHora( String hora ){
+
 		this.hora = hora;
 	}
 
-	public Date getDia() {
+	public Date getDia(){
+
 		return dia;
 	}
 
-	public void setDia(Date dia) {
+	public void setDia( Date dia ){
+
 		this.dia = dia;
 	}
 
-	public String getObservacions() {
+	public String getObservacions(){
+
 		return observacions;
 	}
 
-	public void setObservacions(String observacions) {
+	public void setObservacions( String observacions ){
+
 		this.observacions = observacions;
 	}
 
-	public Set<Plat> getPlats() {
+	public List<Plat> getPlats(){
+
 		return plats;
 	}
 
-	public void setPlats(Set<Plat> plats) {
+	public void setPlats( List<Plat> plats ){
+
 		this.plats = plats;
+	}
+
+	public String getRepetits(){
+	
+		return repetits;
+	}
+
+	public void setRepetits( String repetits ){
+	
+		this.repetits = repetits;
 	}
 	
 	
+
 }

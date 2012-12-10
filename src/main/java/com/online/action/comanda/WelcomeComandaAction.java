@@ -2,9 +2,8 @@ package com.online.action.comanda;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.HashSet;
+import java.util.LinkedList;
 import java.util.List;
-import java.util.Set;
 
 import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletRequest;
@@ -67,11 +66,15 @@ public class WelcomeComandaAction extends ActionSupport implements ServletRespon
 			if(this.idComanda!=null){
 				//recuperem la comanda i afegim plat
 				Comandes comanda = this.comandaBo.load(this.idComanda);
-				Set<Plat> platList =comanda.getPlats();
+				List<Plat> platList =comanda.getPlats();
 				Plat platToAdd = this.platsBo.load(this.idPlat,false);
 				if(!comandaService.checkPlatForMoreThanTwoRestaurants(platList, platToAdd)){
 					platList.add(platToAdd);
-					comanda.setPlats(platList);
+					if(comandaService.checkPlatInList(platList, platToAdd)){
+						comanda.setRepetits(comanda.getRepetits()+","+platToAdd.getId());
+					}else{						
+						comanda.setPlats(platList);
+					}
 					this.comandaBo.update(comanda);
 				}
 				
@@ -81,7 +84,7 @@ public class WelcomeComandaAction extends ActionSupport implements ServletRespon
 				//creem comanda i afegim plat
 				Comandes comanda = new Comandes();
 				comanda.setPreu(0.0);
-				Set<Plat> platList = new HashSet<Plat>();
+				List<Plat> platList = new LinkedList<Plat>();
 				Plat platToAdd = this.platsBo.load(this.idPlat, false);
 				platList.add(platToAdd);
 				this.comandaBo.save(comanda);

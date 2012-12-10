@@ -20,14 +20,18 @@
 		<property name="observacions" type="string">
 			<column name="OBSERVACIONS" length="1000" />
 		</property>
-		 <set name="plats" table="comanda_plats" 
+		<property name="repetits" type="string">
+			<column name="REPETITS" length="1000" />
+		</property>
+		<list name="plats" table="comanda_plats" 
         	inverse="false" lazy="false" fetch="select" cascade="save-update">
             <key>
                 <column name="COMANDA_ID" not-null="true" />
             </key>
+            <list-index column="NOM" ></list-index>
             <many-to-many entity-name="com.online.model.Plat">
                 <column name="PLAT_ID" not-null="true" />
             </many-to-many>
-        </set>
+        </list>		
 	</class>
 </hibernate-mapping>

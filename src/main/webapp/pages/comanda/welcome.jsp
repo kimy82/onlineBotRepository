@@ -1,3 +1,4 @@
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="s" uri="/struts-tags"%>
@@ -20,6 +21,10 @@
 <script src="<c:url value='/js/jquery/jquery.ui.resizable.js'/>" type="text/javascript"></script>
 <script src="<c:url value='/js/jquery/jquery.effects.core.js'/>" type="text/javascript"></script>
 <script src="<c:url value='/js/jquery/jquery.bgiframe-2.1.1.js'/>" type="text/javascript"></script>
+
+
+<script type="text/javascript" src="<c:url value='/js/slider/coin-slider.min.js' />"></script>
+<link rel="stylesheet" href="<c:url value='/css/coin-slider-styles.css' />" type="text/css" />
 
 <link
 	href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/base/jquery-ui.css"
@@ -92,8 +97,57 @@ $(function() {
 });
 
 </script>
+<script type="text/javascript">
+	    $(document).ready(function() {
+	        $('#coin-slider').coinslider();
+	    });
+</script>
 </head>
 <body>
+<div id='coin-slider'>
+	    <a href="<c:url value='/images/presentacio/image1.jpg' />" target="_blank">
+	        <img src='<c:url value='/images/presentacio/image1.jpg' />' >
+	        <span>
+	            aaaaa
+	        </span>
+	    </a>
+	    <a href="<c:url value='/images/presentacio/image2.jpg' />">
+	        <img src='<c:url value='/images/presentacio/image2.jpg' />' >
+	        <span>
+	            bbbbb
+	        </span>
+	    </a>
+	     <a href="<c:url value='/images/presentacio/image3.jpg' />">
+	        <img src='<c:url value='/images/presentacio/image3.jpg' />' >
+	        <span>
+	           cccccc
+	        </span>
+	    </a>
+	     <a href="<c:url value='/images/presentacio/image4.jpg' />">
+	        <img src='<c:url value='/images/presentacio/image4.jpg' />' >
+	        <span>
+	            ddddd
+	        </span>
+	    </a>
+	     <a href="<c:url value='/images/presentacio/image5.jpg' />">
+	        <img src='<c:url value='/images/presentacio/image5.jpg' />' >
+	        <span>
+	            eeeee
+	        </span>
+	    </a>
+	     <a href="<c:url value='/images/presentacio/image6.jpg' />">
+	        <img src='<c:url value='/images/presentacio/image6.jpg' />' >
+	        <span>
+	            ffffff
+	        </span>
+	    </a>
+	     <a href="<c:url value='/images/presentacio/image7.jpg' />">
+	        <img src='<c:url value='/images/presentacio/image7.jpg' />' >
+	        <span>
+	            gggggg
+	        </span>
+	    </a>
+</div>
 <div id="draggables_pl" style="width: 500px; height: 400px;" align="left" >
 <s:iterator value="platList" var="plat">
 <div class="selector ui-widget-content" id="draggable_${plat.id}" >
