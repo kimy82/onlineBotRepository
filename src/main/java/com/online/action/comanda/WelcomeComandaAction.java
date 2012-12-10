@@ -73,7 +73,7 @@ public class WelcomeComandaAction extends ActionSupport implements ServletRespon
 					if(comandaService.checkPlatInList(platList, platToAdd)){
 						comanda.setRepetits(comanda.getRepetits()+","+platToAdd.getId());
 					}else{						
-						comanda.setPlats(platList);
+						comanda.setPlats(platList); 
 					}
 					this.comandaBo.update(comanda);
 				}
