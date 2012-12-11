@@ -3,12 +3,12 @@
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 
 <hibernate-mapping>
-	<class name="com.online.model.PlatComanda" table="plats">
+	<class name="com.online.model.PlatComanda" table="platComanda">
 		<id name="id" type="java.lang.Long">
 			<column name="PLATCOMANDA_ID" />
 			<generator class="increment" />
 		</id>
-		<property name="num" type="integer" lazy="false" >
+		<property name="numPlats" type="integer" lazy="false" >
 			<column name="NUM" not-null="true" />
 		</property>
 		<many-to-one name="plat" class="com.online.model.Plat" cascade="save-update" >	

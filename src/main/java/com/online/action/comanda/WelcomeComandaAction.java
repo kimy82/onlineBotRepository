@@ -127,7 +127,7 @@ public class WelcomeComandaAction extends ActionSupport implements ServletRespon
 
 	public String  goToPas1Action(){
 		
-		inizilizeDadesComanda();
+		inizilizeComandaId();
 		
 		Comandes comanda = this.comandaBo.load(this.idComanda);
 		
@@ -149,11 +149,20 @@ public class WelcomeComandaAction extends ActionSupport implements ServletRespon
 	
 	
 	private void inizilizeDadesComanda() throws WrongParamException{
-		this.idComanda = (request.getParameter("idComanda")==null || request.getParameter("idComanda").equals(""))? null : Long.parseLong(request.getParameter("idComanda"));
+		inizilizeComandaId();
 		this.idPlat = (request.getParameter("idPlat")==null || request.getParameter("idPlat").equals(""))? null : Long.parseLong(request.getParameter("idPlat"));
 		if(this.idPlat==null){
 			throw new WrongParamException("null plat to add");
 		}
+	}
+	
+	private void inizilizeComandaId() throws WrongParamException{
+		try{
+		this.idComanda = (request.getParameter("idComanda")==null || request.getParameter("idComanda").equals(""))? null : Long.parseLong(request.getParameter("idComanda"));
+		}catch(NumberFormatException e){
+			throw new WrongParamException("wrong id of comanda");
+		}
+		
 	}
 	
 	// SETTERS i GETTERS

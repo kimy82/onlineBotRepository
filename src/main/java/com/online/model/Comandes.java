@@ -107,17 +107,4 @@ public class Comandes implements Serializable{
 
 		this.plats = plats;
 	}
-
-	public String getRepetits(){
-	
-		return repetits;
-	}
-
-	public void setRepetits( String repetits ){
-	
-		this.repetits = repetits;
-	}
-	
-	
-
 }

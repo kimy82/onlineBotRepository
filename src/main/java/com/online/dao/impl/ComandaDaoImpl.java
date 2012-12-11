@@ -8,7 +8,7 @@ import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
 
 import com.online.dao.ComandaDao;
 import com.online.model.Comandes;
-import com.online.model.Plat;
+import com.online.model.PlatComanda;
 
 public class ComandaDaoImpl extends HibernateDaoSupport implements ComandaDao{
 	
@@ -44,8 +44,8 @@ public class ComandaDaoImpl extends HibernateDaoSupport implements ComandaDao{
 		
 		Hibernate.initialize(comandes.getPlats());
 		
-		for(Plat pl : comandes.getPlats()){
-			Hibernate.initialize(pl.getRestaurants());	
+		for(PlatComanda pl : comandes.getPlats()){
+			Hibernate.initialize(pl.getPlat().getRestaurants());	
 		}		
 		
 		session.close();

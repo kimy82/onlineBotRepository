@@ -27,7 +27,7 @@
             </key>
             <list-index column="NOM" ></list-index>
             <many-to-many entity-name="com.online.model.PlatComanda">
-                <column name="PLAT_ID" not-null="true" />
+                <column name="PLATCOMANDA_ID" not-null="true" />
             </many-to-many>
         </list>		
 	</class>
