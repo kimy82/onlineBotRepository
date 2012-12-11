@@ -11,6 +11,7 @@ import com.google.gson.GsonBuilder;
 import com.google.gson.annotations.Expose;
 import com.online.exceptions.ComandaException;
 import com.online.model.Plat;
+import com.online.model.PlatComanda;
 import com.online.model.Restaurant;
 import com.online.services.ComandaService;
 import com.online.utils.Utils;
@@ -19,15 +20,15 @@ public class ComandaServiceImpl implements ComandaService{
 	
 	
 	
-	public boolean checkPlatForMoreThanTwoRestaurants(List<Plat> platList, Plat plat) throws ComandaException{ 
+	public boolean checkPlatForMoreThanTwoRestaurants(List<PlatComanda> platList, Plat plat) throws ComandaException{ 
 		 
 		boolean moreThanTwo= false;
 		
 		Set<String> restaurants = new HashSet<String>();
 		
 		if(platList.size()>=2){
-			for(Plat pl : platList){
-				Iterator<Restaurant> restaurantsIterator = pl.getRestaurants().iterator();
+			for(PlatComanda pl : platList){
+				Iterator<Restaurant> restaurantsIterator = pl.getPlat().getRestaurants().iterator();
 				while(restaurantsIterator.hasNext()){
 					Restaurant rest = restaurantsIterator.next();
 					restaurants.add(rest.getNom());
@@ -54,27 +55,19 @@ public class ComandaServiceImpl implements ComandaService{
 		return moreThanTwo;
 	}
 
-	public String createJSONForShoppingCart(List<Plat> platList, Long id,String[] repetitsVec) throws ComandaException{
+	public String createJSONForShoppingCart(List<PlatComanda> platList, Long id) throws ComandaException{
 		
 		Double preuComanda= 0.0;
 		List<String> platsSring = new ArrayList<String>();	
-			for(Plat pl : platList){			
-				platsSring.add(pl.getNom());
-				preuComanda = preuComanda+pl.getPreu();
-			}
-		
-		if(repetitsVec!=null && repetitsVec.length>0){
-			for(String idPlat : repetitsVec){
-				for(Plat pl : platList){			
-					if(idPlat.equals(String.valueOf(pl.getId()))){
-						preuComanda = preuComanda+pl.getPreu();
-					}
-				}
+		Integer numPlats = 0;
+			for(PlatComanda pl : platList){			
+				platsSring.add(pl.getPlat().getNom());
+				preuComanda = preuComanda+(pl.getPlat().getPreu()*pl.getNumPlats());
+				numPlats = numPlats+pl.getNumPlats();
 			}
 			
-		}
 		
-		ComandaCart comandaCart= new  ComandaCart(String.valueOf(preuComanda), platsSring,String.valueOf((platsSring.size()+(repetitsVec!=null?repetitsVec.length : 0))));
+		ComandaCart comandaCart= new  ComandaCart(String.valueOf(preuComanda), platsSring,String.valueOf(numPlats));
 		
 		Gson gson = new GsonBuilder().setPrettyPrinting().excludeFieldsWithoutExposeAnnotation().create();
 		StringBuffer json= new StringBuffer(gson.toJson(comandaCart));
@@ -88,9 +81,9 @@ public class ComandaServiceImpl implements ComandaService{
 		
 	}
 	
-	public boolean checkPlatInList(List<Plat> platList, Plat plat) throws ComandaException{
-		for(Plat plt : platList){
-			if(plt.getId().equals(plat.getId())){
+	public boolean checkPlatInList(List<PlatComanda> platList, Plat plat) throws ComandaException{
+		for(PlatComanda plt : platList){
+			if(plt.getPlat().getId().toString().equals(plat.getId().toString())){
 				return true;
 			}
 		}

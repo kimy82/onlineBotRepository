@@ -24,14 +24,12 @@ public class Comandes implements Serializable{
 	private Date				dia;
 
 	@Expose
-	private Double				preu;
-
-	private String				repetits;
+	private Double				preu;	
 
 	@Expose
 	protected String			observacions;
 
-	protected List<Plat>		plats				= new LinkedList<Plat>();
+	protected List<PlatComanda>		plats				= new LinkedList<PlatComanda>();
 
 	// CONSTRUCTORS
 
@@ -100,12 +98,12 @@ public class Comandes implements Serializable{
 		this.observacions = observacions;
 	}
 
-	public List<Plat> getPlats(){
+	public List<PlatComanda> getPlats(){
 
 		return plats;
 	}
 
-	public void setPlats( List<Plat> plats ){
+	public void setPlats( List<PlatComanda> plats ){
 
 		this.plats = plats;
 	}

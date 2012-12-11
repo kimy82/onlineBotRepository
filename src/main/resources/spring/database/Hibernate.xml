@@ -27,6 +27,7 @@ http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
 				<value>/hibernate/UserRole.hbm.xml</value>
 				<value>/hibernate/Beguda.hbm.xml</value>
 				<value>/hibernate/Comandes.hbm.xml</value>
+				<value>/hibernate/PlatComanda.hbm.xml</value>
 			</list>
 		</property>
 		

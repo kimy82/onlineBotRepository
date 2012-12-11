@@ -98,6 +98,10 @@ $(function() {
 
 </script>
 <script type="text/javascript">
+		function goToComandaPas1(){
+			window.location.href="/onlineBot/comanda/goToPas1Action.action?idComanda="+$("#numComanda").text();
+		}
+
 	    $(document).ready(function() {
 	        $('#coin-slider').coinslider();
 	    });
@@ -107,45 +111,30 @@ $(function() {
 <div id='coin-slider'>
 	    <a href="<c:url value='/images/presentacio/image1.jpg' />" target="_blank">
 	        <img src='<c:url value='/images/presentacio/image1.jpg' />' >
-	        <span>
-	            aaaaa
-	        </span>
+	 
 	    </a>
 	    <a href="<c:url value='/images/presentacio/image2.jpg' />">
 	        <img src='<c:url value='/images/presentacio/image2.jpg' />' >
-	        <span>
-	            bbbbb
-	        </span>
+	     
 	    </a>
 	     <a href="<c:url value='/images/presentacio/image3.jpg' />">
 	        <img src='<c:url value='/images/presentacio/image3.jpg' />' >
-	        <span>
-	           cccccc
-	        </span>
+	  
 	    </a>
 	     <a href="<c:url value='/images/presentacio/image4.jpg' />">
 	        <img src='<c:url value='/images/presentacio/image4.jpg' />' >
-	        <span>
-	            ddddd
-	        </span>
+	       
 	    </a>
 	     <a href="<c:url value='/images/presentacio/image5.jpg' />">
 	        <img src='<c:url value='/images/presentacio/image5.jpg' />' >
-	        <span>
-	            eeeee
-	        </span>
+	       
 	    </a>
 	     <a href="<c:url value='/images/presentacio/image6.jpg' />">
 	        <img src='<c:url value='/images/presentacio/image6.jpg' />' >
-	        <span>
-	            ffffff
-	        </span>
+	      
 	    </a>
 	     <a href="<c:url value='/images/presentacio/image7.jpg' />">
-	        <img src='<c:url value='/images/presentacio/image7.jpg' />' >
-	        <span>
-	            gggggg
-	        </span>
+	        <img src='<c:url value='/images/presentacio/image7.jpg' />' >	      
 	    </a>
 </div>
 <div id="draggables_pl" style="width: 500px; height: 400px;" align="left" >
@@ -166,7 +155,7 @@ $(function() {
 </s:iterator>
 
 <div id="droppable"  class="ui-widget-header abs">
-    <image src="<c:url value='/images/shopping_cart.png' />" ></image>
+  <a href="#" onclick="goToComandaPas1();" >  <image src="<c:url value='/images/shopping_cart.png' />" ></image></a>
     	<br>
 	    Num comanda:<label id="numComanda"></label>
 	    <br>

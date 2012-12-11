@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="com.online.model.PlatComanda" table="plats">
+		<id name="id" type="java.lang.Long">
+			<column name="PLATCOMANDA_ID" />
+			<generator class="increment" />
+		</id>
+		<property name="num" type="integer" lazy="false" >
+			<column name="NUM" not-null="true" />
+		</property>
+		<many-to-one name="plat" class="com.online.model.Plat" cascade="save-update" >	
+			<column name="PLAT_ID"></column>	
+		</many-to-one>		
+	</class>
+</hibernate-mapping>

@@ -20,6 +20,7 @@ import com.online.exceptions.GeneralException;
 import com.online.exceptions.WrongParamException;
 import com.online.model.Comandes;
 import com.online.model.Plat;
+import com.online.model.PlatComanda;
 import com.online.services.impl.ComandaServiceImpl;
 import com.opensymphony.xwork2.ActionSupport;
 
@@ -32,10 +33,13 @@ public class WelcomeComandaAction extends ActionSupport implements ServletRespon
 	private PlatsBo				platsBo;
 	private RestaurantsBo		restaurantsBo;
 	private ComandaBo	    	comandaBo;
+	
 	List<Plat>					platList			= new ArrayList<Plat>();
+	List<PlatComanda>			platComandaList		= new ArrayList<PlatComanda>();
 
 	private Long				idComanda			= null;
 	private Long				idPlat				= null;
+	
 	
 	private ComandaServiceImpl  comandaService;
 	
@@ -66,43 +70,45 @@ public class WelcomeComandaAction extends ActionSupport implements ServletRespon
 			if(this.idComanda!=null){
 				//recuperem la comanda i afegim plat
 				Comandes comanda = this.comandaBo.load(this.idComanda);
-				List<Plat> platList =comanda.getPlats();
+				List<PlatComanda> platList =comanda.getPlats();
 				Plat platToAdd = this.platsBo.load(this.idPlat,false);
-				String repetits = ((comanda.getRepetits()==null)? "" :comanda.getRepetits());
-				
-				String[] repetitsVec= new String[]{};
-				if(!repetits.equals("")){
-					repetitsVec = repetits.split(",");
-				}
 				
 				if(!comandaService.checkPlatForMoreThanTwoRestaurants(platList, platToAdd)){
 					
 					if(comandaService.checkPlatInList(platList, platToAdd)){						
-						repetits = ((comanda.getRepetits()==null)? platToAdd.getId().toString() :comanda.getRepetits()+","+platToAdd.getId().toString());
-						repetitsVec= repetits.split(",");
-						
-						comanda.setRepetits(repetits);
+						for(PlatComanda plt : platList){
+							if(plt.getPlat().getId().toString().equals(platToAdd.getId().toString())){
+								plt.setNumPlats(plt.getNumPlats()+1);
+							}
+						}
+						comanda.setPlats(platList); 
 					}else{		
-						platList.add(platToAdd);
+						PlatComanda platComanda = new PlatComanda();
+						platComanda.setPlat(platToAdd);
+						platComanda.setNumPlats(1);
+						platList.add(platComanda);
 						comanda.setPlats(platList); 
 					}
 					this.comandaBo.update(comanda);
 				}
 				
-				json= this.comandaService.createJSONForShoppingCart(platList, comanda.getId(),repetitsVec); 
+				json= this.comandaService.createJSONForShoppingCart(platList, comanda.getId()); 
 				
 			}else{
 				//creem comanda i afegim plat
 				Comandes comanda = new Comandes();
 				comanda.setPreu(0.0);
-				List<Plat> platList = new LinkedList<Plat>();
+				List<PlatComanda> platList = new LinkedList<PlatComanda>();
 				Plat platToAdd = this.platsBo.load(this.idPlat, false);
-				platList.add(platToAdd);
+				PlatComanda platComanda = new PlatComanda();
+				platComanda.setPlat(platToAdd);
+				platComanda.setNumPlats(1);
+				platList.add(platComanda);
 				comanda.setPlats(platList);
 				this.comandaBo.save(comanda);
 			
 				
-				json= this.comandaService.createJSONForShoppingCart(platList,comanda.getId(),null);
+				json= this.comandaService.createJSONForShoppingCart(platList,comanda.getId());
 			}
 		} catch (ComandaException ce){
 			json = createErrorJSON("error in comanda service action");
@@ -119,6 +125,16 @@ public class WelcomeComandaAction extends ActionSupport implements ServletRespon
 		return null;
 	}
 
+	public String  goToPas1Action(){
+		
+		inizilizeDadesComanda();
+		
+		Comandes comanda = this.comandaBo.load(this.idComanda);
+		
+		this.platComandaList =comanda.getPlats();				
+		
+		return SUCCESS;
+	}
 	
 	
 	//private methods
@@ -187,6 +203,16 @@ public class WelcomeComandaAction extends ActionSupport implements ServletRespon
 
 	public void setComandaService(ComandaServiceImpl comandaService) {
 		this.comandaService = comandaService;
+	}
+
+	public List<PlatComanda> getPlatComandaList(){
+	
+		return platComandaList;
+	}
+
+	public void setPlatComandaList( List<PlatComanda> platComandaList ){
+	
+		this.platComandaList = platComandaList;
 	}
 
 	
