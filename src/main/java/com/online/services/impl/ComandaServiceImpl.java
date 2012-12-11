@@ -54,14 +54,27 @@ public class ComandaServiceImpl implements ComandaService{
 		return moreThanTwo;
 	}
 
-	public String createJSONForShoppingCart(List<Plat> platList, Long id) throws ComandaException{
+	public String createJSONForShoppingCart(List<Plat> platList, Long id,String[] repetitsVec) throws ComandaException{
 		
 		Double preuComanda= 0.0;
-		List<String> platsSring = new ArrayList<String>();
-		for(Plat pl : platList){			
-			platsSring.add(pl.getNom());
+		List<String> platsSring = new ArrayList<String>();	
+			for(Plat pl : platList){			
+				platsSring.add(pl.getNom());
+				preuComanda = preuComanda+pl.getPreu();
+			}
+		
+		if(repetitsVec!=null && repetitsVec.length>0){
+			for(String idPlat : repetitsVec){
+				for(Plat pl : platList){			
+					if(idPlat.equals(String.valueOf(pl.getId()))){
+						preuComanda = preuComanda+pl.getPreu();
+					}
+				}
+			}
+			
 		}
-		ComandaCart comandaCart= new  ComandaCart(String.valueOf(preuComanda), platsSring,String.valueOf(platsSring.size()));
+		
+		ComandaCart comandaCart= new  ComandaCart(String.valueOf(preuComanda), platsSring,String.valueOf((platsSring.size()+(repetitsVec!=null?repetitsVec.length : 0))));
 		
 		Gson gson = new GsonBuilder().setPrettyPrinting().excludeFieldsWithoutExposeAnnotation().create();
 		StringBuffer json= new StringBuffer(gson.toJson(comandaCart));

@@ -68,17 +68,28 @@ public class WelcomeComandaAction extends ActionSupport implements ServletRespon
 				Comandes comanda = this.comandaBo.load(this.idComanda);
 				List<Plat> platList =comanda.getPlats();
 				Plat platToAdd = this.platsBo.load(this.idPlat,false);
+				String repetits = ((comanda.getRepetits()==null)? "" :comanda.getRepetits());
+				
+				String[] repetitsVec= new String[]{};
+				if(!repetits.equals("")){
+					repetitsVec = repetits.split(",");
+				}
+				
 				if(!comandaService.checkPlatForMoreThanTwoRestaurants(platList, platToAdd)){
-					platList.add(platToAdd);
-					if(comandaService.checkPlatInList(platList, platToAdd)){
-						comanda.setRepetits(comanda.getRepetits()+","+platToAdd.getId());
-					}else{						
+					
+					if(comandaService.checkPlatInList(platList, platToAdd)){						
+						repetits = ((comanda.getRepetits()==null)? platToAdd.getId().toString() :comanda.getRepetits()+","+platToAdd.getId().toString());
+						repetitsVec= repetits.split(",");
+						
+						comanda.setRepetits(repetits);
+					}else{		
+						platList.add(platToAdd);
 						comanda.setPlats(platList); 
 					}
 					this.comandaBo.update(comanda);
 				}
 				
-				json= this.comandaService.createJSONForShoppingCart(platList, comanda.getId());
+				json= this.comandaService.createJSONForShoppingCart(platList, comanda.getId(),repetitsVec); 
 				
 			}else{
 				//creem comanda i afegim plat
@@ -87,10 +98,11 @@ public class WelcomeComandaAction extends ActionSupport implements ServletRespon
 				List<Plat> platList = new LinkedList<Plat>();
 				Plat platToAdd = this.platsBo.load(this.idPlat, false);
 				platList.add(platToAdd);
+				comanda.setPlats(platList);
 				this.comandaBo.save(comanda);
 			
 				
-				json= this.comandaService.createJSONForShoppingCart(platList,comanda.getId());
+				json= this.comandaService.createJSONForShoppingCart(platList,comanda.getId(),null);
 			}
 		} catch (ComandaException ce){
 			json = createErrorJSON("error in comanda service action");
