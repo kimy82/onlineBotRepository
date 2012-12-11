@@ -11,17 +11,20 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.apache.struts2.interceptor.ServletRequestAware;
 import org.apache.struts2.interceptor.ServletResponseAware;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 
 import com.online.bo.ComandaBo;
 import com.online.bo.PlatsBo;
-import com.online.bo.RestaurantsBo;
 import com.online.exceptions.ComandaException;
 import com.online.exceptions.GeneralException;
 import com.online.exceptions.WrongParamException;
 import com.online.model.Comandes;
 import com.online.model.Plat;
 import com.online.model.PlatComanda;
+import com.online.pojos.Basic;
 import com.online.services.impl.ComandaServiceImpl;
+import com.online.utils.Utils;
 import com.opensymphony.xwork2.ActionSupport;
 
 public class WelcomeComandaAction extends ActionSupport implements ServletResponseAware, ServletRequestAware{
@@ -31,11 +34,12 @@ public class WelcomeComandaAction extends ActionSupport implements ServletRespon
 	 */
 	private static final long	serialVersionUID	= 1L;
 	private PlatsBo				platsBo;
-	private RestaurantsBo		restaurantsBo;
 	private ComandaBo	    	comandaBo;
+	private Comandes			comanda;
 	
 	List<Plat>					platList			= new ArrayList<Plat>();
 	List<PlatComanda>			platComandaList		= new ArrayList<PlatComanda>();
+	private List<Basic>			horaList			= new ArrayList<Basic>();
 
 	private Long				idComanda			= null;
 	private Long				idPlat				= null;
@@ -129,6 +133,11 @@ public class WelcomeComandaAction extends ActionSupport implements ServletRespon
 		
 		inizilizeComandaId();
 		
+		this.horaList = Utils.getHoraList();
+		
+		  Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+	      String name = auth.getName();
+		
 		Comandes comanda = this.comandaBo.load(this.idComanda);
 		
 		this.platComandaList =comanda.getPlats();				
@@ -169,11 +178,6 @@ public class WelcomeComandaAction extends ActionSupport implements ServletRespon
 	public void setPlatsBo( PlatsBo platsBo ){
 
 		this.platsBo = platsBo;
-	}
-
-	public void setRestaurantsBo( RestaurantsBo restaurantsBo ){
-
-		this.restaurantsBo = restaurantsBo;
 	}
 
 	public List<Plat> getPlatList(){
@@ -222,6 +226,26 @@ public class WelcomeComandaAction extends ActionSupport implements ServletRespon
 	public void setPlatComandaList( List<PlatComanda> platComandaList ){
 	
 		this.platComandaList = platComandaList;
+	}
+
+	public Comandes getComanda(){
+	
+		return comanda;
+	}
+
+	public void setComanda( Comandes comanda ){
+	
+		this.comanda = comanda;
+	}
+
+	public List<Basic> getHoraList(){
+	
+		return horaList;
+	}
+
+	public void setHoraList( List<Basic> horaList ){
+	
+		this.horaList = horaList;
 	}
 
 	

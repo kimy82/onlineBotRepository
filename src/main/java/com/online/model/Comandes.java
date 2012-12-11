@@ -28,6 +28,10 @@ public class Comandes implements Serializable{
 
 	@Expose
 	protected String			observacions;
+	
+	@Expose
+	protected String			address;
+	
 
 	protected List<PlatComanda>		plats				= new LinkedList<PlatComanda>();
 
@@ -107,4 +111,16 @@ public class Comandes implements Serializable{
 
 		this.plats = plats;
 	}
+
+	public String getAddress(){
+	
+		return address;
+	}
+
+	public void setAddress( String address ){
+	
+		this.address = address;
+	}
+	
+	
 }

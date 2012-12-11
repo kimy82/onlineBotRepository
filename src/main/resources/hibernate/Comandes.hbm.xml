@@ -20,6 +20,9 @@
 		<property name="observacions" type="string">
 			<column name="OBSERVACIONS" length="1000" />
 		</property>
+		<property name="address" type="string">
+			<column name="ADDRESS" length="200" />
+		</property>
 		<list name="plats" table="comanda_plats" 
         	inverse="false" lazy="false" fetch="select" cascade="save-update">
             <key>
