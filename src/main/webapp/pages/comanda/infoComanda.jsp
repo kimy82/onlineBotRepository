@@ -102,12 +102,31 @@ function submitLog(){
 						                	<td>
 						                	<label for="FullAddress">
                         							Valida el carrer,poble i el codi postal</label>
+                        					<label for="carrer">
+                        							Carrer</label>		
+                        					<input type="text" id="carrer"  />  
+                        					
+                        					<label for="numcarrer">
+                        							 Num Carrer</label>		
+                        					<input type="text" id="numcarrer"  />
+                        					
+                        					<label for="codi">
+                        							 Codi postal</label>		
+                        					<input type="text" id="codi"  />
+                        					
+                        					<label for="poble">
+                        							 Poble</label>		
+                        					<input type="text" id="poble"  />
+                        							
                     						<textarea id="FullAddress" name="FullAddress" cols="40" rows="5" class="fulladdressvalidator"></textarea>							    										                
 						                    </td>
 						                </tr>
 						                <tr>
 							                <td>				                
 							                    <input id="Submit" name="Submit" value="Comprova si és correcte" type="button" />
+							                </td>
+							                <td>
+							                <label id="addressOK" ></label>
 							                </td>    
 						                </tr>
 					                </table>

@@ -16,10 +16,14 @@
 
                 // This function will be executed when the form is submitted
                 function FormSubmit() {
+                	var address = $("#carrer").val()+","+$("#codi").val()+" "+$("#poble").val()+", Girona, Spain";
+                	$("#FullAddress").text(address);
                     $.submitForm = true;
                     if (!$('#MyForm').valid()) {
+                    	$("#addressOK").text("Address KO");
                         return false;
                     } else {
+                    	$("#addressOK").text("Address OK");
                         if ($("#FullAddress").data("IsChecking") == true) {
                             $("#FullAddress").data("SubmitForm", true);
                             return false;
@@ -67,9 +71,9 @@
             }
 
             // If we've already validated this address, then just return the previous result
-            if ($(element).data("LastAddressValidated") == CurrentAddress) {
-                return $(element).data("IsValid");
-            }
+           // if ($(element).data("LastAddressValidated") == CurrentAddress) {
+           //     return $(element).data("IsValid");
+            //}
 
             // We have a new address to validate, set the IsChecking flag to true and set the LastAddressValidated to the CurrentAddress
             $(element).data("IsChecking", true);
