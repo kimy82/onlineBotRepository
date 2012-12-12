@@ -5,16 +5,16 @@
 	http://www.springframework.org/schema/security 
 	http://www.springframework.org/schema/security/spring-security-3.0.3.xsd">
 
-	<http auto-config="true">
-		<intercept-url pattern="/user/**" access="ROLE_USER"></intercept-url>		
-		<intercept-url pattern="/admin/**" access="ROLE_ADMIN"></intercept-url>
-		<form-login login-page="/login.action" default-target-url="/registerUser.action"
-			authentication-failure-url="/loginfailed.action" />
+	<http auto-config="false" use-expressions="true" entry-point-ref="authenticationProcessingFilterEntryPoint">
+		
+		<custom-filter position="FORM_LOGIN_FILTER" ref="authenticationFilter" />
+		<intercept-url pattern="/user/**" access="hasAnyRole('ROLE_USER')"></intercept-url>		
+		<intercept-url pattern="/admin/**" access="hasAnyRole('ROLE_ADMIN')"></intercept-url>
 		<logout logout-success-url="/logout.action" />
+		
 	</http>
 
-
-	<authentication-manager>
+	<authentication-manager alias="authenticationManager">
 		<authentication-provider>
 			<password-encoder hash="sha" />
 			 <jdbc-user-service data-source-ref="dataSource"
@@ -33,5 +33,27 @@
 			</user-service -->
 		</authentication-provider>
 	</authentication-manager>
+	
+	<beans:bean id="authenticationProcessingFilterEntryPoint"
+	    class="org.springframework.security.web.authentication.LoginUrlAuthenticationEntryPoint">
+	    <beans:property name="loginFormUrl" value="/login.action" />
+	    <beans:property name="forceHttps" value="false" />
+	</beans:bean>
+
+	<beans:bean id="authenticationFilter" class="org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter">
+	    <beans:property name="authenticationManager" ref="authenticationManager"/>
+	    <beans:property name="filterProcessesUrl" value="/j_spring_security_check"/>
+	    <beans:property name="authenticationFailureHandler" ref="failureHandler"/>
+	    <beans:property name="authenticationSuccessHandler" ref="successHandler"/>
+	</beans:bean>
+
+	<beans:bean id="successHandler" class="com.online.filter.spring.security.AjaxAuthenticationSuccessHandler">
+	</beans:bean>
+	
+	<beans:bean id="failureHandler" class="com.online.filter.spring.security.AjaxAuthenticationFailureHandler" >
+		<beans:property name="defaultFailureUrl" value="/loginfailed.action"/>	
+	</beans:bean>
+
+	
 
 </beans:beans>

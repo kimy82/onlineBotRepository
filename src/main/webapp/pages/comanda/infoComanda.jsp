@@ -49,7 +49,30 @@
     width: 500px;
 }
 </style>
-
+<script type="text/javascript" >
+function submitLog(){
+	
+	$.ajax({
+	    url: "<c:url value='/onlineBot/j_spring_security_check' />",
+	    type: "POST",
+	    data: $("#f").serialize(),
+	    dataType: 'json',
+	    beforeSend: function (xhr) {
+	        xhr.setRequestHeader("X-Ajax-call", "true");
+	    },
+	    success: function(json) {
+	        if (json.result == "ok") {
+	        	$("#loged").text("OK, Validació correcte");
+	             console.log("ssss");
+	        } else if (json.result == "error") {
+	        	console.log("error");
+	        	$("#loged").text("KO, Validació incorrecte");
+	        }
+	    }
+	});
+	
+}
+</script>
 </head>
 
 <body>
@@ -79,9 +102,7 @@
 						                	<td>
 						                	<label for="FullAddress">
                         							Valida el carrer,poble i el codi postal</label>
-                    						<textarea id="FullAddress" name="FullAddress" cols="40" rows="5" class="fulladdressvalidator"></textarea>
-							    			
-							                
+                    						<textarea id="FullAddress" name="FullAddress" cols="40" rows="5" class="fulladdressvalidator"></textarea>							    										                
 						                    </td>
 						                </tr>
 						                <tr>
@@ -106,10 +127,39 @@
 					<tr>
 						
 					
-					</tr>					                   
+					</tr>				
+					<s:hidden key="comanda.id" id="idcomanda" ></s:hidden>	                   
 					<s:hidden key="comanda.address" id="comandaddress"></s:hidden>																		
 					<s:submit></s:submit>
 </s:form>	
+<br>
+
+<c:if test="${nameAuth eq 'anonymousUser' }">
+<h1>Logate</h1>
+	<form name='f' id="f" action="/onlineBot/j_spring_security_check"
+		method='POST'>
+ 
+		<table>
+			<tr>
+				<td>User:</td>
+				<td><input type='text' name='j_username' value=''>
+				</td>
+			</tr>
+			<tr>
+				<td>Password:</td>
+				<td><input type='password' name='j_password' />
+				</td>
+			</tr>
+			<tr>
+				<td colspan='2'><input name="submit" type="button"
+					value="submit" onclick="submitLog()" />
+				</td>
+			</tr>			
+		</table>
+ 		<label id="loged" ></label>
+	</form>
+</c:if>
+
 <script>			
 
 //---------------------------------------------------------------------------------------------------------------------
