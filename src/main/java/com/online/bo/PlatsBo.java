@@ -10,7 +10,7 @@ public interface PlatsBo{
 	void save( Plat plat ) throws BOException;
 
 	void update( Plat plat ) throws BOException;
-
+ 
 	void delete( Plat plat ) throws BOException;
 
 	Plat load( Long id ,boolean lazy) throws BOException; 

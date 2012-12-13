@@ -67,7 +67,7 @@ public class TestPlatsBO{
 	@Test(expected = BOException.class)
 	public void testLoadNullId(){
 
-		this.platsBo.load(null);
+		this.platsBo.load(null,true);
 	}
 
 }

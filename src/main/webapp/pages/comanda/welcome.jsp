@@ -88,18 +88,21 @@
 </div>
 
 <!-- Scripts --> 
+<c:if test="${sessionScope.environment eq 'production' }">
+<script src="<c:url value='/js/jsInfoComanda.min.js' />" type="text/javascript"></script>
+</c:if>
+
+
 <script src="<c:url value='/js/jquery/jquery.js' />" type="text/javascript"></script>
 <script src="<c:url value='/js/jquery/jquery.ui.core.js' />" type="text/javascript"></script>
 <script src="<c:url value='/js/jquery/jquery.ui.widget.js'/>" type="text/javascript"></script>
 <script src="<c:url value='/js/jquery/jquery.ui.mouse.js'/>" type="text/javascript"></script>
 <script src="<c:url value='/js/jquery/jquery.ui.position.js'/>" type="text/javascript"></script>
-
 <script src="<c:url value='/js/jquery/jquery.ui.draggable.js'/>" type="text/javascript"></script>
 <script src="<c:url value='/js/jquery/jquery.ui.droppable.js'/>" type="text/javascript"></script>
 <script src="<c:url value='/js/jquery/jquery.ui.resizable.js'/>" type="text/javascript"></script>
 <script src="<c:url value='/js/jquery/jquery.effects.core.js'/>" type="text/javascript"></script>
 <script src="<c:url value='/js/jquery/jquery.bgiframe-2.1.1.js'/>" type="text/javascript"></script>
-
 
 <script type="text/javascript" src="<c:url value='/js/slider/coin-slider.min.js' />"></script>
 

@@ -115,15 +115,15 @@ public class TestMantenimentPlatAction extends StrutsSpringTestCase{
 		request.setParameter("idPlat", "1");
 		
 		PlatsBo mockPlatsBo = mock(PlatsBo.class);		
-		
-		Mockito.when(mockPlatsBo.load(Mockito.anyLong())).thenReturn(this.plat);
+		 
+		Mockito.when(mockPlatsBo.load(Mockito.anyLong(), Mockito.anyBoolean())).thenReturn(this.plat);
 		Mockito.doNothing().when(mockPlatsBo).delete(this.plat);
 
 		ActionProxy proxy = getActionProxy("/admin/ajaxDeletePlatAction.action");
 
 		MantenimentPlatsAction action = (MantenimentPlatsAction) proxy.getAction();
 
-		action.setPlatsBo(mockPlatsBo);
+		action.setPlatsBo(mockPlatsBo); 
 
 		String result = proxy.execute();
 		assertEquals(null, result);
