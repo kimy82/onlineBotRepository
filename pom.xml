@@ -214,7 +214,63 @@
 					<stopPort>9966</stopPort>
 					<stopKey>foo</stopKey>
 				</configuration>
-			</plugin>
+			</plugin>		
+			<plugin>
+		        <groupId>com.samaxes.maven</groupId>
+		        <artifactId>minify-maven-plugin</artifactId>
+		        <version>1.5.2</version>
+		            <configuration>
+		              <cssSourceDir>css</cssSourceDir>
+		              <cssSourceFiles>
+                			<cssSourceFile>**</cssSourceFile>
+              		  </cssSourceFiles>		            
+		              <cssFinalFile>style.css</cssFinalFile>
+		              
+		              <jsSourceDir>js/jquery</jsSourceDir>	
+		              	
+		               	  <jsSourceFiles>
+		               	  	<jsSourceFile>jquery.js</jsSourceFile>
+		               	   	<jsSourceFile>jquery.ui.core.js</jsSourceFile>		               	    
+		               	    <jsSourceFile>jquery.ui.widget.js</jsSourceFile>
+		               	    <jsSourceFile>jquery.ui.mouse.js</jsSourceFile>
+		               	    <jsSourceFile>jquery.ui.position.js</jsSourceFile>
+			                <jsSourceFile>jquery.ui.draggable.js</jsSourceFile>			                
+			                <jsSourceFile>jquery.ui.droppable.js</jsSourceFile>
+			                <jsSourceFile>jquery.ui.resizable.js</jsSourceFile>
+			                <jsSourceFile>jquery.effects.core.js</jsSourceFile>
+			                <jsSourceFile>jquery.bgiframe-2.1.1.js</jsSourceFile>			                			                
+			              </jsSourceFiles>       
+		              <jsFinalFile>jsComanda.js</jsFinalFile>		              		              
+		              	<jsSourceDir>js/jquery</jsSourceDir>		
+		               	  <jsSourceFiles>
+		               	  	<jsSourceFile>jquery.js</jsSourceFile>
+		               	   	<jsSourceFile>jquery.ui.core.js</jsSourceFile>		               	    
+		               	    <jsSourceFile>jquery.ui.widget.js</jsSourceFile>
+		               	    <jsSourceFile>jquery.ui.mouse.js</jsSourceFile>
+		               	    <jsSourceFile>jquery.ui.position.js</jsSourceFile>
+			                <jsSourceFile>jquery.ui.draggable.js</jsSourceFile>			                
+			                <jsSourceFile>jquery.ui.droppable.js</jsSourceFile>
+			                <jsSourceFile>jquery.ui.resizable.js</jsSourceFile>
+			                <jsSourceFile>jquery.effects.core.js</jsSourceFile>
+			                <jsSourceFile>jquery.bgiframe-2.1.1.js</jsSourceFile>	
+			                <jsSourceFile>jquery-ui.js</jsSourceFile>		                			                
+			              </jsSourceFiles>   
+			             <jsSourceDir>js/calendari</jsSourceDir>  
+			              <jsSourceFiles>  
+			             	<jsSourceFile>calendar.js</jsSourceFile>
+		               	   	<jsSourceFile>calendar-cat.js</jsSourceFile>		               	    
+		               	    <jsSourceFile>calendar-idioma.js</jsSourceFile>
+		               	    <jsSourceFile>calendar-setup.js</jsSourceFile>
+		               	   </jsSourceFiles>
+		               	 <jsSourceDir>js/address</jsSourceDir>  
+			              <jsSourceFiles>   
+			              	<jsSourceFile>autocompleteTown.js</jsSourceFile>
+			              	<jsSourceFile>addressValidationForm.js</jsSourceFile>
+		               	   </jsSourceFiles>
+		              <jsFinalFile>jsInfoComanda.js</jsFinalFile>
+		            </configuration>		          
+	      </plugin>
+			
 		</plugins>
 	</build>
 </project>
