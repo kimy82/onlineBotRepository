@@ -261,4 +261,14 @@ public class WelcomeComandaAction extends ActionSupport implements ServletRespon
 		this.nameAuth = nameAuth;
 	}
 
+	public Long getIdComanda(){
+	
+		return idComanda;
+	}
+
+	public void setIdComanda( Long idComanda ){
+	
+		this.idComanda = idComanda;
+	}
+
 }

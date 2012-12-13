@@ -78,11 +78,11 @@
 <div id="droppable"  class="ui-widget-header abs">
   <a href="#" onclick="goToComandaPas1();" >  <image src="<c:url value='/images/shopping_cart.png' />" ></image></a>
     	<br>
-	    Num comanda:<label id="numComanda"></label>
+	   <s:text name="comanda.num.id" />:<label id="numComanda"></label>
 	    <br>
-	    Núm Palts: <label id="numplats" ></label>
+	   <s:text name="comanda.num.plats" />:<label id="numplats" ></label>
 	    <br>
-	    Precio: <label id="preu" ></label>
+	   <s:text name="comanda.preu" />:<label id="preu" ></label>
 </div>
 
 </div>
