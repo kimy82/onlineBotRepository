@@ -9,26 +9,8 @@
 <META http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <META http-equiv="Content-Style-Type" content="text/css">
 <title>Welcome</title>
-  
-<script src="<c:url value='/js/jquery/jquery.js' />" type="text/javascript"></script>
-<script src="<c:url value='/js/jquery/jquery.ui.core.js' />" type="text/javascript"></script>
-<script src="<c:url value='/js/jquery/jquery.ui.widget.js'/>" type="text/javascript"></script>
-<script src="<c:url value='/js/jquery/jquery.ui.mouse.js'/>" type="text/javascript"></script>
-<script src="<c:url value='/js/jquery/jquery.ui.position.js'/>" type="text/javascript"></script>
-
-<script src="<c:url value='/js/jquery/jquery.ui.draggable.js'/>" type="text/javascript"></script>
-<script src="<c:url value='/js/jquery/jquery.ui.droppable.js'/>" type="text/javascript"></script>
-<script src="<c:url value='/js/jquery/jquery.ui.resizable.js'/>" type="text/javascript"></script>
-<script src="<c:url value='/js/jquery/jquery.effects.core.js'/>" type="text/javascript"></script>
-<script src="<c:url value='/js/jquery/jquery.bgiframe-2.1.1.js'/>" type="text/javascript"></script>
-
-
-<script type="text/javascript" src="<c:url value='/js/slider/coin-slider.min.js' />"></script>
 <link rel="stylesheet" href="<c:url value='/css/coin-slider-styles.css' />" type="text/css" />
-
-<link
-	href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/base/jquery-ui.css"
-	rel="stylesheet" type="text/css" />
+<link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/base/jquery-ui.css" rel="stylesheet" type="text/css" />
 <style>
 .selector {
     -moz-border-radius: 10px;
@@ -45,67 +27,6 @@
 	height: 200px;
 }
 </style>
-<script type="text/javascript" >
-$(function() {
-	
-	var originalTop=null;
-	var originalLeft =null;
-	
-    $( ".selector" ).draggable({
-    	 start: function(event, ui) {
-				
- 	    	 var id= $(this).attr("id");
- 		 	 originalTop = $("#"+id).position().top;
- 		   	 originalLeft = $("#"+id).position().left;
- 	    }, 	  
- 	    stop: function(event, ui) { 	
- 	    	$(this).appendTo("#draggables_pl");  	    	
- 	    }
-    });
-    $( "#droppable" ).droppable({
-        drop: function( event, ui ) {
-            
-            var item_id = ui.draggable.attr("id");  
-            var rawPlat = item_id.split("_")
-            data ="idPlat="+rawPlat[1]+"&idComanda="+$("#numComanda").text();
-        	$.ajax({
-        		  type: "POST",
-        		  url: '/onlineBot/comanda/ajaxLoadPlat.action',
-        		  dataType: 'json',
-        		  data: data,
-        		  success: function(json){	
-        			  if(json==null || json.error!=null){
-             				$("#errorsajaxlabel").text(json.error);
-             				$("#errorsajax").show();
-             			}else{
-             				if(json.alerta!=null){
-             					alert(json.alerta);
-             				}else{
-             					$("#numComanda").text(json.numComanda);
-             					$("#numplats").text(json.numPlats);
-             					$("#preu").text(json.preu);
-             				}
-             			}				
-        		  },
-        		  error: function(e){   $("#errorsajaxlabel").text("Error in ajax call");
-          								$("#errorsajax").show();  		
-        		  					}
-        		});	
-             
-        }
-    });
-});
-
-</script>
-<script type="text/javascript">
-		function goToComandaPas1(){
-			window.location.href="/onlineBot/comanda/goToPas1Action.action?idComanda="+$("#numComanda").text();
-		}
-
-	    $(document).ready(function() {
-	        $('#coin-slider').coinslider();
-	    });
-</script>
 </head>
 <body>
 <div id='coin-slider'>
@@ -165,6 +86,84 @@ $(function() {
 </div>
 
 </div>
+
+<!-- Scripts --> 
+<script src="<c:url value='/js/jquery/jquery.js' />" type="text/javascript"></script>
+<script src="<c:url value='/js/jquery/jquery.ui.core.js' />" type="text/javascript"></script>
+<script src="<c:url value='/js/jquery/jquery.ui.widget.js'/>" type="text/javascript"></script>
+<script src="<c:url value='/js/jquery/jquery.ui.mouse.js'/>" type="text/javascript"></script>
+<script src="<c:url value='/js/jquery/jquery.ui.position.js'/>" type="text/javascript"></script>
+
+<script src="<c:url value='/js/jquery/jquery.ui.draggable.js'/>" type="text/javascript"></script>
+<script src="<c:url value='/js/jquery/jquery.ui.droppable.js'/>" type="text/javascript"></script>
+<script src="<c:url value='/js/jquery/jquery.ui.resizable.js'/>" type="text/javascript"></script>
+<script src="<c:url value='/js/jquery/jquery.effects.core.js'/>" type="text/javascript"></script>
+<script src="<c:url value='/js/jquery/jquery.bgiframe-2.1.1.js'/>" type="text/javascript"></script>
+
+
+<script type="text/javascript" src="<c:url value='/js/slider/coin-slider.min.js' />"></script>
+
+<script type="text/javascript" >
+$(function() {
+	
+	var originalTop=null;
+	var originalLeft =null;
+	
+    $( ".selector" ).draggable({
+    	 start: function(event, ui) {
+				
+ 	    	 var id= $(this).attr("id");
+ 		 	 originalTop = $("#"+id).position().top;
+ 		   	 originalLeft = $("#"+id).position().left;
+ 	    }, 	  
+ 	    stop: function(event, ui) { 	
+ 	    	$(this).appendTo("#draggables_pl");  	    	
+ 	    }
+    });
+    $( "#droppable" ).droppable({
+        drop: function( event, ui ) {
+            
+            var item_id = ui.draggable.attr("id");  
+            var rawPlat = item_id.split("_")
+            data ="idPlat="+rawPlat[1]+"&idComanda="+$("#numComanda").text();
+        	$.ajax({
+        		  type: "POST",
+        		  url: '/onlineBot/comanda/ajaxLoadPlat.action',
+        		  dataType: 'json',
+        		  data: data,
+        		  success: function(json){	
+        			  if(json==null || json.error!=null){
+             				$("#errorsajaxlabel").text(json.error);
+             				$("#errorsajax").show();
+             			}else{
+             				if(json.alerta!=null){
+             					alert(json.alerta);
+             				}else{
+             					$("#numComanda").text(json.numComanda);
+             					$("#numplats").text(json.numPlats);
+             					$("#preu").text(json.preu);
+             				}
+             			}				
+        		  },
+        		  error: function(e){   $("#errorsajaxlabel").text("Error in ajax call");
+          								$("#errorsajax").show();  		
+        		  					}
+        		});	
+             
+        }
+    });
+});
+
+</script>
+<script type="text/javascript">
+		function goToComandaPas1(){
+			window.location.href="/onlineBot/comanda/goToPas1Action.action?idComanda="+$("#numComanda").text();
+		}
+		
+	    $(document).ready(function() {
+	        $('#coin-slider').coinslider();
+	    });
+</script>
 
 </body>
 </html>
