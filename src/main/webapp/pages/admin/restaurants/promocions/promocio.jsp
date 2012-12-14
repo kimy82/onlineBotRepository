@@ -1,46 +1,14 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="s" uri="/struts-tags"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <html>
 <head>
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"%>
-<META http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<META http-equiv="Content-Style-Type" content="text/css">
-<title>Gestió</title>
-
-<link rel="stylesheet" href="<c:url value='/css/demo_table.css' />" type="text/css"   media="screen" />
-<link rel="stylesheet" href="<c:url value='/css/components.css' />" type="text/css"   media="screen" />  
-<script src="<c:url value='/js/jquery/jquery.js' />" type="text/javascript"></script>
-<script src="<c:url value='/js/jquery/jquery.ui.core.js' />" type="text/javascript"></script>
-<script src="<c:url value='/js/jquery/jquery.dataTables.js'/>" type="text/javascript"></script>
-
-<!-- Calendari -->  
-<link rel="stylesheet" type="text/css" media="all" href="<c:url value='/css/calendar-blau.css' />" title="win2k-cold-1" />
-<script type="text/javascript" src="<c:url value='/js/calendari/calendar.js'/>"></script>
-<script type="text/javascript" src="<c:url value='/js/calendari/calendar-cat.js'/>"></script>
-<script type="text/javascript" src="<c:url value='/js/calendari/calendar-es.js'/>"></script>
-<script type="text/javascript" src="<c:url value='/js/calendari/calendar-idioma.js'/>"></script>		
-<script type="text/javascript" src="<c:url value='/js/calendari/calendar-setup.js'/>"></script>
-
-<script type="text/javascript" src="<c:url value='/pages/admin/restaurants/promocions/jspromocio.js' />"></script>
-
-<link
-	href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/base/jquery-ui.css"
-	rel="stylesheet" type="text/css" />
-	
-<script language="javascript">
-	var initTableParams = new InitTableParams(
-			"<s:text  name='datatables.paginate.last'/>",
-			"<s:text  name='datatables.paginate.next'/>",
-			"<s:text  name='datatables.paginate.previous'/>",
-			"<s:text  name='datatables.paginate.first'/>",
-			"<s:text  name='datatables.loading'/>",
-			"<s:text  name='txt.avis.borrat'/>",
-			"<s:text  name='promo.confirm.borra'/>",
-			"<s:text  name='.error.double'/>",
-			"<s:text  name='txt.error.number'/>");
-</script>
+	<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+		pageEncoding="ISO-8859-1"%>
+	<META http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+	<META http-equiv="Content-Style-Type" content="text/css">
+	<title>Gestió</title>	
 </head>
 <body>
 
@@ -126,8 +94,33 @@
 		</div>
 	</div>
 </div>
-<script>			
-
+<!-- Scripts --> 
+<c:if test="${fn:contains(header.Host,'7070')}">
+	<link rel="stylesheet" href="<c:url value='/css/tbl_comp_cal.min.css' />" type="text/css"   media="screen" />
+	<link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/base/jquery-ui.css" rel="stylesheet" type="text/css" />
+	<script src="<c:url value='/js/jsQueryBasic.min.js' />" type="text/javascript"></script>
+	<script src="<c:url value='/js/jquery/jquery.dataTables.min.js'/>" type="text/javascript"></script>
+	<script src="<c:url value='/js/calendarInput.min.js' />" type="text/javascript"></script>	
+	<script src="<c:url value='/js/jspromocio.min.js' />" type="text/javascript"></script>
+</c:if>
+<c:if test="${fn:contains(header.Host,'9090')}">
+	<link rel="stylesheet" href="<c:url value='/css/demo_table.css' />" type="text/css"   media="screen" />
+	<link rel="stylesheet" href="<c:url value='/css/components.css' />" type="text/css"   media="screen" />  
+	<!-- Calendari -->  
+	<link rel="stylesheet" type="text/css" media="all" href="<c:url value='/css/calendar-blau.css' />" title="win2k-cold-1" />
+	<link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/base/jquery-ui.css" rel="stylesheet" type="text/css" />
+	<script src="<c:url value='/js/jquery/jquery.js' />" type="text/javascript"></script>
+	<script src="<c:url value='/js/jquery/jquery.ui.core.js' />" type="text/javascript"></script>
+	<script src="<c:url value='/js/jquery/jquery.dataTables.js'/>" type="text/javascript"></script>
+	<!-- Calendari -->  
+	<script type="text/javascript" src="<c:url value='/js/calendari/calendar.js'/>"></script>
+	<script type="text/javascript" src="<c:url value='/js/calendari/calendar-cat.js'/>"></script>
+	<script type="text/javascript" src="<c:url value='/js/calendari/calendar-es.js'/>"></script>
+	<script type="text/javascript" src="<c:url value='/js/calendari/calendar-idioma.js'/>"></script>		
+	<script type="text/javascript" src="<c:url value='/js/calendari/calendar-setup.js'/>"></script>
+	<script type="text/javascript" src="<c:url value='/pages/admin/restaurants/promocions/jspromocio.js' />"></script>
+</c:if>
+<script language="javascript">			
 //---------------------------------------------------------------------------------------------------------------------
     Calendar.setup({
         inputField    	:    "dia",      // id del campo de texto
@@ -136,6 +129,16 @@
         locale 		   	:    "ca_ES"
     });
 //---------------------------------------------------------------------------------------------------------------------
-</script>  
+	var initTableParams = new InitTableParams(
+			"<s:text  name='datatables.paginate.last'/>",
+			"<s:text  name='datatables.paginate.next'/>",
+			"<s:text  name='datatables.paginate.previous'/>",
+			"<s:text  name='datatables.paginate.first'/>",
+			"<s:text  name='datatables.loading'/>",
+			"<s:text  name='txt.avis.borrat'/>",
+			"<s:text  name='promo.confirm.borra'/>",
+			"<s:text  name='.error.double'/>",
+			"<s:text  name='txt.error.number'/>");
+</script> 
 </body>
 </html>

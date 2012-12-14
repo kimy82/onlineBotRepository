@@ -1,37 +1,12 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="s" uri="/struts-tags"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <%@ page import="java.util.Locale"%>
 <html>
 <head>
-    <title>Gestió</title>
-
-    <link rel="stylesheet" href="<c:url value='/css/loadCalendar.css' />" type="text/css" />
-    <link rel="stylesheet" href="<c:url value='/css/participadasCalendar.css'/>" type="text/css" />         
-        
-    <script src="<c:url value='/js/jquery/jquery.js'/>" type="text/javascript"></script>
-	<script src="<c:url value='/js/loadCalendar.js'/>" type="text/javascript" ></script>   	
-	<link rel="stylesheet" href="<c:url value='/css/demo_table.css' />" type="text/css"   media="screen" />
-	<link rel="stylesheet" href="<c:url value='/css/components.css' />" type="text/css"   media="screen" />  
-    <link rel="stylesheet" type="text/css" href="<c:url value='/css/ext-all.css'/>" />        
-    <script type="text/javascript" src="<c:url value='/js/ext/ext-base.js'/>"></script>
-    <script type="text/javascript" src="<c:url value='/js/ext/ext-all-debug.js'/>"></script>  	
-	<script src="<c:url value='/pages/admin/restaurants/configMoters/jsconfig.js'/>" type="text/javascript"></script>    
-	<script src="<c:url value='/js/jquery/jquery.dataTables.js'/>" type="text/javascript"></script>
-	
-	<!-- Calendari -->  
-	<link rel="stylesheet" type="text/css" media="all" href="<c:url value='/css/calendar-blau.css' />" title="win2k-cold-1" />
-	<script type="text/javascript" src="<c:url value='/js/calendari/calendar.js'/>"></script>
-	<script type="text/javascript" src="<c:url value='/js/calendari/calendar-cat.js'/>"></script>
-	<script type="text/javascript" src="<c:url value='/js/calendari/calendar-es.js'/>"></script>
-	<script type="text/javascript" src="<c:url value='/js/calendari/calendar-idioma.js'/>"></script>		
-	<script type="text/javascript" src="<c:url value='/js/calendari/calendar-setup.js'/>"></script>
-	
-	<script language="javascript">
-		var initTableParams = new InitTableParams("<s:text  name='txt.dades.cargades'/>","<s:text  name='datatables.paginate.last'/>","<s:text  name='datatables.paginate.next'/>","<s:text  name='datatables.paginate.previous'/>","<s:text  name='datatables.paginate.first'/>","<s:text  name='datatables.loading'/>","<s:text  name='txt.avis.borrat'/>");
-	</script>
+    <title>Gestió</title>     	        
 </head>
-
 <body>
 <div align="center">
     <div id="div_pantalla" style="width:950px;" alig="">
@@ -138,6 +113,43 @@
 </center>
 </div>
 </div>
+<!-- Scripts --> 
+<c:if test="${fn:contains(header.Host,'7070')}">
+
+	<link rel="stylesheet" href="<c:url value='/css/tbl_comp_cal_ext.min.css' />" type="text/css"   media="screen" />
+	<script src="<c:url value='/js/jsQueryAlone.min.js' />" type="text/javascript"></script>
+	<script src="<c:url value='/js/calendarPop.min.js' />" type="text/javascript"></script>
+	<script src="<c:url value='/js/jsext.min.js' />" type="text/javascript"></script>
+	<script src="<c:url value='/js/jquery/jquery.dataTables.min.js'/>" type="text/javascript"></script>
+	<script src="<c:url value='/js/jsconfigMoters.min.js' />" type="text/javascript"></script>
+	<script src="<c:url value='/js/calendarInput.min.js' />" type="text/javascript"></script>
+	
+</c:if>
+
+<c:if test="${fn:contains(header.Host,'9090')}">
+
+    <link rel="stylesheet" href="<c:url value='/css/loadCalendar.css' />" type="text/css" />
+    <link rel="stylesheet" href="<c:url value='/css/participadasCalendar.css'/>" type="text/css" />         
+   	<link rel="stylesheet" href="<c:url value='/css/demo_table.css' />" type="text/css"   media="screen" />
+	<link rel="stylesheet" href="<c:url value='/css/components.css' />" type="text/css"   media="screen" />  
+	<link rel="stylesheet" type="text/css" href="<c:url value='/css/ext-all.css'/>" />     
+	<link rel="stylesheet" type="text/css" media="all" href="<c:url value='/css/calendar-blau.css' />" title="win2k-cold-1" />
+
+	<script src="<c:url value='/js/jquery/jquery.js'/>" type="text/javascript"></script>
+	<script src="<c:url value='/js/loadCalendar.js'/>" type="text/javascript" ></script>   	
+    <script type="text/javascript" src="<c:url value='/js/ext/ext-base.js'/>"></script>
+    <script type="text/javascript" src="<c:url value='/js/ext/ext-all-debug.js'/>"></script>  	
+	<script src="<c:url value='/pages/admin/restaurants/configMoters/jsconfig.js'/>" type="text/javascript"></script>    
+	<script src="<c:url value='/js/jquery/jquery.dataTables.js'/>" type="text/javascript"></script>
+	
+	<!-- Calendari -->  
+	<script type="text/javascript" src="<c:url value='/js/calendari/calendar.js'/>"></script>
+	<script type="text/javascript" src="<c:url value='/js/calendari/calendar-cat.js'/>"></script>
+	<script type="text/javascript" src="<c:url value='/js/calendari/calendar-es.js'/>"></script>
+	<script type="text/javascript" src="<c:url value='/js/calendari/calendar-idioma.js'/>"></script>		
+	<script type="text/javascript" src="<c:url value='/js/calendari/calendar-setup.js'/>"></script>
+	
+</c:if>
 <script>			
 
 //---------------------------------------------------------------------------------------------------------------------
@@ -155,6 +167,37 @@
         locale 		   	:    "ca_ES"
     });
 //---------------------------------------------------------------------------------------------------------------------
-</script>  
+
+var initTableParams = new InitTableParams("<s:text  name='txt.dades.cargades'/>","<s:text  name='datatables.paginate.last'/>","<s:text  name='datatables.paginate.next'/>","<s:text  name='datatables.paginate.previous'/>","<s:text  name='datatables.paginate.first'/>","<s:text  name='datatables.loading'/>","<s:text  name='txt.avis.borrat'/>");
+
+
+Ext.onReady(function(){
+
+	new Ext.Button({
+        text: '',
+        renderTo:'div_buttons_prev',
+        scale: 'medium',
+        width:'50px',
+        iconCls: 'back',
+        iconAlign: 'left',
+        handler:function(){
+        	previousYear('<%=Locale.getDefault().getLanguage()%>');
+        }
+	});
+	new Ext.Button({
+        text: '',
+        renderTo:'div_buttons_next',
+        scale: 'medium',
+        width:'50px',
+        iconCls: 'forward',
+        iconAlign: 'right',
+        handler:function(){
+        	nextYear('<%=Locale.getDefault().getLanguage()%>');
+        }
+	});
+	
+});
+
+</script>
 </body>
 </html>

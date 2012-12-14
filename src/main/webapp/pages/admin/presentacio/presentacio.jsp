@@ -1,23 +1,14 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="s" uri="/struts-tags"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <html>
 <head>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <META http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <META http-equiv="Content-Style-Type" content="text/css">
-<title>Gestió</title>
-
-<link rel="stylesheet" href="<c:url value='/css/demo_table.css' />" type="text/css"   media="screen" />
-<link rel="stylesheet" href="<c:url value='/css/components.css' />" type="text/css"   media="screen" />  
-<script src="<c:url value='/js/jquery/jquery.js' />" type="text/javascript"></script>
-<script src="<c:url value='/js/jquery/jquery.ui.core.js' />" type="text/javascript"></script>
-<script src="<c:url value='/js/jquery/jquery.dataTables.js'/>" type="text/javascript"></script>
-
-
-<link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/base/jquery-ui.css" rel="stylesheet" type="text/css" />
-	
+<title>Gestió</title>	
 </head>
 <body>
 
@@ -65,6 +56,24 @@
 				<s:text name="txt.mant.presentacio.fotos.only.jpg" />
 		</h2>
 </div>
+<!-- Scripts --> 
+
+<c:if test="${fn:contains(header.Host,'7070')}">	
+	<link rel="stylesheet" href="<c:url value='/css/tables_components.min.css' />" type="text/css"   media="screen" />
+	<link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/base/jquery-ui.css" rel="stylesheet" type="text/css" />
+	<script src="<c:url value='/js/jsQueryBasic.min.js' />" type="text/javascript"></script>
+	<script src="<c:url value='/js/jquery/jquery.dataTables.min.js' />" type="text/javascript"></script>
+	
+</c:if>
+
+<c:if test="${fn:contains(header.Host,'9090')}">
+	<link rel="stylesheet" href="<c:url value='/css/demo_table.css' />" type="text/css"   media="screen" />
+	<link rel="stylesheet" href="<c:url value='/css/components.css' />" type="text/css"   media="screen" />  
+	<link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/base/jquery-ui.css" rel="stylesheet" type="text/css" />
+	<script src="<c:url value='/js/jquery/jquery.js' />" type="text/javascript"></script>
+	<script src="<c:url value='/js/jquery/jquery.ui.core.js' />" type="text/javascript"></script>
+	<script src="<c:url value='/js/jquery/jquery.dataTables.js'/>" type="text/javascript"></script>
+</c:if>
 </body>
 </html>
 
