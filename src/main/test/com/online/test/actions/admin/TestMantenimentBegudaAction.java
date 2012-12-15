@@ -17,7 +17,8 @@ import com.opensymphony.xwork2.ActionProxy;
 
 public class TestMantenimentBegudaAction extends StrutsSpringTestCase{
 
-	private Beguda				beguda				= new Beguda(new Long(1),"Nom",12.3);
+	private    Beguda				beguda				= new Beguda(new Long(1),"Nom",12.3);
+
 	private List<Beguda>		begudaList				= new ArrayList<Beguda>();
 	
 	@Test
