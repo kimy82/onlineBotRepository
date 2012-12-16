@@ -67,6 +67,10 @@
 	   <s:text name="comanda.preu" />:<label id="preu" ></label>
 </div>
 
+<div id="userOptions"  class="ui-widget-header">
+  <a href="<c:url value='/images/shopping_cart.png' />" >Mira les comandes anteriors </a>
+</div>
+
 </div>
 
 <!-- Scripts --> 
