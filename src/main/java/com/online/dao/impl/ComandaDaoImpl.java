@@ -1,8 +1,10 @@
 package com.online.dao.impl;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.hibernate.Hibernate;
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
 
@@ -59,7 +61,24 @@ public class ComandaDaoImpl extends HibernateDaoSupport implements ComandaDao{
 		return getHibernateTemplate().loadAll(Comandes.class);
 	}
 
-
+	
+	@SuppressWarnings("unchecked")
+	public List<Comandes> getAllByUser(Long id){
+		
+		List<Comandes> comandaList = new ArrayList<Comandes>();
+		
+		Session session = this.getSessionFactory().openSession();
+		session.beginTransaction();
+		
+		Query query =session.createQuery("from Comandes cmd where cmd.user.id="+id);									
+		
+		comandaList = ((List<Comandes>)query.list());
+		
+		session.close();
+		
+		
+		return comandaList;
+	}
 	
 	
 

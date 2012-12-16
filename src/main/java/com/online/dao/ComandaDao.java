@@ -15,4 +15,6 @@ public interface ComandaDao{
 	Comandes load( Long id );
 	
 	List<Comandes> getAll();
+	
+	List<Comandes> getAllByUser(Long id);
 }

@@ -16,5 +16,7 @@ public interface ComandaBo{
 	Comandes load( Long id ) throws BOException;
 	
 	List<Comandes> getAll();
+	
+	List<Comandes> getAllByUser(Long id);
 
 }
