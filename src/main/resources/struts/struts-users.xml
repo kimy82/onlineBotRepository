@@ -7,10 +7,15 @@
 	
 	<package name="user" namespace="/user" extends="struts-default">
 
-		<action name="Welcome" class="com.online.action.WelcomeUserAction"
+		<action name="Welcome" class="com.online.action.users.WelcomeUserAction"
 			method="execute">
 			<result name="success">/pages/users/welcome.jsp</result>
 		</action>
+		<action name="comandesPasades" class="com.online.action.users.WelcomeUserAction"
+			method="comandesPasades">
+			<result name="success">/pages/users/comandes.jsp</result>
+		</action>
 
+		
 	</package>
 </struts>
