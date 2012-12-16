@@ -23,6 +23,9 @@
 		<property name="address" type="string">
 			<column name="ADDRESS" length="200" />
 		</property>
+		<many-to-one name="user" class="com.online.model.Users" >	
+			<column name="USER_ID"></column>	
+		</many-to-one>
 		<list name="plats" table="comanda_plats" 
         	inverse="false" lazy="false" fetch="select" cascade="save-update">
             <key>
