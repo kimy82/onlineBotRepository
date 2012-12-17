@@ -15,6 +15,10 @@ function InitTableParams(txtlast,txtnext,txtprevious,txtfirst,txtloading,txtborr
 
 //per el formulari
 function onlyDouble(value,id){
+	 var n=value.split(".");
+	  if(n.length==1){
+		  value=value+".00";
+	  }
 	  if(value =='' || /^[0-9]*\.[0-9]*$/.test(value)){
 		$('#'+id).css('border', 'solid 1px rgb(135,155,179)');
 	}else{

@@ -7,14 +7,15 @@ function InitTableParams(txtlast,txtnext,txtprevious,txtfirst,txtloading,txtborr
 		this.txtprevious=txtprevious;
 		this.txtfirst=txtfirst;
 		this.txtloading=txtloading;
-		this.txtborrat=txtborrat;	
-		this.txtconfirmborrabeguga= txtconfirmborrabeguda;
-		this.txterrordouble=txterrordouble;
-		this.txterrornumber=txterrornumber;
+		this.txtborrat=txtborrat;		
 }
 
 //per el formulari
 function onlyDouble(value,id){
+	 var n=value.split(".");
+	  if(n.length==1){
+		  value=value+".00";
+	  }
 	  if(value =='' || /^[0-9]*\.[0-9]*$/.test(value)){
 		$('#'+id).css('border', 'solid 1px rgb(135,155,179)');
 	}else{
@@ -37,100 +38,57 @@ function ismaxlength(obj,mlength){
 		obj.value=obj.value.substring(0,mlength);
 }
 
-
-function opendivNewBeguda(){
-	resetForm();
-	$("#infobegudanew").show('slow');
+function reloadTableComandes(){
+	oTablecomandes.fnDeleteRow( 0 );
 }
 
-function resetForm(){
-		$("#nomBeguda").val("");
-		$("#tipusBeguda option:first").attr('selected','selected');		
-		$("#importBeguda").val("");
-		$("#descripcioBeguda").val("");
-		$("#id").val("");		
-}
-
-
-
-function reloadTableBegudes(){
-	oTablebegudes.fnDeleteRow( 0 );
-}
-
-function showDivBeguda(id){
+function fillAddress(){
 	
-	data ="idBeguda="+id;
-	$.ajax({
-		  type: "POST",
-		  url: '/onlineBot/admin/ajaxLoadBegudaAction.action',
-		  dataType: 'json',
-		  data: data,
-		  success: function(json){	
-			  if(json==null || json.error!=null){
-     				$("#errorsajaxlabel").text(json.error);
-     				$("#errorsajax").show();
-     			}else{
-					 	
-					 		$("#id").val(json.id);
-					 		$("#nomBeguda").val(json.nom);
-					 		$("#tipusBeguda").val(json.tipus);					 		
-					 		$("#importBeguda").val(json.preu);
-					 		$("#descripcioBeguda").val(json.descripcio);
-					 		
-					 		$("#infobegudanew").show('slow');					 							 			 					 										 					 						 					 						  
-     			}				
-		  },
-		  error: function(e){   $("#errorsajaxlabel").text("Error in ajax call");
-  								$("#errorsajax").show();  		
-		  					}
-		});	
+	var addressCarrer = $("#carrer").val();
+	var addressNum = $("#numcarrer").val();
+	var addressCodi = $("#codi").val();
+	var addressPoble = $("#poble").val();
+	
+	$("#address").val(addressCarrer+" "+addressNum+", "+addressCodi+" "+addressPoble);
 	
 }
 
-function deleteBeguda(id){
-	 var where_to= confirm(initTableParams.txtconfirmborrabeguda);
-	  if (where_to== false)
-	  {
-		    return;
-	  }
-	  else {
-		
-			data ="idBeguda="+id;
-			$.ajax({
-				  type: "POST",
-				  url: '/onlineBot/admin/ajaxDeleteBeguda.action',
-				  dataType: 'json',
-				  data: data,
-				  success: function(json){	
-					  if(json!=null && json.error!=null){
-		   				$("#errorsajaxlabel").text(json.error);
-		   				$("#errorsajax").show();
-		   			}else{
-							 alert(initTableParams.txtborrat);
-							 reloadTableBegudes();							
-		   			}				
-				  },
-				  error: function(e){   $("#errorsajaxlabel").text("Error in ajax call");
-										$("#errorsajax").show();  		
-				  					}
-				});
-	  }
+function repeatComanda(id){
+	
+	window.location.href="/onlineBot/user/repeatComanda.action?idComanda="+id;
 }
 
-var  oTablebegudes=null;
+function openCloseDiv(id){
+	 	
+	 id($("#"+id).is(":hidden")){
+		 $("#"+id).show('slow');
+	 }else{
+		 $("#"+id).hide('slow');
+	 }
+}
+
+function checkPassword(){
+	var password1 = document.getElementById("password").value;
+	var password2 = document.getElementById("passwordRetyped").value;
+	if(password1 != password2){
+		$('#passwordRetyped').css('border', 'solid 1px red');
+		alert("Passwords no son iguals");
+	}
+}
+
+var  oTablecomandes=null;
 
 
 $(document).ready(function() {
-
-	
-			
-		//taula de les begudes
-	oTablebegudes =$("#tbl_begudes").dataTable( {
+				
+		//taula de les comandes d'un user
+	oTablecomandes =$("#tbl_comandes_user").dataTable( {
 					"iDisplayLength": 12,
 					 "aoColumns" : [
-					                  { "mDataProp":"tipus","bSortable": false, sWidth: '150px' },
-					                  { "mDataProp":"nom", "bSortable": false, sWidth: '350px' },
+					                  { "mDataProp":"dia","bSortable": false, sWidth: '150px' },
+					                  { "mDataProp":"plats", "bSortable": false, sWidth: '350px' },
 					                  { "mDataProp":"preu", "bSortable": false, sWidth: '40px' },
+					                  { "mDataProp":"observacions", "bSortable": false, sWidth: '40px' }
 					                  { "mDataProp":"accio", "bSortable": false, sWidth: '40px' }
 					            ],
 					"sPaginationType": "full_numbers",
@@ -148,7 +106,7 @@ $(document).ready(function() {
 				    "bScrollCollapse": true,
 		    		"bProcessing": false,
 		    		"bServerSide": true,
-		    		"sAjaxSource": '/onlineBot/admin/ajaxTableBegudes.action',
+		    		"sAjaxSource": '/onlineBot/user/ajaxTableComandesUser.action',
 		    		"fnServerData": function( sUrl, aoData, fnCallback) {      			    			    			
 		     		$.ajax( {
 		            	"url": sUrl,
@@ -173,9 +131,9 @@ $(document).ready(function() {
 		
 				
 		//ocultem divs
-		$("#infobegudanew").hide();
 		$("#errorsajax").hide();
-
+		$("#infoUser").hide();
+		
 } );
 
 

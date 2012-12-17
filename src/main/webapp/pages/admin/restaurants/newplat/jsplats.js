@@ -6,6 +6,10 @@ function ismaxlength(obj,mlength){
 }
 
 function onlyDouble(value,name){
+	 var n=value.split(".");
+	  if(n.length==1){
+		  value=value+".00";
+	  }
 	  if(value =='' || /^[0-9]*\.[0-9]*$/.test(value)){
 		$('input[id='+name+']').css('border', 'solid 1px rgb(135,155,179)');
 	}else{

@@ -18,23 +18,23 @@ public class Comandes implements Serializable{
 	private Long				id;
 
 	@Expose
-	private String					hora;
+	private String				hora;
 
 	@Expose
-	private Date					dia;
+	private Date				dia;
 
 	@Expose
-	private Double					preu;	
+	private Double				preu;
 
 	@Expose
-	protected String				observacions;
-	
-	@Expose
-	protected String				address;	
+	protected String			observacions;
 
-	protected List<PlatComanda>		plats				= new LinkedList<PlatComanda>();
-	
-	protected Users 				user;
+	@Expose
+	protected String			address;
+
+	protected List<PlatComanda>	plats				= new LinkedList<PlatComanda>();
+
+	protected Users				user;
 
 	// CONSTRUCTORS
 
@@ -99,7 +99,7 @@ public class Comandes implements Serializable{
 	}
 
 	public void setObservacions( String observacions ){
- 
+
 		this.observacions = observacions;
 	}
 
@@ -114,22 +114,23 @@ public class Comandes implements Serializable{
 	}
 
 	public String getAddress(){
-	
+
 		return address;
 	}
 
 	public void setAddress( String address ){
-	
+
 		this.address = address;
 	}
 
-	public Users getUser() {
+	public Users getUser(){
+
 		return user;
 	}
 
-	public void setUser(Users user) {
+	public void setUser( Users user ){
+
 		this.user = user;
 	}
-	
-	
+
 }

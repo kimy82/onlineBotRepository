@@ -23,7 +23,10 @@ public class Users implements Serializable{
 
 	protected UserRole			userRole;
 
-	
+	private String				address;
+
+	private String				telNumber;
+
 	// CONSTRUCTORS
 	public Users( String username ) {
 
@@ -80,13 +83,35 @@ public class Users implements Serializable{
 	}
 
 	public UserRole getUserRole(){
-		
+
 		return userRole;
 	}
 
 	public void setUserRole( UserRole userRole ){
-	
+
 		this.userRole = userRole;
 	}
+
+	public String getAddress(){
+	
+		return address;
+	}
+
+	public void setAddress( String address ){
+	
+		this.address = address;
+	}
+
+	public String getTelNumber(){
+	
+		return telNumber;
+	}
+
+	public void setTelNumber( String telNumber ){
+	
+		this.telNumber = telNumber;
+	}
+	
+	
 
 }

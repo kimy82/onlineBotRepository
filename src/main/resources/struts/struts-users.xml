@@ -14,8 +14,21 @@
 		<action name="comandesPasades" class="com.online.action.users.WelcomeUserAction"
 			method="comandesPasades">
 			<result name="success">/pages/users/comandes.jsp</result>
+		</action>				
+		<action name="ajaxTableComandesUser"
+			class="com.online.action.users.WelcomeUserAction" method="ajaxTableComandesUser">
 		</action>
-
+		<action name="repeatComanda" class="com.online.action.users.WelcomeUserAction"
+			method="repeatComanda">
+			<result name="success">/pages/users/recoveredcomandaUser.jsp</result>
+			<result name="error">/error.jsp</result>	
+		</action>
+		<action name="saveUserDetails" class="com.online.action.users.WelcomeUserAction"
+			method="saveUserDetails">
+			<result name="success">/pages/users/comandes.jsp</result>
+			<result name="error">/error.jsp</result>	
+		</action>
+		
 		
 	</package>
 </struts>

@@ -17,6 +17,12 @@
 		<property name="enabled" type="int">
 			<column name="ENABLED" length="2" not-null="true" />
 		</property>
+		<property name="address" type="string">
+			<column name="ADDRESS" length="200" />
+		</property>
+		<property name="telNumber" type="string">
+			<column name="TELEFON" length="10" />
+		</property>
 		<many-to-one name="userRole" class="com.online.model.UserRole" 
 				 column="USER_ID" not-null="true" cascade="all" lazy="false" unique="true" insert="false" update="false" />
 	</class>
