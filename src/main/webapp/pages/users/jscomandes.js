@@ -1,7 +1,7 @@
 ///////////////////////////////////
 //variables per textos en locale
 var initTableParams=null ;
-function InitTableParams(txtlast,txtnext,txtprevious,txtfirst,txtloading,txtborrat,txtconfirmborrabeguda,txterrordouble,txterrornumber){		
+function InitTableParams(txtlast,txtnext,txtprevious,txtfirst,txtloading,txtborrat){		
 		this.txtlast=txtlast;
 		this.txtnext=txtnext;
 		this.txtprevious=txtprevious;
@@ -60,7 +60,7 @@ function repeatComanda(id){
 
 function openCloseDiv(id){
 	 	
-	 id($("#"+id).is(":hidden")){
+	 if($("#"+id).is(":hidden")){
 		 $("#"+id).show('slow');
 	 }else{
 		 $("#"+id).hide('slow');
@@ -88,7 +88,7 @@ $(document).ready(function() {
 					                  { "mDataProp":"dia","bSortable": false, sWidth: '150px' },
 					                  { "mDataProp":"plats", "bSortable": false, sWidth: '350px' },
 					                  { "mDataProp":"preu", "bSortable": false, sWidth: '40px' },
-					                  { "mDataProp":"observacions", "bSortable": false, sWidth: '40px' }
+					                  { "mDataProp":"observacions", "bSortable": false, sWidth: '40px' },
 					                  { "mDataProp":"accio", "bSortable": false, sWidth: '40px' }
 					            ],
 					"sPaginationType": "full_numbers",
@@ -132,6 +132,7 @@ $(document).ready(function() {
 				
 		//ocultem divs
 		$("#errorsajax").hide();
+		$("#password_div").hide();		
 		$("#infoUser").hide();
 		
 } );

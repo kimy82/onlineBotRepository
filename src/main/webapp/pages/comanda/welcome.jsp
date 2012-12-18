@@ -68,7 +68,7 @@
 </div>
 
 <div id="userOptions"  class="ui-widget-header">
-  <a href="<c:url value='/images/shopping_cart.png' />" >Mira les comandes anteriors </a>
+  <a href="<c:url value='/user/comandesPasades.action' />" ><img src="<c:url value='/images/shopping_cart.png' />" />Mira les comandes anteriors </a>
 </div>
 
 </div>

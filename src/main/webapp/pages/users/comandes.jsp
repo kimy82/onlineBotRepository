@@ -21,12 +21,13 @@
 				<s:form action="saveUserDetails" method="POST" enctype="multipart/form-data" >
 					<s:textfield key="user.username" id="username" onkeyup="return ismaxlength(this,45)"  ></s:textfield>		
 					<tr>
-						<td colspan="2"><input type="checkbox" onclick="openCloseDiv('password')" >Change password</a></td>
+						<td colspan="2"><input type="checkbox" onclick="openCloseDiv('password_div')" >Change password</a></td>
 					</tr>				
-					<div id="password">				
+					<div id="password_div">				
 						<s:password key="user.password" id="password" onkeyup="return ismaxlength(this,45)" ></s:password>
-						<tr><td>ReType :</td><td><input type="password" id="passwordRetyped" onkeyup="checkPassword()"/></td></tr>
-					</div>					
+						<tr><td>ReType :</td><td><input type="password" id="passwordRetyped" onblur="checkPassword()"/></td></tr>
+					</div>	
+					<s:textfield key="user.address" id="address"  onfocus="blur();"  ></s:textfield>		 			
 											<tr><td>						                	
 	                        					<label for="carrer">
 	                        							 <s:text name="adreca.carrer" /></label>		
@@ -75,7 +76,7 @@
 	<link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/base/jquery-ui.css" rel="stylesheet" type="text/css" />	
 	<script src="<c:url value='/js/jsQuery.min.js' />" type="text/javascript"></script>
 	<script src="<c:url value='/js/jquery/jquery.dataTables.min.js' />" type="text/javascript"></script>
-	<script type="text/javascript" src="<c:url value='/pages/users/jscomandes.js' />"></script>
+	<script type="text/javascript" src="<c:url value='/pages/users/jscomandes.js' />"></script>	
 </c:if>
 <c:if test="${fn:contains(header.Host,'9090')}">
 

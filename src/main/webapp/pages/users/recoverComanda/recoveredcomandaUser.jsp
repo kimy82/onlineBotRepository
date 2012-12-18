@@ -15,23 +15,22 @@
 	<div id="errorsajax">
 				<label style="color: red" id="errorsajaxlabel"></label>
 	</div>
-
-<table>
+<br>
+<table id="tbl_platscomanda" >
 <h1>PLats</h1>
 <s:iterator value="${comanda.plats}" var="plat" >
-<tr>
+<tr class="item" >
 <td>${plat.nom}</td>
 <td>${plat.tipus}</td>
 <td>${plat.preu}</td>
-<td><input type="text" id="${plat.id}_num"  value="" /></td>
+<td><input type="text" id="${plat.id}_num" class="idPlat" onblur="changePlat(this.id, this.value);"  value="" /></td>
 <td>${plat.descripcio}</td>
 </tr>
 </s:iterator>
 </table>
-
+<br>
 <h1><textarea rows="7" cols="30" id="observacions">${comanda.observacions}</textarea> </h1>
-
-
+<br>
 <div class="page">
 		<div id="main">
 		   		<form id="MyForm" name="MyForm" action="form.html">
@@ -76,21 +75,28 @@
 					                </table>
 				</form>
 		</div>
-	</div>
-	<s:form action="checkComanda" method="POST" enctype="multipart/form-data" >
-					<td><s:text name="comanda.dia" ></s:text></td>
-					<td><s:textfield key="comanda.dia"  id="dia" maxlength="10" size="12" onfocus="blur()" theme="simple" ></s:textfield>
-									<img  src="<c:url value='/images/calendar/calendar_full.png'/>"  id="llencadorData1" ></td>
-					
-					<td><s:text name="comanda.hora" ></s:text></td>										
-					<td>
-						<s:select list="horaList" key="comanda.hora" listKey="descripcio" listValue="descripcio" theme="simple" >					
+</div>
+<table>
+	<tr>
+		<td><s:text name="comanda.dia" ></s:text></td>
+		<td><s:textfield key="comanda.dia"  id="dia" maxlength="10" size="12" onfocus="blur()" theme="simple" ></s:textfield>
+					<img  src="<c:url value='/images/calendar/calendar_full.png'/>"  id="llencadorData1" ></td>					
+		<td><s:text name="comanda.hora" ></s:text></td>										
+		<td>
+			<s:select list="horaList" key="comanda.hora" listKey="descripcio" listValue="descripcio" id="hora" theme="simple" >					
 									</s:select>
-					</td>																
-					<s:hidden key="comanda.id" id="idcomanda" ></s:hidden>	                   
-					<s:hidden key="comanda.address" id="comandaddress"></s:hidden>																		
-					<s:submit></s:submit>
-	</s:form>	
+		</td>
+	</tr>																		
+</table>													
+<s:form action="checkComanda" method="POST" id="comandaform" enctype="multipart/form-data" >
+					<s:hidden key="comanda.plats" id="platsHid"></s:hidden>
+					<s:hidden key="comanda.dia" id="diaHid" ></s:hidden>
+					<s:hidden key="comanda.hora" id="horaHid" ></s:hidden>
+					<s:hidden key="comanda.observacions" id="observacionsHid" ></s:hidden>
+					<s:hidden key="comanda.id" id="idcomandaHid" ></s:hidden>	                   
+					<s:hidden key="comanda.address" id="comandaddressHid" value="${comanda.address}" ></s:hidden>																		
+					<s:submit onclick="setInfoInForm();" ></s:submit>
+</s:form>	
 
 <!-- Scripts --> 
 <c:if test="${fn:contains(header.Host,'7070')}">
@@ -139,6 +145,7 @@
     });
 //---------------------------------------------------------------------------------------------------------------------
 new Address.addressValidation();
+var comanda = new Comanda(${comanda.id});
 
 </script> 
 </body>

@@ -88,6 +88,18 @@ public class WelcomeUserAction extends ActionSupport implements ServletResponseA
 		return SUCCESS;
 
 	}
+	
+	public String checkComanda(){
+
+		try {
+			
+		} catch (Exception e) {
+			return ERROR;
+		}
+		return SUCCESS;
+
+	}
+	
 
 	public String ajaxTableComandesUser(){
 
@@ -276,6 +288,11 @@ public class WelcomeUserAction extends ActionSupport implements ServletResponseA
 	public void setHoraList( List<Basic> horaList ){
 	
 		this.horaList = horaList;
+	}
+
+	public void setUsersBo( UsersBo usersBo ){
+	
+		this.usersBo = usersBo;
 	}
 	
 	
