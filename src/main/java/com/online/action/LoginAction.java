@@ -18,6 +18,9 @@ public class LoginAction extends ActionSupport implements ServletRequestAware{
 	private UsersBo		usersBo;
 	private String		username;
 	private String		password;
+	private String 		address;
+	private String		telefon;
+	
 	HttpServletRequest	request;
 
 	public String execute(){
@@ -40,6 +43,9 @@ public class LoginAction extends ActionSupport implements ServletRequestAware{
 
 			user.setPassword(Utils.createSHA(this.password));
 			user.setUsername(this.username);
+			user.setAddress(this.address);
+			user.setTelNumber(this.telefon);
+			
 			this.usersBo.save(user);
 
 		} catch (NoSuchAlgorithmException e) {

@@ -11,6 +11,25 @@
 	<title>Welcome</title>	
 </head>
 <body>
+
+<div align="left">
+<table>
+	<c:if test="${nameAuth eq 'anonymousUser' }">
+		<tr>
+			<td colspan='2'><a name="register" type="button" href="<c:url value='/preRegisterUser.action'/>" >Register</a>
+						</td>
+			<td colspan='2'><a name="register" type="button" href="<c:url value='/login.action'/>" >Login</a>
+						</td>
+		</tr>
+	</c:if>		
+	<c:if test="${nameAuth ne 'anonymousUser' }">
+		<tr>		
+			<td><a href="<c:url value="/j_spring_security_logout" />" > Logout</a></td>
+		</tr>	
+	</c:if>
+</table>
+</div>
+
 <div id='coin-slider'>
 	    <a href="<c:url value='/images/presentacio/image1.jpg' />" target="_blank">
 	        <img src='<c:url value='/images/presentacio/image1.jpg' />' >

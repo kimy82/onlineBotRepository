@@ -1,6 +1,7 @@
 package com.online.action.users;
 
 import java.io.IOException;
+import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -71,7 +72,17 @@ public class WelcomeUserAction extends ActionSupport implements ServletResponseA
 
 	public String saveUserDetails(){
 		
-		this.usersBo.update(this.user);
+		try{
+			
+			if(this.user.getPassword()!=null && !this.user.getPassword().equals(""))
+			this.user.setPassword(Utils.createSHA(this.user.getPassword()));
+			this.usersBo.update(this.user);
+			
+		}catch (BOException e){
+			return ERROR;
+		}catch (NoSuchAlgorithmException e){
+			return ERROR;
+		}
 		return SUCCESS;
 		
 	}

@@ -10,6 +10,17 @@ function InitTableParams(txtlast,txtnext,txtprevious,txtfirst,txtloading,txtborr
 		this.txtborrat=txtborrat;		
 }
 
+var initParams=null ;
+function InitParams(txtusernameempty, txtpasswordempty,txtpasswordnotequal,txttelempty,txtaddressempty){		
+
+	this.txtusernameempty= txtusernameempty;
+	this.txtpasswordempty= txtpasswordempty;
+	this.txtpasswordnotequal=txtpasswordnotequal;
+	this.txttelempty = txttelempty;
+	this.txtaddressempty = txtaddressempty;
+
+}
+
 //per el formulari
 function onlyDouble(value,id){
 	 var n=value.split(".");
@@ -44,12 +55,57 @@ function reloadTableComandes(){
 
 function fillAddress(){
 	
-	var addressCarrer = $("#carrer").val();
-	var addressNum = $("#numcarrer").val();
-	var addressCodi = $("#codi").val();
-	var addressPoble = $("#poble").val();
+	var self = $("#saveUserDetails")[0];
 	
-	$("#address").val(addressCarrer+" "+addressNum+", "+addressCodi+" "+addressPoble);
+	 
+	if(self.username.value==''){
+	 	
+		$("#username").css('border', 'solid 1px red');
+		alert("username");
+		return false;
+		
+	}else{
+		$("#username").css('border', 'solid 1px rgb(135,155,179)');	
+	}
+	
+	if(self.password.value==''){
+	 	
+		$("#password").css('border', 'solid 1px red');
+		alert("password");
+		return false;
+		
+	}else{
+		if(self.password.value!=self.passwordRetyped.value){
+			$("#confirmPassword").css('border', 'solid 1px red');
+			$("#password").css('border', 'solid 1px red');
+			alert("password diferent");
+		}else{
+			$("#confirmPassword").css('border', 'solid 1px rgb(135,155,179)');
+			$("#password").css('border', 'solid 1px rgb(135,155,179)');
+		}
+	}
+	if(self.telNumber.value==''){
+		
+		$("#telefon").css('border', 'solid 1px red');
+		alert("telefon");
+		return false;
+		
+	}else{
+		$("#telefon").css('border', 'solid 1px rgb(135,155,179)');
+	}
+	
+	if(self.comandaddress.value==''){
+		
+		$("#comandaddress").css('border', 'solid 1px red');
+		alert("comandaddress");
+		return false;
+		
+	}else{
+		$("#comandaddress").css('border', 'solid 1px rgb(135,155,179)');
+	}
+	
+	self.submit();
+	
 	
 }
 

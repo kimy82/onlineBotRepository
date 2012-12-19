@@ -53,6 +53,8 @@ public class WelcomeComandaAction extends ActionSupport implements ServletRespon
 
 	public String execute(){
 
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		this.nameAuth = auth.getName();
 		// Recoperem tots els plats disponibles.
 		this.platList = this.platsBo.getAll();
 		return SUCCESS;

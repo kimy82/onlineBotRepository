@@ -18,16 +18,17 @@
 <h2>INFO USER</h2>	
 <br><a href="#" onclick="openCloseDiv('infoUser');" >Canvia dades personals</a>
 			<div  style="width:500px;" alig="center" id="infoUser" >
-				<s:form action="saveUserDetails" method="POST" enctype="multipart/form-data" >
+				<s:form action="saveUserDetails" id="saveUserDetails" method="POST" enctype="multipart/form-data" >
 					<s:textfield key="user.username" id="username" onkeyup="return ismaxlength(this,45)"  ></s:textfield>		
 					<tr>
 						<td colspan="2"><input type="checkbox" onclick="openCloseDiv('password_div')" >Change password</a></td>
 					</tr>				
 					<div id="password_div">				
-						<s:password key="user.password" id="password" onkeyup="return ismaxlength(this,45)" ></s:password>
+						<s:password key="user.password" id="password" onkeyup="return ismaxlength(this,45)" value="" ></s:password>
 						<tr><td>ReType :</td><td><input type="password" id="passwordRetyped" onblur="checkPassword()"/></td></tr>
 					</div>	
-					<s:textfield key="user.address" id="address"  onfocus="blur();"  ></s:textfield>		 			
+						<div id="map_canvas" style="float: right; height: 200px; width: 400px;"></div>
+					<s:textfield key="user.address" id="comandaddress"  onfocus="blur();"  ></s:textfield>		 			
 											<tr><td>						                	
 	                        					<label for="carrer">
 	                        							 <s:text name="adreca.carrer" /></label>		
@@ -45,10 +46,18 @@
 	                        							  <s:text name="adreca.poble" /></label>		
 	                        					<input type="text" id="poble"  />                        						                    													    										                
 						                    </td></tr>	
+						                   <tr>
+								                <td>				                
+								                    <input id="checkAdd" value="Comprova si és correcte" type="button" />
+								                </td>
+								                <td>
+								                <label id="addressOK" ></label>
+								                </td>    
+						                	</tr>
+						                    
 					<s:textfield key="user.telNumber" id="telNumber" onkeyup="return ismaxlength(this,10)" ></s:textfield>						                    
-					<s:hidden key="user.address" id="address" ></s:hidden>		
-					<s:hidden key="user.id" id="idUser" ></s:hidden>						                    										
-					<s:submit onclick="fillAddress()" ></s:submit>
+					<s:hidden key="user.id" id="idUser" ></s:hidden>		
+					<input type="button"  onclick="fillAddress()" value="submit"/>	                    															
 				</s:form>							
 			</div>
 <h2>INFO COMANDES REALITZADES</h2>
@@ -76,6 +85,8 @@
 	<link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/base/jquery-ui.css" rel="stylesheet" type="text/css" />	
 	<script src="<c:url value='/js/jsQuery.min.js' />" type="text/javascript"></script>
 	<script src="<c:url value='/js/jquery/jquery.dataTables.min.js' />" type="text/javascript"></script>
+	<script src="<c:url value='/js/addressFunctions.min.js' />" type="text/javascript"></script>
+	<script src="http://maps.google.com/maps/api/js?sensor=false" type="text/javascript"></script>	
 	<script type="text/javascript" src="<c:url value='/pages/users/jscomandes.js' />"></script>	
 </c:if>
 <c:if test="${fn:contains(header.Host,'9090')}">
@@ -96,11 +107,19 @@
 	<script src="<c:url value='/js/jquery/jquery.bgiframe-2.1.1.js'/>" type="text/javascript"></script>
 	<script src="<c:url value='/js/jquery/jquery-ui.js' />" type="text/javascript"></script>
 	<script src="<c:url value='/js/jquery/jquery.dataTables.js' />" type="text/javascript"></script>
+	
+		<!-- Per validar l'adreca -->
+	<script src="<c:url value='/js/address/autocompleteTown.js'/>" type="text/javascript"></script>
+	<script src="<c:url value='/js/address/addressValidationForm.js'/>" type="text/javascript"></script>
+	<script src="http://maps.google.com/maps/api/js?sensor=false" type="text/javascript"></script>
+	
 	<script type="text/javascript" src="<c:url value='/pages/users/jscomandes.js' />"></script>
 	
 </c:if>
 <script language="javascript">
-	var initTableParams = new InitTableParams(
+new Address.addressValidation();
+var initParams = new  InitParams( "<s:text name='txt.user.empty' />", "<s:text name='txt.password.empty' />","<s:text name='txt.password.noteq' />","<s:text name='txt.tel.empty' />","<s:text name='txt.address.empty' />");
+var initTableParams = new InitTableParams(
 			"<s:text  name='datatables.paginate.last'/>",
 			"<s:text  name='datatables.paginate.next'/>",
 			"<s:text  name='datatables.paginate.previous'/>",
