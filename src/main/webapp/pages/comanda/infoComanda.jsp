@@ -18,12 +18,25 @@
 	<div id="slider" style=" height: 500px;"  >
 	    <ul>
 	    	<s:iterator value="refrescList" var="refresc">
-	    			<li class="draggable" ><img id="imageRefresc_${refresc.id}" width="200px"  src="/onlineBot/comanda/ImageAction.action?imageId=${refresc.id}" /></li>
+	    			<li class="draggable" ><img id="imageRefresc_${refresc.id}" width="200px"  src="/onlineBot/comanda/ImageAction.action?imageId=${refresc.id}" title="${refresc.descripcio} -> Double Click to Add" /></li>
 	        </s:iterator>	
 	    </ul>
 	</div>
 </div>
 <br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<div id="droppable"  class="ui-widget-header abs">
+
+  <a href="#" onclick="saveBegudaToComanda();" >  <img src="<c:url value='/images/shopping_cart.png' />"  height="20px" ></img></a>
+</div>
+<br>
+<br>
+<div id="plats" class="abs">
 <s:iterator value="platComandaList" var="platComanda">
 	<div class="selector" id="plat_${platComanda.plat.id}" >
 		<table>
@@ -39,11 +52,8 @@
 		</table>
 	</div>
 </s:iterator>
-<br>
-<div id="droppable"  class="ui-widget-header abs">
-
-  <a href="#" onclick="saveBegudaToComanda();" >  <img src="<c:url value='/images/shopping_cart.png' />"  height="150px" ></img></a>
 </div>
+
 <br>
 	<div class="page">
 		<div id="main">
@@ -172,17 +182,47 @@
 	#slider li {
 		width:212px;		
 	}	
+		.abs{
+			position: relative;
+			top: 20px;
+			left: 50px;
+			width: 400px;
+			height: 200px;
+		}
+.prevBtn {
+	left:0px;
+	}
 </style>
 
 <script>	
 $(function(){
+	
+	$( ".draggable" ).dblclick(function() {
+		
+		var dragBeguda =$(this).clone();
+		dragBeguda.appendTo("#slider");
+		
+		dragBeguda.animate({
+							    width: "90%",
+							    opacity: 0.4,
+							    marginLeft: "0.6in",
+							    fontSize: "3em",
+							    borderWidth: "10px",
+							    left: "+=250px"
+	  						}, 1800,function() {
+	      							$(this).css("visiblity","hidden");
+	      							$(this).css("display","none");
+	    					});
+	  	
+	});
+	
 	$( ".draggable" ).draggable({
 		 helper:'clone',		
 		 start: function(event,ui){				
-	    	 var id= $(this).attr("id");	 	
+			 $("#slider").css("height","500px");	  	
 	    }, 	  
 	    stop: function(event, ui){ 	
-	    	alert("stop");  	    	
+	    	//alert("stop");  	    	
 	    }
 	});
 	$( "#droppable" ).droppable({
@@ -235,32 +275,5 @@ var sudoSlider = $("#slider").sudoSlider({
 });
 
 </script> 
- <style>
-#block{
-background-color:#bca;
-width:100px;
-border:1px solid green;
-}
-</style>
-
-
- <button id="go">&raquo; Run</button>
-<div class="clones"></div>
-<div id="block">Hello!</div>
-<script>
-
-$("#go").click(function(){
-	var bl =$("#block").clone();
-	bl.appendTo(".clones");
-  	bl.animate({
-    width: "70%",
-    opacity: 0.4,
-    marginLeft: "0.6in",
-    fontSize: "3em",
-    borderWidth: "10px"
-  }, 1500 );
-});
-</script>
-
 </body>
 </html>

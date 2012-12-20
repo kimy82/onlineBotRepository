@@ -63,6 +63,7 @@
 <s:iterator value="platList" var="plat">
 <div class="selector ui-widget-content" id="draggable_${plat.id}" >
 	<table>
+		<tr><td rowspan="5" ><a ondblclick="addToCart()" ><image src="<c:url value='/images/shopping_cart.png' />" ></image></a></td></tr>
 		<tr>
 			<td>${plat.nom}</td>
 			<td>${plat.preu}</td>
@@ -133,7 +134,26 @@
 
 <script type="text/javascript" >
 $(function() {
+
+$( ".selector" ).dblclick(function() {
 		
+		var dragBeguda =$(this).clone();
+		dragBeguda.appendTo("#droppable");
+		
+		dragBeguda.animate({
+							    width: "90%",
+							    opacity: 0.4,
+							    marginLeft: "0.6in",
+							    fontSize: "3em",
+							    borderWidth: "10px",
+							    left: "+=250px"
+	  						}, 1800,function() {
+	      							$(this).css("visiblity","hidden");
+	      							$(this).css("display","none");
+	    					});
+	  	
+	});
+
     $( ".selector" ).draggable({
     	 helper:'clone',
     	 start: function(event, ui) {				
