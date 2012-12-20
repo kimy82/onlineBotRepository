@@ -8,24 +8,24 @@
 		pageEncoding="ISO-8859-1"%>
 	<META http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 	<META http-equiv="Content-Style-Type" content="text/css">
-	<title>User comandes</title>
+	<title><s:text name="txt.info.comandes.title" /></title>
 </head>
 
 <body>
 	<div id="errorsajax">
 				<label style="color: red" id="errorsajaxlabel"></label>
 	</div>
-<h2>INFO USER</h2>	
-<br><a href="#" onclick="openCloseDiv('infoUser');" >Canvia dades personals</a>
+<h2><s:text name="txt.info.user" /></h2>	
+<br><a href="#" onclick="openCloseDiv('infoUser');" ><s:text name="txt.canvi.dades.personals" /></a>
 			<div  style="width:500px;" alig="center" id="infoUser" >
 				<s:form action="saveUserDetails" id="saveUserDetails" method="POST" enctype="multipart/form-data" >
 					<s:textfield key="user.username" id="username" onkeyup="return ismaxlength(this,45)"  ></s:textfield>		
 					<tr>
-						<td colspan="2"><input type="checkbox" onclick="openCloseDiv('password_div')" >Change password</a></td>
+						<td colspan="2"><input type="checkbox" onclick="openCloseDiv('password_div')" ><s:text name="txt.canvia.password.check" /></a></td>
 					</tr>				
-					<div id="password_div">				
+					<div id="password_div" style="visibility: hidden; display: none;" >				
 						<s:password key="user.password" id="password" onkeyup="return ismaxlength(this,45)" value="" ></s:password>
-						<tr><td>ReType :</td><td><input type="password" id="passwordRetyped" onblur="checkPassword()"/></td></tr>
+						<tr><td><s:text name="txt.password.retype" />:</td><td><input type="password" id="passwordRetyped" onblur="checkPassword()"/></td></tr>
 					</div>	
 						<div id="map_canvas" style="float: right; height: 200px; width: 400px;"></div>
 					<s:textfield key="user.address" id="comandaddress"  onfocus="blur();"  ></s:textfield>		 			
@@ -55,12 +55,12 @@
 								                </td>    
 						                	</tr>
 						                    
-					<s:textfield key="user.telNumber" id="telNumber" onkeyup="return ismaxlength(this,10)" ></s:textfield>						                    
+					<s:textfield key="user.telNumber" id="telNumber" onkeyup="return ismaxlength(this,9)" ></s:textfield>						                    
 					<s:hidden key="user.id" id="idUser" ></s:hidden>		
 					<input type="button"  onclick="fillAddress()" value="submit"/>	                    															
 				</s:form>							
 			</div>
-<h2>INFO COMANDES REALITZADES</h2>
+<h2><s:text name="txt.info.comandes.user.title" /></h2>
 
  			<div  style="width:500px;" alig="center">
 				<table class="selecciom dataTable" id="tbl_comandes_user" width="500px">
@@ -118,7 +118,7 @@
 </c:if>
 <script language="javascript">
 new Address.addressValidation();
-var initParams = new  InitParams( "<s:text name='txt.user.empty' />", "<s:text name='txt.password.empty' />","<s:text name='txt.password.noteq' />","<s:text name='txt.tel.empty' />","<s:text name='txt.address.empty' />");
+var initParams = new  InitParams( "<s:text name='txt.user.empty' />", "<s:text name='txt.password.empty' />","<s:text name='txt.password.noteq' />","<s:text name='txt.tel.empty' />","<s:text name='txt.address.empty' />","<s:text name='error.double' />","<s:text name='error.number' />");
 var initTableParams = new InitTableParams(
 			"<s:text  name='datatables.paginate.last'/>",
 			"<s:text  name='datatables.paginate.next'/>",

@@ -8,11 +8,22 @@
 		pageEncoding="ISO-8859-1"%>
 	<META http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 	<META http-equiv="Content-Style-Type" content="text/css">
-	<title>Welcome</title>
+	<title><s:text name="txt.info.comanda.title" /></title>
 </head>
 
 <body>
-<h2>INFO</h2>
+<h2><s:text name="txt.info.comanda.user" /></h2>
+<br>
+<div style="position:relative;">
+	<div id="slider" style=" height: 500px;"  >
+	    <ul>
+	    	<s:iterator value="refrescList" var="refresc">
+	    			<li class="draggable" ><img id="imageRefresc_${refresc.id}" width="200px"  src="/onlineBot/comanda/ImageAction.action?imageId=${refresc.id}" /></li>
+	        </s:iterator>	
+	    </ul>
+	</div>
+</div>
+<br>
 <s:iterator value="platComandaList" var="platComanda">
 	<div class="selector" id="plat_${platComanda.plat.id}" >
 		<table>
@@ -28,6 +39,11 @@
 		</table>
 	</div>
 </s:iterator>
+<br>
+<div id="droppable"  class="ui-widget-header abs">
+
+  <a href="#" onclick="saveBegudaToComanda();" >  <img src="<c:url value='/images/shopping_cart.png' />"  height="150px" ></img></a>
+</div>
 <br>
 	<div class="page">
 		<div id="main">
@@ -82,15 +98,15 @@
 	<br>
 
 	<c:if test="${nameAuth eq 'anonymousUser' }">
-		<h1>Logate</h1>
+		<h1><s:text name="txt.logate" /></h1>
 		<form name='f' id="f" action="/onlineBot/j_spring_security_check"
 			method='POST'>
 			<table>
 				<tr>
-					<td>User:</td>
+					<td><s:text name="txt.user.of.login" />:</td>
 					<td><input type='text' name='j_username' value=''>
 					</td>
-					<td>Password:</td>
+					<td><s:text name="txt.pass.of.login" />:</td>
 					<td><input type='password' name='j_password' />
 					</td>
 					<td colspan='2'><input name="submit" type="button"
@@ -113,7 +129,8 @@
 <c:if test="${fn:contains(header.Host,'9090')}">
 
 	<link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/base/jquery-ui.css" rel="stylesheet" type="text/css" />
-	<link rel="stylesheet" type="text/css" media="all" href="<c:url value='/css/calendar-blau.css' />" title="win2k-cold-1" />	
+	<link rel="stylesheet" type="text/css" media="all" href="<c:url value='/css/calendar-blau.css' />" title="win2k-cold-1" />
+	<link rel="stylesheet" type="text/css" media="all" href="<c:url value='/css/sudoSlider.css' />"  />	
 
 	<script src="<c:url value='/js/jquery/jquery.js' />" type="text/javascript"></script>
 	<script src="<c:url value='/js/jquery/jquery.ui.core.js' />" type="text/javascript"></script>
@@ -136,8 +153,14 @@
 	<script src="<c:url value='/js/address/autocompleteTown.js'/>" type="text/javascript"></script>
 	<script src="<c:url value='/js/address/addressValidationForm.js'/>" type="text/javascript"></script>
 	<script src="http://maps.google.com/maps/api/js?sensor=false" type="text/javascript"></script>
+	
+	<!-- Sliders de begudes -->
+	<script src="<c:url value='/js/sudoSlider/jquery.sudoSlider.js'/>" type="text/javascript"></script>
+	
 </c:if>
 <style>
+	.draggable { position:absolute; z-index:2001; }
+
 	.selector {
 	    -moz-border-radius: 10px;
 	    -webkit-border-radius: 10px;
@@ -145,9 +168,31 @@
 	    border: blue 2px solid;
 	    width: 500px;
 	}
+	
+	#slider li {
+		width:212px;		
+	}	
 </style>
 
-<script>		
+<script>	
+$(function(){
+	$( ".draggable" ).draggable({
+		 helper:'clone',		
+		 start: function(event,ui){				
+	    	 var id= $(this).attr("id");	 	
+	    }, 	  
+	    stop: function(event, ui){ 	
+	    	alert("stop");  	    	
+	    }
+	});
+	$( "#droppable" ).droppable({
+	    drop: function( event, ui ){
+	        
+	        var item_id = ui.draggable.attr("id");     
+	        alert("dropped"+item_id);
+	    }
+	});
+});
 function submitLog(){
 	
 	$.ajax({
@@ -183,6 +228,39 @@ new Address.addressValidation();
 
 $("#idcomanda").val(${idComanda});
 
+var sudoSlider = $("#slider").sudoSlider({
+    autowidth:false,
+    slideCount:3,
+    continuous:true
+});
+
 </script> 
+ <style>
+#block{
+background-color:#bca;
+width:100px;
+border:1px solid green;
+}
+</style>
+
+
+ <button id="go">&raquo; Run</button>
+<div class="clones"></div>
+<div id="block">Hello!</div>
+<script>
+
+$("#go").click(function(){
+	var bl =$("#block").clone();
+	bl.appendTo(".clones");
+  	bl.animate({
+    width: "70%",
+    opacity: 0.4,
+    marginLeft: "0.6in",
+    fontSize: "3em",
+    borderWidth: "10px"
+  }, 1500 );
+});
+</script>
+
 </body>
 </html>

@@ -30,6 +30,7 @@ public class Beguda implements Serializable{
 	@Expose
 	protected String			tipus;
 	
+	protected Image				foto;
 
 	// CONSTRUCTORS
 	 
@@ -97,5 +98,17 @@ public class Beguda implements Serializable{
 	
 		this.tipus = tipus;
 	}
+
+	public Image getFoto(){
+	
+		return foto;
+	}
+
+	public void setFoto( Image foto ){
+	
+		this.foto = foto;
+	}
+	
+	
 	
 }

@@ -133,19 +133,14 @@
 
 <script type="text/javascript" >
 $(function() {
-	
-	var originalTop=null;
-	var originalLeft =null;
-	
+		
     $( ".selector" ).draggable({
-    	 start: function(event, ui) {
-				
+    	 helper:'clone',
+    	 start: function(event, ui) {				
  	    	 var id= $(this).attr("id");
- 		 	 originalTop = $("#"+id).position().top;
- 		   	 originalLeft = $("#"+id).position().left;
  	    }, 	  
  	    stop: function(event, ui) { 	
- 	    	$(this).appendTo("#draggables_pl");  	    	
+ 	      	    	
  	    }
     });
     $( "#droppable" ).droppable({

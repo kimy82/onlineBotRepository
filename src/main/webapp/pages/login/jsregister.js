@@ -20,7 +20,7 @@ function validate(){
 	if(self.username.value==''){
 	 	
 		$("#username").css('border', 'solid 1px red');
-		alert("username");
+		alert(initParams.txtusernameempty);
 		return false;
 		
 	}else{
@@ -30,14 +30,14 @@ function validate(){
 	if(self.password.value==''){
 	 	
 		$("#password").css('border', 'solid 1px red');
-		alert("password");
+		alert(initParams.txtpasswordempty);
 		return false;
 		
 	}else{
 		if(self.password.value!=self.confirmPassword.value){
 			$("#confirmPassword").css('border', 'solid 1px red');
 			$("#password").css('border', 'solid 1px red');
-			alert("password diferent");
+			alert(initParams.txtpasswordnotequal);
 		}else{
 			$("#confirmPassword").css('border', 'solid 1px rgb(135,155,179)');
 			$("#password").css('border', 'solid 1px rgb(135,155,179)');
@@ -47,7 +47,7 @@ function validate(){
 	if(self.telefon.value==''){
 		
 		$("#telefon").css('border', 'solid 1px red');
-		alert("telefon");
+		alert(initParams.txttelempty);
 		return false;
 		
 	}else{
@@ -57,7 +57,7 @@ function validate(){
 	if(self.comandaddress.value==''){
 		
 		$("#comandaddress").css('border', 'solid 1px red');
-		alert("comandaddress");
+		alert(initParams.txtaddressempty);
 		return false;
 		
 	}else{

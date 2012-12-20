@@ -11,14 +11,16 @@ function InitTableParams(txtlast,txtnext,txtprevious,txtfirst,txtloading,txtborr
 }
 
 var initParams=null ;
-function InitParams(txtusernameempty, txtpasswordempty,txtpasswordnotequal,txttelempty,txtaddressempty){		
+function InitParams(txtusernameempty, txtpasswordempty,txtpasswordnotequal,txttelempty,txtaddressempty,txterrordouble,txterrornumber){		
 
 	this.txtusernameempty= txtusernameempty;
 	this.txtpasswordempty= txtpasswordempty;
 	this.txtpasswordnotequal=txtpasswordnotequal;
 	this.txttelempty = txttelempty;
 	this.txtaddressempty = txtaddressempty;
-
+	this.txterrordouble=txterrordouble;
+	this.txterrornumber=txterrornumber;
+	
 }
 
 //per el formulari
@@ -31,7 +33,7 @@ function onlyDouble(value,id){
 		$('#'+id).css('border', 'solid 1px rgb(135,155,179)');
 	}else{
 		$('#'+id).css('border', 'solid 1px red');
-		alert(initTableParams.txterrordouble);
+		alert(initParams.txterrordouble);
 	}
 }  
 
@@ -40,7 +42,7 @@ function onlyEntero(value,id){
 		$('#'+id).css('border', 'solid 1px rgb(135,155,179)');
 	}else{
 		$('#'+id).css('border', 'solid 1px red');
-		alert(initTableParams.txterrornumber);
+		alert(initParams.txterrornumber);
 	}
 }
 
@@ -61,7 +63,7 @@ function fillAddress(){
 	if(self.username.value==''){
 	 	
 		$("#username").css('border', 'solid 1px red');
-		alert("username");
+		alert(initParams.txtusernameempty);
 		return false;
 		
 	}else{
@@ -71,14 +73,14 @@ function fillAddress(){
 	if(self.password.value==''){
 	 	
 		$("#password").css('border', 'solid 1px red');
-		alert("password");
+		alert(initParams.txtpasswordempty);
 		return false;
 		
 	}else{
 		if(self.password.value!=self.passwordRetyped.value){
 			$("#confirmPassword").css('border', 'solid 1px red');
 			$("#password").css('border', 'solid 1px red');
-			alert("password diferent");
+			alert(initParams.txtpasswordnotequal);
 		}else{
 			$("#confirmPassword").css('border', 'solid 1px rgb(135,155,179)');
 			$("#password").css('border', 'solid 1px rgb(135,155,179)');
@@ -87,7 +89,7 @@ function fillAddress(){
 	if(self.telNumber.value==''){
 		
 		$("#telefon").css('border', 'solid 1px red');
-		alert("telefon");
+		alert(initParams.txttelempty);
 		return false;
 		
 	}else{
@@ -97,7 +99,7 @@ function fillAddress(){
 	if(self.comandaddress.value==''){
 		
 		$("#comandaddress").css('border', 'solid 1px red');
-		alert("comandaddress");
+		alert(initParams.txtaddressempty);
 		return false;
 		
 	}else{
@@ -115,7 +117,12 @@ function repeatComanda(id){
 }
 
 function openCloseDiv(id){
-	 	
+
+	if(id=='password_div'){
+		document.getElementById("password_div").style.visibility="visible";
+		document.getElementById("password_div").style.display="";
+		
+	}	
 	 if($("#"+id).is(":hidden")){
 		 $("#"+id).show('slow');
 	 }else{
@@ -128,7 +135,7 @@ function checkPassword(){
 	var password2 = document.getElementById("passwordRetyped").value;
 	if(password1 != password2){
 		$('#passwordRetyped').css('border', 'solid 1px red');
-		alert("Passwords no son iguals");
+		alert(initParams.txtpasswordnotequal);
 	}
 }
 

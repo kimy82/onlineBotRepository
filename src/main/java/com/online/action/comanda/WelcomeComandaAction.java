@@ -14,11 +14,13 @@ import org.apache.struts2.interceptor.ServletResponseAware;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 
+import com.online.bo.BegudaBo;
 import com.online.bo.ComandaBo;
 import com.online.bo.PlatsBo;
 import com.online.exceptions.ComandaException;
 import com.online.exceptions.GeneralException;
 import com.online.exceptions.WrongParamException;
+import com.online.model.Beguda;
 import com.online.model.Comandes;
 import com.online.model.Plat;
 import com.online.model.PlatComanda;
@@ -35,11 +37,14 @@ public class WelcomeComandaAction extends ActionSupport implements ServletRespon
 	private static final long	serialVersionUID	= 1L;
 	private PlatsBo				platsBo;
 	private ComandaBo			comandaBo;
+	private BegudaBo			begudaBo;
 	private Comandes			comanda;
 
 	List<Plat>					platList			= new ArrayList<Plat>();
 	List<PlatComanda>			platComandaList		= new ArrayList<PlatComanda>();
 	private List<Basic>			horaList			= new ArrayList<Basic>();
+	
+	private List<Basic>			refrescList			= new ArrayList<Basic>();
 
 	private Long				idComanda			= null;
 	private Long				idPlat				= null;	
@@ -142,6 +147,14 @@ public class WelcomeComandaAction extends ActionSupport implements ServletRespon
 
 		Comandes comanda = this.comandaBo.load(this.idComanda);
 
+		List<Beguda> begudaList = this.begudaBo.getAll();
+		for(Beguda beguda : begudaList){
+			
+		Basic basic = new Basic(beguda.getFoto().getId(),beguda.getNom());
+		this.refrescList.add(basic);
+			
+		}
+		
 		this.platComandaList = comanda.getPlats();
 
 		return SUCCESS;
@@ -273,4 +286,19 @@ public class WelcomeComandaAction extends ActionSupport implements ServletRespon
 		this.idComanda = idComanda;
 	}
 
+	public List<Basic> getRefrescList(){
+	
+		return refrescList;
+	}
+
+	public void setRefrescList( List<Basic> refrescList ){
+	
+		this.refrescList = refrescList;
+	}
+
+	public void setBegudaBo( BegudaBo begudaBo ){
+	
+		this.begudaBo = begudaBo;
+	}
+	
 }
