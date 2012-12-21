@@ -63,7 +63,7 @@
 <s:iterator value="platList" var="plat">
 <div class="selector ui-widget-content" id="draggable_${plat.id}" >
 	<table>
-		<tr><td rowspan="5" ><a ondblclick="addToCart()" ><image src="<c:url value='/images/shopping_cart.png' />" ></image></a></td></tr>
+		<tr><td rowspan="5" ><a href="#"><image src="<c:url value='/images/shopping_cart.png' />" ></image></a></td></tr>
 		<tr>
 			<td>${plat.nom}</td>
 			<td>${plat.preu}</td>
@@ -147,12 +147,43 @@ $( ".selector" ).dblclick(function() {
 							    fontSize: "3em",
 							    borderWidth: "10px",
 							    left: "+=250px"
-	  						}, 1800,function() {
+	  						}, 1800,function() {	  								  						
+	  								var item_id = $(this).attr("id");  
+	  								var rawPlat = item_id.split("_");
+	  								savePlatToComanda(rawPlat[1]);
 	      							$(this).css("visiblity","hidden");
 	      							$(this).css("display","none");
 	    					});
 	  	
 	});
+
+	function savePlatToComanda(idPlat){
+		
+		var data ="idPlat="+idPlat+"&idComanda="+$("#numComanda").text();
+      	$.ajax({
+      		  type: "POST",
+      		  url: '/onlineBot/comanda/ajaxLoadPlat.action',
+      		  dataType: 'json',
+      		  data: data,
+      		  success: function(json){	
+      			  if(json==null || json.error!=null){
+           				$("#errorsajaxlabel").text(json.error);
+           				$("#errorsajax").show();
+           			}else{
+           				if(json.alerta!=null){
+           					alert(json.alerta);
+           				}else{
+           					$("#numComanda").text(json.numComanda);
+           					$("#numplats").text(json.numPlats);
+           					$("#preu").text(json.preu);
+           				}
+           			}				
+      		  },
+      		  error: function(e){   $("#errorsajaxlabel").text("Error in ajax call");
+        								$("#errorsajax").show();  		
+      		  					}
+      		});	
+	}
 
     $( ".selector" ).draggable({
     	 helper:'clone',
@@ -167,31 +198,8 @@ $( ".selector" ).dblclick(function() {
         drop: function( event, ui ) {
             
             var item_id = ui.draggable.attr("id");  
-            var rawPlat = item_id.split("_")
-            data ="idPlat="+rawPlat[1]+"&idComanda="+$("#numComanda").text();
-        	$.ajax({
-        		  type: "POST",
-        		  url: '/onlineBot/comanda/ajaxLoadPlat.action',
-        		  dataType: 'json',
-        		  data: data,
-        		  success: function(json){	
-        			  if(json==null || json.error!=null){
-             				$("#errorsajaxlabel").text(json.error);
-             				$("#errorsajax").show();
-             			}else{
-             				if(json.alerta!=null){
-             					alert(json.alerta);
-             				}else{
-             					$("#numComanda").text(json.numComanda);
-             					$("#numplats").text(json.numPlats);
-             					$("#preu").text(json.preu);
-             				}
-             			}				
-        		  },
-        		  error: function(e){   $("#errorsajaxlabel").text("Error in ajax call");
-          								$("#errorsajax").show();  		
-        		  					}
-        		});	
+            var rawPlat = item_id.split("_");           
+            savePlatToComanda(rawPlat[1]);
              
         }
     });

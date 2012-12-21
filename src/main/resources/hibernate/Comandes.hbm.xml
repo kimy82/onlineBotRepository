@@ -36,5 +36,15 @@
                 <column name="PLATCOMANDA_ID" not-null="true" />
             </many-to-many>
         </list>		
+        <list name="begudes" table="comanda_begudes" 
+        	inverse="false" lazy="false" fetch="select" cascade="save-update">
+            <key>
+                <column name="COMANDA_ID" not-null="true" />
+            </key>
+            <list-index column="NOM" ></list-index>
+            <many-to-many entity-name="com.online.model.BegudaComanda">
+                <column name="BEGUDACOMANDA_ID" not-null="true" />
+            </many-to-many>
+        </list>		
 	</class>
 </hibernate-mapping>

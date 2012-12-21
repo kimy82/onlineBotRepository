@@ -10,6 +10,9 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.annotations.Expose;
 import com.online.exceptions.ComandaException;
+import com.online.model.Beguda;
+import com.online.model.BegudaComanda;
+import com.online.model.Comandes;
 import com.online.model.Plat;
 import com.online.model.PlatComanda;
 import com.online.model.Restaurant;
@@ -18,6 +21,58 @@ import com.online.utils.Utils;
 
 public class ComandaServiceImpl implements ComandaService{
 	
+	
+	public Double getPreuOfComanda(Comandes comanda) throws ComandaException{
+		
+		if(comanda==null) return 0.0;
+		
+		Double preuComanda=0.0;
+		List<BegudaComanda> listBeguda =  comanda.getBegudes(); 
+		List<PlatComanda> platList = comanda.getPlats();
+		if(!listBeguda.isEmpty()){
+			for( BegudaComanda begudaComanda : listBeguda){
+					
+				preuComanda = preuComanda + (begudaComanda.getNumBegudes()*begudaComanda.getBeguda().getPreu());
+			}	
+		}
+		
+		if(!platList.isEmpty()){
+			for( PlatComanda platComanda : platList){
+					
+				preuComanda = preuComanda + (platComanda.getNumPlats()*platComanda.getPlat().getPreu());
+			}	
+		}
+		
+		return preuComanda;
+	}
+	
+	public String createJSONForBegudaList(List<BegudaComanda> listBeguda) throws ComandaException{
+		
+		Gson gson = new GsonBuilder().setPrettyPrinting().excludeFieldsWithoutExposeAnnotation().create();
+		StringBuffer json= new StringBuffer(gson.toJson(listBeguda));
+		return json.toString();
+		
+	}
+	
+	public List<BegudaComanda>  addBegudaInList(List<BegudaComanda> begudaList, Beguda beguda) throws ComandaException{
+		
+		boolean existInList = false;
+		if(begudaList.size()>0){
+			for(BegudaComanda bg : begudaList){
+				if(bg.getBeguda().getId().equals(beguda.getId())){
+					existInList=true;
+					bg.setNumBegudes(bg.getNumBegudes()+1);
+				}											
+			}				
+		}
+		if(!existInList){
+			BegudaComanda begudaComanda = new BegudaComanda();
+			begudaComanda.setBeguda(beguda);
+			begudaComanda.setNumBegudes(1);
+			begudaList.add(begudaComanda);
+		}
+		return begudaList;
+	}
 	
 	
 	public boolean checkPlatForMoreThanTwoRestaurants(List<PlatComanda> platList, Plat plat) throws ComandaException{ 

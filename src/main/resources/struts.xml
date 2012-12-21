@@ -9,7 +9,10 @@
 	<constant name="struts.custom.i18n.resources" value="MessageResources" />
 	
 	<package name="default" namespace="/" extends="struts-default">
-		
+		<action name="Welcome" class="com.online.action.WelcomeAction"
+			method="execute">
+			<result name="success">/pages/welcome.jsp</result>
+		</action>		
 		<action name="login" class="login" method="login" >
 			<result name="success" >/pages/login/login.jsp</result>
 		</action>

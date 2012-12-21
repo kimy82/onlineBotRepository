@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="com.online.model.BegudaComanda" table="begudaComanda">
+		<id name="id" type="java.lang.Long">
+			<column name="BEGUDACOMANDA_ID" />
+			<generator class="increment" />
+		</id>
+		<property name="numBegudes" type="integer" lazy="false" >
+			<column name="NUM" not-null="true" />
+		</property>
+		<many-to-one name="beguda" class="com.online.model.Beguda" cascade="save-update" >	
+			<column name="BEGUDA_ID"></column>	
+		</many-to-one>		
+	</class>
+</hibernate-mapping>

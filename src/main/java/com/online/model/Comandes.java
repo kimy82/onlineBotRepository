@@ -12,29 +12,31 @@ public class Comandes implements Serializable{
 	/**
 	 * 
 	 */
-	private static final long	serialVersionUID	= 1L;
+	private static final long		serialVersionUID	= 1L;
 
 	@Expose
-	private Long				id;
+	private Long					id;
 
 	@Expose
-	private String				hora;
+	private String					hora;
 
 	@Expose
-	private Date				dia;
+	private Date					dia;
 
 	@Expose
-	private Double				preu;
+	private Double					preu;
 
 	@Expose
-	protected String			observacions;
+	protected String				observacions;
 
 	@Expose
-	protected String			address;
+	protected String				address;
 
-	protected List<PlatComanda>	plats				= new LinkedList<PlatComanda>();
+	protected List<PlatComanda>		plats				= new LinkedList<PlatComanda>();
 
-	protected Users				user;
+	protected List<BegudaComanda>	begudes				= new LinkedList<BegudaComanda>();
+
+	protected Users					user;
 
 	// CONSTRUCTORS
 
@@ -50,6 +52,7 @@ public class Comandes implements Serializable{
 		this.dia = dia;
 		this.hora = hora;
 		this.preu = preu;
+		
 	}
 
 	// GETTERS i SETTERS
@@ -133,4 +136,16 @@ public class Comandes implements Serializable{
 		this.user = user;
 	}
 
+	public List<BegudaComanda> getBegudes(){
+	
+		return begudes;
+	}
+
+	public void setBegudes( List<BegudaComanda> begudes ){
+	
+		this.begudes = begudes;
+	}
+
+	
+	
 }

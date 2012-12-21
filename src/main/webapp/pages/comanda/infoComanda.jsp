@@ -18,7 +18,7 @@
 	<div id="slider" style=" height: 500px;"  >
 	    <ul>
 	    	<s:iterator value="refrescList" var="refresc">
-	    			<li class="draggable" ><img id="imageRefresc_${refresc.id}" width="200px"  src="/onlineBot/comanda/ImageAction.action?imageId=${refresc.id}" title="${refresc.descripcio} -> Double Click to Add" /></li>
+	    			<li class="draggable" id="${refresc.idSub}" ><img id="imageRefresc_${refresc.id}" width="200px"  src="/onlineBot/comanda/ImageAction.action?imageId=${refresc.id}" title="${refresc.descripcio} -> Double Click to Add" /></li>
 	        </s:iterator>	
 	    </ul>
 	</div>
@@ -33,6 +33,14 @@
 <div id="droppable"  class="ui-widget-header abs">
 
   <a href="#" onclick="saveBegudaToComanda();" >  <img src="<c:url value='/images/shopping_cart.png' />"  height="20px" ></img></a>
+  		<br>
+	   <s:text name="comanda.num.id" />:<label id="numComanda"></label>
+	    <br>
+	   <s:text name="comanda.num.plats" />:<label id="numplats" ></label>
+	   <br>
+	   <s:text name="comanda.num.begudes" />:<label id="numbegudes" ></label>
+	    <br>
+	   <s:text name="comanda.preu" />:<label id="preu" ></label>
 </div>
 <br>
 <br>
@@ -52,6 +60,8 @@
 		</table>
 	</div>
 </s:iterator>
+</div>
+<div id="begudes" class="abs">
 </div>
 
 <br>
@@ -182,16 +192,16 @@
 	#slider li {
 		width:212px;		
 	}	
-		.abs{
+	.abs{
 			position: relative;
 			top: 20px;
 			left: 50px;
 			width: 400px;
 			height: 200px;
 		}
-.prevBtn {
-	left:0px;
-	}
+	.prevBtn {
+		left:0px;
+		}
 </style>
 
 <script>	
@@ -204,32 +214,69 @@ $(function(){
 		
 		dragBeguda.animate({
 							    width: "90%",
-							    opacity: 0.4,
+							    opacity: 0.4, 
 							    marginLeft: "0.6in",
 							    fontSize: "3em",
 							    borderWidth: "10px",
 							    left: "+=250px"
 	  						}, 1800,function() {
+	  								var id = $(this).attr("id");
+	  								saveBegudaToComanda(id);
 	      							$(this).css("visiblity","hidden");
 	      							$(this).css("display","none");
 	    					});
 	  	
 	});
 	
+	
+	function saveBegudaToComanda(idBeguda){
+		
+		var data ="idBeguda="+idBeguda+"&idComanda="+$("#idcomanda").val();
+      	$.ajax({
+      		  type: "POST",
+      		  url: '/onlineBot/comanda/ajaxLoadBeguda.action',
+      		  dataType: 'json',
+      		  data: data,
+      		  success: function(json){	
+      			  if(json==null || json.error!=null){
+           				$("#errorsajaxlabel").text(json.error);
+           				$("#errorsajax").show();
+           			}else{
+           				if(json.alerta!=null){
+           					alert(json.alerta);
+           				}else{
+           					var numBegudes=0;
+           					var preu = $("#preu").text();
+           					var preuF = parseFloat(preu);
+           					var html="";
+           					$.each(json, function(index, value) { 
+           					 	numBegudes= numBegudes+value.numBegudes;
+           						preuF= preuF + parseFloat(value.beguda.preu);
+           						html=html+"<div class='selector'>"+value.beguda.nom+"<br>"+value.beguda.preu+"</div>";
+           						
+           					});
+           					$("#begudes").html(html);
+           					$("#numbegudes").text(numBegudes);
+           					$("#preu").text(preuF);
+           				}
+           			}				
+      		  },
+      		  error: function(e){   $("#errorsajaxlabel").text("Error in ajax call");
+        								$("#errorsajax").show();  		
+      		  					}
+      		});	
+	}
+	
 	$( ".draggable" ).draggable({
 		 helper:'clone',		
 		 start: function(event,ui){				
 			 $("#slider").css("height","500px");	  	
-	    }, 	  
-	    stop: function(event, ui){ 	
-	    	//alert("stop");  	    	
 	    }
 	});
 	$( "#droppable" ).droppable({
-	    drop: function( event, ui ){
-	        
+	    drop: function( event, ui ){	        
 	        var item_id = ui.draggable.attr("id");     
-	        alert("dropped"+item_id);
+	        saveBegudaToComanda(item_id);
 	    }
 	});
 });
@@ -267,7 +314,11 @@ function submitLog(){
 new Address.addressValidation();
 
 $("#idcomanda").val(${idComanda});
+$("#numComanda").text(${idComanda});
 
+$("#numplats").text(${fn:length(comanda.plats)});
+$("#preu").text(${comanda.preu});
+$("#numbegudes").text(${fn:length(comanda.begudes)});
 var sudoSlider = $("#slider").sudoSlider({
     autowidth:false,
     slideCount:3,

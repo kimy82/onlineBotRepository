@@ -21,10 +21,12 @@ import com.online.exceptions.ComandaException;
 import com.online.exceptions.GeneralException;
 import com.online.exceptions.WrongParamException;
 import com.online.model.Beguda;
+import com.online.model.BegudaComanda;
 import com.online.model.Comandes;
 import com.online.model.Plat;
 import com.online.model.PlatComanda;
 import com.online.pojos.Basic;
+import com.online.pojos.BasicSub;
 import com.online.services.impl.ComandaServiceImpl;
 import com.online.utils.Utils;
 import com.opensymphony.xwork2.ActionSupport;
@@ -43,11 +45,12 @@ public class WelcomeComandaAction extends ActionSupport implements ServletRespon
 	List<Plat>					platList			= new ArrayList<Plat>();
 	List<PlatComanda>			platComandaList		= new ArrayList<PlatComanda>();
 	private List<Basic>			horaList			= new ArrayList<Basic>();
-	
-	private List<Basic>			refrescList			= new ArrayList<Basic>();
+
+	private List<BasicSub>		refrescList			= new ArrayList<BasicSub>();
 
 	private Long				idComanda			= null;
-	private Long				idPlat				= null;	
+	private Long				idPlat				= null;
+	private Long				idBeguda			= null;
 
 	private String				nameAuth;
 
@@ -78,7 +81,7 @@ public class WelcomeComandaAction extends ActionSupport implements ServletRespon
 		try {
 
 			out = this.response.getOutputStream();
-			inizilizeDadesComanda();
+			inizilizeDadesComandaPlat();
 			if (this.idComanda != null) {
 				// recuperem la comanda i afegim plat
 				Comandes comanda = this.comandaBo.load(this.idComanda);
@@ -136,6 +139,45 @@ public class WelcomeComandaAction extends ActionSupport implements ServletRespon
 		return null;
 	}
 
+	public String ajaxLoadBeguda(){
+
+		ServletOutputStream out = null;
+
+		String json = "";
+
+		try {
+
+			out = this.response.getOutputStream();
+			inizilizeDadesComandaBeguda();
+			if (this.idComanda != null) {
+				// recuperem la comanda i afegim plat
+				Comandes comanda = this.comandaBo.load(this.idComanda);
+				List<BegudaComanda> begudaList = comanda.getBegudes();
+				Beguda begudaToAdd = this.begudaBo.load(this.idBeguda);
+
+				begudaList = comandaService.addBegudaInList(begudaList, begudaToAdd);
+
+				comanda.setBegudes(begudaList);
+
+				this.comandaBo.update(comanda);
+
+				json = this.comandaService.createJSONForBegudaList(begudaList);
+			}
+		} catch (ComandaException ce) {
+			json = createErrorJSON("error in comanda service action");
+		} catch (Exception e) {
+			json = createErrorJSON("error in ajax action");
+		}
+
+		try {
+			out.print(json);
+		} catch (IOException e) {
+			throw new GeneralException(e, "possibly ServletOutputStream null");
+		}
+
+		return null;
+	}
+
 	public String goToPas1Action(){
 
 		inizilizeComandaId();
@@ -145,16 +187,21 @@ public class WelcomeComandaAction extends ActionSupport implements ServletRespon
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		this.nameAuth = auth.getName();
 
-		Comandes comanda = this.comandaBo.load(this.idComanda);
-
-		List<Beguda> begudaList = this.begudaBo.getAll();
-		for(Beguda beguda : begudaList){
-			
-		Basic basic = new Basic(beguda.getFoto().getId(),beguda.getNom());
-		this.refrescList.add(basic);
-			
-		}
+		this.comanda = this.comandaBo.load(this.idComanda);
 		
+		Double preu = this.comandaService.getPreuOfComanda(this.comanda);
+		
+		this.comanda.setPreu(preu);
+		
+		List<Beguda> begudaList = this.begudaBo.getAll();
+		for (Beguda beguda : begudaList) {
+
+			BasicSub basic = new BasicSub(beguda.getFoto().getId(), beguda.getNom());
+			basic.setIdSub(beguda.getId());
+			this.refrescList.add(basic);
+
+		}
+
 		this.platComandaList = comanda.getPlats();
 
 		return SUCCESS;
@@ -169,13 +216,23 @@ public class WelcomeComandaAction extends ActionSupport implements ServletRespon
 		return jsonSB.toString();
 	}
 
-	private void inizilizeDadesComanda() throws WrongParamException{
+	private void inizilizeDadesComandaPlat() throws WrongParamException{
 
 		inizilizeComandaId();
 		this.idPlat = (request.getParameter("idPlat") == null || request.getParameter("idPlat").equals("")) ? null : Long.parseLong(request
 				.getParameter("idPlat"));
 		if (this.idPlat == null) {
 			throw new WrongParamException("null plat to add");
+		}
+	}
+
+	private void inizilizeDadesComandaBeguda() throws WrongParamException{
+
+		inizilizeComandaId();
+		this.idBeguda = (request.getParameter("idBeguda") == null || request.getParameter("idBeguda").equals("")) ? null : Long
+				.parseLong(request.getParameter("idBeguda"));
+		if (this.idBeguda == null) {
+			throw new WrongParamException("null beguda to add");
 		}
 	}
 
@@ -265,40 +322,42 @@ public class WelcomeComandaAction extends ActionSupport implements ServletRespon
 
 		this.horaList = horaList;
 	}
-	
+
 	public String getNameAuth(){
-		
+
 		return nameAuth;
 	}
 
 	public void setNameAuth( String nameAuth ){
-	
+
 		this.nameAuth = nameAuth;
 	}
 
 	public Long getIdComanda(){
-	
+
 		return idComanda;
 	}
 
 	public void setIdComanda( Long idComanda ){
-	
+
 		this.idComanda = idComanda;
 	}
 
-	public List<Basic> getRefrescList(){
+	
+
+	public List<BasicSub> getRefrescList(){
 	
 		return refrescList;
 	}
 
-	public void setRefrescList( List<Basic> refrescList ){
+	public void setRefrescList( List<BasicSub> refrescList ){
 	
 		this.refrescList = refrescList;
 	}
 
 	public void setBegudaBo( BegudaBo begudaBo ){
-	
+
 		this.begudaBo = begudaBo;
 	}
-	
+
 }
