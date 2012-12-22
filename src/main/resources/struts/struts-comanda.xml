@@ -15,6 +15,9 @@
 		<action name="Welcome" class="com.online.action.comanda.WelcomeComandaAction"
 			method="execute">
 			<result name="success">/pages/comanda/welcome.jsp</result>
+		</action>		
+		<action name="checkComanda"
+			class="com.online.action.comanda.WelcomeComandaAction" method="checkComanda">
 		</action>
 		<action name="ajaxLoadPlat"
 			class="com.online.action.comanda.WelcomeComandaAction" method="ajaxLoadPlat">

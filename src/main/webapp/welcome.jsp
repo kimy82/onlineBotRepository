@@ -123,9 +123,24 @@
 <script type="text/javascript" >
 $(function() {
 
-$( ".selector" ).dblclick(function() {
+$( ".selector" ).click(function() {
 	var id = $(this).attr("id");
-	window.location.href="/onlineBot/comanda/Welcome.action?restaurantId="+id;
+	var comanda = window.localStorage.getItem("comanda");
+	if(comanda != 'undefined' && comanda != null){
+		if (confirm("Existeix una comanda començada. Desitjar continuar?")) {
+			window.location.href="/onlineBot/comanda/Welcome.action?restaurantId="+id+"&idComanda="+comanda;		
+		}else{
+			window.localStorage.removeItem("comanda");
+			window.localStorage.removeItem("comanda.numplats");
+			window.localStorage.removeItem("comanda.preu");
+			window.localStorage.removeItem("comanda.numbegudes");
+			
+			window.location.href="/onlineBot/comanda/Welcome.action?restaurantId="+id;
+		}
+	}else{
+		window.location.href="/onlineBot/comanda/Welcome.action?restaurantId="+id;
+	}
+	
 	  	
 	});
 });

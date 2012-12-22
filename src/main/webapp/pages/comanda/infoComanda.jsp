@@ -10,11 +10,18 @@
 	<META http-equiv="Content-Style-Type" content="text/css">
 	<title><s:text name="txt.info.comanda.title" /></title>
 </head>
-
 <body>
 <h2><s:text name="txt.info.comanda.user" /></h2>
+<div id="errorsajax">
+				<label style="color: red" id="errorsajaxlabel"></label>
+</div>
 <br>
-<div style="position:relative;">
+<table>
+	<tr>		
+			<td><a href="#" onclick="history.go(-1);" > Home</a></td>
+	</tr>
+</table>	
+<div style="position:relative; left: 30px;">
 	<div id="slider" style=" height: 500px;"  >
 	    <ul>
 	    	<s:iterator value="refrescList" var="refresc">
@@ -112,15 +119,15 @@
 									</s:select>
 					</td>																
 					<s:hidden key="comanda.id" id="idcomanda" ></s:hidden>	                   
-					<s:hidden key="comanda.address" id="comandaddress"></s:hidden>																		
-					<s:submit></s:submit>
+					<s:hidden key="comanda.address" id="comandaddress"></s:hidden>			
+																				
+					<tr><td><input type="button"  onclick="checkComandaJS();" value="Check Comanda" /></td><td>  <div id="chargeBar"></div></td></tr>
 	</s:form>	
 	<br>
 
 	<c:if test="${nameAuth eq 'anonymousUser' }">
 		<h1><s:text name="txt.logate" /></h1>
-		<form name='f' id="f" action="/onlineBot/j_spring_security_check"
-			method='POST'>
+		<form name='f' id="f" action="/onlineBot/j_spring_security_check" method='POST'>
 			<table>
 				<tr>
 					<td><s:text name="txt.user.of.login" />:</td>
@@ -151,6 +158,8 @@
 	<link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/base/jquery-ui.css" rel="stylesheet" type="text/css" />
 	<link rel="stylesheet" type="text/css" media="all" href="<c:url value='/css/calendar-blau.css' />" title="win2k-cold-1" />
 	<link rel="stylesheet" type="text/css" media="all" href="<c:url value='/css/sudoSlider.css' />"  />	
+	<link type="text/css" rel="stylesheet" href="<c:url value='/css/progress.css' />" />
+	<link type="text/css" rel="stylesheet" href="<c:url value='/css/infoComanda.css' />" />
 
 	<script src="<c:url value='/js/jquery/jquery.js' />" type="text/javascript"></script>
 	<script src="<c:url value='/js/jquery/jquery.ui.core.js' />" type="text/javascript"></script>
@@ -176,155 +185,9 @@
 	
 	<!-- Sliders de begudes -->
 	<script src="<c:url value='/js/sudoSlider/jquery.sudoSlider.js'/>" type="text/javascript"></script>
-	
+	<script type="text/javascript" src="<c:url value='/js/progressbar/progress.js'/>"></script>
+	<script type="text/javascript" src="<c:url value='/pages/comanda/jsinfoComanda.js'/>"></script>	
 </c:if>
-<style>
-	.draggable { position:absolute; z-index:2001; }
 
-	.selector {
-	    -moz-border-radius: 10px;
-	    -webkit-border-radius: 10px;
-	    border-radius: 10px;
-	    border: blue 2px solid;
-	    width: 500px;
-	}
-	
-	#slider li {
-		width:212px;		
-	}	
-	.abs{
-			position: relative;
-			top: 20px;
-			left: 50px;
-			width: 400px;
-			height: 200px;
-		}
-	.prevBtn {
-		left:0px;
-		}
-</style>
-
-<script>	
-$(function(){
-	
-	$( ".draggable" ).dblclick(function() {
-		
-		var dragBeguda =$(this).clone();
-		dragBeguda.appendTo("#slider");
-		
-		dragBeguda.animate({
-							    width: "90%",
-							    opacity: 0.4, 
-							    marginLeft: "0.6in",
-							    fontSize: "3em",
-							    borderWidth: "10px",
-							    left: "+=250px"
-	  						}, 1800,function() {
-	  								var id = $(this).attr("id");
-	  								saveBegudaToComanda(id);
-	      							$(this).css("visiblity","hidden");
-	      							$(this).css("display","none");
-	    					});
-	  	
-	});
-	
-	
-	function saveBegudaToComanda(idBeguda){
-		
-		var data ="idBeguda="+idBeguda+"&idComanda="+$("#idcomanda").val();
-      	$.ajax({
-      		  type: "POST",
-      		  url: '/onlineBot/comanda/ajaxLoadBeguda.action',
-      		  dataType: 'json',
-      		  data: data,
-      		  success: function(json){	
-      			  if(json==null || json.error!=null){
-           				$("#errorsajaxlabel").text(json.error);
-           				$("#errorsajax").show();
-           			}else{
-           				if(json.alerta!=null){
-           					alert(json.alerta);
-           				}else{
-           					var numBegudes=0;
-           					var preu = $("#preu").text();
-           					var preuF = parseFloat(preu);
-           					var html="";
-           					$.each(json, function(index, value) { 
-           					 	numBegudes= numBegudes+value.numBegudes;
-           						preuF= preuF + parseFloat(value.beguda.preu);
-           						html=html+"<div class='selector'>"+value.beguda.nom+"<br>"+value.beguda.preu+"</div>";
-           						
-           					});
-           					$("#begudes").html(html);
-           					$("#numbegudes").text(numBegudes);
-           					$("#preu").text(preuF);
-           				}
-           			}				
-      		  },
-      		  error: function(e){   $("#errorsajaxlabel").text("Error in ajax call");
-        								$("#errorsajax").show();  		
-      		  					}
-      		});	
-	}
-	
-	$( ".draggable" ).draggable({
-		 helper:'clone',		
-		 start: function(event,ui){				
-			 $("#slider").css("height","500px");	  	
-	    }
-	});
-	$( "#droppable" ).droppable({
-	    drop: function( event, ui ){	        
-	        var item_id = ui.draggable.attr("id");     
-	        saveBegudaToComanda(item_id);
-	    }
-	});
-});
-function submitLog(){
-	
-	$.ajax({
-	    url: "<c:url value='/onlineBot/j_spring_security_check' />",
-	    type: "POST",
-	    data: $("#f").serialize(),
-	    dataType: 'json',
-	    beforeSend: function (xhr) {
-	        xhr.setRequestHeader("X-Ajax-call", "true");
-	    },
-	    success: function(json) {
-	        if (json.result == "ok") {
-	        	$("#loged").text("OK, Validació correcte");
-	             console.log("ssss");
-	        } else if (json.result == "error") {
-	        	console.log("error");
-	        	$("#loged").text("KO, Validació incorrecte");
-	        }
-	    }
-	});
-	
-}
-
-//---------------------------------------------------------------------------------------------------------------------
-    Calendar.setup({
-        inputField    	:    "dia",      // id del campo de texto
-        ifFormat       	:    "%d-%m-%Y",          // formato de la fecha, cuando se escriba en el campo de texto
-        button         	:    "llencadorData1",          // el id del botón que lanzará el calendario
-        locale 		   	:    "ca_ES"
-    });
-//---------------------------------------------------------------------------------------------------------------------
-new Address.addressValidation();
-
-$("#idcomanda").val(${idComanda});
-$("#numComanda").text(${idComanda});
-
-$("#numplats").text(${fn:length(comanda.plats)});
-$("#preu").text(${comanda.preu});
-$("#numbegudes").text(${fn:length(comanda.begudes)});
-var sudoSlider = $("#slider").sudoSlider({
-    autowidth:false,
-    slideCount:3,
-    continuous:true
-});
-
-</script> 
 </body>
 </html>

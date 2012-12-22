@@ -17,6 +17,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import com.online.bo.BegudaBo;
 import com.online.bo.ComandaBo;
 import com.online.bo.PlatsBo;
+import com.online.bo.RestaurantsBo;
 import com.online.exceptions.ComandaException;
 import com.online.exceptions.GeneralException;
 import com.online.exceptions.WrongParamException;
@@ -40,6 +41,7 @@ public class WelcomeComandaAction extends ActionSupport implements ServletRespon
 	private PlatsBo				platsBo;
 	private ComandaBo			comandaBo;
 	private BegudaBo			begudaBo;
+	private RestaurantsBo	    restaurantsBo;
 	private Comandes			comanda;
 
 	List<Plat>					platList			= new ArrayList<Plat>();
@@ -51,7 +53,8 @@ public class WelcomeComandaAction extends ActionSupport implements ServletRespon
 	private Long				idComanda			= null;
 	private Long				idPlat				= null;
 	private Long				idBeguda			= null;
-
+	private Integer				idRestaurant		= null;
+	
 	private String				nameAuth;
 
 	private ComandaServiceImpl	comandaService;
@@ -63,10 +66,49 @@ public class WelcomeComandaAction extends ActionSupport implements ServletRespon
 
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		this.nameAuth = auth.getName();
+		inizializeRestaurantId();
+		inizilizeComandaId();
 		// Recoperem tots els plats disponibles.
-		this.platList = this.platsBo.getAll();
+		this.platList.clear();
+		this.platList.addAll(this.restaurantsBo.load(this.idRestaurant, true, false, false).getPlats());
+		
+		//si teniem una comanda la recuperem
+		if(this.idComanda!=null){
+			goToPas1Action();
+		}
+		
 		return SUCCESS;
 
+	}
+	
+	public String checkComanda(){
+		
+		ServletOutputStream out = null;
+		String json = "";
+		
+		try {
+			out = this.response.getOutputStream();
+			Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+			this.nameAuth = auth.getName();
+			
+			if(this.nameAuth.equals("anonymousUser")){
+				json = createNotLogedJSON("User not loged. Login before...");
+			}else{
+				inizilizeComandaId();
+				this.comanda = this.comandaBo.load(this.idComanda);
+			}
+		} catch (ComandaException ce) {
+			json = createErrorJSON("error in comanda service action");
+		} catch (Exception e) {
+			json = createErrorJSON("error in ajax action");
+		}
+
+		try {
+			out.print(json);
+		} catch (IOException e) {
+			throw new GeneralException(e, "possibly ServletOutputStream null");
+		}
+		return null;
 	}
 
 	public String ajaxLoadPlat(){
@@ -215,6 +257,14 @@ public class WelcomeComandaAction extends ActionSupport implements ServletRespon
 		jsonSB.append("}");
 		return jsonSB.toString();
 	}
+	
+	private String createNotLogedJSON( String error ){
+
+		StringBuffer jsonSB = new StringBuffer("{");
+		jsonSB.append("\"alertLoged\":\"" + error+"\"");
+		jsonSB.append("}");
+		return jsonSB.toString();
+	}
 
 	private void inizilizeDadesComandaPlat() throws WrongParamException{
 
@@ -223,6 +273,14 @@ public class WelcomeComandaAction extends ActionSupport implements ServletRespon
 				.getParameter("idPlat"));
 		if (this.idPlat == null) {
 			throw new WrongParamException("null plat to add");
+		}
+	}
+	
+	private void inizializeRestaurantId() throws WrongParamException{
+		this.idRestaurant = (request.getParameter("restaurantId") == null || request.getParameter("restaurantId").equals("")) ? null : Integer
+				.parseInt(request.getParameter("restaurantId"));
+		if (this.idRestaurant == null) {
+			throw new WrongParamException("null restaurant  to get plats");
 		}
 	}
 
@@ -358,6 +416,10 @@ public class WelcomeComandaAction extends ActionSupport implements ServletRespon
 	public void setBegudaBo( BegudaBo begudaBo ){
 
 		this.begudaBo = begudaBo;
+	}
+
+	public void setRestaurantsBo(RestaurantsBo restaurantsBo) {
+		this.restaurantsBo = restaurantsBo;
 	}
 
 }

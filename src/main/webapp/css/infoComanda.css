@@ -1,0 +1,23 @@
+.draggable { position:absolute; z-index:10; }
+
+	.selector {
+	    -moz-border-radius: 10px;
+	    -webkit-border-radius: 10px;
+	    border-radius: 10px;
+	    border: blue 2px solid;
+	    width: 500px;
+	}
+	
+	#slider li {
+		width:206px;		
+	}	
+	.abs{
+			position: relative;
+			top: 20px;
+			left: 50px;
+			width: 400px;
+			height: 200px;
+		}
+	.prevBtn {
+		left:0px;
+		}

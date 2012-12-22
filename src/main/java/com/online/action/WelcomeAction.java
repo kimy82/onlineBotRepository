@@ -7,6 +7,8 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.apache.struts2.interceptor.ServletRequestAware;
 import org.apache.struts2.interceptor.ServletResponseAware;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 
 import com.online.bo.RestaurantsBo;
 import com.online.model.Restaurant;
@@ -19,9 +21,12 @@ public class WelcomeAction extends ActionSupport implements ServletResponseAware
 	HttpServletRequest		request;
 	private RestaurantsBo	restaurantsBo;
 	private List<Restaurant> restaurantList;
+	private String				nameAuth;
 
 	public String execute(){
-
+		
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		this.nameAuth = auth.getName();
 		this.restaurantList = this.restaurantsBo.getAll();
 		return SUCCESS;
 
@@ -60,6 +65,14 @@ public class WelcomeAction extends ActionSupport implements ServletResponseAware
 	public void setRestaurantList( List<Restaurant> restaurantList ){
 	
 		this.restaurantList = restaurantList;
+	}
+
+	public String getNameAuth() {
+		return nameAuth;
+	}
+
+	public void setNameAuth(String nameAuth) {
+		this.nameAuth = nameAuth;
 	}		
 	
 

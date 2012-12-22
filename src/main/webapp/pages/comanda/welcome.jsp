@@ -27,6 +27,9 @@
 			<td><a href="<c:url value="/j_spring_security_logout" />" > Logout</a></td>
 		</tr>	
 	</c:if>
+		<tr>		
+			<td><a href="#" onclick="history.go(-1);" > Home</a></td>
+		</tr>
 </table>
 </div>
 
@@ -83,6 +86,8 @@
 	   <s:text name="comanda.num.id" />:<label id="numComanda"></label>
 	    <br>
 	   <s:text name="comanda.num.plats" />:<label id="numplats" ></label>
+	   <br>
+	   <s:text name="comanda.num.begudes" />:<label id="numbegudes" ></label>
 	    <br>
 	   <s:text name="comanda.preu" />:<label id="preu" ></label>
 </div>
@@ -173,6 +178,11 @@ $( ".selector" ).dblclick(function() {
            				if(json.alerta!=null){
            					alert(json.alerta);
            				}else{
+           					//Posem id en el local storage
+           					window.localStorage.setItem("comanda",json.numComanda);
+           					window.localStorage.setItem("comanda.preu",json.preu);
+           					window.localStorage.setItem("comanda.numplats",json.numPlats);
+           					
            					$("#numComanda").text(json.numComanda);
            					$("#numplats").text(json.numPlats);
            					$("#preu").text(json.preu);
@@ -205,6 +215,11 @@ $( ".selector" ).dblclick(function() {
     });
 });
 
+		//Carrega del cistell de compra 
+		$("#numComanda").text(${idComanda});
+		$("#numplats").text(${fn:length(comanda.plats)});
+		$("#preu").text(${comanda.preu});
+
 		function goToComandaPas1(){
 			window.location.href="/onlineBot/comanda/goToPas1Action.action?idComanda="+$("#numComanda").text();
 		}
@@ -212,6 +227,31 @@ $( ".selector" ).dblclick(function() {
 	    $(document).ready(function() {
 	        $('#coin-slider').coinslider();
 	    });
+
+	    var comanda = window.localStorage.getItem("comanda");
+	    
+	    if(comanda != 'undefined' && comanda != null){
+					
+	    	$("#numComanda").text(comanda);
+	    	
+	    	var preu = window.localStorage.getItem("comanda.preu");
+	    	if(preu != 'undefined' && preu != null){
+	    		$("#preu").text(preu);		
+	    	}
+			
+	    	var numplats = window.localStorage.getItem("comanda.numplats");
+	    	if(numplats != 'undefined' && numplats != null){
+	    		$("#numplats").text(numplats);		
+	    	}
+	    	
+	    	var numbegudes = window.localStorage.getItem("comanda.numbegudes");
+	    	if(numbegudes != 'undefined' && numbegudes != null){
+	    		$("#numbegudes").text(numbegudes);		
+	    	}
+		}
+	    
+	  
+	       
 </script>
 
 </body>

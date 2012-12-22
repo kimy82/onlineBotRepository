@@ -85,7 +85,7 @@ var  oTableRest=null;
 var  oTablePlats=null;
 
 //ocultem divs
-$("#inforestaurant").hide();
+//("#inforestaurant").hide();
 $("#errorsajax").hide();
 
 $(document).ready(function() {
@@ -217,18 +217,3 @@ $(document).ready(function() {
 
 
 } );
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
