@@ -25,8 +25,10 @@ function payComanda(){
 function checkComandaJS(){
 	var comanda = window.localStorage.getItem("comanda");
 	if(comanda!= null && comanda != 'undefined'){
+		var hora = $("#comandahora").val();
+		var dia = $("#dia").val();
 		$("#chargeBar").show();
-		var data ="idComanda="+comanda;
+		var data ="idComanda="+comanda+"&dia="+dia+"&hora="+hora;
 	  	$.ajax({
 	  		  type: "POST",
 	  		  url: '/onlineBot/comanda/checkComanda.action',
@@ -51,6 +53,7 @@ function checkComandaJS(){
 	       				if(json.comandaOK !=null ){
 	       					alert(json.comandaOK);
 	       					$("#chargeBar").hide();
+	       					$("#paycomanda").show();
 	       					return;
 	       				}
 	       						       			
@@ -140,28 +143,6 @@ $(function(){
 	    }
 	});
 });
-function submitLog(){
-	
-	$.ajax({
-	    url: "<c:url value='/onlineBot/j_spring_security_check' />",
-	    type: "POST",
-	    data: $("#f").serialize(),
-	    dataType: 'json',
-	    beforeSend: function (xhr) {
-	        xhr.setRequestHeader("X-Ajax-call", "true");
-	    },
-	    success: function(json) {
-	        if (json.result == "ok") {
-	        	$("#loged").text("OK, Validació correcte");
-	             console.log("ssss");
-	        } else if (json.result == "error") {
-	        	console.log("error");
-	        	$("#loged").text("KO, Validació incorrecte");
-	        }
-	    }
-	});
-	
-}
 
 //---------------------------------------------------------------------------------------------------------------------
     Calendar.setup({
@@ -173,12 +154,8 @@ function submitLog(){
 //---------------------------------------------------------------------------------------------------------------------
 new Address.addressValidation();
 
-$("#idcomanda").val(${idComanda});
-$("#numComanda").text(${idComanda});
+$("#paycomanda").hide();
 
-$("#numplats").text(${fn:length(comanda.plats)});
-$("#preu").text(${comanda.preu});
-$("#numbegudes").text(${fn:length(comanda.begudes)});
 var sudoSlider = $("#slider").sudoSlider({
     autowidth:false,
     slideCount:3,

@@ -115,7 +115,7 @@
 					
 					<td><s:text name="comanda.hora" ></s:text></td>										
 					<td>
-						<s:select list="horaList" key="comanda.hora" listKey="descripcio" listValue="descripcio" theme="simple" >					
+						<s:select list="horaList" key="comanda.hora" id="comandahora" listKey="descripcio" listValue="descripcio" theme="simple" >					
 									</s:select>
 					</td>																
 					<s:hidden key="comanda.id" id="idcomanda" ></s:hidden>	                   
@@ -123,13 +123,14 @@
 																				
 					<tr><td><input type="button"  onclick="checkComandaJS();" value="Check Comanda" /></td><td>  <div id="chargeBar"></div></td></tr>
 					
-					<tr><td><input type="button"  onclick="checkComandaJS();" value="Pay Comanda" /></td><td></td></tr>
+					
 	</s:form>	
+	<div id="paycomanda" ><input type="button"  onclick="payComanda();" value="Pay Comanda" /></div>
 	<br>
 
 	<c:if test="${nameAuth eq 'anonymousUser' }">
 		<h1><s:text name="txt.logate" /></h1>
-		<form name='f' id="f" action="/onlineBot/j_spring_security_check" method='POST'>
+		<form name='f' id="f" action="/onlineBot/j_spring_security_check" method="post">
 			<table>
 				<tr>
 					<td><s:text name="txt.user.of.login" />:</td>
@@ -190,6 +191,38 @@
 	<script type="text/javascript" src="<c:url value='/js/progressbar/progress.js'/>"></script>
 	<script type="text/javascript" src="<c:url value='/pages/comanda/jsinfoComanda.js'/>"></script>	
 </c:if>
+<script>
 
+function submitLog(){
+	
+	$.ajax({
+	    url: "<c:url value='/onlineBot/j_spring_security_check' />",
+	    type: "POST",
+	    data: $("#f").serialize(),
+	    dataType: 'json',
+	    beforeSend: function (xhr) {
+	        xhr.setRequestHeader("X-Ajax-call", "true");
+	    },
+	    success: function(json) {
+	        if (json.result == "ok") {
+	        	$("#loged").text("OK, Validació correcte");
+	             console.log("ssss");
+	        } else if (json.result == "error") {
+	        	console.log("error");
+	        	$("#loged").text("KO, Validació incorrecte");
+	        }
+	    }
+	});
+	
+}
+
+$("#idcomanda").val(${idComanda});
+$("#numComanda").text(${idComanda});
+
+$("#numplats").text(${fn:length(comanda.plats)});
+$("#preu").text(${comanda.preu});
+$("#numbegudes").text(${fn:length(comanda.begudes)});
+
+</script>
 </body>
 </html>

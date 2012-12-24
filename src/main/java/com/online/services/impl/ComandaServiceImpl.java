@@ -13,6 +13,7 @@ import com.google.gson.GsonBuilder;
 import com.google.gson.annotations.Expose;
 import com.online.bo.ConfigRestaurantBo;
 import com.online.bo.MotersBo;
+import com.online.bo.RestaurantsBo;
 import com.online.exceptions.ComandaException;
 import com.online.model.Beguda;
 import com.online.model.BegudaComanda;
@@ -29,6 +30,7 @@ public class ComandaServiceImpl implements ComandaService{
 
 	private ConfigRestaurantBo	configRestaurantBo;
 	private MotersBo			motersBo;
+	private RestaurantsBo	    restaurantsBo;
 	private ResourceBundle		resource;
 
 	public String checkComandaProblems( Comandes comanda, ResourceBundle resource ) throws ComandaException{
@@ -284,9 +286,10 @@ public class ComandaServiceImpl implements ComandaService{
 		for (Integer idRestaurant : restaurants) {
 
 			ConfigRestaurant configRestaurant = configRestaurantBo.load(dia, idRestaurant);
-			if (!configRestaurant.isObert()) {
+			if (configRestaurant==null || !configRestaurant.isObert()) {
+				Restaurant restaurant = this.restaurantsBo.load(idRestaurant, false, false, false);
 				return this.resource.getString("txt.restaurant.no.obert") + " "
-						+ configRestaurant.getRestaurants().iterator().next().getNom();
+						+ restaurant.getNom();
 			}
 		}
 
@@ -297,7 +300,7 @@ public class ComandaServiceImpl implements ComandaService{
 	private String createJSONComandaOK( ResourceBundle resource ){
 
 		StringBuffer jsonSB = new StringBuffer("{");
-		jsonSB.append("\"comandaOK\":\"" + resource.getString("txt.comanda.dia.hora.con.ok"));
+		jsonSB.append("\"comandaOK\":\"" + resource.getString("txt.comanda.dia.hora.comanda.ok"));
 		jsonSB.append("\"}");
 		return jsonSB.toString();
 	}
@@ -321,5 +324,11 @@ public class ComandaServiceImpl implements ComandaService{
 
 		this.motersBo = motersBo;
 	}
+
+	public void setRestaurantsBo(RestaurantsBo restaurantsBo) {
+		this.restaurantsBo = restaurantsBo;
+	}
+	
+	
 
 }

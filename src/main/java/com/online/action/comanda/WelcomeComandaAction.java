@@ -2,6 +2,7 @@ package com.online.action.comanda;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -55,6 +56,8 @@ public class WelcomeComandaAction extends ActionSupport implements ServletRespon
 	private Long				idPlat				= null;
 	private Long				idBeguda			= null;
 	private Integer				idRestaurant		= null;
+	private String 				hora;
+	private Date 				dia;
 	
 	private String				nameAuth;
 
@@ -87,7 +90,8 @@ public class WelcomeComandaAction extends ActionSupport implements ServletRespon
 		
 		ServletOutputStream out = null;
 		String json = "";
-		ResourceBundle resource =  getTexts();	
+		ResourceBundle resource =  getTexts("MessageResources");	
+		
 		try {
 			out = this.response.getOutputStream();
 			Authentication auth = SecurityContextHolder.getContext().getAuthentication();
@@ -97,8 +101,12 @@ public class WelcomeComandaAction extends ActionSupport implements ServletRespon
 				json = createNotLogedJSON("User not loged. Login before...");
 			}else{
 				inizilizeComandaId();
+				inizilizeComandaDiaHora(); 
 				this.comanda = this.comandaBo.load(this.idComanda);
-				json = 	this.comandaService.checkComandaProblems(this.comanda, resource);
+				this.comanda.setHora(this.hora);
+				this.comanda.setDia(this.dia);
+				
+				 json = this.comandaService.checkComandaProblems(this.comanda, resource);
 			}
 			
 			
@@ -309,6 +317,15 @@ public class WelcomeComandaAction extends ActionSupport implements ServletRespon
 			throw new WrongParamException("wrong id of comanda");
 		}
 
+	}
+	
+	private void inizilizeComandaDiaHora() throws WrongParamException{
+		try {
+			this.hora = (request.getParameter("hora") == null || request.getParameter("hora").equals("")) ? null : request.getParameter("hora");
+			this.dia = (request.getParameter("dia") == null || request.getParameter("dia").equals("")) ? null : Utils.getDate(request.getParameter("dia"));
+		} catch (Exception e) {
+			throw new WrongParamException("wrong id of comanda");
+		}
 	}
 
 	// SETTERS i GETTERS
