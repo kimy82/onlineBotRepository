@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.ResourceBundle;
 
 import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletRequest;
@@ -69,6 +70,7 @@ public class WelcomeComandaAction extends ActionSupport implements ServletRespon
 		inizializeRestaurantId();
 		inizilizeComandaId();
 		// Recoperem tots els plats disponibles.
+		
 		this.platList.clear();
 		this.platList.addAll(this.restaurantsBo.load(this.idRestaurant, true, false, false).getPlats());
 		
@@ -85,7 +87,7 @@ public class WelcomeComandaAction extends ActionSupport implements ServletRespon
 		
 		ServletOutputStream out = null;
 		String json = "";
-		
+		ResourceBundle resource =  getTexts();	
 		try {
 			out = this.response.getOutputStream();
 			Authentication auth = SecurityContextHolder.getContext().getAuthentication();
@@ -96,7 +98,11 @@ public class WelcomeComandaAction extends ActionSupport implements ServletRespon
 			}else{
 				inizilizeComandaId();
 				this.comanda = this.comandaBo.load(this.idComanda);
+				json = 	this.comandaService.checkComandaProblems(this.comanda, resource);
 			}
+			
+			
+			
 		} catch (ComandaException ce) {
 			json = createErrorJSON("error in comanda service action");
 		} catch (Exception e) {
@@ -254,7 +260,7 @@ public class WelcomeComandaAction extends ActionSupport implements ServletRespon
 
 		StringBuffer jsonSB = new StringBuffer("{");
 		jsonSB.append("\"error\":\"" + error);
-		jsonSB.append("}");
+		jsonSB.append("\"}");
 		return jsonSB.toString();
 	}
 	

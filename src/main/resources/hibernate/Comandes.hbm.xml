@@ -23,6 +23,9 @@
 		<property name="address" type="string">
 			<column name="ADDRESS" length="200" />
 		</property>
+		<property name="aDomicili" type="boolean" lazy="false" >
+			<column name="ADOMICILI"  />
+		</property>		
 		<many-to-one name="user" class="com.online.model.Users" >	
 			<column name="USER_ID"></column>	
 		</many-to-one>

@@ -1,6 +1,7 @@
 package com.online.services;
 
 import java.util.List;
+import java.util.ResourceBundle;
 
 import com.online.exceptions.ComandaException;
 import com.online.model.Beguda;
@@ -23,5 +24,7 @@ public interface ComandaService{
 	public Double getPreuOfComanda(Comandes comanda) throws ComandaException;
 
 	public boolean checkPlatInList(List<PlatComanda> platList, Plat plat) throws ComandaException;
+	
+	public String checkComandaProblems(Comandes comanda, ResourceBundle resource) throws ComandaException;
 }
  

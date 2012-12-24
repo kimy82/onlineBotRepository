@@ -16,6 +16,8 @@ public class Moters implements Serializable{
 
 	@Expose
 	private Integer				numeroMoters;
+	
+	private Integer				numeroMotersUsed;
 
 	private Date				data;
 
@@ -70,5 +72,16 @@ public class Moters implements Serializable{
 	
 		this.hora = hora;
 	}
+
+	public Integer getNumeroMotersUsed(){
+	
+		return numeroMotersUsed;
+	}
+
+	public void setNumeroMotersUsed( Integer numeroMotersUsed ){
+	
+		this.numeroMotersUsed = numeroMotersUsed;
+	}
+		
 
 }

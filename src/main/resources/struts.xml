@@ -49,6 +49,7 @@
 	<include file="struts/struts-users.xml"></include>
 	<include file="struts/struts-admin.xml"></include>
 	<include file="struts/struts-comanda.xml"></include>
+	<include file="struts/struts-payment.xml"></include>
 	
 	
 

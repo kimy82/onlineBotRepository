@@ -122,6 +122,8 @@
 					<s:hidden key="comanda.address" id="comandaddress"></s:hidden>			
 																				
 					<tr><td><input type="button"  onclick="checkComandaJS();" value="Check Comanda" /></td><td>  <div id="chargeBar"></div></td></tr>
+					
+					<tr><td><input type="button"  onclick="checkComandaJS();" value="Pay Comanda" /></td><td></td></tr>
 	</s:form>	
 	<br>
 

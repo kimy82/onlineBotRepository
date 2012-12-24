@@ -11,9 +11,19 @@
 						}, 500);
 
 					$("#chargeBar").hide();
-					
+
+function payComanda(){
+		var comanda = window.localStorage.getItem("comanda");
+		if(comanda!= null && comanda != 'undefined'){
+				$("#chargeBar").show();
+				var data ="idComanda="+comanda;
+				window.location.href="/onlineBot/payment/paymentEntry.action?"+data;
+		}		
+}	
+
+
 function checkComandaJS(){
-	 var comanda = window.localStorage.getItem("comanda");
+	var comanda = window.localStorage.getItem("comanda");
 	if(comanda!= null && comanda != 'undefined'){
 		$("#chargeBar").show();
 		var data ="idComanda="+comanda;
@@ -37,9 +47,14 @@ function checkComandaJS(){
 	       					$("#chargeBar").hide();
 	       					return;
 	       				}
+	       				
+	       				if(json.comandaOK !=null ){
+	       					alert(json.comandaOK);
+	       					$("#chargeBar").hide();
+	       					return;
+	       				}
 	       						       			
-	       			}
-	  			  	alert("No problem to deliver comanda");
+	       			}	  			  		  			  		  			  	
 	  			  $("#chargeBar").hide();
 	  		  },
 	  		  error: function(e){   $("#errorsajaxlabel").text("Error in ajax call");

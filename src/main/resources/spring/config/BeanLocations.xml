@@ -14,7 +14,10 @@
 	
  	<!-- Beans Declaration -->
  	<bean id="sendingEmailService" class="com.online.services.impl.SendingEmailServiceImpl"></bean>
- 	<bean id="comandaService" class="com.online.services.impl.ComandaServiceImpl"></bean>
+ 	<bean id="comandaService" class="com.online.services.impl.ComandaServiceImpl">
+ 		<property name="configRestaurantBo" ref="configRestaurantBo" /> 
+ 		<property name="motersBo" ref="motersBo" /> 		
+ 	</bean>
 	<import resource="../beans/Users.xml"/>
 	<import resource="../beans/Plats.xml"/>
 	<import resource="../beans/Restaurants.xml"/>

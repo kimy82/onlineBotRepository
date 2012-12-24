@@ -10,7 +10,12 @@
 		</id>	
 		<property name="numeroMoters" type="integer" lazy="false" >
 			<column name="NUM_MOTERS" not-null="true" />
-		</property>		
+		</property>
+		
+		<property name="numeroMotersUsed" type="integer" lazy="false" >
+			<column name="NUM_MOTERS_USED" />
+		</property>				
+		
 		<property name="data" type="date" lazy="false" >
 			<column name="FECHA"  not-null="true" />
 		</property>		

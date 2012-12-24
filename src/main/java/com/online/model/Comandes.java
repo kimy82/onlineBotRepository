@@ -37,8 +37,20 @@ public class Comandes implements Serializable{
 	protected List<BegudaComanda>	begudes				= new LinkedList<BegudaComanda>();
 
 	protected Users					user;
+	
+	protected Boolean 				aDomicili;
 
 	// CONSTRUCTORS
+
+	public Boolean getaDomicili(){
+	
+		return aDomicili;
+	}
+
+	public void setaDomicili( Boolean aDomicili ){
+	
+		this.aDomicili = aDomicili;
+	}
 
 	public Comandes() {
 

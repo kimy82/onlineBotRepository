@@ -9,6 +9,7 @@
 		
 		<custom-filter position="FORM_LOGIN_FILTER" ref="authenticationFilter" />
 		<intercept-url pattern="/user/**" access="hasAnyRole('ROLE_USER')"></intercept-url>		
+		<intercept-url pattern="/payment/**" access="hasAnyRole('ROLE_USER')"></intercept-url>		
 		<intercept-url pattern="/admin/**" access="hasAnyRole('ROLE_ADMIN')"></intercept-url>
 		<logout logout-success-url="/logout.action" />
 		

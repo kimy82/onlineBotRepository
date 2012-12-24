@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+"-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+"http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+	
+	<package name="payment" namespace="/payment" extends="struts-default">
+
+		<action name="paymentEntry" class="com.online.action.payment.PaymentAction"
+			method="execute">
+			<result name="success">/pages/comanda/payment/welcome.jsp</result>
+			<result name="error">/error.jsp</result>	
+		</action>
+	</package>
+</struts>
