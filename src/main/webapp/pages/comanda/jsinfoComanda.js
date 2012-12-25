@@ -27,8 +27,9 @@ function checkComandaJS(){
 	if(comanda!= null && comanda != 'undefined'){
 		var hora = $("#comandahora").val();
 		var dia = $("#dia").val();
+		var adomicili = $("#adomicili").val();
 		$("#chargeBar").show();
-		var data ="idComanda="+comanda+"&dia="+dia+"&hora="+hora;
+		var data ="idComanda="+comanda+"&dia="+dia+"&hora="+hora+"&aDomicili="+adomicili;
 	  	$.ajax({
 	  		  type: "POST",
 	  		  url: '/onlineBot/comanda/checkComanda.action',

@@ -190,7 +190,7 @@ public class MantenimentConfigAction extends ActionSupport implements ServletRes
 		String year = diaS[2];
 
 		Calendar calendar = Calendar.getInstance();
-		calendar.set(Integer.parseInt(year), Integer.parseInt(month), Integer.parseInt(numDia));
+		calendar.set(Integer.parseInt(year), (Integer.parseInt(month)-1), Integer.parseInt(numDia));
 		return calendar.getTime();
 
 	}

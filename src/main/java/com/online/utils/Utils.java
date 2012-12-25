@@ -78,7 +78,7 @@ public class Utils{
 			String any = dateString[2];
 			Calendar cal = Calendar.getInstance();
 			cal.set(Calendar.DAY_OF_MONTH,Integer.parseInt(dia));
-			cal.set(Calendar.MONTH, Integer.parseInt(mes));
+			cal.set(Calendar.MONTH, Integer.parseInt(mes)-1);
 			cal.set(Calendar.YEAR, Integer.parseInt(any));
 			return cal.getTime();
 		}
@@ -89,7 +89,7 @@ public class Utils{
 	public static Date getData(String dia, String mes, String any){
 		Calendar cal = Calendar.getInstance();
 		cal.set(Calendar.DAY_OF_MONTH,Integer.parseInt(dia));
-		cal.set(Calendar.MONTH, Integer.parseInt(mes));
+		cal.set(Calendar.MONTH, (Integer.parseInt(mes)-1));
 		cal.set(Calendar.YEAR, Integer.parseInt(any));
 		return cal.getTime();
 	}
@@ -117,5 +117,13 @@ public class Utils{
 		horaList.add(new Basic(1,Constants.H2400));
 				
 		return horaList;
+	}
+	
+	public static String getHora(String hora){
+		String[] horaVec = hora.split(":");
+		if(horaVec.length==2){
+			return horaVec[0]+horaVec[1];
+		}
+		return hora;
 	}
 }

@@ -117,7 +117,8 @@
 					<td>
 						<s:select list="horaList" key="comanda.hora" id="comandahora" listKey="descripcio" listValue="descripcio" theme="simple" >					
 									</s:select>
-					</td>																
+					</td>											
+					<s:checkbox key="comanda.aDomicili" id="adomicili"  ></s:checkbox>					
 					<s:hidden key="comanda.id" id="idcomanda" ></s:hidden>	                   
 					<s:hidden key="comanda.address" id="comandaddress"></s:hidden>			
 																				

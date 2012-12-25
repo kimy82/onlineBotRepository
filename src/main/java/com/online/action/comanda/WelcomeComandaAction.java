@@ -58,6 +58,7 @@ public class WelcomeComandaAction extends ActionSupport implements ServletRespon
 	private Integer				idRestaurant		= null;
 	private String 				hora;
 	private Date 				dia;
+	private String 				aDomicili;
 	
 	private String				nameAuth;
 
@@ -101,10 +102,13 @@ public class WelcomeComandaAction extends ActionSupport implements ServletRespon
 				json = createNotLogedJSON("User not loged. Login before...");
 			}else{
 				inizilizeComandaId();
-				inizilizeComandaDiaHora(); 
+				inizilizeComandaDiaHoraADomicili(); 
+				
 				this.comanda = this.comandaBo.load(this.idComanda);
-				this.comanda.setHora(this.hora);
+			
+				this.comanda.setHora(Utils.getHora(this.hora));
 				this.comanda.setDia(this.dia);
+				this.comanda.setaDomicili(Boolean.valueOf(aDomicili));
 				
 				 json = this.comandaService.checkComandaProblems(this.comanda, resource);
 			}
@@ -319,10 +323,13 @@ public class WelcomeComandaAction extends ActionSupport implements ServletRespon
 
 	}
 	
-	private void inizilizeComandaDiaHora() throws WrongParamException{
+	private void inizilizeComandaDiaHoraADomicili() throws WrongParamException{
 		try {
+			
 			this.hora = (request.getParameter("hora") == null || request.getParameter("hora").equals("")) ? null : request.getParameter("hora");
 			this.dia = (request.getParameter("dia") == null || request.getParameter("dia").equals("")) ? null : Utils.getDate(request.getParameter("dia"));
+			this.aDomicili = (request.getParameter("aDomicili") == null || request.getParameter("aDomicili").equals("")) ? null : request.getParameter("aDomicili");
+			
 		} catch (Exception e) {
 			throw new WrongParamException("wrong id of comanda");
 		}
@@ -444,5 +451,7 @@ public class WelcomeComandaAction extends ActionSupport implements ServletRespon
 	public void setRestaurantsBo(RestaurantsBo restaurantsBo) {
 		this.restaurantsBo = restaurantsBo;
 	}
+	
+	
 
 }

@@ -260,7 +260,7 @@ public class ComandaServiceImpl implements ComandaService{
 	private String checkMoters( Date dia, String hora ){
 
 		Moters moter = this.motersBo.load(hora, dia);
-		if (moter.getNumeroMoters() != null && !moter.getNumeroMoters().equals(0)) {
+		if (moter !=null  && moter.getNumeroMoters() != null && !moter.getNumeroMoters().equals(0)) {
 			Integer numMoters = moter.getNumeroMoters() != null ? moter.getNumeroMoters() : 0;
 			Integer numMotersUsed = moter.getNumeroMotersUsed() != null ? moter.getNumeroMotersUsed() : 0;
 			if (numMotersUsed < numMoters) {
