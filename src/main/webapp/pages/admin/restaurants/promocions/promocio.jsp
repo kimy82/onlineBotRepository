@@ -33,6 +33,8 @@
 							<th><s:text name="mant.promo.table.nom" /></th>
 							<th><s:text name="mant.promo.table.tipuDescompte" /></th>
 							<th><s:text name="mant.promo.table.descompteImport" /></th>
+							<th><s:text name="mant.promo.table.numBegudes" /></th>
+							<th><s:text name="mant.promo.table.tipusBeguda" /></th>
 							<th width="40px"></th>
 						</tr>
 					</thead>
@@ -64,7 +66,10 @@
 							<s:textfield key="promocioAPartirDeDTF.nom" id="nompromo_apd"  ></s:textfield>
 							<s:select list="tipusDescompteList" key="promocioAPartirDeDTF.tipuDescompte" listKey="descripcio" listValue="descripcio">					
 							</s:select>					
-							<s:textfield key="promocioAPartirDeDTF.descompteImport"  id="descompteImport_apd" onblur="onlyDouble(this.value,this.id)" ></s:textfield>																	
+							<s:textfield key="promocioAPartirDeDTF.descompteImport"  id="descompteImport_apd" onblur="onlyDouble(this.value,this.id)" ></s:textfield>		
+							<s:textfield key="promocioAPartirDeDTF.numBegudes"  id="numBegudes_apd" onblur="onlyEntero(this.value,this.id)" ></s:textfield>																
+							<s:select list="tipusBegudaList" key="promocioAPartirDeDTF.tipusBeguda" id="tipusBeguda_apd" listKey="descripcio" listValue="descripcio">					
+							</s:select>	
 							<s:textfield key="promocioAPartirDeDTF.importAPartirDe"  id="importAPartirDe"  onblur="onlyDouble(this.value,this.id)" ></s:textfield>
 							<tr>
 							<td><s:text name="promocioAPartirDeDTF.diaString" ></s:text></td>
@@ -80,7 +85,11 @@
 							<s:textfield key="promocioNumComandes.nom" id="nompromo_pnc"  ></s:textfield>
 							<s:select list="tipusDescompteList" key="promocioNumComandes.tipuDescompte" listKey="descripcio" listValue="descripcio">					
 							</s:select>										
-							<s:textfield key="promocioNumComandes.descompteImport"  id="descompteImport_pnc"  onblur="onlyDouble(this.value,this.id)" ></s:textfield>	
+							<s:textfield key="promocioNumComandes.descompteImport"  id="descompteImport_pnc"  onblur="onlyDouble(this.value,this.id)" ></s:textfield>
+							<s:textfield key="promocioNumComandes.numBegudes"  id="numBegudes_pnc" onblur="onlyEntero(this.value,this.id)" ></s:textfield>																
+							<s:select list="tipusBegudaList" key="promocioNumComandes.tipusBeguda" id="tipusBeguda_pnc" listKey="descripcio" listValue="descripcio">					
+							</s:select>	
+								
 							<s:textfield key="promocioNumComandes.numComandes"  id="numComandes"  onblur="onlyEntero(this.value,this.id)" ></s:textfield>
 							<s:textfield key="promocioNumComandes.temps"  id="temps"  onblur="onlyEntero(this.value,this.id)" ></s:textfield>
 							<s:hidden key="promocioNumComandes.id" id="id_pnc" ></s:hidden>

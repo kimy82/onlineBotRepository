@@ -17,7 +17,8 @@
  	<bean id="comandaService" class="com.online.services.impl.ComandaServiceImpl">
  		<property name="configRestaurantBo" ref="configRestaurantBo" /> 
  		<property name="motersBo" ref="motersBo" />
- 		<property name="restaurantsBo" ref="restaurantsBo" /> 		
+ 		<property name="restaurantsBo" ref="restaurantsBo" />
+ 		<property name="promocionsBo" ref="promocionsBo" />  		
  	</bean>
 	<import resource="../beans/Users.xml"/>
 	<import resource="../beans/Plats.xml"/>

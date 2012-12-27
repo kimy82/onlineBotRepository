@@ -20,6 +20,7 @@ import com.online.bo.BegudaBo;
 import com.online.bo.ComandaBo;
 import com.online.bo.PlatsBo;
 import com.online.bo.RestaurantsBo;
+import com.online.bo.UsersBo;
 import com.online.exceptions.ComandaException;
 import com.online.exceptions.GeneralException;
 import com.online.exceptions.WrongParamException;
@@ -28,6 +29,7 @@ import com.online.model.BegudaComanda;
 import com.online.model.Comandes;
 import com.online.model.Plat;
 import com.online.model.PlatComanda;
+import com.online.model.Users;
 import com.online.pojos.Basic;
 import com.online.pojos.BasicSub;
 import com.online.services.impl.ComandaServiceImpl;
@@ -44,6 +46,7 @@ public class WelcomeComandaAction extends ActionSupport implements ServletRespon
 	private ComandaBo			comandaBo;
 	private BegudaBo			begudaBo;
 	private RestaurantsBo	    restaurantsBo;
+	private UsersBo				usersBo;
 	private Comandes			comanda;
 
 	List<Plat>					platList			= new ArrayList<Plat>();
@@ -85,6 +88,43 @@ public class WelcomeComandaAction extends ActionSupport implements ServletRespon
 		
 		return SUCCESS;
 
+	}
+	
+	public String checkComandaPromos(){
+		ServletOutputStream out = null;
+		String json = "";
+		ResourceBundle resource =  getTexts("MessageResources");	
+		
+		try {
+			out = this.response.getOutputStream();
+			Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+			this.nameAuth = auth.getName();
+			
+			if(this.nameAuth.equals("anonymousUser")){
+				json = createNotLogedJSON("User not loged. Login before...");
+			}else{
+				inizilizeComandaId();				
+				
+				this.comanda = this.comandaBo.load(this.idComanda);
+				if(this.comanda.getUser()==null)
+					this.comanda.setUser(getUserFromContext());
+				json = this.comandaService.checkComandaPromocions(comanda, resource);
+			}
+			
+			
+			
+		} catch (ComandaException ce) {
+			json = createErrorJSON("error in comanda service action");
+		} catch (Exception e) {
+			json = createErrorJSON("error in ajax action");
+		}
+
+		try {
+			out.print(json);
+		} catch (IOException e) {
+			throw new GeneralException(e, "possibly ServletOutputStream null");
+		}
+		return null;
 	}
 	
 	public String checkComanda(){
@@ -246,6 +286,8 @@ public class WelcomeComandaAction extends ActionSupport implements ServletRespon
 
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		this.nameAuth = auth.getName();
+		
+		ResourceBundle resource =  getTexts("MessageResources");	
 
 		this.comanda = this.comandaBo.load(this.idComanda);
 		
@@ -261,6 +303,8 @@ public class WelcomeComandaAction extends ActionSupport implements ServletRespon
 			this.refrescList.add(basic);
 
 		}
+		
+		//this.comandaService.checkComandaPromocions(comanda, resource);
 
 		this.platComandaList = comanda.getPlats();
 
@@ -268,6 +312,15 @@ public class WelcomeComandaAction extends ActionSupport implements ServletRespon
 	}
 
 	// private methods
+	
+	private Users getUserFromContext(){
+
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		String name = auth.getName();
+		return this.usersBo.findByUsername(name);
+
+	}
+	
 	private String createErrorJSON( String error ){
 
 		StringBuffer jsonSB = new StringBuffer("{");
@@ -450,6 +503,11 @@ public class WelcomeComandaAction extends ActionSupport implements ServletRespon
 
 	public void setRestaurantsBo(RestaurantsBo restaurantsBo) {
 		this.restaurantsBo = restaurantsBo;
+	}
+
+	public void setUsersBo( UsersBo usersBo ){
+	
+		this.usersBo = usersBo;
 	}
 	
 	

@@ -39,6 +39,8 @@ public class Comandes implements Serializable{
 	protected Users					user;
 	
 	protected Boolean 				aDomicili;
+	
+	private Date					fentrada;
 
 	// CONSTRUCTORS
 
@@ -156,6 +158,16 @@ public class Comandes implements Serializable{
 	public void setBegudes( List<BegudaComanda> begudes ){
 	
 		this.begudes = begudes;
+	}
+
+	public Date getFentrada(){
+	
+		return fentrada;
+	}
+
+	public void setFentrada( Date fentrada ){
+	
+		this.fentrada = fentrada;
 	}
 
 	

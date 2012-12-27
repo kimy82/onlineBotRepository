@@ -126,6 +126,7 @@
 					
 					
 	</s:form>	
+	<div id="checkPromocionsDisponibles" ><input type="button"  onclick="checkPromocionsDisponibles();" value="promos Comanda" /></div>
 	<div id="paycomanda" ><input type="button"  onclick="payComanda();" value="Pay Comanda" /></div>
 	<br>
 

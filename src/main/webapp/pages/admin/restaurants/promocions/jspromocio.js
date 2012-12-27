@@ -49,6 +49,8 @@ function resetForm(){
 		$("#descompteImport_apd").val("");
 		$("#importAPartirDe").val("");
 		$("#dia").val("");
+		$("#numBegudes_apd").val("");
+		$("#numBegudes_pnc").val("");
 		$("#nompromo_pnc").val("")
  		$("#tipuDescompte_pnc").val("");
  		$("#descompteImport_pnc").val("");
@@ -88,6 +90,8 @@ function goToPromocio(id){
 					 		$("#id_apd").val(json.id);
 					 		$("#nompromo_apd").val(json.nom);
 					 		$("#tipuDescompte_apd").val(json.tipuDescompte);
+					 		$("#numBegudes_apd").val(json.numBegudes);					 		
+					 		$("#tipusBeguda_apd option[value='"+json.tipusBeguda+"']").attr("selected","selected");  					 		
 					 		$("#descompteImport_apd").val(json.descompteImport);
 					 		$("#importAPartirDe").val(json.importAPartirDe);
 					 		$("#dia").val(json.diaString);
@@ -99,6 +103,8 @@ function goToPromocio(id){
 					 		$("#nompromo_pnc").val(json.nom)
 					 		$("#tipuDescompte_pnc").val(json.tipuDescompte);
 					 		$("#descompteImport_pnc").val(json.descompteImport);
+					 		$("#tipusBeguda_pnc option[value='"+json.tipusBeguda+"']").attr("selected","selected"); 
+					 		$("#numBegudes_pnc").val(json.numBegudes);
 					 		$("#numComandes").val(json.numComandes);
 					 		$("#temps").val(json.temps);
 					 		$("#infopromonew").show('slow');
@@ -155,6 +161,8 @@ $(document).ready(function() {
 					                  { "mDataProp":"nom","bSortable": false, sWidth: '150px' },
 					                  { "mDataProp":"tipuDescompte", "bSortable": false, sWidth: '350px' },
 					                  { "mDataProp":"descompteImport", "bSortable": false, sWidth: '40px' },
+					                  { "mDataProp":"numBegudes", "bSortable": false, sWidth: '40px' },
+					                  { "mDataProp":"tipusBeguda", "bSortable": false, sWidth: '40px' },
 					                  { "mDataProp":"accio", "bSortable": false, sWidth: '40px' }
 					            ],
 					"sPaginationType": "full_numbers",
@@ -202,18 +210,3 @@ $(document).ready(function() {
 		$("#errorsajax").hide();
 
 } );
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

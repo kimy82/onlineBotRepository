@@ -26,5 +26,8 @@ public interface ComandaService{
 	public boolean checkPlatInList(List<PlatComanda> platList, Plat plat) throws ComandaException;
 	
 	public String checkComandaProblems(Comandes comanda, ResourceBundle resource) throws ComandaException;
+	
+	public String checkComandaPromocions(Comandes comanda, ResourceBundle resource) throws ComandaException;
+	
 }
  

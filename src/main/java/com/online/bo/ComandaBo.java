@@ -19,4 +19,5 @@ public interface ComandaBo{
 	
 	List<Comandes> getAllByUser(Long id);
 
+	List<Comandes> getAllByUserAndTemps( Long id, Integer lastNdias ) throws BOException;
 }

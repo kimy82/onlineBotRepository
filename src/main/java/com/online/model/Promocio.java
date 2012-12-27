@@ -21,6 +21,12 @@ public class Promocio implements Serializable{
 	
 	@Expose
 	private Double				descompteImport;
+	
+	@Expose
+	private Integer				numBegudes;
+	
+	@Expose
+	private String 				tipusBeguda;
 
 	// CONSTRUCTORS
 	public Promocio() {
@@ -68,5 +74,27 @@ public class Promocio implements Serializable{
 	
 		this.descompteImport = descompteImport;
 	}
+
+	public Integer getNumBegudes(){
+	
+		return numBegudes;
+	}
+
+	public void setNumBegudes( Integer numBegudes ){
+	
+		this.numBegudes = numBegudes;
+	}
+
+	public String getTipusBeguda(){
+	
+		return tipusBeguda;
+	}
+
+	public void setTipusBeguda( String tipusBeguda ){
+	
+		this.tipusBeguda = tipusBeguda;
+	}
+	
+	
 
 }

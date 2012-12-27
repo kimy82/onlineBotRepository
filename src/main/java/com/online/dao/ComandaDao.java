@@ -17,4 +17,6 @@ public interface ComandaDao{
 	List<Comandes> getAll();
 	
 	List<Comandes> getAllByUser(Long id);
+	
+	List<Comandes> getAllByUserAndTemps(Long id, Integer lastNdias);
 }

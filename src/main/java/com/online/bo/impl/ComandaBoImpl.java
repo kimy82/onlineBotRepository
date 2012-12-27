@@ -11,6 +11,16 @@ public class ComandaBoImpl implements ComandaBo{
 
 	private ComandaDao	comandaDao;
 
+	
+	public List<Comandes> getAllByUserAndTemps( Long id, Integer lastNdias ) throws BOException{
+		
+		if(id==null || lastNdias==null){
+			throw new BOException("Wrong params comanda to query");
+		}
+		
+		return this.comandaDao.getAllByUserAndTemps(id, lastNdias);
+	}
+	
 	public void save( Comandes comanda ) throws BOException{
 
 		checkComanda(comanda);

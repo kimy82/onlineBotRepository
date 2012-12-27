@@ -11,8 +11,10 @@ import java.util.Set;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.annotations.Expose;
+import com.online.bo.ComandaBo;
 import com.online.bo.ConfigRestaurantBo;
 import com.online.bo.MotersBo;
+import com.online.bo.PromocionsBo;
 import com.online.bo.RestaurantsBo;
 import com.online.exceptions.ComandaException;
 import com.online.model.Beguda;
@@ -22,6 +24,8 @@ import com.online.model.ConfigRestaurant;
 import com.online.model.Moters;
 import com.online.model.Plat;
 import com.online.model.PlatComanda;
+import com.online.model.PromocioAPartirDe;
+import com.online.model.PromocioNumComandes;
 import com.online.model.Restaurant;
 import com.online.services.ComandaService;
 import com.online.utils.Utils;
@@ -30,8 +34,37 @@ public class ComandaServiceImpl implements ComandaService{
 
 	private ConfigRestaurantBo	configRestaurantBo;
 	private MotersBo			motersBo;
-	private RestaurantsBo	    restaurantsBo;
+	private RestaurantsBo		restaurantsBo;
+	private PromocionsBo		promocionsBo;
+	private ComandaBo			comandaBo;
+	
 	private ResourceBundle		resource;
+
+	public String checkComandaPromocions( Comandes comanda, ResourceBundle resource ) throws ComandaException{
+
+		this.resource = resource;
+		List<PromocioNumComandes> promoNumComandesFinalList= new ArrayList<PromocioNumComandes>();
+		
+		List<PromocioAPartirDe> apartirDePromoFinalList = this.promocionsBo.getPromosAPartirDe(comanda.getPreu(), null);
+		
+		List<PromocioNumComandes> promoNumComandesList = this.promocionsBo.getPromosNumComandes(null, null);
+		for(PromocioNumComandes promo :promoNumComandesList){
+			Integer numComandes = promo.getNumComandes();
+			Integer temps = promo.getTemps();
+			if(comanda!=null && comanda.getUser()!=null){
+			  List<Comandes> comandesList = this.comandaBo.getAllByUserAndTemps(comanda.getUser().getId(), temps);
+			  if(comandesList!=null && comandesList.size() >= numComandes){
+				  promoNumComandesFinalList.add(promo);
+			  }
+			}
+		
+		}
+
+		Gson gson = new GsonBuilder().setPrettyPrinting().excludeFieldsWithoutExposeAnnotation().create();
+		StringBuffer json = new StringBuffer("{ \"promosNumComanda\": ["+gson.toJson(promoNumComandesFinalList)+"],");
+		json.append(" \"promosAPartirDe\": ["+gson.toJson(apartirDePromoFinalList)+"]}");
+		return json.toString();		
+	}
 
 	public String checkComandaProblems( Comandes comanda, ResourceBundle resource ) throws ComandaException{
 
@@ -44,7 +77,7 @@ public class ComandaServiceImpl implements ComandaService{
 			String hora = comanda.getHora();
 			Date dia = comanda.getDia();
 
-			//Control Dia i conexio restaurant
+			// Control Dia i conexio restaurant
 			String checkDiaHora = comprovaHoraDiaRestaurantsOberts(platList, dia, hora);
 			String conRPS = comprovaConexioRPSambRestaurants(platList);
 
@@ -53,10 +86,10 @@ public class ComandaServiceImpl implements ComandaService{
 				return createJSONErrorComanda(checkDiaHora + " " + conRPS);
 			}
 
-			//Control Moters
+			// Control Moters
 			if (comanda.getaDomicili() != null && comanda.getaDomicili() == true) {
 				String checkMoters = checkMoters(dia, hora);
-				if(!checkMoters.equals("true")){
+				if (!checkMoters.equals("true")) {
 					return checkMoters;
 				}
 			}
@@ -260,7 +293,7 @@ public class ComandaServiceImpl implements ComandaService{
 	private String checkMoters( Date dia, String hora ){
 
 		Moters moter = this.motersBo.load(hora, dia);
-		if (moter !=null  && moter.getNumeroMoters() != null && !moter.getNumeroMoters().equals(0)) {
+		if (moter != null && moter.getNumeroMoters() != null && !moter.getNumeroMoters().equals(0)) {
 			Integer numMoters = moter.getNumeroMoters() != null ? moter.getNumeroMoters() : 0;
 			Integer numMotersUsed = moter.getNumeroMotersUsed() != null ? moter.getNumeroMotersUsed() : 0;
 			if (numMotersUsed < numMoters) {
@@ -286,10 +319,9 @@ public class ComandaServiceImpl implements ComandaService{
 		for (Integer idRestaurant : restaurants) {
 
 			ConfigRestaurant configRestaurant = configRestaurantBo.load(dia, idRestaurant);
-			if (configRestaurant==null || !configRestaurant.isObert()) {
+			if (configRestaurant == null || !configRestaurant.isObert()) {
 				Restaurant restaurant = this.restaurantsBo.load(idRestaurant, false, false, false);
-				return this.resource.getString("txt.restaurant.no.obert") + " "
-						+ restaurant.getNom();
+				return this.resource.getString("txt.restaurant.no.obert") + " " + restaurant.getNom();
 			}
 		}
 
@@ -325,10 +357,21 @@ public class ComandaServiceImpl implements ComandaService{
 		this.motersBo = motersBo;
 	}
 
-	public void setRestaurantsBo(RestaurantsBo restaurantsBo) {
+	public void setRestaurantsBo( RestaurantsBo restaurantsBo ){
+
 		this.restaurantsBo = restaurantsBo;
 	}
-	
-	
 
+	public void setPromocionsBo( PromocionsBo promocionsBo ){
+	
+		this.promocionsBo = promocionsBo;
+	}
+
+	public void setComandaBo( ComandaBo comandaBo ){
+	
+		this.comandaBo = comandaBo;
+	}
+
+	
+	
 }

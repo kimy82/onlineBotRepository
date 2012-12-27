@@ -33,28 +33,29 @@ public class MantenimentPromocionsAction extends ActionSupport implements Servle
 	/**
 	 * 
 	 */
-	private static final long	serialVersionUID	= 1L;
-	HttpServletResponse			response;
-	HttpServletRequest			request;
+	private static final long		serialVersionUID		= 1L;
+	HttpServletResponse				response;
+	HttpServletRequest				request;
 
-	private String				sEcho;
-	private int					lenght				= 0;
-	private int					inici				= 0;
-	private String				sortDireccio		= null;
+	private String					sEcho;
+	private int						lenght					= 0;
+	private int						inici					= 0;
+	private String					sortDireccio			= null;
 
-	private PromocionsBo		promocionsBo;
-	private Promocio			promocio			= new Promocio();
+	private PromocionsBo			promocionsBo;
+	private Promocio				promocio				= new Promocio();
 	private PromocioAPartirDeDTF	promocioAPartirDeDTF	= new PromocioAPartirDeDTF();
-	private PromocioNumComandes	promocioNumComandes	= new PromocioNumComandes();
+	private PromocioNumComandes		promocioNumComandes		= new PromocioNumComandes();
 
-	private List<Basic>			tipusDescompteList	= new ArrayList<Basic>();
+	private List<Basic>				tipusDescompteList		= new ArrayList<Basic>();
+	private List<Basic>				tipusBegudaList		= new ArrayList<Basic>();
 
-	private Integer				idPromo				= null;
-	
+	private Integer					idPromo					= null;
 
 	public String execute(){
 
 		this.tipusDescompteList = Utils.getTipusDescompte();
+		this.tipusBegudaList = Utils.inizializeListTipusBeguda();
 		return SUCCESS;
 
 	}
@@ -101,12 +102,12 @@ public class MantenimentPromocionsAction extends ActionSupport implements Servle
 				jsonSB.append(gson.toJson(prDTF));
 				jsonSB.setLength(jsonSB.length() - 1);
 				jsonSB.append(",\"tipus\" :\"apd\" }");
-			}else{
+			} else {
 				jsonSB.append(gson.toJson(promo));
 				jsonSB.setLength(jsonSB.length() - 1);
 				jsonSB.append(",\"tipus\" :\"pnc\" }");
 			}
-						
+
 			json = jsonSB.toString();
 		} catch (BOException boe) {
 			json = createErrorJSON("error in ajax action: Error in BO");
@@ -179,6 +180,7 @@ public class MantenimentPromocionsAction extends ActionSupport implements Servle
 			return ERROR;
 		}
 		this.tipusDescompteList = Utils.getTipusDescompte();
+		this.tipusBegudaList = Utils.inizializeListTipusBeguda();
 		return Action.SUCCESS;
 
 	}
@@ -192,15 +194,15 @@ public class MantenimentPromocionsAction extends ActionSupport implements Servle
 				return Action.ERROR;
 			}
 
-			PromocioAPartirDe promApartirDe = new PromocioAPartirDe();			
-			BeanUtils.copyProperties(this.promocioAPartirDeDTF, promApartirDe);			
-			promApartirDe =transformStringTODateInPromoDTF(promApartirDe);
-			
+			PromocioAPartirDe promApartirDe = new PromocioAPartirDe();
+			BeanUtils.copyProperties(this.promocioAPartirDeDTF, promApartirDe);
+			promApartirDe = transformStringTODateInPromoDTF(promApartirDe);
+
 			if (promApartirDe.getId() == null)
 				this.promocionsBo.save(promApartirDe);
 			else
 				this.promocionsBo.update(promApartirDe);
-			
+
 			this.tipusDescompteList = Utils.getTipusDescompte();
 		} catch (BOException boe) {
 			addActionError(boe.getMessage());
@@ -218,12 +220,14 @@ public class MantenimentPromocionsAction extends ActionSupport implements Servle
 
 	// Private methods
 
-	private PromocioAPartirDe transformStringTODateInPromoDTF(PromocioAPartirDe promApartirDe){
-		if(this.promocioAPartirDeDTF.getDiaString()!=null && !this.promocioAPartirDeDTF.getDiaString().equals(""))
+	private PromocioAPartirDe transformStringTODateInPromoDTF( PromocioAPartirDe promApartirDe ){
+
+		if (this.promocioAPartirDeDTF.getDiaString() != null && !this.promocioAPartirDeDTF.getDiaString().equals(""))
 			promApartirDe.setDia(Utils.getDate(this.promocioAPartirDeDTF.getDiaString()));
-		
-			return promApartirDe;
+
+		return promApartirDe;
 	}
+
 	private void inizializeParamIdPromo() throws NumberFormatException{
 
 		this.idPromo = (request.getParameter("idPromocio") == null || request.getParameter("idPromocio").toString().equals("")) ? null
@@ -339,14 +343,23 @@ public class MantenimentPromocionsAction extends ActionSupport implements Servle
 	}
 
 	public List<Basic> getTipusDescompteList(){
-	
+
 		return tipusDescompteList;
 	}
 
 	public void setTipusDescompteList( List<Basic> tipusDescompteList ){
-	
+
 		this.tipusDescompteList = tipusDescompteList;
 	}
-	
 
+	public List<Basic> getTipusBegudaList(){
+		
+		return tipusBegudaList;
+	}
+
+	public void setTipusBegudaList( List<Basic> tipusBegudaList ){
+	
+		this.tipusBegudaList = tipusBegudaList;
+	}
+	
 }

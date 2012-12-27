@@ -55,6 +55,7 @@ function checkComandaJS(){
 	       					alert(json.comandaOK);
 	       					$("#chargeBar").hide();
 	       					$("#paycomanda").show();
+	       					$("#checkPromocionsDisponibles").show();
 	       					return;
 	       				}
 	       						       			
@@ -156,9 +157,50 @@ $(function(){
 new Address.addressValidation();
 
 $("#paycomanda").hide();
+$("#checkPromocionsDisponibles").hide();
+
 
 var sudoSlider = $("#slider").sudoSlider({
     autowidth:false,
     slideCount:3,
     continuous:true
 });
+
+function checkPromocionsDisponibles(){
+	var comandaId = window.localStorage.getItem("comanda");
+	if(comandaId!= null && comandaId != 'undefined'){
+
+		var data ="idComanda="+comanda;
+		$("#chargeBar").show();
+	  	$.ajax({
+	  		  type: "POST",
+	  		  url: '/onlineBot/comanda/checkComandaPromos.action',
+	  		  dataType: 'json',
+	  		  data: data,
+	  		  success: function(json){	
+	  			  	if(json==null || json.error!=null){
+	       				$("#errorsajaxlabel").text(json.error);
+	       				$("#errorsajax").show();
+	       			}else{
+	       				if(json.alertLoged!=null){
+	       					alert(json.alertLoged);
+	       					$("#chargeBar").hide();
+	       					return;
+	       				}
+	       				
+	       				if(json.promosNumComanda !=null ){
+	       					alert("eiii");
+	       				
+	       					return;
+	       				}
+	       						       			
+	       			}	  			  		  			  		  			  	
+	  			  $("#chargeBar").hide();
+	  		  },
+	  		  error: function(e){   $("#errorsajaxlabel").text("Error in ajax call");
+	    								$("#errorsajax").show();  		
+	  		  					}
+	  		});
+	}	
+	
+}

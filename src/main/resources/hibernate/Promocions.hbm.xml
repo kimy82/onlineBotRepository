@@ -13,11 +13,17 @@
 			<column name="NOM" length="200" not-null="true" />
 		</property>
 		<property name="tipuDescompte" type="string" lazy="false" >
-			<column name="TIPUS_DESCOMPTE" length="200" not-null="true" />
+			<column name="TIPUS_DESCOMPTE" length="20" />
 		</property>
 		<property name="descompteImport" type="double" lazy="false" >
-			<column name="DESCOMPTE" length="200" not-null="true" />
+			<column name="DESCOMPTE" />
 		</property>
+		<property name="numBegudes" type="integer" lazy="false" >
+			<column name="NUM_BEGUDES" />
+		</property>
+		<property name="tipusBeguda" type="string" lazy="false" >
+			<column name="TIPUS_BEGUDA" length="20" />
+		</property>		
 		<subclass name="com.online.model.PromocioAPartirDe" extends="com.online.model.Promocio"
 			discriminator-value="papd" lazy="false" >
 			<property name="importAPartirDe" type="double" column="IMPORT_A_PARTIR_DE" lazy="false" />
