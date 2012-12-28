@@ -21,6 +21,65 @@ function payComanda(){
 		}		
 }	
 
+function onlyEntero(value,id){
+	  if(value =='' || /^[0-9]*$/.test(value)){
+		$('#'+id).css('border', 'solid 1px rgb(135,155,179)');
+		return true;
+	}else{
+		$('#'+id).css('border', 'solid 1px red');
+		alert(initTableParams.txterrornumber);
+		return false;
+	}
+}
+
+function saveNewPLatAmount(id,value){
+	if(onlyEntero(value,id)){
+		 var preu = $("#platpreu_"+id).text();
+		 var numPlatsAnt = window.localStorage.getItem("comanda.plat_"+id);
+		 if(numPlatsAnt != 'undefined' && numPlatsAnt != null){
+			 window.localStorage.setItem("comanda.plat_"+id,value);
+			 var preuToAdd = parseFloat(preu)*value;
+			 var preuActual = $("#preu").text();
+			 var newPreu = preuToAdd+parseFloat(preuActual);
+			 $("#preu").text(newPreu);
+			 window.localStorage.setItem("comanda.preu",newPreu);
+			 var nPlats = $("#numplats").text();
+			 $("#numplats").text(parseInt(nPlats)+value);
+			 window.localStorage.setItem("comanda.numplats",parseInt(nPlats)+value);
+		 }else{
+			 var numaddedPlats =parseInt(value);
+			 var preuToAdd = parseFloat(preu)*numaddedPlats;
+			 var preuActual = $("#preu").text();
+			 var newPreu = preuToAdd+parseFloat(preuActual);
+			 $("#preu").text(newPreu);
+			 window.localStorage.setItem("comanda.preu",newPreu);
+			 var nPlats = $("#numplats").text();			 
+			 $("#numplats").text(parseInt(nPlats)+numaddedPlats);
+			 window.localStorage.setItem("comanda.numplats",parseInt(nPlats)+numaddedPlats);
+			 
+		 }
+	}
+}
+
+function savePlatToComanda(idPlat,nPlats){
+	var idcomanda= window.localStorage.getItem("comanda");
+	var data ="idPlat="+idPlat+"&idComanda="+idcomanda+"&nplats="+nPlats;
+  	$.ajax({
+  		  type: "POST",
+  		  url: '/onlineBot/comanda/ajaxLoadNumPlat.action',
+  		  dataType: 'json',
+  		  data: data,
+  		  success: function(json){	
+  			  if(json==null || json.error!=null){
+       				$("#errorsajaxlabel").text(json.error);
+       				$("#errorsajax").show();
+       			}				
+  		  },
+  		  error: function(e){   $("#errorsajaxlabel").text("Error in ajax call");
+    								$("#errorsajax").show();  		
+  		  					}
+  		});	
+}
 
 function checkComandaJS(){
 	var comanda = window.localStorage.getItem("comanda");
@@ -170,7 +229,7 @@ function checkPromocionsDisponibles(){
 	var comandaId = window.localStorage.getItem("comanda");
 	if(comandaId!= null && comandaId != 'undefined'){
 
-		var data ="idComanda="+comanda;
+		var data ="idComanda="+comandaId;
 		$("#chargeBar").show();
 	  	$.ajax({
 	  		  type: "POST",

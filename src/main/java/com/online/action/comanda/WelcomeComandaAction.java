@@ -45,7 +45,7 @@ public class WelcomeComandaAction extends ActionSupport implements ServletRespon
 	private PlatsBo				platsBo;
 	private ComandaBo			comandaBo;
 	private BegudaBo			begudaBo;
-	private RestaurantsBo	    restaurantsBo;
+	private RestaurantsBo		restaurantsBo;
 	private UsersBo				usersBo;
 	private Comandes			comanda;
 
@@ -59,10 +59,11 @@ public class WelcomeComandaAction extends ActionSupport implements ServletRespon
 	private Long				idPlat				= null;
 	private Long				idBeguda			= null;
 	private Integer				idRestaurant		= null;
-	private String 				hora;
-	private Date 				dia;
-	private String 				aDomicili;
-	
+	private String				hora;
+	private Date				dia;
+	private String				aDomicili;
+	private Integer				nplats				= null;
+
 	private String				nameAuth;
 
 	private ComandaServiceImpl	comandaService;
@@ -77,42 +78,41 @@ public class WelcomeComandaAction extends ActionSupport implements ServletRespon
 		inizializeRestaurantId();
 		inizilizeComandaId();
 		// Recoperem tots els plats disponibles.
-		
+
 		this.platList.clear();
 		this.platList.addAll(this.restaurantsBo.load(this.idRestaurant, true, false, false).getPlats());
-		
-		//si teniem una comanda la recuperem
-		if(this.idComanda!=null){
+
+		// si teniem una comanda la recuperem
+		if (this.idComanda != null) {
 			goToPas1Action();
 		}
-		
+
 		return SUCCESS;
 
 	}
-	
+
 	public String checkComandaPromos(){
+
 		ServletOutputStream out = null;
 		String json = "";
-		ResourceBundle resource =  getTexts("MessageResources");	
-		
+		ResourceBundle resource = getTexts("MessageResources");
+
 		try {
 			out = this.response.getOutputStream();
 			Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 			this.nameAuth = auth.getName();
-			
-			if(this.nameAuth.equals("anonymousUser")){
+
+			if (this.nameAuth.equals("anonymousUser")) {
 				json = createNotLogedJSON("User not loged. Login before...");
-			}else{
-				inizilizeComandaId();				
-				
+			} else {
+				inizilizeComandaId();
+
 				this.comanda = this.comandaBo.load(this.idComanda);
-				if(this.comanda.getUser()==null)
+				if (this.comanda.getUser() == null)
 					this.comanda.setUser(getUserFromContext());
 				json = this.comandaService.checkComandaPromocions(comanda, resource);
 			}
-			
-			
-			
+
 		} catch (ComandaException ce) {
 			json = createErrorJSON("error in comanda service action");
 		} catch (Exception e) {
@@ -126,35 +126,33 @@ public class WelcomeComandaAction extends ActionSupport implements ServletRespon
 		}
 		return null;
 	}
-	
+
 	public String checkComanda(){
-		
+
 		ServletOutputStream out = null;
 		String json = "";
-		ResourceBundle resource =  getTexts("MessageResources");	
-		
+		ResourceBundle resource = getTexts("MessageResources");
+
 		try {
 			out = this.response.getOutputStream();
 			Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 			this.nameAuth = auth.getName();
-			
-			if(this.nameAuth.equals("anonymousUser")){
+
+			if (this.nameAuth.equals("anonymousUser")) {
 				json = createNotLogedJSON("User not loged. Login before...");
-			}else{
+			} else {
 				inizilizeComandaId();
-				inizilizeComandaDiaHoraADomicili(); 
-				
+				inizilizeComandaDiaHoraADomicili();
+
 				this.comanda = this.comandaBo.load(this.idComanda);
-			
+
 				this.comanda.setHora(Utils.getHora(this.hora));
 				this.comanda.setDia(this.dia);
 				this.comanda.setaDomicili(Boolean.valueOf(aDomicili));
-				
-				 json = this.comandaService.checkComandaProblems(this.comanda, resource);
+
+				json = this.comandaService.checkComandaProblems(this.comanda, resource);
 			}
-			
-			
-			
+
 		} catch (ComandaException ce) {
 			json = createErrorJSON("error in comanda service action");
 		} catch (Exception e) {
@@ -166,6 +164,50 @@ public class WelcomeComandaAction extends ActionSupport implements ServletRespon
 		} catch (IOException e) {
 			throw new GeneralException(e, "possibly ServletOutputStream null");
 		}
+		return null;
+	}
+
+	public String ajaxLoadNumPlat(){
+
+		ServletOutputStream out = null;
+		String json = null;
+
+		try {
+
+			out = this.response.getOutputStream();
+			inizilizeDadesComandaPlat();
+			inizilizeDadesComandaNumPlat();
+			if (this.idComanda != null) {
+				// recuperem la comanda i afegim nplat
+				Comandes comanda = this.comandaBo.load(this.idComanda);
+				List<PlatComanda> platList = comanda.getPlats();
+				Plat platToAdd = this.platsBo.load(this.idPlat, false);
+
+					if (comandaService.checkPlatInList(platList, platToAdd)) {
+						for (PlatComanda plt : platList) {
+							if (plt.getPlat().getId().toString().equals(platToAdd.getId().toString())) {
+								plt.setNumPlats(this.nplats);
+							}
+						}
+						comanda.setPlats(platList);
+					} 
+					this.comandaBo.update(comanda);
+				
+					json = null;
+
+			} 
+		} catch (ComandaException ce) {
+			json = createErrorJSON("error in comanda service action");
+		} catch (Exception e) {
+			json = createErrorJSON("error in ajax action");
+		}
+
+		try {
+			out.print(json);
+		} catch (IOException e) {
+			throw new GeneralException(e, "possibly ServletOutputStream null");
+		}
+
 		return null;
 	}
 
@@ -213,6 +255,7 @@ public class WelcomeComandaAction extends ActionSupport implements ServletRespon
 				// creem comanda i afegim plat
 				Comandes comanda = new Comandes();
 				comanda.setPreu(0.0);
+				comanda.setFentrada(new Date());
 				List<PlatComanda> platList = new LinkedList<PlatComanda>();
 				Plat platToAdd = this.platsBo.load(this.idPlat, false);
 				PlatComanda platComanda = new PlatComanda();
@@ -286,15 +329,15 @@ public class WelcomeComandaAction extends ActionSupport implements ServletRespon
 
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		this.nameAuth = auth.getName();
-		
-		ResourceBundle resource =  getTexts("MessageResources");	
+
+		ResourceBundle resource = getTexts("MessageResources");
 
 		this.comanda = this.comandaBo.load(this.idComanda);
-		
+
 		Double preu = this.comandaService.getPreuOfComanda(this.comanda);
-		
+
 		this.comanda.setPreu(preu);
-		
+
 		List<Beguda> begudaList = this.begudaBo.getAll();
 		for (Beguda beguda : begudaList) {
 
@@ -303,8 +346,8 @@ public class WelcomeComandaAction extends ActionSupport implements ServletRespon
 			this.refrescList.add(basic);
 
 		}
-		
-		//this.comandaService.checkComandaPromocions(comanda, resource);
+
+		// this.comandaService.checkComandaPromocions(comanda, resource);
 
 		this.platComandaList = comanda.getPlats();
 
@@ -312,7 +355,7 @@ public class WelcomeComandaAction extends ActionSupport implements ServletRespon
 	}
 
 	// private methods
-	
+
 	private Users getUserFromContext(){
 
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
@@ -320,7 +363,7 @@ public class WelcomeComandaAction extends ActionSupport implements ServletRespon
 		return this.usersBo.findByUsername(name);
 
 	}
-	
+
 	private String createErrorJSON( String error ){
 
 		StringBuffer jsonSB = new StringBuffer("{");
@@ -328,11 +371,11 @@ public class WelcomeComandaAction extends ActionSupport implements ServletRespon
 		jsonSB.append("\"}");
 		return jsonSB.toString();
 	}
-	
+
 	private String createNotLogedJSON( String error ){
 
 		StringBuffer jsonSB = new StringBuffer("{");
-		jsonSB.append("\"alertLoged\":\"" + error+"\"");
+		jsonSB.append("\"alertLoged\":\"" + error + "\"");
 		jsonSB.append("}");
 		return jsonSB.toString();
 	}
@@ -346,10 +389,20 @@ public class WelcomeComandaAction extends ActionSupport implements ServletRespon
 			throw new WrongParamException("null plat to add");
 		}
 	}
+
+	private void inizilizeDadesComandaNumPlat() throws WrongParamException{
 	
+		this.nplats = (request.getParameter("nplats") == null || request.getParameter("nplats").equals("")) ? null : Integer.parseInt(request
+				.getParameter("nplats"));
+		if (this.nplats == null) {
+			throw new WrongParamException("null plat to add");
+		}
+	}
+
 	private void inizializeRestaurantId() throws WrongParamException{
-		this.idRestaurant = (request.getParameter("restaurantId") == null || request.getParameter("restaurantId").equals("")) ? null : Integer
-				.parseInt(request.getParameter("restaurantId"));
+
+		this.idRestaurant = (request.getParameter("restaurantId") == null || request.getParameter("restaurantId").equals("")) ? null
+				: Integer.parseInt(request.getParameter("restaurantId"));
 		if (this.idRestaurant == null) {
 			throw new WrongParamException("null restaurant  to get plats");
 		}
@@ -375,14 +428,18 @@ public class WelcomeComandaAction extends ActionSupport implements ServletRespon
 		}
 
 	}
-	
+
 	private void inizilizeComandaDiaHoraADomicili() throws WrongParamException{
+
 		try {
-			
-			this.hora = (request.getParameter("hora") == null || request.getParameter("hora").equals("")) ? null : request.getParameter("hora");
-			this.dia = (request.getParameter("dia") == null || request.getParameter("dia").equals("")) ? null : Utils.getDate(request.getParameter("dia"));
-			this.aDomicili = (request.getParameter("aDomicili") == null || request.getParameter("aDomicili").equals("")) ? null : request.getParameter("aDomicili");
-			
+
+			this.hora = (request.getParameter("hora") == null || request.getParameter("hora").equals("")) ? null : request
+					.getParameter("hora");
+			this.dia = (request.getParameter("dia") == null || request.getParameter("dia").equals("")) ? null : Utils.getDate(request
+					.getParameter("dia"));
+			this.aDomicili = (request.getParameter("aDomicili") == null || request.getParameter("aDomicili").equals("")) ? null : request
+					.getParameter("aDomicili");
+
 		} catch (Exception e) {
 			throw new WrongParamException("wrong id of comanda");
 		}
@@ -484,15 +541,13 @@ public class WelcomeComandaAction extends ActionSupport implements ServletRespon
 		this.idComanda = idComanda;
 	}
 
-	
-
 	public List<BasicSub> getRefrescList(){
-	
+
 		return refrescList;
 	}
 
 	public void setRefrescList( List<BasicSub> refrescList ){
-	
+
 		this.refrescList = refrescList;
 	}
 
@@ -501,15 +556,14 @@ public class WelcomeComandaAction extends ActionSupport implements ServletRespon
 		this.begudaBo = begudaBo;
 	}
 
-	public void setRestaurantsBo(RestaurantsBo restaurantsBo) {
+	public void setRestaurantsBo( RestaurantsBo restaurantsBo ){
+
 		this.restaurantsBo = restaurantsBo;
 	}
 
 	public void setUsersBo( UsersBo usersBo ){
-	
+
 		this.usersBo = usersBo;
 	}
-	
-	
 
 }

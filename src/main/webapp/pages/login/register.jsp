@@ -44,7 +44,7 @@
 	                        					
 	                        					<label for="poble">
 	                        							  <s:text name="adreca.poble" /></label>		
-	                        					<input type="text" id="poble"  />                        						                    													    										                
+	                        					<input type="text" id="poble" disabled="disabled" value="Girona"  />                        						                    													    										                
 						                    </td>
 						                </tr>
 						                <tr>
@@ -86,7 +86,8 @@
 	<script src="<c:url value='/js/jquery/jquery.bgiframe-2.1.1.js'/>" type="text/javascript"></script>
 	<script src="<c:url value='/js/jquery/jquery-ui.js' />" type="text/javascript"></script>
 	<!-- Per validar l'adreca -->
-	<script src="<c:url value='/js/address/autocompleteTown.js'/>" type="text/javascript"></script>
+	<script src="<c:url value='/js/address/autocompleteStreet.js'/>" type="text/javascript"></script>
+	<script src="<c:url value='/js/address/autocompleteCodi.js'/>" type="text/javascript"></script>
 	<script src="<c:url value='/js/address/addressValidationForm.js'/>" type="text/javascript"></script>
 	<script src="http://maps.google.com/maps/api/js?sensor=false" type="text/javascript"></script>
 	<script src="<c:url value='/pages/login/jsregister.js' />" type="text/javascript"></script>
@@ -94,7 +95,7 @@
 <script>		
 
 new Address.addressValidation();
-initParams = new  InitParams( "<s:text name='txt.user.empty' />", "<s:text name='txt.password.empty' />","<s:text name='txt.password.noteq' />","<s:text name='txt.tel.empty' />","<s:text name='txt.address.empty' />");
+initParams = new  InitParams( "<s:text name='txt.user.empty' />","<s:text name='txt.user.wrong' />", "<s:text name='txt.password.empty' />","<s:text name='txt.password.noteq' />","<s:text name='txt.tel.empty' />","<s:text name='txt.address.empty' />");
 </script> 
 </body>
 </html>

@@ -134,6 +134,7 @@ $( ".selector" ).click(function() {
 			window.localStorage.removeItem("comanda.numplats");
 			window.localStorage.removeItem("comanda.preu");
 			window.localStorage.removeItem("comanda.numbegudes");
+			window.localStorage.clear();
 			
 			window.location.href="/onlineBot/comanda/Welcome.action?restaurantId="+id;
 		}

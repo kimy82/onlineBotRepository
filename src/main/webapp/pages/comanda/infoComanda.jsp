@@ -57,8 +57,8 @@
 		<table>
 			<tr>
 				<td>${platComanda.plat.nom}</td>
-				<td>${platComanda.plat.preu} </td>
-				<td>${platComanda.numPlats}</td>
+				<td><label id="platpreu_${platComanda.plat.id}" >${platComanda.plat.preu}</label> </td>
+				<td><input type="text" id="${platComanda.plat.id}" onblur="saveNewPLatAmount(this.id, this.value)"  value="${platComanda.numPlats}" ></td>
 				<td>${platComanda.plat.tipus}</td>			
 			</tr>
 			<tr>
@@ -93,7 +93,7 @@
 	                        					
 	                        					<label for="poble">
 	                        							  <s:text name="adreca.poble" /></label>		
-	                        					<input type="text" id="poble"  />                        						                    													    										                
+	                        					<input type="text" id="poble" disabled="disabled" value="Girona"  />                            						                    													    										                
 						                    </td>
 						                </tr>
 						                <tr>
@@ -184,7 +184,9 @@
 	<script type="text/javascript" src="<c:url value='/js/calendari/calendar-idioma.js'/>"></script>		
 	<script type="text/javascript" src="<c:url value='/js/calendari/calendar-setup.js'/>"></script>
 	<!-- Per validar l'adreca -->
-	<script src="<c:url value='/js/address/autocompleteTown.js'/>" type="text/javascript"></script>
+	<script src="<c:url value='/js/address/autocompleteStreet.js'/>" type="text/javascript"></script>
+	<script src="<c:url value='/js/address/autocompleteCodi.js'/>" type="text/javascript"></script>
+	
 	<script src="<c:url value='/js/address/addressValidationForm.js'/>" type="text/javascript"></script>
 	<script src="http://maps.google.com/maps/api/js?sensor=false" type="text/javascript"></script>
 	

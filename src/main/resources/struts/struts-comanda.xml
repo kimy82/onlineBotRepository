@@ -22,6 +22,9 @@
 		<action name="ajaxLoadPlat"
 			class="com.online.action.comanda.WelcomeComandaAction" method="ajaxLoadPlat">
 		</action>
+		<action name="ajaxLoadNumPlat"
+			class="com.online.action.comanda.WelcomeComandaAction" method="ajaxLoadNumPlat">
+		</action>		
 		<action name="ajaxLoadBeguda"
 			class="com.online.action.comanda.WelcomeComandaAction" method="ajaxLoadBeguda">
 		</action>

@@ -1,9 +1,10 @@
 ///////////////////////////////////
 //variables per textos en locale
 var initParams=null ;
-function InitParams(txtusernameempty, txtpasswordempty,txtpasswordnotequal,txttelempty,txtaddressempty){		
+function InitParams(txtusernameempty,txtusernamewrong, txtpasswordempty,txtpasswordnotequal,txttelempty,txtaddressempty){		
 
 	this.txtusernameempty= txtusernameempty;
+	this.txtusernamewrong = txtusernamewrong;
 	this.txtpasswordempty= txtpasswordempty;
 	this.txtpasswordnotequal=txtpasswordnotequal;
 	this.txttelempty = txttelempty;
@@ -12,6 +13,13 @@ function InitParams(txtusernameempty, txtpasswordempty,txtpasswordnotequal,txtte
 }
 
 //per el formulari
+function validateEmail(email) { 
+    var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\
+".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA
+-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    return re.test(email);
+} 
+
 function validate(){
 	
 	var self = $("#registerForm")[0];
@@ -25,6 +33,13 @@ function validate(){
 		
 	}else{
 		$("#username").css('border', 'solid 1px rgb(135,155,179)');	
+	}
+	
+	if(!validateEmail(self.username.value)){
+		
+		$("#username").css('border', 'solid 1px red');
+		alert(initParams.txtusernamewrong);
+		return false;
 	}
 	
 	if(self.password.value==''){
