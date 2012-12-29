@@ -1,12 +1,20 @@
 package com.online.action.payment;
 
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.struts2.interceptor.ServletRequestAware;
 import org.apache.struts2.interceptor.ServletResponseAware;
+import org.apache.wink.client.Resource;
+import org.apache.wink.client.RestClient;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 
@@ -14,7 +22,7 @@ import com.online.bo.ComandaBo;
 import com.online.bo.RestaurantsBo;
 import com.online.exceptions.WrongParamException;
 import com.online.model.Comandes;
-import com.online.model.Restaurant;
+import com.online.model.PlatComanda;
 import com.online.services.impl.ComandaServiceImpl;
 import com.opensymphony.xwork2.ActionSupport;
 
@@ -33,19 +41,64 @@ public class PaymentAction extends ActionSupport implements ServletResponseAware
 
 	private String				nameAuth;
 
-	public String execute(){
+	public String execute() throws IOException{
 
+		
+		
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		this.nameAuth = auth.getName();
-		
+	
 		inizilizeComandaId();
 		
-		this.comanda = this.comandaBo.load(this.idComanda);
+		List<String> orders = getComandaOrders();
+		
+		for(String order : orders){
+			RestClient client = new RestClient();
+			Resource resource = client.resource("http://localhost/ComandaRest/jaxrs/comandes/file?" +
+					"txt=&resid=AC001&comanda=Chiken;3.00;2;Beef;6.00;3;rice;2.50;");
+			String response = resource.accept("text/plain").get(String.class);
+		}
+		
+		
 		return SUCCESS;
 
 	}
 
 	//PRIVATES
+	
+	private List<String> getComandaOrders(){
+	
+		List<String> orders = new ArrayList<String>();
+		
+		Map<String,String> comandes = new HashMap<String,String>();
+		Set<String> restaurants = new HashSet<String>();
+		
+		this.comanda = this.comandaBo.load(this.idComanda);
+
+		List<PlatComanda> listOfPlats = this.comanda.getPlats();
+			
+			//resId=codiMaquina ; orderNum = numComanda ; deliveryCharge = si va o no la moto ; total= preu total ; 
+			//nom = nom de l'user ; address = adreça de l'usu ; diahora = diahora de la comanda ; telnumber= tel de l'usu ;
+			//comanda = comanda de plats
+			for(PlatComanda platComanda : listOfPlats){
+				
+				String codi = platComanda.getPlat().getRestaurants().iterator().next().getCodiMaquina();
+				restaurants.add(codi);
+				
+				int nPlats = platComanda.getNumPlats();
+				String nomPlat = platComanda.getPlat().getNom();
+				Double preuPlat = platComanda.getPlat().getPreu()*nPlats;
+				String comanda = nPlats+";"+nomPlat+";"+preuPlat;
+				if(comandes.containsKey(codi)){
+					String numIdsPlats = comandes.get(codi);
+					numIdsPlats = numIdsPlats+";"+platComanda.getPlat().getId();
+				}else{
+					comandes.put(codi,platComanda.getPlat().getId().toString());
+				}
+				comandes.put(codi+"_"+platComanda.getPlat().getId(), comanda);
+			}
+			return orders;
+	}
 	private void inizilizeComandaId() throws WrongParamException{
 
 		try {
