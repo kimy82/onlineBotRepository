@@ -79,7 +79,6 @@
 			<version>3.2.3.ga</version>
 		</dependency>
 
-
 		<!-- Hibernate library dependecy start -->
 		<dependency>
 			<groupId>dom4j</groupId>
@@ -140,12 +139,7 @@
 			<artifactId>tools</artifactId>
 			<version>1.5</version>
 			<scope>system</scope>
-			<systemPath>C:/Program Files/Java/jdk1.6.0_27/lib/tools.jar</systemPath>
-		</dependency>
-		<dependency>
-			<groupId>com.oracle</groupId>
-			<artifactId>ojdbc14</artifactId>
-			<version>10.2</version>
+			<systemPath>C:/Program Files/Java/jdk1.7.0_02/lib/tools.jar</systemPath>
 		</dependency>
 		<dependency>
 			<groupId>javax.mail</groupId>
@@ -171,6 +165,11 @@
 			<groupId>javax.transaction</groupId>
 			<artifactId>jta</artifactId>
 			<version>1.1</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.wink</groupId>
+			<artifactId>wink-client</artifactId>
+			<version>1.2.0-incubating</version>
 		</dependency>
 	</dependencies>
 
@@ -207,7 +206,7 @@
 
 					<connectors>
 						<connector implementation="org.mortbay.jetty.nio.SelectChannelConnector">
-							<port>7070</port>
+							<port>9090</port>
 							<maxIdleTime>60000</maxIdleTime>
 						</connector>
 					</connectors>
@@ -219,18 +218,18 @@
 				<groupId>com.samaxes.maven</groupId>
 				<artifactId>minify-maven-plugin</artifactId>
 				<version>1.5.2</version>
-				<configuration>												
-										
-					
+				<configuration>
+
+
 					<jsSourceDir>pages/admin/restaurants/begudes</jsSourceDir>
 					<jsSourceFiles>
-						<jsSourceFile>jsbegudes.js</jsSourceFile>						
+						<jsSourceFile>jsbegudes.js</jsSourceFile>
 					</jsSourceFiles>
 					<jsFinalFile>jsbegudes.js</jsFinalFile>
 
-				
 
-					
+
+
 				</configuration>
 			</plugin>
 
