@@ -20,6 +20,8 @@
  		<property name="restaurantsBo" ref="restaurantsBo" />
  		<property name="promocionsBo" ref="promocionsBo" />  		
  	</bean>
+ 	<bean id="paymentService" class="com.online.services.impl.PaymentServiceImpl"> 	  		
+ 	</bean>
 	<import resource="../beans/Users.xml"/>
 	<import resource="../beans/Plats.xml"/>
 	<import resource="../beans/Restaurants.xml"/>
