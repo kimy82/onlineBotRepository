@@ -87,8 +87,10 @@ function checkComandaJS(){
 		var hora = $("#comandahora").val();
 		var dia = $("#dia").val();
 		var adomicili = $("#adomicili").val();
+		var address = $("#comandaddress").val();
+		address =  address.replace(/\n/g, "");
 		$("#chargeBar").show();
-		var data ="idComanda="+comanda+"&dia="+dia+"&hora="+hora+"&aDomicili="+adomicili;
+		var data ="idComanda="+comanda+"&dia="+dia+"&hora="+hora+"&aDomicili="+adomicili+"&address="+address;
 	  	$.ajax({
 	  		  type: "POST",
 	  		  url: '/onlineBot/comanda/checkComanda.action',

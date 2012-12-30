@@ -29,7 +29,7 @@
 		<property name="fentrada" type="date">
 			<column name="FENTRADA"  />
 		</property>
-		<many-to-one name="user" class="com.online.model.Users" >	
+		<many-to-one name="user" class="com.online.model.Users" lazy="false" >	
 			<column name="USER_ID"></column>	
 		</many-to-one>
 		<list name="plats" table="comanda_plats" 

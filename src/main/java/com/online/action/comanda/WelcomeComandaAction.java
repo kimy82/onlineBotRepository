@@ -63,7 +63,8 @@ public class WelcomeComandaAction extends ActionSupport implements ServletRespon
 	private Date				dia;
 	private String				aDomicili;
 	private Integer				nplats				= null;
-
+	private String 				address;
+	
 	private String				nameAuth;
 
 	private ComandaServiceImpl	comandaService;
@@ -143,13 +144,21 @@ public class WelcomeComandaAction extends ActionSupport implements ServletRespon
 			} else {
 				inizilizeComandaId();
 				inizilizeComandaDiaHoraADomicili();
-
+				inizializeAddress();
+				
 				this.comanda = this.comandaBo.load(this.idComanda);
 
 				this.comanda.setHora(Utils.getHora(this.hora));
 				this.comanda.setDia(this.dia);
 				this.comanda.setaDomicili(Boolean.valueOf(aDomicili));
-
+				this.comanda.setAddress(this.address);
+				
+				if(this.comanda.getUser()==null){
+					Users user = this.usersBo.findByUsername(this.nameAuth);
+					this.comanda.setUser(user);
+				}
+				
+				this.comandaBo.update(this.comanda);
 				json = this.comandaService.checkComandaProblems(this.comanda, resource);
 			}
 
@@ -398,6 +407,16 @@ public class WelcomeComandaAction extends ActionSupport implements ServletRespon
 			throw new WrongParamException("null plat to add");
 		}
 	}
+	
+	private void inizializeAddress() throws WrongParamException{
+		
+		this.address = (request.getParameter("address") == null || request.getParameter("address").equals("")) ? null : request
+				.getParameter("address");
+		if (this.address == null) {
+			throw new WrongParamException("null address of comanda");
+		}
+	}
+	
 
 	private void inizializeRestaurantId() throws WrongParamException{
 

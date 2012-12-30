@@ -15,11 +15,9 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 
 import com.online.bo.ComandaBo;
-import com.online.bo.RestaurantsBo;
 import com.online.exceptions.PaymentException;
 import com.online.exceptions.WrongParamException;
 import com.online.model.Comandes;
-import com.online.services.impl.ComandaServiceImpl;
 import com.online.services.impl.PaymentServiceImpl;
 import com.opensymphony.xwork2.ActionSupport;
 
@@ -57,6 +55,7 @@ public class PaymentAction extends ActionSupport implements ServletResponseAware
 		for(String order : orders){
 			RestClient client = new RestClient();
 			Resource resource = client.resource("http://localhost/ComandaRest/jaxrs/comandes/file?"+order);
+			resource.
 			String response = resource.accept("text/plain").get(String.class);
 		}
 		
