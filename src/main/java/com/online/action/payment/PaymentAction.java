@@ -6,6 +6,7 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.ws.rs.core.MultivaluedMap;
 
 import org.apache.struts2.interceptor.ServletRequestAware;
 import org.apache.struts2.interceptor.ServletResponseAware;
@@ -54,8 +55,12 @@ public class PaymentAction extends ActionSupport implements ServletResponseAware
 		
 		for(String order : orders){
 			RestClient client = new RestClient();
-			Resource resource = client.resource("http://localhost/ComandaRest/jaxrs/comandes/file?"+order);
-			resource.
+			Resource resource = client.resource("http://localhost/ComandaRest/jaxrs/comandes/file");
+			String[] orderVec = order.split("&");
+			for(String param : orderVec){
+				String[] params = param.split("=");
+				resource.queryParam(params[0],params[1]);
+			}					
 			String response = resource.accept("text/plain").get(String.class);
 		}
 		
