@@ -17,12 +17,7 @@
 </div>
 
 <!-- Scripts --> 
-<c:if test="${fn:contains(header.Host,'7070')}">
-	<link rel="stylesheet" href="<c:url value='/css/coin-slider-stylesMim.min.css' />" type="text/css" />
-	<link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/base/jquery-ui.css" rel="stylesheet" type="text/css" />
-	<script src="<c:url value='/js/jsQuery.min.js' />" type="text/javascript"></script>
-</c:if>
-<c:if test="${fn:contains(header.Host,'9090')}">
+
 	<link rel="stylesheet" href="<c:url value='/css/coin-slider-styles.css' />" type="text/css" />
 	<link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/base/jquery-ui.css" rel="stylesheet" type="text/css" />
 	<script src="<c:url value='/js/jquery/jquery.js' />" type="text/javascript"></script>
@@ -35,6 +30,6 @@
 	<script src="<c:url value='/js/jquery/jquery.ui.resizable.js'/>" type="text/javascript"></script>
 	<script src="<c:url value='/js/jquery/jquery.effects.core.js'/>" type="text/javascript"></script>
 	<script src="<c:url value='/js/jquery/jquery.bgiframe-2.1.1.js'/>" type="text/javascript"></script>
-</c:if>
+
 </body>
 </html>

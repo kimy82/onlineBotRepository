@@ -81,14 +81,7 @@
 	</div>
 </div>
 <!-- Scripts --> 
-<c:if test="${fn:contains(header.Host,'7070')}">
-	<link rel="stylesheet" href="<c:url value='/css/tables_components.min.css' />" type="text/css"   media="screen" />
-	<link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/base/jquery-ui.css" rel="stylesheet" type="text/css" />
-	<script src="<c:url value='/js/jsQueryBasic.min.js' />" type="text/javascript"></script>
-	<script src="<c:url value='/js/jquery/jquery.dataTables.min.js'/>" type="text/javascript"></script>	
-	<script src="<c:url value='/js/jsconsultaRestaurants.min.js' />" type="text/javascript"></script>
-</c:if>
-<c:if test="${fn:contains(header.Host,'9090')}">
+
 
 	<link rel="stylesheet" href="<c:url value='/css/demo_table.css' />" type="text/css"   media="screen" />
 	<link rel="stylesheet" href="<c:url value='/css/components.css' />" type="text/css"   media="screen" />  
@@ -97,7 +90,7 @@
 	<script src="<c:url value='/js/jquery/jquery.ui.core.js' />" type="text/javascript"></script>
 	<script src="<c:url value='/js/jquery/jquery.dataTables.js'/>" type="text/javascript"></script>
 	<script type="text/javascript" src="<c:url value='/pages/admin/restaurants/consulta/jsrestaurants.js' />"></script>
-</c:if>
+
 <script language="javascript">
 	var initTableParams = new InitTableParams(
 			"<s:text  name='datatables.paginate.last'/>",

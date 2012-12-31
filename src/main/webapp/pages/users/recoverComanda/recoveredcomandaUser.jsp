@@ -99,15 +99,7 @@
 </s:form>	
 
 <!-- Scripts --> 
-<c:if test="${fn:contains(header.Host,'7070')}">
-	<link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/base/jquery-ui.css" rel="stylesheet" type="text/css" />
-	<link rel="stylesheet" type="text/css" media="all" href="<c:url value='/css/calendar-blau.css' />" title="win2k-cold-1" />	
-	<script src="<c:url value='/js/jsQuery.min.js' />" type="text/javascript"></script>
-	<script src="<c:url value='/js/calendarInput.min.js' />" type="text/javascript"></script>
-	<script src="<c:url value='/js/addressFunctions.min.js' />" type="text/javascript"></script>
-	<script src="http://maps.google.com/maps/api/js?sensor=false" type="text/javascript"></script>	
-</c:if>
-<c:if test="${fn:contains(header.Host,'9090')}">
+
 
 	<link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/base/jquery-ui.css" rel="stylesheet" type="text/css" />
 	<link rel="stylesheet" type="text/css" media="all" href="<c:url value='/css/calendar-blau.css' />" title="win2k-cold-1" />	
@@ -134,7 +126,7 @@
 	<script src="<c:url value='/js/address/addressValidationForm.js'/>" type="text/javascript"></script>
 	<script src="http://maps.google.com/maps/api/js?sensor=false" type="text/javascript"></script>
 	<script type="text/javascript" src="<c:url value='/pages/users/recoverComanda/jscomandes.js' />"></script>
-</c:if>
+
 <script>		
 //---------------------------------------------------------------------------------------------------------------------
     Calendar.setup({

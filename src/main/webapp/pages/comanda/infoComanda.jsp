@@ -25,7 +25,7 @@
 	<div id="slider" style=" height: 500px;"  >
 	    <ul>
 	    	<s:iterator value="refrescList" var="refresc">
-	    			<li class="draggable" id="${refresc.idSub}" ><img id="imageRefresc_${refresc.id}" width="200px"  src="/onlineBot/comanda/ImageAction.action?imageId=${refresc.id}" title="${refresc.descripcio} -> Double Click to Add" /></li>
+	    			<li class="draggable" id="${refresc.idSub}" title="${refresc.tipus}" ><img id="imageRefresc_${refresc.id}" width="200px"  src="/onlineBot/comanda/ImageAction.action?imageId=${refresc.id}" title="${refresc.descripcio} -> Double Click to Add" /></li>
 	        </s:iterator>	
 	    </ul>
 	</div>
@@ -126,7 +126,7 @@
 					
 					
 	</s:form>	
-	<div id="checkPromocionsDisponibles" ><input type="button"  onclick="checkPromocionsDisponibles();" value="promos Comanda" /></div>
+	<div id="checkPromocionsDisponibles" ><input type="button"  onclick="openDialogPromos();" value="promos Comanda" /></div>
 	<div id="paycomanda" ><input type="button"  onclick="payComanda();" value="Pay Comanda" /></div>
 	<br>
 
@@ -149,16 +149,18 @@
 	 		<label id="loged" ></label>
 		</form>
 	</c:if>
+	
+<!-- Dialog per escollir promocio -->
+<div id="dialog_promo" class="filtres filtres-oberts" title="Promo">
+ 
+	 <h1>Escull una de les promocions</h1>
+			<ul id="prm" >
+			
+				
+			</ul>
+</div>  	
+	
 <!-- Scripts --> 
-<c:if test="${fn:contains(header.Host,'7070')}">
-	<link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/base/jquery-ui.css" rel="stylesheet" type="text/css" />
-	<link rel="stylesheet" type="text/css" media="all" href="<c:url value='/css/calendar-blau.css' />" title="win2k-cold-1" />	
-	<script src="<c:url value='/js/jsQuery.min.js' />" type="text/javascript"></script>
-	<script src="<c:url value='/js/calendarInput.min.js' />" type="text/javascript"></script>
-	<script src="<c:url value='/js/addressFunctions.min.js' />" type="text/javascript"></script>
-	<script src="http://maps.google.com/maps/api/js?sensor=false" type="text/javascript"></script>	
-</c:if>
-<c:if test="${fn:contains(header.Host,'9090')}">
 
 	<link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/base/jquery-ui.css" rel="stylesheet" type="text/css" />
 	<link rel="stylesheet" type="text/css" media="all" href="<c:url value='/css/calendar-blau.css' />" title="win2k-cold-1" />
@@ -170,6 +172,7 @@
 	<script src="<c:url value='/js/jquery/jquery.ui.core.js' />" type="text/javascript"></script>
 	<script src="<c:url value='/js/jquery/jquery.ui.widget.js'/>" type="text/javascript"></script>
 	<script src="<c:url value='/js/jquery/jquery.ui.mouse.js'/>" type="text/javascript"></script>
+	<script src="<c:url value='/js/jquery/jquery.ui.dialog.js' />" type="text/javascript"></script>
 	<script src="<c:url value='/js/jquery/jquery.ui.position.js'/>" type="text/javascript"></script>
 	<script src="<c:url value='/js/jquery/jquery.ui.draggable.js'/>" type="text/javascript"></script>
 	<script src="<c:url value='/js/jquery/jquery.ui.droppable.js'/>" type="text/javascript"></script>
@@ -194,7 +197,6 @@
 	<script src="<c:url value='/js/sudoSlider/jquery.sudoSlider.js'/>" type="text/javascript"></script>
 	<script type="text/javascript" src="<c:url value='/js/progressbar/progress.js'/>"></script>
 	<script type="text/javascript" src="<c:url value='/pages/comanda/jsinfoComanda.js'/>"></script>	
-</c:if>
 <script>
 
 function submitLog(){
@@ -226,6 +228,7 @@ $("#numComanda").text(${idComanda});
 $("#numplats").text(${fn:length(comanda.plats)});
 $("#preu").text(${comanda.preu});
 $("#numbegudes").text(${fn:length(comanda.begudes)});
+
 
 </script>
 </body>

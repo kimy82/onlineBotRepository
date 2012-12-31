@@ -79,17 +79,7 @@
 			</div>
 
 <!-- Scripts --> 
-<c:if test="${fn:contains(header.Host,'7070')}">
-	
-	<link rel="stylesheet" href="<c:url value='/css/demo_table.css' />" type="text/css"   media="screen" />
-	<link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/base/jquery-ui.css" rel="stylesheet" type="text/css" />	
-	<script src="<c:url value='/js/jsQuery.min.js' />" type="text/javascript"></script>
-	<script src="<c:url value='/js/jquery/jquery.dataTables.min.js' />" type="text/javascript"></script>
-	<script src="<c:url value='/js/addressFunctions.min.js' />" type="text/javascript"></script>
-	<script src="http://maps.google.com/maps/api/js?sensor=false" type="text/javascript"></script>	
-	<script type="text/javascript" src="<c:url value='/pages/users/jscomandes.js' />"></script>	
-</c:if>
-<c:if test="${fn:contains(header.Host,'9090')}">
+
 
 	<link rel="stylesheet" href="<c:url value='/css/demo_table.css' />" type="text/css"   media="screen" />
 	<link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/base/jquery-ui.css" rel="stylesheet" type="text/css" />
@@ -115,7 +105,7 @@
 	
 	<script type="text/javascript" src="<c:url value='/pages/users/jscomandes.js' />"></script>
 	
-</c:if>
+
 <script language="javascript">
 new Address.addressValidation();
 var initParams = new  InitParams( "<s:text name='txt.user.empty' />", "<s:text name='txt.password.empty' />","<s:text name='txt.password.noteq' />","<s:text name='txt.tel.empty' />","<s:text name='txt.address.empty' />","<s:text name='error.double' />","<s:text name='error.number' />");

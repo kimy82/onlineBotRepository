@@ -64,14 +64,6 @@
 </s:form>
 
 <!-- Scripts --> 
-<c:if test="${fn:contains(header.Host,'7070')}">
-	<link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/base/jquery-ui.css" rel="stylesheet" type="text/css" />	
-	<script src="<c:url value='/js/jsQueryAlone.min.js' />" type="text/javascript"></script>	
-		<script src="<c:url value='/js/jquery/jquery-ui.js' />" type="text/javascript"></script>
-	<script src="<c:url value='/js/addressFunctions.min.js' />" type="text/javascript"></script>
-	<script src="http://maps.google.com/maps/api/js?sensor=false" type="text/javascript"></script>	
-</c:if>
-<c:if test="${fn:contains(header.Host,'9090')}">
 
 	<link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/base/jquery-ui.css" rel="stylesheet" type="text/css" />	
 	<script src="<c:url value='/js/jquery/jquery.js' />" type="text/javascript"></script>
@@ -91,7 +83,7 @@
 	<script src="<c:url value='/js/address/addressValidationForm.js'/>" type="text/javascript"></script>
 	<script src="http://maps.google.com/maps/api/js?sensor=false" type="text/javascript"></script>
 	<script src="<c:url value='/pages/login/jsregister.js' />" type="text/javascript"></script>
-</c:if>
+
 <script>		
 
 new Address.addressValidation();

@@ -64,6 +64,7 @@ public class WelcomeComandaAction extends ActionSupport implements ServletRespon
 	private String				aDomicili;
 	private Integer				nplats				= null;
 	private String 				address;
+	private boolean				promo;
 	
 	private String				nameAuth;
 
@@ -307,7 +308,7 @@ public class WelcomeComandaAction extends ActionSupport implements ServletRespon
 				List<BegudaComanda> begudaList = comanda.getBegudes();
 				Beguda begudaToAdd = this.begudaBo.load(this.idBeguda);
 
-				begudaList = comandaService.addBegudaInList(begudaList, begudaToAdd);
+				begudaList = comandaService.addBegudaInList(begudaList, begudaToAdd, this.promo);
 
 				comanda.setBegudes(begudaList);
 
@@ -432,6 +433,7 @@ public class WelcomeComandaAction extends ActionSupport implements ServletRespon
 		inizilizeComandaId();
 		this.idBeguda = (request.getParameter("idBeguda") == null || request.getParameter("idBeguda").equals("")) ? null : Long
 				.parseLong(request.getParameter("idBeguda"));
+		this.promo = (request.getParameter("promo") != null || request.getParameter("promo").equals("true")) ? true : false;
 		if (this.idBeguda == null) {
 			throw new WrongParamException("null beguda to add");
 		}

@@ -11,6 +11,9 @@
 		<property name="numBegudes" type="integer" lazy="false" >
 			<column name="NUM" not-null="true" />
 		</property>
+			<property name="promo" type="boolean" lazy="false" >
+			<column name="PROMO"  />
+		</property>	
 		<many-to-one name="beguda" class="com.online.model.Beguda" cascade="save-update" >	
 			<column name="BEGUDA_ID"></column>	
 		</many-to-one>		

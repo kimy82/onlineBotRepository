@@ -182,6 +182,7 @@ $( ".selector" ).dblclick(function() {
            					window.localStorage.setItem("comanda",json.numComanda);
            					window.localStorage.setItem("comanda.preu",json.preu);
            					window.localStorage.setItem("comanda.numplats",json.numPlats);
+           					saveLocalStorageNplatsOfsinglePlat(idPlat);
            					
            					$("#numComanda").text(json.numComanda);
            					$("#numplats").text(json.numPlats);
@@ -193,6 +194,16 @@ $( ".selector" ).dblclick(function() {
         								$("#errorsajax").show();  		
       		  					}
       		});	
+	}
+	
+	function saveLocalStorageNplatsOfsinglePlat(idPlat){
+		var nPl = window.localStorage.getItem("comanda.plat_"+idPLat);
+		
+		if(nPl!='undefined' && nPl !=null ){
+			window.localStorage.setItem("comanda.plat_"+idPlat, parseInt(nPl)+1);
+		}else{
+			window.localStorage.setItem("comanda.plat_"+idPlat, 1);
+		}		
 	}
 
     $( ".selector" ).draggable({
@@ -248,8 +259,7 @@ $( ".selector" ).dblclick(function() {
 	    	if(numbegudes != 'undefined' && numbegudes != null){
 	    		$("#numbegudes").text(numbegudes);		
 	    	}
-		}
-	    
+		}	       
 	  
 	       
 </script>

@@ -10,8 +10,8 @@
 						    }, 500);						
 						}, 500);
 
-					$("#chargeBar").hide();
-
+$("#chargeBar").hide();
+window.promoBeguda=null;
 function payComanda(){
 		var comanda = window.localStorage.getItem("comanda");
 		if(comanda!= null && comanda != 'undefined'){
@@ -37,25 +37,28 @@ function saveNewPLatAmount(id,value){
 		 var preu = $("#platpreu_"+id).text();
 		 var numPlatsAnt = window.localStorage.getItem("comanda.plat_"+id);
 		 if(numPlatsAnt != 'undefined' && numPlatsAnt != null){
+			 
+			 var nPlatsAdded = parseInt(value)-parseInt(numPlatsAnt);
+			 
 			 window.localStorage.setItem("comanda.plat_"+id,value);
-			 var preuToAdd = parseFloat(preu)*value;
+			 
+			 var preuToAdd = parseFloat(preu)*nPlatsAdded;
 			 var preuActual = $("#preu").text();
 			 var newPreu = preuToAdd+parseFloat(preuActual);
 			 $("#preu").text(newPreu);
+			 
 			 window.localStorage.setItem("comanda.preu",newPreu);
+			 
 			 var nPlats = $("#numplats").text();
-			 $("#numplats").text(parseInt(nPlats)+value);
-			 window.localStorage.setItem("comanda.numplats",parseInt(nPlats)+value);
+			 
+			 $("#numplats").text(parseInt(nPlats)+nPlatsAdded);
+			 window.localStorage.setItem("comanda.numplats",parseInt(nPlats)+nPlatsAdded);
+			 //Guardem els plats afegits
+			 savePlatToComanda(id,nPlatsAdded);
 		 }else{
-			 var numaddedPlats =parseInt(value);
-			 var preuToAdd = parseFloat(preu)*numaddedPlats;
-			 var preuActual = $("#preu").text();
-			 var newPreu = preuToAdd+parseFloat(preuActual);
-			 $("#preu").text(newPreu);
-			 window.localStorage.setItem("comanda.preu",newPreu);
-			 var nPlats = $("#numplats").text();			 
-			 $("#numplats").text(parseInt(nPlats)+numaddedPlats);
-			 window.localStorage.setItem("comanda.numplats",parseInt(nPlats)+numaddedPlats);
+			 
+			 //Si entrem aki hi ha hagut un error
+			alert("Please try again!! or remove the plat. There aren't more");
 			 
 		 }
 	}
@@ -153,9 +156,10 @@ $(function(){
 	});
 	
 	
-	function saveBegudaToComanda(idBeguda){
+	
+	function saveBegudaToComanda(idBeguda,promo){
 		
-		var data ="idBeguda="+idBeguda+"&idComanda="+$("#idcomanda").val();
+		var data ="idBeguda="+idBeguda+"&idComanda="+$("#idcomanda").val()+"&promo="+promo;
       	$.ajax({
       		  type: "POST",
       		  url: '/onlineBot/comanda/ajaxLoadBeguda.action',
@@ -200,9 +204,24 @@ $(function(){
 	    }
 	});
 	$( "#droppable" ).droppable({
-	    drop: function( event, ui ){	        
-	        var item_id = ui.draggable.attr("id");     
-	        saveBegudaToComanda(item_id);
+	    drop: function( event, ui ){
+	    	var item_id = ui.draggable.attr("id"); 
+	    	var  tipus = ui.draggable.attr("title");
+	    	if(window.promoBeguda != 'undefined' && window.promoBeguda != null && window.promoBeguda.promo!="true" ){	    		    
+		        saveBegudaToComanda(item_id,false);
+	    	}else{
+	    		if(window.promoBeguda.numBegudesAdded < window.promoBeguda.numBegudes){
+	    			if(tipus!= window.promoBeguda.tipusBeguda){
+	    				alert("La beb no és del tipus de la promoció!");
+	    			}
+	    			saveBegudaToComanda(item_id,true);
+	    		}else{
+	    			alert("No more drinks to the promo cart");
+	    		}
+	    		
+	    	}
+	    	
+	        
 	    }
 	});
 });
@@ -250,9 +269,14 @@ function checkPromocionsDisponibles(){
 	       				}
 	       				
 	       				if(json.promosNumComanda !=null ){
-	       					alert("eiii");
-	       				
-	       					return;
+	       					//Hi ha prom del tipus numero de comanda
+	       					fillPromos(json.promosNumComanda);
+	       			
+	       				}
+	       				if(json.promosAPartirDe !=null ){
+	       					//Hi ha prom del tipus a partir de
+	       					fillPromos(json.promosAPartirDe);
+	       					
 	       				}
 	       						       			
 	       			}	  			  		  			  		  			  	
@@ -265,3 +289,56 @@ function checkPromocionsDisponibles(){
 	}	
 	
 }
+
+function fillPromos(json){
+	$.each(json, function(index,item){
+		if(item.numBegudes!=null && json.numBegudes!= "0"){
+			//Promocio de begudes
+			var liToAppend = "<li><a href='#' onclick='addPromoBeguda('"+json.numBegudes+"','"+json.tipusBeguda+"') >'Te un descompte per escollir "+json.numBegudes +" begudes de tipus "+json.tipusBeguda+"</a>";
+			$("#dialog_promo ul").append(liToAppend);
+			continue;
+		}
+		if(item.descompteImport!=null && item.descompteImport!="0"){			
+			//promocio descompte de pasta
+			var liToAppend = "<li><a href='#' onclick='addPromoImport('"+json.descompteImport+"','"+json.tipuDescompte+"') >'Te un descompte de  "+json.descompteImport +" en "+json.tipuDescompte+"</a>";
+			$("#dialog_promo ul").append(liToAppend);
+			continue;
+		}
+	});		
+	
+}
+
+function addPromoBeguda(nbegudes, tipusBeguda){
+	//La idea es obrir un div on es pugui arrastrar una beguda
+	window.promoBeguda= {promo : "true"};
+	window.promoBeguda.numBegudesAdded=0;
+	window.promoBeguda.numBegudes=parseInt(nbegudes);
+	window.promoBeguda.tipusBeguda=tipusBeguda;
+	
+	alert("Afegeix les begudes al box");
+	
+}
+
+function addPromoImport(importDescompte, tipusDescompte){
+	//La idea és afegir el descompte al div d'info de la comanda
+}
+
+function openDialogPromos(){
+	 $("#dialog_promos").dialog("open"); 
+}
+
+$("#dialog_promo").dialog( { autoOpen: false,
+	  modal: true,
+	  position: 'center',
+	  draggable: true,
+	  height: 390,
+	  width: 900,		
+	  open: function(event, ui) { 
+		 //carrega la taula del dialog
+		checkPromocionsDisponibles(); 
+		
+		$('#dialog_promo').css('overflow', 'hidden');
+		
+
+	 }
+});

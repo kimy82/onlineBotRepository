@@ -110,7 +110,7 @@ public class ComandaServiceImpl implements ComandaService{
 		List<PlatComanda> platList = comanda.getPlats();
 		if (!listBeguda.isEmpty()) {
 			for (BegudaComanda begudaComanda : listBeguda) {
-
+				if(!begudaComanda.isPromo())
 				preuComanda = preuComanda + (begudaComanda.getNumBegudes() * begudaComanda.getBeguda().getPreu());
 			}
 		}
@@ -133,12 +133,12 @@ public class ComandaServiceImpl implements ComandaService{
 
 	}
 
-	public List<BegudaComanda> addBegudaInList( List<BegudaComanda> begudaList, Beguda beguda ) throws ComandaException{
+	public List<BegudaComanda> addBegudaInList( List<BegudaComanda> begudaList, Beguda beguda, boolean promo ) throws ComandaException{
 
 		boolean existInList = false;
 		if (begudaList.size() > 0) {
 			for (BegudaComanda bg : begudaList) {
-				if (bg.getBeguda().getId().equals(beguda.getId())) {
+				if (bg.getBeguda().getId().equals(beguda.getId()) && bg.isPromo()==promo) {
 					existInList = true;
 					bg.setNumBegudes(bg.getNumBegudes() + 1);
 				}
@@ -146,6 +146,7 @@ public class ComandaServiceImpl implements ComandaService{
 		}
 		if (!existInList) {
 			BegudaComanda begudaComanda = new BegudaComanda();
+			begudaComanda.setPromo(promo);
 			begudaComanda.setBeguda(beguda);
 			begudaComanda.setNumBegudes(1);
 			begudaList.add(begudaComanda);

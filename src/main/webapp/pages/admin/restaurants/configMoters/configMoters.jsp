@@ -113,20 +113,7 @@
 </center>
 </div>
 </div>
-<!-- Scripts --> 
-<c:if test="${fn:contains(header.Host,'7070')}">
 
-	<link rel="stylesheet" href="<c:url value='/css/tbl_comp_cal_ext.min.css' />" type="text/css"   media="screen" />
-	<script src="<c:url value='/js/jsQueryAlone.min.js' />" type="text/javascript"></script>
-	<script src="<c:url value='/js/calendarPop.min.js' />" type="text/javascript"></script>
-	<script src="<c:url value='/js/jsext.min.js' />" type="text/javascript"></script>
-	<script src="<c:url value='/js/jquery/jquery.dataTables.min.js'/>" type="text/javascript"></script>
-	<script src="<c:url value='/js/jsconfigMoters.min.js' />" type="text/javascript"></script>
-	<script src="<c:url value='/js/calendarInput.min.js' />" type="text/javascript"></script>
-	
-</c:if>
-
-<c:if test="${fn:contains(header.Host,'9090')}">
 
     <link rel="stylesheet" href="<c:url value='/css/loadCalendar.css' />" type="text/css" />
     <link rel="stylesheet" href="<c:url value='/css/participadasCalendar.css'/>" type="text/css" />         
@@ -149,7 +136,6 @@
 	<script type="text/javascript" src="<c:url value='/js/calendari/calendar-idioma.js'/>"></script>		
 	<script type="text/javascript" src="<c:url value='/js/calendari/calendar-setup.js'/>"></script>
 	
-</c:if>
 <script>			
 
 //---------------------------------------------------------------------------------------------------------------------
