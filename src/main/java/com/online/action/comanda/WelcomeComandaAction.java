@@ -112,6 +112,12 @@ public class WelcomeComandaAction extends ActionSupport implements ServletRespon
 				this.comanda = this.comandaBo.load(this.idComanda);
 				if (this.comanda.getUser() == null)
 					this.comanda.setUser(getUserFromContext());
+				
+				if(this.comanda.getPreu()==null || this.comanda.getPreu()==0.0)
+					this.comanda.setPreu(this.comandaService.getPreuOfComanda(comanda));
+				
+				this.comandaBo.update(comanda);
+				
 				json = this.comandaService.checkComandaPromocions(comanda, resource);
 			}
 
@@ -353,6 +359,7 @@ public class WelcomeComandaAction extends ActionSupport implements ServletRespon
 
 			BasicSub basic = new BasicSub(beguda.getFoto().getId(), beguda.getNom());
 			basic.setIdSub(beguda.getId());
+			basic.setTipus(beguda.getTipus());
 			this.refrescList.add(basic);
 
 		}

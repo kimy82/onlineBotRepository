@@ -25,7 +25,7 @@ public class ComandaDaoImpl extends HibernateDaoSupport implements ComandaDao{
 
 		Query query = session.createQuery("from Comandes cmd where cmd.user.id=" + id + " and cmd.fentrada >=?");
 
-		query.setDate(1, getDate(lastNdias));
+		query.setDate(0, getDate(lastNdias));
 
 		comandaList = ((List<Comandes>) query.list());
 

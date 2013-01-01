@@ -64,8 +64,7 @@ public class PromocionsBoImpl implements PromocionsBo{
 	// PRIVATE METHODS
 	private void checkPromocio( Promocio promocio ) throws BOException{
 
-		if (promocio == null || promocio.getNom() == null || promocio.getNom().equals("") || promocio.getDescompteImport() == null
-				|| promocio.getTipuDescompte() == null) {
+		if (promocio == null || promocio.getNom() == null || promocio.getNom().equals("") ) {
 			throw new BOException("Null promo to save");
 		}
 	}

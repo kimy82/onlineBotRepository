@@ -270,12 +270,12 @@ function checkPromocionsDisponibles(){
 	       				
 	       				if(json.promosNumComanda !=null ){
 	       					//Hi ha prom del tipus numero de comanda
-	       					fillPromos(json.promosNumComanda);
+	       					fillPromos(json.promosNumComanda[0]);
 	       			
 	       				}
 	       				if(json.promosAPartirDe !=null ){
 	       					//Hi ha prom del tipus a partir de
-	       					fillPromos(json.promosAPartirDe);
+	       					fillPromos(json.promosAPartirDe[0]);
 	       					
 	       				}
 	       						       			
@@ -292,17 +292,18 @@ function checkPromocionsDisponibles(){
 
 function fillPromos(json){
 	$.each(json, function(index,item){
-		if(item.numBegudes!=null && json.numBegudes!= "0"){
+		if(item.numBegudes!=null && item.numBegudes!= 'undefined' && json.numBegudes!= "0"){
 			//Promocio de begudes
-			var liToAppend = "<li><a href='#' onclick='addPromoBeguda('"+json.numBegudes+"','"+json.tipusBeguda+"') >'Te un descompte per escollir "+json.numBegudes +" begudes de tipus "+json.tipusBeguda+"</a>";
+			var liToAppend = "<li><a href='#' onclick=\"addPromoBeguda('"+item.numBegudes+"','"+item.tipusBeguda+"')\" >'Te un descompte per escollir "+item.numBegudes +" begudes de tipus "+item.tipusBeguda+"</a>";
 			$("#dialog_promo ul").append(liToAppend);
-			continue;
+			
+		
 		}
-		if(item.descompteImport!=null && item.descompteImport!="0"){			
+		if(item.descompteImport!=null && item.descompteImport!= 'undefined' && item.descompteImport!="0"){			
 			//promocio descompte de pasta
-			var liToAppend = "<li><a href='#' onclick='addPromoImport('"+json.descompteImport+"','"+json.tipuDescompte+"') >'Te un descompte de  "+json.descompteImport +" en "+json.tipuDescompte+"</a>";
+			var liToAppend = "<li><a href='#' onclick=\"addPromoImport('"+item.descompteImport+"','"+item.tipuDescompte+"')\" >'Te un descompte de  "+item.descompteImport +" en "+item.tipuDescompte+"</a>";
 			$("#dialog_promo ul").append(liToAppend);
-			continue;
+
 		}
 	});		
 	
@@ -324,7 +325,7 @@ function addPromoImport(importDescompte, tipusDescompte){
 }
 
 function openDialogPromos(){
-	 $("#dialog_promos").dialog("open"); 
+	 $("#dialog_promo").dialog("open"); 
 }
 
 $("#dialog_promo").dialog( { autoOpen: false,

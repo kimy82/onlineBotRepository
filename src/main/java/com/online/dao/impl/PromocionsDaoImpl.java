@@ -33,10 +33,10 @@ public class PromocionsDaoImpl extends HibernateDaoSupport implements Promocions
 		session.beginTransaction();
 		Criteria criteria = session.createCriteria(PromocioAPartirDe.class);
 		criteria.add(Restrictions.le("importAPartirDe", importAPartirDe));
-		if (dia != null)
-			criteria.add(Restrictions.eq("dia", dia));
-		else
-			criteria.add(Restrictions.or(Restrictions.isEmpty("dia"), Restrictions.eq("dia", Calendar.getInstance().getTime())));
+		//if (dia != null)
+			//criteria.add(Restrictions.eq("dia", dia));
+		//else
+			//criteria.add(Restrictions.or(Restrictions.isEmpty("dia"), Restrictions.eq("dia", Calendar.getInstance().getTime())));
 
 		return criteria.list();
 	}

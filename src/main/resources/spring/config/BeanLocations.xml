@@ -18,7 +18,8 @@
  		<property name="configRestaurantBo" ref="configRestaurantBo" /> 
  		<property name="motersBo" ref="motersBo" />
  		<property name="restaurantsBo" ref="restaurantsBo" />
- 		<property name="promocionsBo" ref="promocionsBo" />  		
+ 		<property name="promocionsBo" ref="promocionsBo" />
+ 		<property name="comandaBo" ref="comandaBo" />  		  		
  	</bean>
  	<bean id="paymentService" class="com.online.services.impl.PaymentServiceImpl"> 	  		
  	</bean>

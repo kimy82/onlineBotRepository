@@ -5,6 +5,7 @@ package com.online.pojos;
 public class BasicSub extends Basic{
 
 	private Long	idSub;
+	private String  tipus;
 
 	
 
@@ -25,6 +26,14 @@ public class BasicSub extends Basic{
 	public void setIdSub( Long idSub ){
 	
 		this.idSub = idSub;
+	}
+
+	public String getTipus() {
+		return tipus;
+	}
+
+	public void setTipus(String tipus) {
+		this.tipus = tipus;
 	}
 
 	
