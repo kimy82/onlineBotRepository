@@ -37,20 +37,26 @@ public class Comandes implements Serializable{
 	protected List<BegudaComanda>	begudes				= new LinkedList<BegudaComanda>();
 
 	protected Users					user;
+
+	protected Boolean				aDomicili;
 	
-	protected Boolean 				aDomicili;
+	protected String 				tipuDescomte;
 	
+	protected Double 				importDescomte;
+
 	private Date					fentrada;
+
+	
 
 	// CONSTRUCTORS
 
 	public Boolean getaDomicili(){
-	
+
 		return aDomicili;
 	}
 
 	public void setaDomicili( Boolean aDomicili ){
-	
+
 		this.aDomicili = aDomicili;
 	}
 
@@ -66,7 +72,7 @@ public class Comandes implements Serializable{
 		this.dia = dia;
 		this.hora = hora;
 		this.preu = preu;
-		
+
 	}
 
 	// GETTERS i SETTERS
@@ -151,25 +157,45 @@ public class Comandes implements Serializable{
 	}
 
 	public List<BegudaComanda> getBegudes(){
-	
+
 		return begudes;
 	}
 
 	public void setBegudes( List<BegudaComanda> begudes ){
-	
+
 		this.begudes = begudes;
 	}
 
 	public Date getFentrada(){
-	
+
 		return fentrada;
 	}
 
 	public void setFentrada( Date fentrada ){
-	
+
 		this.fentrada = fentrada;
 	}
 
+	public String getTipuDescomte(){
+	
+		return tipuDescomte;
+	}
+
+	public void setTipuDescomte( String tipuDescomte ){
+	
+		this.tipuDescomte = tipuDescomte;
+	}
+
+	public Double getImportDescomte(){
+	
+		return importDescomte;
+	}
+
+	public void setImportDescomte( Double importDescomte ){
+	
+		this.importDescomte = importDescomte;
+	}
+	
 	
 	
 }

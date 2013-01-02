@@ -29,5 +29,7 @@ public interface ComandaService{
 	
 	public String checkComandaPromocions(Comandes comanda, ResourceBundle resource) throws ComandaException;
 	
+	public void deleteBegudesPromo(Comandes comanda) throws ComandaException;
+	
 }
  

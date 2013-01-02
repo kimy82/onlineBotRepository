@@ -17,8 +17,14 @@
 		<property name="preu" type="double" lazy="false" >
 			<column name="PREU"  not-null="true" />
 		</property>
+		<property name="importDescomte" type="double" lazy="false" >
+			<column name="IMPORT_DESCOMPTE"  />
+		</property>
 		<property name="observacions" type="string">
 			<column name="OBSERVACIONS" length="1000" />
+		</property>
+		<property name="tipuDescomte" type="string">
+			<column name="TIPUS_DESCOMPTE" length="10" />
 		</property>
 		<property name="address" type="string">
 			<column name="ADDRESS" length="200" />
@@ -32,6 +38,9 @@
 		<many-to-one name="user" class="com.online.model.Users" lazy="false" >	
 			<column name="USER_ID"></column>	
 		</many-to-one>
+		<many-to-one name="promocio" class="com.online.model.Promocio" lazy="false" >	
+			<column name="PROMOCIO_ID"></column>	
+		</many-to-one>		
 		<list name="plats" table="comanda_plats" 
         	inverse="false" lazy="false" fetch="select" cascade="save-update">
             <key>

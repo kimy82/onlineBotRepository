@@ -9,6 +9,9 @@ public class Constants{
 	public final static String	TIPUS_BEGUDA_VI			= "vi";
 	public final static String	TIPUS_BEGUDA_CAVA		= "cava";
 	
+	public final static String	TIPUS_DESCOMPTE_1		= "%";
+	public final static String	TIPUS_DESCOMPTE_2		= "amount";
+	
 	public final static String	H0800		= "08:00";
 	public final static String	H0900		= "09:00";
 	public final static String	H1000		= "10:00";

@@ -37,191 +37,248 @@ public class ComandaServiceImpl implements ComandaService{
 	private RestaurantsBo		restaurantsBo;
 	private PromocionsBo		promocionsBo;
 	private ComandaBo			comandaBo;
-	
+
 	private ResourceBundle		resource;
+
+	public void deleteBegudesPromo( Comandes comanda ) throws ComandaException{
+
+		try {
+			List<BegudaComanda> begudaComandaList = comanda.getBegudes();
+			List<BegudaComanda> newBegudaComandaList = new ArrayList<BegudaComanda>();
+			for (BegudaComanda begudaComanda : begudaComandaList) {
+				if (!begudaComanda.isPromo()) {
+					newBegudaComandaList.add(begudaComanda);
+				}
+			}
+			comanda.setBegudes(newBegudaComandaList);
+			this.comandaBo.update(comanda);
+
+		} catch (Exception e) {
+			throw new ComandaException(e, "Error deleting begudes of promo");
+		}
+	}
 
 	public String checkComandaPromocions( Comandes comanda, ResourceBundle resource ) throws ComandaException{
 
-		this.resource = resource;
-		List<PromocioNumComandes> promoNumComandesFinalList= new ArrayList<PromocioNumComandes>();
-		
-		List<PromocioAPartirDe> apartirDePromoFinalList = this.promocionsBo.getPromosAPartirDe(comanda.getPreu(), null);
-		
-		List<PromocioNumComandes> promoNumComandesList = this.promocionsBo.getPromosNumComandes(null, null);
-		for(PromocioNumComandes promo :promoNumComandesList){
-			Integer numComandes = promo.getNumComandes();
-			Integer temps = promo.getTemps();
-			if(comanda!=null && comanda.getUser()!=null){
-			  List<Comandes> comandesList = this.comandaBo.getAllByUserAndTemps(comanda.getUser().getId(), temps);
-			  if(comandesList!=null && comandesList.size() >= numComandes){
-				  promoNumComandesFinalList.add(promo);
-			  }
+		try {
+			this.resource = resource;
+			List<PromocioNumComandes> promoNumComandesFinalList = new ArrayList<PromocioNumComandes>();
+
+			List<PromocioAPartirDe> apartirDePromoFinalList = this.promocionsBo.getPromosAPartirDe(comanda.getPreu(), null);
+
+			List<PromocioNumComandes> promoNumComandesList = this.promocionsBo.getPromosNumComandes(null, null);
+			for (PromocioNumComandes promo : promoNumComandesList) {
+				Integer numComandes = promo.getNumComandes();
+				Integer temps = promo.getTemps();
+				if (comanda != null && comanda.getUser() != null) {
+					List<Comandes> comandesList = this.comandaBo.getAllByUserAndTemps(comanda.getUser().getId(), temps);
+					if (comandesList != null && comandesList.size() >= numComandes) {
+						promoNumComandesFinalList.add(promo);
+					}
+				}
+
 			}
-		
+
+			Gson gson = new GsonBuilder().setPrettyPrinting().excludeFieldsWithoutExposeAnnotation().create();
+			StringBuffer json = new StringBuffer("{ \"promosNumComanda\": [" + gson.toJson(promoNumComandesFinalList) + "],");
+			json.append(" \"promosAPartirDe\": [" + gson.toJson(apartirDePromoFinalList) + "]}");
+			return json.toString();
+		} catch (Exception e) {
+			throw new ComandaException(e, "Errorgetting promos");
 		}
 
-		Gson gson = new GsonBuilder().setPrettyPrinting().excludeFieldsWithoutExposeAnnotation().create();
-		StringBuffer json = new StringBuffer("{ \"promosNumComanda\": ["+gson.toJson(promoNumComandesFinalList)+"],");
-		json.append(" \"promosAPartirDe\": ["+gson.toJson(apartirDePromoFinalList)+"]}");
-		return json.toString();		
 	}
 
 	public String checkComandaProblems( Comandes comanda, ResourceBundle resource ) throws ComandaException{
 
-		this.resource = resource;
-		List<PlatComanda> platList = comanda.getPlats();
-		String checkDades = checkDadesComanda(comanda);
+		try {
+			this.resource = resource;
+			List<PlatComanda> platList = comanda.getPlats();
+			String checkDades = checkDadesComanda(comanda);
 
-		if (checkDades.equals("true")) {
+			if (checkDades.equals("true")) {
 
-			String hora = comanda.getHora();
-			Date dia = comanda.getDia();
+				String hora = comanda.getHora();
+				Date dia = comanda.getDia();
 
-			// Control Dia i conexio restaurant
-			String checkDiaHora = comprovaHoraDiaRestaurantsOberts(platList, dia, hora);
-			String conRPS = comprovaConexioRPSambRestaurants(platList);
+				// Control Dia i conexio restaurant
+				String checkDiaHora = comprovaHoraDiaRestaurantsOberts(platList, dia, hora);
+				String conRPS = comprovaConexioRPSambRestaurants(platList);
 
-			if (!checkDiaHora.equals("true") || !conRPS.equals("true")) {
+				if (!checkDiaHora.equals("true") || !conRPS.equals("true")) {
 
-				return createJSONErrorComanda(checkDiaHora + " " + conRPS);
-			}
-
-			// Control Moters
-			if (comanda.getaDomicili() != null && comanda.getaDomicili() == true) {
-				String checkMoters = checkMoters(dia, hora);
-				if (!checkMoters.equals("true")) {
-					return checkMoters;
+					return createJSONErrorComanda(checkDiaHora + " " + conRPS);
 				}
-			}
 
-		} else {
-			return checkDades;
+				// Control Moters
+				if (comanda.getaDomicili() != null && comanda.getaDomicili() == true) {
+					String checkMoters = checkMoters(dia, hora);
+					if (!checkMoters.equals("true")) {
+						return checkMoters;
+					}
+				}
+
+			} else {
+				return checkDades;
+			}
+			return createJSONComandaOK(resource);
+		} catch (Exception e) {
+			throw new ComandaException(e, "Error checking problems");
 		}
-		return createJSONComandaOK(resource);
 	}
 
 	public Double getPreuOfComanda( Comandes comanda ) throws ComandaException{
 
-		if (comanda == null)
-			return 0.0;
+		try {
+			if (comanda == null)
+				return 0.0;
 
-		Double preuComanda = 0.0;
-		List<BegudaComanda> listBeguda = comanda.getBegudes();
-		List<PlatComanda> platList = comanda.getPlats();
-		if (!listBeguda.isEmpty()) {
-			for (BegudaComanda begudaComanda : listBeguda) {
-				if(!begudaComanda.isPromo())
-				preuComanda = preuComanda + (begudaComanda.getNumBegudes() * begudaComanda.getBeguda().getPreu());
+			Double preuComanda = 0.0;
+			List<BegudaComanda> listBeguda = comanda.getBegudes();
+			List<PlatComanda> platList = comanda.getPlats();
+			if (!listBeguda.isEmpty()) {
+				for (BegudaComanda begudaComanda : listBeguda) {
+					if (!begudaComanda.isPromo())
+						preuComanda = preuComanda + (begudaComanda.getNumBegudes() * begudaComanda.getBeguda().getPreu());
+				}
 			}
-		}
 
-		if (!platList.isEmpty()) {
-			for (PlatComanda platComanda : platList) {
+			if (!platList.isEmpty()) {
+				for (PlatComanda platComanda : platList) {
 
-				preuComanda = preuComanda + (platComanda.getNumPlats() * platComanda.getPlat().getPreu());
+					preuComanda = preuComanda + (platComanda.getNumPlats() * platComanda.getPlat().getPreu());
+				}
 			}
-		}
 
-		return preuComanda;
+			return preuComanda;
+		} catch (Exception e) {
+			throw new ComandaException(e, "Error getting preu");
+		}
 	}
 
 	public String createJSONForBegudaList( List<BegudaComanda> listBeguda ) throws ComandaException{
 
-		Gson gson = new GsonBuilder().setPrettyPrinting().excludeFieldsWithoutExposeAnnotation().create();
-		StringBuffer json = new StringBuffer(gson.toJson(listBeguda));
-		return json.toString();
+		try {
 
+			Gson gson = new GsonBuilder().setPrettyPrinting().excludeFieldsWithoutExposeAnnotation().create();
+			StringBuffer json = new StringBuffer(gson.toJson(listBeguda));
+			return json.toString();
+
+		} catch (Exception e) {
+			throw new ComandaException(e, "Error creating JSON of beguda list");
+		}
 	}
 
 	public List<BegudaComanda> addBegudaInList( List<BegudaComanda> begudaList, Beguda beguda, boolean promo ) throws ComandaException{
 
-		boolean existInList = false;
-		if (begudaList.size() > 0) {
-			for (BegudaComanda bg : begudaList) {
-				if (bg.getBeguda().getId().equals(beguda.getId()) && bg.isPromo()==promo) {
-					existInList = true;
-					bg.setNumBegudes(bg.getNumBegudes() + 1);
+		try {
+			boolean existInList = false;
+			if (begudaList.size() > 0) {
+				for (BegudaComanda bg : begudaList) {
+					if (bg.getBeguda().getId().equals(beguda.getId()) && bg.isPromo() == promo) {
+						existInList = true;
+						bg.setNumBegudes(bg.getNumBegudes() + 1);
+					}
 				}
 			}
+			if (!existInList) {
+				BegudaComanda begudaComanda = new BegudaComanda();
+				begudaComanda.setPromo(promo);
+				begudaComanda.setBeguda(beguda);
+				begudaComanda.setNumBegudes(1);
+				begudaList.add(begudaComanda);
+			}
+			return begudaList;
+			
+		} catch (Exception e) {
+			throw new ComandaException(e, "Error adding beguda in list");
 		}
-		if (!existInList) {
-			BegudaComanda begudaComanda = new BegudaComanda();
-			begudaComanda.setPromo(promo);
-			begudaComanda.setBeguda(beguda);
-			begudaComanda.setNumBegudes(1);
-			begudaList.add(begudaComanda);
-		}
-		return begudaList;
 	}
 
 	public boolean checkPlatForMoreThanTwoRestaurants( List<PlatComanda> platList, Plat plat ) throws ComandaException{
-
-		boolean moreThanTwo = false;
-
-		Set<String> restaurants = new HashSet<String>();
-
-		if (platList.size() >= 2) {
-			for (PlatComanda pl : platList) {
-				Iterator<Restaurant> restaurantsIterator = pl.getPlat().getRestaurants().iterator();
-				while (restaurantsIterator.hasNext()) {
-					Restaurant rest = restaurantsIterator.next();
-					restaurants.add(rest.getNom());
-					break;
+		
+		try{
+			
+			boolean moreThanTwo = false;
+	
+			Set<String> restaurants = new HashSet<String>();
+	
+			if (platList.size() >= 2) {
+				for (PlatComanda pl : platList) {
+					Iterator<Restaurant> restaurantsIterator = pl.getPlat().getRestaurants().iterator();
+					while (restaurantsIterator.hasNext()) {
+						Restaurant rest = restaurantsIterator.next();
+						restaurants.add(rest.getNom());
+						break;
+					}
+				}
+				if (restaurants.size() > 2) {
+					throw new ComandaException("S'han assignat mes de dos resturants");
 				}
 			}
-			if (restaurants.size() > 2) {
-				throw new ComandaException("S'han assignat mes de dos resturants");
+	
+			Iterator<Restaurant> restaurantsIterator = plat.getRestaurants().iterator();
+			while (restaurantsIterator.hasNext()) {
+				Restaurant rest = restaurantsIterator.next();
+				restaurants.add(rest.getNom());
+				if (restaurants.size() <= 2) {
+					moreThanTwo = false;
+					break;
+				} else {
+					moreThanTwo = true;
+					restaurants.remove(rest.getNom());
+				}
 			}
+			return moreThanTwo;
+			
+		} catch (Exception e) {
+			throw new ComandaException(e, "Error checking plat from more than one restaurant");
 		}
-
-		Iterator<Restaurant> restaurantsIterator = plat.getRestaurants().iterator();
-		while (restaurantsIterator.hasNext()) {
-			Restaurant rest = restaurantsIterator.next();
-			restaurants.add(rest.getNom());
-			if (restaurants.size() <= 2) {
-				moreThanTwo = false;
-				break;
-			} else {
-				moreThanTwo = true;
-				restaurants.remove(rest.getNom());
-			}
-		}
-		return moreThanTwo;
 	}
 
 	public String createJSONForShoppingCart( List<PlatComanda> platList, Long id ) throws ComandaException{
 
-		Double preuComanda = 0.0;
-		List<String> platsSring = new ArrayList<String>();
-		Integer numPlats = 0;
-		for (PlatComanda pl : platList) {
-			platsSring.add(pl.getPlat().getNom());
-			preuComanda = preuComanda + (pl.getPlat().getPreu() * pl.getNumPlats());
-			numPlats = numPlats + pl.getNumPlats();
-		}
+		try{
+			Double preuComanda = 0.0;
+			List<String> platsSring = new ArrayList<String>();
+			Integer numPlats = 0;
+			for (PlatComanda pl : platList) {
+				platsSring.add(pl.getPlat().getNom());
+				preuComanda = preuComanda + (pl.getPlat().getPreu() * pl.getNumPlats());
+				numPlats = numPlats + pl.getNumPlats();
+			}
+	
+			ComandaCart comandaCart = new ComandaCart(String.valueOf(preuComanda), platsSring, String.valueOf(numPlats));
+	
+			Gson gson = new GsonBuilder().setPrettyPrinting().excludeFieldsWithoutExposeAnnotation().create();
+			StringBuffer json = new StringBuffer(gson.toJson(comandaCart));
+			json.setLength(json.length() - 1);
+	
+			json.append(", \"numComanda\" : \"" + id + "\" }");
+	
+			boolean valid = Utils.isValidJSON(json.toString());
+	
+			return json.toString();
 
-		ComandaCart comandaCart = new ComandaCart(String.valueOf(preuComanda), platsSring, String.valueOf(numPlats));
-
-		Gson gson = new GsonBuilder().setPrettyPrinting().excludeFieldsWithoutExposeAnnotation().create();
-		StringBuffer json = new StringBuffer(gson.toJson(comandaCart));
-		json.setLength(json.length() - 1);
-
-		json.append(", \"numComanda\" : \"" + id + "\" }");
-
-		boolean valid = Utils.isValidJSON(json.toString());
-
-		return json.toString();
-
+		} catch (Exception e) {
+			throw new ComandaException(e, "Error creating JSON for cart");
+		}	
 	}
 
 	public boolean checkPlatInList( List<PlatComanda> platList, Plat plat ) throws ComandaException{
-
-		for (PlatComanda plt : platList) {
-			if (plt.getPlat().getId().toString().equals(plat.getId().toString())) {
-				return true;
+		
+		try{
+			
+			for (PlatComanda plt : platList) {
+				if (plt.getPlat().getId().toString().equals(plat.getId().toString())) {
+					return true;
+				}
 			}
+			return false;
+			
+		} catch (Exception e) {
+			throw new ComandaException(e, "Error checking plat in list");
 		}
-		return false;
 	}
 
 	public class ComandaCart{
@@ -364,15 +421,13 @@ public class ComandaServiceImpl implements ComandaService{
 	}
 
 	public void setPromocionsBo( PromocionsBo promocionsBo ){
-	
+
 		this.promocionsBo = promocionsBo;
 	}
 
 	public void setComandaBo( ComandaBo comandaBo ){
-	
+
 		this.comandaBo = comandaBo;
 	}
 
-	
-	
 }

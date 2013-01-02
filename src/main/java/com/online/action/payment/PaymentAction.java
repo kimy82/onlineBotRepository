@@ -46,9 +46,13 @@ public class PaymentAction extends ActionSupport implements ServletResponseAware
 		inizilizeComandaId();
 		
 		this.comanda = this.comandaBo.load(idComanda);
+		
 		try{
+			setInComandaPromoImport();
 			orders =this.paymentService.getComandaOrders(this.comanda);
 		}catch(PaymentException pe){
+			return ERROR;
+		}catch (Exception e){
 			return ERROR;
 		}
 		
@@ -70,7 +74,15 @@ public class PaymentAction extends ActionSupport implements ServletResponseAware
 
 	//PRIVATES
 	
-	
+	private void setInComandaPromoImport(){
+		
+		String tipusDescompte =  (request.getParameter("tipuDescomte") == null || request.getParameter("tipuDescomte").equals("")) ? null : request.getParameter("tipuDescomte");
+		Double importe = (request.getParameter("importDescomte") == null || request.getParameter("importDescomte").equals("")) ? null : Double.parseDouble(request.getParameter("importDescomte"));
+		this.comanda.setTipuDescomte(tipusDescompte);
+		this.comanda.setImportDescomte(importe);
+		this.comandaBo.update(comanda);
+		
+	}
 	private void inizilizeComandaId() throws WrongParamException{
 
 		try {

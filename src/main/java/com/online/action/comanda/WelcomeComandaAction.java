@@ -371,6 +371,34 @@ public class WelcomeComandaAction extends ActionSupport implements ServletRespon
 		return SUCCESS;
 	}
 
+	public String deleteBegudesPromo(){
+		
+		ServletOutputStream out = null;
+
+		String json = "";
+
+		try {
+
+			out = this.response.getOutputStream();
+			inizilizeComandaId();
+			this.comanda = this.comandaBo.load(this.idComanda);
+			this.comandaService.deleteBegudesPromo(this.comanda);
+			
+		} catch (ComandaException ce) {
+			json = createErrorJSON("error in comanda service action");
+		} catch (Exception e) {
+			json = createErrorJSON("error in ajax action");
+		}
+
+		try {
+			out.print(json);
+		} catch (IOException e) {
+			throw new GeneralException(e, "possibly ServletOutputStream null");
+		}
+
+		return null;
+		
+	}
 	// private methods
 
 	private Users getUserFromContext(){

@@ -47,6 +47,8 @@
 	   <br>
 	   <s:text name="comanda.num.begudes" />:<label id="numbegudes" ></label>
 	    <br>
+	   <s:text name="comanda.num.begudes.promo" />:<label id="numbegudespromo" ></label>
+	    <br>
 	   <s:text name="comanda.preu" />:<label id="preu" ></label>
 </div>
 <br>
@@ -128,6 +130,7 @@
 	</s:form>	
 	<div id="checkPromocionsDisponibles" ><input type="button"  onclick="openDialogPromos();" value="promos Comanda" /></div>
 	<div id="paycomanda" ><input type="button"  onclick="payComanda();" value="Pay Comanda" /></div>
+	<div id="deletePromoApplied" ><input type="button"  onclick="deletePromoApplied();" value="delete promo applied" /></div>
 	<br>
 
 	<c:if test="${nameAuth eq 'anonymousUser' }">
@@ -198,6 +201,11 @@
 	<script type="text/javascript" src="<c:url value='/js/progressbar/progress.js'/>"></script>
 	<script type="text/javascript" src="<c:url value='/pages/comanda/jsinfoComanda.js'/>"></script>	
 <script>
+
+var initParams = new InitParams("<s:text name='txt.beguda.no.tipus.promo' />","<s:text name='txt.beguda.no.more.promo' />",
+								"<s:text name='txt.add.beguda.to.box' />", "<s:text name='txt.promo.descompte.aplicat' />",
+								"<s:text name='txt.promo.deleted' />");
+
 
 function submitLog(){
 	
