@@ -12,7 +12,7 @@ function onlyDouble(value,id){
 		$('#'+id).css('border', 'solid 1px rgb(135,155,179)');
 	}else{
 		$('#'+id).css('border', 'solid 1px red');
-		alert(initTableParams.txterrordouble);
+		alertOnline.alertes(initTableParams.txterrordouble);
 	}
 }  
 
@@ -21,7 +21,7 @@ function onlyEntero(value,id){
 		$('#'+id).css('border', 'solid 1px rgb(135,155,179)');
 	}else{
 		$('#'+id).css('border', 'solid 1px red');
-		alert(initTableParams.txterrornumber);
+		alertOnline.alertes(initTableParams.txterrornumber);
 	}
 }
 
@@ -30,7 +30,6 @@ function ismaxlength(obj,mlength){
 		obj.value=obj.value.substring(0,mlength);
 	
 }
-
 
 function fillAddress(){
 	
@@ -46,7 +45,7 @@ function fillAddress(){
 
 function openCloseDiv(id){
 	 	
-	 id($("#"+id).is(":hidden")){
+	 if($("#"+id).is(":hidden")){
 		 $("#"+id).show('slow');
 	 }else{
 		 $("#"+id).hide('slow');
@@ -73,26 +72,26 @@ function Comanda(id){
 	
 	$("#hora").onchange= function(){
 		self.hora = this.value;
-	}
+	};
 	
 	$("#dia").onchange= function(){
 		self.dia = this.value;
-	}
+	};
 	
 	$("#comandaddress").onchange= function(){
 		self.address = this.value;
-	}
+	};
 	
 	
 	this.setPlat= function(plat){
 		self.plats.push(plat);
-	}
+	};
 	
 	this.changeNumPlats= function(id,num){
 		 for (i=0;i<self.plats.length;i++){			 
 			 if(self.plats[i].id==id){self.plats[i].numPlats=num;}
 		  }		
-	}
+	};
 	
 	
 	
@@ -107,7 +106,7 @@ Comanda.prototype.getToStringPlats= function(){
 		 platsString=platsString.substr(1);
 	 }
 	 return platsString;
-}
+};
 
 Comanda.prototype._init= function(self){
 	
@@ -121,7 +120,7 @@ Comanda.prototype._init= function(self){
 	self.address= $("#comandaddress").val();
 	self.observacions= $("#observacions").text();
 	
-}
+};
 
 //obj plat
 function PLat(idPlat, num){
@@ -143,7 +142,6 @@ function setInfoInForm(){
 	}
 }
 
-
 $(document).ready(function() {
 				
 		//ocultem divs
@@ -151,18 +149,3 @@ $(document).ready(function() {
 		$("#infoUser").hide();
 		
 } );
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

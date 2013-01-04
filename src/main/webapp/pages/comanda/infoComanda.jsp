@@ -12,15 +12,9 @@
 </head>
 <body>
 <h2><s:text name="txt.info.comanda.user" /></h2>
-<div id="errorsajax">
-				<label style="color: red" id="errorsajaxlabel"></label>
-</div>
 <br>
-<table>
-	<tr>		
-			<td><a href="#" onclick="history.go(-1);" > Home</a></td>
-	</tr>
-</table>	
+<c:import url="/pages/includes/goBack.jsp" />
+	
 <div style="position:relative; left: 30px;">
 	<div id="slider" style=" height: 500px;"  >
 	    <ul>
@@ -169,7 +163,7 @@
 	<link rel="stylesheet" type="text/css" media="all" href="<c:url value='/css/calendar-blau.css' />" title="win2k-cold-1" />
 	<link rel="stylesheet" type="text/css" media="all" href="<c:url value='/css/sudoSlider.css' />"  />	
 	<link type="text/css" rel="stylesheet" href="<c:url value='/css/progress.css' />" />
-	<link type="text/css" rel="stylesheet" href="<c:url value='/css/infoComanda.css' />" />
+	<link type="text/css" rel="stylesheet" href="<c:url value='/css/online.css' />" />
 
 	<script src="<c:url value='/js/jquery/jquery.js' />" type="text/javascript"></script>
 	<script src="<c:url value='/js/jquery/jquery.ui.core.js' />" type="text/javascript"></script>
@@ -230,14 +224,16 @@ function submitLog(){
 	
 }
 
-$("#idcomanda").val(${idComanda});
-$("#numComanda").text(${idComanda});
+$("#idcomanda").val('${idComanda}');
+$("#numComanda").text('${idComanda}');
 
-$("#numplats").text(${fn:length(comanda.plats)});
-$("#preu").text(${comanda.preu});
-$("#numbegudes").text(${fn:length(comanda.begudes)});
+$("#numplats").text('${fn:length(comanda.plats)}');
+$("#preu").text('${comanda.preu}');
+$("#numbegudes").text('${fn:length(comanda.begudes)}');
 
 
 </script>
+	<c:import url="/pages/includes/alertOnline.jsp" />
+	<c:import url="/pages/includes/errorAjax.jsp" />
 </body>
 </html>

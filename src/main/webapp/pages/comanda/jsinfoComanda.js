@@ -52,7 +52,7 @@ function onlyEntero(value,id){
 		return true;
 	}else{
 		$('#'+id).css('border', 'solid 1px red');
-		alert(initTableParams.txterrornumber);
+		alertOnline.alertes(initTableParams.txterrornumber);		
 		return false;
 	}
 }
@@ -83,8 +83,7 @@ function saveNewPLatAmount(id,value){
 		 }else{
 			 
 			 //Si entrem aki hi ha hagut un error
-			alert("Please try again!! or remove the plat. There aren't more");
-			 
+			 alertOnline.alertes("Please try again!! or remove the plat. There aren't more");								 
 		 }
 	}
 }
@@ -103,8 +102,7 @@ function savePlatToComanda(idPlat,nPlats){
        				$("#errorsajax").show();
        			}				
   		  },
-  		  error: function(e){   $("#errorsajaxlabel").text("Error in ajax call");
-    								$("#errorsajax").show();  		
+  		  error: function(e){   errorOnline.error("Error in AJAX");	
   		  					}
   		});	
 }
@@ -130,18 +128,18 @@ function checkComandaJS(){
 	       				$("#errorsajax").show();
 	       			}else{
 	       				if(json.alertLoged!=null){
-	       					alert(json.alertLoged);
+	       					alertOnline.alertes(json.alertLoged);			       					
 	       					$("#chargeBar").hide();
 	       					return;
 	       				}
 	       				if(json.alerta!=null){
-	       					alert(json.alerta);
+	       					alertOnline.alertes(json.alerta);	       					
 	       					$("#chargeBar").hide();
 	       					return;
 	       				}
 	       				
 	       				if(json.comandaOK !=null ){
-	       					alert(json.comandaOK);
+	       					alertOnline.alertes(json.comandaOK);	       					
 	       					$("#chargeBar").hide();
 	       					$("#paycomanda").show();
 	       					$("#checkPromocionsDisponibles").show();
@@ -151,8 +149,7 @@ function checkComandaJS(){
 	       			}	  			  		  			  		  			  	
 	  			  $("#chargeBar").hide();
 	  		  },
-	  		  error: function(e){   $("#errorsajaxlabel").text("Error in ajax call");
-	    								$("#errorsajax").show();  		
+	  		  error: function(e){   errorOnline.error("Error in AJAX");	
 	  		  					}
 	  		});
 	}
@@ -196,7 +193,8 @@ $(function(){
            				$("#errorsajax").show();
            			}else{
            				if(json.alerta!=null){
-           					alert(json.alerta);
+           					alertOnline.alertes(json.alerta);
+           					
            				}else{
            					var numBegudes=0;
            					var numBegudesPromo=0;
@@ -226,8 +224,7 @@ $(function(){
            				}
            			}				
       		  },
-      		  error: function(e){   $("#errorsajaxlabel").text("Error in ajax call");
-        								$("#errorsajax").show();  		
+      		  error: function(e){  errorOnline.error("Error in AJAX");	
       		  					}
       		});	
 	}
@@ -247,14 +244,14 @@ $(function(){
 	    	}else{
 	    		if(window.promoBeguda.numBegudesAdded < window.promoBeguda.numBegudes){
 	    			if(tipus!= window.promoBeguda.tipusBeguda){
-	    				alert(initParams.txtBegudaNoPromocio);
+	    				alertOnline.alertes(initParams.txtBegudaNoPromocio);	    				
 	    			}
 	    			//Afegim beguda al contador
 	    			var n = window.promoBeguda.numBegudesAdded;
 	    			window.promoBeguda.numBegudesAdded = parseInt(n) +1;
 	    			saveBegudaToComanda(item_id,true);
 	    		}else{
-	    			alert(initParams.txtNoMoreDrinksToAddinPromo);
+	    			alertOnline.alertes(initParams.txtNoMoreDrinksToAddinPromo);	    			
 	    		}
 	    		
 	    	}
@@ -301,7 +298,7 @@ function checkPromocionsDisponibles(){
 	       				$("#errorsajax").show();
 	       			}else{
 	       				if(json.alertLoged!=null){
-	       					alert(json.alertLoged);
+	       					alertOnline.alertes(json.alertLoged);	       					
 	       					$("#chargeBar").hide();
 	       					return;
 	       				}
@@ -320,8 +317,7 @@ function checkPromocionsDisponibles(){
 	       			}	  			  		  			  		  			  	
 	  			  $("#chargeBar").hide();
 	  		  },
-	  		  error: function(e){   $("#errorsajaxlabel").text("Error in ajax call");
-	    								$("#errorsajax").show();  		
+	  		  error: function(e){  errorOnline.error("Error in AJAX");	
 	  		  					}
 	  		});
 	}	
@@ -360,7 +356,7 @@ function addPromoBeguda(nbegudes, tipusBeguda){
 	
 	$("#checkPromocionsDisponibles").hide();
 	
-	alert(initParams.txtAddDrinkstoBox);
+	alertOnline.alertes(initParams.txtAddDrinkstoBox);	
 	
 }
 
@@ -458,8 +454,8 @@ function deletePromoApplied(){
 		
 		deleteAjaxBegudesPromo();
 	}
+	alertOnline.alertes(initParams.txtpromodeleted);
 	
-	alert(initParams.txtpromodeleted);
  
 }
 
@@ -481,8 +477,7 @@ function deleteAjaxBegudesPromo(){
 	       			}  			  		  			  		  			  	
 	  			 
 	  		  },
-	  		  error: function(e){   $("#errorsajaxlabel").text("Error in ajax call");
-	    								$("#errorsajax").show();  		
+	  		  error: function(e){   errorOnline.error("Error in AJAX"); 		
 	  		  					}
 	  		});
 	}	

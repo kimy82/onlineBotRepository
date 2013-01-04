@@ -36,7 +36,7 @@ $(function() {
 							$("#errorsajax").show();
 						} else {
 							if (json.alerta != null) {
-								alert(json.alerta);
+								alertOnline.alertes(json.alerta);								
 							} else {
 								// Posem id en el local storage
 								window.localStorage.setItem("comanda",
@@ -53,9 +53,8 @@ $(function() {
 							}
 						}
 					},
-					error : function(e) {
-						$("#errorsajaxlabel").text("Error in ajax call");
-						$("#errorsajax").show();
+					error : function(e) {						
+						errorOnline.error("Error in AJAX");
 					}
 				});
 	}

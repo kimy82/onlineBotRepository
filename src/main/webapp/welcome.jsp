@@ -8,57 +8,13 @@
 		pageEncoding="ISO-8859-1"%>
 	<META http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 	<META http-equiv="Content-Style-Type" content="text/css">
-	<title>Welcome</title>	
+	<title> <s:text name="txt.welcome.principal" /></title>	
 </head>
 <body>
 
-<div align="left">
-<table>
-	<c:if test="${nameAuth eq 'anonymousUser' }">
-		<tr>
-			<td colspan='2'><a name="register" type="button" href="<c:url value='/preRegisterUser.action'/>" >Register</a>
-						</td>
-			<td colspan='2'><a name="register" type="button" href="<c:url value='/login.action'/>" >Login</a>
-						</td>
-		</tr>
-	</c:if>		
-	<c:if test="${nameAuth ne 'anonymousUser' }">
-		<tr>		
-			<td><a href="<c:url value="/j_spring_security_logout" />" > Logout</a></td>
-		</tr>	
-	</c:if>
-</table>
-</div>
+<c:import url="/pages/includes/divLogin.jsp" />
+<c:import url="/pages/includes/homeSlider.jsp" />
 
-<div id='coin-slider'>
-	    <a href="<c:url value='/images/presentacio/image1.jpg' />" target="_blank">
-	        <img src='<c:url value='/images/presentacio/image1.jpg' />' >
-	 
-	    </a>
-	    <a href="<c:url value='/images/presentacio/image2.jpg' />">
-	        <img src='<c:url value='/images/presentacio/image2.jpg' />' >
-	     
-	    </a>
-	     <a href="<c:url value='/images/presentacio/image3.jpg' />">
-	        <img src='<c:url value='/images/presentacio/image3.jpg' />' >
-	  
-	    </a>
-	     <a href="<c:url value='/images/presentacio/image4.jpg' />">
-	        <img src='<c:url value='/images/presentacio/image4.jpg' />' >
-	       
-	    </a>
-	     <a href="<c:url value='/images/presentacio/image5.jpg' />">
-	        <img src='<c:url value='/images/presentacio/image5.jpg' />' >
-	       
-	    </a>
-	     <a href="<c:url value='/images/presentacio/image6.jpg' />">
-	        <img src='<c:url value='/images/presentacio/image6.jpg' />' >
-	      
-	    </a>
-	     <a href="<c:url value='/images/presentacio/image7.jpg' />">
-	        <img src='<c:url value='/images/presentacio/image7.jpg' />' >	      
-	    </a>
-</div>
 <div id="draggables_pl" style="width: 500px; height: 400px;" align="left" >
 <s:iterator value="restaurantList" var="restaurant">
 <div class="selector" id="${restaurant.id}" >
@@ -74,17 +30,14 @@
 	</table>
 </div>
 </s:iterator>
-
-<div id="userOptions"  class="ui-widget-header">
-  <a href="<c:url value='/user/comandesPasades.action' />" ><img src="<c:url value='/images/shopping_cart.png' />" />Mira les comandes anteriors </a>
-</div>
-
+<c:import url="/pages/includes/goLookComanda.jsp" />
 </div>
 
 <!-- Scripts --> 
 
 	<link rel="stylesheet" href="<c:url value='/css/coin-slider-styles.css' />" type="text/css" />
 	<link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/base/jquery-ui.css" rel="stylesheet" type="text/css" />
+	<link type="text/css" rel="stylesheet" href="<c:url value='/css/online.css' />" />
 	<script src="<c:url value='/js/jquery/jquery.js' />" type="text/javascript"></script>
 	<script src="<c:url value='/js/jquery/jquery.ui.core.js' />" type="text/javascript"></script>
 	<script src="<c:url value='/js/jquery/jquery.ui.widget.js'/>" type="text/javascript"></script>
@@ -96,23 +49,6 @@
 	<script src="<c:url value='/js/jquery/jquery.effects.core.js'/>" type="text/javascript"></script>
 	<script src="<c:url value='/js/jquery/jquery.bgiframe-2.1.1.js'/>" type="text/javascript"></script>
 
-
-	<style>
-		.selector {
-		    -moz-border-radius: 10px;
-		    -webkit-border-radius: 10px;
-		    border-radius: 10px;
-		    border: blue 2px solid;
-		    width: 500px;
-		}
-		.abs{
-			position: absolute;
-			top: 20px;
-			right: 50px;
-			width: 400px;
-			height: 200px;
-		}
-	</style>
 	<script type="text/javascript" src="<c:url value='/js/slider/coin-slider.min.js' />"></script>
 
 <script type="text/javascript" >
@@ -122,7 +58,7 @@ $( ".selector" ).click(function() {
 	var id = $(this).attr("id");
 	var comanda = window.localStorage.getItem("comanda");
 	if(comanda != 'undefined' && comanda != null){
-		if (confirm("Existeix una comanda començada. Desitjar continuar?")) {
+		if (confirm(" <s:text name='txt.comanda.existeix.vol.continuar' />")) {
 			window.location.href="/onlineBot/comanda/Welcome.action?restaurantId="+id+"&idComanda="+comanda;		
 		}else{
 			window.localStorage.removeItem("comanda");

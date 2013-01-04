@@ -108,6 +108,7 @@
 	<script src="<c:url value='/js/jquery/jquery.ui.core.js' />" type="text/javascript"></script>
 	<script src="<c:url value='/js/jquery/jquery.ui.widget.js'/>" type="text/javascript"></script>
 	<script src="<c:url value='/js/jquery/jquery.ui.mouse.js'/>" type="text/javascript"></script>
+	<script src="<c:url value='/js/jquery/jquery.ui.dialog.js' />" type="text/javascript"></script>
 	<script src="<c:url value='/js/jquery/jquery.ui.position.js'/>" type="text/javascript"></script>
 	<script src="<c:url value='/js/jquery/jquery.ui.draggable.js'/>" type="text/javascript"></script>
 	<script src="<c:url value='/js/jquery/jquery.ui.droppable.js'/>" type="text/javascript"></script>
@@ -127,18 +128,21 @@
 	<script src="http://maps.google.com/maps/api/js?sensor=false" type="text/javascript"></script>
 	<script type="text/javascript" src="<c:url value='/pages/users/recoverComanda/jscomandes.js' />"></script>
 
-<script>		
-//---------------------------------------------------------------------------------------------------------------------
+<script type="text/javascript" >		
+
     Calendar.setup({
         inputField    	:    "dia",      // id del campo de texto
         ifFormat       	:    "%d-%m-%Y",          // formato de la fecha, cuando se escriba en el campo de texto
         button         	:    "llencadorData1",          // el id del botón que lanzará el calendario
         locale 		   	:    "ca_ES"
     });
-//---------------------------------------------------------------------------------------------------------------------
-new Address.addressValidation();
-var comanda = new Comanda(${comanda.id});
 
-</script> 
+new Address.addressValidation();
+var comanda = new Comanda('${comanda.id}');
+
+</script>
+ 
+	<c:import url="/pages/includes/alertOnline.jsp" />
+	<c:import url="/pages/includes/errorAjax.jsp" />
 </body>
 </html>

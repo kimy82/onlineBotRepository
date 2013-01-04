@@ -26,7 +26,7 @@ function validate(){
 	if(self.username.value==''){
 	 	
 		$("#username").css('border', 'solid 1px red');
-		alert(initParams.txtusernameempty);
+		alertOnline.alertes(initParams.txtusernameempty);			
 		return false;
 		
 	}else{
@@ -36,21 +36,21 @@ function validate(){
 	if(!validateEmail(self.username.value)){
 		
 		$("#username").css('border', 'solid 1px red');
-		alert(initParams.txtusernamewrong);
+		alertOnline.alertes(initParams.txtusernamewrong);			
 		return false;
 	}
 	
 	if(self.password.value==''){
 	 	
 		$("#password").css('border', 'solid 1px red');
-		alert(initParams.txtpasswordempty);
+		alertOnline.alertes(initParams.txtpasswordempty);			
 		return false;
 		
 	}else{
 		if(self.password.value!=self.confirmPassword.value){
 			$("#confirmPassword").css('border', 'solid 1px red');
 			$("#password").css('border', 'solid 1px red');
-			alert(initParams.txtpasswordnotequal);
+			alertOnline.alertes(initParams.txtpasswordnotequal);				
 		}else{
 			$("#confirmPassword").css('border', 'solid 1px rgb(135,155,179)');
 			$("#password").css('border', 'solid 1px rgb(135,155,179)');
@@ -60,7 +60,7 @@ function validate(){
 	if(self.telefon.value==''){
 		
 		$("#telefon").css('border', 'solid 1px red');
-		alert(initParams.txttelempty);
+		alertOnline.alertes(initParams.txttelempty);			
 		return false;
 		
 	}else{
@@ -70,7 +70,7 @@ function validate(){
 	if(self.comandaddress.value==''){
 		
 		$("#comandaddress").css('border', 'solid 1px red');
-		alert(initParams.txtaddressempty);
+		alertOnline.alertes(initParams.txtaddressempty);			
 		return false;
 		
 	}else{
