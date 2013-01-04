@@ -3,10 +3,10 @@
 <%@ taglib prefix="s" uri="/struts-tags" %>
 <html>
 <head>
-<title>Register Page</title>
+<title><s:text name="txt.register.title" /></title>
 </head>
 <body>
-	<h3>Register with Username and Password</h3>
+	<h3><s:text name="txt.register.info" /></h3>
  
  <s:form action="registerUser"  id="registerForm" >
  
@@ -14,41 +14,8 @@
 	<s:password key="password" id="password" />
 	<s:password key="confirmPassword" id="confirmPassword" />
 	<s:textfield key="telefon" maxlength="10" id="telefon" ></s:textfield>
-	<h1>Address</h1>
-		<div class="page">
-			<div id="main">		   		
-					<div id="map_canvas" style="float: right; height: 200px; width: 400px;"></div>				                
-					                <table>
-						                <tr>
-						                	<td>						                	
-	                        					<label for="carrer">
-	                        							 <s:text name="adreca.carrer" /></label>		
-	                        					<input type="text" id="carrer"  />  
-	                        					
-	                        					<label for="numcarrer">
-	                        							  <s:text name="adreca.numcarrer" /></label>		
-	                        					<input type="text" id="numcarrer"  />
-	                        					
-	                        					<label for="codi">
-	                        							  <s:text name="adreca.codipostal" /></label>		
-	                        					<input type="text" id="codi"  />
-	                        					
-	                        					<label for="poble">
-	                        							  <s:text name="adreca.poble" /></label>		
-	                        					<input type="text" id="poble" disabled="disabled" value="Girona"  />                        						                    													    										                
-						                    </td>
-						                </tr>
-						                <tr>
-							                <td>				                
-							                    <input id="checkAdd" value="Comprova si és correcte" type="button" />
-							                </td>
-							                <td>
-							                <label id="addressOK" ></label>
-							                </td>    
-						                </tr>
-					                </table>
-			</div>
-		</div>
+	<h1><s:text name="txt.address.div" /></h1>
+	<c:import url="/pages/includes/address.jsp" />	
  	<s:textfield key="address" id="comandaddress" ></s:textfield>
  	<input type="button" value="submit" onclick="validate();" />
 

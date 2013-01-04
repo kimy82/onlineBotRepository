@@ -11,10 +11,7 @@
 	<title>User comandes</title>
 </head>
 
-<body>
-	<div id="errorsajax">
-				<label style="color: red" id="errorsajaxlabel"></label>
-	</div>
+<body>	
 <br>
 <table id="tbl_platscomanda" >
 <h1>PLats</h1>

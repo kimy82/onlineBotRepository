@@ -33,7 +33,8 @@ function onlyDouble(value,id){
 		$('#'+id).css('border', 'solid 1px rgb(135,155,179)');
 	}else{
 		$('#'+id).css('border', 'solid 1px red');
-		alert(initParams.txterrordouble);
+		alertOnline.alertes(initParams.txterrordouble);
+
 	}
 }  
 
@@ -42,7 +43,8 @@ function onlyEntero(value,id){
 		$('#'+id).css('border', 'solid 1px rgb(135,155,179)');
 	}else{
 		$('#'+id).css('border', 'solid 1px red');
-		alert(initParams.txterrornumber);
+		alertOnline.alertes(initParams.txterrornumber);
+
 	}
 }
 
@@ -63,7 +65,7 @@ function fillAddress(){
 	if(self.username.value==''){
 	 	
 		$("#username").css('border', 'solid 1px red');
-		alert(initParams.txtusernameempty);
+		alertOnline.alertes(initParams.txtusernameempty);		
 		return false;
 		
 	}else{
@@ -73,14 +75,14 @@ function fillAddress(){
 	if(self.password.value==''){
 	 	
 		$("#password").css('border', 'solid 1px red');
-		alert(initParams.txtpasswordempty);
+		alertOnline.alertes(initParams.txtpasswordempty);		
 		return false;
 		
 	}else{
 		if(self.password.value!=self.passwordRetyped.value){
 			$("#confirmPassword").css('border', 'solid 1px red');
 			$("#password").css('border', 'solid 1px red');
-			alert(initParams.txtpasswordnotequal);
+			alertOnline.alertes(initParams.txtpasswordnotequal);			
 		}else{
 			$("#confirmPassword").css('border', 'solid 1px rgb(135,155,179)');
 			$("#password").css('border', 'solid 1px rgb(135,155,179)');
@@ -89,7 +91,7 @@ function fillAddress(){
 	if(self.telNumber.value==''){
 		
 		$("#telefon").css('border', 'solid 1px red');
-		alert(initParams.txttelempty);
+		alertOnline.alertes(initParams.txttelempty);
 		return false;
 		
 	}else{
@@ -99,7 +101,7 @@ function fillAddress(){
 	if(self.comandaddress.value==''){
 		
 		$("#comandaddress").css('border', 'solid 1px red');
-		alert(initParams.txtaddressempty);
+		alertOnline.alertes(initParams.txtaddressempty);		
 		return false;
 		
 	}else{
@@ -120,8 +122,7 @@ function openCloseDiv(id){
 
 	if(id=='password_div'){
 		document.getElementById("password_div").style.visibility="visible";
-		document.getElementById("password_div").style.display="";
-		
+		document.getElementById("password_div").style.display="";		
 	}	
 	 if($("#"+id).is(":hidden")){
 		 $("#"+id).show('slow');
@@ -135,7 +136,7 @@ function checkPassword(){
 	var password2 = document.getElementById("passwordRetyped").value;
 	if(password1 != password2){
 		$('#passwordRetyped').css('border', 'solid 1px red');
-		alert(initParams.txtpasswordnotequal);
+		alertOnline.alertes(initParams.txtpasswordnotequal);		
 	}
 }
 
@@ -178,15 +179,13 @@ $(document).ready(function() {
 		            	"cache": false,
 		           		"success":function(json){  
 		           			if(json.error!=null){
-		           				$("#errorsajaxlabel").text(json.error);
-		                		$("#errorsajax").show();
+		           				errorOnline.error(json.error);	
 		           			}else{
 			            		fnCallback(json);			            		
 		           			}            	
 		            	},
 		            	"error":function(e){ 
-		            		$("#errorsajaxlabel").text("Error in ajax call");
-		            		$("#errorsajax").show();            	
+		            		 errorOnline.error("Error in AJAX");	         	
 		            	}
 		        	} );
 		    	}
@@ -199,18 +198,3 @@ $(document).ready(function() {
 		$("#infoUser").hide();
 		
 } );
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

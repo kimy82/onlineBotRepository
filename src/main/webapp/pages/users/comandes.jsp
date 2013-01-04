@@ -12,9 +12,6 @@
 </head>
 
 <body>
-	<div id="errorsajax">
-				<label style="color: red" id="errorsajaxlabel"></label>
-	</div>
 <h2><s:text name="txt.info.user" /></h2>	
 <br><a href="#" onclick="openCloseDiv('infoUser');" ><s:text name="txt.canvi.dades.personals" /></a>
 			<div  style="width:500px;" alig="center" id="infoUser" >
@@ -89,6 +86,7 @@
 	<script src="<c:url value='/js/jquery/jquery.ui.core.js' />" type="text/javascript"></script>
 	<script src="<c:url value='/js/jquery/jquery.ui.widget.js'/>" type="text/javascript"></script>
 	<script src="<c:url value='/js/jquery/jquery.ui.mouse.js'/>" type="text/javascript"></script>
+	<script src="<c:url value='/js/jquery/jquery.ui.dialog.js' />" type="text/javascript"></script>
 	<script src="<c:url value='/js/jquery/jquery.ui.position.js'/>" type="text/javascript"></script>
 	<script src="<c:url value='/js/jquery/jquery.ui.draggable.js'/>" type="text/javascript"></script>
 	<script src="<c:url value='/js/jquery/jquery.ui.droppable.js'/>" type="text/javascript"></script>
@@ -106,16 +104,20 @@
 	<script type="text/javascript" src="<c:url value='/pages/users/jscomandes.js' />"></script>
 	
 
-<script language="javascript">
-new Address.addressValidation();
-var initParams = new  InitParams( "<s:text name='txt.user.empty' />", "<s:text name='txt.password.empty' />","<s:text name='txt.password.noteq' />","<s:text name='txt.tel.empty' />","<s:text name='txt.address.empty' />","<s:text name='error.double' />","<s:text name='error.number' />");
-var initTableParams = new InitTableParams(
-			"<s:text  name='datatables.paginate.last'/>",
-			"<s:text  name='datatables.paginate.next'/>",
-			"<s:text  name='datatables.paginate.previous'/>",
-			"<s:text  name='datatables.paginate.first'/>",
-			"<s:text  name='datatables.loading'/>",
-			"<s:text  name='txt.avis.borrat'/>");
-</script>
+	<script language="javascript">
+		new Address.addressValidation();
+		var initParams = new  InitParams( "<s:text name='txt.user.empty' />", "<s:text name='txt.password.empty' />","<s:text name='txt.password.noteq' />","<s:text name='txt.tel.empty' />","<s:text name='txt.address.empty' />","<s:text name='error.double' />","<s:text name='error.number' />");
+		var initTableParams = new InitTableParams(
+					"<s:text  name='datatables.paginate.last'/>",
+					"<s:text  name='datatables.paginate.next'/>",
+					"<s:text  name='datatables.paginate.previous'/>",
+					"<s:text  name='datatables.paginate.first'/>",
+					"<s:text  name='datatables.loading'/>",
+					"<s:text  name='txt.avis.borrat'/>");
+	</script>
+
+	<c:import url="/pages/includes/alertOnline.jsp" />
+	<c:import url="/pages/includes/errorAjax.jsp" />
+	
 </body>
 </html>

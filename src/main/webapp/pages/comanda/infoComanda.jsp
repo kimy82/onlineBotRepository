@@ -68,42 +68,7 @@
 </div>
 
 <br>
-	<div class="page">
-		<div id="main">
-		   		<form id="MyForm" name="MyForm" action="form.html">
-					<div id="map_canvas" style="float: right; height: 200px; width: 400px;"></div>				                
-					                <table>
-						                <tr>
-						                	<td>						                	
-	                        					<label for="carrer">
-	                        							 <s:text name="adreca.carrer" /></label>		
-	                        					<input type="text" id="carrer"  />  
-	                        					
-	                        					<label for="numcarrer">
-	                        							  <s:text name="adreca.numcarrer" /></label>		
-	                        					<input type="text" id="numcarrer"  />
-	                        					
-	                        					<label for="codi">
-	                        							  <s:text name="adreca.codipostal" /></label>		
-	                        					<input type="text" id="codi"  />
-	                        					
-	                        					<label for="poble">
-	                        							  <s:text name="adreca.poble" /></label>		
-	                        					<input type="text" id="poble" disabled="disabled" value="Girona"  />                            						                    													    										                
-						                    </td>
-						                </tr>
-						                <tr>
-							                <td>				                
-							                    <input id="checkAdd" value="Comprova si és correcte" type="button" />
-							                </td>
-							                <td>
-							                <label id="addressOK" ></label>
-							                </td>    
-						                </tr>
-					                </table>
-				</form>
-		</div>
-	</div>
+<c:import url="/pages/includes/address.jsp" />	
 	<s:form action="checkComanda" method="POST" enctype="multipart/form-data" >
 					<td><s:text name="comanda.dia" ></s:text></td>
 					<td><s:textfield key="comanda.dia"  id="dia" maxlength="10" size="12" onfocus="blur()" theme="simple" ></s:textfield>
