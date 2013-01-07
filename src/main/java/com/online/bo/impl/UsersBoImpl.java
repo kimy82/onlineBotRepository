@@ -20,6 +20,18 @@ public class UsersBoImpl implements UsersBo{
 	private UsersDao			usersDao;
 	private SendingEmailService	sendingEmailService;
 
+	public boolean checkUserPlat(Long idUser, Long idPlat) throws BOException{
+		
+		if(idPlat == null ){
+			throw new BOException("Null plat to check");
+		} 
+		
+		if(idUser==null)
+			return false;
+		
+		return this.usersDao.checkUserPlat(idUser, idPlat);
+	}
+	
 	public void save( Users user ) throws BOException, Exception{
 
 		checkUser(user);

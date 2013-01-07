@@ -32,5 +32,13 @@
                 <column name="RESTAURANT_ID" not-null="true" />
             </many-to-many>
         </set>
+        <set name="comments" table="plats_foro" inverse="false" lazy="true" fetch="select" cascade="delete" >
+            <key>
+                <column name="PLAT_ID" not-null="true" />
+            </key>
+            <many-to-many entity-name="com.online.model.Foro">
+                <column name="FORO_ID" not-null="true" />
+            </many-to-many>
+        </set>
 	</class>
 </hibernate-mapping>

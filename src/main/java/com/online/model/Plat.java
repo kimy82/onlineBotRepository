@@ -8,9 +8,6 @@ import com.google.gson.annotations.Expose;
 
 public class Plat implements Serializable{
 
-	
-
-
 	/**
 	 * 
 	 */
@@ -18,25 +15,26 @@ public class Plat implements Serializable{
 
 	@Expose
 	private Long				id;
-	
+
 	@Expose
 	private String				nom;
-	
+
 	@Expose
 	private String				descripcio;
-	
+
 	@Expose
 	private Double				preu;
-	
-	protected Image				foto;
-	
-	protected String			tipus;
-	
 
-	protected Set<Restaurant>		restaurants			= new HashSet<Restaurant>(0);
+	protected Image				foto;
+
+	protected String			tipus;
+
+	protected Set<Restaurant>	restaurants			= new HashSet<Restaurant>(0);
+
+	protected Set<Foro>			comments			= new HashSet<Foro>(0);
 
 	// CONSTRUCTORS
-	 
+
 	public Plat() {
 
 		super();
@@ -103,25 +101,35 @@ public class Plat implements Serializable{
 	}
 
 	public Set<Restaurant> getRestaurants(){
-	
+
 		return restaurants;
 	}
 
 	public void setRestaurants( Set<Restaurant> restaurants ){
-	
+
 		this.restaurants = restaurants;
 	}
 
 	public String getTipus(){
-	
+
 		return tipus;
 	}
 
 	public void setTipus( String tipus ){
-	
+
 		this.tipus = tipus;
 	}
 
+	public Set<Foro> getComments(){
+	
+		return comments;
+	}
+
+	public void setComments( Set<Foro> comments ){
+	
+		this.comments = comments;
+	}
 	
 	
+
 }

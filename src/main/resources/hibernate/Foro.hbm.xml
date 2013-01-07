@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="com.online.model.Foro" table="foro">
+		<id name="id" type="java.lang.Long">
+			<column name="FORO_ID" />
+			<generator class="increment" />
+		</id>
+		<property name="comment" type="string" lazy="false" >
+			<column name="COMMENT" length="400" not-null="true" />
+		</property>		
+		<many-to-one name="plat" class="com.online.model.Plat" fetch="select">
+            <column name="PLAT_ID" not-null="true" />
+        </many-to-one>
+	</class>
+</hibernate-mapping>

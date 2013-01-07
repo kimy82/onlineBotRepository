@@ -17,4 +17,5 @@ public interface PlatsBo{
 	
 	List<Plat> getAll() throws BOException;
 
+	Plat loadPLatAndForos( Long id ) throws BOException;
 }

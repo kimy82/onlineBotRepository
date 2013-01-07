@@ -32,8 +32,7 @@ $(function() {
 					data : data,
 					success : function(json) {
 						if (json == null || json.error != null) {
-							$("#errorsajaxlabel").text(json.error);
-							$("#errorsajax").show();
+							errorOnline.error(json.error);
 						} else {
 							if (json.alerta != null) {
 								alertOnline.alertes(json.alerta);								
@@ -98,6 +97,10 @@ function goToComandaPas1() {
 $(document).ready(function() {
 	$('#coin-slider').coinslider();
 });
+
+function goToInfoPlat(id){
+	window.location.href = "/onlineBot/foro/foro.action?idPlat="+id;
+}
 
 var comanda = window.localStorage.getItem("comanda");
 

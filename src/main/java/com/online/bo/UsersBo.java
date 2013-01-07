@@ -25,5 +25,7 @@ public interface UsersBo {
 	Users findByUsername(String username) throws BOException;
 	
 	String changeUserPasswordRandomly(Users user)  throws NoSuchAlgorithmException,BOException;
+	
+	boolean checkUserPlat(Long idUser, Long idPlat) throws BOException;
 
 }

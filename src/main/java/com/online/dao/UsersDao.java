@@ -16,4 +16,6 @@ public interface UsersDao {
 	Users findByUsername(String username);
 	
 	List<Users> getAll();
+	
+	boolean checkUserPlat(Long idUser, Long idPlat);
 }

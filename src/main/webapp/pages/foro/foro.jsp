@@ -15,16 +15,18 @@
 <c:import url="/pages/includes/divLogin.jsp" />
 <c:import url="/pages/includes/goBack.jsp" />
 <c:import url="/pages/includes/goHome.jsp" />
-<c:import url="/pages/includes/homeSlider.jsp" />
 
-<div id="draggables_pl" style="width: 500px; height: 400px;" align="left" >
-<s:iterator value="platList" var="plat">
-<div class="selector ui-widget-content" id="draggable_${plat.id}" >
+<c:if test="${not empty plat }">
+
+<input type="hidden" id="idPlat" value="${plat.id}" />
+
+<c:if test="${nameAuth ne 'anonymousUser' }">
+	<div id="star_punctuation" >
+	
+	</div>
+</c:if>
+
 	<table>
-		<tr><td rowspan="4" ><a href="#"><image src="<c:url value='/images/shopping_cart.png' />" ></image></a></td>
-		
-			<td><a href="#" onclick="goToInfoPlat(${plat.id})" ><img  src="<c:url value='/images/info.gif' />" /></a></td>
-		</tr>
 		<tr>
 			<td>${plat.nom}</td>
 			<td>${plat.preu}</td>
@@ -35,22 +37,34 @@
 			<td colspan="3" >${plat.descripcio}</td>
 		</tr>
 	</table>
-</div>
-</s:iterator>
+    
+    <div class="comments_foro" id="plat_${plat.id}" >
+			<table>
+		
+			    <s:iterator value="${plat.comments}" var="comt">
+							<tr>
+								<td>${comt.comment}</td>								
+							</tr>					
+							<c:if test="${nameAuth eq 'ROLE_ADMIN' }">
+								<tr>
+									<td><a href="#" onclick="deleteComment(${comt.id})" ><img src="<c:url value='/images/delete.png' />" /> </a></td>								
+								</tr>
+							</c:if>							
+				</s:iterator>
+				<c:if test="${nameAuth ne 'anonymousUser' }">
+					<tr>
+						<td><textarea rows="4" cols="10" id="newComment" ></textarea></td>
+					</tr>
+					<tr>
+						<td><input type="button" onclick="saveComment()"  value="Submit" /></td>
+					</tr>
+				</c:if>
+				
+			</table>
+	</div>
+</c:if>
 
-<div id="droppable"  class="ui-widget-header abs">
-  <a href="#" onclick="goToComandaPas1();" >  <image src="<c:url value='/images/shopping_cart.png' />" ></image></a>
-    	<br>
-	   <s:text name="comanda.num.id" />:<label id="numComanda"></label>
-	    <br>
-	   <s:text name="comanda.num.plats" />:<label id="numplats" ></label>
-	   <br>
-	   <s:text name="comanda.num.begudes" />:<label id="numbegudes" ></label>
-	    <br>
-	   <s:text name="comanda.preu" />:<label id="preu" ></label>
-</div>
 
-<c:import url="/pages/includes/goLookComanda.jsp" />
 
 </div>
 
@@ -71,15 +85,13 @@
 	<script src="<c:url value='/js/jquery/jquery.effects.core.js'/>" type="text/javascript"></script>
 	<script src="<c:url value='/js/jquery/jquery.bgiframe-2.1.1.js'/>" type="text/javascript"></script>
 	<script type="text/javascript" src="<c:url value='/js/slider/coin-slider.min.js' />"></script>
-	<script src="<c:url value='/pages/comanda/jswelcome.js'/>" type="text/javascript"></script>
-	
-	<script type="text/javascript" >
-		//Carrega del cistell de compra 
-			$("#numComanda").text('${idComanda}');
-			$("#numplats").text('${fn:length(comanda.plats)}');
-			$("#preu").text('${comanda.preu}');        
+	<script src="<c:url value='/pages/foro/jsforo.js'/>" type="text/javascript"></script>
+	<script>
+
+		var initParams = new InitParams("<s:text name='txt.comment.saved' />",
+										"<s:text name='txt.comment.deleted'/>");
+																		
 	</script>
-	
 	<c:import url="/pages/includes/alertOnline.jsp" />
 	<c:import url="/pages/includes/errorAjax.jsp" />
 </body>

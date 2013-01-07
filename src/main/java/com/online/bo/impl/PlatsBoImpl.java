@@ -40,6 +40,15 @@ public class PlatsBoImpl implements PlatsBo{
 			return platsDao.loadLaziFalse(id);
 	}
 
+	public Plat loadPLatAndForos( Long id ) throws BOException{
+		
+
+		if (id == null)
+			throw new BOException("NUll id to load");
+						
+			return platsDao.loadPLatAndForos(id);		
+	}
+	
 	public List<Plat> getAll() throws BOException{
 		
 		return this.platsDao.getAll();

@@ -9,7 +9,6 @@ import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
 
 import com.online.dao.PlatsDao;
 import com.online.model.Plat;
-import com.online.model.Restaurant;
 
 public class PlatsDaoImpl extends HibernateDaoSupport implements PlatsDao{
 	
@@ -64,6 +63,24 @@ public class PlatsDaoImpl extends HibernateDaoSupport implements PlatsDao{
 		return plat;
 	}
 
+	public Plat loadPLatAndForos( Long id ){
+
+		Session session = this.getSessionFactory().openSession();
+
+		session.beginTransaction();
+		@SuppressWarnings("unchecked")
+		List<Plat> platList = (List<Plat>) session.createQuery("from Plat pl where pl.id=" + id).list();
+		if (platList.isEmpty())
+			return null;
+		
+		Plat plat = platList.get(0);
+		
+		Hibernate.initialize(plat.getComments());
+		
+		session.close();
+
+		return plat;
+	}
 	
 
 }

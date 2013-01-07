@@ -50,6 +50,7 @@
 	<include file="struts/struts-admin.xml"></include>
 	<include file="struts/struts-comanda.xml"></include>
 	<include file="struts/struts-payment.xml"></include>
+	<include file="struts/struts-foro.xml"></include>
 	
 	
 
