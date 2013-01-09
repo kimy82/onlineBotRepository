@@ -53,12 +53,12 @@ public class ComandaBoImpl implements ComandaBo{
 		return comandaDao.getAll();
 	}
 	
-	public List<Comandes> getAllByUser(Long id)throws BOException{
+	public List<Comandes> getAllByUser(Long id, boolean initPLatComanda)throws BOException{
 		if(id ==null){
 			throw new BOException("Null id of User");
 		} 
 		
-		return this.comandaDao.getAllByUser(id);
+		return this.comandaDao.getAllByUser(id,initPLatComanda);
 	}
 
 	// PRIVATE METHODS

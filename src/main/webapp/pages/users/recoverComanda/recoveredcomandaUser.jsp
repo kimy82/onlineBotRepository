@@ -15,7 +15,7 @@
 <br>
 <table id="tbl_platscomanda" >
 <h1>PLats</h1>
-<s:iterator value="${comanda.plats}" var="plat" >
+<s:iterator value="comanda.plats" var="plat" >
 <tr class="item" >
 <td>${plat.nom}</td>
 <td>${plat.tipus}</td>
@@ -91,7 +91,7 @@
 					<s:hidden key="comanda.hora" id="horaHid" ></s:hidden>
 					<s:hidden key="comanda.observacions" id="observacionsHid" ></s:hidden>
 					<s:hidden key="comanda.id" id="idcomandaHid" ></s:hidden>	                   
-					<s:hidden key="comanda.address" id="comandaddressHid" value="${comanda.address}" ></s:hidden>																		
+					<s:hidden key="comanda.address" id="comandaddressHid" value="" ></s:hidden>																		
 					<s:submit onclick="setInfoInForm();" ></s:submit>
 </s:form>	
 
@@ -136,7 +136,7 @@
 
 new Address.addressValidation();
 var comanda = new Comanda('${comanda.id}');
-
+$("#comandaddressHid").val('${comanda.address}');
 </script>
  
 	<c:import url="/pages/includes/alertOnline.jsp" />

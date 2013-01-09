@@ -39,27 +39,29 @@
 	</table>
     
     <div class="comments_foro" id="plat_${plat.id}" >
-			<table>
+			<table id="comments_tbl" >
 		
-			    <s:iterator value="${plat.comments}" var="comt">
-							<tr>
+			    <s:iterator value="plat.comments" var="comt">
+							<tr id="${comt.id}" >
 								<td>${comt.comment}</td>								
-							</tr>					
-							<c:if test="${nameAuth eq 'ROLE_ADMIN' }">
-								<tr>
-									<td><a href="#" onclick="deleteComment(${comt.id})" ><img src="<c:url value='/images/delete.png' />" /> </a></td>								
-								</tr>
-							</c:if>							
-				</s:iterator>
+												
+								<c:if test="${nameAuth eq 'ROLE_ADMIN' }">
+									
+										<td><a href="#" onclick="deleteComment(${comt.id})" ><img src="<c:url value='/images/delete.png' />" /> </a></td>								
+									
+								</c:if>	
+							</tr>						
+				</s:iterator>								
+			</table>
+			<table>
 				<c:if test="${nameAuth ne 'anonymousUser' }">
 					<tr>
-						<td><textarea rows="4" cols="10" id="newComment" ></textarea></td>
+						<td><textarea rows="4" cols="60" id="newComment" ></textarea></td>
 					</tr>
 					<tr>
 						<td><input type="button" onclick="saveComment()"  value="Submit" /></td>
 					</tr>
 				</c:if>
-				
 			</table>
 	</div>
 </c:if>

@@ -32,6 +32,41 @@
 	<import resource="../beans/Promocions.xml"/>
 	<import resource="../beans/Beguda.xml"/>
 	<import resource="../beans/Comanda.xml"/>
+	<import resource="../beans/Foro.xml"/>
+	
+	<!-- JOB PER VOTACIONS -->
+	<bean id="job" class="org.springframework.scheduling.quartz.JobDetailBean">
+        <property name="jobClass" value="com.online.crons.WorkOutPunctuation" />
+        <property name="jobDataAsMap">
+            <map>
+                <entry key="message" value="executing job!" />
+                 <entry key="usersBo" value-ref="usersBo" />
+            </map>
+        </property>
+    </bean>
+    <!-- bean id="trigger" class="org.springframework.scheduling.quartz.SimpleTriggerBean">
+        <property name="jobDetail" ref="job" />
+        <property name="startDelay" value="5000" />
+        <property name="repeatInterval" value="1000" />
+        <property name="jobDataAsMap">
+            <map>
+                <entry key="triggerMessage" value="Trigger Message from trigger" />
+            </map>
+        </property>
+    </bean -->
+	<bean id="trigger" class="org.springframework.scheduling.quartz.CronTriggerBean">
+	    <property name="jobDetail" ref="job" />
+	    <!-- run at 1 PM every day -->
+	    <property name="cronExpression" value="0 0 1 * * ?" />
+	</bean>
+    <bean id="schedulerFactory" class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
+        <property name="triggers">
+            <list>
+                <ref local="trigger" />
+            </list>
+        </property>
+    </bean>
+	<!-- FI JOB PER VOTACIONS -->
 	
 	<!-- Action struts beans -->
 	<bean id="login" class="com.online.action.LoginAction">

@@ -59,7 +59,7 @@ $(function() {
 	}
 
 	function saveLocalStorageNplatsOfsinglePlat(idPlat) {
-		var nPl = window.localStorage.getItem("comanda.plat_" + idPLat);
+		var nPl = window.localStorage.getItem("comanda.plat_" + idPlat);
 
 		if (nPl != 'undefined' && nPl != null) {
 			window.localStorage.setItem("comanda.plat_" + idPlat,

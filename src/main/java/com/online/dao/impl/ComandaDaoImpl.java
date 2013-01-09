@@ -82,7 +82,7 @@ public class ComandaDaoImpl extends HibernateDaoSupport implements ComandaDao{
 	}
 
 	@SuppressWarnings("unchecked")
-	public List<Comandes> getAllByUser( Long id ){
+	public List<Comandes> getAllByUser( Long id , boolean initPLatComanda){
 
 		List<Comandes> comandaList = new ArrayList<Comandes>();
 
@@ -92,7 +92,16 @@ public class ComandaDaoImpl extends HibernateDaoSupport implements ComandaDao{
 		Query query = session.createQuery("from Comandes cmd where cmd.user.id=" + id);
 
 		comandaList = ((List<Comandes>) query.list());
-
+		
+		for(Comandes comandes : comandaList){
+			if(initPLatComanda){
+				Hibernate.initialize(comandes.getPlats());
+	
+				for (PlatComanda pl : comandes.getPlats()) {
+					Hibernate.initialize(pl.getPlat().getRestaurants());
+				}
+			}
+		}
 		session.close();
 
 		return comandaList;

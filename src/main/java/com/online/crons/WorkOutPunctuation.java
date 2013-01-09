@@ -3,8 +3,8 @@ package com.online.crons;
 import org.quartz.Job;
 import org.quartz.JobExecutionContext;
 import org.quartz.JobExecutionException;
-import org.springframework.context.ApplicationContext;
-import org.springframework.web.context.support.WebApplicationContextUtils;
+
+import com.online.bo.UsersBo;
 
 public class WorkOutPunctuation implements Job
 {
@@ -12,12 +12,10 @@ public class WorkOutPunctuation implements Job
 	throws JobExecutionException {
 		//Calcula les puntuacions dels plats
 		System.out.println("Hello Quartz!");
-		
-		ApplicationContext contextSpring = WebApplicationContextUtils.getWebApplicationContext(context);
-		Object myDao = contextSpring.getBean("daoBeanName");
+		UsersBo userBo = (UsersBo)context.getJobDetail().getJobDataMap().get("usersBo");
 		try {
 			
-				
+				System.out.println("eeee");
 			
 			
 		} catch (Exception e) {
@@ -26,6 +24,5 @@ public class WorkOutPunctuation implements Job
 
 		
 		
-	}
-	
+	}	
 }

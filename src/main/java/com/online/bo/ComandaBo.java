@@ -17,7 +17,7 @@ public interface ComandaBo{
 	
 	List<Comandes> getAll();
 	
-	List<Comandes> getAllByUser(Long id);
+	List<Comandes> getAllByUser(Long id, boolean initPLatComanda);
 
 	List<Comandes> getAllByUserAndTemps( Long id, Integer lastNdias ) throws BOException;
 }

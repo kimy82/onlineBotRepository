@@ -468,7 +468,7 @@ public class WelcomeComandaAction extends ActionSupport implements ServletRespon
 		inizilizeComandaId();
 		this.idBeguda = (request.getParameter("idBeguda") == null || request.getParameter("idBeguda").equals("")) ? null : Long
 				.parseLong(request.getParameter("idBeguda"));
-		this.promo = (request.getParameter("promo") != null || request.getParameter("promo").equals("true")) ? true : false;
+		this.promo = (request.getParameter("promo") != null && request.getParameter("promo").equals("true")) ? true : false;
 		if (this.idBeguda == null) {
 			throw new WrongParamException("null beguda to add");
 		}

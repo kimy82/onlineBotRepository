@@ -18,10 +18,10 @@ public class ComandesUserTable{
 	private Double				preu;
 
 	@Expose
-	private String				plats;
+	private String				platsString;
 	
 	@Expose
-	protected String			observacions;
+	private String		    	observacions;
 
 	@Expose
 	private String				accio				= "";
@@ -71,16 +71,13 @@ public class ComandesUserTable{
 		this.preu = preu;
 	}
 
-
-	public String getPlats(){
-	
-		return plats;
+	public String getPlatsString() {
+		return platsString;
 	}
 
 
-	public void setPlats( String plats ){
-	
-		this.plats = plats;
+	public void setPlatsString(String platsString) {
+		this.platsString = platsString;
 	}
 
 

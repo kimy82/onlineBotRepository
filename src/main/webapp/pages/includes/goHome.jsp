@@ -4,7 +4,7 @@
 <div align="left">
 <table>
 		<tr>		
-			<td><a href="<c:url value='/Welcome.action"' /> " ><s:text name="txt.button.go.back" /></a></td>
+			<td><a href="<c:url value='/Welcome.action"' /> " ><s:text name="txt.button.go.home" /></a></td>
 		</tr>
 </table>
 </div>

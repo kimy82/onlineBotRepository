@@ -47,7 +47,7 @@
 </div>
 <br>
 <br>
-<div id="plats" class="abs">
+<div id="plats" class="">
 <s:iterator value="platComandaList" var="platComanda">
 	<div class="selector" id="plat_${platComanda.plat.id}" >
 		<table>
@@ -64,7 +64,7 @@
 	</div>
 </s:iterator>
 </div>
-<div id="begudes" class="abs">
+<div id="begudes" class="">
 </div>
 
 <br>
@@ -161,9 +161,7 @@
 	<script type="text/javascript" src="<c:url value='/pages/comanda/jsinfoComanda.js'/>"></script>	
 <script>
 
-var initParams = new InitParams("<s:text name='txt.beguda.no.tipus.promo' />","<s:text name='txt.beguda.no.more.promo' />",
-								"<s:text name='txt.add.beguda.to.box' />", "<s:text name='txt.promo.descompte.aplicat' />",
-								"<s:text name='txt.promo.deleted' />");
+var initParams = new InitParams("<s:text name='txt.beguda.no.tipus.promo' />","<s:text name='txt.beguda.no.more.promo' />","<s:text name='txt.add.beguda.to.box' />", "<s:text name='txt.promo.descompte.aplicat' />","<s:text name='txt.promo.deleted' />");
 
 
 function submitLog(){

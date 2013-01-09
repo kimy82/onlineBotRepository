@@ -188,7 +188,7 @@ public class WelcomeUserAction extends ActionSupport implements ServletResponseA
 		for (Comandes comanda : ComandaList) {
 			ComandesUserTable cmdUserTable = new ComandesUserTable();
 			BeanUtils.copyProperties(comanda, cmdUserTable);
-			cmdUserTable.setPlats(getNomPLats(comanda));
+			cmdUserTable.setPlatsString(getNomPLats(comanda));
 			cmdUserTable.setAccio("<a href=\"#\" onclick=\"repeatComanda(" + comanda.getId()
 					+ ")\" ><img src=\"../images/shopping_cart.png\"></a>");
 			comandaTableList.add(cmdUserTable);
@@ -218,7 +218,7 @@ public class WelcomeUserAction extends ActionSupport implements ServletResponseA
 	private List<Comandes> getComandesUserListAndSetNum(){
 
 		Users user = getUserFromContext();
-		List<Comandes> comandeslist = this.comandaBo.getAllByUser(user.getId());
+		List<Comandes> comandeslist = this.comandaBo.getAllByUser(user.getId(),true);
 		List<Comandes> subComandaList = new ArrayList<Comandes>();
 		if (!comandeslist.isEmpty()) {
 			this.numComandes = comandeslist.size();

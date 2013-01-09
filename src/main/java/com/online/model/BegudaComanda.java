@@ -18,6 +18,7 @@ public class BegudaComanda{
 	@Expose
 	private Integer				numBegudes;
 
+	@Expose
 	private boolean				promo				= false;
 
 	// CONSTRUCTORS

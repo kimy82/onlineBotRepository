@@ -1,0 +1,17 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+xsi:schemaLocation="http://www.springframework.org/schema/beans
+http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
+
+	<!-- Stock business object -->
+   <bean id="foroBo" class="com.online.bo.impl.ForoBoImpl" >
+   		<property name="foroDao" ref="foroDao" />   		
+   </bean>
+ 
+   <!-- Stock Data Access Object -->
+   <bean id="foroDao" class="com.online.dao.impl.ForoDaoImpl" >
+   		<property name="sessionFactory" ref="sessionFactory"></property>
+   </bean>
+   
+   		
+</beans>
