@@ -5,12 +5,14 @@
 	http://www.springframework.org/schema/security 
 	http://www.springframework.org/schema/security/spring-security-3.0.3.xsd">
 
+
 	<http auto-config="false" use-expressions="true" entry-point-ref="authenticationProcessingFilterEntryPoint">
 		
 		<custom-filter position="FORM_LOGIN_FILTER" ref="authenticationFilter" />
-		<intercept-url pattern="/user/**" access="hasAnyRole('ROLE_USER')"></intercept-url>		
+		<intercept-url pattern="/user/**" access="hasAnyRole('ROLE_USER')"  ></intercept-url>		
 		<intercept-url pattern="/payment/**" access="hasAnyRole('ROLE_USER')"></intercept-url>		
-		<intercept-url pattern="/admin/**" access="hasAnyRole('ROLE_ADMIN')"></intercept-url>
+		<intercept-url pattern="/admin/**" access="hasAnyRole('ROLE_ADMIN')" ></intercept-url>
+		<intercept-url pattern="/j_spring_security_check" requires-channel="https"/>
 		<logout logout-success-url="/logout.action" />
 		
 	</http>
@@ -38,7 +40,9 @@
 	<beans:bean id="authenticationProcessingFilterEntryPoint"
 	    class="org.springframework.security.web.authentication.LoginUrlAuthenticationEntryPoint">
 	    <beans:property name="loginFormUrl" value="/login.action" />
-	    <beans:property name="forceHttps" value="false" />
+	    <beans:property name="forceHttps" value="true"/>
+  		<beans:property name="portMapper" ref="portMapper"/>
+  		<beans:property name="portResolver" ref="portResolverImpl"/>
 	</beans:bean>
 
 	<beans:bean id="authenticationFilter" class="org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter">
@@ -47,6 +51,19 @@
 	    <beans:property name="authenticationFailureHandler" ref="failureHandler"/>
 	    <beans:property name="authenticationSuccessHandler" ref="successHandler"/>
 	</beans:bean>
+	
+	<beans:bean id="portResolverImpl" class="org.springframework.security.web.PortResolverImpl">
+    	<beans:property name="portMapper" ref="portMapper"/>
+	</beans:bean>
+	<beans:bean id="portMapper" class="org.springframework.security.web.PortMapperImpl">
+        <beans:property name="portMappings">
+            <beans:map>
+                <beans:entry key="80" value="443"/>
+                <beans:entry key="7070" value="8443"/>                
+                <beans:entry key="5580" value="5543"/>
+            </beans:map>
+        </beans:property>
+    </beans:bean>
 
 	<beans:bean id="successHandler" class="com.online.filter.spring.security.AjaxAuthenticationSuccessHandler">
 	</beans:bean>

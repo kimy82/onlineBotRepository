@@ -14,7 +14,7 @@
 	</c:if>
  
 	<form name='f' action="<c:url value='j_spring_security_check' />"
-		method='POST'>
+		method='POST'   >
  
 		<table>
 			<tr>
