@@ -22,11 +22,27 @@
 
 <c:if test="${nameAuth ne 'anonymousUser' }">
 	<div id="star_punctuation" >
-	
+		<table id="tbl_stars" >
+			<tr>
+				<td colspan="5" >Vota el plat:</td>
+			</tr>
+			<tr>
+				<td><a href="#" onclick="starManager(1)" ><img id="star1" width="20px"  src="<c:url value='/images/star0.jpg' />" /></a></td>
+				<td><a href="#" onclick="starManager(2)" ><img id="star2" width="20px"  src="<c:url value='/images/star0.jpg' />" /></a></td>
+				<td><a href="#" onclick="starManager(3)" ><img id="star3" width="20px"  src="<c:url value='/images/star0.jpg' />" /></a></td>
+				<td><a href="#" onclick="starManager(4)" ><img id="star4" width="20px"  src="<c:url value='/images/star0.jpg' />" /></a></td>
+				<td><a href="#" onclick="starManager(5)" ><img id="star5" width="20px"  src="<c:url value='/images/star0.jpg' />" /></a></td>
+			</tr>
+			<tr>
+				<td colspan="5" ><input type="button" id="saveVotButton"  onclick="votaPlatDialog()" value="submit votacio"  /></td>
+			</tr>
+		</table>
 	</div>
 </c:if>
-
 	<table>
+		<tr>
+			<td><img id="imageRestaurant" width="50px"  src="/onlineBot/images/star${plat.votacio.punctuacio}.jpg" /></td>
+		</tr>
 		<tr>
 			<td>${plat.nom}</td>
 			<td>${plat.preu}</td>
@@ -91,10 +107,13 @@
 	<script>
 
 		var initParams = new InitParams("<s:text name='txt.comment.saved' />",
-										"<s:text name='txt.comment.deleted'/>");
+										"<s:text name='txt.comment.deleted'/>",
+										"<s:text name='txt.confirm.vot'/>",
+										"<s:text name='txt.vot.guardat'/>");
 																		
 	</script>
 	<c:import url="/pages/includes/alertOnline.jsp" />
 	<c:import url="/pages/includes/errorAjax.jsp" />
+	<c:import url="/pages/includes/confirmOnline.jsp" />
 </body>
 </html>

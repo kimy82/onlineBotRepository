@@ -18,6 +18,9 @@
 		<action name="ajaxDeleteCommentForPlat"
 			class="com.online.action.foro.ForoAction" method="ajaxDeleteCommentForPlat">
 		</action>
+		<action name="ajaxSavePunctuacioForPlat"
+			class="com.online.action.foro.ForoAction" method="ajaxSavePunctuacioForPlat">
+		</action>
 		
 	</package>
 </struts>

@@ -1,11 +1,118 @@
 ///////////////////////////////////
 //variables per textos en locale
 var initParams=null ;
-function InitParams(txtCommentSaved, txtComentDeleted){		
+function InitParams(txtCommentSaved, txtComentDeleted, txtconfirmVot, txtvotguardat){		
 	
 	this.txtCommentSaved = txtCommentSaved;
 	this.txtComentDeleted = txtComentDeleted;
+	this.txtconfirmVot = txtconfirmVot;
+	this.txtvotguardat = txtvotguardat;
+}
+var actualVot=0;
+function starManager(num){
 	
+	if((Math.abs(num-actualVot))>1){
+		return;
+	}
+	
+	if(num==1){
+		//first star
+		if(actualVot==num){			
+			firstStar(false);
+		}else{
+			firstStar(true);
+		}
+	}else if(num==2){
+		//second star
+		if(actualVot==num){			
+			otherStar(false,num);
+		}else{
+			otherStar(true,num);
+		}
+		
+	}else if(num==3){		
+		//third star
+		if(actualVot==num){			
+			otherStar(false,num);
+		}else{
+			otherStar(true,num);
+		}
+		
+	}else if(num==4){
+		//fourth star
+		if(actualVot==num){			
+			otherStar(false,num);
+		}else{
+			otherStar(true,num);
+		}
+	}else if(num==5){
+		//fiveth star
+		if(actualVot==num){			
+			lastStar(false);
+		}else{
+			lastStar(true);
+		}
+	}
+}
+
+function firstStar(addRemove){
+	
+	if(addRemove){
+		actualVot=1;
+		$("#star1").attr("src","/onlineBot/images/star.jpg");	
+	}else{		
+		actualVot=0;
+		$("#star1").attr("src","/onlineBot/images/star0.jpg");
+	}	
+}
+function otherStar(addRemove,num){
+		
+	if(addRemove){
+		actualVot=num;
+		$("#star"+num).attr("src","/onlineBot/images/star.jpg");	
+	}else{
+		actualVot=num-1;
+		$("#star"+num).attr("src","/onlineBot/images/star0.jpg");	
+	}	
+}
+function lastStar(addRemove){
+	
+	if(addRemove){
+		actualVot=5;
+		$("#star5").attr("src","/onlineBot/images/star.jpg");	
+	}else{
+		actualVot=4;
+		$("#star5").attr("src","/onlineBot/images/star0.jpg");	
+	}	
+}
+
+function votaPlatDialog(){
+	confirmOnline.confirm(initParams.txtconfirmVot,votaPlat);
+}
+
+function votaPlat(){
+	
+	var idPlat = $("#idPlat").val();
+	var data = "idPlat=" + idPlat + "&punctuacio=" + actualVot;
+	
+	$.ajax({
+				type : "POST",
+				url : '/onlineBot/foro/ajaxSavePunctuacioForPlat.action',
+				dataType : 'json',
+				data : data,
+				success : function(json) {
+					if (json != null && json.error != null) {
+						errorOnline.error(json.error);
+					} else {							
+						alertOnline.alertes(initParams.txtvotguardat);		
+						$("#saveVotButton").attr("disabled","disabled");
+						confirmOnline.close();
+					}
+				},
+				error : function(e) {						
+					errorOnline.error("Error in AJAX");
+				}
+			});
 }
 
 function saveComment() {
