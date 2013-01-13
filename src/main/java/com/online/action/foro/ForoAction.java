@@ -1,6 +1,7 @@
 package com.online.action.foro;
 
 import java.io.IOException;
+import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -16,11 +17,13 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import com.online.bo.ForoBo;
 import com.online.bo.PlatsBo;
 import com.online.bo.UsersBo;
+import com.online.bo.VotacionsBo;
 import com.online.exceptions.GeneralException;
 import com.online.exceptions.WrongParamException;
 import com.online.model.Foro;
 import com.online.model.Plat;
 import com.online.model.Users;
+import com.online.model.VotacioTMP;
 import com.opensymphony.xwork2.ActionSupport;
 
 public class ForoAction extends ActionSupport implements ServletResponseAware,
@@ -34,6 +37,7 @@ public class ForoAction extends ActionSupport implements ServletResponseAware,
 
 	private UsersBo usersBo;
 	private ForoBo foroBo;
+	private VotacionsBo votacionsBo;
 
 	private Long idPlat;
 	private Long idComment;
@@ -42,6 +46,7 @@ public class ForoAction extends ActionSupport implements ServletResponseAware,
 	private Users user;
 	private Plat plat;
 	private String comment;
+	private int punctuation;
 
 	HttpServletResponse response;
 	HttpServletRequest request;
@@ -54,6 +59,12 @@ public class ForoAction extends ActionSupport implements ServletResponseAware,
 		if (this.user != null)
 			allowComments = this.usersBo.checkUserPlat(this.user.getId(),
 					idPlat);
+			if(allowComments){
+			VotacioTMP votTMP =	this.votacionsBo.get(this.idPlat, this.user.getId());
+				if(votTMP!=null && votTMP.getDia().compareTo(new Date())==0){
+					allowComments=false;
+				}
+			}
 
 		if (!allowComments) {
 			this.nameAuth = "anonymousUser";
@@ -130,8 +141,37 @@ public class ForoAction extends ActionSupport implements ServletResponseAware,
 			return createErrorJSON("Error deleting comment" + e);
 		}
 	}
+	public String ajaxSavePunctuacioForPlat() {
 
+		try {
+			inizializePlatId();
+			inizializePuntuacio();
+			getUserFromContext();
+			
+			VotacioTMP votacioTMP = new VotacioTMP();
+			votacioTMP.setPlatId(idPlat);
+			votacioTMP.setPunctuacio(punctuation);
+			votacioTMP.setUserId(this.user.getId());
+			votacioTMP.setDia(new Date());
+			this.votacionsBo.saveTMP(votacioTMP);
+			
+			return null;
+		} catch (Exception e) {
+			return createErrorJSON("Error saving votacio" + e);
+		}
+	}
+	
 	// private methods
+	
+	private void inizializePuntuacio() throws WrongParamException {
+
+		this.punctuation = (request.getParameter("punctuacio") == null || request
+				.getParameter("punctuacio").equals("")) ? 0 : Integer.parseInt(request.getParameter("punctuacio"));
+		if (request.getParameter("punctuacio") == null) {
+			throw new WrongParamException("null puntuacio id");
+		}
+	}
+
 	private void inizializePlatId() throws WrongParamException {
 
 		this.idPlat = (request.getParameter("idPlat") == null || request
@@ -244,4 +284,9 @@ public class ForoAction extends ActionSupport implements ServletResponseAware,
 	public void setForoBo(ForoBo foroBo) {
 		this.foroBo = foroBo;
 	}
+
+	public void setVotacionsBo(VotacionsBo votacionsBo) {
+		this.votacionsBo = votacionsBo;
+	}
+	
 }

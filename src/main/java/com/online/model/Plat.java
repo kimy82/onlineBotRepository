@@ -27,11 +27,13 @@ public class Plat implements Serializable{
 
 	protected Image				foto;
 
-	protected String			tipus;
+	protected String			tipus;	
 
 	protected Set<Restaurant>	restaurants			= new HashSet<Restaurant>(0);
 
 	protected Set<Foro>			comments			= new HashSet<Foro>(0);
+	
+	protected Votacio			votacio;
 
 	// CONSTRUCTORS
 
@@ -130,6 +132,12 @@ public class Plat implements Serializable{
 		this.comments = comments;
 	}
 	
-	
+	public Votacio getVotacio() {
+		return votacio;
+	}
+
+	public void setVotacio(Votacio votacio) {
+		this.votacio = votacio;
+	}
 
 }

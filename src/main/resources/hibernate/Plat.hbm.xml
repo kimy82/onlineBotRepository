@@ -24,7 +24,9 @@
 		<many-to-one name="foto" class="com.online.model.Image" cascade="all" >	
 			<column name="IMAGE_ID"></column>	
 		</many-to-one>
-		 <set name="restaurants" table="restaurants_plats" inverse="true" lazy="true" fetch="select" >
+		<one-to-one name="votacio" class="com.online.model.Votacio" cascade="save-update">			
+		</one-to-one>		
+		<set name="restaurants" table="restaurants_plats" inverse="true" lazy="true" fetch="select" >
             <key>
                 <column name="PLAT_ID" not-null="true" />
             </key>

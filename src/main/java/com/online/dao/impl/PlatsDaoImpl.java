@@ -77,6 +77,8 @@ public class PlatsDaoImpl extends HibernateDaoSupport implements PlatsDao{
 		
 		Hibernate.initialize(plat.getComments());
 		
+		Hibernate.initialize(plat.getVotacio());
+		
 		session.close();
 
 		return plat;
