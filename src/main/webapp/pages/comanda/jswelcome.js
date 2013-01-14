@@ -99,8 +99,24 @@ $(document).ready(function() {
 });
 
 function goToInfoPlat(id){
-	window.location.href = "/onlineBot/foro/foro.action?idPlat="+id;
+	
+	$("#infoPlat").load("../foro/foro.action?idPlat="+id);	
+    $("#infoPlat").dialog("open");    
 }
+
+$("#infoPlat").dialog({ 
+	   autoOpen: false,
+	   height: 500,
+	   width: 750,
+	   modal: true,
+	   open: function(event, ui) { 		
+			
+		 },
+	   close: function(event, ui) { 		
+		   $("#infoPlat").dialog("destroy"); 	
+		}
+	});
+
 
 var comanda = window.localStorage.getItem("comanda");
 

@@ -11,8 +11,6 @@
 	<title><s:text name="txt.welcome.comanda.principal" /></title>	
 </head>
 <body>
-
-<c:import url="/pages/includes/divLogin.jsp" />
 <c:import url="/pages/includes/goBack.jsp" />
 <c:import url="/pages/includes/goHome.jsp" />
 
@@ -112,8 +110,8 @@
 										"<s:text name='txt.vot.guardat'/>");
 																		
 	</script>
-	<c:import url="/pages/includes/alertOnline.jsp" />
-	<c:import url="/pages/includes/errorAjax.jsp" />
+	<c:import url="/pages/includes/subAlertOnline.jsp" />
+	<c:import url="/pages/includes/subErrorAjax.jsp" / -->
 	<c:import url="/pages/includes/confirmOnline.jsp" />
 </body>
 </html>

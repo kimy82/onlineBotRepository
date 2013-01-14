@@ -102,15 +102,15 @@ function votaPlat(){
 				data : data,
 				success : function(json) {
 					if (json != null && json.error != null) {
-						errorOnline.error(json.error);
+						errorOnline.suberror(json.error);
 					} else {							
-						alertOnline.alertes(initParams.txtvotguardat);		
+						alertOnline.subalertes(initParams.txtvotguardat);		
 						$("#saveVotButton").attr("disabled","disabled");
 						confirmOnline.close();
 					}
 				},
 				error : function(e) {						
-					errorOnline.error("Error in AJAX");
+					errorOnline.suberror("Error in AJAX");
 				}
 			});
 }
@@ -127,14 +127,14 @@ function saveComment() {
 					data : data,
 					success : function(json) {
 						if (json != null && json.error != null) {
-							errorOnline.error(json.error);
+							errorOnline.suberror(json.error);
 						} else {							
-							alertOnline.alertes(initParams.txtCommentSaved);	
+							alertOnline.subalertes(initParams.txtCommentSaved);	
 							insertTR(idPlat,comment,json.idComment);
 						}
 					},
 					error : function(e) {						
-						errorOnline.error("Error in AJAX");
+						errorOnline.suberror("Error in AJAX");
 					}
 				});
 	}
@@ -150,14 +150,14 @@ function deleteComment(id) {
 				data : data,
 				success : function(json) {
 					if (json != null && json.error != null) {
-						errorOnline.error(json.error);
+						errorOnline.suberror(json.error);
 					} else {							
-						alertOnline.alertes(initParams.txtComentDeleted);	
+						alertOnline.subalertes(initParams.txtComentDeleted);	
 						deleteTR(id);
 					}
 				},
 				error : function(e) {						
-					errorOnline.error("Error in AJAX");
+					errorOnline.suberror("Error in AJAX");
 				}
 			});
 }

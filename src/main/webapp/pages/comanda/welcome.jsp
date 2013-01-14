@@ -53,6 +53,8 @@
 <c:import url="/pages/includes/goLookComanda.jsp" />
 
 </div>
+<div id="infoPlat" class="filtres filtres-oberts" title="<s:text name='txt.info.title' />">	 		
+</div>  
 
 <!-- Scripts --> 
 	
@@ -77,7 +79,7 @@
 		//Carrega del cistell de compra 
 			$("#numComanda").text('${idComanda}');
 			$("#numplats").text('${fn:length(comanda.plats)}');
-			$("#preu").text('${comanda.preu}');        
+			$("#preu").text('${comanda.preu}');   			
 	</script>
 	
 	<c:import url="/pages/includes/alertOnline.jsp" />
