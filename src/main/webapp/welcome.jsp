@@ -42,6 +42,7 @@
 	<script src="<c:url value='/js/jquery/jquery.ui.core.js' />" type="text/javascript"></script>
 	<script src="<c:url value='/js/jquery/jquery.ui.widget.js'/>" type="text/javascript"></script>
 	<script src="<c:url value='/js/jquery/jquery.ui.mouse.js'/>" type="text/javascript"></script>
+	<script src="<c:url value='/js/jquery/jquery.ui.dialog.js' />" type="text/javascript"></script>
 	<script src="<c:url value='/js/jquery/jquery.ui.position.js'/>" type="text/javascript"></script>
 	<script src="<c:url value='/js/jquery/jquery.ui.draggable.js'/>" type="text/javascript"></script>
 	<script src="<c:url value='/js/jquery/jquery.ui.droppable.js'/>" type="text/javascript"></script>
@@ -52,35 +53,42 @@
 	<script type="text/javascript" src="<c:url value='/js/slider/coin-slider.min.js' />"></script>
 
 <script type="text/javascript" >
-$(function() {
+
 
 $( ".selector" ).click(function() {
 	var id = $(this).attr("id");
+	confirmComanda.idRestaurant=id;
 	var comanda = window.localStorage.getItem("comanda");
 	if(comanda != 'undefined' && comanda != null){
-		if (confirm(" <s:text name='txt.comanda.existeix.vol.continuar' />")) {
-			window.location.href="/onlineBot/comanda/Welcome.action?restaurantId="+id+"&idComanda="+comanda;		
-		}else{
-			window.localStorage.removeItem("comanda");
-			window.localStorage.removeItem("comanda.numplats");
-			window.localStorage.removeItem("comanda.preu");
-			window.localStorage.removeItem("comanda.numbegudes");
-			window.localStorage.clear();
-			
-			window.location.href="/onlineBot/comanda/Welcome.action?restaurantId="+id;
-		}
+		acceptComandaDialog();
 	}else{
 		window.location.href="/onlineBot/comanda/Welcome.action?restaurantId="+id;
 	}
-	
-	  	
-	});
 });
+
+var actionCloseConfirm = function(){
+	//window.localStorage.removeItem("comanda");
+	//window.localStorage.removeItem("comanda.numplats");
+	//window.localStorage.removeItem("comanda.preu");
+	//window.localStorage.removeItem("comanda.numbegudes");
+	window.localStorage.clear();	
+	window.location.href="/onlineBot/comanda/Welcome.action?restaurantId="+confirmComanda.idRestaurant;
+}
+
+function acceptComandaDialog(){
+	confirmOnline.closeSetFunc(actionCloseConfirm);
+	confirmOnline.confirm("<s:text name='txt.comanda.existeix.vol.continuar' />",confirmComanda);
+}
+
+var confirmComanda = function (){
+									var comanda = window.localStorage.getItem("comanda");
+									window.location.href="/onlineBot/comanda/Welcome.action?restaurantId="+confirmComanda.idRestaurant+"&idComanda="+comanda;
+								}
 
 $(document).ready(function() {
     $('#coin-slider').coinslider();
 });
 </script>
-
+<c:import url="/pages/includes/confirmOnline.jsp" />
 </body>
 </html>

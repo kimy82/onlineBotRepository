@@ -68,13 +68,14 @@
         </beans:property>
     </beans:bean>
 
-	<beans:bean id="successHandler" class="com.online.filter.spring.security.AjaxAuthenticationSuccessHandler">
+	<beans:bean id="successHandler" class="com.online.filter.spring.security.AjaxAuthenticationSuccessHandler"  >
+		<beans:property name="redirectStrategy" ref="redirectStrategy" ></beans:property>
 	</beans:bean>
 	
 	<beans:bean id="failureHandler" class="com.online.filter.spring.security.AjaxAuthenticationFailureHandler" >
 		<beans:property name="defaultFailureUrl" value="/loginfailed.action"/>	
 	</beans:bean>
-
+	<beans:bean id="redirectStrategy" class="org.springframework.security.web.DefaultRedirectStrategy"  />
 	
 
 </beans:beans>

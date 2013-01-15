@@ -37,5 +37,8 @@ $("#dialog_confirm").dialog( { autoOpen: false,
 	confirmOnline.close=function(){
 								 $("#dialog_confirm").dialog("close");	
 							 }
+	confirmOnline.closeSetFunc=function(func){
+		 document.getElementById("cancel").onclick=func;		
+	 }
 
 </script>

@@ -111,7 +111,7 @@
 																		
 	</script>
 	<c:import url="/pages/includes/subAlertOnline.jsp" />
-	<c:import url="/pages/includes/subErrorAjax.jsp" / -->
+	<c:import url="/pages/includes/subErrorAjax.jsp" />
 	<c:import url="/pages/includes/confirmOnline.jsp" />
 </body>
 </html>

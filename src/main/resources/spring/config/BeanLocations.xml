@@ -19,7 +19,7 @@
  		<property name="motersBo" ref="motersBo" />
  		<property name="restaurantsBo" ref="restaurantsBo" />
  		<property name="promocionsBo" ref="promocionsBo" />
- 		<property name="comandaBo" ref="comandaBo" />  		  		
+ 		<property name="comandaBo" ref="comandaBo" /> 				  		  	
  	</bean>
  	<bean id="paymentService" class="com.online.services.impl.PaymentServiceImpl"> 	  		
  	</bean>
@@ -33,6 +33,7 @@
 	<import resource="../beans/Beguda.xml"/>
 	<import resource="../beans/Comanda.xml"/>
 	<import resource="../beans/Foro.xml"/>
+	<import resource="../beans/Votacions.xml"/>
 	
 	<!-- JOB PER VOTACIONS -->
 	<bean id="job" class="org.springframework.scheduling.quartz.JobDetailBean">
@@ -41,6 +42,9 @@
             <map>
                 <entry key="message" value="executing job!" />
                  <entry key="usersBo" value-ref="usersBo" />
+                 <entry key="votacionsBo" value-ref="votacionsBo" />
+                 <entry key="platsBo" value-ref="platsBo" />
+                 
             </map>
         </property>
     </bean>
