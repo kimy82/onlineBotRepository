@@ -18,16 +18,27 @@ function onlyDouble(value,name){
 	}
 } 
 
+function onlyEntero(value,id){
+	  if(value =='' || /^[0-9]*$/.test(value)){
+		$('#'+id).css('border', 'solid 1px rgb(135,155,179)');
+	}else{
+		$('#'+id).css('border', 'solid 1px red');
+		alert(initTableParams.txterrornumber);
+	}
+}
+
+
 
 //variables per textos en locale
 var initTableParams=null ;
-function InitTableParams(txtlast,txtnext,txtprevious,txtfirst,txtloading,txterrordouble){		
+function InitTableParams(txtlast,txtnext,txtprevious,txtfirst,txtloading,txterrordouble,txterrornumber){		
 		this.txtlast=txtlast;
 		this.txtnext=txtnext;
 		this.txtprevious=txtprevious;
 		this.txtfirst=txtfirst;
 		this.txtloading=txtloading;
 		this.txterrordouble= txterrordouble;
+		this.txterrornumber = txterrornumber;
 	
 }
 

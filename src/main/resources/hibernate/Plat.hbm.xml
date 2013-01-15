@@ -21,6 +21,9 @@
 		<property name="preu" type="double" lazy="false" >
 			<column name="PREU"  not-null="true" />
 		</property>		
+		<property name="prioritat" type="integer" lazy="false" >
+			<column name="PRIORITAT" />
+		</property>		
 		<many-to-one name="foto" class="com.online.model.Image" cascade="all" >	
 			<column name="IMAGE_ID"></column>	
 		</many-to-one>

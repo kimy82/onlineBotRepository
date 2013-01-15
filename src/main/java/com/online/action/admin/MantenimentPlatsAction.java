@@ -52,6 +52,22 @@ public class MantenimentPlatsAction extends ActionSupport implements ServletResp
 
 	public String execute(){
 
+		try {
+			inizializeIdPlat();
+			this.plat= this.platsBo.load(this.idPlat, false);
+			
+			List<Restaurant> restaurantList = this.restaurantsBo.getAll();
+			initRestaurantsBasicList(restaurantList);
+			initTipusPlat();
+			
+			this.idRestaurants=	this.plat.getRestaurants().iterator().next().getId().toString();
+		} catch (BOException boe) {
+			addActionError(boe.getMessage());
+			return ERROR;
+		} catch (Exception e) {
+			addActionError(e.getMessage());
+			return ERROR;
+		}
 		return Action.SUCCESS;
 
 	}
@@ -61,19 +77,8 @@ public class MantenimentPlatsAction extends ActionSupport implements ServletResp
 		try {
 			List<Restaurant> restaurantList = this.restaurantsBo.getAll();
 
-			if (restaurantList != null) {
-				for (Restaurant restaurant : restaurantList) {
-					Basic basic = new Basic();
-					basic.setDescripcio(restaurant.getNom());
-					basic.setId(restaurant.getId());
-					restaurantBasicList.add(basic);
-				}
-			}
-			Collections.sort(restaurantBasicList);
-			
-			this.tipusPlat.add(new Basic(1,Constants.TIPUS_PLAT_PRIMER));
-			this.tipusPlat.add(new Basic(1,Constants.TIPUS_PLAT_SEGON));
-			this.tipusPlat.add(new Basic(1,Constants.TIPUS_PLAT_POSTRE));
+			initRestaurantsBasicList(restaurantList);			
+			initTipusPlat();
 			
 		} catch (BOException boe) {
 			addActionError(boe.getMessage());
@@ -157,6 +162,25 @@ public class MantenimentPlatsAction extends ActionSupport implements ServletResp
 	}
 
 	// private methods
+	private void initTipusPlat(){
+		
+		this.tipusPlat.clear();
+		this.tipusPlat.add(new Basic(1,Constants.TIPUS_PLAT_PRIMER));
+		this.tipusPlat.add(new Basic(1,Constants.TIPUS_PLAT_SEGON));
+		this.tipusPlat.add(new Basic(1,Constants.TIPUS_PLAT_POSTRE));
+		
+	}
+	private void initRestaurantsBasicList(List<Restaurant> restaurantList){
+		if (restaurantList != null) {
+			for (Restaurant restaurant : restaurantList) {
+				Basic basic = new Basic();
+				basic.setDescripcio(restaurant.getNom());
+				basic.setId(restaurant.getId());
+				restaurantBasicList.add(basic);
+			}
+		}
+		Collections.sort(restaurantBasicList);
+	}
 	private Image getImageFromUpload() throws RuntimeException{
 
 		Image image = null;
@@ -197,6 +221,18 @@ public class MantenimentPlatsAction extends ActionSupport implements ServletResp
 		}
 
 	}
+	
+	private void inizializeIdPlat() throws NumberFormatException{
+
+		this.idPlat = (request.getParameter("idPlat") != null && !request.getParameter("idPlat").equals("")) ? Long.parseLong(request
+				.getParameter("idPlat")) : null;
+		
+		if (idPlat == null) {
+			throw new NumberFormatException("Plat or restaurant id null");
+		}
+
+	}
+
 
 	// Getters i setters
 	public void setServletResponse( HttpServletResponse response ){

@@ -21,11 +21,11 @@
 			<column name="IMAGE_ID"></column>	
 		</many-to-one>
 		 <set name="plats" table="restaurants_plats" 
-        	inverse="false" lazy="true" fetch="select" cascade="delete" >
+        	inverse="false" lazy="true" fetch="select" cascade="delete"  >
             <key>
                 <column name="RESTAURANT_ID" not-null="true" />
             </key>
-            <many-to-many entity-name="com.online.model.Plat">
+            <many-to-many entity-name="com.online.model.Plat" order-by="PRIORITAT asc">
                 <column name="PLAT_ID" not-null="true" />
             </many-to-many>
         </set>

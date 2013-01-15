@@ -8,7 +8,7 @@
 	pageEncoding="ISO-8859-1"%>
 <META http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <META http-equiv="Content-Style-Type" content="text/css">
-<title>Gestió</title>	
+<title><s:text name="txt.presentacio.title.gestio" /></title>	
 </head>
 <body>
 

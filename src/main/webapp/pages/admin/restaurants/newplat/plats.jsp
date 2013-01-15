@@ -8,7 +8,7 @@
 		pageEncoding="ISO-8859-1"%>
 	<META http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 	<META http-equiv="Content-Style-Type" content="text/css">
-	<title>Gestió</title>		
+	<title><s:text name="mant.plats.title.gestio" /></title>		
 </head>
 <body>
 <div align="center">
@@ -37,12 +37,13 @@
 			    </table>
 			    
 				<s:form action="saveNewPlat" method="POST" enctype="multipart/form-data" >
-					<s:select multiple="true" list="restaurantBasicList" key="idRestaurants" listKey="id" listValue="descripcio" headerKey="0" headerValue="Restaurant" >					
+					<s:select list="restaurantBasicList" key="idRestaurants" id="restaurantsid" listKey="id" listValue="descripcio" headerKey="0" headerValue="Restaurant" >					
 					</s:select>
 					<s:textfield key="plat.nom" id="nomplat" onkeyup="return ismaxlength(this,100)"  ></s:textfield>
+					<s:textfield key="plat.prioritat" id="prioritatplat" onkeyup="onlyEntero(this.value,this.id)"  ></s:textfield>
 					<s:textarea key="plat.descripcio" id="descplat" cols="40" rows="4" onkeyup="return ismaxlength(this,1000)" ></s:textarea>	
-					<s:textfield key="plat.preu" onblur=" onlyDouble(this.value, this.id)" ></s:textfield>
-					<s:select list="tipusPlat" key="plat.tipus" listKey="descripcio" listValue="descripcio" headerKey="" headerValue="" ></s:select>											
+					<s:textfield key="plat.preu" id="preuplat" onblur=" onlyDouble(this.value, this.id)" ></s:textfield>
+					<s:select list="tipusPlat" key="plat.tipus" id="tipusplat" listKey="descripcio" listValue="descripcio" headerKey="" headerValue="" ></s:select>											
 					<s:file name="fileUpload" label="Escull una fotografia" size="40" />					
 					<s:submit></s:submit>
 				</s:form>			
@@ -68,7 +69,17 @@
 			"<s:text  name='datatables.paginate.previous'/>",
 			"<s:text  name='datatables.paginate.first'/>",
 			"<s:text  name='datatables.loading'/>",
-			"<s:text  name='error.double'/>");
+			"<s:text  name='error.double'/>",
+			"<s:text  name='txt.error.number'/>");
+	
+	$("#nomplat").val("${plat.nom}");
+	$("#prioritatplat").val("${plat.prioritat}");
+	$("#descplat").val("${plat.descripcio}");
+	$("#preuplat").val("${plat.preu}");
+	$("#tipusplat [value='${plat.tipus}']").attr('selected', true);
+	$("#restaurantsid [value='${idRestaurants}']").attr('selected', true);
+
+	
 </script>
 </body>
 </html>

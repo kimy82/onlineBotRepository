@@ -24,6 +24,8 @@ public class Plat implements Serializable{
 
 	@Expose
 	private Double				preu;
+	
+	private Integer				prioritat;
 
 	protected Image				foto;
 
@@ -139,5 +141,17 @@ public class Plat implements Serializable{
 	public void setVotacio(Votacio votacio) {
 		this.votacio = votacio;
 	}
+
+	public Integer getPrioritat(){
+	
+		return prioritat;
+	}
+
+	public void setPrioritat( Integer prioritat ){
+	
+		this.prioritat = prioritat;
+	}
+	
+	
 
 }

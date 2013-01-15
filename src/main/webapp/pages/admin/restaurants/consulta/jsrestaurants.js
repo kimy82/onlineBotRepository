@@ -122,7 +122,7 @@ function showDivRestaurant(id){
 
 function goToPlatInfo(id){
 	
-window.location.href="/onlineBot/admin/plat.action";	
+window.location.href="/onlineBot/admin/plat.action?idPlat="+id;	
 }
 
 function reloadTablePlats(){

@@ -5,7 +5,7 @@
 <%@ page import="java.util.Locale"%>
 <html>
 <head>
-    <title>Gestió</title>     
+    <title><s:text name="txt.config.restaurants.title.gestio" /></title>     
 </head>
 <body>
 <div align="center">
