@@ -4,7 +4,7 @@ import java.io.Serializable;
 
 import com.google.gson.annotations.Expose;
 
-public class Votacio implements Serializable {
+public class VotacioPlat implements Serializable {
 
 	/**
 	 * 
@@ -25,7 +25,7 @@ public class Votacio implements Serializable {
 
 	// CONSTRUCTORS
 
-	public Votacio() {
+	public VotacioPlat() {
 
 		super();
 
