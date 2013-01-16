@@ -11,7 +11,6 @@
 	<title> <s:text name="txt.welcome.principal" /></title>	
 </head>
 <body>
-
 <c:import url="/pages/includes/divLogin.jsp" />
 <c:import url="/pages/includes/homeSlider.jsp" />
 
@@ -19,7 +18,26 @@
 <s:iterator value="restaurantList" var="restaurant">
 <div class="selector" id="${restaurant.id}" >
 	<table>
-		<tr><td rowspan="5" ><a href="#">Go to view plats</a></td></tr>
+		<tr><td><img id="imageRestaurant" width="50px"  src="/onlineBot/images/star${restaurant.votacio.punctuacio}.jpg" /></td></tr>
+		<c:if test="${not empty restaurant.configRestaurants}">
+			<c:set var="doneLoop" value="false"/>
+			<s:iterator value="restaurant.configRestaurants" var="config" >
+			<br><b>${config.obert}|| ${doneLoop}</b></br>
+				<c:if test="${config.obert==true && not doneLoop}">
+					<c:if test="${config.dia eq dataAvui }">
+						<tr><td rowspan="5" ><a href="#">Inicia Comanda</a></td></tr>
+					</c:if>
+					<c:if test="${config.dia ne dataAvui }">					
+						<tr><td rowspan="5" ><a href="#">Inicia Comanda a partir del dia ${config.dia}</a></td></tr>
+					</c:if>
+					<c:set var="doneLoop" value="true"/>
+				</c:if>
+			</s:iterator>
+		</c:if>
+		<c:if test="${empty restaurant.configRestaurants}">
+			<tr><td rowspan="5" ><a href="#">Inicia Comanda</a></td></tr>
+		</c:if>
+		
 		<tr>
 			<td>${restaurant.nom}</td>			
 			<td rowspan="2" ><img id="imageRestaurant" width="200px"  src="/onlineBot/comanda/ImageAction.action?imageId=${restaurant.foto.id}" /></td> 
@@ -53,7 +71,10 @@
 	<script type="text/javascript" src="<c:url value='/js/slider/coin-slider.min.js' />"></script>
 
 <script type="text/javascript" >
-
+function getDateToday(){
+	var d=new Date();
+	return d.getFullYear()+"-"+(d.getMonth()+1)+"-"+d.getDate();
+}
 
 $( ".selector" ).click(function() {
 	var id = $(this).attr("id");

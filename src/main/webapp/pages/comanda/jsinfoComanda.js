@@ -140,9 +140,9 @@ function checkComandaJS(){
 	       				
 	       				if(json.comandaOK !=null ){
 	       					alertOnline.alertes(json.comandaOK);	       					
-	       					$("#chargeBar").hide();
-	       					$("#paycomanda").show();
+	       					$("#chargeBar").hide();	       					
 	       					$("#checkPromocionsDisponibles").show();
+	       					payComanda();
 	       					return;
 	       				}
 	       						       			
@@ -271,7 +271,7 @@ $(function(){
 //---------------------------------------------------------------------------------------------------------------------
 new Address.addressValidation();
 
-$("#paycomanda").hide();
+
 $("#checkPromocionsDisponibles").hide();
 
 
@@ -301,7 +301,7 @@ function checkPromocionsDisponibles(){
 	       					$("#chargeBar").hide();
 	       					return;
 	       				}
-	       				
+	       				$("#dialog_promo ul").html("");
 	       				if(json.promosNumComanda !=null ){
 	       					//Hi ha prom del tipus numero de comanda
 	       					fillPromos(json.promosNumComanda[0]);

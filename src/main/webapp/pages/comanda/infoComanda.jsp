@@ -82,13 +82,13 @@
 					<s:checkbox key="comanda.aDomicili" id="adomicili"  ></s:checkbox>					
 					<s:hidden key="comanda.id" id="idcomanda" ></s:hidden>	                   
 					<s:hidden key="comanda.address" id="comandaddress"></s:hidden>			
-																				
+																							
 					<tr><td><input type="button"  onclick="checkComandaJS();" value="Check Comanda" /></td><td>  <div id="chargeBar"></div></td></tr>
 					
 					
 	</s:form>	
 	<div id="checkPromocionsDisponibles" ><input type="button"  onclick="openDialogPromos();" value="promos Comanda" /></div>
-	<div id="paycomanda" ><input type="button"  onclick="payComanda();" value="Pay Comanda" /></div>
+	
 	<div id="deletePromoApplied" ><input type="button"  onclick="deletePromoApplied();" value="delete promo applied" /></div>
 	<br>
 

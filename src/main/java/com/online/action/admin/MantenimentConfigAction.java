@@ -150,7 +150,7 @@ public class MantenimentConfigAction extends ActionSupport implements ServletRes
 
 	private void loadRestaurantsBasicList(){
 
-		List<Restaurant> restaurantList = this.restaurantsBo.getAll();
+		List<Restaurant> restaurantList = this.restaurantsBo.getAll(true,true,true);
 
 		if (restaurantList != null) {
 			for (Restaurant restaurant : restaurantList) {

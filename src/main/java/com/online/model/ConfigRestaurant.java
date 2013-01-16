@@ -22,8 +22,8 @@ public class ConfigRestaurant implements Serializable{
 	private boolean				obert;
 
 	private Date				data;
-	
-	protected Set<Restaurant>		restaurants			= new HashSet<Restaurant>(0);
+
+	protected Set<Restaurant>	restaurants			= new HashSet<Restaurant>(0);
 
 	// CONSTRUCTORS
 
@@ -76,14 +76,13 @@ public class ConfigRestaurant implements Serializable{
 	}
 
 	public Set<Restaurant> getRestaurants(){
-	
+
 		return restaurants;
 	}
 
 	public void setRestaurants( Set<Restaurant> restaurants ){
-	
+
 		this.restaurants = restaurants;
 	}
-	
 
 }

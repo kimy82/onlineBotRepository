@@ -17,5 +17,5 @@ public interface RestaurantsDao {
 	
 	Restaurant load (Integer id, boolean initPlats, boolean initMoters, boolean initConfig );
 	
-	List<Restaurant> getAll();
+	List<Restaurant> getAll(boolean lazyPlatsVotacio, boolean lazyConfigObert, boolean votacioRestaurant);
 }

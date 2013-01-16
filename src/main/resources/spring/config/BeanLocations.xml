@@ -40,11 +40,10 @@
         <property name="jobClass" value="com.online.crons.WorkOutPunctuation" />
         <property name="jobDataAsMap">
             <map>
-                <entry key="message" value="executing job!" />
-                 <entry key="usersBo" value-ref="usersBo" />
+                 <entry key="message" value="executing job!" />
                  <entry key="votacionsBo" value-ref="votacionsBo" />
                  <entry key="platsBo" value-ref="platsBo" />
-                 
+                 <entry key="restaurantsBo" value-ref="restaurantsBo" />                
             </map>
         </property>
     </bean>

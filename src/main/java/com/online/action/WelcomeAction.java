@@ -1,5 +1,6 @@
 package com.online.action;
 
+import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -17,17 +18,20 @@ import com.opensymphony.xwork2.ActionSupport;
 @SuppressWarnings("serial")
 public class WelcomeAction extends ActionSupport implements ServletResponseAware, ServletRequestAware{
 
-	HttpServletResponse		response;
-	HttpServletRequest		request;
-	private RestaurantsBo	restaurantsBo;
-	private List<Restaurant> restaurantList;
+	HttpServletResponse			response;
+	HttpServletRequest			request;
+	private RestaurantsBo		restaurantsBo;
+	private List<Restaurant>	restaurantList;
 	private String				nameAuth;
+	private Date				dataAvui;
 
 	public String execute(){
-		
+
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		this.nameAuth = auth.getName();
-		this.restaurantList = this.restaurantsBo.getAll();
+		this.restaurantList = this.restaurantsBo.getAll(true, false, false);
+		this.dataAvui = new Date();
+
 		return SUCCESS;
 
 	}
@@ -53,27 +57,38 @@ public class WelcomeAction extends ActionSupport implements ServletResponseAware
 	}
 
 	public void setRestaurantsBo( RestaurantsBo restaurantsBo ){
-	
+
 		this.restaurantsBo = restaurantsBo;
 	}
 
 	public List<Restaurant> getRestaurantList(){
-	
+
 		return restaurantList;
 	}
 
 	public void setRestaurantList( List<Restaurant> restaurantList ){
-	
+
 		this.restaurantList = restaurantList;
 	}
 
-	public String getNameAuth() {
+	public String getNameAuth(){
+
 		return nameAuth;
 	}
 
-	public void setNameAuth(String nameAuth) {
+	public void setNameAuth( String nameAuth ){
+
 		this.nameAuth = nameAuth;
-	}		
+	}
+
+	public Date getDataAvui(){
 	
+		return dataAvui;
+	}
+
+	public void setDataAvui( Date dataAvui ){
+	
+		this.dataAvui = dataAvui;
+	}
 
 }

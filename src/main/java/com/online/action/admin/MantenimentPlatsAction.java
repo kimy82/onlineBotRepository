@@ -56,7 +56,7 @@ public class MantenimentPlatsAction extends ActionSupport implements ServletResp
 			inizializeIdPlat();
 			this.plat= this.platsBo.load(this.idPlat, false);
 			
-			List<Restaurant> restaurantList = this.restaurantsBo.getAll();
+			List<Restaurant> restaurantList = this.restaurantsBo.getAll(true,true,true);
 			initRestaurantsBasicList(restaurantList);
 			initTipusPlat();
 			
@@ -75,7 +75,7 @@ public class MantenimentPlatsAction extends ActionSupport implements ServletResp
 	public String consultaPlats(){
 
 		try {
-			List<Restaurant> restaurantList = this.restaurantsBo.getAll();
+			List<Restaurant> restaurantList = this.restaurantsBo.getAll(true,true,true);
 
 			initRestaurantsBasicList(restaurantList);			
 			initTipusPlat();

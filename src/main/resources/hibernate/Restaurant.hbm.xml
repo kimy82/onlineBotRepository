@@ -15,8 +15,10 @@
 			<column name="DESCRIPCIO" length="200" not-null="true"/>
 		</property>
 		<property name="codiMaquina" type="string">
-			<column name="CODIMAQUINA" length="20" not-null="true"/>
+			<column name="CODIMAQUINA" length="20" />
 		</property>
+		<one-to-one name="votacio" class="com.online.model.VotacioRestaurant" cascade="save-update">			
+		</one-to-one>		
 		<many-to-one name="foto" class="com.online.model.Image" cascade="all" lazy="false" >	
 			<column name="IMAGE_ID"></column>	
 		</many-to-one>

@@ -254,7 +254,7 @@ public class MantenimentRestaurantsAction extends ActionSupport implements Servl
 
 	private String searchInfoANDcreateJSONForRestaurants(){
 
-		List<Restaurant> restaurantList = restaurantsBo.getAll();
+		List<Restaurant> restaurantList = restaurantsBo.getAll(true,true,true);
 
 		List<Restaurant> subRestaurantList = restaurantList.subList(inici, ((inici + lenght) < restaurantList.size()) ? (inici + lenght)
 				: restaurantList.size());

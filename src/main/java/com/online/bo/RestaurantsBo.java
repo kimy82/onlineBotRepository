@@ -19,7 +19,7 @@ public interface RestaurantsBo {
 		
 	Restaurant load(Integer id,  boolean initPlats, boolean initMoters, boolean initConfig) throws BOException;
 	
-	List<Restaurant> getAll();
+	List<Restaurant> getAll(boolean lazyPlatsVotacio,boolean lazyConfigObert,boolean votacioRestaurant);
 	
 
 }

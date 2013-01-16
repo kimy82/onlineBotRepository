@@ -43,9 +43,9 @@ public class RestaurantsBoImpl implements RestaurantsBo{
 
 	}
 
-	public List<Restaurant> getAll(){
+	public List<Restaurant> getAll(boolean lazyPlatsVotacio, boolean lazyConfigObert, boolean votacioRestaurant){
 
-		return restaurantsDao.getAll();
+		return restaurantsDao.getAll(lazyPlatsVotacio,lazyConfigObert, votacioRestaurant);
 	}
 
 	// PRIVATE METHODS

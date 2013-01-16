@@ -25,8 +25,10 @@ public class Restaurant implements Serializable{
 	protected Set<ConfigRestaurant>	configRestaurants	= new HashSet<ConfigRestaurant>(0);
 
 	private Image					foto;
-	
+
 	private String					codiMaquina;
+
+	protected VotacioRestaurant		votacio;
 
 	// CONSTRUCTORS
 	public Restaurant() {
@@ -94,23 +96,34 @@ public class Restaurant implements Serializable{
 	}
 
 	public Set<ConfigRestaurant> getConfigRestaurants(){
-	
+
 		return configRestaurants;
 	}
 
 	public void setConfigRestaurants( Set<ConfigRestaurant> configRestaurants ){
-	
+
 		this.configRestaurants = configRestaurants;
 	}
 
-	public String getCodiMaquina() {
+	public String getCodiMaquina(){
+
 		return codiMaquina;
 	}
 
-	public void setCodiMaquina(String codiMaquina) {
+	public void setCodiMaquina( String codiMaquina ){
+
 		this.codiMaquina = codiMaquina;
 	}
-	
-	
 
+	public VotacioRestaurant getVotacio(){
+	
+		return votacio;
+	}
+
+	public void setVotacio( VotacioRestaurant votacio ){
+	
+		this.votacio = votacio;
+	}
+
+	
 }

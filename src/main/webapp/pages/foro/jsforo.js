@@ -1,12 +1,13 @@
 ///////////////////////////////////
 //variables per textos en locale
 var initParams=null ;
-function InitParams(txtCommentSaved, txtComentDeleted, txtconfirmVot, txtvotguardat){		
+function InitParams(txtCommentSaved, txtComentDeleted, txtconfirmVot, txtvotguardat, txtalertinsult){		
 	
 	this.txtCommentSaved = txtCommentSaved;
 	this.txtComentDeleted = txtComentDeleted;
 	this.txtconfirmVot = txtconfirmVot;
 	this.txtvotguardat = txtvotguardat;
+	this.txtalertinsult = txtalertinsult;
 }
 var actualVot=0;
 function starManager(num){
@@ -104,7 +105,7 @@ function votaPlat(){
 					if (json != null && json.error != null) {
 						errorOnline.suberror(json.error);
 					} else {							
-						alertOnline.subalertes(initParams.txtvotguardat);		
+						//alertOnline.subalertes(initParams.txtvotguardat);		
 						$("#saveVotButton").attr("disabled","disabled");
 						confirmOnline.close();
 					}
@@ -117,7 +118,10 @@ function votaPlat(){
 
 function saveComment() {
 		var idPlat = $("#idPlat").val();
+		
 		var comment = $("#newComment").val();
+		if(insult.detectInsult(comment, initParams.txtalertinsult))return;
+		
 		var data = "idPlat=" + idPlat + "&comment=" + comment;
 		
 		$.ajax({
@@ -129,7 +133,7 @@ function saveComment() {
 						if (json != null && json.error != null) {
 							errorOnline.suberror(json.error);
 						} else {							
-							alertOnline.subalertes(initParams.txtCommentSaved);	
+							//alertOnline.subalertes(initParams.txtCommentSaved);	
 							insertTR(idPlat,comment,json.idComment);
 						}
 					},
@@ -152,7 +156,7 @@ function deleteComment(id) {
 					if (json != null && json.error != null) {
 						errorOnline.suberror(json.error);
 					} else {							
-						alertOnline.subalertes(initParams.txtComentDeleted);	
+						//alertOnline.subalertes(initParams.txtComentDeleted);	
 						deleteTR(id);
 					}
 				},

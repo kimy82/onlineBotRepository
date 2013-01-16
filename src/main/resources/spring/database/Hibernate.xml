@@ -30,7 +30,8 @@ http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
 				<value>/hibernate/PlatComanda.hbm.xml</value>
 				<value>/hibernate/BegudaComanda.hbm.xml</value>
 				<value>/hibernate/Foro.hbm.xml</value>
-				<value>/hibernate/Votacio.hbm.xml</value>
+				<value>/hibernate/VotacioPlat.hbm.xml</value>
+				<value>/hibernate/VotacioRestaurant.hbm.xml</value>
 				<value>/hibernate/VotacioTMP.hbm.xml</value>
 			</list>
 		</property>

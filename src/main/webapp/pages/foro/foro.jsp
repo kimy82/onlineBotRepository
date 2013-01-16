@@ -102,12 +102,14 @@
 	<script src="<c:url value='/js/jquery/jquery.bgiframe-2.1.1.js'/>" type="text/javascript"></script>
 	<script type="text/javascript" src="<c:url value='/js/slider/coin-slider.min.js' />"></script>
 	<script src="<c:url value='/pages/foro/jsforo.js'/>" type="text/javascript"></script>
+	<script src="<c:url value='/js/comments/insultDetect.js'/>" type="text/javascript"></script>
 	<script>
 
 		var initParams = new InitParams("<s:text name='txt.comment.saved' />",
 										"<s:text name='txt.comment.deleted'/>",
 										"<s:text name='txt.confirm.vot'/>",
-										"<s:text name='txt.vot.guardat'/>");
+										"<s:text name='txt.vot.guardat'/>",
+										"<s:text name='txt.alert.insult'/>");
 																		
 	</script>
 	<c:import url="/pages/includes/subAlertOnline.jsp" />

@@ -24,18 +24,18 @@ public class Plat implements Serializable{
 
 	@Expose
 	private Double				preu;
-	
+
 	private Integer				prioritat;
 
 	protected Image				foto;
 
-	protected String			tipus;	
+	protected String			tipus;
 
 	protected Set<Restaurant>	restaurants			= new HashSet<Restaurant>(0);
 
 	protected Set<Foro>			comments			= new HashSet<Foro>(0);
-	
-	protected Votacio			votacio;
+
+	protected VotacioPlat		votacio;
 
 	// CONSTRUCTORS
 
@@ -125,33 +125,33 @@ public class Plat implements Serializable{
 	}
 
 	public Set<Foro> getComments(){
-	
+
 		return comments;
 	}
 
 	public void setComments( Set<Foro> comments ){
-	
+
 		this.comments = comments;
 	}
-	
-	public Votacio getVotacio() {
+
+	public VotacioPlat getVotacio(){
+
 		return votacio;
 	}
 
-	public void setVotacio(Votacio votacio) {
+	public void setVotacio( VotacioPlat votacio ){
+
 		this.votacio = votacio;
 	}
 
 	public Integer getPrioritat(){
-	
+
 		return prioritat;
 	}
 
 	public void setPrioritat( Integer prioritat ){
-	
+
 		this.prioritat = prioritat;
 	}
-	
-	
 
 }
