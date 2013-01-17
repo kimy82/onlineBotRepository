@@ -9,6 +9,7 @@ import com.online.model.BegudaComanda;
 import com.online.model.Comandes;
 import com.online.model.Plat;
 import com.online.model.PlatComanda;
+import com.online.pojos.Basic;
 
 
 public interface ComandaService{
@@ -30,6 +31,8 @@ public interface ComandaService{
 	public String checkComandaPromocions(Comandes comanda, ResourceBundle resource) throws ComandaException;
 	
 	public void deleteBegudesPromo(Comandes comanda) throws ComandaException;
+	
+	public void setHoresFeature(List<Basic> hores, String data) throws ComandaException;
 	
 }
  

@@ -349,6 +349,7 @@ public class WelcomeComandaAction extends ActionSupport implements ServletRespon
 		
 		this.horaList = Utils.getHoraList();
 
+		this.horaList = this.comandaService.setHoresFeature(horaList,this.data);
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		this.nameAuth = auth.getName();		
 
