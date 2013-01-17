@@ -28,7 +28,8 @@ public class WorkOutPunctuation implements Job
 		System.out.println("Hello Quartz!");
 		VotacionsBo votacionsBo = (VotacionsBo)context.getJobDetail().getJobDataMap().get("votacionsBo");
 		PlatsBo platsBo = (PlatsBo)context.getJobDetail().getJobDataMap().get("platsBo");
-		RestaurantsBo restaurantsBo = (RestaurantsBo)context.getJobDetail().getJobDataMap().get("restaurantsBo");		
+		RestaurantsBo restaurantsBo = (RestaurantsBo)context.getJobDetail().getJobDataMap().get("restaurantsBo");
+		
 		
 		
 		try {
@@ -69,6 +70,7 @@ public class WorkOutPunctuation implements Job
 							plat.getVotacio().setPunctuacio(puntuacio); 
 						}					
 						nplats= nplats+1;
+						plat.setActiu(true);
 						platsBo.update(plat);
 					}
 					if(nplats==0 || restaurant.getVotacio()==null){

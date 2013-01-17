@@ -70,6 +70,12 @@ public class Utils{
 		
 	}
 	
+	public static String formatDate2(Date data){
+		SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+		return df.format(data);
+		
+	}
+	
 	public static Date getDate(String date){
 		String[] dateString = date.split("-");
 		if(dateString.length==3){

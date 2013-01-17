@@ -234,5 +234,19 @@
 			</result>
 			<result name="error">/error.jsp</result>		
 		</action>
+		<!-- Actions  de gestio de comentaris -->
+		<action name="comments" class="com.online.action.admin.MantenimentCommentsAction"
+			method="execute">
+			<result name="success">/pages/admin/restaurants/comentaris/comentaris.jsp</result>
+			<result name="error">/error.jsp</result>		
+		</action>
+		<action name="loadComments" class="com.online.action.admin.MantenimentCommentsAction"
+			method="loadComments">
+			<result name="success">/pages/admin/restaurants/comentaris/comentaris.jsp</result>
+			<result name="error">/error.jsp</result>		
+		</action>
+		<action name="ajaxDeleteCommentAction"
+			class="com.online.action.admin.MantenimentCommentsAction" method="ajaxDeleteCommentAction">
+		</action>
 	</package>
 </struts>

@@ -223,8 +223,4 @@ $(document).ready(function() {
 			goToPlatInfo(id);
 		
 		});
-
-
-
-
 } );

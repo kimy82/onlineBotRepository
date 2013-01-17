@@ -36,7 +36,7 @@
             <key>
                 <column name="RESTAURANT_ID" not-null="true" />
             </key>
-            <many-to-many entity-name="com.online.model.ConfigRestaurant">
+            <many-to-many entity-name="com.online.model.ConfigRestaurant" order-by="FECHA asc" >
                 <column name="MT_RESTAURANT_ID" not-null="true" />
             </many-to-many>
         </set>

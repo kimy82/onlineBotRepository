@@ -24,7 +24,11 @@ public class Plat implements Serializable{
 
 	@Expose
 	private Double				preu;
-
+	
+	private String				codi;
+	
+	private boolean				actiu;
+	
 	private Integer				prioritat;
 
 	protected Image				foto;
@@ -154,4 +158,23 @@ public class Plat implements Serializable{
 		this.prioritat = prioritat;
 	}
 
+	public String getCodi(){
+	
+		return codi;
+	}
+
+	public void setCodi( String codi ){
+	
+		this.codi = codi;
+	}
+
+	public boolean isActiu(){
+	
+		return actiu;
+	}
+
+	public void setActiu( boolean actiu ){
+	
+		this.actiu = actiu;
+	}		
 }

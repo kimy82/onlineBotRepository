@@ -16,37 +16,45 @@
 
 <div id="draggables_pl" style="width: 500px; height: 400px;" align="left" >
 <s:iterator value="restaurantList" var="restaurant">
-<div class="selector" id="${restaurant.id}" >
-	<table>
-		<tr><td><img id="imageRestaurant" width="50px"  src="/onlineBot/images/star${restaurant.votacio.punctuacio}.jpg" /></td></tr>
-		<c:if test="${not empty restaurant.configRestaurants}">
-			<c:set var="doneLoop" value="false"/>
-			<s:iterator value="restaurant.configRestaurants" var="config" >
-			<br><b>${config.obert}|| ${doneLoop}</b></br>
-				<c:if test="${config.obert==true && not doneLoop}">
-					<c:if test="${config.dia eq dataAvui }">
-						<tr><td rowspan="5" ><a href="#">Inicia Comanda</a></td></tr>
+	<div class="selector" id="${restaurant.id}" >
+		<table>
+			<tr><td><img id="imageRestaurant" width="50px"  src="/onlineBot/images/star${restaurant.votacio.punctuacio}.jpg" /></td></tr>
+			<c:if test="${not empty restaurant.configRestaurants}">
+				<c:set var="doneLoop" value="false"/>
+				
+				<c:set var="configs" value="${restaurant.configRestaurants}" ></c:set>
+				
+				
+				<c:forEach items="${configs}" var="config" >
+					
+					<c:if test="${config.obert==true && not doneLoop}">
+					
+						<c:if test="${config.data eq dataAvui }">
+							<tr><td rowspan="5" ><a href="#"><s:text name="txt.inicia.comanda" /></a></td></tr>
+							<input type="hidden" id="dataObert_${restaurant.id}" value="${dataAvui}" />
+						</c:if>
+						<c:if test="${config.data ne dataAvui }">					
+							<tr><td rowspan="5" ><a href="#"><s:text name="txt.inicia.comanda.tal.dia" />&nbsp; ${config.data}</a></td></tr>
+							<input type="hidden" id="dataObert_${restaurant.id}" value="${dataAvui}" />
+						</c:if>
+						<c:set var="doneLoop" value="true"/>
+						
 					</c:if>
-					<c:if test="${config.dia ne dataAvui }">					
-						<tr><td rowspan="5" ><a href="#">Inicia Comanda a partir del dia ${config.dia}</a></td></tr>
-					</c:if>
-					<c:set var="doneLoop" value="true"/>
-				</c:if>
-			</s:iterator>
-		</c:if>
-		<c:if test="${empty restaurant.configRestaurants}">
-			<tr><td rowspan="5" ><a href="#">Inicia Comanda</a></td></tr>
-		</c:if>
-		
-		<tr>
-			<td>${restaurant.nom}</td>			
-			<td rowspan="2" ><img id="imageRestaurant" width="200px"  src="/onlineBot/comanda/ImageAction.action?imageId=${restaurant.foto.id}" /></td> 
-		</tr>
-		<tr>
-			<td colspan="3" >${restaurant.descripcio}</td>
-		</tr>
-	</table>
-</div>
+				</c:forEach>
+			</c:if>
+			<c:if test="${empty restaurant.configRestaurants}">
+				<tr><td rowspan="5" ><a href="#"><s:text name="txt.inicia.comanda" /></a></td></tr>
+				<input type="hidden" id="dataObert_${restaurant.id}" value="${dataAvui}" />
+			</c:if>			
+			<tr>
+				<td>${restaurant.nom}</td>			
+				<td rowspan="2" ><img id="imageRestaurant" width="200px"  src="/onlineBot/comanda/ImageAction.action?imageId=${restaurant.foto.id}" /></td> 
+			</tr>
+			<tr>
+				<td colspan="3" >${restaurant.descripcio}</td>
+			</tr>
+		</table>
+	</div>
 </s:iterator>
 <c:import url="/pages/includes/goLookComanda.jsp" />
 </div>
@@ -80,6 +88,8 @@ $( ".selector" ).click(function() {
 	var id = $(this).attr("id");
 	confirmComanda.idRestaurant=id;
 	var comanda = window.localStorage.getItem("comanda");
+	var dataInicialComanda =$("dataObert_"+id).val();
+	window.localStorage.setItem("comanda.data",dataInicialComanda);
 	if(comanda != 'undefined' && comanda != null){
 		acceptComandaDialog();
 	}else{
@@ -88,10 +98,6 @@ $( ".selector" ).click(function() {
 });
 
 var actionCloseConfirm = function(){
-	//window.localStorage.removeItem("comanda");
-	//window.localStorage.removeItem("comanda.numplats");
-	//window.localStorage.removeItem("comanda.preu");
-	//window.localStorage.removeItem("comanda.numbegudes");
 	window.localStorage.clear();	
 	window.location.href="/onlineBot/comanda/Welcome.action?restaurantId="+confirmComanda.idRestaurant;
 }

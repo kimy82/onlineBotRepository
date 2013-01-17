@@ -41,6 +41,13 @@
 					</s:select>
 					<s:textfield key="plat.nom" id="nomplat" onkeyup="return ismaxlength(this,100)"  ></s:textfield>
 					<s:textfield key="plat.prioritat" id="prioritatplat" onkeyup="onlyEntero(this.value,this.id)"  ></s:textfield>
+					<s:textfield key="plat.codi" id="codiplat" onkeyup="return ismaxlength(this,20)"  ></s:textfield>
+					<c:if test="${plat.actiu == true}">
+						<s:checkbox  key="plat.actiu" id="actiuplat" value="true" ></s:checkbox>
+					</c:if>
+					<c:if test="${plat.actiu == false}">
+						<s:checkbox  key="plat.actiu" id="actiuplat" ></s:checkbox>
+					</c:if>
 					<s:textarea key="plat.descripcio" id="descplat" cols="40" rows="4" onkeyup="return ismaxlength(this,1000)" ></s:textarea>	
 					<s:textfield key="plat.preu" id="preuplat" onblur=" onlyDouble(this.value, this.id)" ></s:textfield>
 					<s:select list="tipusPlat" key="plat.tipus" id="tipusplat" listKey="descripcio" listValue="descripcio" headerKey="" headerValue="" ></s:select>											
@@ -78,6 +85,7 @@
 	$("#preuplat").val("${plat.preu}");
 	$("#tipusplat [value='${plat.tipus}']").attr('selected', true);
 	$("#restaurantsid [value='${idRestaurants}']").attr('selected', true);
+	$("#codiplat").val("${plat.codi}");
 
 	
 </script>

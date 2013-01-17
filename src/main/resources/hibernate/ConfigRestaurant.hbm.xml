@@ -10,8 +10,7 @@
 		</id>
 		<property name="idRestaurant" type="integer" lazy="false" >
 			<column name="RESTAURANT_ID" length="45" not-null="true" />
-		</property>
-		
+		</property>		
 		<property name="obert" type="boolean" lazy="false" >
 			<column name="OBERT" not-null="true" />
 		</property>		

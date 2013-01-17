@@ -13,6 +13,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 
 import com.online.bo.RestaurantsBo;
 import com.online.model.Restaurant;
+import com.online.utils.Utils;
 import com.opensymphony.xwork2.ActionSupport;
 
 @SuppressWarnings("serial")
@@ -23,14 +24,14 @@ public class WelcomeAction extends ActionSupport implements ServletResponseAware
 	private RestaurantsBo		restaurantsBo;
 	private List<Restaurant>	restaurantList;
 	private String				nameAuth;
-	private Date				dataAvui;
+	private String				dataAvui;
 
 	public String execute(){
 
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		this.nameAuth = auth.getName();
 		this.restaurantList = this.restaurantsBo.getAll(true, false, false);
-		this.dataAvui = new Date();
+		this.dataAvui = Utils.formatDate2(new Date());
 
 		return SUCCESS;
 
@@ -81,12 +82,12 @@ public class WelcomeAction extends ActionSupport implements ServletResponseAware
 		this.nameAuth = nameAuth;
 	}
 
-	public Date getDataAvui(){
+	public String getDataAvui(){
 	
 		return dataAvui;
 	}
 
-	public void setDataAvui( Date dataAvui ){
+	public void setDataAvui( String dataAvui ){
 	
 		this.dataAvui = dataAvui;
 	}

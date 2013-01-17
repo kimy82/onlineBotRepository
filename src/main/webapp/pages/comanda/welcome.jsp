@@ -13,13 +13,18 @@
 <body>
 
 <c:import url="/pages/includes/divLogin.jsp" />
-<c:import url="/pages/includes/goBack.jsp" />
 <c:import url="/pages/includes/goHome.jsp" />
 <c:import url="/pages/includes/homeSlider.jsp" />
 
 <div id="draggables_pl" style="width: 500px; height: 400px;" align="left" >
 <s:iterator value="platList" var="plat">
-<div class="selector ui-widget-content" id="draggable_${plat.id}" >
+<c:if test="${plat.actiu == true }" >
+	<div class="selector ui-widget-content" id="draggable_${plat.id}" >
+</div>
+<c:if test="${plat.actiu == false }" >
+	<div class="selector ui-widget-content" style="background-color: grey;" id="draggable_${plat.id}" >
+</div>
+
 	<table>
 		<tr><td rowspan="4" ><a href="#"><image src="<c:url value='/images/shopping_cart.png' />" ></image></a></td>
 		

@@ -13,7 +13,7 @@
 <body>
 <h2><s:text name="txt.info.comanda.user" /></h2>
 <br>
-<c:import url="/pages/includes/goBack.jsp" />
+<c:import url="/pages/includes/goHome.jsp" />
 	
 <div style="position:relative; left: 30px;">
 	<div id="slider" style=" height: 500px;"  >

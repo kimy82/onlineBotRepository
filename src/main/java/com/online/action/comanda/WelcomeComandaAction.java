@@ -64,11 +64,14 @@ public class WelcomeComandaAction extends ActionSupport implements ServletRespon
 	private String				aDomicili;
 	private Integer				nplats				= null;
 	private String 				address;
+	private String 				data;
 	private boolean				promo;
 	
 	private String				nameAuth;
 
 	private ComandaServiceImpl	comandaService;
+	
+	private Users				user;
 
 	HttpServletResponse			response;
 	HttpServletRequest			request;
@@ -340,13 +343,14 @@ public class WelcomeComandaAction extends ActionSupport implements ServletRespon
 	public String goToPas1Action(){
 
 		inizilizeComandaId();
-
+		inizializeData();
+		getUserAllInfoFromContext();
+		
+		
 		this.horaList = Utils.getHoraList();
 
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-		this.nameAuth = auth.getName();
-
-		ResourceBundle resource = getTexts("MessageResources");
+		this.nameAuth = auth.getName();		
 
 		this.comanda = this.comandaBo.load(this.idComanda);
 
@@ -443,6 +447,13 @@ public class WelcomeComandaAction extends ActionSupport implements ServletRespon
 			throw new WrongParamException("null plat to add");
 		}
 	}
+	private void inizializeData() throws WrongParamException{
+		
+		this.data = (request.getParameter("data") == null || request.getParameter("data").equals("")) ? null : request.getParameter("data");
+		if (this.data == null) {
+			throw new WrongParamException("null plat to add");
+		}
+	}
 	
 	private void inizializeAddress() throws WrongParamException{
 		
@@ -500,6 +511,19 @@ public class WelcomeComandaAction extends ActionSupport implements ServletRespon
 			throw new WrongParamException("wrong id of comanda");
 		}
 	}
+	
+	private void getUserAllInfoFromContext() {
+
+		Authentication auth = SecurityContextHolder.getContext()
+				.getAuthentication();
+		this.nameAuth = auth.getName();
+		if (!this.nameAuth.equals("anonymousUser")) {
+			this.user = this.usersBo.findByUsername(this.nameAuth);
+		} else {
+			this.user = null;
+		}
+	}
+
 
 	// SETTERS i GETTERS
 	public void setPlatsBo( PlatsBo platsBo ){
