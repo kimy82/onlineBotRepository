@@ -7,6 +7,7 @@ import com.online.exceptions.ComandaException;
 import com.online.model.Beguda;
 import com.online.model.BegudaComanda;
 import com.online.model.Comandes;
+import com.online.model.HoresDTO;
 import com.online.model.Plat;
 import com.online.model.PlatComanda;
 import com.online.pojos.Basic;
@@ -32,7 +33,7 @@ public interface ComandaService{
 	
 	public void deleteBegudesPromo(Comandes comanda) throws ComandaException;
 	
-	public void setHoresFeature(List<Basic> hores, String data) throws ComandaException;
+	public HoresDTO  setHoresFeature(HoresDTO horesDTO, String data, Comandes comanda) throws ComandaException;
 	
 }
  

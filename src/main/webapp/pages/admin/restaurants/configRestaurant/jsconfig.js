@@ -17,6 +17,24 @@ $(document).ready(function() {
 	
 });
 
+
+function saveHoraObertura(id){
+	
+	var hores =$("#horesRestaurant").val();
+	$("#horesRestaurant").val(hores+"|"+id);
+	
+	if($("#horesRestaurant").hasClass("notcheck")){
+		$("#horesRestaurant").removeClass("notcheck");
+		$("#horesRestaurant").removeClass("check");
+	}
+	if($("#horesRestaurant").hasClass("check")){
+		$("#horesRestaurant").removeClass("check");
+		$("#horesRestaurant").removeClass("notcheck");
+	}
+	
+}
+
+
 //Funcio que s'executa quan es selecciona un restaurant del select multiple
 function loadMotersAndConfig(idRestaurant){
 	
@@ -38,6 +56,15 @@ function loadMotersAndConfig(idRestaurant){
 					}else{
 						$("#obert").prop('checked', false);
 					}
+					if(json.hores!=null && json.hores!=''){
+						var arrayhores= json.hores.split("|")
+						$.each(arrayhores, function(i,item){
+							if(item!=''){
+								saveHoraObertura(item);
+							}
+						})
+					}
+						
 					alert(initTableParams.txtdadesCargades);
 	   			}				
 			  },

@@ -27,6 +27,7 @@ import com.online.exceptions.WrongParamException;
 import com.online.model.Beguda;
 import com.online.model.BegudaComanda;
 import com.online.model.Comandes;
+import com.online.model.HoresDTO;
 import com.online.model.Plat;
 import com.online.model.PlatComanda;
 import com.online.model.Users;
@@ -51,7 +52,7 @@ public class WelcomeComandaAction extends ActionSupport implements ServletRespon
 
 	List<Plat>					platList			= new ArrayList<Plat>();
 	List<PlatComanda>			platComandaList		= new ArrayList<PlatComanda>();
-	private List<Basic>			horaList			= new ArrayList<Basic>();
+	
 
 	private List<BasicSub>		refrescList			= new ArrayList<BasicSub>();
 
@@ -63,14 +64,15 @@ public class WelcomeComandaAction extends ActionSupport implements ServletRespon
 	private Date				dia;
 	private String				aDomicili;
 	private Integer				nplats				= null;
-	private String 				address;
-	private String 				data;
+	private String				address;
+	private String				data;
 	private boolean				promo;
-	
+	private HoresDTO			horesDTO;
+
 	private String				nameAuth;
 
 	private ComandaServiceImpl	comandaService;
-	
+
 	private Users				user;
 
 	HttpServletResponse			response;
@@ -115,12 +117,12 @@ public class WelcomeComandaAction extends ActionSupport implements ServletRespon
 				this.comanda = this.comandaBo.load(this.idComanda);
 				if (this.comanda.getUser() == null)
 					this.comanda.setUser(getUserFromContext());
-				
-				if(this.comanda.getPreu()==null || this.comanda.getPreu()==0.0)
+
+				if (this.comanda.getPreu() == null || this.comanda.getPreu() == 0.0)
 					this.comanda.setPreu(this.comandaService.getPreuOfComanda(comanda));
-				
+
 				this.comandaBo.update(comanda);
-				
+
 				json = this.comandaService.checkComandaPromocions(comanda, resource);
 			}
 
@@ -155,19 +157,19 @@ public class WelcomeComandaAction extends ActionSupport implements ServletRespon
 				inizilizeComandaId();
 				inizilizeComandaDiaHoraADomicili();
 				inizializeAddress();
-				
+
 				this.comanda = this.comandaBo.load(this.idComanda);
 
 				this.comanda.setHora(Utils.getHora(this.hora));
 				this.comanda.setDia(this.dia);
 				this.comanda.setaDomicili(Boolean.valueOf(aDomicili));
 				this.comanda.setAddress(this.address);
-				
-				if(this.comanda.getUser()==null){
+
+				if (this.comanda.getUser() == null) {
 					Users user = this.usersBo.findByUsername(this.nameAuth);
 					this.comanda.setUser(user);
 				}
-				
+
 				this.comandaBo.update(this.comanda);
 				json = this.comandaService.checkComandaProblems(this.comanda, resource);
 			}
@@ -202,19 +204,19 @@ public class WelcomeComandaAction extends ActionSupport implements ServletRespon
 				List<PlatComanda> platList = comanda.getPlats();
 				Plat platToAdd = this.platsBo.load(this.idPlat, false);
 
-					if (comandaService.checkPlatInList(platList, platToAdd)) {
-						for (PlatComanda plt : platList) {
-							if (plt.getPlat().getId().toString().equals(platToAdd.getId().toString())) {
-								plt.setNumPlats(this.nplats);
-							}
+				if (comandaService.checkPlatInList(platList, platToAdd)) {
+					for (PlatComanda plt : platList) {
+						if (plt.getPlat().getId().toString().equals(platToAdd.getId().toString())) {
+							plt.setNumPlats(this.nplats);
 						}
-						comanda.setPlats(platList);
-					} 
-					this.comandaBo.update(comanda);
-				
-					json = null;
+					}
+					comanda.setPlats(platList);
+				}
+				this.comandaBo.update(comanda);
 
-			} 
+				json = null;
+
+			}
 		} catch (ComandaException ce) {
 			json = createErrorJSON("error in comanda service action");
 		} catch (Exception e) {
@@ -345,15 +347,12 @@ public class WelcomeComandaAction extends ActionSupport implements ServletRespon
 		inizilizeComandaId();
 		inizializeData();
 		getUserAllInfoFromContext();
-		
-		
-		this.horaList = Utils.getHoraList();
-
-		this.horaList = this.comandaService.setHoresFeature(horaList,this.data);
-		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-		this.nameAuth = auth.getName();		
 
 		this.comanda = this.comandaBo.load(this.idComanda);
+
+		horesDTO = this.comandaService.setHoresFeature(horesDTO, this.data, this.comanda);
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		this.nameAuth = auth.getName();
 
 		Double preu = this.comandaService.getPreuOfComanda(this.comanda);
 
@@ -377,7 +376,7 @@ public class WelcomeComandaAction extends ActionSupport implements ServletRespon
 	}
 
 	public String deleteBegudesPromo(){
-		
+
 		ServletOutputStream out = null;
 
 		String json = "";
@@ -388,7 +387,7 @@ public class WelcomeComandaAction extends ActionSupport implements ServletRespon
 			inizilizeComandaId();
 			this.comanda = this.comandaBo.load(this.idComanda);
 			this.comandaService.deleteBegudesPromo(this.comanda);
-			
+
 		} catch (ComandaException ce) {
 			json = createErrorJSON("error in comanda service action");
 		} catch (Exception e) {
@@ -402,8 +401,9 @@ public class WelcomeComandaAction extends ActionSupport implements ServletRespon
 		}
 
 		return null;
-		
+
 	}
+
 	// private methods
 
 	private Users getUserFromContext(){
@@ -441,30 +441,30 @@ public class WelcomeComandaAction extends ActionSupport implements ServletRespon
 	}
 
 	private void inizilizeDadesComandaNumPlat() throws WrongParamException{
-	
-		this.nplats = (request.getParameter("nplats") == null || request.getParameter("nplats").equals("")) ? null : Integer.parseInt(request
-				.getParameter("nplats"));
+
+		this.nplats = (request.getParameter("nplats") == null || request.getParameter("nplats").equals("")) ? null : Integer
+				.parseInt(request.getParameter("nplats"));
 		if (this.nplats == null) {
 			throw new WrongParamException("null plat to add");
 		}
 	}
+
 	private void inizializeData() throws WrongParamException{
-		
+
 		this.data = (request.getParameter("data") == null || request.getParameter("data").equals("")) ? null : request.getParameter("data");
 		if (this.data == null) {
 			throw new WrongParamException("null plat to add");
 		}
 	}
-	
+
 	private void inizializeAddress() throws WrongParamException{
-		
+
 		this.address = (request.getParameter("address") == null || request.getParameter("address").equals("")) ? null : request
 				.getParameter("address");
 		if (this.address == null) {
 			throw new WrongParamException("null address of comanda");
 		}
 	}
-	
 
 	private void inizializeRestaurantId() throws WrongParamException{
 
@@ -512,11 +512,10 @@ public class WelcomeComandaAction extends ActionSupport implements ServletRespon
 			throw new WrongParamException("wrong id of comanda");
 		}
 	}
-	
-	private void getUserAllInfoFromContext() {
 
-		Authentication auth = SecurityContextHolder.getContext()
-				.getAuthentication();
+	private void getUserAllInfoFromContext(){
+
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		this.nameAuth = auth.getName();
 		if (!this.nameAuth.equals("anonymousUser")) {
 			this.user = this.usersBo.findByUsername(this.nameAuth);
@@ -524,7 +523,6 @@ public class WelcomeComandaAction extends ActionSupport implements ServletRespon
 			this.user = null;
 		}
 	}
-
 
 	// SETTERS i GETTERS
 	public void setPlatsBo( PlatsBo platsBo ){
@@ -592,16 +590,6 @@ public class WelcomeComandaAction extends ActionSupport implements ServletRespon
 		this.comanda = comanda;
 	}
 
-	public List<Basic> getHoraList(){
-
-		return horaList;
-	}
-
-	public void setHoraList( List<Basic> horaList ){
-
-		this.horaList = horaList;
-	}
-
 	public String getNameAuth(){
 
 		return nameAuth;
@@ -646,5 +634,16 @@ public class WelcomeComandaAction extends ActionSupport implements ServletRespon
 
 		this.usersBo = usersBo;
 	}
+
+	public HoresDTO getHoresDTO(){
+	
+		return horesDTO;
+	}
+
+	public void setHoresDTO( HoresDTO horesDTO ){
+	
+		this.horesDTO = horesDTO;
+	}
+	
 
 }

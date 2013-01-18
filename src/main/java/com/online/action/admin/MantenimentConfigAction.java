@@ -72,6 +72,7 @@ public class MantenimentConfigAction extends ActionSupport implements ServletRes
 						ConfigRestaurant configRestToSave = new ConfigRestaurant();
 						configRestToSave.setData(date);
 						configRestToSave.setObert(this.configRestaurant.isObert());
+						configRestToSave.setHores(this.configRestaurant.getHores());
 						configRestToSave.setIdRestaurant(Integer.parseInt(idStringRestaurant));
 
 						ConfigRestaurant configRestaurantInDB = this.configRestaurantBo.load(date, Integer.parseInt(idStringRestaurant));
@@ -126,12 +127,20 @@ public class MantenimentConfigAction extends ActionSupport implements ServletRes
 			} else {
 				Date date = getDate(this.dia);
 				ConfigRestaurant connfigrestaurant = this.configRestaurantBo.load(date, this.idRestaurant);
-				if ( connfigrestaurant == null) {
-					json = new StringBuffer(createEmptyJSON());
-				} else {
+				if(connfigrestaurant==null ||connfigrestaurant.getHores()==null || connfigrestaurant.getHores().equals("")){
+					Restaurant restaurant = this.restaurantsBo.load(idRestaurant, false, false, false);
+				
+					 connfigrestaurant = new ConfigRestaurant();
+					 connfigrestaurant.setObert(true);
+					 connfigrestaurant.setHores(restaurant.getHores());
+				
+				}
+				
+				
+				
 					Gson gson = new GsonBuilder().setPrettyPrinting().excludeFieldsWithoutExposeAnnotation().create();					
 					json = new StringBuffer(gson.toJson(connfigrestaurant));					
-				}
+				
 
 			}
 		} catch (Exception e) {

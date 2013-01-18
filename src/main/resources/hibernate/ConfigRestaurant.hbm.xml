@@ -17,6 +17,9 @@
 		<property name="data" type="date" lazy="false" >
 			<column name="FECHA"  not-null="true" />
 		</property>		
+		<property name="hores" type="string">
+			<column name="HORES" length="200"/>
+		</property>
 		 <set name="restaurants" table="restaurants_obertura" inverse="true" lazy="true" fetch="select" >
             <key>
                 <column name="MT_RESTAURANT_ID" not-null="true" />

@@ -22,6 +22,9 @@ public class ConfigRestaurant implements Serializable{
 	private boolean				obert;
 
 	private Date				data;
+	
+	@Expose
+	private String				hores;
 
 	protected Set<Restaurant>	restaurants			= new HashSet<Restaurant>(0);
 
@@ -85,4 +88,13 @@ public class ConfigRestaurant implements Serializable{
 		this.restaurants = restaurants;
 	}
 
+	public String getHores(){
+	
+		return hores;
+	}
+
+	public void setHores( String hores ){
+	
+		this.hores = hores;
+	}		
 }

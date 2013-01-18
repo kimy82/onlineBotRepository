@@ -30,6 +30,9 @@
 		<property name="codi" type="string" lazy="false" >
 			<column name="CODI" length="20" not-null="false" />
 		</property>	
+		<property name="tempsPreparacio" type="integer" lazy="false" >
+			<column name="TEMPS" />
+		</property>	
 		<many-to-one name="foto" class="com.online.model.Image" cascade="all" >	
 			<column name="IMAGE_ID"></column>	
 		</many-to-one>

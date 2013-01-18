@@ -41,6 +41,7 @@
 					</s:select>
 					<s:textfield key="plat.nom" id="nomplat" onkeyup="return ismaxlength(this,100)"  ></s:textfield>
 					<s:textfield key="plat.prioritat" id="prioritatplat" onkeyup="onlyEntero(this.value,this.id)"  ></s:textfield>
+					<s:textfield key="plat.tempsPreparacio" id="tempsplat" onkeyup="onlyEntero(this.value,this.id)"  ></s:textfield>
 					<s:textfield key="plat.codi" id="codiplat" onkeyup="return ismaxlength(this,20)"  ></s:textfield>
 					<c:if test="${plat.actiu == true}">
 						<s:checkbox  key="plat.actiu" id="actiuplat" value="true" ></s:checkbox>

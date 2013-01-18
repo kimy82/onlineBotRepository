@@ -14,6 +14,9 @@
 		<property name="descripcio" type="string">
 			<column name="DESCRIPCIO" length="200" not-null="true"/>
 		</property>
+		<property name="hores" type="string">
+			<column name="HORES" length="200"/>
+		</property>
 		<property name="codiMaquina" type="string">
 			<column name="CODIMAQUINA" length="20" />
 		</property>

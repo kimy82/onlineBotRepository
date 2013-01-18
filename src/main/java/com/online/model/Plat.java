@@ -40,6 +40,8 @@ public class Plat implements Serializable{
 	protected Set<Foro>			comments			= new HashSet<Foro>(0);
 
 	protected VotacioPlat		votacio;
+	
+	protected int				tempsPreparacio;
 
 	// CONSTRUCTORS
 
@@ -176,5 +178,16 @@ public class Plat implements Serializable{
 	public void setActiu( boolean actiu ){
 	
 		this.actiu = actiu;
+	}
+
+	public int getTempsPreparacio(){
+	
+		return tempsPreparacio;
+	}
+
+	public void setTempsPreparacio( int tempsPreparacio ){
+	
+		this.tempsPreparacio = tempsPreparacio;
 	}		
+	
 }

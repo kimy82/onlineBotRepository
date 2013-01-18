@@ -28,6 +28,8 @@ public class Restaurant implements Serializable{
 
 	private String					codiMaquina;
 
+	private String					hores;
+
 	protected VotacioRestaurant		votacio;
 
 	// CONSTRUCTORS
@@ -116,14 +118,31 @@ public class Restaurant implements Serializable{
 	}
 
 	public VotacioRestaurant getVotacio(){
-	
+
 		return votacio;
 	}
 
 	public void setVotacio( VotacioRestaurant votacio ){
-	
+
 		this.votacio = votacio;
 	}
 
+	public String getHores(){
 	
+		return hores;
+	}
+
+	public void setHores( String hores ){
+	
+		this.hores = hores;
+	}
+	
+	@Override
+	public boolean equals( Object obj ){
+		Restaurant restaurant = (Restaurant)obj;
+		if(restaurant.getId() == this.id) return true;
+		return false;
+	}
+	
+
 }

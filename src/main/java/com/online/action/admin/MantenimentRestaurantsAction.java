@@ -79,7 +79,7 @@ public class MantenimentRestaurantsAction extends ActionSupport implements Servl
 
 			restaurant.setDescripcio(this.restaurant.getDescripcio());
 			restaurant.setNom(this.restaurant.getNom());
-
+			restaurant.setHores(this.restaurant.getHores());
 			Image image = getImageFromUpload();
 			restaurant.setFoto(image);
 

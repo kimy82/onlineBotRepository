@@ -1,6 +1,7 @@
 package com.online.services.impl;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Iterator;
@@ -21,6 +22,7 @@ import com.online.model.Beguda;
 import com.online.model.BegudaComanda;
 import com.online.model.Comandes;
 import com.online.model.ConfigRestaurant;
+import com.online.model.HoresDTO;
 import com.online.model.Moters;
 import com.online.model.Plat;
 import com.online.model.PlatComanda;
@@ -39,6 +41,114 @@ public class ComandaServiceImpl implements ComandaService{
 	private ComandaBo			comandaBo;
 
 	private ResourceBundle		resource;
+
+	public HoresDTO setHoresFeature( HoresDTO horesDTO, String data, Comandes comanda ) throws ComandaException{
+
+		Set<Restaurant> restaurantSet = getRestaurants(comanda);
+		Iterator iteraRestaurant = restaurantSet.iterator();
+		
+		while (iteraRestaurant.hasNext()) {
+			
+			Restaurant restaurant = (Restaurant) iteraRestaurant.next();
+			
+			ConfigRestaurant config = this.configRestaurantBo.load(Utils.getDate(data), restaurant.getId());
+
+			if (config == null || config.isObert()) {
+
+				String[] horesArray = config == null ? restaurant.getHores().split("|") : config.getHores().split("|");
+				Date dataAvui = new Date();
+				int nextHour = 0;
+				if (data == Utils.formatDate2(dataAvui)) {
+					int tempsPreparacio = calculaTempsPreparacioGlobal(comanda);
+					int hour = Calendar.getInstance().get(Calendar.HOUR_OF_DAY);
+					int minute = Calendar.getInstance().get(Calendar.MINUTE) + tempsPreparacio;
+					if (minute < 30) {
+						nextHour = Integer.parseInt(String.valueOf(hour + 1) + "00");
+					} else if (minute > 30 && minute < 60) {
+						nextHour = Integer.parseInt(String.valueOf(hour + 1) + "30");
+					} else if (minute > 60 && minute < 90) {
+						nextHour = Integer.parseInt(String.valueOf(hour + 2) + "00");
+					} else if (minute > 90 && minute < 120) {
+						nextHour = Integer.parseInt(String.valueOf(hour + 2) + "30");
+					}
+				}
+				for (String hora : horesArray) {
+					if (hora.equals("")) {
+
+					} else if (hora.equals("0800") && nextHour<=800) {
+						horesDTO.set_0800("true");
+					} else if (hora.equals("0830")&& nextHour<=830) {
+						horesDTO.set_0830("true");
+					} else if (hora.equals("0900")&& nextHour<=900) {
+						horesDTO.set_0900("true");
+					} else if (hora.equals("0930")&& nextHour<=930) {
+						horesDTO.set_0930("true");
+					} else if (hora.equals("1000")&& nextHour<=1000) {
+						horesDTO.set_1000("true");
+					} else if (hora.equals("1030")&& nextHour<=1030) {
+						horesDTO.set_1030("true");
+					} else if (hora.equals("1100")&& nextHour<=1100) {
+						horesDTO.set_1100("true");
+					} else if (hora.equals("1130")&& nextHour<=1130) {
+						horesDTO.set_1130("true");
+					} else if (hora.equals("1200")&& nextHour<=1200) {
+						horesDTO.set_1200("true");
+					} else if (hora.equals("1230")&& nextHour<=1230) {
+						horesDTO.set_1230("true");
+					} else if (hora.equals("1300")&& nextHour<=1300) {
+						horesDTO.set_1300("true");
+					} else if (hora.equals("1330")&& nextHour<=1330) {
+						horesDTO.set_1330("true");
+					} else if (hora.equals("1400")&& nextHour<=1400) {
+						horesDTO.set_1400("true");
+					} else if (hora.equals("1430")&& nextHour<=1430) {
+						horesDTO.set_1430("true");
+					} else if (hora.equals("1500")&& nextHour<=1500) {
+						horesDTO.set_1500("true");
+					} else if (hora.equals("1530")&& nextHour<=1530) {
+						horesDTO.set_1530("true");
+					} else if (hora.equals("1600")&& nextHour<=1600) {
+						horesDTO.set_1600("true");
+					} else if (hora.equals("1630")&& nextHour<=1630) {
+						horesDTO.set_1630("true");
+					} else if (hora.equals("1700")&& nextHour<=1700) {
+						horesDTO.set_1700("true");
+					} else if (hora.equals("1730")&& nextHour<=1730) {
+						horesDTO.set_1730("true");
+					} else if (hora.equals("1800")&& nextHour<=1800) {
+						horesDTO.set_1800("true");
+					} else if (hora.equals("1830")&& nextHour<=1830) {
+						horesDTO.set_1830("true");
+					} else if (hora.equals("1900")&& nextHour<=1900) {
+						horesDTO.set_1900("true");
+					} else if (hora.equals("1930")&& nextHour<=1930) {
+						horesDTO.set_1930("true");
+					} else if (hora.equals("2000")&& nextHour<=2000) {
+						horesDTO.set_2000("true");
+					} else if (hora.equals("2030")&& nextHour<=2030) {
+						horesDTO.set_2030("true");
+					} else if (hora.equals("2100")&& nextHour<=2100) {
+						horesDTO.set_2100("true");
+					} else if (hora.equals("2130")&& nextHour<=2130) {
+						horesDTO.set_2130("true");
+					} else if (hora.equals("2200")&& nextHour<=2200) {
+						horesDTO.set_2200("true");
+					} else if (hora.equals("2230")&& nextHour<=2230) {
+						horesDTO.set_2230("true");
+					} else if (hora.equals("2300") && nextHour<=2300) {
+						horesDTO.set_2300("true");
+					} else if (hora.equals("2330")&& nextHour<=2330) {
+						horesDTO.set_2330("true");
+					} else if (hora.equals("2400")&& nextHour<=2400) {
+						horesDTO.set_2400("true");
+					}
+				}
+			}
+		}
+
+		return horesDTO;
+
+	}
 
 	public void deleteBegudesPromo( Comandes comanda ) throws ComandaException{
 
@@ -189,20 +299,20 @@ public class ComandaServiceImpl implements ComandaService{
 				begudaList.add(begudaComanda);
 			}
 			return begudaList;
-			
+
 		} catch (Exception e) {
 			throw new ComandaException(e, "Error adding beguda in list");
 		}
 	}
 
 	public boolean checkPlatForMoreThanTwoRestaurants( List<PlatComanda> platList, Plat plat ) throws ComandaException{
-		
-		try{
-			
+
+		try {
+
 			boolean moreThanTwo = false;
-	
+
 			Set<String> restaurants = new HashSet<String>();
-	
+
 			if (platList.size() >= 2) {
 				for (PlatComanda pl : platList) {
 					Iterator<Restaurant> restaurantsIterator = pl.getPlat().getRestaurants().iterator();
@@ -216,7 +326,7 @@ public class ComandaServiceImpl implements ComandaService{
 					throw new ComandaException("S'han assignat mes de dos resturants");
 				}
 			}
-	
+
 			Iterator<Restaurant> restaurantsIterator = plat.getRestaurants().iterator();
 			while (restaurantsIterator.hasNext()) {
 				Restaurant rest = restaurantsIterator.next();
@@ -230,7 +340,7 @@ public class ComandaServiceImpl implements ComandaService{
 				}
 			}
 			return moreThanTwo;
-			
+
 		} catch (Exception e) {
 			throw new ComandaException(e, "Error checking plat from more than one restaurant");
 		}
@@ -238,7 +348,7 @@ public class ComandaServiceImpl implements ComandaService{
 
 	public String createJSONForShoppingCart( List<PlatComanda> platList, Long id ) throws ComandaException{
 
-		try{
+		try {
 			Double preuComanda = 0.0;
 			List<String> platsSring = new ArrayList<String>();
 			Integer numPlats = 0;
@@ -247,35 +357,35 @@ public class ComandaServiceImpl implements ComandaService{
 				preuComanda = preuComanda + (pl.getPlat().getPreu() * pl.getNumPlats());
 				numPlats = numPlats + pl.getNumPlats();
 			}
-	
+
 			ComandaCart comandaCart = new ComandaCart(String.valueOf(preuComanda), platsSring, String.valueOf(numPlats));
-	
+
 			Gson gson = new GsonBuilder().setPrettyPrinting().excludeFieldsWithoutExposeAnnotation().create();
 			StringBuffer json = new StringBuffer(gson.toJson(comandaCart));
 			json.setLength(json.length() - 1);
-	
+
 			json.append(", \"numComanda\" : \"" + id + "\" }");
-	
+
 			boolean valid = Utils.isValidJSON(json.toString());
-	
+
 			return json.toString();
 
 		} catch (Exception e) {
 			throw new ComandaException(e, "Error creating JSON for cart");
-		}	
+		}
 	}
 
 	public boolean checkPlatInList( List<PlatComanda> platList, Plat plat ) throws ComandaException{
-		
-		try{
-			
+
+		try {
+
 			for (PlatComanda plt : platList) {
 				if (plt.getPlat().getId().toString().equals(plat.getId().toString())) {
 					return true;
 				}
 			}
 			return false;
-			
+
 		} catch (Exception e) {
 			throw new ComandaException(e, "Error checking plat in list");
 		}
@@ -332,6 +442,34 @@ public class ComandaServiceImpl implements ComandaService{
 	}
 
 	// PRIVATE
+	
+	private Set<Restaurant>  getRestaurants( Comandes comanda){
+		int temps = 0;
+		List<PlatComanda> platComandaList = comanda.getPlats();
+		
+		Set<Restaurant> restaurantSet = new HashSet<Restaurant>();
+		for (PlatComanda platComanda : platComandaList) {
+			restaurantSet.add(platComanda.getPlat().getRestaurants().iterator().next());
+		}
+		return restaurantSet;
+		
+	}
+	private int calculaTempsPreparacioGlobal( Comandes comanda ){
+
+		int temps = 0;
+		List<PlatComanda> platComandaList = comanda.getPlats();
+
+		for (PlatComanda platComanda : platComandaList) {
+			int tempsPlat = platComanda.getPlat().getTempsPreparacio();
+			if (temps < tempsPlat) {
+				temps = tempsPlat;
+			}
+		}
+
+		return temps;
+
+	}
+
 	private String checkDadesComanda( Comandes comanda ){
 
 		List<PlatComanda> platList = comanda.getPlats();
