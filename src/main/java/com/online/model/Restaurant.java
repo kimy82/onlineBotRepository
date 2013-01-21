@@ -26,8 +26,10 @@ public class Restaurant implements Serializable{
 
 	private Image					foto;
 
+	@Expose
 	private String					codiMaquina;
 
+	@Expose
 	private String					hores;
 
 	protected VotacioRestaurant		votacio;

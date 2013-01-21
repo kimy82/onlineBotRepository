@@ -17,31 +17,33 @@
 <c:import url="/pages/includes/homeSlider.jsp" />
 
 <div id="draggables_pl" style="width: 500px; height: 400px;" align="left" >
-<s:iterator value="platList" var="plat">
-<c:if test="${plat.actiu == true }" >
-	<div class="selector ui-widget-content" id="draggable_${plat.id}" >
-</div>
-<c:if test="${plat.actiu == false }" >
-	<div class="selector ui-widget-content" style="background-color: grey;" id="draggable_${plat.id}" >
+	<s:iterator value="platList" var="plat">
+		<c:if test="${plat.actiu == true }" >
+			<div class="selector ui-widget-content" id="draggable_${plat.id}" >
+		</c:if>
+		<c:if test="${plat.actiu == false }" >
+			<div class="selector ui-widget-content" style="background-color: grey;" id="draggable_${plat.id}" >
+		</c:if>
+		
+			<table>
+				<tr><td rowspan="4" ><a href="#"><image src="<c:url value='/images/shopping_cart.png' />" ></image></a></td>
+				
+					<td><a href="#" onclick="goToInfoPlat(${plat.id})" ><img  src="<c:url value='/images/info.gif' />" /></a></td>
+				</tr>
+				<tr>
+					<td>${plat.nom}</td>
+					<td>${plat.preu}</td>
+					<td>${plat.tipus}</td>
+					<td rowspan="2" ><img id="imageRestaurant" width="200px"  src="/onlineBot/comanda/ImageAction.action?imageId=${plat.foto.id}" /></td> 
+				</tr>
+				<tr>
+					<td colspan="3" >${plat.descripcio}</td>
+				</tr>
+			</table>
+		</div>
+	</s:iterator>
 </div>
 
-	<table>
-		<tr><td rowspan="4" ><a href="#"><image src="<c:url value='/images/shopping_cart.png' />" ></image></a></td>
-		
-			<td><a href="#" onclick="goToInfoPlat(${plat.id})" ><img  src="<c:url value='/images/info.gif' />" /></a></td>
-		</tr>
-		<tr>
-			<td>${plat.nom}</td>
-			<td>${plat.preu}</td>
-			<td>${plat.tipus}</td>
-			<td rowspan="2" ><img id="imageRestaurant" width="200px"  src="/onlineBot/comanda/ImageAction.action?imageId=${plat.foto.id}" /></td> 
-		</tr>
-		<tr>
-			<td colspan="3" >${plat.descripcio}</td>
-		</tr>
-	</table>
-</div>
-</s:iterator>
 
 <div id="droppable"  class="ui-widget-header abs">
   <a href="#" onclick="goToComandaPas1();" >  <image src="<c:url value='/images/shopping_cart.png' />" ></image></a>
@@ -58,7 +60,7 @@
 <c:import url="/pages/includes/goLookComanda.jsp" />
 
 </div>
-<div id="infoPlat" class="filtres filtres-oberts" title="<s:text name='txt.info.title' />">	 		
+<div id="infoPlat_dialog" class="filtres filtres-oberts" title="<s:text name='txt.info.title' />">	 		
 </div>  
 
 <!-- Scripts --> 

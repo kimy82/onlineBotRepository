@@ -80,8 +80,10 @@ public class MantenimentRestaurantsAction extends ActionSupport implements Servl
 			restaurant.setDescripcio(this.restaurant.getDescripcio());
 			restaurant.setNom(this.restaurant.getNom());
 			restaurant.setHores(this.restaurant.getHores());
+			restaurant.setCodiMaquina(this.restaurant.getCodiMaquina());
 			Image image = getImageFromUpload();
-			restaurant.setFoto(image);
+			if(image!=null)
+				restaurant.setFoto(image);
 
 			this.restaurantsBo.update(restaurant);
 		} catch (BOException boe) {

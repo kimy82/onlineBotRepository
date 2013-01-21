@@ -42,7 +42,7 @@ public class MantenimentConfigAction extends ActionSupport implements ServletRes
 	private String				dia;
 	private String				idRestaurants;
 	private Integer				idRestaurant		= null;
-	private ConfigRestaurant	configRestaurant	= new ConfigRestaurant();
+	private ConfigRestaurant	configRestaurant;
 
 	private List<Basic>			restaurantBasicList	= new LinkedList<Basic>();
 
@@ -249,6 +249,11 @@ public class MantenimentConfigAction extends ActionSupport implements ServletRes
 	public void setConfigRestaurant( ConfigRestaurant configRestaurant ){
 
 		this.configRestaurant = configRestaurant;
+	}
+
+	public ConfigRestaurant getConfigRestaurant(){
+	
+		return configRestaurant;
 	}
 
 	public void setServletResponse( HttpServletResponse response ){

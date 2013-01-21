@@ -100,20 +100,22 @@ $(document).ready(function() {
 
 function goToInfoPlat(id){
 	
-	$("#infoPlat").load("../foro/foro.action?idPlat="+id);	
-    $("#infoPlat").dialog("open");    
+	$("#infoPlat_dialog").load("../foro/foro.action?idPlat="+id);	
+	$("#infoPlat_dialog").dialog({ 
+		   autoOpen: false,
+		   height: 500,
+		   width: 750,
+		   modal: true});
+    $("#infoPlat_dialog").dialog("open");    
 }
 
-$("#infoPlat").dialog({ 
+$("#infoPlat_dialog").dialog({ 
 	   autoOpen: false,
 	   height: 500,
 	   width: 750,
 	   modal: true,
-	   open: function(event, ui) { 		
-			
-		 },
-	   close: function(event, ui) { 		
-		   $("#infoPlat").dialog("destroy"); 	
+	   close: function(event, ui) { 			   
+		   $("#infoPlat_dialog").dialog("close"); 			  
 		}
 	});
 

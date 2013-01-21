@@ -5,18 +5,26 @@ function ismaxlength(obj,mlength){
 
 function saveHoraObertura(id){
 	
-	var hores =$("#horesRestaurant").val();
-	$("#horesRestaurant").val(hores+"|"+id);
+	var hores =$("#horesRestaurant").val();	
 	
-	if($("#horesRestaurant").hasClass("notcheck")){
-		$("#horesRestaurant").removeClass("notcheck");
-		$("#horesRestaurant").removeClass("check");
+	if($("#"+id).hasClass("notcheck")){
+		$("#horesRestaurant").val(hores+"|"+id);
+		$("#"+id).removeClass("notcheck");
+		$("#"+id).removeClass("check");
 	}
 	if($("#horesRestaurant").hasClass("check")){
-		$("#horesRestaurant").removeClass("check");
-		$("#horesRestaurant").removeClass("notcheck");
-	}
-	
+		
+		var array = hores.split("|");
+		var newhores = "";
+		$.each(array, function (i,item){
+			if(item!=id){
+				newhores=item+"|";
+			}
+		});
+		$("#horesRestaurant").val(newhores);
+		$("#"+id).removeClass("check");
+		$("#"+id).removeClass("notcheck");
+	}	
 }
 
 $(document).ready(function() {

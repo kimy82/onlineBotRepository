@@ -12,6 +12,39 @@ function InitTableParams(txtlast,txtnext,txtprevious,txtfirst,txtloading,txtborr
 		this.txtconfirmborrarest= txtconfirmborrarest;
 }
 
+function ismaxlength(obj,mlength){
+	if (obj.getAttribute && obj.value.length>mlength)
+		obj.value=obj.value.substring(0,mlength);
+}
+
+function saveHoraObertura(id){
+	
+	var hores =$("#horesRestaurant").val();
+	
+	
+	if($("#"+id).hasClass("notcheck")){
+		$("#"+id).removeClass("notcheck");
+		$("#"+id).addClass("check");
+		$("#horesRestaurant").val(hores+"|"+id);
+		return;
+	}
+	if($("#"+id).hasClass("check")){
+		
+		var array = hores.split("|");
+		var newhores = "";
+		$.each(array, function (i,item){
+			if(item!=id){
+				newhores=item+"|";
+			}
+		});
+		$("#horesRestaurant").val(newhores);
+		$("#"+id).removeClass("check");
+		$("#"+id).addClass("notcheck");
+		return;
+	}	
+}
+
+
 //Borra  Restaurant
 function deleteRestaurant(id){
 	 var where_to= confirm(initTableParams.txtconfirmborrarest);
@@ -79,6 +112,22 @@ function deletePlat(id){
 				});
 	  }
 }
+
+function resetHores(){
+	var arrayHores= new Array("0800","0830","0900","0930","1000","1030","1100","1130","1200","1230",
+							  "1300","1330","1400","1430","1500","1530","1600","1630","1700","1730",
+							  "1800","1830","1900","1930","2000","2030","2100","2130","2200","2230",
+							  "2300","2330","2400");
+	$.each(arrayHores,function(i,item){
+		if(item !=""){
+			if($("#"+item).hasClass("check")){
+				$("#"+item).removeClass("check");
+				$("#"+item).addClass("notcheck");
+			}
+		}
+	});	
+}
+
 //agafem info del restaurant i recarreguem la taula de plats
 function showDivRestaurant(id){
 	data ="id="+id;
@@ -100,16 +149,30 @@ function showDivRestaurant(id){
 					 		document.getElementById("descrestaurant").value= json.descripcio;
 					 	}
 					 	if(json.id!=null){
-					 		document.getElementById("idRestaurant").value= json.id;
-					 		
+					 		document.getElementById("idRestaurant").value= json.id;					 		
 					 	}
 					 	if(json.foto!=null){
 					 		document.getElementById("imageRestaurant").src="/onlineBot/admin/ImageAction.action?imageId="+json.foto.id;
 					 	}else{
 					 		document.getElementById("imageRestaurant").src="../images/noFoto.gif";
 					 	}
-					
-					 
+					 	
+					 	if(json.codiMaquina!=null){
+					 		$("#codiMaquina").val(json.codiMaquina);
+					 	}
+					 						 	
+					 	if(json.hores!=null){
+					 		var array = json.hores.split("|");
+							resetHores();
+							$.each(array, function (i,item){
+								if(item!=""){
+									$("#"+item).addClass("check");
+									$("#"+item).removeClass("notcheck");
+								}								
+							});
+							$("#horesRestaurant").val(json.hores);						
+					 	}
+					 	
 					 	$("#inforestaurant").show('slow');
 					 	reloadTablePlats();					 						  
      			}				
@@ -162,7 +225,7 @@ $(document).ready(function() {
 					      }
 					    },
 					"sScrollY": "100",		    
-					"sScrollX": "152",	
+					"sScrollX": "700",	
 				    "bScrollCollapse": true,
 		    		"bProcessing": false,
 		    		"bServerSide": true,

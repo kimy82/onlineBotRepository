@@ -11,7 +11,7 @@
 	<title><s:text name="txt.gestio.comentaris" /></title>	
 </head>
 <body>
-    <s:select list="listPlats" headerKey="" headerValue="Escull un plat" id="platId" listKey="id" listValue="nom" onchange="loadComments(this.id)" ></s:select>
+    <s:select list="listPlats" headerKey="" headerValue="Escull un plat" id="platId" listKey="id" listValue="nom" onchange="loadComments(this.value)" ></s:select>
     <div class="comments_foro" id="plat_${plat.id}" >
 			<table id="comments_tbl" >
 		
@@ -24,7 +24,6 @@
 				</s:iterator>								
 			</table>
 	</div>
-</c:if>
 
 
 
@@ -47,8 +46,7 @@
 	<script src="<c:url value='/js/jquery/jquery.effects.core.js'/>" type="text/javascript"></script>
 	<script src="<c:url value='/js/jquery/jquery.bgiframe-2.1.1.js'/>" type="text/javascript"></script>
 	<script type="text/javascript" src="<c:url value='/js/slider/coin-slider.min.js' />"></script>
-	<script src="<c:url value='/pages/foro/jsforo.js'/>" type="text/javascript"></script>
-	<script src="<c:url value='/js/comments/insultDetect.js'/>" type="text/javascript"></script>
+	<script src="<c:url value='/pages/admin/restaurants/comentaris/jscomentaris.js'/>" type="text/javascript"></script>
 	<script>
 
 		var initParams = new InitParams("<s:text name='txt.comment.deleted'/>");

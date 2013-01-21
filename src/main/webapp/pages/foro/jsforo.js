@@ -88,7 +88,27 @@ function lastStar(addRemove){
 }
 
 function votaPlatDialog(){
-	confirmOnline.confirm(initParams.txtconfirmVot,votaPlat);
+	//confirmOnline.confirm(initParams.txtconfirmVot,votaPlat);
+	var idPlat = $("#idPlat").val();
+	var data = "idPlat=" + idPlat + "&punctuacio=" + actualVot;
+	
+	$.ajax({
+				type : "POST",
+				url : '/onlineBot/foro/ajaxSavePunctuacioForPlat.action',
+				dataType : 'json',
+				data : data,
+				success : function(json) {
+					if (json != null && json.error != null) {
+						errorOnline.suberror(json.error);
+					} else {							
+						//alertOnline.subalertes(initParams.txtvotguardat);		
+						$("#saveVotButton").attr("disabled","disabled");						
+					}
+				},
+				error : function(e) {						
+					errorOnline.suberror("Error in AJAX");
+				}
+			});
 }
 
 function votaPlat(){

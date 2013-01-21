@@ -453,7 +453,7 @@ public class WelcomeComandaAction extends ActionSupport implements ServletRespon
 
 		this.data = (request.getParameter("data") == null || request.getParameter("data").equals("")) ? null : request.getParameter("data");
 		if (this.data == null) {
-			throw new WrongParamException("null plat to add");
+			throw new WrongParamException("null data of comanda");
 		}
 	}
 

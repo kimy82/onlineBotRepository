@@ -42,6 +42,7 @@ public class MantenimentCommentsAction extends ActionSupport implements ServletR
 	public String loadComments(){
 
 		inizializePlatId();
+		this.listPlats = this.platsBo.getAll();
 		this.plat = this.platsBo.loadPLatAndForos(this.idPlat);
 		return SUCCESS;
 
@@ -74,8 +75,7 @@ public class MantenimentCommentsAction extends ActionSupport implements ServletR
 
 	private void inizializePlatId() throws WrongParamException{
 
-		this.idPlat = (request.getParameter("idPlat") == null || request.getParameter("idPlat").equals("")) ? null : Long.parseLong(request
-				.getParameter("idPlat"));
+		this.idPlat = (request.getParameter("idPlat") == null || request.getParameter("idPlat").equals("")) ? null : Long.parseLong(request.getParameter("idPlat"));
 		if (this.idPlat == null) {
 			throw new WrongParamException("null plat id");
 		}

@@ -35,7 +35,7 @@
 						</c:if>
 						<c:if test="${config.data ne dataAvui }">					
 							<tr><td rowspan="5" ><a href="#"><s:text name="txt.inicia.comanda.tal.dia" />&nbsp; ${config.data}</a></td></tr>
-							<input type="hidden" id="dataObert_${restaurant.id}" value="${dataAvui}" />
+							<input type="hidden" id="dataObert_${restaurant.id}" value="${config.data}" />
 						</c:if>
 						<c:set var="doneLoop" value="true"/>
 						
@@ -88,12 +88,12 @@ $( ".selector" ).click(function() {
 	var id = $(this).attr("id");
 	confirmComanda.idRestaurant=id;
 	var comanda = window.localStorage.getItem("comanda");
-	var dataInicialComanda =$("dataObert_"+id).val();
+	var dataInicialComanda =$("#dataObert_"+id).val();
 	window.localStorage.setItem("comanda.data",dataInicialComanda);
 	if(comanda != 'undefined' && comanda != null){
 		acceptComandaDialog();
 	}else{
-		window.location.href="/onlineBot/comanda/Welcome.action?restaurantId="+id;
+		window.location.href="/onlineBot/comanda/Welcome.action?restaurantId="+id+"&data="+dataInicialComanda;
 	}
 });
 
@@ -109,7 +109,8 @@ function acceptComandaDialog(){
 
 var confirmComanda = function (){
 									var comanda = window.localStorage.getItem("comanda");
-									window.location.href="/onlineBot/comanda/Welcome.action?restaurantId="+confirmComanda.idRestaurant+"&idComanda="+comanda;
+									var data = window.localStorage.getItem("comanda.data");
+									window.location.href="/onlineBot/comanda/Welcome.action?restaurantId="+confirmComanda.idRestaurant+"&idComanda="+comanda+"&data="+data;
 								}
 
 $(document).ready(function() {

@@ -17,21 +17,58 @@ $(document).ready(function() {
 	
 });
 
-
 function saveHoraObertura(id){
 	
 	var hores =$("#horesRestaurant").val();
-	$("#horesRestaurant").val(hores+"|"+id);
 	
-	if($("#horesRestaurant").hasClass("notcheck")){
-		$("#horesRestaurant").removeClass("notcheck");
-		$("#horesRestaurant").removeClass("check");
-	}
-	if($("#horesRestaurant").hasClass("check")){
-		$("#horesRestaurant").removeClass("check");
-		$("#horesRestaurant").removeClass("notcheck");
-	}
 	
+	if($("#"+id).hasClass("notcheck")){
+		$("#"+id).removeClass("notcheck");
+		$("#"+id).addClass("check");
+		$("#horesRestaurant").val(hores+"|"+id);
+		return;
+	}
+	if($("#"+id).hasClass("check")){
+		
+		var array = hores.split("|");
+		var newhores = "";
+		$.each(array, function (i,item){
+			if(item!=id){
+				newhores=item+"|";
+			}
+		});
+		$("#horesRestaurant").val(newhores);
+		$("#"+id).removeClass("check");
+		$("#"+id).addClass("notcheck");
+		return;
+	}	
+}
+
+function resetHores(){
+	var arrayHores= new Array("0800","0830","0900","0930","1000","1030","1100","1130","1200","1230",
+							  "1300","1330","1400","1430","1500","1530","1600","1630","1700","1730",
+							  "1800","1830","1900","1930","2000","2030","2100","2130","2200","2230",
+							  "2300","2330","2400");
+	$.each(arrayHores,function(i,item){
+		if(item !=""){
+			if($("#"+item).hasClass("check")){
+				$("#"+item).removeClass("check");
+				$("#"+item).addClass("notcheck");
+			}
+		}
+	});	
+}
+
+
+function loadHoraObertura(id){
+	
+	if($("#"+id).hasClass("notcheck")){
+		$("#"+id).removeClass("notcheck");
+		$("#"+id).addClass("check");
+	}
+	if($("#"+id).hasClass("check")){
+		$("#"+id).removeClass("notcheck");
+	}	
 }
 
 
@@ -55,14 +92,16 @@ function loadMotersAndConfig(idRestaurant){
 						$("#obert").prop('checked', true);
 					}else{
 						$("#obert").prop('checked', false);
-					}
+					}					
+					resetHores();					
 					if(json.hores!=null && json.hores!=''){
 						var arrayhores= json.hores.split("|")
 						$.each(arrayhores, function(i,item){
 							if(item!=''){
-								saveHoraObertura(item);
+								loadHoraObertura(item);
 							}
-						})
+						});
+						$("#horesRestaurant").val(json.hores);
 					}
 						
 					alert(initTableParams.txtdadesCargades);
