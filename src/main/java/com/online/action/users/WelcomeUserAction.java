@@ -3,6 +3,7 @@ package com.online.action.users;
 import java.io.IOException;
 import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.servlet.ServletOutputStream;
@@ -17,16 +18,24 @@ import org.springframework.security.core.context.SecurityContextHolder;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.online.bo.BegudaBo;
 import com.online.bo.ComandaBo;
+import com.online.bo.PromocionsBo;
 import com.online.bo.UsersBo;
 import com.online.exceptions.BOException;
 import com.online.exceptions.GeneralException;
 import com.online.exceptions.WrongParamException;
+import com.online.model.Beguda;
 import com.online.model.Comandes;
+import com.online.model.HoresDTO;
 import com.online.model.PlatComanda;
+import com.online.model.PromocioAPartirDe;
+import com.online.model.PromocioNumComandes;
 import com.online.model.Users;
 import com.online.pojos.Basic;
+import com.online.pojos.BasicSub;
 import com.online.pojos.ComandesUserTable;
+import com.online.services.impl.ComandaServiceImpl;
 import com.online.utils.Utils;
 import com.opensymphony.xwork2.ActionSupport;
 
@@ -40,22 +49,31 @@ public class WelcomeUserAction extends ActionSupport implements ServletResponseA
 	HttpServletResponse			response;
 	HttpServletRequest			request;
 
-	
 	private ComandaBo			comandaBo;
 	private UsersBo				usersBo;
-	private Users 				user;
+	private PromocionsBo		promocionsBo;
+	private BegudaBo			begudaBo;
+	private ComandaServiceImpl	comandaService;
+	private Users				user;
 	private Long				idComanda			= null;
 	private Comandes			comanda				= null;
+	private HoresDTO			horesDTO;
 	
-
 	private String				sEcho;
 	private int					lenght				= 0;
 	private int					inici				= 0;
 	private String				sortDireccio		= null;
 	private int					numComandes			= 0;
+	private String				data;
+	private String				nameAuth;
+	private String				recoveredComanda	="true";
 
 	private List<Basic>			horaList			= new ArrayList<Basic>();
 	List<Comandes>				ComandaList			= new ArrayList<Comandes>();
+	List<PromocioAPartirDe>		promoListAPartirDe	= new ArrayList<PromocioAPartirDe>();
+	List<PromocioNumComandes>	promocioNumComandes	= new ArrayList<PromocioNumComandes>();
+	private List<BasicSub>		refrescList			= new ArrayList<BasicSub>();
+	List<PlatComanda>			platComandaList		= new ArrayList<PlatComanda>();
 
 	public String execute(){
 
@@ -64,53 +82,81 @@ public class WelcomeUserAction extends ActionSupport implements ServletResponseA
 	}
 
 	public String comandesPasades(){
-		
+
 		this.user = getUserFromContext();
+		this.promoListAPartirDe = this.promocionsBo.getAllAPartirDe();
+		this.promocioNumComandes = this.promocionsBo.getAllNumComandes();
 		return SUCCESS;
 
 	}
 
 	public String saveUserDetails(){
-		
-		try{
-			
-			if(this.user.getPassword()!=null && !this.user.getPassword().equals(""))
-			this.user.setPassword(Utils.createSHA(this.user.getPassword()));
+
+		try {
+
+			if (this.user.getPassword() != null && !this.user.getPassword().equals(""))
+				this.user.setPassword(Utils.createSHA(this.user.getPassword()));
 			this.usersBo.update(this.user);
-			
-		}catch (BOException e){
+
+		} catch (BOException e) {
 			return ERROR;
-		}catch (NoSuchAlgorithmException e){
+		} catch (NoSuchAlgorithmException e) {
 			return ERROR;
 		}
 		return SUCCESS;
-		
+
 	}
+
 	public String repeatComanda(){
 
 		try {
 
 			inicializeIdComanda();
+			inizializeData();
+			getUserAllInfoFromContext();
+
 			this.comanda = this.comandaBo.load(this.idComanda);
-			this.horaList = Utils.getHoraList();
-		} catch (Exception e) {
-			return ERROR;
-		}
-		return SUCCESS;
+			horesDTO = new HoresDTO();
+			horesDTO.setData(data);
+			horesDTO = this.comandaService.setHoresFeature(horesDTO, this.data, this.comanda);
+			Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+			this.nameAuth = auth.getName();
 
-	}
-	
-	public String checkComanda(){
+			Double preu = this.comandaService.getPreuOfComanda(this.comanda);
 
-		try {
+			this.comanda.setPreu(preu);
+
+			List<Beguda> begudaList = this.begudaBo.getAll();
+			for (Beguda beguda : begudaList) {
+
+				BasicSub basic = new BasicSub(beguda.getFoto().getId(), beguda.getNom());
+				basic.setIdSub(beguda.getId());
+				basic.setTipus(beguda.getTipus());
+				this.refrescList.add(basic);
+
+			}
+
+			this.platComandaList = comanda.getPlats();
+
+			return SUCCESS;
 			
 		} catch (Exception e) {
 			return ERROR;
 		}
+		
+
+	}
+
+	public String checkComanda(){
+
+		try {
+
+		} catch (Exception e) {
+			return ERROR;
+		}
 		return SUCCESS;
 
 	}
-	
 
 	public String ajaxTableComandesUser(){
 
@@ -138,7 +184,22 @@ public class WelcomeUserAction extends ActionSupport implements ServletResponseA
 	}
 
 	// private methods
+	private void getUserAllInfoFromContext(){
 
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		this.nameAuth = auth.getName();
+		if (!this.nameAuth.equals("anonymousUser")) {
+			this.user = this.usersBo.findByUsername(this.nameAuth);
+		} else {
+			this.user = null;
+		}
+	}
+
+	private void inizializeData() throws WrongParamException{
+
+		this.data = Utils.formatDate2(new Date());
+		
+	}
 	private void inicializeIdComanda(){
 
 		try {
@@ -218,7 +279,7 @@ public class WelcomeUserAction extends ActionSupport implements ServletResponseA
 	private List<Comandes> getComandesUserListAndSetNum(){
 
 		Users user = getUserFromContext();
-		List<Comandes> comandeslist = this.comandaBo.getAllByUser(user.getId(),true);
+		List<Comandes> comandeslist = this.comandaBo.getAllByUser(user.getId(), true);
 		List<Comandes> subComandaList = new ArrayList<Comandes>();
 		if (!comandeslist.isEmpty()) {
 			this.numComandes = comandeslist.size();
@@ -282,30 +343,124 @@ public class WelcomeUserAction extends ActionSupport implements ServletResponseA
 	}
 
 	public Users getUser(){
-	
+
 		return user;
 	}
 
 	public void setUser( Users user ){
-	
+
 		this.user = user;
 	}
 
 	public List<Basic> getHoraList(){
-	
+
 		return horaList;
 	}
 
 	public void setHoraList( List<Basic> horaList ){
-	
+
 		this.horaList = horaList;
 	}
 
 	public void setUsersBo( UsersBo usersBo ){
-	
+
 		this.usersBo = usersBo;
+	}
+
+	public void setPromocionsBo( PromocionsBo promocionsBo ){
+
+		this.promocionsBo = promocionsBo;
+	}
+
+	public List<PromocioAPartirDe> getPromoListAPartirDe(){
+	
+		return promoListAPartirDe;
+	}
+
+	public void setPromoListAPartirDe( List<PromocioAPartirDe> promoListAPartirDe ){
+	
+		this.promoListAPartirDe = promoListAPartirDe;
+	}
+
+	public List<PromocioNumComandes> getPromocioNumComandes(){
+	
+		return promocioNumComandes;
+	}
+
+	public void setPromocioNumComandes( List<PromocioNumComandes> promocioNumComandes ){
+	
+		this.promocioNumComandes = promocioNumComandes;
+	}
+
+	public void setComandaService( ComandaServiceImpl comandaService ){
+	
+		this.comandaService = comandaService;
+	}
+
+	public void setBegudaBo( BegudaBo begudaBo ){
+	
+		this.begudaBo = begudaBo;
+	}
+
+	public HoresDTO getHoresDTO(){
+	
+		return horesDTO;
+	}
+
+	public void setHoresDTO( HoresDTO horesDTO ){
+	
+		this.horesDTO = horesDTO;
+	}
+
+	public String getNameAuth(){
+	
+		return nameAuth;
+	}
+
+	public void setNameAuth( String nameAuth ){
+	
+		this.nameAuth = nameAuth;
+	}
+
+	public List<BasicSub> getRefrescList(){
+	
+		return refrescList;
+	}
+
+	public void setRefrescList( List<BasicSub> refrescList ){
+	
+		this.refrescList = refrescList;
+	}
+
+	public List<PlatComanda> getPlatComandaList(){
+	
+		return platComandaList;
+	}
+
+	public void setPlatComandaList( List<PlatComanda> platComandaList ){
+	
+		this.platComandaList = platComandaList;
+	}
+
+	public String getRecoveredComanda(){
+	
+		return recoveredComanda;
+	}
+
+	public void setRecoveredComanda( String recoveredComanda ){
+	
+		this.recoveredComanda = recoveredComanda;
+	}
+
+	public Long getIdComanda(){
+	
+		return idComanda;
+	}
+
+	public void setIdComanda( Long idComanda ){
+	
+		this.idComanda = idComanda;
 	}
 	
 	
-
 }

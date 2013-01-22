@@ -13,50 +13,7 @@
 
 <body>
 <h2><s:text name="txt.info.user" /></h2>	
-<br><a href="#" onclick="openCloseDiv('infoUser');" ><s:text name="txt.canvi.dades.personals" /></a>
-			<div  style="width:500px;" alig="center" id="infoUser" >
-				<s:form action="saveUserDetails" id="saveUserDetails" method="POST" enctype="multipart/form-data" >
-					<s:textfield key="user.username" id="username" onkeyup="return ismaxlength(this,45)"  ></s:textfield>		
-					<tr>
-						<td colspan="2"><input type="checkbox" onclick="openCloseDiv('password_div')" ><s:text name="txt.canvia.password.check" /></a></td>
-					</tr>				
-					<div id="password_div" style="visibility: hidden; display: none;" >				
-						<s:password key="user.password" id="password" onkeyup="return ismaxlength(this,45)" value="" ></s:password>
-						<tr><td><s:text name="txt.password.retype" />:</td><td><input type="password" id="passwordRetyped" onblur="checkPassword()"/></td></tr>
-					</div>	
-						<div id="map_canvas" style="float: right; height: 200px; width: 400px;"></div>
-					<s:textfield key="user.address" id="comandaddress"  onfocus="blur();"  ></s:textfield>		 			
-											<tr><td>						                	
-	                        					<label for="carrer">
-	                        							 <s:text name="adreca.carrer" /></label>		
-	                        					<input type="text" id="carrer"  />  
-	                        					
-	                        					<label for="numcarrer">
-	                        							  <s:text name="adreca.numcarrer" /></label>		
-	                        					<input type="text" id="numcarrer"  />
-	                        					
-	                        					<label for="codi">
-	                        							  <s:text name="adreca.codipostal" /></label>		
-	                        					<input type="text" id="codi"  />
-	                        					
-	                        					<label for="poble">
-	                        							  <s:text name="adreca.poble" /></label>		
-	                        					<input type="text" id="poble"  />                        						                    													    										                
-						                    </td></tr>	
-						                   <tr>
-								                <td>				                
-								                    <input id="checkAdd" value="Comprova si és correcte" type="button" />
-								                </td>
-								                <td>
-								                <label id="addressOK" ></label>
-								                </td>    
-						                	</tr>
-						                    
-					<s:textfield key="user.telNumber" id="telNumber" onkeyup="return ismaxlength(this,9)" ></s:textfield>						                    
-					<s:hidden key="user.id" id="idUser" ></s:hidden>		
-					<input type="button"  onclick="fillAddress()" value="submit"/>	                    															
-				</s:form>							
-			</div>
+<br><a href="#" onclick="openDialog('infoUser');" ><s:text name="txt.canvi.dades.personals" /></a>	
 <h2><s:text name="txt.info.comandes.user.title" /></h2>
 
  			<div  style="width:500px;" alig="center">
@@ -74,9 +31,54 @@
 					</tbody>
 				</table>
 			</div>
-
+			
+	<h2><s:text name="txt.info.promos" /></h2>
+			<div style="width:500px;" alig="center" >
+				<ul>
+				
+				<s:iterator value="promoListAPartirDe" var="promoAPD" >
+				
+				
+					<c:if test="${not empty promoAPD.numBegudes}">
+						<li><s:text name="txt.promo.info.begudes.n1" /> ${promoAPD.numBegudes } <s:text name="txt.promo.info.n2" /> ${promoAPD.tipusBeguda} <s:text name="txt.promo.info.n3" /> ${promoAPD.importAPartirDe}</li>
+					</c:if>
+					<c:if test="${not empty promoAPD.descompteImport}">
+						<li><s:text name="txt.promo.info.import.n1" />  ${promAPD.descompteImport }<s:text name="txt.promo.info.en" /> ${promoAPD.tipuDescompte} <s:text name="txt.promo.info.n3" /> ${promoAPD.importAPartirDe}</li>
+					</c:if>
+				
+				</s:iterator>
+				<s:iterator value="promocioNumComandes" var="promoNC" >
+				
+				
+					<c:if test="${not empty promoNC.numBegudes}">
+						<li><s:text name="txt.promo.info.begudes.n1" /> ${promoNC.numBegudes } <s:text name="txt.promo.info.n2" /> ${promoNC.tipusBeguda} <s:text name="txt.promo.info.n3" /> ${promoNC.numComandes} <s:text name="txt.promo.info.en" /> ${promoNC.temps } <s:text name="txt.promo.info.dies" /></li>
+					</c:if>
+					<c:if test="${not empty promoNC.descompteImport}">
+						<li><s:text name="txt.promo.info.import.n1" />  ${promoNC.descompteImport } <s:text name="txt.promo.info.en" /> ${promoNC.tipuDescompte} <s:text name="txt.promo.info.n3" /> ${promoNC.numComandes} <s:text name="txt.promo.info.en" /> ${promoNC.temps } <s:text name="txt.promo.info.dies" /></li>
+					</c:if>
+				
+				</s:iterator>
+				</ul>
+			</div>		
 <!-- Scripts --> 
+<!-- Dialog per escollir promocio -->
+<div id="dialog_details" class="filtres filtres-oberts" title="<s:text name="txt.canvi.details.title" />">
+ 
+	 <h1><s:text name="txt.canvi.details" /></h1>
+	 
+	 			<c:import url="/pages/includes/address.jsp" />	
+	 					
 
+				<s:form  action="saveUserDetails" id="saveUserDetails" method="POST" enctype="multipart/form-data" >
+						<s:textfield key="user.username" id="username" onkeyup="return ismaxlength(this,45)"  ></s:textfield>											                   
+						<s:textfield key="user.telNumber" id="telNumber" onkeyup="return ismaxlength(this,9)" ></s:textfield>						                    
+						<s:hidden key="user.id" id="idUser" ></s:hidden>							
+						<tr><td><s:text name="user.password" /></td><td><s:password key="user.password" id="password" onkeyup="return ismaxlength(this,45)" value="" theme="simple" ></s:password></td>
+						<td><s:text name="txt.password.retype" />:</td><td><input type="password" id="passwordRetyped" onblur="checkPassword()"/></td></tr>						
+						<s:hidden key="user.address" id="comandaddress" ></s:hidden>
+						<tr><td><input type="button"  onclick="fillAddress()" value="submit"/></td></tr>	                    															
+				</s:form>	
+</div> 
 
 	<link rel="stylesheet" href="<c:url value='/css/demo_table.css' />" type="text/css"   media="screen" />
 	<link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/base/jquery-ui.css" rel="stylesheet" type="text/css" />
@@ -97,14 +99,16 @@
 	<script src="<c:url value='/js/jquery/jquery.dataTables.js' />" type="text/javascript"></script>
 	
 		<!-- Per validar l'adreca -->
-	<script src="<c:url value='/js/address/autocompleteTown.js'/>" type="text/javascript"></script>
+		<!-- Per validar l'adreca -->
+	<script src="<c:url value='/js/address/autocompleteStreet.js'/>" type="text/javascript"></script>
+	<script src="<c:url value='/js/address/autocompleteCodi.js'/>" type="text/javascript"></script>
 	<script src="<c:url value='/js/address/addressValidationForm.js'/>" type="text/javascript"></script>
 	<script src="http://maps.google.com/maps/api/js?sensor=false" type="text/javascript"></script>
 	
 	<script type="text/javascript" src="<c:url value='/pages/users/jscomandes.js' />"></script>
-	
-
 	<script language="javascript">
+
+	
 		new Address.addressValidation();
 		var initParams = new  InitParams( "<s:text name='txt.user.empty' />", "<s:text name='txt.password.empty' />","<s:text name='txt.password.noteq' />","<s:text name='txt.tel.empty' />","<s:text name='txt.address.empty' />","<s:text name='error.double' />","<s:text name='error.number' />");
 		var initTableParams = new InitTableParams(
@@ -114,8 +118,17 @@
 					"<s:text  name='datatables.paginate.first'/>",
 					"<s:text  name='datatables.loading'/>",
 					"<s:text  name='txt.avis.borrat'/>");
+		
 	</script>
-
+	<c:if test="${not empty user}" >
+	<script language="javascript">
+		var address = '${user.address}';
+		var addArray = address.split("-");
+		
+		$("#carrer").val(addArray[0]);
+		$("#codi").val(addArray[1]);
+	</script>
+	</c:if>
 	<c:import url="/pages/includes/alertOnline.jsp" />
 	<c:import url="/pages/includes/errorAjax.jsp" />
 	

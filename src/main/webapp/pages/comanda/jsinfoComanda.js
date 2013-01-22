@@ -24,8 +24,90 @@ function InitParams(txtBegudaNoPromocio,txtNoMoreDrinksToAddinPromo,txtAddDrinks
 
 $("#chargeBar").hide();
 
+function reloadHores(){
+	var dia = $("#dia").val();
+	var data = window.localStorage.setItem("comanda.data",dia);
+	var comanda = window.localStorage.getItem("comanda");
+	var data = "data="+dia+"&idComanda="+comanda;
+	
+  	$.ajax({
+  		  type: "POST",
+  		  url: '/onlineBot/comanda/loadHores.action',
+  		  dataType: 'json',
+  		  data: data,
+  		  success: function(json){	
+  			  if(json!=null && json.error!=null){
+  				errorOnline.error("Error in AJAX: "+json.error);	
+  			  }else{
+  				  $("#comandahora").val("");
+  				if(json._0800=='true'){setHourCheck('0800');}else{setHourNotCheck('0800'); }  
+  				if(json._0830=='true'){setHourCheck('0830');}else{setHourNotCheck('0830'); }  
+  				if(json._0900=='true'){setHourCheck('0900');}else{setHourNotCheck('0900'); }  				  
+  				if(json._0930=='true'){setHourCheck('0930');}else{setHourNotCheck('0930'); }  
+  				if(json._1000=='true'){setHourCheck('1000');}else{setHourNotCheck('1000'); }
+  				if(json._1030=='true'){setHourCheck('1030');}else{setHourNotCheck('1030'); }  				  
+  				if(json._1100=='true'){setHourCheck('1100');}else{setHourNotCheck('1100'); }  
+  				if(json._1130=='true'){setHourCheck('1130');}else{setHourNotCheck('1130'); }    				  
+  				if(json._1200=='true'){setHourCheck('1200');}else{setHourNotCheck('1200'); }
+  				if(json._1230=='true'){setHourCheck('1230');}else{setHourNotCheck('1230'); }  				 
+  				if(json._1300=='true'){setHourCheck('1300');}else{setHourNotCheck('1300'); }  				 
+  				if(json._1330=='true'){setHourCheck('1330');}else{setHourNotCheck('1330'); }  				 
+  				if(json._1400=='true'){setHourCheck('1400');}else{setHourNotCheck('1400'); }
+  				if(json._1430=='true'){setHourCheck('1430');}else{setHourNotCheck('1430'); }  				 
+  				if(json._1500=='true'){setHourCheck('1500');}else{setHourNotCheck('1500'); }
+  				if(json._1530=='true'){setHourCheck('1530');}else{setHourNotCheck('1530'); }
+  				if(json._1600=='true'){setHourCheck('1600');}else{setHourNotCheck('1600'); }
+  				if(json._1630=='true'){setHourCheck('1630');}else{setHourNotCheck('1630'); }
+  				if(json._1700=='true'){setHourCheck('1700');}else{setHourNotCheck('1700'); }
+  				if(json._1730=='true'){setHourCheck('1730');}else{setHourNotCheck('1730'); }
+  				if(json._1800=='true'){setHourCheck('1800');}else{setHourNotCheck('1800'); }
+  				if(json._1830=='true'){setHourCheck('1830');}else{setHourNotCheck('1830'); }
+  				if(json._1900=='true'){setHourCheck('1900');}else{setHourNotCheck('1900'); }
+  				if(json._1930=='true'){setHourCheck('1930');}else{setHourNotCheck('1930'); }
+  				if(json._2000=='true'){setHourCheck('2000');}else{setHourNotCheck('2000'); }
+  				if(json._2030=='true'){setHourCheck('2030');}else{setHourNotCheck('2030'); }
+  				if(json._2100=='true'){setHourCheck('2100');}else{setHourNotCheck('2100'); }
+  				if(json._2130=='true'){setHourCheck('2130');}else{setHourNotCheck('2130'); }
+  				if(json._2200=='true'){setHourCheck('2200');}else{setHourNotCheck('2200'); }
+  				if(json._2230=='true'){setHourCheck('2230');}else{setHourNotCheck('2230'); }
+  				if(json._2300=='true'){setHourCheck('2300');}else{setHourNotCheck('2300'); }
+  				if(json._2330=='true'){setHourCheck('2330');}else{setHourNotCheck('2330'); }
+  				if(json._2400=='true'){setHourCheck('2400');}else{setHourNotCheck('2400'); }
+  			  }				
+  		  },
+  		  error: function(e){   errorOnline.error("Error in AJAX");	
+  		  					}
+  		});	
+	
+}
 
+function checKHour(id){
+	var id_old = $("#comandahora").val();
+	
+	$("#"+id).removeClass("check");
+	$("#"+id).addClass("checked");
+	
+	$("#"+id_old).removeClass("checked");
+	$("#"+id_old).addClass("check");
+	
+	$("#comandahora").val(id);
+}
 
+function setHourNotCheck(id){
+	$("#"+id).removeClass("check");
+	$("#"+id).removeClass("checked");
+	$("#"+id).addClass("notcheck");
+}
+function setHourCheck(id){
+	$("#"+id).addClass("check");
+	$("#"+id).removeClass("checked");
+	$("#"+id).removeClass("notcheck");
+}
+function setHourChecked(id){
+	$("#"+id).removeClass("check");
+	$("#"+id).addClass("checked");
+	$("#"+id).removeClass("notcheck");	
+}
 function payComanda(){
 		var comanda = window.localStorage.getItem("comanda");
 		if(comanda!= null && comanda != 'undefined'){
@@ -272,7 +354,8 @@ $(function(){
 new Address.addressValidation();
 
 
-$("#checkPromocionsDisponibles").hide();
+$("#checkPromocionsDisponibles").show();
+$("#deletePromoApplied").hide();
 
 
 var sudoSlider = $("#slider").sudoSlider({
@@ -354,6 +437,7 @@ function addPromoBeguda(nbegudes, tipusBeguda){
 	window.promoBeguda.tipusBeguda=tipusBeguda;
 	
 	$("#checkPromocionsDisponibles").hide();
+	$("#deletePromoApplied").show();
 	closeDialogPromos();
 	alertOnline.alertes(initParams.txtAddDrinkstoBox);	
 	
@@ -393,11 +477,6 @@ function initPromoDescompteFromStorage(){
 	}
 }
 
-
-
-
-
-
 function addPromoImport(importDescompte, tipusDescompte){
 	
 	//La idea és afegir el descompte al div d'info de la comanda
@@ -423,6 +502,7 @@ function addPromoImport(importDescompte, tipusDescompte){
 	}
 	
 	$("#checkPromocionsDisponibles").hide();
+	$("#deletePromoApplied").show();
 	closeDialogPromos();
 	
 }
@@ -460,6 +540,7 @@ function deletePromoApplied(){
 		
 		deleteAjaxBegudesPromo();
 	}
+	$("#deletePromoApplied").hide();
 	alertOnline.alertes(initParams.txtpromodeleted);
 
 }

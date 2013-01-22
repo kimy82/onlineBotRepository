@@ -55,7 +55,7 @@ public class ComandaServiceImpl implements ComandaService{
 
 			if (config == null || config.isObert()) {
 
-				String[] horesArray = config == null ? restaurant.getHores().split("|") : config.getHores().split("|");
+				String[] horesArray = config == null ? restaurant.getHores().split("\\W+") : config.getHores().split("\\W+");
 				Date dataAvui = new Date();
 				int nextHour = 0;
 				if (data == Utils.formatDate2(dataAvui)) {
@@ -147,7 +147,6 @@ public class ComandaServiceImpl implements ComandaService{
 		}
 
 		return horesDTO;
-
 	}
 
 	public void deleteBegudesPromo( Comandes comanda ) throws ComandaException{

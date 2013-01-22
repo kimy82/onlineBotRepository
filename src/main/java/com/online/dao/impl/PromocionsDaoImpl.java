@@ -82,5 +82,15 @@ public class PromocionsDaoImpl extends HibernateDaoSupport implements Promocions
 
 		return getHibernateTemplate().loadAll(Promocio.class);
 	}
+	
+	public List<PromocioNumComandes> getAllNumComandes(){
+
+		return getHibernateTemplate().loadAll(PromocioNumComandes.class);
+	}
+	
+	public List<PromocioAPartirDe> getAllAPartirDe(){
+
+		return getHibernateTemplate().loadAll(PromocioAPartirDe.class);
+	}
 
 }

@@ -16,6 +16,8 @@ import org.apache.struts2.interceptor.ServletResponseAware;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.online.bo.BegudaBo;
 import com.online.bo.ComandaBo;
 import com.online.bo.PlatsBo;
@@ -31,7 +33,6 @@ import com.online.model.HoresDTO;
 import com.online.model.Plat;
 import com.online.model.PlatComanda;
 import com.online.model.Users;
-import com.online.pojos.Basic;
 import com.online.pojos.BasicSub;
 import com.online.services.impl.ComandaServiceImpl;
 import com.online.utils.Utils;
@@ -341,7 +342,44 @@ public class WelcomeComandaAction extends ActionSupport implements ServletRespon
 
 		return null;
 	}
+	public String loadHores(){
+		
+		ServletOutputStream out = null;
 
+		String json = "";
+
+		try {
+
+			out = this.response.getOutputStream();
+		
+			inizilizeComandaId();
+			inizializeData();
+			
+			this.comanda = this.comandaBo.load(this.idComanda);
+			horesDTO = new HoresDTO();
+			horesDTO.setData(data);
+			horesDTO = this.comandaService.setHoresFeature(horesDTO, this.data, this.comanda);
+			
+			Gson gson = new GsonBuilder().setPrettyPrinting().excludeFieldsWithoutExposeAnnotation().create();
+			
+			json = gson.toJson(horesDTO);
+			
+			
+		} catch (ComandaException ce) {
+			json = createErrorJSON("error in comanda service action");
+		} catch (Exception e) {
+			json = createErrorJSON("error in ajax action");
+		}
+
+		try {
+			out.print(json);
+		} catch (IOException e) {
+			throw new GeneralException(e, "possibly ServletOutputStream null");
+		}
+
+		return null;
+		
+	}
 	public String goToPas1Action(){
 
 		inizilizeComandaId();
@@ -349,7 +387,8 @@ public class WelcomeComandaAction extends ActionSupport implements ServletRespon
 		getUserAllInfoFromContext();
 
 		this.comanda = this.comandaBo.load(this.idComanda);
-
+		horesDTO = new HoresDTO();
+		horesDTO.setData(data);
 		horesDTO = this.comandaService.setHoresFeature(horesDTO, this.data, this.comanda);
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		this.nameAuth = auth.getName();
@@ -644,6 +683,17 @@ public class WelcomeComandaAction extends ActionSupport implements ServletRespon
 	
 		this.horesDTO = horesDTO;
 	}
+
+	public Users getUser(){
+	
+		return user;
+	}
+
+	public void setUser( Users user ){
+	
+		this.user = user;
+	}
+
 	
 
 }

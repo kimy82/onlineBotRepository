@@ -42,17 +42,7 @@ public class HoresDTO implements Serializable{
 	@Expose
 	private String				_1330;
 	@Expose
-	private String				_1400;
-	public String get_1400(){
-	
-		return _1400;
-	}
-
-	public void set_1400( String _1400 ){
-	
-		this._1400 = _1400;
-	}
-
+	private String				_1400;	
 	@Expose
 	private String				_1430;
 	@Expose
@@ -103,10 +93,6 @@ public class HoresDTO implements Serializable{
 
 	}
 
-	public HoresDTO( Long id, String nom, Double preu ) {
-
-		super();
-	}
 
 	
 	// GETTERS i SETTERS
@@ -439,6 +425,16 @@ public class HoresDTO implements Serializable{
 	
 		this._2400 = _2400;
 	}
+	public String get_1400(){
+		
+		return _1400;
+	}
+
+	public void set_1400( String _1400 ){
+	
+		this._1400 = _1400;
+	}
+
 
 	
 	

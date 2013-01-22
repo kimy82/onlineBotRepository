@@ -60,6 +60,16 @@ public class PromocionsBoImpl implements PromocionsBo{
 		return list;
 
 	}
+	
+	public List<PromocioAPartirDe> getAllAPartirDe() throws BOException{
+		return this.promocionsDao.getAllAPartirDe();
+	}
+	
+	public List<PromocioNumComandes> getAllNumComandes() throws BOException{
+		
+		return this.promocionsDao.getAllNumComandes();
+	}
+	
 
 	// PRIVATE METHODS
 	private void checkPromocio( Promocio promocio ) throws BOException{

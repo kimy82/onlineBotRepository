@@ -45,7 +45,7 @@ Address.addressValidation.prototype._init= function(){
 
 Address.addressValidation.prototype.checkAdd = function(){
 	var address = $("#carrer").val()+","+$("#codi").val()+", Girona, Spain";
-    
+    var addressToSave = $("#carrer").val()+"-"+$("#codi").val()
 	if($("#carrer").val() == '' || $("#codi").val() == '' ){
 		return false;
 	}
@@ -70,7 +70,7 @@ Address.addressValidation.prototype.checkAdd = function(){
                  Map("map_canvas", results[0].geometry.location);
 
                  //POsem address al form
-                 $("#comandaddress").val(addressGoogle);
+                 $("#comandaddress").val(addressToSave);
                  $("#addressOK").text("OK Address");
              }
     	 }else{

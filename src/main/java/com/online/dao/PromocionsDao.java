@@ -22,4 +22,8 @@ public interface PromocionsDao{
 	List<PromocioAPartirDe> getPromosAPartirDe(Double importAPartirDe, Date dia);
 	
 	List<PromocioNumComandes> getPromosNumComandes(Integer numComandes, Integer temps);
+	
+	List<PromocioAPartirDe> getAllAPartirDe();
+	
+	List<PromocioNumComandes> getAllNumComandes();
 }

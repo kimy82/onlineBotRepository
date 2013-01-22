@@ -23,5 +23,9 @@ public interface PromocionsBo{
 	List<PromocioAPartirDe> getPromosAPartirDe(Double importAPartirDe, Date dia)throws BOException;
 	
 	List<PromocioNumComandes> getPromosNumComandes(Integer numComandes, Integer temps)throws BOException;
+	
+	List<PromocioAPartirDe> getAllAPartirDe() throws BOException;
+	
+	List<PromocioNumComandes> getAllNumComandes() throws BOException;
 
 }

@@ -20,7 +20,7 @@
 		</action>
 		<action name="repeatComanda" class="com.online.action.users.WelcomeUserAction"
 			method="repeatComanda">
-			<result name="success">/pages/users/recoverComanda/recoveredcomandaUser.jsp</result>
+			<result name="success">/pages/comanda/infoComanda.jsp</result>
 			<result name="error">/error.jsp</result>	
 		</action>
 		<action name="saveUserDetails" class="com.online.action.users.WelcomeUserAction"

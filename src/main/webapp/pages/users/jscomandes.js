@@ -23,6 +23,17 @@ function InitParams(txtusernameempty, txtpasswordempty,txtpasswordnotequal,txtte
 	
 }
 
+$("#dialog_details").dialog( { autoOpen: false,
+	  modal: true,
+	  position: 'center',
+	  draggable: true,
+	  height: 530,
+	  width: 700,		
+	  open: function(event, ui) { 		 
+
+	 }
+});
+
 //per el formulari
 function onlyDouble(value,id){
 	 var n=value.split(".");
@@ -74,18 +85,19 @@ function fillAddress(){
 	
 	if(self.password.value==''){
 	 	
-		$("#password").css('border', 'solid 1px red');
-		alertOnline.alertes(initParams.txtpasswordempty);		
-		return false;
+		//$("#password").css('border', 'solid 1px red');
+		//alertOnline.alertes(initParams.txtpasswordempty);		
+		//return false;
 		
-	}else{
+	}else{	
 		if(self.password.value!=self.passwordRetyped.value){
 			$("#confirmPassword").css('border', 'solid 1px red');
 			$("#password").css('border', 'solid 1px red');
-			alertOnline.alertes(initParams.txtpasswordnotequal);			
+			alertOnline.alertes(initParams.txtpasswordnotequal);	
+			return false;
 		}else{
 			$("#confirmPassword").css('border', 'solid 1px rgb(135,155,179)');
-			$("#password").css('border', 'solid 1px rgb(135,155,179)');
+			$("#password").css('border', 'solid 1px rgb(135,155,179)');			
 		}
 	}
 	if(self.telNumber.value==''){
@@ -110,7 +122,7 @@ function fillAddress(){
 	
 	self.submit();
 	
-	
+	$("#dialog_details").dialog("close");
 }
 
 function repeatComanda(id){
@@ -118,17 +130,11 @@ function repeatComanda(id){
 	window.location.href="/onlineBot/user/repeatComanda.action?idComanda="+id;
 }
 
-function openCloseDiv(id){
+function openDialog(id){
 
-	if(id=='password_div'){
-		document.getElementById("password_div").style.visibility="visible";
-		document.getElementById("password_div").style.display="";		
+	if(id=='infoUser'){
+		$("#dialog_details").dialog("open");	
 	}	
-	 if($("#"+id).is(":hidden")){
-		 $("#"+id).show('slow');
-	 }else{
-		 $("#"+id).hide('slow');
-	 }
 }
 
 function checkPassword(){
@@ -136,7 +142,8 @@ function checkPassword(){
 	var password2 = document.getElementById("passwordRetyped").value;
 	if(password1 != password2){
 		$('#passwordRetyped').css('border', 'solid 1px red');
-		alertOnline.alertes(initParams.txtpasswordnotequal);		
+		alertOnline.alertes(initParams.txtpasswordnotequal);	
+		return;
 	}
 }
 
@@ -190,11 +197,5 @@ $(document).ready(function() {
 		        	} );
 		    	}
 			} );
-		
-				
-		//ocultem divs
-		$("#errorsajax").hide();
-		$("#password_div").hide();		
-		$("#infoUser").hide();
 		
 } );
