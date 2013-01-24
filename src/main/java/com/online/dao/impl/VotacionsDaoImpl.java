@@ -9,6 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.online.dao.VotacionsDao;
 import com.online.model.VotacioTMP;
+import com.online.utils.Utils;
 
 public class VotacionsDaoImpl extends HibernateDaoSupport implements VotacionsDao{
 	
@@ -38,7 +39,11 @@ public class VotacionsDaoImpl extends HibernateDaoSupport implements VotacionsDa
 
 	public VotacioTMP get(Long idplat, Long idUser){
 		
-		return (VotacioTMP) getHibernateTemplate().find("from VotacioTMP vtmp where vtmp.platId="+idplat+" and vtmp.userId="+idUser+" and vtmp.dia="+new Date());
+	List<VotacioTMP> list =  (List<VotacioTMP>) getHibernateTemplate().find("from VotacioTMP vtmp where vtmp.platId="+idplat+" and vtmp.userId="+idUser+" and vtmp.dia='"+Utils.formatDate2(new Date())+"'");
+	if(!list.isEmpty()){
+		return list.get(0);
+	}
+		return null;
 	}
 	
 		@Transactional

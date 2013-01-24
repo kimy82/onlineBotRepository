@@ -175,8 +175,8 @@ $(document).ready(function() {
 					        "sPrevious": "<img src='/onlineBot/images/icono-paginador-anterior.gif' style='vertical-align:middle'>&nbsp;"+initTableParams.txtprevious
 					      }
 					    },
-					"sScrollY": "100",		    
-					"sScrollX": "152",	
+					"sScrollY": "500",		    
+					"sScrollX": "700",	
 				    "bScrollCollapse": true,
 		    		"bProcessing": false,
 		    		"bServerSide": true,

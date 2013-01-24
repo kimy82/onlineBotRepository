@@ -2,12 +2,14 @@
 //variables per textos en locale
 var initParams=null ;
 
-function InitParams(txtBegudaNoPromocio,txtNoMoreDrinksToAddinPromo,txtAddDrinkstoBox, txtdescompteaplicat,txtpromodeleted){		
+function InitParams(txtBegudaNoPromocio,txtNoMoreDrinksToAddinPromo,txtAddDrinkstoBox, txtdescompteaplicat,txtpromodeleted, txtfaltahora, txtcheckaddress){		
 		this.txtBegudaNoPromocio=txtBegudaNoPromocio;
 		this.txtNoMoreDrinksToAddinPromo=txtNoMoreDrinksToAddinPromo;
 		this.txtAddDrinkstoBox = txtAddDrinkstoBox;
 		this.txtdescompteaplicat = txtdescompteaplicat;
 		this.txtpromodeleted = txtpromodeleted;
+		this.txtfaltahora = txtfaltahora;
+		this.txtcheckaddress = txtcheckaddress;
 }
 //progress var
 						window.setTimeout(function() {
@@ -84,11 +86,12 @@ function reloadHores(){
 function checKHour(id){
 	var id_old = $("#comandahora").val();
 	
-	$("#"+id).removeClass("check");
-	$("#"+id).addClass("checked");
-	
 	$("#"+id_old).removeClass("checked");
 	$("#"+id_old).addClass("check");
+	
+	$("#"+id).removeClass("check");
+	$("#"+id).addClass("checked");
+
 	
 	$("#comandahora").val(id);
 }
@@ -194,8 +197,20 @@ function checkComandaJS(){
 	if(comanda!= null && comanda != 'undefined'){
 		var hora = $("#comandahora").val();
 		var dia = $("#dia").val();
-		var adomicili = $("#adomicili").val();
+		if(hora==''){
+			alertOnline.alertes(initParams.txtfaltahora);
+			return;
+		}
+		var adomicili =false;
+		if($("#adomicili").is(':checked')){
+			adomicili=true;
+		}
+		
 		var address = $("#comandaddress").val();
+		if(address==''){
+			alertOnline.alertes(initParams.txtcheckaddress);
+			return;
+		}
 		address =  address.replace(/\n/g, "");
 		$("#chargeBar").show();
 		var data ="idComanda="+comanda+"&dia="+dia+"&hora="+hora+"&aDomicili="+adomicili+"&address="+address;
@@ -346,7 +361,7 @@ $(function(){
 //---------------------------------------------------------------------------------------------------------------------
     Calendar.setup({
         inputField    	:    "dia",      // id del campo de texto
-        ifFormat       	:    "%d-%m-%Y",          // formato de la fecha, cuando se escriba en el campo de texto
+        ifFormat       	:    "%Y-%m-%d",          // formato de la fecha, cuando se escriba en el campo de texto
         button         	:    "llencadorData1",          // el id del botón que lanzará el calendario
         locale 		   	:    "ca_ES"
     });
@@ -485,11 +500,12 @@ function addPromoImport(importDescompte, tipusDescompte){
 	window.localStorage.setItem("comanda.promo.descompte.tipus",tipusDescompte);
 	
 	window.promoDescompte= {promo : "true"};
-	window.promoDescompte.import= importDescompte;
+	window.promoDescompte.importe= importDescompte;
 	window.promoDescompte.tipus=tipusDescompte;
 	
 	//Actualitzem les dadesde la cart
 	var preuPlats = window.localStorage.getItem("comanda.preu");
+	alert(preuPlats)
 	var preuBegudes = window.localStorage.getItem("comanda.beguda.preu");
 	var preu =  parseFloat(preuPlats)+ parseFloat(preuBegudes);
 	

@@ -67,6 +67,8 @@ public class WelcomeUserAction extends ActionSupport implements ServletResponseA
 	private String				data;
 	private String				nameAuth;
 	private String				recoveredComanda	="true";
+	private int					numPlats			=0;
+	private int					numBegudes			=0;
 
 	private List<Basic>			horaList			= new ArrayList<Basic>();
 	List<Comandes>				ComandaList			= new ArrayList<Comandes>();
@@ -115,17 +117,18 @@ public class WelcomeUserAction extends ActionSupport implements ServletResponseA
 			inizializeData();
 			getUserAllInfoFromContext();
 
-			this.comanda = this.comandaBo.load(this.idComanda);
+			Comandes comandaDone = this.comandaBo.load(this.idComanda);
+			
+			this.comanda = this.comandaService.getComandaToRepeat(comandaDone);
+			
+			this.comandaBo.save(comanda);
+			
 			horesDTO = new HoresDTO();
 			horesDTO.setData(data);
 			horesDTO = this.comandaService.setHoresFeature(horesDTO, this.data, this.comanda);
 			Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 			this.nameAuth = auth.getName();
-
-			Double preu = this.comandaService.getPreuOfComanda(this.comanda);
-
-			this.comanda.setPreu(preu);
-
+			
 			List<Beguda> begudaList = this.begudaBo.getAll();
 			for (Beguda beguda : begudaList) {
 
@@ -135,9 +138,12 @@ public class WelcomeUserAction extends ActionSupport implements ServletResponseA
 				this.refrescList.add(basic);
 
 			}
-
+			
+			
 			this.platComandaList = comanda.getPlats();
-
+			
+			this.numPlats = this.comandaService.getNumPlats(this.platComandaList);
+			
 			return SUCCESS;
 			
 		} catch (Exception e) {
@@ -249,6 +255,7 @@ public class WelcomeUserAction extends ActionSupport implements ServletResponseA
 		for (Comandes comanda : ComandaList) {
 			ComandesUserTable cmdUserTable = new ComandesUserTable();
 			BeanUtils.copyProperties(comanda, cmdUserTable);
+			if(cmdUserTable.getObservacions()==null)cmdUserTable.setObservacions("");
 			cmdUserTable.setPlatsString(getNomPLats(comanda));
 			cmdUserTable.setAccio("<a href=\"#\" onclick=\"repeatComanda(" + comanda.getId()
 					+ ")\" ><img src=\"../images/shopping_cart.png\"></a>");
@@ -272,7 +279,9 @@ public class WelcomeUserAction extends ActionSupport implements ServletResponseA
 		for (PlatComanda platComanda : comanda.getPlats()) {
 			nomPlats.append(platComanda.getPlat().getNom() + ",");
 		}
-		nomPlats.setLength(nomPlats.length() - 1);
+		if(nomPlats.length()!=0)
+			nomPlats.setLength(nomPlats.length() - 1);
+		
 		return nomPlats.toString();
 	}
 
@@ -460,6 +469,22 @@ public class WelcomeUserAction extends ActionSupport implements ServletResponseA
 	public void setIdComanda( Long idComanda ){
 	
 		this.idComanda = idComanda;
+	}
+
+	public int getNumPlats() {
+		return numPlats;
+	}
+
+	public void setNumPlats(int numPlats) {
+		this.numPlats = numPlats;
+	}
+
+	public int getNumBegudes() {
+		return numBegudes;
+	}
+
+	public void setNumBegudes(int numBegudes) {
+		this.numBegudes = numBegudes;
 	}
 	
 	

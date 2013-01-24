@@ -82,6 +82,7 @@ public class MantenimentConfigAction extends ActionSupport implements ServletRes
 							configRestaurants.add(configRestToSave);
 						} else {
 							configRestaurantInDB.setObert(configRestToSave.isObert());
+							configRestaurantInDB.setHores(configRestToSave.getHores());
 							this.configRestaurantBo.update(configRestaurantInDB);
 						}
 

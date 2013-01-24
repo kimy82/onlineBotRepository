@@ -96,9 +96,13 @@ public class MantenimentPromocionsAction extends ActionSupport implements Servle
 			if (promo instanceof PromocioAPartirDe) {
 				PromocioAPartirDeDTF prDTF = new PromocioAPartirDeDTF();
 				PromocioAPartirDe pr = (PromocioAPartirDe) promo;
-				String data = Utils.formatDate(pr.getDia());
+				
 				BeanUtils.copyProperties(pr, prDTF);
-				prDTF.setDiaString(data);
+				if(pr.getDia()!=null){
+					String data = Utils.formatDate(pr.getDia());
+					prDTF.setDiaString(data);
+				}
+				
 				jsonSB.append(gson.toJson(prDTF));
 				jsonSB.setLength(jsonSB.length() - 1);
 				jsonSB.append(",\"tipus\" :\"apd\" }");
@@ -243,6 +247,9 @@ public class MantenimentPromocionsAction extends ActionSupport implements Servle
 
 			PromocioTable promoTable = new PromocioTable();
 			BeanUtils.copyProperties(promo, promoTable);
+			if(promoTable.getNumBegudes()==null)promoTable.setNumBegudes(0);
+			if(promoTable.getTipusBeguda()==null)promoTable.setTipusBeguda("-");
+			if(promoTable.getDescompteImport()==null)promoTable.setDescompteImport(0.0);
 			promoTable.setNom("<a href=\"#\" onclick=\"goToPromocio(" + promo.getId() + ")\" >" + promo.getNom() + "</a>");
 			promoTable.setAccio("<a href=\"#\" onclick=\"deletePromocio(" + promo.getId() + ")\" ><img src=\"../images/delete.png\"></a>");
 			promoTableList.add(promoTable);

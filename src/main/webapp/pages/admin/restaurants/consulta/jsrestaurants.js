@@ -224,7 +224,7 @@ $(document).ready(function() {
 					        "sPrevious": "<img src='/onlineBot/images/icono-paginador-anterior.gif' style='vertical-align:middle'>&nbsp;"+initTableParams.txtprevious
 					      }
 					    },
-					"sScrollY": "100",		    
+					"sScrollY": "400",		    
 					"sScrollX": "700",	
 				    "bScrollCollapse": true,
 		    		"bProcessing": false,
@@ -285,8 +285,8 @@ $(document).ready(function() {
 			        "sPrevious": "<img src='/onlineBot/images/icono-paginador-anterior.gif' style='vertical-align:middle'>&nbsp;"+initTableParams.txtprevious
 			      }
 			    },
-			"sScrollY": "100",		    
-			"sScrollX": "152",	
+			"sScrollY": "200",		    
+			"sScrollX": "452",	
 		    "bScrollCollapse": true,
 			"bProcessing": false,
 			"bServerSide": true,

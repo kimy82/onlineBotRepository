@@ -22,7 +22,7 @@
 			<div class="selector ui-widget-content" id="draggable_${plat.id}" >
 		</c:if>
 		<c:if test="${plat.actiu == false }" >
-			<div class="selector ui-widget-content" style="background-color: grey;" id="draggable_${plat.id}" >
+			<div class="selector ui-widget-content" style="background-color: grey;" id="draggable_${plat.id}" title="Plat no actiu per avui" >
 		</c:if>
 		
 			<table>
@@ -80,15 +80,17 @@
 	<script src="<c:url value='/js/jquery/jquery.effects.core.js'/>" type="text/javascript"></script>
 	<script src="<c:url value='/js/jquery/jquery.bgiframe-2.1.1.js'/>" type="text/javascript"></script>
 	<script type="text/javascript" src="<c:url value='/js/slider/coin-slider.min.js' />"></script>
-	<script src="<c:url value='/pages/comanda/jswelcome.js'/>" type="text/javascript"></script>
-	
 	<script type="text/javascript" >
 		//Carrega del cistell de compra 
-			$("#numComanda").text('${idComanda}');
-			$("#numplats").text('${fn:length(comanda.plats)}');
-			$("#preu").text('${comanda.preu}');   			
+			$("#numComanda").text('${requestScope.idComanda}');
+			$("#numplats").text('${requestScope.numPlats}');
+			$("#preu").text('${requestScope.comanda.preu}');   
+			var dataActual = '${requestScope.dataActual}';
 	</script>
+	<script src="<c:url value='/pages/comanda/jswelcome.js'/>" type="text/javascript"></script>
 	
+	
+	<c:import url="/pages/includes/confirmOnline.jsp" />
 	<c:import url="/pages/includes/alertOnline.jsp" />
 	<c:import url="/pages/includes/errorAjax.jsp" />
 </body>

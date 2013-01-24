@@ -18,9 +18,9 @@
 		</action>
 		<action name="registerUser" class="com.online.action.LoginAction" method="registerUser" >
 			<interceptor-ref name="defaultStack" />
-			<result name="success" >/pages/login/inside.jsp</result>
+			<result name="success" >/</result>
 			<result name="input">/pages/login/register.jsp</result>	
-			<result name="error">error.jsp</result>		
+			<result name="error">/error.jsp</result>		
 		</action>
 		<action name="preRegisterUser" >
 			<result>/pages/login/register.jsp</result>
@@ -37,7 +37,7 @@
 		</action>
 		<action name="recoverAccount" class="com.online.action.LoginAction" method="recoverAccount" >
 			<interceptor-ref name="defaultStack" />
-			<result name="success" >/welcome.jsp</result>
+			<result name="success" >/</result>
 			<result name="input">/pages/login/recoverAccount.jsp</result>
 			<result name="error">error.jsp</result>	
 			<result name="notfound">/pages/login/notFound.jsp</result>

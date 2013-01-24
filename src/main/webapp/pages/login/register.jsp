@@ -15,8 +15,9 @@
 	<s:password key="confirmPassword" id="confirmPassword" />
 	<s:textfield key="telefon" maxlength="10" id="telefon" ></s:textfield>
 	<h1><s:text name="txt.address.div" /></h1>
+	<s:hidden key="address" id="comandaddress" ></s:hidden>
 	<c:import url="/pages/includes/address.jsp" />	
- 	<s:textfield key="address" id="comandaddress" ></s:textfield>
+ 	
  	<input type="button" value="submit" onclick="validate();" />
 
 </s:form>

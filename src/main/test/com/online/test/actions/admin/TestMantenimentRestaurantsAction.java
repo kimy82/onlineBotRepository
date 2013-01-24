@@ -174,7 +174,7 @@ public class TestMantenimentRestaurantsAction extends StrutsSpringTestCase{
 			restaurantList.add(restaurant);
 		}
 
-		Mockito.when(mockRestaurantsBo.getAll(true)).thenReturn(restaurantList);
+		Mockito.when(mockRestaurantsBo.getAll(true,true,true)).thenReturn(restaurantList);
 
 		ActionProxy proxy = getActionProxy("/admin/ajaxTableRestaurantsAction.action");
 
@@ -197,7 +197,7 @@ public class TestMantenimentRestaurantsAction extends StrutsSpringTestCase{
 			restaurantList.add(restaurant);
 		}
 
-		Mockito.when(mockRestaurantsBo.getAll(true)).thenReturn(restaurantList);
+		Mockito.when(mockRestaurantsBo.getAll(true,true,true)).thenReturn(restaurantList);
 
 		ActionProxy proxy = getActionProxy("/admin/ajaxTableRestaurantsAction.action");
 
@@ -223,7 +223,7 @@ public class TestMantenimentRestaurantsAction extends StrutsSpringTestCase{
 			restaurantList.add(restaurant);
 		}
 
-		Mockito.when(mockRestaurantsBo.getAll(true)).thenReturn(restaurantList);
+		Mockito.when(mockRestaurantsBo.getAll(true,true,true)).thenReturn(restaurantList);
 
 		ActionProxy proxy = getActionProxy("/admin/ajaxTableRestaurantsAction.action");
 
@@ -255,7 +255,7 @@ public class TestMantenimentRestaurantsAction extends StrutsSpringTestCase{
 			restaurantList.add(restaurant);
 		}
 
-		Mockito.when(mockRestaurantsBo.getAll(true)).thenReturn(restaurantList);
+		Mockito.when(mockRestaurantsBo.getAll(true,true,true)).thenReturn(restaurantList);
 
 		ActionProxy proxy = getActionProxy("/admin/ajaxTablePlatsAction.action");
 
@@ -285,7 +285,7 @@ public class TestMantenimentRestaurantsAction extends StrutsSpringTestCase{
 			restaurantList.add(restaurant);
 		}
 
-		Mockito.when(mockRestaurantsBo.getAll(true)).thenReturn(restaurantList);
+		Mockito.when(mockRestaurantsBo.getAll(true,true,true)).thenReturn(restaurantList);
 
 		ActionProxy proxy = getActionProxy("/admin/ajaxTablePlatsAction.action");
 
@@ -318,7 +318,7 @@ public class TestMantenimentRestaurantsAction extends StrutsSpringTestCase{
 			restaurantList.add(restaurant);
 		}
 
-		Mockito.when(mockRestaurantsBo.getAll(true)).thenReturn(restaurantList);
+		Mockito.when(mockRestaurantsBo.getAll(true,true,true)).thenReturn(restaurantList);
 
 		ActionProxy proxy = getActionProxy("/admin/ajaxTablePlatsAction.action");
 

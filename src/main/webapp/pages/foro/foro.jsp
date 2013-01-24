@@ -11,8 +11,6 @@
 	<title><s:text name="txt.welcome.comanda.principal" /></title>	
 </head>
 <body>
-<c:import url="/pages/includes/goBack.jsp" />
-<c:import url="/pages/includes/goHome.jsp" />
 
 <c:if test="${not empty plat }">
 
@@ -113,7 +111,6 @@
 																		
 	</script>
 	<c:import url="/pages/includes/subAlertOnline.jsp" />
-	<c:import url="/pages/includes/subErrorAjax.jsp" />
-	<c:import url="/pages/includes/confirmOnline.jsp" />
+	
 </body>
 </html>

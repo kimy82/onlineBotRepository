@@ -79,8 +79,8 @@ public class MantenimentPresentacioAction extends ActionSupport implements Servl
 				    File outputfile = new File(whereToSave);
 				    ImageIO.write(bi, "jpg", outputfile);
 				    
-				    whereToSave =whereToSave.replace("\\target", "");
-				    whereToSave =whereToSave.replace("\\onlineBot", "\\src\\main\\webapp");
+				    whereToSave =whereToSave.replace("\\target\\onlineBot", "\\src\\main\\webapp");
+			
 				    
 				    File outputfileReal = new File(whereToSave.replace("\\target", ""));
 				    ImageIO.write(bi, "jpg", outputfileReal);

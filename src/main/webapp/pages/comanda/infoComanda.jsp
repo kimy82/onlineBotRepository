@@ -347,14 +347,13 @@
 <!-- Dialog per escollir promocio -->
 <div id="dialog_promo" class="filtres filtres-oberts" title="Promo">
  
-	 <h1>Escull una de les promocions</h1>
+	 <h1><s:text name="txt.promo.escull" /></h1>
 			<ul id="prm" >
 			
 				
 			</ul>
 </div>  	
 	
-<!-- Scripts --> 
 	<style>
 		.notcheck{
 			background-color: grey;
@@ -402,9 +401,10 @@
 	<script src="<c:url value='/js/sudoSlider/jquery.sudoSlider.js'/>" type="text/javascript"></script>
 	<script type="text/javascript" src="<c:url value='/js/progressbar/progress.js'/>"></script>
 	<script type="text/javascript" src="<c:url value='/pages/comanda/jsinfoComanda.js'/>"></script>	
-<script>
-
-var initParams = new InitParams("<s:text name='txt.beguda.no.tipus.promo' />","<s:text name='txt.beguda.no.more.promo' />","<s:text name='txt.add.beguda.to.box' />", "<s:text name='txt.promo.descompte.aplicat' />","<s:text name='txt.promo.deleted' />");
+<script type="text/javascript" >
+			  
+var initParams = new InitParams("<s:text name='txt.beguda.no.tipus.promo' />","<s:text name='txt.beguda.no.more.promo' />","<s:text name='txt.add.beguda.to.box' />", 
+								"<s:text name='txt.promo.descompte.aplicat' />","<s:text name='txt.promo.deleted' />","<s:text name='comanda.falta.hora' />","<s:text name='comanda.check.address' />" );
 
 
 function submitLog(){
@@ -419,25 +419,46 @@ function submitLog(){
 	    },
 	    success: function(json) {
 	        if (json.result == "ok") {
-	        	$("#loged").text("OK, Validació correcte");
-	             console.log("ssss");
+	        	$("#loged").text("<s:text name='comanda.user.check.ok' />");
+	             
 	        } else if (json.result == "error") {
-	        	console.log("error");
-	        	$("#loged").text("KO, Validació incorrecte");
+	        	
+	        	$("#loged").text("<s:text name='comanda.user.check.ko' />");
 	        }
 	    }
 	});
 	
 }
 
-$("#idcomanda").val('${idComanda}');
-$("#numComanda").text('${idComanda}');
-$("#dia").val('${horesDTO.data}');
-$("#numplats").text('${fn:length(comanda.plats)}');
-$("#preu").text('${comanda.preu}');
-$("#numbegudes").text('${fn:length(comanda.begudes)}');
-$("#carrer").text('${user.address}');
+$("#idcomanda").val('${requestScope.idComanda}');
+$("#numComanda").text('${requestScope.idComanda}');
+$("#dia").val('${requestScope.horesDTO.data}');
+$("#preu").text('${requestScope.comanda.preu}');
+window.localStorage.setItem("comanda.preu",'${requestScope.comanda.preu}');
 
+var numplats = window.localStorage.getItem("comanda.numplats");
+if (numplats != 'undefined' && numplats != null) {
+	$("#numplats").text(numplats);
+}
+
+var numbegudes = window.localStorage.getItem("comanda.numbegudes");
+if (numbegudes != 'undefined' && numbegudes != null) {
+	$("#numbegudes").text(numbegudes);
+}
+
+
+var addressToLoad ='${comanda.address}';
+if(addressToLoad==''){
+	addressToLoad =  '${user.address}';	
+}
+
+if(addressToLoad!=''){
+	var arrayAddress = addressToLoad.split("-");
+	$("#carrer").val(arrayAddress[0]);
+	$("#codi").val(arrayAddress[1]);
+	$("#comandaddress").val(addressToLoad);
+	$("#checkAdd").click();
+}
 
 </script>
 
@@ -446,9 +467,12 @@ $("#carrer").text('${user.address}');
 window.localStorage.clear();
 window.localStorage.setItem("comanda.data","${requestScope.horesDTO.data}");
 window.localStorage.setItem("comanda","${requestScope.idComanda}");
+
 window.localStorage.setItem("comanda.preu","${requestScope.comanda.preu}");
-window.localStorage.setItem("comanda.numplats","${fn:length(requestScope.comanda.plats)}");
-window.localStorage.setItem("comanda.numbegudes","${fn:length(requestScope.comanda.begudes)}");
+window.localStorage.setItem("comanda.numplats","${requestScope.numPlats}");
+$("#numplats").text('${requestScope.numPlats}');
+window.localStorage.setItem("comanda.numbegudes","0");
+$("#numbegudes").text('0');
 </script>
 </c:if>
 	<c:import url="/pages/includes/alertOnline.jsp" />

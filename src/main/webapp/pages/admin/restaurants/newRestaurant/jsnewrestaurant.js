@@ -10,9 +10,10 @@ function saveHoraObertura(id){
 	if($("#"+id).hasClass("notcheck")){
 		$("#horesRestaurant").val(hores+"|"+id);
 		$("#"+id).removeClass("notcheck");
-		$("#"+id).removeClass("check");
+		$("#"+id).addClass("check");
+		return;
 	}
-	if($("#horesRestaurant").hasClass("check")){
+	if($("#"+id).hasClass("check")){
 		
 		var array = hores.split("|");
 		var newhores = "";
@@ -23,7 +24,7 @@ function saveHoraObertura(id){
 		});
 		$("#horesRestaurant").val(newhores);
 		$("#"+id).removeClass("check");
-		$("#"+id).removeClass("notcheck");
+		$("#"+id).addClass("notcheck");
 	}	
 }
 

@@ -83,6 +83,7 @@ $(function() {
 
 			var item_id = ui.draggable.attr("id");
 			var rawPlat = item_id.split("_");
+			var data = window.localStorage.setItem("comanda.data");			
 			savePlatToComanda(rawPlat[1]);
 
 		}
@@ -105,13 +106,17 @@ function goToInfoPlat(id){
 		   autoOpen: false,
 		   height: 500,
 		   width: 750,
-		   modal: true});
+		   modal: true,
+		   close: function(event, ui) { 			   
+			   $("#infoPlat_dialog").dialog("close"); 			  
+			}
+	});
     $("#infoPlat_dialog").dialog("open");    
 }
 
 $("#infoPlat_dialog").dialog({ 
 	   autoOpen: false,
-	   height: 500,
+	   height: 700,
 	   width: 750,
 	   modal: true,
 	   close: function(event, ui) { 			   

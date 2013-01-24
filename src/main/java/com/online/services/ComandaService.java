@@ -35,5 +35,11 @@ public interface ComandaService{
 	
 	public HoresDTO  setHoresFeature(HoresDTO horesDTO, String data, Comandes comanda) throws ComandaException;
 	
+	public int getNumPlats(List<PlatComanda> platList) throws ComandaException;
+	
+	public int getNumBegudes(List<BegudaComanda> listBeguda) throws ComandaException;
+	
+	public Comandes getComandaToRepeat(Comandes comanda) throws ComandaException;
+	
 }
  

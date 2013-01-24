@@ -13,7 +13,8 @@
 <body>
 
 <div align="left">
-
+Dear my friend,
+La comanda s'ha realitzat.
 </div>
 
 <!-- Scripts --> 

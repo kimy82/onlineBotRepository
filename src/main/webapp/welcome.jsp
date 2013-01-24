@@ -98,8 +98,10 @@ $( ".selector" ).click(function() {
 });
 
 var actionCloseConfirm = function(){
+	var data = window.localStorage.getItem("comanda.data");
 	window.localStorage.clear();	
-	window.location.href="/onlineBot/comanda/Welcome.action?restaurantId="+confirmComanda.idRestaurant;
+	window.localStorage.setItem("comanda.data",data);
+	window.location.href="/onlineBot/comanda/Welcome.action?restaurantId="+confirmComanda.idRestaurant+"&data="+data;
 }
 
 function acceptComandaDialog(){
@@ -112,6 +114,7 @@ var confirmComanda = function (){
 									var data = window.localStorage.getItem("comanda.data");
 									window.location.href="/onlineBot/comanda/Welcome.action?restaurantId="+confirmComanda.idRestaurant+"&idComanda="+comanda+"&data="+data;
 								}
+
 
 $(document).ready(function() {
     $('#coin-slider').coinslider();

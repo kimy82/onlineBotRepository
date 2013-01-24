@@ -9,12 +9,12 @@
 	<http auto-config="false" use-expressions="true" entry-point-ref="authenticationProcessingFilterEntryPoint">
 		
 		<custom-filter position="FORM_LOGIN_FILTER" ref="authenticationFilter" />
-		<intercept-url pattern="/user/**" access="hasAnyRole('ROLE_USER')"  ></intercept-url>		
-		<intercept-url pattern="/payment/**" access="hasAnyRole('ROLE_USER')"></intercept-url>		
+		<intercept-url pattern="/user/**" access="hasAnyRole('ROLE_USER','ROLE_ADMIN')"  ></intercept-url>		
+		<intercept-url pattern="/payment/**" access="hasAnyRole('ROLE_USER','ROLE_ADMIN')"></intercept-url>		
 		<intercept-url pattern="/admin/**" access="hasAnyRole('ROLE_ADMIN')" ></intercept-url>
 		<!-- hhtps -->
-		<!-- intercept-url pattern="/j_spring_security_check" requires-channel="https"/ -->
-		<logout logout-success-url="/logout.action" />
+		<!-- intercept-url pattern="/j_spring_security_check" requires-channel="https"/  -->
+		<logout logout-success-url="/" />
 		
 	</http>
 

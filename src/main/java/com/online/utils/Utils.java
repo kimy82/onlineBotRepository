@@ -92,6 +92,22 @@ public class Utils{
 		
 	}
 	
+	public static Date getDate2(String date){
+		String[] dateString = date.split("-");
+		if(dateString.length==3){
+			String any =dateString[0];
+			String mes = dateString[1];
+			String dia = dateString[2];
+			Calendar cal = Calendar.getInstance();
+			cal.set(Calendar.DAY_OF_MONTH,Integer.parseInt(dia));
+			cal.set(Calendar.MONTH, Integer.parseInt(mes)-1);
+			cal.set(Calendar.YEAR, Integer.parseInt(any));
+			return cal.getTime();
+		}
+		return null;
+		
+	}
+	
 	public static Date getData(String dia, String mes, String any){
 		Calendar cal = Calendar.getInstance();
 		cal.set(Calendar.DAY_OF_MONTH,Integer.parseInt(dia));

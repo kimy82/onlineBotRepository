@@ -67,8 +67,10 @@ public class WelcomeComandaAction extends ActionSupport implements ServletRespon
 	private Integer				nplats				= null;
 	private String				address;
 	private String				data;
+	private String				dataActual;
 	private boolean				promo;
 	private HoresDTO			horesDTO;
+	private int					numPlats			=0;
 
 	private String				nameAuth;
 
@@ -89,7 +91,9 @@ public class WelcomeComandaAction extends ActionSupport implements ServletRespon
 
 		this.platList.clear();
 		this.platList.addAll(this.restaurantsBo.load(this.idRestaurant, true, false, false).getPlats());
-
+		
+		this.dataActual = Utils.formatDate2(new Date());
+		
 		// si teniem una comanda la recuperem
 		if (this.idComanda != null) {
 			goToPas1Action();
@@ -170,7 +174,7 @@ public class WelcomeComandaAction extends ActionSupport implements ServletRespon
 					Users user = this.usersBo.findByUsername(this.nameAuth);
 					this.comanda.setUser(user);
 				}
-
+				this.comanda.setPreu(this.comandaService.getPreuOfComanda(comanda));
 				this.comandaBo.update(this.comanda);
 				json = this.comandaService.checkComandaProblems(this.comanda, resource);
 			}
@@ -208,7 +212,7 @@ public class WelcomeComandaAction extends ActionSupport implements ServletRespon
 				if (comandaService.checkPlatInList(platList, platToAdd)) {
 					for (PlatComanda plt : platList) {
 						if (plt.getPlat().getId().toString().equals(platToAdd.getId().toString())) {
-							plt.setNumPlats(this.nplats);
+							plt.setNumPlats(plt.getNumPlats()+this.nplats);
 						}
 					}
 					comanda.setPlats(platList);
@@ -408,7 +412,7 @@ public class WelcomeComandaAction extends ActionSupport implements ServletRespon
 		}
 
 		// this.comandaService.checkComandaPromocions(comanda, resource);
-
+		this.numPlats = this.comandaService.getNumPlats(this.platComandaList);
 		this.platComandaList = comanda.getPlats();
 
 		return SUCCESS;
@@ -542,7 +546,7 @@ public class WelcomeComandaAction extends ActionSupport implements ServletRespon
 
 			this.hora = (request.getParameter("hora") == null || request.getParameter("hora").equals("")) ? null : request
 					.getParameter("hora");
-			this.dia = (request.getParameter("dia") == null || request.getParameter("dia").equals("")) ? null : Utils.getDate(request
+			this.dia = (request.getParameter("dia") == null || request.getParameter("dia").equals("")) ? null : Utils.getDate2(request
 					.getParameter("dia"));
 			this.aDomicili = (request.getParameter("aDomicili") == null || request.getParameter("aDomicili").equals("")) ? null : request
 					.getParameter("aDomicili");
@@ -692,6 +696,22 @@ public class WelcomeComandaAction extends ActionSupport implements ServletRespon
 	public void setUser( Users user ){
 	
 		this.user = user;
+	}
+
+	public String getDataActual() {
+		return dataActual;
+	}
+
+	public void setDataActual(String dataActual) {
+		this.dataActual = dataActual;
+	}
+
+	public int getNumPlats() {
+		return numPlats;
+	}
+
+	public void setNumPlats(int numPlats) {
+		this.numPlats = numPlats;
 	}
 
 	

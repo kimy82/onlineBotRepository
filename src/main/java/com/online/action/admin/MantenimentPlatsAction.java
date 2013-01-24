@@ -129,20 +129,30 @@ public class MantenimentPlatsAction extends ActionSupport implements ServletResp
 				if(!this.idRestaurants.isEmpty()){
 					String[] stringRestaurants = this.idRestaurants.split(",");
 					for(String idStringRestaurant : stringRestaurants ){
-						Plat platToSave = new Plat();
-						platToSave.setDescripcio(this.plat.getDescripcio());
-						platToSave.setNom(this.plat.getNom());
-						platToSave.setPreu(this.plat.getPreu());			
-						platToSave.setTipus(this.plat.getTipus());
-						platToSave.setTempsPreparacio(this.plat.getTempsPreparacio());
-						Image image = getImageFromUpload();
-						platToSave.setFoto(image);
-						this.platsBo.save(platToSave);						
-						Restaurant restaurant = this.restaurantsBo.load(Integer.parseInt(idStringRestaurant.trim()),true,false,false);
-						Set<Plat> plats = restaurant.getPlats();
-						plats.add(platToSave);
-						this.restaurantsBo.update(restaurant);
-						
+						if(this.plat.getId()!=null){
+							Plat platToSave = this.platsBo.load(this.plat.getId(), false);
+							Image image = getImageFromUpload();
+							if(image!=null)
+								platToSave.setFoto(image);
+							this.platsBo.update(platToSave);
+						}else{
+							Plat platToSave = new Plat();
+							platToSave.setDescripcio(this.plat.getDescripcio());
+							platToSave.setNom(this.plat.getNom());
+							platToSave.setPreu(this.plat.getPreu());			
+							platToSave.setTipus(this.plat.getTipus());
+							platToSave.setTempsPreparacio(this.plat.getTempsPreparacio());
+							platToSave.setCodi(this.plat.getCodi());
+							platToSave.setPrioritat(this.plat.getPrioritat());
+							
+							Image image = getImageFromUpload();
+							platToSave.setFoto(image);
+							this.platsBo.save(platToSave);						
+							Restaurant restaurant = this.restaurantsBo.load(Integer.parseInt(idStringRestaurant.trim()),true,false,false);
+							Set<Plat> plats = restaurant.getPlats();
+							plats.add(platToSave);
+							this.restaurantsBo.update(restaurant);
+						}
 					}
 				}								
 			}

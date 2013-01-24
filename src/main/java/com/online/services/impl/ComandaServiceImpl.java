@@ -41,7 +41,38 @@ public class ComandaServiceImpl implements ComandaService{
 	private ComandaBo			comandaBo;
 
 	private ResourceBundle		resource;
-
+	
+	
+	public Comandes getComandaToRepeat(Comandes comanda) throws ComandaException{
+		Comandes newComanda = new Comandes();
+		newComanda.setAddress(comanda.getAddress());
+		newComanda.setaDomicili(comanda.getaDomicili());
+		newComanda.setDia(new Date());
+		newComanda.setFentrada(new Date());
+		newComanda.setObservacions(comanda.getObservacions());
+		newComanda.setPlats(comanda.getPlats());
+		newComanda.setUser(comanda.getUser());
+		Double preu =getPreuOfComanda(newComanda);
+		newComanda.setPreu(preu);
+		return newComanda;
+	}
+	
+	public int getNumBegudes(List<BegudaComanda> listBeguda) throws ComandaException{
+		int numBegudes=0;
+		for(BegudaComanda begudacomanda : listBeguda){
+			numBegudes = numBegudes+begudacomanda.getNumBegudes();
+		}
+		return numBegudes;
+	}
+	
+	public int getNumPlats(List<PlatComanda> platList) throws ComandaException{
+		int numPlats=0;
+		for(PlatComanda platcomanda : platList){
+			numPlats = numPlats+platcomanda.getNumPlats();
+		}
+		return numPlats;
+	}
+	
 	public HoresDTO setHoresFeature( HoresDTO horesDTO, String data, Comandes comanda ) throws ComandaException{
 
 		Set<Restaurant> restaurantSet = getRestaurants(comanda);
@@ -51,7 +82,7 @@ public class ComandaServiceImpl implements ComandaService{
 			
 			Restaurant restaurant = (Restaurant) iteraRestaurant.next();
 			
-			ConfigRestaurant config = this.configRestaurantBo.load(Utils.getDate(data), restaurant.getId());
+			ConfigRestaurant config = this.configRestaurantBo.load(Utils.getDate2(data), restaurant.getId());
 
 			if (config == null || config.isObert()) {
 
@@ -514,8 +545,20 @@ public class ComandaServiceImpl implements ComandaService{
 		for (Integer idRestaurant : restaurants) {
 
 			ConfigRestaurant configRestaurant = configRestaurantBo.load(dia, idRestaurant);
-			if (configRestaurant == null || !configRestaurant.isObert()) {
-				Restaurant restaurant = this.restaurantsBo.load(idRestaurant, false, false, false);
+			Restaurant restaurant = this.restaurantsBo.load(idRestaurant, false, false, false);
+			if(configRestaurant == null){
+				
+				String hores = restaurant.getHores();
+				if(!hores.contains(hora)){
+					return this.resource.getString("txt.restaurant.no.obert") + " " + restaurant.getNom();
+				}
+			}else if (configRestaurant != null && configRestaurant.isObert()) {
+				String hores = configRestaurant.getHores();
+				if(!hores.contains(hora)){
+					return this.resource.getString("txt.restaurant.no.obert") + " " + restaurant.getNom();
+				}
+				
+			}else if(configRestaurant != null && !configRestaurant.isObert()){
 				return this.resource.getString("txt.restaurant.no.obert") + " " + restaurant.getNom();
 			}
 		}

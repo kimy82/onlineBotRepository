@@ -52,7 +52,8 @@
 					<s:textarea key="plat.descripcio" id="descplat" cols="40" rows="4" onkeyup="return ismaxlength(this,1000)" ></s:textarea>	
 					<s:textfield key="plat.preu" id="preuplat" onblur=" onlyDouble(this.value, this.id)" ></s:textfield>
 					<s:select list="tipusPlat" key="plat.tipus" id="tipusplat" listKey="descripcio" listValue="descripcio" headerKey="" headerValue="" ></s:select>											
-					<s:file name="fileUpload" label="Escull una fotografia" size="40" />					
+					<s:file name="fileUpload" label="Escull una fotografia" size="40" />	
+					<s:hidden key="plat.id" id="idplat" ></s:hidden>				
 					<s:submit></s:submit>
 				</s:form>			
 			</div>
@@ -87,6 +88,7 @@
 	$("#tipusplat [value='${plat.tipus}']").attr('selected', true);
 	$("#restaurantsid [value='${idRestaurants}']").attr('selected', true);
 	$("#codiplat").val("${plat.codi}");
+	$("#idplat").val("${plat.id}");
 
 	
 </script>

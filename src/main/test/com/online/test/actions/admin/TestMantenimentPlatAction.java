@@ -29,7 +29,7 @@ public class TestMantenimentPlatAction extends StrutsSpringTestCase{
 
 		RestaurantsBo mockRestaurantsBo = mock(RestaurantsBo.class);
 
-		Mockito.when(mockRestaurantsBo.getAll(true)).thenReturn(null);
+		Mockito.when(mockRestaurantsBo.getAll(true,true,true)).thenReturn(null);
 
 		ActionProxy proxy = getActionProxy("/admin/plats.action");
 		MantenimentPlatsAction action = (MantenimentPlatsAction) proxy.getAction();
@@ -53,7 +53,7 @@ public class TestMantenimentPlatAction extends StrutsSpringTestCase{
 			restaurantList.add(restaurant);
 		}
 
-		Mockito.when(mockRestaurantsBo.getAll(true)).thenReturn(restaurantList);
+		Mockito.when(mockRestaurantsBo.getAll(true,true,true)).thenReturn(restaurantList);
 
 		ActionProxy proxy = getActionProxy("/admin/plats.action");
 		MantenimentPlatsAction action = (MantenimentPlatsAction) proxy.getAction();
