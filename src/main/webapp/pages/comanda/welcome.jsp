@@ -11,7 +11,7 @@
 	<title><s:text name="txt.welcome.comanda.principal" /></title>	
 </head>
 <body>
-
+<c:import url="/pages/includes/headerContext.jsp" />
 <c:import url="/pages/includes/divLogin.jsp" />
 <c:import url="/pages/includes/goHome.jsp" />
 <c:import url="/pages/includes/homeSlider.jsp" />

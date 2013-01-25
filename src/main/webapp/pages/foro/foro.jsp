@@ -11,7 +11,7 @@
 	<title><s:text name="txt.welcome.comanda.principal" /></title>	
 </head>
 <body>
-
+<c:import url="/pages/includes/headerContext.jsp" />
 <c:if test="${not empty plat }">
 
 <input type="hidden" id="idPlat" value="${plat.id}" />
@@ -20,7 +20,7 @@
 	<div id="star_punctuation" >
 		<table id="tbl_stars" >
 			<tr>
-				<td colspan="5" >Vota el plat:</td>
+				<td colspan="5" ><s:text name="txt.vota.el.plat" />:</td>
 			</tr>
 			<tr>
 				<td><a href="#" onclick="starManager(1)" ><img id="star1" width="20px"  src="<c:url value='/images/star0.jpg' />" /></a></td>
@@ -37,13 +37,13 @@
 </c:if>
 	<table>
 		<tr>
-			<td><img id="imageRestaurant" width="50px"  src="/onlineBot/images/star${plat.votacio.punctuacio}.jpg" /></td>
+			<td><img id="imageRestaurant" width="50px"  src="/{initParam.app}/images/star${plat.votacio.punctuacio}.jpg" /></td>
 		</tr>
 		<tr>
 			<td>${plat.nom}</td>
 			<td>${plat.preu}</td>
 			<td>${plat.tipus}</td>
-			<td rowspan="2" ><img id="imageRestaurant" width="200px"  src="/onlineBot/comanda/ImageAction.action?imageId=${plat.foto.id}" /></td> 
+			<td rowspan="2" ><img id="imageRestaurant" width="200px"  src="/{initParam.app}/comanda/ImageAction.action?imageId=${plat.foto.id}" /></td> 
 		</tr>
 		<tr>
 			<td colspan="3" >${plat.descripcio}</td>

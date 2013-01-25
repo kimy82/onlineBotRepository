@@ -79,7 +79,7 @@ function loadMotersAndConfig(idRestaurant){
 	 data ="id="+idRestaurant+"&dia="+dia;
 		$.ajax({
 			  type: "POST",
-			  url: '/onlineBot/admin/loadMotersAndConfig.action',
+			  url: '/'+context+'/admin/loadMotersAndConfig.action',
 			  dataType: 'json',
 			  data: data,
 			  success: function(json){	

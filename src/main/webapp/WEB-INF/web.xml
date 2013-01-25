@@ -6,6 +6,11 @@
 
 	<display-name>Archetype Created Web Application</display-name>
 	
+	<context-param>
+		<param-name>app</param-name>
+		<param-value>onlineBot</param-value>
+	</context-param>
+	
 	<filter>
 		<filter-name>springSecurityFilterChain</filter-name>
 		<filter-class>

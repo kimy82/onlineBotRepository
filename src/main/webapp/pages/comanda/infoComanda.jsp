@@ -13,13 +13,14 @@
 <body>
 <h2><s:text name="txt.info.comanda.user" /></h2>
 <br>
+<c:import url="/pages/includes/headerContext.jsp" />
 <c:import url="/pages/includes/goHome.jsp" />
 	
 <div style="position:relative; left: 30px;">
 	<div id="slider" style=" height: 500px;"  >
 	    <ul>
 	    	<s:iterator value="refrescList" var="refresc">
-	    			<li class="draggable" id="${refresc.idSub}" title="${refresc.tipus}" ><img id="imageRefresc_${refresc.id}" width="200px"  src="/onlineBot/comanda/ImageAction.action?imageId=${refresc.id}" title="${refresc.descripcio} -> Double Click to Add" /></li>
+	    			<li class="draggable" id="${refresc.idSub}" title="${refresc.tipus}" ><img id="imageRefresc_${refresc.id}" width="200px"  src="/${initParam.app}/comanda/ImageAction.action?imageId=${refresc.id}" title="${refresc.descripcio} -> Double Click to Add" /></li>
 	        </s:iterator>	
 	    </ul>
 	</div>
@@ -87,234 +88,234 @@
 	<table>
 					<tr><td><s:text name="comanda.hora" ></s:text></td></tr>										
 					<tr>
-						<c:if test="${horesDTO._0800 ne 'true'}">
+						<c:if test="${requestScope.horesDTO._0800 ne 'true'}">
 							<td><input type="button"  id="0800" value="0800" class="notcheck"  /></td>
 						</c:if>
-						<c:if test="${horesDTO._0800 eq 'true'}">
+						<c:if test="${requestScope.horesDTO._0800 eq 'true'}">
 							<td><input type="button"  id="0800" value="0800" class="check" onclick="checKHour(this.id)" /></td>
 						</c:if>
 						
-						<c:if test="${horesDTO._0830 ne 'true'}">
+						<c:if test="${requestScope.horesDTO._0830 ne 'true'}">
 							<td><input type="button"  id="0830" value="0830" class="notcheck" /></td>
 						</c:if>
-						<c:if test="${horesDTO._0830 eq 'true'}">
+						<c:if test="${requestScope.horesDTO._0830 eq 'true'}">
 							<td><input type="button"  id="0830" value="0830" class="check" onclick="checKHour(this.id)" /></td>
 						</c:if>
 						
-						<c:if test="${horesDTO._0900 ne 'true'}">
+						<c:if test="${requestScope.horesDTO._0900 ne 'true'}">
 							<td><input type="button"  id="0900" value="0900" class="notcheck" /></td>
 						</c:if>
-						<c:if test="${horesDTO._0900 eq 'true'}">
+						<c:if test="${requestScope.horesDTO._0900 eq 'true'}">
 							<td><input type="button"  id="0900" value="0900" class="check" onclick="checKHour(this.id)" /></td>
 						</c:if>
 						
-						<c:if test="${horesDTO._0930 ne 'true'}">
+						<c:if test="${requestScope.horesDTO._0930 ne 'true'}">
 							<td><input type="button"  id="0930" value="0930" class="notcheck" /></td>
 						</c:if>
-						<c:if test="${horesDTO._0930 eq 'true'}">
+						<c:if test="${requestScope.horesDTO._0930 eq 'true'}">
 							<td><input type="button"  id="0930" value="0930" class="check" onclick="checKHour(this.id)" /></td>
 						</c:if>
 						
-						<c:if test="${horesDTO._1000 ne 'true'}">
+						<c:if test="${requestScope.horesDTO._1000 ne 'true'}">
 							<td><input type="button"  id="1000" value="1000" class="notcheck" /></td>
 						</c:if>
-						<c:if test="${horesDTO._1000 eq 'true'}">
+						<c:if test="${requestScope.horesDTO._1000 eq 'true'}">
 							<td><input type="button"  id="1000" value="1000" class="check" onclick="checKHour(this.id)" /></td>
 						</c:if>
 						
-						<c:if test="${horesDTO._1030 ne 'true'}">
+						<c:if test="${requestScope.horesDTO._1030 ne 'true'}">
 							<td><input type="button"  id="1030" value="1030" class="notcheck"  /></td>
 						</c:if>
-						<c:if test="${horesDTO._1030 eq 'true'}">
+						<c:if test="${requestScope.horesDTO._1030 eq 'true'}">
 							<td><input type="button"  id="1030" value="1030" class="check" onclick="checKHour(this.id)" /></td>
 						</c:if>
 						
-						<c:if test="${horesDTO._1100 ne 'true'}">
+						<c:if test="${requestScope.horesDTO._1100 ne 'true'}">
 							<td><input type="button"  id="1100" value="1100" class="notcheck"  /></td>
 						</c:if>
-						<c:if test="${horesDTO._1100 eq 'true'}">
+						<c:if test="${requestScope.horesDTO._1100 eq 'true'}">
 							<td><input type="button"  id="1100" value="1100" class="check" onclick="checKHour(this.id)" /></td>
 						</c:if>
 						
-						<c:if test="${horesDTO._1130 ne 'true'}">
+						<c:if test="${requestScope.horesDTO._1130 ne 'true'}">
 							<td><input type="button"  id="1130" value="1130" class="notcheck" /></td>
 						</c:if>
-						<c:if test="${horesDTO._1130 eq 'true'}">
+						<c:if test="${requestScope.horesDTO._1130 eq 'true'}">
 							<td><input type="button"  id="1130" value="1130" class="check" onclick="checKHour(this.id)" /></td>
 						</c:if>
 						
-						<c:if test="${horesDTO._1200 ne 'true'}">
+						<c:if test="${requestScope.horesDTO._1200 ne 'true'}">
 							<td><input type="button"  id="1200" value="1200" class="notcheck"  /></td>
 						</c:if>
-						<c:if test="${horesDTO._1200 eq 'true'}">
+						<c:if test="${requestScope.horesDTO._1200 eq 'true'}">
 							<td><input type="button"  id="1200" value="1200" class="check" onclick="checKHour(this.id)" /></td>
 						</c:if>
 						
-						<c:if test="${horesDTO._1230 ne 'true'}">
+						<c:if test="${requestScope.horesDTO._1230 ne 'true'}">
 							<td><input type="button"  id="1230" value="1230" class="notcheck"  /></td>
 						</c:if>
-						<c:if test="${horesDTO._1230 eq 'true'}">
+						<c:if test="${requestScope.horesDTO._1230 eq 'true'}">
 							<td><input type="button"  id="1230" value="1230" class="check" onclick="checKHour(this.id)" /></td>
 						</c:if>
 						
-						<c:if test="${horesDTO._1300 ne 'true'}">
+						<c:if test="${requestScope.horesDTO._1300 ne 'true'}">
 							<td><input type="button"  id="1300" value="1300" class="notcheck"  /></td>
 						</c:if>
-						<c:if test="${horesDTO._1300 eq 'true'}">
+						<c:if test="${requestScope.horesDTO._1300 eq 'true'}">
 							<td><input type="button"  id="1300" value="1300" class="check" onclick="checKHour(this.id)" /></td>
 						</c:if>
 						
-						<c:if test="${horesDTO._1330 ne 'true'}">
+						<c:if test="${requestScope.horesDTO._1330 ne 'true'}">
 							<td><input type="button"  id="1330" value="1330" class="notcheck"  /></td>
 						</c:if>
-						<c:if test="${horesDTO._1330 eq 'true'}">
+						<c:if test="${requestScope.horesDTO._1330 eq 'true'}">
 							<td><input type="button"  id="1330" value="1330" class="check" onclick="checKHour(this.id)" /></td>
 						</c:if>
 						
-						<c:if test="${horesDTO._1400 ne 'true'}">
+						<c:if test="${requestScope.horesDTO._1400 ne 'true'}">
 							<td><input type="button"  id="1400" value="1400" class="notcheck"  /></td>
 						</c:if>
-						<c:if test="${horesDTO._1400 eq 'true'}">
+						<c:if test="${requestScope.horesDTO._1400 eq 'true'}">
 							<td><input type="button"  id="1400" value="1400" class="check" onclick="checKHour(this.id)" /></td>
 						</c:if>
 						
-						<c:if test="${horesDTO._1430 ne 'true'}">
+						<c:if test="${requestScope.horesDTO._1430 ne 'true'}">
 							<td><input type="button"  id="1430" value="1430" class="notcheck" /></td>
 						</c:if>
-						<c:if test="${horesDTO._1430 eq 'true'}">
+						<c:if test="${requestScope.horesDTO._1430 eq 'true'}">
 							<td><input type="button"  id="1430" value="1430" class="check" onclick="checKHour(this.id)" /></td>
 						</c:if>
 						
-						<c:if test="${horesDTO._1500 ne 'true'}">
+						<c:if test="${requestScope.horesDTO._1500 ne 'true'}">
 							<td><input type="button"  id="1500" value="1500" class="notcheck" /></td>
 						</c:if>
-						<c:if test="${horesDTO._1500 eq 'true'}">
+						<c:if test="${requestScope.horesDTO._1500 eq 'true'}">
 							<td><input type="button"  id="1500" value="1500" class="check" onclick="checKHour(this.id)" /></td>
 						</c:if>
 						
-						<c:if test="${horesDTO._1530 ne 'true'}">
+						<c:if test="${requestScope.horesDTO._1530 ne 'true'}">
 							<td><input type="button"  id="1530" value="1530" class="notcheck" /></td>
 						</c:if>
-						<c:if test="${horesDTO._1530 eq 'true'}">
+						<c:if test="${requestScope.horesDTO._1530 eq 'true'}">
 							<td><input type="button"  id="1530" value="1530" class="check" onclick="checKHour(this.id)" /></td>
 						</c:if>
 						
-						<c:if test="${horesDTO._1600 ne 'true'}">
+						<c:if test="${requestScope.horesDTO._1600 ne 'true'}">
 							<td><input type="button"  id="1600" value="1600" class="notcheck"  /></td>
 						</c:if>
-						<c:if test="${horesDTO._1600 eq 'true'}">
+						<c:if test="${requestScope.horesDTO._1600 eq 'true'}">
 							<td><input type="button"  id="1600" value="1600" class="check" onclick="checKHour(this.id)" /></td>
 						</c:if>
 						
-						<c:if test="${horesDTO._1630 ne 'true'}">
+						<c:if test="${requestScope.horesDTO._1630 ne 'true'}">
 							<td><input type="button"  id="1630" value="1630" class="notcheck"  /></td>
 						</c:if>
-						<c:if test="${horesDTO._1630 eq 'true'}">
+						<c:if test="${requestScope.horesDTO._1630 eq 'true'}">
 							<td><input type="button"  id="1630" value="1630" class="check" onclick="checKHour(this.id)" /></td>
 						</c:if>
 						
-						<c:if test="${horesDTO._1700 ne 'true'}">
+						<c:if test="${requestScope.horesDTO._1700 ne 'true'}">
 							<td><input type="button"  id="1700" value="1700" class="notcheck"  /></td>
 						</c:if>
-						<c:if test="${horesDTO._1700 eq 'true'}">
+						<c:if test="${requestScope.horesDTO._1700 eq 'true'}">
 							<td><input type="button"  id="1700" value="1700" class="check" onclick="checKHour(this.id)" /></td>
 						</c:if>
 						
-						<c:if test="${horesDTO._1730 ne 'true'}">
+						<c:if test="${requestScope.horesDTO._1730 ne 'true'}">
 							<td><input type="button"  id="1730" value="1730" class="notcheck"  /></td>
 						</c:if>
-						<c:if test="${horesDTO._1730 eq 'true'}">
+						<c:if test="${requestScope.horesDTO._1730 eq 'true'}">
 							<td><input type="button"  id="1730" value="1730" class="check" onclick="checKHour(this.id)" /></td>
 						</c:if>
 						
-						<c:if test="${horesDTO._1800 ne 'true'}">
+						<c:if test="${requestScope.requestScope.horesDTO._1800 ne 'true'}">
 							<td><input type="button"  id="1800" value="1800" class="notcheck"  /></td>
 						</c:if>
-						<c:if test="${horesDTO._1800 eq 'true'}">
+						<c:if test="${requestScope.horesDTO._1800 eq 'true'}">
 							<td><input type="button"  id="1800" value="1800" class="check" onclick="checKHour(this.id)" /></td>
 						</c:if>
 						
-						<c:if test="${horesDTO._1830 ne 'true'}">
+						<c:if test="${requestScope.horesDTO._1830 ne 'true'}">
 							<td><input type="button"  id="1830" value="1830" class="notcheck"  /></td>
 						</c:if>
-						<c:if test="${horesDTO._1830 eq 'true'}">
+						<c:if test="${requestScope.horesDTO._1830 eq 'true'}">
 							<td><input type="button"  id="1830" value="1830" class="check" onclick="checKHour(this.id)" /></td>
 						</c:if>
 						
-						<c:if test="${horesDTO._1900 ne 'true'}">
+						<c:if test="${requestScope.horesDTO._1900 ne 'true'}">
 							<td><input type="button"  id="1900" value="1900" class="notcheck"  /></td>
 						</c:if>
-						<c:if test="${horesDTO._1900 eq 'true'}">
+						<c:if test="${requestScope.horesDTO._1900 eq 'true'}">
 							<td><input type="button"  id="1900" value="1900" class="check" onclick="checKHour(this.id)" /></td>
 						</c:if>
 						
-						<c:if test="${horesDTO._1930 ne 'true'}">
+						<c:if test="${requestScope.horesDTO._1930 ne 'true'}">
 							<td><input type="button"  id="1930" value="1930" class="notcheck"  /></td>
 						</c:if>
-						<c:if test="${horesDTO._1930 eq 'true'}">
+						<c:if test="${requestScope.horesDTO._1930 eq 'true'}">
 							<td><input type="button"  id="1930" value="1930" class="check" onclick="checKHour(this.id)" /></td>
 						</c:if>
 						
-						<c:if test="${horesDTO._2000 ne 'true'}">
+						<c:if test="${requestScope.horesDTO._2000 ne 'true'}">
 							<td><input type="button"  id="2000" value="2000" class="notcheck" /></td>
 						</c:if>
-						<c:if test="${horesDTO._2000 eq 'true'}">
+						<c:if test="${requestScope.horesDTO._2000 eq 'true'}">
 							<td><input type="button"  id="2000" value="2000" class="check" onclick="checKHour(this.id)" /></td>
 						</c:if>
 						
-						<c:if test="${horesDTO._2030 ne 'true'}">
+						<c:if test="${requestScope.horesDTO._2030 ne 'true'}">
 							<td><input type="button"  id="2030" value="2030" class="notcheck"  /></td>
 						</c:if>
-						<c:if test="${horesDTO._2030 eq 'true'}">
+						<c:if test="${requestScope.horesDTO._2030 eq 'true'}">
 							<td><input type="button"  id="2030" value="2030" class="check" onclick="checKHour(this.id)" /></td>
 						</c:if>
 				
-						<c:if test="${horesDTO._2100 ne 'true'}">
+						<c:if test="${requestScope.horesDTO._2100 ne 'true'}">
 							<td><input type="button"  id="2100" value="2100" class="notcheck" /></td>
 						</c:if>
-						<c:if test="${horesDTO._2100 eq 'true'}">
+						<c:if test="${requestScope.horesDTO._2100 eq 'true'}">
 							<td><input type="button"  id="2100" value="2100" class="check" onclick="checKHour(this.id)" /></td>
 						</c:if>
 						
-						<c:if test="${horesDTO._2130 ne 'true'}">
+						<c:if test="${requestScope.horesDTO._2130 ne 'true'}">
 							<td><input type="button"  id="2130" value="2130" class="notcheck"  /></td>
 						</c:if>
-						<c:if test="${horesDTO._2130 eq 'true'}">
+						<c:if test="${requestScope.horesDTO._2130 eq 'true'}">
 							<td><input type="button"  id="2130" value="2130" class="check" onclick="checKHour(this.id)" /></td>
 						</c:if>
 						
-						<c:if test="${horesDTO._2200 ne 'true'}">
+						<c:if test="${requestScope.horesDTO._2200 ne 'true'}">
 							<td><input type="button"  id="2200" value="2200" class="notcheck"  /></td>
 						</c:if>
-						<c:if test="${horesDTO._2200 eq 'true'}">
+						<c:if test="${requestScope.horesDTO._2200 eq 'true'}">
 							<td><input type="button"  id="2200" value="2200" class="check" onclick="checKHour(this.id)" /></td>
 						</c:if>
 						
-						<c:if test="${horesDTO._2230 ne 'true'}">
+						<c:if test="${requestScope.horesDTO._2230 ne 'true'}">
 							<td><input type="button"  id="2230" value="2230" class="notcheck" /></td>
 						</c:if>
-						<c:if test="${horesDTO._2230 eq 'true'}">
+						<c:if test="${requestScope.horesDTO._2230 eq 'true'}">
 							<td><input type="button"  id="2230" value="2230" class="check" onclick="checKHour(this.id)" /></td>
 						</c:if>
 						
-						<c:if test="${horesDTO._2300 ne 'true'}">
+						<c:if test="${requestScope.horesDTO._2300 ne 'true'}">
 							<td><input type="button"  id="2300" value="2300" class="notcheck"/></td>
 						</c:if>
-						<c:if test="${horesDTO._2300 eq 'true'}">
+						<c:if test="${requestScope.horesDTO._2300 eq 'true'}">
 							<td><input type="button"  id="2300" value="2300" class="check" onclick="checKHour(this.id)" /></td>
 						</c:if>
 						
-						<c:if test="${horesDTO._2330 ne 'true'}">
+						<c:if test="${requestScope.horesDTO._2330 ne 'true'}">
 							<td><input type="button"  id="2330" value="2330" class="notcheck"  /></td>
 						</c:if>
-						<c:if test="${horesDTO._2330 eq 'true'}">
+						<c:if test="${requestScope.horesDTO._2330 eq 'true'}">
 							<td><input type="button"  id="2330" value="2330" class="check" onclick="checKHour(this.id)" /></td>
 						</c:if>
 						
-						<c:if test="${horesDTO._2400 ne 'true'}">
+						<c:if test="${requestScope.horesDTO._2400 ne 'true'}">
 							<td><input type="button"  id="2400" value="2400" class="notcheck"  /></td>
 						</c:if>
-						<c:if test="${horesDTO._2400 eq 'true'}">
+						<c:if test="${requestScope.horesDTO._2400 eq 'true'}">
 							<td><input type="button"  id="2400" value="2400" class="check" onclick="checKHour(this.id)" /></td>
 						</c:if>						
 					</tr>	
@@ -326,7 +327,7 @@
 
 	<c:if test="${nameAuth eq 'anonymousUser' }">
 		<h1><s:text name="txt.logate" /></h1>
-		<form name='f' id="f" action="/onlineBot/j_spring_security_check" method="post">
+		<form name='f' id="f" action="/${initParam.app}/j_spring_security_check" method="post">
 			<table>
 				<tr>
 					<td><s:text name="txt.user.of.login" />:</td>
@@ -404,61 +405,27 @@
 <script type="text/javascript" >
 			  
 var initParams = new InitParams("<s:text name='txt.beguda.no.tipus.promo' />","<s:text name='txt.beguda.no.more.promo' />","<s:text name='txt.add.beguda.to.box' />", 
-								"<s:text name='txt.promo.descompte.aplicat' />","<s:text name='txt.promo.deleted' />","<s:text name='comanda.falta.hora' />","<s:text name='comanda.check.address' />" );
-
-
-function submitLog(){
-	
-	$.ajax({
-	    url: "<c:url value='/onlineBot/j_spring_security_check' />",
-	    type: "POST",
-	    data: $("#f").serialize(),
-	    dataType: 'json',
-	    beforeSend: function (xhr) {
-	        xhr.setRequestHeader("X-Ajax-call", "true");
-	    },
-	    success: function(json) {
-	        if (json.result == "ok") {
-	        	$("#loged").text("<s:text name='comanda.user.check.ok' />");
-	             
-	        } else if (json.result == "error") {
-	        	
-	        	$("#loged").text("<s:text name='comanda.user.check.ko' />");
-	        }
-	    }
-	});
-	
-}
+								"<s:text name='txt.promo.descompte.aplicat' />","<s:text name='txt.promo.deleted' />","<s:text name='comanda.falta.hora' />",
+								"<s:text name='comanda.check.address' />","<s:text name='comanda.user.check.ok' />","<s:text name='comanda.user.check.ko' />" );
+								
 
 $("#idcomanda").val('${requestScope.idComanda}');
 $("#numComanda").text('${requestScope.idComanda}');
 $("#dia").val('${requestScope.horesDTO.data}');
 $("#preu").text('${requestScope.comanda.preu}');
+
 window.localStorage.setItem("comanda.preu",'${requestScope.comanda.preu}');
 
-var numplats = window.localStorage.getItem("comanda.numplats");
-if (numplats != 'undefined' && numplats != null) {
-	$("#numplats").text(numplats);
-}
-
-var numbegudes = window.localStorage.getItem("comanda.numbegudes");
-if (numbegudes != 'undefined' && numbegudes != null) {
-	$("#numbegudes").text(numbegudes);
-}
+initNumPlats();
+initNumBegudes();
 
 
-var addressToLoad ='${comanda.address}';
+var addressToLoad ='${requestScope.comanda.address}';
 if(addressToLoad==''){
-	addressToLoad =  '${user.address}';	
+	addressToLoad =  '${requestScope.user.address}';	
 }
 
-if(addressToLoad!=''){
-	var arrayAddress = addressToLoad.split("-");
-	$("#carrer").val(arrayAddress[0]);
-	$("#codi").val(arrayAddress[1]);
-	$("#comandaddress").val(addressToLoad);
-	$("#checkAdd").click();
-}
+initAddress();
 
 </script>
 

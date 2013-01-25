@@ -2,7 +2,9 @@
 //variables per textos en locale
 var initParams=null ;
 
-function InitParams(txtBegudaNoPromocio,txtNoMoreDrinksToAddinPromo,txtAddDrinkstoBox, txtdescompteaplicat,txtpromodeleted, txtfaltahora, txtcheckaddress){		
+function InitParams(txtBegudaNoPromocio,txtNoMoreDrinksToAddinPromo,txtAddDrinkstoBox, 
+					txtdescompteaplicat,txtpromodeleted, txtfaltahora, txtcheckaddress, 
+					checkok, checkko){		
 		this.txtBegudaNoPromocio=txtBegudaNoPromocio;
 		this.txtNoMoreDrinksToAddinPromo=txtNoMoreDrinksToAddinPromo;
 		this.txtAddDrinkstoBox = txtAddDrinkstoBox;
@@ -10,6 +12,8 @@ function InitParams(txtBegudaNoPromocio,txtNoMoreDrinksToAddinPromo,txtAddDrinks
 		this.txtpromodeleted = txtpromodeleted;
 		this.txtfaltahora = txtfaltahora;
 		this.txtcheckaddress = txtcheckaddress;
+		this.checkok = checkok;
+		this.checkko = checkko;
 }
 //progress var
 						window.setTimeout(function() {
@@ -26,6 +30,53 @@ function InitParams(txtBegudaNoPromocio,txtNoMoreDrinksToAddinPromo,txtAddDrinks
 
 $("#chargeBar").hide();
 
+function initNumPlats(){
+	
+	var numplats = window.localStorage.getItem("comanda.numplats");
+	if (numplats != 'undefined' && numplats != null) {
+		$("#numplats").text(numplats);
+	}	
+}
+
+function initNumBegudes(){
+	var numbegudes = window.localStorage.getItem("comanda.numbegudes");
+	if (numbegudes != 'undefined' && numbegudes != null) {
+		$("#numbegudes").text(numbegudes);
+	}	
+}
+
+function initAddress(){
+	
+	if(window.addressToLoad!=''){
+		var arrayAddress = window.addressToLoad.split("-");
+		$("#carrer").val(arrayAddress[0]);
+		$("#codi").val(arrayAddress[1]);
+		$("#comandaddress").val(window.addressToLoad);
+		$("#checkAdd").click();
+	}
+	
+}
+
+function submitLog(){
+	
+	$.ajax({
+	    url: "<c:url value='/onlineBot/j_spring_security_check' />",
+	    type: "POST",
+	    data: $("#f").serialize(),
+	    dataType: 'json',
+	    beforeSend: function (xhr) {
+	        xhr.setRequestHeader("X-Ajax-call", "true");
+	    },
+	    success: function(json) {
+	        if (json.result == "ok") {
+	        	$("#loged").text(initParams.checkok);	             
+	        } else if (json.result == "error") {	        	
+	        	$("#loged").text(initParams.checkko);
+	        }
+	    }
+	});	
+}
+
 function reloadHores(){
 	var dia = $("#dia").val();
 	var data = window.localStorage.setItem("comanda.data",dia);
@@ -34,7 +85,7 @@ function reloadHores(){
 	
   	$.ajax({
   		  type: "POST",
-  		  url: '/onlineBot/comanda/loadHores.action',
+  		  url: '/'+context+'/comanda/loadHores.action',
   		  dataType: 'json',
   		  data: data,
   		  success: function(json){	
@@ -117,7 +168,7 @@ function payComanda(){
 				$("#chargeBar").show();
 				var subdata = checkPromoImport();
 				var data ="idComanda="+comanda + subdata;
-				window.location.href="/onlineBot/payment/paymentEntry.action?"+data;
+				window.location.href="/"+context+"/payment/paymentEntry.action?"+data;
 		}		
 }	
 
@@ -179,7 +230,7 @@ function savePlatToComanda(idPlat,nPlats){
 	var data ="idPlat="+idPlat+"&idComanda="+idcomanda+"&nplats="+nPlats;
   	$.ajax({
   		  type: "POST",
-  		  url: '/onlineBot/comanda/ajaxLoadNumPlat.action',
+  		  url: '/'+context+'/comanda/ajaxLoadNumPlat.action',
   		  dataType: 'json',
   		  data: data,
   		  success: function(json){	
@@ -216,7 +267,7 @@ function checkComandaJS(){
 		var data ="idComanda="+comanda+"&dia="+dia+"&hora="+hora+"&aDomicili="+adomicili+"&address="+address;
 	  	$.ajax({
 	  		  type: "POST",
-	  		  url: '/onlineBot/comanda/checkComanda.action',
+	  		  url: '/'+context+'/comanda/checkComanda.action',
 	  		  dataType: 'json',
 	  		  data: data,
 	  		  success: function(json){	
@@ -298,7 +349,7 @@ $(function(){
 		var data ="idBeguda="+idBeguda+"&idComanda="+$("#idcomanda").val()+"&promo="+promo;
       	$.ajax({
       		  type: "POST",
-      		  url: '/onlineBot/comanda/ajaxLoadBeguda.action',
+      		  url: '/'+context+'/comanda/ajaxLoadBeguda.action',
       		  dataType: 'json',
       		  data: data,
       		  success: function(json){	
@@ -387,7 +438,7 @@ function checkPromocionsDisponibles(){
 		$("#chargeBar").show();
 	  	$.ajax({
 	  		  type: "POST",
-	  		  url: '/onlineBot/comanda/checkComandaPromos.action',
+	  		  url: '/'+context+'/comanda/checkComandaPromos.action',
 	  		  dataType: 'json',
 	  		  data: data,
 	  		  success: function(json){	
@@ -569,7 +620,7 @@ function deleteAjaxBegudesPromo(){
 
 	  	$.ajax({
 	  		  type: "POST",
-	  		  url: '/onlineBot/comanda/deleteBegudesPromo.action',
+	  		  url: '/'+context+'/comanda/deleteBegudesPromo.action',
 	  		  dataType: 'json',
 	  		  data: data,
 	  		  success: function(json){	

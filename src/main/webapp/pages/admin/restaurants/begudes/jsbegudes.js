@@ -66,7 +66,7 @@ function showDivBeguda(id){
 	data ="idBeguda="+id;
 	$.ajax({
 		  type: "POST",
-		  url: '/onlineBot/admin/ajaxLoadBegudaAction.action',
+		  url: '/'+context+'/admin/ajaxLoadBegudaAction.action',
 		  dataType: 'json',
 		  data: data,
 		  success: function(json){	
@@ -102,7 +102,7 @@ function deleteBeguda(id){
 			data ="idBeguda="+id;
 			$.ajax({
 				  type: "POST",
-				  url: '/onlineBot/admin/ajaxDeleteBeguda.action',
+				  url: '/'+context+'/admin/ajaxDeleteBeguda.action',
 				  dataType: 'json',
 				  data: data,
 				  success: function(json){	
@@ -139,12 +139,12 @@ $(document).ready(function() {
 					            ],
 					"sPaginationType": "full_numbers",
 					"oLanguage": {
-						  "sProcessing": "<img src='/onlineBot/images/large-loading.gif' style='vertical-align:middle'>&nbsp;"+initTableParams.txtloading,
+						  "sProcessing": "<img src='/"+context+"/images/large-loading.gif' style='vertical-align:middle'>&nbsp;"+initTableParams.txtloading,
 					      "oPaginate": {
-					        "sFirst": "<img src='/onlineBot/images/icono-paginador-inicio.gif' style='vertical-align:middle'>&nbsp;"+initTableParams.txtfirst,
-					        "sLast": initTableParams.txtlast+"&nbsp;<img src='/onlineBot/images/icono-paginador-fin.gif' style='vertical-align:middle'>",
-					        "sNext": initTableParams.txtnext+"&nbsp;<img src='/onlineBot/images/icono-paginador-siguiente.gif' style='vertical-align:middle'>",
-					        "sPrevious": "<img src='/onlineBot/images/icono-paginador-anterior.gif' style='vertical-align:middle'>&nbsp;"+initTableParams.txtprevious
+					        "sFirst": "<img src='/"+context+"/images/icono-paginador-inicio.gif' style='vertical-align:middle'>&nbsp;"+initTableParams.txtfirst,
+					        "sLast": initTableParams.txtlast+"&nbsp;<img src='/"+context+"/images/icono-paginador-fin.gif' style='vertical-align:middle'>",
+					        "sNext": initTableParams.txtnext+"&nbsp;<img src='/"+context+"/images/icono-paginador-siguiente.gif' style='vertical-align:middle'>",
+					        "sPrevious": "<img src='/"+context+"/images/icono-paginador-anterior.gif' style='vertical-align:middle'>&nbsp;"+initTableParams.txtprevious
 					      }
 					    },
 					"sScrollY": "300",		    
@@ -152,7 +152,7 @@ $(document).ready(function() {
 				    "bScrollCollapse": true,
 		    		"bProcessing": false,
 		    		"bServerSide": true,
-		    		"sAjaxSource": '/onlineBot/admin/ajaxTableBegudes.action',
+		    		"sAjaxSource": '/'+context+'/admin/ajaxTableBegudes.action',
 		    		"fnServerData": function( sUrl, aoData, fnCallback) {      			    			    			
 		     		$.ajax( {
 		            	"url": sUrl,

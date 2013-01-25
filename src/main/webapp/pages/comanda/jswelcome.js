@@ -27,7 +27,7 @@ $(function() {
 		var data = "idPlat=" + idPlat + "&idComanda=" + $("#numComanda").text();
 		$.ajax({
 					type : "POST",
-					url : '/onlineBot/comanda/ajaxLoadPlat.action',
+					url : '/'+context+'/comanda/ajaxLoadPlat.action',
 					dataType : 'json',
 					data : data,
 					success : function(json) {
@@ -92,7 +92,7 @@ $(function() {
 
 function goToComandaPas1() {
 	var data = window.localStorage.getItem("comanda.data");
-	window.location.href = "/onlineBot/comanda/goToPas1Action.action?idComanda="+$("#numComanda").text()+"&data="+data;
+	window.location.href = "/"+context+"/comanda/goToPas1Action.action?idComanda="+$("#numComanda").text()+"&data="+data;
 }
 
 $(document).ready(function() {

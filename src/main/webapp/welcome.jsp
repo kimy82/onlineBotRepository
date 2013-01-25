@@ -11,6 +11,7 @@
 	<title> <s:text name="txt.welcome.principal" /></title>	
 </head>
 <body>
+<c:import url="/pages/includes/headerContext.jsp" />
 <c:import url="/pages/includes/divLogin.jsp" />
 <c:import url="/pages/includes/homeSlider.jsp" />
 
@@ -18,7 +19,7 @@
 <s:iterator value="restaurantList" var="restaurant">
 	<div class="selector" id="${restaurant.id}" >
 		<table>
-			<tr><td><img id="imageRestaurant" width="50px"  src="/onlineBot/images/star${restaurant.votacio.punctuacio}.jpg" /></td></tr>
+			<tr><td><img id="imageRestaurant" width="50px"  src="/${initParam.app}/images/star${restaurant.votacio.punctuacio}.jpg" /></td></tr>
 			<c:if test="${not empty restaurant.configRestaurants}">
 				<c:set var="doneLoop" value="false"/>
 				
@@ -48,7 +49,7 @@
 			</c:if>			
 			<tr>
 				<td>${restaurant.nom}</td>			
-				<td rowspan="2" ><img id="imageRestaurant" width="200px"  src="/onlineBot/comanda/ImageAction.action?imageId=${restaurant.foto.id}" /></td> 
+				<td rowspan="2" ><img id="imageRestaurant" width="200px"  src="/${initParam.app}/comanda/ImageAction.action?imageId=${restaurant.foto.id}" /></td> 
 			</tr>
 			<tr>
 				<td colspan="3" >${restaurant.descripcio}</td>
@@ -75,50 +76,13 @@
 	<script src="<c:url value='/js/jquery/jquery.ui.resizable.js'/>" type="text/javascript"></script>
 	<script src="<c:url value='/js/jquery/jquery.effects.core.js'/>" type="text/javascript"></script>
 	<script src="<c:url value='/js/jquery/jquery.bgiframe-2.1.1.js'/>" type="text/javascript"></script>
-
 	<script type="text/javascript" src="<c:url value='/js/slider/coin-slider.min.js' />"></script>
 
+	<script src="<c:url value='/jswelcome.js'/>" type="text/javascript"></script>
 <script type="text/javascript" >
-function getDateToday(){
-	var d=new Date();
-	return d.getFullYear()+"-"+(d.getMonth()+1)+"-"+d.getDate();
-}
 
-$( ".selector" ).click(function() {
-	var id = $(this).attr("id");
-	confirmComanda.idRestaurant=id;
-	var comanda = window.localStorage.getItem("comanda");
-	var dataInicialComanda =$("#dataObert_"+id).val();
-	window.localStorage.setItem("comanda.data",dataInicialComanda);
-	if(comanda != 'undefined' && comanda != null){
-		acceptComandaDialog();
-	}else{
-		window.location.href="/onlineBot/comanda/Welcome.action?restaurantId="+id+"&data="+dataInicialComanda;
-	}
-});
+var initParams = new InitParams("<s:text name='txt.comanda.existeix.vol.continuar' />");
 
-var actionCloseConfirm = function(){
-	var data = window.localStorage.getItem("comanda.data");
-	window.localStorage.clear();	
-	window.localStorage.setItem("comanda.data",data);
-	window.location.href="/onlineBot/comanda/Welcome.action?restaurantId="+confirmComanda.idRestaurant+"&data="+data;
-}
-
-function acceptComandaDialog(){
-	confirmOnline.closeSetFunc(actionCloseConfirm);
-	confirmOnline.confirm("<s:text name='txt.comanda.existeix.vol.continuar' />",confirmComanda);
-}
-
-var confirmComanda = function (){
-									var comanda = window.localStorage.getItem("comanda");
-									var data = window.localStorage.getItem("comanda.data");
-									window.location.href="/onlineBot/comanda/Welcome.action?restaurantId="+confirmComanda.idRestaurant+"&idComanda="+comanda+"&data="+data;
-								}
-
-
-$(document).ready(function() {
-    $('#coin-slider').coinslider();
-});
 </script>
 <c:import url="/pages/includes/confirmOnline.jsp" />
 </body>

@@ -11,7 +11,7 @@
 	<title>Welcome</title>	
 </head>
 <body>
-
+<c:import url="/pages/includes/headerContext.jsp" />
 <div align="left">
 Dear my friend,
 La comanda s'ha realitzat.

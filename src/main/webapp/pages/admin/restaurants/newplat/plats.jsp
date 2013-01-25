@@ -11,6 +11,7 @@
 	<title><s:text name="mant.plats.title.gestio" /></title>		
 </head>
 <body>
+<c:import url="/pages/includes/headerContext.jsp" />
 <div align="center">
     <div id="div_pantalla" style="width:950px;" alig="">
       <c:import url="pestanas.jsp" />

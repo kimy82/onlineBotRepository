@@ -127,7 +127,7 @@ function fillAddress(){
 
 function repeatComanda(id){
 	
-	window.location.href="/onlineBot/user/repeatComanda.action?idComanda="+id;
+	window.location.href="/"+context+"/user/repeatComanda.action?idComanda="+id;
 }
 
 function openDialog(id){
@@ -164,12 +164,12 @@ $(document).ready(function() {
 					            ],
 					"sPaginationType": "full_numbers",
 					"oLanguage": {
-						  "sProcessing": "<img src='/onlineBot/images/large-loading.gif' style='vertical-align:middle'>&nbsp;"+initTableParams.txtloading,
+						  "sProcessing": "<img src='/"+context+"/images/large-loading.gif' style='vertical-align:middle'>&nbsp;"+initTableParams.txtloading,
 					      "oPaginate": {
-					        "sFirst": "<img src='/onlineBot/images/icono-paginador-inicio.gif' style='vertical-align:middle'>&nbsp;"+initTableParams.txtfirst,
-					        "sLast": initTableParams.txtlast+"&nbsp;<img src='/onlineBot/images/icono-paginador-fin.gif' style='vertical-align:middle'>",
-					        "sNext": initTableParams.txtnext+"&nbsp;<img src='/onlineBot/images/icono-paginador-siguiente.gif' style='vertical-align:middle'>",
-					        "sPrevious": "<img src='/onlineBot/images/icono-paginador-anterior.gif' style='vertical-align:middle'>&nbsp;"+initTableParams.txtprevious
+					        "sFirst": "<img src='/"+context+"/images/icono-paginador-inicio.gif' style='vertical-align:middle'>&nbsp;"+initTableParams.txtfirst,
+					        "sLast": initTableParams.txtlast+"&nbsp;<img src='/"+context+"/images/icono-paginador-fin.gif' style='vertical-align:middle'>",
+					        "sNext": initTableParams.txtnext+"&nbsp;<img src='/"+context+"/images/icono-paginador-siguiente.gif' style='vertical-align:middle'>",
+					        "sPrevious": "<img src='/"+context+"/images/icono-paginador-anterior.gif' style='vertical-align:middle'>&nbsp;"+initTableParams.txtprevious
 					      }
 					    },
 					"sScrollY": "300",		    
@@ -177,7 +177,7 @@ $(document).ready(function() {
 				    "bScrollCollapse": true,
 		    		"bProcessing": false,
 		    		"bServerSide": true,
-		    		"sAjaxSource": '/onlineBot/user/ajaxTableComandesUser.action',
+		    		"sAjaxSource": '/'+context+'/user/ajaxTableComandesUser.action',
 		    		"fnServerData": function( sUrl, aoData, fnCallback) {      			    			    			
 		     		$.ajax( {
 		            	"url": sUrl,

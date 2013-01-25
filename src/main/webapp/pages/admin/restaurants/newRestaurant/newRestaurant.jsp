@@ -11,7 +11,7 @@
 	<title><s:text name="mant.restaurants.new.title" /></title>
 </head>
 <body>
-
+<c:import url="/pages/includes/headerContext.jsp" />
 <div align="center">
     <div id="div_pantalla" style="width:950px;" alig="">
       <c:import url="pestanas.jsp" />

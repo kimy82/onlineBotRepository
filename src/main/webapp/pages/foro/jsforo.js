@@ -60,30 +60,30 @@ function firstStar(addRemove){
 	
 	if(addRemove){
 		actualVot=1;
-		$("#star1").attr("src","/onlineBot/images/star.jpg");	
+		$("#star1").attr("src","/"+context+"/images/star.jpg");	
 	}else{		
 		actualVot=0;
-		$("#star1").attr("src","/onlineBot/images/star0.jpg");
+		$("#star1").attr("src","/"+context+"/images/star0.jpg");
 	}	
 }
 function otherStar(addRemove,num){
 		
 	if(addRemove){
 		actualVot=num;
-		$("#star"+num).attr("src","/onlineBot/images/star.jpg");	
+		$("#star"+num).attr("src","/"+context+"/images/star.jpg");	
 	}else{
 		actualVot=num-1;
-		$("#star"+num).attr("src","/onlineBot/images/star0.jpg");	
+		$("#star"+num).attr("src","/"+context+"/images/star0.jpg");	
 	}	
 }
 function lastStar(addRemove){
 	
 	if(addRemove){
 		actualVot=5;
-		$("#star5").attr("src","/onlineBot/images/star.jpg");	
+		$("#star5").attr("src","/"+context+"/images/star.jpg");	
 	}else{
 		actualVot=4;
-		$("#star5").attr("src","/onlineBot/images/star0.jpg");	
+		$("#star5").attr("src","/"+context+"/images/star0.jpg");	
 	}	
 }
 
@@ -94,7 +94,7 @@ function votaPlatDialog(){
 	
 	$.ajax({
 				type : "POST",
-				url : '/onlineBot/foro/ajaxSavePunctuacioForPlat.action',
+				url : '/'+context+'/foro/ajaxSavePunctuacioForPlat.action',
 				dataType : 'json',
 				data : data,
 				success : function(json) {
@@ -118,7 +118,7 @@ function votaPlat(){
 	
 	$.ajax({
 				type : "POST",
-				url : '/onlineBot/foro/ajaxSavePunctuacioForPlat.action',
+				url : '/'+context+'/foro/ajaxSavePunctuacioForPlat.action',
 				dataType : 'json',
 				data : data,
 				success : function(json) {
@@ -146,7 +146,7 @@ function saveComment() {
 		
 		$.ajax({
 					type : "POST",
-					url : '/onlineBot/foro/ajaxSaveCommentForPlat.action',
+					url : '/'+context+'/foro/ajaxSaveCommentForPlat.action',
 					dataType : 'json',
 					data : data,
 					success : function(json) {
@@ -169,7 +169,7 @@ function deleteComment(id) {
 	
 	$.ajax({
 				type : "POST",
-				url : '/onlineBot/foro/ajaxDeleteCommentForPlat.action',
+				url : '/'+context+'/foro/ajaxDeleteCommentForPlat.action',
 				dataType : 'json',
 				data : data,
 				success : function(json) {
@@ -194,7 +194,7 @@ function insertTR(idPlat,comment,idComment){
 		var cell1=row.insertCell(0);
 		var cell2=row.insertCell(1);
 		cell1.innerHTML=comment;
-		cell2.innerHTML="<a href='#' onclick='deleteComment("+idComment+")' ><img src='/onlineBot/images/delete.png' /> </a>";
+		cell2.innerHTML="<a href='#' onclick='deleteComment("+idComment+")' ><img src='/"+context+"/images/delete.png' /> </a>";
 			
 }
 

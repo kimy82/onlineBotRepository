@@ -1,10 +1,12 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="s" uri="/struts-tags"%>
 <html>
 <head>
-<title>Login Page</title>
+<title><s:text name="txt.login.title" /></title>
 </head>
 <body onload='document.f.j_username.focus();'>
-	<h3>Login with Username and Password (Custom Page)</h3>
+
+	<h3><s:text name="txt.login.explanation" /></h3>
  
 	<c:if test="${not empty error}">
 		<div class="errorblock">
@@ -18,12 +20,12 @@
  
 		<table>
 			<tr>
-				<td>User:</td>
+				<td><s:text name="txt.user.usuario" />:</td>
 				<td><input type='text' name='j_username' value=''>
 				</td>
 			</tr>
 			<tr>
-				<td>Password:</td>
+				<td><s:text name="txt.user.password" />:</td>
 				<td><input type='password' name='j_password' />
 				</td>
 			</tr>
@@ -37,15 +39,16 @@
 				</td>
 			</tr>
 			<tr>
-				<td colspan='2'><a name="register" type="button" href="<c:url value='/preRegisterUser.action'/>" >Register</a>
+				<td colspan='2'><a name="register" type="button" href="<c:url value='/preRegisterUser.action'/>" ><s:text name="txt.user.register" /></a>
 				</td>
 			</tr>
 			<tr>
-				<td colspan='2'><a name="register" type="button" href="<c:url value='/preRecoverAcount.action'/>" >Olvidaste el pass?</a>
+				<td colspan='2'><a name="register" type="button" href="<c:url value='/preRecoverAcount.action'/>" ><s:text name="txt.user.forgot.password" /></a>
 				</td>
 			</tr>
 		</table>
  
 	</form>
+	
 </body>
 </html>

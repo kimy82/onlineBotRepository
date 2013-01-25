@@ -14,6 +14,7 @@
 <body>
 <h2><s:text name="txt.info.user" /></h2>
 <br>
+<c:import url="/pages/includes/headerContext.jsp" />
 <c:import url="/pages/includes/goHome.jsp" />	
 <br><a href="#" onclick="openDialog('infoUser');" ><s:text name="txt.canvi.dades.personals" /></a>	
 <h2><s:text name="txt.info.comandes.user.title" /></h2>

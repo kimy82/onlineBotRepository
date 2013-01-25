@@ -18,7 +18,7 @@ function send(){
 			data ="txt="+$('#mytextbox').val();
 			$.ajax({
 				  type: "POST",
-				  url: '/onlineBot/admin/ajaxSendLetterAction.action',
+				  url: '/'+context+'/admin/ajaxSendLetterAction.action',
 				  dataType: 'json',
 				  data: data,
 				  success: function(json){	

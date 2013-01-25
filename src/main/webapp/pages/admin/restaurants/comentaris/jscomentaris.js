@@ -9,7 +9,7 @@ function InitParams(txtComentDeleted){
 
 function loadComments(id){
 	window.localStorage.setItem("idPlat",id);
-	window.location.href="/onlineBot/admin/loadComments.action?idPlat="+id;	
+	window.location.href="/"+context+"/admin/loadComments.action?idPlat="+id;	
 }
 
 function deleteComment(id) {
@@ -18,7 +18,7 @@ function deleteComment(id) {
 	
 	$.ajax({
 				type : "POST",
-				url : '/onlineBot/admin/ajaxDeleteCommentAction.action',
+				url : '/'+context+'/admin/ajaxDeleteCommentAction.action',
 				dataType : 'json',
 				data : data,
 				success : function(json) {

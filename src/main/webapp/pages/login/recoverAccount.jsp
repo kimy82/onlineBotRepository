@@ -2,10 +2,10 @@
 <%@ taglib prefix="s" uri="/struts-tags" %>
 <html>
 <head>
-<title>Recover Page</title>
+<title><s:text name="txt.recoveruser.page" /></title>
 </head>
 <body onload='document.f.j_username.focus();'>
-	<h3>Recover with Username and Password (Custom Page)</h3>
+	<h3><s:text name="txt.recoveruser.explanation" /></h3>
  
  <s:form action="recoverAccount.action" namespace="/" >
  

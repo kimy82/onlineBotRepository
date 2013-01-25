@@ -11,6 +11,7 @@
 	<title><s:text name="txt.gestio.comentaris" /></title>	
 </head>
 <body>
+	<c:import url="/pages/includes/headerContext.jsp" />
     <s:select list="listPlats" headerKey="" headerValue="Escull un plat" id="platId" listKey="id" listValue="nom" onchange="loadComments(this.value)" ></s:select>
     <div class="comments_foro" id="plat_${plat.id}" >
 			<table id="comments_tbl" >

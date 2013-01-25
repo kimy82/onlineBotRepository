@@ -8,10 +8,10 @@
 		pageEncoding="ISO-8859-1"%>
 	<META http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 	<META http-equiv="Content-Style-Type" content="text/css">
-	<title>Gestió</title>	
+	<title><s:text name="mant.user.title" /></title>	
 </head>
 <body>
-
+<c:import url="/pages/includes/headerContext.jsp" />
 <div align="center">
     <div id="div_pantalla" style="width:950px;" alig="">
       <c:import url="pestanas.jsp" />

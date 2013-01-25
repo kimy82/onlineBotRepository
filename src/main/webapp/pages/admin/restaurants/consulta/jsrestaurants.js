@@ -60,7 +60,7 @@ function deleteRestaurant(id){
 			data ="idRestaurant="+idRestaurant;
 			$.ajax({
 				  type: "POST",
-				  url: '/onlineBot/admin/ajaxDeleteRestaurantAction.action',
+				  url: '/'+context+'/admin/ajaxDeleteRestaurantAction.action',
 				  dataType: 'json',
 				  data: data,
 				  success: function(json){	
@@ -94,7 +94,7 @@ function deletePlat(id){
 			data ="idPlat="+id+"&idRestaurant="+idRestaurant;
 			$.ajax({
 				  type: "POST",
-				  url: '/onlineBot/admin/ajaxDeletePlatAction.action',
+				  url: '/'+context+'/admin/ajaxDeletePlatAction.action',
 				  dataType: 'json',
 				  data: data,
 				  success: function(json){	
@@ -133,7 +133,7 @@ function showDivRestaurant(id){
 	data ="id="+id;
 	$.ajax({
 		  type: "POST",
-		  url: '/onlineBot/admin/ajaxLoadRestaurantAction.action',
+		  url: '/'+context+'/admin/ajaxLoadRestaurantAction.action',
 		  dataType: 'json',
 		  data: data,
 		  success: function(json){	
@@ -152,7 +152,7 @@ function showDivRestaurant(id){
 					 		document.getElementById("idRestaurant").value= json.id;					 		
 					 	}
 					 	if(json.foto!=null){
-					 		document.getElementById("imageRestaurant").src="/onlineBot/admin/ImageAction.action?imageId="+json.foto.id;
+					 		document.getElementById("imageRestaurant").src="/"+context+"/admin/ImageAction.action?imageId="+json.foto.id;
 					 	}else{
 					 		document.getElementById("imageRestaurant").src="../images/noFoto.gif";
 					 	}
@@ -185,7 +185,7 @@ function showDivRestaurant(id){
 
 function goToPlatInfo(id){
 	
-window.location.href="/onlineBot/admin/plat.action?idPlat="+id;	
+window.location.href="/"+context+"/admin/plat.action?idPlat="+id;	
 }
 
 function reloadTablePlats(){
@@ -216,12 +216,12 @@ $(document).ready(function() {
 					            ],
 					"sPaginationType": "full_numbers",
 					"oLanguage": {
-						  "sProcessing": "<img src='/onlineBot/images/large-loading.gif' style='vertical-align:middle'>&nbsp;"+initTableParams.txtloading,
+						  "sProcessing": "<img src='/"+context+"/images/large-loading.gif' style='vertical-align:middle'>&nbsp;"+initTableParams.txtloading,
 					      "oPaginate": {
-					        "sFirst": "<img src='/onlineBot/images/icono-paginador-inicio.gif' style='vertical-align:middle'>&nbsp;"+initTableParams.txtfirst,
-					        "sLast": initTableParams.txtlast+"&nbsp;<img src='/onlineBot/images/icono-paginador-fin.gif' style='vertical-align:middle'>",
-					        "sNext": initTableParams.txtnext+"&nbsp;<img src='/onlineBot/images/icono-paginador-siguiente.gif' style='vertical-align:middle'>",
-					        "sPrevious": "<img src='/onlineBot/images/icono-paginador-anterior.gif' style='vertical-align:middle'>&nbsp;"+initTableParams.txtprevious
+					        "sFirst": "<img src='/"+context+"/images/icono-paginador-inicio.gif' style='vertical-align:middle'>&nbsp;"+initTableParams.txtfirst,
+					        "sLast": initTableParams.txtlast+"&nbsp;<img src='/"+context+"/images/icono-paginador-fin.gif' style='vertical-align:middle'>",
+					        "sNext": initTableParams.txtnext+"&nbsp;<img src='/"+context+"/images/icono-paginador-siguiente.gif' style='vertical-align:middle'>",
+					        "sPrevious": "<img src='/"+context+"/images/icono-paginador-anterior.gif' style='vertical-align:middle'>&nbsp;"+initTableParams.txtprevious
 					      }
 					    },
 					"sScrollY": "400",		    
@@ -229,7 +229,7 @@ $(document).ready(function() {
 				    "bScrollCollapse": true,
 		    		"bProcessing": false,
 		    		"bServerSide": true,
-		    		"sAjaxSource": '/onlineBot/admin/ajaxTableRestaurantsAction.action',
+		    		"sAjaxSource": '/'+context+'/admin/ajaxTableRestaurantsAction.action',
 		    		"fnServerData": function( sUrl, aoData, fnCallback) {      			    			    			
 		     		$.ajax( {
 		            	"url": sUrl,
@@ -277,12 +277,12 @@ $(document).ready(function() {
 			            ],
 			"sPaginationType": "full_numbers",
 			"oLanguage": {
-				  "sProcessing": "<img src='/onlineBot/images/large-loading.gif' style='vertical-align:middle'>&nbsp;"+initTableParams.txtloading,
+				  "sProcessing": "<img src='/"+context+"/images/large-loading.gif' style='vertical-align:middle'>&nbsp;"+initTableParams.txtloading,
 			      "oPaginate": {
-			        "sFirst": "<img src='/onlineBot/images/icono-paginador-inicio.gif' style='vertical-align:middle'>&nbsp;"+initTableParams.txtfirst,
-			        "sLast": initTableParams.txtlast+"&nbsp;<img src='/onlineBot/images/icono-paginador-fin.gif' style='vertical-align:middle'>",
-			        "sNext": initTableParams.txtnext+"&nbsp;<img src='/onlineBot/images/icono-paginador-siguiente.gif' style='vertical-align:middle'>",
-			        "sPrevious": "<img src='/onlineBot/images/icono-paginador-anterior.gif' style='vertical-align:middle'>&nbsp;"+initTableParams.txtprevious
+			        "sFirst": "<img src='/"+context+"/images/icono-paginador-inicio.gif' style='vertical-align:middle'>&nbsp;"+initTableParams.txtfirst,
+			        "sLast": initTableParams.txtlast+"&nbsp;<img src='/"+context+"/images/icono-paginador-fin.gif' style='vertical-align:middle'>",
+			        "sNext": initTableParams.txtnext+"&nbsp;<img src='/"+context+"/images/icono-paginador-siguiente.gif' style='vertical-align:middle'>",
+			        "sPrevious": "<img src='/"+context+"/images/icono-paginador-anterior.gif' style='vertical-align:middle'>&nbsp;"+initTableParams.txtprevious
 			      }
 			    },
 			"sScrollY": "200",		    
@@ -290,7 +290,7 @@ $(document).ready(function() {
 		    "bScrollCollapse": true,
 			"bProcessing": false,
 			"bServerSide": true,
-			"sAjaxSource": '/onlineBot/admin/ajaxTablePlatsAction.action',
+			"sAjaxSource": '/'+context+'/admin/ajaxTablePlatsAction.action',
 			"fnServerData": function( sUrl, aoData, fnCallback) {
 				var id = $("#idRestaurant").val();
 				if(id=="")return;
