@@ -86,7 +86,7 @@ public class ComandaServiceImpl implements ComandaService{
 
 			if (config == null || config.isObert()) {
 
-				String[] horesArray = (config == null || config.getHores()==null) ? restaurant.getHores().split("\\W+") : config.getHores().split("\\W+");
+				String[] horesArray = config == null ? restaurant.getHores().split("\\W+") : config.getHores().split("\\W+");
 				Date dataAvui = new Date();
 				int nextHour = 0;
 				if (data == Utils.formatDate2(dataAvui)) {
@@ -186,9 +186,9 @@ public class ComandaServiceImpl implements ComandaService{
 			List<BegudaComanda> begudaComandaList = comanda.getBegudes();
 			List<BegudaComanda> newBegudaComandaList = new ArrayList<BegudaComanda>();
 			for (BegudaComanda begudaComanda : begudaComandaList) {
-				if (!begudaComanda.isPromo()) {
+					begudaComanda.setNumBegudesPromo(0);
 					newBegudaComandaList.add(begudaComanda);
-				}
+				
 			}
 			comanda.setBegudes(newBegudaComandaList);
 			this.comandaBo.update(comanda);
@@ -277,8 +277,7 @@ public class ComandaServiceImpl implements ComandaService{
 			List<BegudaComanda> listBeguda = comanda.getBegudes();
 			List<PlatComanda> platList = comanda.getPlats();
 			if (!listBeguda.isEmpty()) {
-				for (BegudaComanda begudaComanda : listBeguda) {
-					if (!begudaComanda.isPromo())
+				for (BegudaComanda begudaComanda : listBeguda) {					
 						preuComanda = preuComanda + (begudaComanda.getNumBegudes() * begudaComanda.getBeguda().getPreu());
 				}
 			}
@@ -315,16 +314,27 @@ public class ComandaServiceImpl implements ComandaService{
 			boolean existInList = false;
 			if (begudaList.size() > 0) {
 				for (BegudaComanda bg : begudaList) {
-					if (bg.getBeguda().getId().equals(beguda.getId()) && bg.isPromo() == promo) {
+					if (bg.getBeguda().getId().equals(beguda.getId()) ) {
+						if(promo == true){
+							bg.setNumBegudesPromo(bg.getNumBegudesPromo()+1);
+						}else{						
+							bg.setNumBegudes(bg.getNumBegudes() + 1);
+						}
 						existInList = true;
-						bg.setNumBegudes(bg.getNumBegudes() + 1);
 					}
 				}
 			}
 			if (!existInList) {
 				BegudaComanda begudaComanda = new BegudaComanda();
-				begudaComanda.setPromo(promo);
+				begudaComanda.setPromo(promo);//CANVI
 				begudaComanda.setBeguda(beguda);
+				if(promo == true){
+					begudaComanda.setNumBegudesPromo(1);
+					begudaComanda.setNumBegudes(0);
+				}else{						
+					begudaComanda.setNumBegudesPromo(0);
+					begudaComanda.setNumBegudes(1);
+				}
 				begudaComanda.setNumBegudes(1);
 				begudaList.add(begudaComanda);
 			}
