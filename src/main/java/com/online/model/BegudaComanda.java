@@ -72,7 +72,7 @@ public class BegudaComanda{
 	
 		this.promo = promo;
 	}
-
+	
 	public Integer getNumBegudesPromo() {
 		return numBegudesPromo;
 	}
