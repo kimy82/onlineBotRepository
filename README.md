@@ -198,4 +198,54 @@ Query OK, 0 rows affected (0.03 sec)
 					</jsSourceFiles>
 					<jsFinalFile>jsext.js</jsFinalFile>
 					
+//Generacio del certificat
+//Passos en el jdk
+
+C:\Program Files\Java\jdk1.7.0_02\bin>keytool -genkey -alias tomcat -keyalg RSA
+Enter keystore password:
+Re-enter new password:
+What is your first and last name?
+  [Unknown]:  kim orra
+What is the name of your organizational unit?
+  [Unknown]:  online
+What is the name of your organization?
+  [Unknown]:  online
+What is the name of your City or Locality?
+  [Unknown]:  online
+What is the name of your State or Province?
+  [Unknown]:  online
+What is the two-letter country code for this unit?
+  [Unknown]:  es
+Is CN=kim orra, OU=online, O=online, L=online, ST=online, C=es correct?
+  [no]:  si
+What is your first and last name?
+  [kim orra]:
+What is the name of your organizational unit?
+  [online]:
+What is the name of your organization?
+  [online]:
+What is the name of your City or Locality?
+  [online]:
+What is the name of your State or Province?
+  [online]:
+What is the two-letter country code for this unit?
+  [es]:
+Is CN=kim orra, OU=online, O=online, L=online, ST=online, C=es correct?
+  [no]:  yes
+
+Enter key password for <tomcat>
+        (RETURN if same as keystore password):
+Re-enter new password:
+
+C:\Program Files\Java\jdk1.7.0_02\bin>
+
+
+//Canvis en el server.xml del tomcat
+
+ <Connector port="8443" protocol="org.apache.coyote.http11.Http11NioProtocol" SSLEnabled="true"
+               maxThreads="150" scheme="https" secure="true"
+               clientAuth="false" sslProtocol="TLS"
+               keystoreFile="C:\Users\CrisKim\.keystore"
+               keystorePass="changeit" />
+
 
