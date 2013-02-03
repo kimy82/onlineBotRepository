@@ -316,7 +316,8 @@ $(function(){
 			}else{
 				if(window.promoBeguda.numBegudesAdded < window.promoBeguda.numBegudes){
 	    			if(tipus!= window.promoBeguda.tipusBeguda){
-	    				alertOnline.alertes(initParams.txtBegudaNoPromocio);	    				
+	    				alertOnline.alertes(initParams.txtBegudaNoPromocio);	
+	    				return;
 	    			}
 	    			//Afegim beguda al contador
 	    			var n = window.promoBeguda.numBegudesAdded;
@@ -349,15 +350,19 @@ $(function(){
            					var preuBegudes = 0.0;
            					var html="";
            					$.each(json, function(index, value) { 
-           					 	
-           					 	if(value.promo==true || value.promo=='true'){
-           					 		numBegudesPromo=numBegudesPromo+value.numBegudes;
-           					 		
-           					 	}else{
+           					 	           					 	
+           					 		numBegudesPromo=numBegudesPromo+value.numBegudesPromo;
+
            					 		numBegudes= numBegudes+value.numBegudes;
+<<<<<<< .mine
+           					 		preuBegudes=  parseFloat(preuBegudes) + parseFloat(value.beguda.preu);
+=======
            					 		preuBegudes=  parseFloat(preuBegudes) + parseFloat(value.beguda.preu)*value.numBegudes;
            						}
            						html=html+"<div class='selector'>"+value.beguda.nom+"<br>"+value.beguda.preu+"</div>";
+>>>>>>> .r121
+           						
+           					 		html=html+"<div class='selector'>"+value.beguda.nom+"<br>"+value.beguda.preu+"</div>";
            						
            					});
            				
@@ -506,6 +511,7 @@ function initPromoBegudaFromStorage(){
 			addPromoBeguda(nbegudes, tipoBeguda);
 			var nbegudesAdded = window.localStorage.getItem("comanda.promo.nBegudes.added");
 			window.promoBeguda.numBegudesAdded = nbegudesAdded;
+			$("#numbegudespromo").text(nbegudesAdded);
 		}			
 	}
 }
@@ -540,11 +546,15 @@ function addPromoImport(importDescompte, tipusDescompte){
 	
 	//Actualitzem les dadesde la cart
 	var preuPlats = window.localStorage.getItem("comanda.preu");
-	alert(preuPlats)
+	
 	var preuBegudes = window.localStorage.getItem("comanda.beguda.preu");
+	if(preuBegudes=='undefined' || preuBegudes==null){
+		preuBegudes=0.0;
+		window.localStorage.setItem("comanda.beguda.preu","0.0");
+	}
 	var preu =  parseFloat(preuPlats)+ parseFloat(preuBegudes);
 	
-	if(tipusDescompte=='1'){
+	if(tipusDescompte=='1' || tipusDescompte=='tant per cent %' ){
 		var preuF = parseFloat(preu)*((100-parseFloat(importDescompte))/100);
 		$("#preu").text(preu+" (-"+importDescompte+" %) ="+parseFloat(preuF).toFixed(2));
 	}else{
@@ -592,6 +602,7 @@ function deletePromoApplied(){
 		deleteAjaxBegudesPromo();
 	}
 	$("#deletePromoApplied").hide();
+	$("#checkPromocionsDisponibles").show();
 	alertOnline.alertes(initParams.txtpromodeleted);
 
 }
