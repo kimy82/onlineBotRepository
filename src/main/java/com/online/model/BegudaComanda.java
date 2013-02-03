@@ -16,6 +16,9 @@ public class BegudaComanda{
 	private Beguda				beguda;
 
 	@Expose
+	private Integer				numBegudesPromo;
+	
+	@Expose
 	private Integer				numBegudes;
 
 	@Expose
@@ -68,6 +71,14 @@ public class BegudaComanda{
 	public void setPromo( boolean promo ){
 	
 		this.promo = promo;
+	}
+
+	public Integer getNumBegudesPromo() {
+		return numBegudesPromo;
+	}
+
+	public void setNumBegudesPromo(Integer numBegudesPromo) {
+		this.numBegudesPromo = numBegudesPromo;
 	}
 	
 	
