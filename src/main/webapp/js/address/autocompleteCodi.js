@@ -11,4 +11,7 @@ $(function() {
     $( "#codi" ).autocomplete({
         source: availableCodis
     });
+    $( "#codibis" ).autocomplete({
+        source: availableCodis
+    });
 });

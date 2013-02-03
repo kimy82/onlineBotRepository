@@ -830,4 +830,7 @@ $(function() {
     $( "#carrer" ).autocomplete({
         source: availableStreets
     });
+    $( "#carrerbis" ).autocomplete({
+        source: availableStreets
+    });
 });

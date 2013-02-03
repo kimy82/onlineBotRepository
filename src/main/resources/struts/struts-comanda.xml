@@ -45,6 +45,11 @@
 			method="getVins">
 			<result name="success">/pages/comanda/begudes/begudes.jsp</result>
 		</action>
+		<action name="getRefrescos" class="com.online.action.comanda.WelcomeComandaAction"
+			method="getRefrescos">
+			<result name="success">/pages/comanda/begudes/begudes.jsp</result>
+		</action>
+		
 		<!-- Action que carrega image de la BBDD -->
 		<action name="ImageAction" class="com.online.image.ImageAction">
 			<result name="success" type="imageResult">

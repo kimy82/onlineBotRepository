@@ -1,7 +1,7 @@
 ///////////////////////////////////
 //variables per textos en locale
-var initParams=null ;
-function InitParams(txtusernameempty,txtusernamewrong, txtpasswordempty,txtpasswordnotequal,txttelempty,txtaddressempty){		
+var initParamsbis=null ;
+function InitParamsbis(txtusernameempty,txtusernamewrong, txtpasswordempty,txtpasswordnotequal,txttelempty,txtaddressempty){		
 
 	this.txtusernameempty= txtusernameempty;
 	this.txtusernamewrong = txtusernamewrong;
@@ -26,7 +26,7 @@ function validate(){
 	if(self.username.value==''){
 	 	
 		$("#username").css('border', 'solid 1px red');
-		alertOnline.alertes(initParams.txtusernameempty);			
+		alertOnline.subalertes(initParamsbis.txtusernameempty);			
 		return false;
 		
 	}else{
@@ -36,21 +36,21 @@ function validate(){
 	if(!validateEmail(self.username.value)){
 		
 		$("#username").css('border', 'solid 1px red');
-		alertOnline.alertes(initParams.txtusernamewrong);			
+		alertOnline.subalertes(initParamsbis.txtusernamewrong);			
 		return false;
 	}
 	
 	if(self.password.value==''){
 	 	
 		$("#password").css('border', 'solid 1px red');
-		alertOnline.alertes(initParams.txtpasswordempty);			
+		alertOnline.subalertes(InitParamsbis.txtpasswordempty);			
 		return false;
 		
 	}else{
 		if(self.password.value!=self.confirmPassword.value){
 			$("#confirmPassword").css('border', 'solid 1px red');
 			$("#password").css('border', 'solid 1px red');
-			alertOnline.alertes(initParams.txtpasswordnotequal);				
+			alertOnline.subalertes(initParamsbis.txtpasswordnotequal);				
 		}else{
 			$("#confirmPassword").css('border', 'solid 1px rgb(135,155,179)');
 			$("#password").css('border', 'solid 1px rgb(135,155,179)');
@@ -60,21 +60,21 @@ function validate(){
 	if(self.telefon.value==''){
 		
 		$("#telefon").css('border', 'solid 1px red');
-		alertOnline.alertes(initParams.txttelempty);			
+		alertOnline.subalertes(initParamsbis.txttelempty);			
 		return false;
 		
 	}else{
 		$("#telefon").css('border', 'solid 1px rgb(135,155,179)');
 	}
 	
-	if(self.comandaddress.value==''){
+	if(self.comandaddressbis.value==''){
 		
-		$("#comandaddress").css('border', 'solid 1px red');
-		alertOnline.alertes(initParams.txtaddressempty);			
+		$("#comandaddressbis").css('border', 'solid 1px red');
+		alertOnline.subalertes(initParamsbis.txtaddressempty);			
 		return false;
 		
 	}else{
-		$("#comandaddress").css('border', 'solid 1px rgb(135,155,179)');
+		$("#comandaddressbis").css('border', 'solid 1px rgb(135,155,179)');
 	}
 	
 	self.submit();

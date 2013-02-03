@@ -31,7 +31,7 @@
 				<li><img src="img/elements/bar2.png"></li>
 				<li><a href="/${initParam.app}/comanda/getVins.action"><s:text name="menu.vins" /></a></li>
 				<li><img src="img/elements/bar2.png"></li>
-				<li><a href="#"><s:text name="menu.refresc" /></a></li>
+				<li><a href="/${initParam.app}/comanda/getRefrescos.action"><s:text name="menu.refresc" /></a></li>
 				<li><img src="img/elements/bar2.png"></li>
 				<li><a href="#"><s:text name="menu.fercomanda" /></a></li>
 				<li><img src="img/elements/bar2.png"></li>
@@ -162,52 +162,6 @@
 	</div>
 </div>
 
-
-<!-- div id="draggables_pl" style="width: 500px; height: 400px;" align="left" >
-<s:iterator value="restaurantList" var="restaurant">
-	<div class="selector" id="${restaurant.id}" >
-		<table>
-			<tr><td><img id="imageRestaurant" width="50px"  src="/${initParam.app}/images/star${restaurant.votacio.punctuacio}.jpg" /></td></tr>
-			<c:if test="${not empty restaurant.configRestaurants}">
-				<c:set var="doneLoop" value="false"/>
-				
-				<c:set var="configs" value="${restaurant.configRestaurants}" ></c:set>
-				
-				
-				<c:forEach items="${configs}" var="config" >
-					
-					<c:if test="${config.obert==true && not doneLoop}">
-					
-						<c:if test="${config.data eq dataAvui }">
-							<tr><td rowspan="5" ><a href="#"><s:text name="txt.inicia.comanda" /></a></td></tr>
-							<input type="hidden" id="dataObert_${restaurant.id}" value="${dataAvui}" />
-						</c:if>
-						<c:if test="${config.data ne dataAvui }">					
-							<tr><td rowspan="5" ><a href="#"><s:text name="txt.inicia.comanda.tal.dia" />&nbsp; ${config.data}</a></td></tr>
-							<input type="hidden" id="dataObert_${restaurant.id}" value="${config.data}" />
-						</c:if>
-						<c:set var="doneLoop" value="true"/>
-						
-					</c:if>
-				</c:forEach>
-			</c:if>
-			<c:if test="${empty restaurant.configRestaurants}">
-				<tr><td rowspan="5" ><a href="#"><s:text name="txt.inicia.comanda" /></a></td></tr>
-				<input type="hidden" id="dataObert_${restaurant.id}" value="${dataAvui}" />
-			</c:if>			
-			<tr>
-				<td>${restaurant.nom}</td>			
-				<td rowspan="2" ><img id="imageRestaurant" width="200px"  src="/${initParam.app}/comanda/ImageAction.action?imageId=${restaurant.foto.id}" /></td> 
-			</tr>
-			<tr>
-				<td colspan="3" >${restaurant.descripcio}</td>
-			</tr>
-		</table>
-	</div>
-</s:iterator>
-<c:import url="/pages/includes/goLookComanda.jsp" />
-</div -->
-
 	<!-- CSS portamu --> 
 	<link rel="stylesheet" type="text/css" href="<c:url value='/css/portamu/global.css' />" />
 	<link rel="stylesheet" type="text/css" href="<c:url value='/css/portamu/reset.css' />" />
@@ -235,6 +189,7 @@
 	<script src="<c:url value='/js/address/autocompleteStreet.js'/>" type="text/javascript"></script>
 	<script src="<c:url value='/js/address/autocompleteCodi.js'/>" type="text/javascript"></script>
 	<script src="<c:url value='/js/address/addressValidationForm.js'/>" type="text/javascript"></script>
+		<script src="<c:url value='/js/address/addressValidationFormbis.js'/>" type="text/javascript"></script>
 	<script src="http://maps.google.com/maps/api/js?sensor=false" type="text/javascript"></script>
 
 	<script src="<c:url value='/jswelcome.js'/>" type="text/javascript"></script>

@@ -23,7 +23,7 @@
 			<table>
 				<tr><td rowspan="4" ><a href="#"><image src="<c:url value='/images/shopping_cart.png' />" ></image></a></td>
 				
-					<td><a href="#" onclick="goToInfoBeguda(${beguda.id})" ><img  src="<c:url value='/images/info.gif' />" /></a></td>
+					<td></td>
 				</tr>
 				<tr>
 					<td>${beguda.nom}</td>

@@ -113,6 +113,17 @@ public class WelcomeComandaAction extends ActionSupport implements ServletRespon
 		return SUCCESS;
 
 	}
+	
+	public String getRefrescos(){
+
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		this.nameAuth = auth.getName();
+
+		this.begudaList = this.begudaBo.getAll("refresc");
+
+		return SUCCESS;
+
+	}
 
 	public String checkComandaPromos(){
 
