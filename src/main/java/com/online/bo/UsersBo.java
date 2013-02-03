@@ -4,6 +4,7 @@ import java.security.NoSuchAlgorithmException;
 import java.util.List;
 
 import com.online.exceptions.BOException;
+import com.online.model.NewsLetter;
 import com.online.model.Users;
 
 
@@ -27,5 +28,9 @@ public interface UsersBo {
 	String changeUserPasswordRandomly(Users user)  throws NoSuchAlgorithmException,BOException;
 	
 	boolean checkUserPlat(Long idUser, Long idPlat) throws BOException;
+	
+	public void setEmailToDB( String email ) throws BOException;
+	
+	public List<NewsLetter> getEmailsFromDB( ) throws BOException;
 
 }

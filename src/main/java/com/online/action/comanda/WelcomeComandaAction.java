@@ -52,8 +52,8 @@ public class WelcomeComandaAction extends ActionSupport implements ServletRespon
 	private Comandes			comanda;
 
 	List<Plat>					platList			= new ArrayList<Plat>();
+	List<Beguda>				begudaList			= new ArrayList<Beguda>();
 	List<PlatComanda>			platComandaList		= new ArrayList<PlatComanda>();
-	
 
 	private List<BasicSub>		refrescList			= new ArrayList<BasicSub>();
 
@@ -70,7 +70,7 @@ public class WelcomeComandaAction extends ActionSupport implements ServletRespon
 	private String				dataActual;
 	private boolean				promo;
 	private HoresDTO			horesDTO;
-	private int					numPlats			=0;
+	private int					numPlats			= 0;
 
 	private String				nameAuth;
 
@@ -91,13 +91,24 @@ public class WelcomeComandaAction extends ActionSupport implements ServletRespon
 
 		this.platList.clear();
 		this.platList.addAll(this.restaurantsBo.load(this.idRestaurant, true, false, false).getPlats());
-		
+
 		this.dataActual = Utils.formatDate2(new Date());
-		
+
 		// si teniem una comanda la recuperem
 		if (this.idComanda != null) {
 			goToPas1Action();
 		}
+
+		return SUCCESS;
+
+	}
+
+	public String getVins(){
+
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		this.nameAuth = auth.getName();
+
+		this.begudaList = this.begudaBo.getAll("vi");
 
 		return SUCCESS;
 
@@ -212,7 +223,7 @@ public class WelcomeComandaAction extends ActionSupport implements ServletRespon
 				if (comandaService.checkPlatInList(platList, platToAdd)) {
 					for (PlatComanda plt : platList) {
 						if (plt.getPlat().getId().toString().equals(platToAdd.getId().toString())) {
-							plt.setNumPlats(plt.getNumPlats()+this.nplats);
+							plt.setNumPlats(plt.getNumPlats() + this.nplats);
 						}
 					}
 					comanda.setPlats(platList);
@@ -331,6 +342,20 @@ public class WelcomeComandaAction extends ActionSupport implements ServletRespon
 				this.comandaBo.update(comanda);
 
 				json = this.comandaService.createJSONForBegudaList(begudaList);
+			}else{
+				Comandes comanda = new Comandes();
+				comanda.setPreu(0.0);
+				comanda.setFentrada(new Date());
+				Beguda begudaToAdd = this.begudaBo.load(this.idBeguda);
+				BegudaComanda	begudaComanda	= new BegudaComanda();
+				begudaComanda.setBeguda(begudaToAdd);
+				begudaComanda.setPromo(this.promo);
+				begudaComanda.setNumBegudes(1);
+				List<BegudaComanda>	begudes	= new LinkedList<BegudaComanda>();
+				begudes.add(begudaComanda);
+				comanda.setBegudes(begudes);
+				this.comandaBo.save(comanda);
+
 			}
 		} catch (ComandaException ce) {
 			json = createErrorJSON("error in comanda service action");
@@ -346,8 +371,9 @@ public class WelcomeComandaAction extends ActionSupport implements ServletRespon
 
 		return null;
 	}
+
 	public String loadHores(){
-		
+
 		ServletOutputStream out = null;
 
 		String json = "";
@@ -355,20 +381,19 @@ public class WelcomeComandaAction extends ActionSupport implements ServletRespon
 		try {
 
 			out = this.response.getOutputStream();
-		
+
 			inizilizeComandaId();
 			inizializeData();
-			
+
 			this.comanda = this.comandaBo.load(this.idComanda);
 			horesDTO = new HoresDTO();
 			horesDTO.setData(data);
 			horesDTO = this.comandaService.setHoresFeature(horesDTO, this.data, this.comanda);
-			
+
 			Gson gson = new GsonBuilder().setPrettyPrinting().excludeFieldsWithoutExposeAnnotation().create();
-			
+
 			json = gson.toJson(horesDTO);
-			
-			
+
 		} catch (ComandaException ce) {
 			json = createErrorJSON("error in comanda service action");
 		} catch (Exception e) {
@@ -382,8 +407,9 @@ public class WelcomeComandaAction extends ActionSupport implements ServletRespon
 		}
 
 		return null;
-		
+
 	}
+
 	public String goToPas1Action(){
 
 		inizilizeComandaId();
@@ -679,41 +705,53 @@ public class WelcomeComandaAction extends ActionSupport implements ServletRespon
 	}
 
 	public HoresDTO getHoresDTO(){
-	
+
 		return horesDTO;
 	}
 
 	public void setHoresDTO( HoresDTO horesDTO ){
-	
+
 		this.horesDTO = horesDTO;
 	}
 
 	public Users getUser(){
-	
+
 		return user;
 	}
 
 	public void setUser( Users user ){
-	
+
 		this.user = user;
 	}
 
-	public String getDataActual() {
+	public String getDataActual(){
+
 		return dataActual;
 	}
 
-	public void setDataActual(String dataActual) {
+	public void setDataActual( String dataActual ){
+
 		this.dataActual = dataActual;
 	}
 
-	public int getNumPlats() {
+	public int getNumPlats(){
+
 		return numPlats;
 	}
 
-	public void setNumPlats(int numPlats) {
+	public void setNumPlats( int numPlats ){
+
 		this.numPlats = numPlats;
 	}
 
-	
+	public List<Beguda> getBegudaList(){
+
+		return begudaList;
+	}
+
+	public void setBegudaList( List<Beguda> begudaList ){
+
+		this.begudaList = begudaList;
+	}
 
 }

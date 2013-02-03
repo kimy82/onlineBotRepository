@@ -12,5 +12,6 @@ public interface VotacionsDao {
 	List<VotacioTMP> getAll();
 	VotacioTMP get(Long idplat, Long idUser);
 	int count(Long idplat , int star);
+	VotacioTMP getLast(Long idplat, Long idUser);
 	
 }

@@ -34,7 +34,7 @@
 					<td>${plat.nom}</td>
 					<td>${plat.preu}</td>
 					<td>${plat.tipus}</td>
-					<td rowspan="2" ><img id="imageRestaurant" width="200px"  src="/onlineBot/comanda/ImageAction.action?imageId=${plat.foto.id}" /></td> 
+					<td rowspan="2" ><img id="imageRestaurant" width="200px"  src="/${initParam.app}/comanda/ImageAction.action?imageId=${plat.foto.id}" /></td> 
 				</tr>
 				<tr>
 					<td colspan="3" >${plat.descripcio}</td>

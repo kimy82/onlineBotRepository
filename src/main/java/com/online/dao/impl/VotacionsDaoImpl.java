@@ -46,6 +46,17 @@ public class VotacionsDaoImpl extends HibernateDaoSupport implements VotacionsDa
 		return null;
 	}
 	
+	
+	public VotacioTMP getLast(Long idplat, Long idUser){
+		
+		List<VotacioTMP> list =  (List<VotacioTMP>) getHibernateTemplate().find("from VotacioTMP vtmp where vtmp.platId="+idplat+" and vtmp.userId="+idUser+" order by  vtmp.dia desc");
+		if(!list.isEmpty()){
+			return list.get(0);
+		}
+			return null;
+	}
+		
+	
 		@Transactional
 	public List<VotacioTMP> getAll(){
 

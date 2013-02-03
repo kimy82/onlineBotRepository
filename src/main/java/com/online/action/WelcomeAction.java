@@ -2,29 +2,38 @@ package com.online.action;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Locale;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.struts2.interceptor.ServletRequestAware;
 import org.apache.struts2.interceptor.ServletResponseAware;
+import org.apache.struts2.interceptor.SessionAware;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 
 import com.online.bo.RestaurantsBo;
+import com.online.bo.UsersBo;
 import com.online.model.Restaurant;
 import com.online.utils.Utils;
+import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 
 @SuppressWarnings("serial")
-public class WelcomeAction extends ActionSupport implements ServletResponseAware, ServletRequestAware{
+public class WelcomeAction extends ActionSupport implements ServletResponseAware, ServletRequestAware, SessionAware{
 
 	HttpServletResponse			response;
 	HttpServletRequest			request;
 	private RestaurantsBo		restaurantsBo;
+	private UsersBo				usersBo;
 	private List<Restaurant>	restaurantList;
 	private String				nameAuth;
 	private String				dataAvui;
+	private String				localeToChange;
+	Map<String, Object>			session;
+	private String				email;
 
 	public String execute(){
 
@@ -35,6 +44,43 @@ public class WelcomeAction extends ActionSupport implements ServletResponseAware
 
 		return SUCCESS;
 
+	}
+
+	public String changeLocale(){
+		try{
+			initLocale();
+		}catch(Exception e){
+			return ERROR;
+		}
+		if (this.localeToChange.equals("CA")) {
+			session.put("WW_TRANS_I18N_LOCALE", new Locale("ca"));
+		} else {
+			session.put("WW_TRANS_I18N_LOCALE", new Locale("es"));
+		}
+
+		return SUCCESS;
+	}
+
+	public String setNewsLetter(){
+		
+		try{
+			initEmail();		
+			this.usersBo.setEmailToDB(email);
+		}catch(Exception e){
+			return ERROR;
+		}
+		return null;
+	}
+
+	// PRIVATES
+
+	private void initEmail() throws Exception{
+		this.email= request.getParameter("email");
+	}
+
+	private void initLocale() throws Exception{
+
+		this.localeToChange = request.getParameter("locale");
 	}
 
 	public HttpServletResponse getServletResponse(){
@@ -83,13 +129,33 @@ public class WelcomeAction extends ActionSupport implements ServletResponseAware
 	}
 
 	public String getDataAvui(){
-	
+
 		return dataAvui;
 	}
 
 	public void setDataAvui( String dataAvui ){
-	
+
 		this.dataAvui = dataAvui;
 	}
+
+	public String getLocaleToChange(){
+
+		return localeToChange;
+	}
+
+	public void setLocaleToChange( String localeToChange ){
+
+		this.localeToChange = localeToChange;
+	}
+
+	public void setSession( Map<String, Object> session ){
+
+		this.session = session;
+	}
+
+	public void setUsersBo( UsersBo usersBo ){
+	
+		this.usersBo = usersBo;
+	}	
 
 }

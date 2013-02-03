@@ -133,6 +133,10 @@ if (comanda != 'undefined' && comanda != null) {
 
 	var preu = window.localStorage.getItem("comanda.preu");
 	if (preu != 'undefined' && preu != null) {
+		var preuBegudes = window.localStorage.setItem("comanda.beguda.preu");
+		if (preuBegudes != 'undefined' && preuBegudes != null) {
+			preu =  parseFloat(preu) + parseFloat(preuBegudes);
+		}
 		$("#preu").text(preu);
 	}
 

@@ -15,6 +15,15 @@ public class VotacionsBoImpl implements VotacionsBo {
 		return this.votacionsDao.count(idplat, star);
 	}
 	
+	
+	public VotacioTMP getLast(Long idplat, Long idUser)throws BOException{
+		try{
+			return	this.getLast(idplat, idUser);
+		}catch(Exception e){
+			throw new BOException(e,"Error retrieving last vote");
+		}
+	}
+	
 	public VotacioTMP get(Long idplat, Long idUser)throws BOException {
 		
 		if(idplat==null || idUser==null){

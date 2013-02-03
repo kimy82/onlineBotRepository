@@ -16,5 +16,7 @@ public interface BegudaBo{
 	Beguda load( Long id ) throws BOException;
 	
 	List<Beguda> getAll();
+	
+	List<Beguda> getAll(String tipus) throws BOException;
 
 }

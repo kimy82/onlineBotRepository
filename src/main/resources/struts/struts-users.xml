@@ -33,8 +33,10 @@
 			<result name="success">/pages/users/comandes.jsp</result>
 			<result name="error">/error.jsp</result>	
 		</action>
-		
-		
-		
+		<action name="votaUserPlat" class="com.online.action.users.WelcomeUserAction"
+			method="votaUserPlat">
+			<result name="success">/pages/users/votacions/vota.jsp</result>
+			<result name="error">/error.jsp</result>	
+		</action>	
 	</package>
 </struts>

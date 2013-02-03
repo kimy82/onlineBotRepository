@@ -22,16 +22,19 @@ import com.online.bo.BegudaBo;
 import com.online.bo.ComandaBo;
 import com.online.bo.PromocionsBo;
 import com.online.bo.UsersBo;
+import com.online.bo.VotacionsBo;
 import com.online.exceptions.BOException;
 import com.online.exceptions.GeneralException;
 import com.online.exceptions.WrongParamException;
 import com.online.model.Beguda;
 import com.online.model.Comandes;
 import com.online.model.HoresDTO;
+import com.online.model.Plat;
 import com.online.model.PlatComanda;
 import com.online.model.PromocioAPartirDe;
 import com.online.model.PromocioNumComandes;
 import com.online.model.Users;
+import com.online.model.VotacioTMP;
 import com.online.pojos.Basic;
 import com.online.pojos.BasicSub;
 import com.online.pojos.ComandesUserTable;
@@ -44,7 +47,7 @@ public class WelcomeUserAction extends ActionSupport implements ServletResponseA
 	/**
 	 * 
 	 */
-	private static final long	serialVersionUID	= 1L;
+	private static final long	serialVersionUID		= 1L;
 
 	HttpServletResponse			response;
 	HttpServletRequest			request;
@@ -53,29 +56,31 @@ public class WelcomeUserAction extends ActionSupport implements ServletResponseA
 	private UsersBo				usersBo;
 	private PromocionsBo		promocionsBo;
 	private BegudaBo			begudaBo;
+	private VotacionsBo			votacionsBo;
 	private ComandaServiceImpl	comandaService;
 	private Users				user;
-	private Long				idComanda			= null;
-	private Comandes			comanda				= null;
+	private Long				idComanda				= null;
+	private Comandes			comanda					= null;
 	private HoresDTO			horesDTO;
-	
+
 	private String				sEcho;
-	private int					lenght				= 0;
-	private int					inici				= 0;
-	private String				sortDireccio		= null;
-	private int					numComandes			= 0;
+	private int					lenght					= 0;
+	private int					inici					= 0;
+	private String				sortDireccio			= null;
+	private int					numComandes				= 0;
 	private String				data;
 	private String				nameAuth;
-	private String				recoveredComanda	="true";
-	private int					numPlats			=0;
-	private int					numBegudes			=0;
+	private String				recoveredComanda		= "true";
+	private int					numPlats				= 0;
+	private int					numBegudes				= 0;
 
-	private List<Basic>			horaList			= new ArrayList<Basic>();
-	List<Comandes>				ComandaList			= new ArrayList<Comandes>();
-	List<PromocioAPartirDe>		promoListAPartirDe	= new ArrayList<PromocioAPartirDe>();
-	List<PromocioNumComandes>	promocioNumComandes	= new ArrayList<PromocioNumComandes>();
-	private List<BasicSub>		refrescList			= new ArrayList<BasicSub>();
-	List<PlatComanda>			platComandaList		= new ArrayList<PlatComanda>();
+	private List<Basic>			horaList				= new ArrayList<Basic>();
+	List<Comandes>				ComandaList				= new ArrayList<Comandes>();
+	List<PromocioAPartirDe>		promoListAPartirDe		= new ArrayList<PromocioAPartirDe>();
+	List<PromocioNumComandes>	promocioNumComandes		= new ArrayList<PromocioNumComandes>();
+	private List<BasicSub>		refrescList				= new ArrayList<BasicSub>();
+	List<PlatComanda>			platComandaList			= new ArrayList<PlatComanda>();
+	List<Plat>					platListToVote	= new ArrayList<Plat>();
 
 	public String execute(){
 
@@ -118,17 +123,17 @@ public class WelcomeUserAction extends ActionSupport implements ServletResponseA
 			getUserAllInfoFromContext();
 
 			Comandes comandaDone = this.comandaBo.load(this.idComanda);
-			
+
 			this.comanda = this.comandaService.getComandaToRepeat(comandaDone);
-			
+
 			this.comandaBo.save(comanda);
-			
+
 			horesDTO = new HoresDTO();
 			horesDTO.setData(data);
 			horesDTO = this.comandaService.setHoresFeature(horesDTO, this.data, this.comanda);
 			Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 			this.nameAuth = auth.getName();
-			
+
 			List<Beguda> begudaList = this.begudaBo.getAll();
 			for (Beguda beguda : begudaList) {
 
@@ -138,18 +143,44 @@ public class WelcomeUserAction extends ActionSupport implements ServletResponseA
 				this.refrescList.add(basic);
 
 			}
-			
-			
+
 			this.platComandaList = comanda.getPlats();
-			
+
 			this.numPlats = this.comandaService.getNumPlats(this.platComandaList);
-			
+
 			return SUCCESS;
-			
+
 		} catch (Exception e) {
 			return ERROR;
 		}
-		
+
+	}
+
+	public String votaUserPlat(){
+
+		try {
+
+			inicializeIdComanda();
+			getUserAllInfoFromContext();
+
+			this.platListToVote.clear();
+
+			Comandes comanda = this.comandaBo.load(this.idComanda);
+			this.platComandaList = comanda.getPlats();
+
+			for (PlatComanda platComanda : this.platComandaList) {
+
+				VotacioTMP votTMP = this.votacionsBo.getLast(platComanda.getPlat().getId(), this.user.getId());
+				if (votTMP.getDia().before(comanda.getDia())) {
+					addAsPlatToVote(platComanda);
+				}
+			}
+
+			return SUCCESS;
+
+		} catch (Exception e) {
+			return ERROR;
+		}
 
 	}
 
@@ -201,11 +232,18 @@ public class WelcomeUserAction extends ActionSupport implements ServletResponseA
 		}
 	}
 
+	private void addAsPlatToVote( PlatComanda platComanda ){
+
+		this.platListToVote.add(platComanda.getPlat());
+
+	}
+
 	private void inizializeData() throws WrongParamException{
 
 		this.data = Utils.formatDate2(new Date());
-		
+
 	}
+
 	private void inicializeIdComanda(){
 
 		try {
@@ -255,7 +293,8 @@ public class WelcomeUserAction extends ActionSupport implements ServletResponseA
 		for (Comandes comanda : ComandaList) {
 			ComandesUserTable cmdUserTable = new ComandesUserTable();
 			BeanUtils.copyProperties(comanda, cmdUserTable);
-			if(cmdUserTable.getObservacions()==null)cmdUserTable.setObservacions("");
+			if (cmdUserTable.getObservacions() == null)
+				cmdUserTable.setObservacions("");
 			cmdUserTable.setPlatsString(getNomPLats(comanda));
 			cmdUserTable.setAccio("<a href=\"#\" onclick=\"repeatComanda(" + comanda.getId()
 					+ ")\" ><img src=\"../images/shopping_cart.png\"></a>");
@@ -277,11 +316,14 @@ public class WelcomeUserAction extends ActionSupport implements ServletResponseA
 
 		StringBuffer nomPlats = new StringBuffer("");
 		for (PlatComanda platComanda : comanda.getPlats()) {
-			nomPlats.append(platComanda.getPlat().getNom() + ",");
+			nomPlats.append(platComanda.getPlat().getNom());
+			nomPlats.append("<a href='#' onclick='goToVotarPlat(" + platComanda.getPlat().getId()+ ")' ><img  src='/onlineBot/images/info.gif' /></a><br>");
 		}
-		if(nomPlats.length()!=0)
+		if (nomPlats.length() != 0)
 			nomPlats.setLength(nomPlats.length() - 1);
-		
+
+	
+
 		return nomPlats.toString();
 	}
 
@@ -382,109 +424,128 @@ public class WelcomeUserAction extends ActionSupport implements ServletResponseA
 	}
 
 	public List<PromocioAPartirDe> getPromoListAPartirDe(){
-	
+
 		return promoListAPartirDe;
 	}
 
 	public void setPromoListAPartirDe( List<PromocioAPartirDe> promoListAPartirDe ){
-	
+
 		this.promoListAPartirDe = promoListAPartirDe;
 	}
 
 	public List<PromocioNumComandes> getPromocioNumComandes(){
-	
+
 		return promocioNumComandes;
 	}
 
 	public void setPromocioNumComandes( List<PromocioNumComandes> promocioNumComandes ){
-	
+
 		this.promocioNumComandes = promocioNumComandes;
 	}
 
 	public void setComandaService( ComandaServiceImpl comandaService ){
-	
+
 		this.comandaService = comandaService;
 	}
 
 	public void setBegudaBo( BegudaBo begudaBo ){
-	
+
 		this.begudaBo = begudaBo;
 	}
 
 	public HoresDTO getHoresDTO(){
-	
+
 		return horesDTO;
 	}
 
 	public void setHoresDTO( HoresDTO horesDTO ){
-	
+
 		this.horesDTO = horesDTO;
 	}
 
 	public String getNameAuth(){
-	
+
 		return nameAuth;
 	}
 
 	public void setNameAuth( String nameAuth ){
-	
+
 		this.nameAuth = nameAuth;
 	}
 
 	public List<BasicSub> getRefrescList(){
-	
+
 		return refrescList;
 	}
 
 	public void setRefrescList( List<BasicSub> refrescList ){
-	
+
 		this.refrescList = refrescList;
 	}
 
 	public List<PlatComanda> getPlatComandaList(){
-	
+
 		return platComandaList;
 	}
 
 	public void setPlatComandaList( List<PlatComanda> platComandaList ){
-	
+
 		this.platComandaList = platComandaList;
 	}
 
 	public String getRecoveredComanda(){
-	
+
 		return recoveredComanda;
 	}
 
 	public void setRecoveredComanda( String recoveredComanda ){
-	
+
 		this.recoveredComanda = recoveredComanda;
 	}
 
 	public Long getIdComanda(){
-	
+
 		return idComanda;
 	}
 
 	public void setIdComanda( Long idComanda ){
-	
+
 		this.idComanda = idComanda;
 	}
 
-	public int getNumPlats() {
+	public int getNumPlats(){
+
 		return numPlats;
 	}
 
-	public void setNumPlats(int numPlats) {
+	public void setNumPlats( int numPlats ){
+
 		this.numPlats = numPlats;
 	}
 
-	public int getNumBegudes() {
+	public int getNumBegudes(){
+
 		return numBegudes;
 	}
 
-	public void setNumBegudes(int numBegudes) {
+	public void setNumBegudes( int numBegudes ){
+
 		this.numBegudes = numBegudes;
+	}
+
+	public List<Plat> getPlatListToVote(){
+
+		return platListToVote;
+	}
+
+	public void setPlatListToVote( List<Plat> platListToVote ){
+
+		this.platListToVote = platListToVote;
+	}
+
+	public void setVotacionsBo( VotacionsBo votacionsBo ){
+	
+		this.votacionsBo = votacionsBo;
 	}
 	
 	

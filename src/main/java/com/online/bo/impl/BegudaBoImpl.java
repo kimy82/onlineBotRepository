@@ -11,6 +11,12 @@ public class BegudaBoImpl implements BegudaBo{
 
 	private BegudaDao	begudaDao;
 
+	public List<Beguda> getAll(String tipus) throws BOException{
+		
+		return begudaDao.getAll(tipus);
+		
+	}
+	
 	public void save( Beguda beguda ) throws BOException{
 
 		checkBeguda(beguda);

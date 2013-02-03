@@ -82,7 +82,8 @@
 						<tr><td><input type="button"  onclick="fillAddress()" value="submit"/></td></tr>	                    															
 				</s:form>	
 </div> 
-
+<div id="votaPlats_dialog" class="filtres filtres-oberts" title="<s:text name='txt.info.title' />">	 		
+</div>  
 	<link rel="stylesheet" href="<c:url value='/css/demo_table.css' />" type="text/css"   media="screen" />
 	<link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/base/jquery-ui.css" rel="stylesheet" type="text/css" />
 	<link type="text/css" rel="stylesheet" href="<c:url value='/css/online.css' />" />

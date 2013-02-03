@@ -9,76 +9,89 @@ import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.online.dao.UsersDao;
+import com.online.exceptions.BOException;
 import com.online.model.Comandes;
+import com.online.model.NewsLetter;
 import com.online.model.UserRole;
 import com.online.model.Users;
 
 public class UsersDaoImpl extends HibernateDaoSupport implements UsersDao{
-	
-	
-	
-	public void save(Users user){
-		
-		
+
+	public void save( Users user ){
+
 		getHibernateTemplate().save(user);
-		
-		UserRole userRole = new UserRole(); 		
+
+		UserRole userRole = new UserRole();
 		userRole.setRole("ROLE_USER");
 		userRole.setIdUser(user.getId());
 		userRole.setId(user.getId());
-		
-		getHibernateTemplate().save(userRole);				
-		
+
+		getHibernateTemplate().save(userRole);
+
+	}
+
+	public void setEmailToDB( String email ){
+
+		NewsLetter newsletterEmail = new NewsLetter();
+		newsletterEmail.setEmail(email);
+		List<NewsLetter> emailsFounds = (List<NewsLetter>) getHibernateTemplate().find("from NewsLetter nl where nl.email= ?", email);
+		if(emailsFounds.isEmpty())
+			getHibernateTemplate().saveOrUpdate(newsletterEmail);
+	}
+
+	public List<NewsLetter> getEmailsFromDB(){
+		return getHibernateTemplate().loadAll(NewsLetter.class);
 	}
 	
-	public void update(Users user){
+	public void update( Users user ){
+
 		getHibernateTemplate().update(user);
 	}
-	
-	public void delete(Users user){
-		
+
+	public void delete( Users user ){
+
 		Session session = this.getSessionFactory().openSession();
 		session.beginTransaction();
-		Users userToDelete = (Users)session.load(Users.class, user.getId());
+		Users userToDelete = (Users) session.load(Users.class, user.getId());
 		session.delete(userToDelete.getUserRole());
-		session.delete(userToDelete);						
+		session.delete(userToDelete);
 		session.getTransaction().commit();
 		session.close();
-		
-	//	getHibernateTemplate().delete(user);
+
+		// getHibernateTemplate().delete(user);
 	}
 
 	@SuppressWarnings("unchecked")
 	public Users findByUsername( String username ){
+
 		List<Users> userFounds = (List<Users>) getHibernateTemplate().find("from Users u where u.username = ?", username);
-		if(userFounds.isEmpty())return null;
+		if (userFounds.isEmpty())
+			return null;
 		Users userFound = userFounds.get(0);
 		return userFound;
 	}
-	
-	public boolean checkUserPlat(Long idUser, Long idPlat){
-		
-		
+
+	public boolean checkUserPlat( Long idUser, Long idPlat ){
+
 		Session session = this.getSessionFactory().openSession();
 		session.beginTransaction();
 		Criteria criteria = session.createCriteria(Comandes.class);
 		criteria.createAlias("user", "user").add(Restrictions.eq("user.id", idUser));
 		criteria.createAlias("plats", "plats").add(Restrictions.eq("plats.plat.id", idPlat));
 		List<Comandes> comandalist = criteria.list();
-		
-		if(!comandalist.isEmpty()){
+
+		if (!comandalist.isEmpty()) {
 			return true;
 		}
-		
+
 		return false;
-		
+
 	}
-	
+
 	@Transactional
 	public List<Users> getAll(){
 
 		return getHibernateTemplate().loadAll(Users.class);
 	}
-
 
 }

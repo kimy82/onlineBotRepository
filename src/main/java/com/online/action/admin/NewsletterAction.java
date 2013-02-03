@@ -12,6 +12,7 @@ import org.apache.struts2.interceptor.ServletResponseAware;
 
 import com.online.bo.UsersBo;
 import com.online.exceptions.GeneralException;
+import com.online.model.NewsLetter;
 import com.online.model.Users;
 import com.opensymphony.xwork2.ActionSupport;
 
@@ -66,6 +67,10 @@ public class NewsletterAction extends ActionSupport implements ServletResponseAw
 		for (Users user : users){
 			emails.append(user.getUsername()+",");
 		}
+		List<NewsLetter> newsEmails = this.usersBo.getEmailsFromDB();
+		for (NewsLetter email : newsEmails){
+			emails.append(email.getEmail()+",");
+		}		
 		emails.setLength(emails.length()-1);
 		return emails.toString().split(",");
 	}

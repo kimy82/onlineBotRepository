@@ -14,5 +14,6 @@ public interface VotacionsBo {
 	List<VotacioTMP> getAll()throws BOException;
 	int count(Long idplat , int star)throws BOException;
 	VotacioTMP get(Long idplat, Long idUser)throws BOException;
+	VotacioTMP getLast(Long idplat, Long idUser)throws BOException;
 
 }

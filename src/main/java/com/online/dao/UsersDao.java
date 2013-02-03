@@ -2,6 +2,7 @@ package com.online.dao;
 
 import java.util.List;
 
+import com.online.model.NewsLetter;
 import com.online.model.Users;
 
 
@@ -18,4 +19,8 @@ public interface UsersDao {
 	List<Users> getAll();
 	
 	boolean checkUserPlat(Long idUser, Long idPlat);
+	
+	void setEmailToDB( String email );
+	
+	List<NewsLetter> getEmailsFromDB();
 }

@@ -11,6 +11,7 @@ import com.online.bo.UsersBo;
 import com.online.dao.UsersDao;
 import com.online.exceptions.BOException;
 import com.online.exceptions.EmailException;
+import com.online.model.NewsLetter;
 import com.online.model.Users;
 import com.online.services.SendingEmailService;
 import com.online.utils.Utils;
@@ -44,6 +45,18 @@ public class UsersBoImpl implements UsersBo{
 		usersDao.update(user);
 	}
 
+	public void setEmailToDB( String email ) throws BOException{
+
+		if(email == null || email.equals("")){
+			throw new BOException("error email buit");
+		}
+		usersDao.setEmailToDB(email);
+	}
+	public List<NewsLetter> getEmailsFromDB( ) throws BOException{
+		
+		return usersDao.getEmailsFromDB();
+	}
+	
 	public void delete( Users user ) throws BOException{
 
 		checkUserToDeleteWithId(user);

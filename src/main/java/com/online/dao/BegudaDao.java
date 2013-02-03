@@ -15,4 +15,6 @@ public interface BegudaDao{
 	Beguda load( Long id );
 	
 	List<Beguda> getAll();
+	
+	List<Beguda> getAll(String tipus);
 }

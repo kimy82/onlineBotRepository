@@ -51,6 +51,12 @@ public class BegudaDaoImpl extends HibernateDaoSupport implements BegudaDao{
 
 		return getHibernateTemplate().loadAll(Beguda.class);
 	}
+	
+	public List<Beguda> getAll(String tipus){
+
+		return getHibernateTemplate().find("from Beguda bg where bg.tipus=?", tipus);
+	}
+
 
 
 	

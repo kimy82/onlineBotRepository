@@ -57,26 +57,6 @@ function initAddress(){
 	
 }
 
-function submitLog(){
-	
-	$.ajax({
-	    url: "<c:url value='/onlineBot/j_spring_security_check' />",
-	    type: "POST",
-	    data: $("#f").serialize(),
-	    dataType: 'json',
-	    beforeSend: function (xhr) {
-	        xhr.setRequestHeader("X-Ajax-call", "true");
-	    },
-	    success: function(json) {
-	        if (json.result == "ok") {
-	        	$("#loged").text(initParams.checkok);	             
-	        } else if (json.result == "error") {	        	
-	        	$("#loged").text(initParams.checkko);
-	        }
-	    }
-	});	
-}
-
 function reloadHores(){
 	var dia = $("#dia").val();
 	var data = window.localStorage.setItem("comanda.data",dia);
@@ -135,6 +115,9 @@ function reloadHores(){
 }
 
 function checKHour(id){
+	if($("#"+id).hasClass("notcheck")){
+		return;
+	}
 	var id_old = $("#comandahora").val();
 	
 	$("#"+id_old).removeClass("checked");
@@ -146,6 +129,7 @@ function checKHour(id){
 	
 	$("#comandahora").val(id);
 }
+
 
 function setHourNotCheck(id){
 	$("#"+id).removeClass("check");
@@ -371,7 +355,7 @@ $(function(){
            					 		
            					 	}else{
            					 		numBegudes= numBegudes+value.numBegudes;
-           					 	preuBegudes=  parseFloat(preuBegudes) + parseFloat(value.beguda.preu);
+           					 		preuBegudes=  parseFloat(preuBegudes) + parseFloat(value.beguda.preu)*value.numBegudes;
            						}
            						html=html+"<div class='selector'>"+value.beguda.nom+"<br>"+value.beguda.preu+"</div>";
            						

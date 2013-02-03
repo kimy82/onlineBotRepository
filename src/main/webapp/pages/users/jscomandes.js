@@ -23,6 +23,31 @@ function InitParams(txtusernameempty, txtpasswordempty,txtpasswordnotequal,txtte
 	
 }
 
+function goToVotarPlat(idPlat){
+	
+	$("#votaPlats_dialog").load("../foro/foro.action?idPlat="+idPlat);	
+	$("#votaPlats_dialog").dialog({ 
+		   autoOpen: false,
+		   height: 500,
+		   width: 750,
+		   modal: true,
+		   close: function(event, ui) { 			   
+			   $("#votaPlats_dialog").dialog("close"); 			  
+			}
+	});
+    $("#votaPlats_dialog").dialog("open");  	
+}
+
+$("#votaPlats_dialog").dialog({ 
+	   autoOpen: false,
+	   height: 700,
+	   width: 750,
+	   modal: true,
+	   close: function(event, ui) { 			   
+		   $("#votaPlats_dialog").dialog("close"); 			  
+		}
+	});
+
 $("#dialog_details").dialog( { autoOpen: false,
 	  modal: true,
 	  position: 'center',
