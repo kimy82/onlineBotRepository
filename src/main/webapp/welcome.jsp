@@ -18,35 +18,11 @@
 
 	<div id="content">
 		<!-- menu -->
-		<div id="topmenu">
-				<ul id="menu">
-				<li><a href="#"><s:text name="menu.inici" /></a></li>
-				<li><img src="img/elements/bar2.png"></li>
-				<li><a href="#"><s:text name="menu.restaurants" /></a>
-					<ul>
-						<s:iterator value="restaurantList" var="restaurant">
-						 	<li><a href="#" onclick="document.getElementById('${restaurant.id}').click()">${restaurant.nom}</a></li>
-						</s:iterator>				        
-        			</ul></li> 
-				<li><img src="img/elements/bar2.png"></li>
-				<li><a href="/${initParam.app}/comanda/getVins.action"><s:text name="menu.vins" /></a></li>
-				<li><img src="img/elements/bar2.png"></li>
-				<li><a href="/${initParam.app}/comanda/getRefrescos.action"><s:text name="menu.refresc" /></a></li>
-				<li><img src="img/elements/bar2.png"></li>
-				<li><a href="#"><s:text name="menu.fercomanda" /></a></li>
-				<li><img src="img/elements/bar2.png"></li>
-				<li class="confirm"><a href="#" onclick="confirmComanda()" ><label id="numProduct" ></label> </a></li>
-				</ul>
-		</div>
+			<c:import url="/pages/includes/menuHeader.jsp" />
 		<!-- END menu -->
 		<!-- Language -->
-		<div id="toplang">
-				<ul>
-				<li class="menuleft"><a href="/${initParam.app}/changeLocale.action?request_locale=CA&locale=CA">CAT</a></li>
-				<li><img src="img/elements/bar2.png"></li>
-				<li><a href="/${initParam.app}/changeLocale.action?request_locale=ES&locale=CA">ES</a></li>
-				</ul>
-		</div>
+			<c:import url="/pages/includes/divLanguage.jsp" />
+		<!-- END language -->
 		<c:import url="/pages/includes/homeSlider.jsp" />
 		<!-- Content seccio-->
 		<div id="content_seccion">
@@ -54,7 +30,7 @@
 			<div id="seccion">
 			
 				<div id="rest">
-				<s:text name="txt.welcome.title.restaurants" />				
+					<s:text name="txt.welcome.title.restaurants" />				
 				</div>
 				<s:iterator value="restaurantList" var="restaurant">
 				<div class="iterate_Rest selector" id="${restaurant.id}" >
@@ -110,7 +86,8 @@
 	  				</c:if>
 	  				
 				</div>
-				</s:iterator>							
+				</s:iterator>	
+				<c:import url="/pages/includes/pagination.jsp" />						
 		</div>
 		
 		<div id="left">

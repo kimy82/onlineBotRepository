@@ -354,13 +354,9 @@ $(function(){
            					 		numBegudesPromo=numBegudesPromo+value.numBegudesPromo;
 
            					 		numBegudes= numBegudes+value.numBegudes;
-<<<<<<< .mine
-           					 		preuBegudes=  parseFloat(preuBegudes) + parseFloat(value.beguda.preu);
-=======
+
            					 		preuBegudes=  parseFloat(preuBegudes) + parseFloat(value.beguda.preu)*value.numBegudes;
            						}
-           						html=html+"<div class='selector'>"+value.beguda.nom+"<br>"+value.beguda.preu+"</div>";
->>>>>>> .r121
            						
            					 		html=html+"<div class='selector'>"+value.beguda.nom+"<br>"+value.beguda.preu+"</div>";
            						

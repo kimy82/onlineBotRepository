@@ -15,13 +15,17 @@
 				<li><a name="register" type="button" href="#" onclick="goToLogin()" ><s:text name="txt.user.login" /></a></li>
 				<li class="last"><img src="img/elements/bar.png"></li>
 			</c:if>	
-			<c:if test="${nameAuth ne 'anonymousUser' }">
-				<li><a href="<c:url value="/j_spring_security_logout" />" > <s:text name="txt.user.logout" /></a></li>
-				<li><img src="img/elements/bar.png"></li>
-				 <a href="<c:url value='/user/comandesPasades.action' />" > <s:text name="txt.comandes.historic" /></a>				
-			</c:if>
 			</ul>
 		</div>
+		<c:if test="${nameAuth ne 'anonymousUser' }">
+		<div id="ben">
+			<ul>
+			<li>Benvingut ${nameAuth}, <a href="<c:url value='/user/comandesPasades.action' />" ><s:text name="txt.comandes.historic" /></a></li>
+			<li class="last"><img src="img/elements/bar.png"></li>
+			<li><a href="<c:url value="/j_spring_security_logout" />" > <s:text name="txt.user.logout" /></a></li>
+			</ul>
+		</div>
+		</c:if>
 	</div>
 </div>
 <div id="login_dialog" class="filtres filtres-oberts" title="<s:text name='txt.user.login' />">	 		
