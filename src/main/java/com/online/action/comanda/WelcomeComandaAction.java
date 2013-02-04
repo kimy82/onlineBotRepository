@@ -32,6 +32,7 @@ import com.online.model.Comandes;
 import com.online.model.HoresDTO;
 import com.online.model.Plat;
 import com.online.model.PlatComanda;
+import com.online.model.Restaurant;
 import com.online.model.Users;
 import com.online.pojos.BasicSub;
 import com.online.services.impl.ComandaServiceImpl;
@@ -50,6 +51,7 @@ public class WelcomeComandaAction extends ActionSupport implements ServletRespon
 	private RestaurantsBo		restaurantsBo;
 	private UsersBo				usersBo;
 	private Comandes			comanda;
+	private Restaurant			restaurant;
 
 	List<Plat>					platList			= new ArrayList<Plat>();
 	List<Beguda>				begudaList			= new ArrayList<Beguda>();
@@ -80,6 +82,11 @@ public class WelcomeComandaAction extends ActionSupport implements ServletRespon
 
 	HttpServletResponse			response;
 	HttpServletRequest			request;
+	
+	private Integer				actualPage;
+	private Integer				totalPage;
+	private Integer				rppPage =9;
+
 
 	public String execute(){
 
@@ -88,10 +95,19 @@ public class WelcomeComandaAction extends ActionSupport implements ServletRespon
 		inizializeRestaurantId();
 		inizilizeComandaId();
 		// Recoperem tots els plats disponibles.
-
+		
 		this.platList.clear();
-		this.platList.addAll(this.restaurantsBo.load(this.idRestaurant, true, false, false).getPlats());
-
+		this.restaurant = this.restaurantsBo.load(this.idRestaurant, true, false, false);
+		this.platList.addAll(this.restaurant.getPlats());
+		
+		inizializePagin();
+		
+		this.platList = this.platList.subList(actualPage*rppPage, (actualPage+1)*rppPage);
+		
+		inizializeComments();
+		
+		this.begudaList = this.begudaBo.getAll("vi");
+		
 		this.dataActual = Utils.formatDate2(new Date());
 
 		// si teniem una comanda la recuperem
@@ -382,7 +398,40 @@ public class WelcomeComandaAction extends ActionSupport implements ServletRespon
 
 		return null;
 	}
+	
+	public String getHoraComanda(){
 
+		ServletOutputStream out = null;
+
+		String json = "";
+
+		try {
+
+			out = this.response.getOutputStream();
+
+			inizializeRestaurantId();
+			inizializeData();
+
+			
+			String hora = this.comandaService.getHora(this.idRestaurant, this.data);
+
+			json = "{\"hora\":\""+hora+"\"}";
+
+		} catch (ComandaException ce) {
+			json = createErrorJSON("error in comanda service action");
+		} catch (Exception e) {
+			json = createErrorJSON("error in ajax action");
+		}
+
+		try {
+			out.print(json);
+		} catch (IOException e) {
+			throw new GeneralException(e, "possibly ServletOutputStream null");
+		}
+
+		return null;
+
+	}
 	public String loadHores(){
 
 		ServletOutputStream out = null;
@@ -485,7 +534,23 @@ public class WelcomeComandaAction extends ActionSupport implements ServletRespon
 	}
 
 	// private methods
-
+	
+	private void  inizializePagin(){
+		this.actualPage= (request.getParameter("actualPage")!=null && !request.getParameter("actualPage").equals(""))? Integer.parseInt(request.getParameter("actualPage")): 0;
+		this.totalPage = this.platList.size()/this.rppPage;
+	}
+	
+	private void inizializeComments(){
+		
+		List<Plat> list = new ArrayList();
+		
+		for(Plat plat : this.platList){			
+			  list.add(this.platsBo.loadPLatAndForos(this.idPlat));			
+		}
+		this.platList= list;
+		
+	}
+	
 	private Users getUserFromContext(){
 
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
@@ -763,6 +828,46 @@ public class WelcomeComandaAction extends ActionSupport implements ServletRespon
 	public void setBegudaList( List<Beguda> begudaList ){
 
 		this.begudaList = begudaList;
+	}
+
+	public Restaurant getRestaurant(){
+	
+		return restaurant;
+	}
+
+	public void setRestaurant( Restaurant restaurant ){
+	
+		this.restaurant = restaurant;
+	}
+
+	public Integer getActualPage(){
+	
+		return actualPage;
+	}
+
+	public void setActualPage( Integer actualPage ){
+	
+		this.actualPage = actualPage;
+	}
+
+	public Integer getTotalPage(){
+	
+		return totalPage;
+	}
+
+	public void setTotalPage( Integer totalPage ){
+	
+		this.totalPage = totalPage;
+	}
+
+	public Integer getRppPage(){
+	
+		return rppPage;
+	}
+
+	public void setRppPage( Integer rppPage ){
+	
+		this.rppPage = rppPage;
 	}
 
 }
