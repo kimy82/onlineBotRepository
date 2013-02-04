@@ -18,7 +18,6 @@ import com.online.bo.RestaurantsBo;
 import com.online.bo.UsersBo;
 import com.online.model.Restaurant;
 import com.online.utils.Utils;
-import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 
 @SuppressWarnings("serial")
@@ -34,12 +33,18 @@ public class WelcomeAction extends ActionSupport implements ServletResponseAware
 	private String				localeToChange;
 	Map<String, Object>			session;
 	private String				email;
+	private Integer				actualPage;
+	private Integer				totalPage;
+	private Integer				rppPage =9;
 
 	public String execute(){
 
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		this.nameAuth = auth.getName();
+		
 		this.restaurantList = this.restaurantsBo.getAll(true, false, false);
+		inizializePagin();
+		this.restaurantList = this.restaurantList.subList(actualPage*rppPage, (actualPage+1)*rppPage);
 		this.dataAvui = Utils.formatDate2(new Date());
 
 		return SUCCESS;
@@ -73,7 +78,11 @@ public class WelcomeAction extends ActionSupport implements ServletResponseAware
 	}
 
 	// PRIVATES
-
+	private void  inizializePagin(){
+		this.actualPage= (request.getParameter("actualPage")!=null && !request.getParameter("actualPage").equals(""))? Integer.parseInt(request.getParameter("actualPage")): 0;
+		this.totalPage = this.restaurantList.size()/this.rppPage;
+	}
+	
 	private void initEmail() throws Exception{
 		this.email= request.getParameter("email");
 	}
@@ -156,6 +165,36 @@ public class WelcomeAction extends ActionSupport implements ServletResponseAware
 	public void setUsersBo( UsersBo usersBo ){
 	
 		this.usersBo = usersBo;
-	}	
+	}
+
+	public Integer getActualPage(){
+	
+		return actualPage;
+	}
+
+	public void setActualPage( Integer actualPage ){
+	
+		this.actualPage = actualPage;
+	}
+
+	public Integer getRppPage(){
+	
+		return rppPage;
+	}
+
+	public void setRppPage( Integer rppPage ){
+	
+		this.rppPage = rppPage;
+	}
+
+	public Integer getTotalPage(){
+	
+		return totalPage;
+	}
+
+	public void setTotalPage( Integer totalPage ){
+	
+		this.totalPage = totalPage;
+	}		
 
 }
