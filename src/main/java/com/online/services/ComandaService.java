@@ -41,5 +41,7 @@ public interface ComandaService{
 	
 	public Comandes getComandaToRepeat(Comandes comanda) throws ComandaException;
 	
+	public String getHora(Integer idRestaurant, String data)throws ComandaException;
+	
 }
  
