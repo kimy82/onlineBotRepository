@@ -33,7 +33,7 @@
 					<s:text name="txt.welcome.title.restaurants" />				
 				</div>
 				<s:iterator value="restaurantList" var="restaurant">
-				<div class="iterate_Rest selector" id="${restaurant.id}" >
+				<div class="iterate_Rest selector_jq" id="${restaurant.id}" >
 					<div class="img_Rest" style="background-image: url(/${initParam.app}/comanda/ImageAction.action?imageId=${restaurant.foto.id});" >
 						<div class="enter">
 							<c:if test="${not empty restaurant.configRestaurants}">
@@ -147,7 +147,7 @@
 	<!-- CSS portamu -->
 	
 	<link rel="stylesheet" href="<c:url value='/css/coin-slider-styles.css' />" type="text/css" />
-	<link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/base/jquery-ui.css" rel="stylesheet" type="text/css" />
+	<!-- link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/base/jquery-ui.css" rel="stylesheet" type="text/css" / -->
 	<link type="text/css" rel="stylesheet" href="<c:url value='/css/online.css' />" />
 	<script src="<c:url value='/js/jquery/jquery.js' />" type="text/javascript"></script>
 	<script src="<c:url value='/js/jquery/jquery.ui.core.js' />" type="text/javascript"></script>

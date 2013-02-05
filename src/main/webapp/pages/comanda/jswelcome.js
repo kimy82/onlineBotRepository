@@ -1,6 +1,14 @@
+///////////////////////////////////
+//variables per textos en locale
+var initParams=null ;
+function InitParams(txtconfirm,txtproductes,txtproducte){		
+	this.txtconfirm = txtconfirm;
+	this.txtproductes = txtproductes;
+	this.txtproducte = txtproducte;
+}
 $(function() {
 
-	$(".selector").dblclick(function() {
+	$(".selector_jq").dblclick(function() {
 
 		var dragBeguda = $(this).clone();
 		dragBeguda.appendTo("#droppable");
@@ -37,14 +45,14 @@ $(function() {
 			var item_id = $(this).attr("id");
 			var rawBeguda = item_id.split("_");
 			saveBegudaToComanda(rawBeguda[1]);
-			$(this).css("visiblity", "hidden");
-			$(this).css("display", "none");
+			$(dragBeguda).css("visiblity", "hidden");
+			$(dragBeguda).css("display", "none");
 		});
 	});
 	
 	function saveBegudaToComanda(idBeguda){
 		
-		var data ="idBeguda="+idBeguda+"&idComanda="+$("#idcomanda").val()+"&promo=false";
+		var data ="idBeguda="+idBeguda+"&idComanda="+$("#numComanda").text()+"&promo=false";
 	  	$.ajax({
 	  		  type: "POST",
 	  		  url: '/'+context+'/comanda/ajaxLoadBeguda.action',
@@ -54,7 +62,7 @@ $(function() {
 	  			  if(json!=null && json.error!=null){           				
 	       				errorOnline.error("Error in AJAX: "+json.error);	
 	       			}else{
-	       				if(json.alerta!=null){
+	       				if(json!=null && json.alerta!=null){
 	       					alertOnline.alertes(json.alerta);
 	       					
 	       				}else{
@@ -62,7 +70,8 @@ $(function() {
 	       					var numBegudesPromo=0;           					
 	       					var preuBegudes = 0.0;
 	       					var html="";
-	       					$.each(json, function(index, value) { 
+	       					var begudes= json.begudes;
+	       					$.each(begudes, function(index, value) { 
 	       					 	
 	       					 	if(value.promo==true || value.promo=='true'){
 	       					 		numBegudesPromo=numBegudesPromo+value.numBegudes;
@@ -70,23 +79,25 @@ $(function() {
 	       					 	}else{
 	       					 		numBegudes= numBegudes+value.numBegudes;
 	       					 		preuBegudes=  parseFloat(preuBegudes) + (parseFloat(value.beguda.preu)*value.numBegudes);
-	       						}
-	       						html=html+"<div class='selector'>"+value.beguda.nom+"<br>"+value.beguda.preu+"</div>";
+	       						}	       				
 	       						
 	       					});
 	       				
 	       					window.localStorage.setItem("comanda.promo.nBegudes.added",numBegudesPromo);
 	       					window.localStorage.setItem("comanda.numbegudes",numBegudes);
-	       					window.localStorage.setItem("comanda.beguda.preu",preuBegudes.toFixed(2));
-	       					$("#begudes").html(html);
-	       					$("#numbegudes").text(numBegudes);
-	       					$("#numbegudespromo").text(numBegudesPromo);
+	       					window.localStorage.setItem("comanda.beguda.preu",preuBegudes.toFixed(2));	       					
+	       					$("#numbegudes").text(numBegudes);	       				
 	       					var preuComanda = window.localStorage.getItem("comanda.preu");
-	       					var preuFinal = parseFloat(preuComanda) + parseFloat(preuBegudes);
-	       					$("#preu").text(preuFinal.toFixed(2));
+	       					if(preuComanda!= 'undefined' && preuComanda != null){
+	       						var preuFinal = parseFloat(preuComanda) + parseFloat(preuBegudes);
+	       						$("#preu").text(preuFinal.toFixed(2));
+	       					}else{
+	       						$("#preu").text(preuBegudes.toFixed(2));
+	       					}	       						       				
 	       					
-	       					var li="1 <span class='plats'>x</span> "+$("#p_desc_"+idBeguda).text()+"<br><br>";
-							li.appendTo("#disp_plate");
+	       					$("#numComanda").text(json.numComanda);
+	       					var li="1 <span class='plats'>x</span> "+$("#p_desc_beg_"+idBeguda).text()+"<br><br>";
+							$("#disp_plate").append(li);
 	       				}
 	       			}				
 	  		  },
@@ -120,10 +131,18 @@ $(function() {
 
 								$("#numComanda").text(json.numComanda);
 								$("#numplats").text(json.numPlats);
-								$("#preu").text(json.preu);
+								var preuBegudes = window.localStorage.getItem("comanda.beguda.preu");
+								
+								if(preuBegudes!= 'undefined' && preuBegudes != null){
+									var preuFinal = parseFloat(json.preu) + parseFloat(preuBegudes);
+									$("#preu").text(preuFinal.toFixed(2));
+								}else{
+									var preuFinal = parseFloat(json.preu);
+									$("#preu").text(preuFinal.toFixed(2));
+								}
 								
 								var li="1 <span class='plats'>x</span> "+$("#p_desc_"+idPlat).text()+"<br><br>";
-								li.appendTo("#disp_plate");
+								$("#disp_plate").append(li);
 							}
 						}
 					},
@@ -144,7 +163,7 @@ $(function() {
 		}
 	}
 
-	$(".selector").draggable({
+	$(".selector_jq").draggable({
 		helper : 'clone',
 		start : function(event, ui) {
 			var id = $(this).attr("id");
@@ -162,16 +181,19 @@ $(function() {
 
 		}
 	});
+	
 	$("#droppable").droppable({
 		drop : function(event, ui) {
 
 			var item_id = ui.draggable.attr("id");
-			if(ui.draggable.hasCalss("selectorBeg")){
+			var classes = ui.draggable.attr("class");
+			
+			if(classes.indexOf("selectorBeg") !== -1){
 				var rawBeguda = item_id.split("_");
 				saveBegudaToComanda(rawBeguda[1]);
 			}else{
 				var rawPlat = item_id.split("_");
-				var data = window.localStorage.setItem("comanda.data");			
+				var data = window.localStorage.getItem("comanda.data");			
 				savePlatToComanda(rawPlat[1]);
 			}
 
@@ -183,10 +205,6 @@ function goToComandaPas1() {
 	var data = window.localStorage.getItem("comanda.data");
 	window.location.href = "/"+context+"/comanda/goToPas1Action.action?idComanda="+$("#numComanda").text()+"&data="+data;
 }
-
-$(document).ready(function() {
-	$('#coin-slider').coinslider();
-});
 
 function goToInfoPlat(id){
 	
@@ -222,7 +240,7 @@ if (comanda != 'undefined' && comanda != null) {
 
 	var preu = window.localStorage.getItem("comanda.preu");
 	if (preu != 'undefined' && preu != null) {
-		var preuBegudes = window.localStorage.setItem("comanda.beguda.preu");
+		var preuBegudes = window.localStorage.getItem("comanda.beguda.preu");
 		if (preuBegudes != 'undefined' && preuBegudes != null) {
 			preu =  parseFloat(preu) + parseFloat(preuBegudes);
 		}
@@ -239,7 +257,24 @@ if (comanda != 'undefined' && comanda != null) {
 		$("#numbegudes").text(numbegudes);
 	}
 }
-	
+
+$(document).ready(function() {
+	var comanda = window.localStorage.getItem("comanda");
+	if(comanda != 'undefined' && comanda != null){
+		var numplats = window.localStorage.getItem("comanda.numplats");
+		var numbegudes = window.localStorage.getItem("comanda.numbegudes");
+		var nProductes = parseInt(numplats)+parseInt(numbegudes);
+		if(nProductes==1){
+			$("#numProduct").text(initParams.txtconfirm+" "+nProductes+" "+initParams.txtproducte);
+		}else{
+			$("#numProduct").text(initParams.txtconfirm+" "+nProductes+" "+initParams.txtproductes);
+		}
+		
+	}else{
+		$("#numProduct").text(initParams.txtconfirm+" 0 "+initParams.txtproductes);
+	}
+});
+
 	var dataComanda = window.localStorage.getItem("comanda.data");
 	var data ="data="+dataComanda+"&restaurantId="+idRestaurant;
 	$.ajax({

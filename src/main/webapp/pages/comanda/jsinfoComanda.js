@@ -349,7 +349,8 @@ $(function(){
            					var numBegudesPromo=0;           					
            					var preuBegudes = 0.0;
            					var html="";
-           					$.each(json, function(index, value) { 
+           					var begudes = json.begudes;
+           					$.each(begudes, function(index, value) { 
            					 	           					 	
            					 		numBegudesPromo=numBegudesPromo+value.numBegudesPromo;
 

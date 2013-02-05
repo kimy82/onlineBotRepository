@@ -4,16 +4,16 @@
 <div id="header">
 	<div id="int_header">
 		<div id="int_left">
-			<img src="img/elements/logo_portamu.png">
+			<img src="<c:url value='/img/elements/logo_portamu.png' />">
 		</div>
 		<div id="int_right">
 			<ul>
 			<c:if test="${nameAuth eq 'anonymousUser' }">
-				<li><img src="img/elements/bar.png"></li>
+				<li><img src="<c:url value='/img/elements/bar.png' />"></li>
 				<li><a name="register" type="button" onclick="goToRegist()" href="#" > <s:text name="txt.user.register" /></a></li>
-				<li><img src="img/elements/bar.png"></li>
+				<li><img src="<c:url value='/img/elements/bar.png' />"></li>
 				<li><a name="register" type="button" href="#" onclick="goToLogin()" ><s:text name="txt.user.login" /></a></li>
-				<li class="last"><img src="img/elements/bar.png"></li>
+				<li class="last"><img src="<c:url value='/img/elements/bar.png' />"></li>
 			</c:if>	
 			</ul>
 		</div>
@@ -21,8 +21,8 @@
 		<div id="ben">
 			<ul>
 			<li>Benvingut ${nameAuth}, <a href="<c:url value='/user/comandesPasades.action' />" ><s:text name="txt.comandes.historic" /></a></li>
-			<li class="last"><img src="img/elements/bar.png"></li>
-			<li><a href="<c:url value="/j_spring_security_logout" />" > <s:text name="txt.user.logout" /></a></li>
+			<li class="last"><img src="<c:url value='/img/elements/bar.png' />"></li>
+			<li><a href="<c:url value='/j_spring_security_logout' />" > <s:text name="txt.user.logout" /></a></li>
 			</ul>
 		</div>
 		</c:if>
@@ -30,16 +30,16 @@
 </div>
 <div id="login_dialog" class="filtres filtres-oberts" title="<s:text name='txt.user.login' />">	 		
 </div> 
-<div id="regist_dialog" class="filtres filtres-oberts" title="<s:text name="txt.user.register" />">	 		
+<div id="regist_dialog" class="filtres filtres-oberts" title="<s:text name='txt.user.register' />">	 		
 </div> 
 <script type="text/javascript" >
 function goToLogin(){
 	
-	$("#login_dialog").load("login.action");	
+	$("#login_dialog").load("/"+context+"/login.action");	
 	$("#login_dialog").dialog({ 
 		   autoOpen: false,
-		   height: 400,
-		   width: 500,
+		   height: 370,
+		   width: 330,
 		   modal: true,
 		   close: function(event, ui) { 			   
 			   $("#login_dialog").dialog("close"); 			  
@@ -50,11 +50,11 @@ function goToLogin(){
 
 function goToRegist(){
 	
-	$("#regist_dialog").load("preRegisterUser.action");	
+	$("#regist_dialog").load("/"+context+"/preRegisterUser.action");	
 	$("#regist_dialog").dialog({ 
 		   autoOpen: false,
-		   height: 500,
-		   width: 750,
+		   height: 780,
+		   width: 960,
 		   modal: true,
 		   close: function(event, ui) { 			   
 			   $("#regist_dialog").dialog("close"); 			  

@@ -1,6 +1,6 @@
 /* css*/
 body{
-	background: url(../img/elements/background.jpg) repeat;
+	background: url(../../img/elements/background.jpg) repeat;
 }
 /* links*/
 a, .boton, .news{
@@ -38,7 +38,7 @@ h2{
 }
 /* header*/
 #header{
-	background: url(../img/elements/header_background.png) repeat;
+	background: url(../../img/elements/header_background.png) repeat;
 	height: 135px;
 	width: 100%;
 	border-bottom: 1px solid #cda781;
@@ -84,7 +84,7 @@ h2{
 }
 /* container*/
 #container{
-	background: url(../img/elements/content_background.jpg) no-repeat;
+	background: url(../../img/elements/content_background.jpg) no-repeat;
 	height: 780px;
 	
 }
@@ -307,6 +307,7 @@ h2{
     box-shadow: 0 3px 8px 2px #E0C0A6;
     border:  1px solid #777;
     text-align: center;
+    overflow: hidden;
 }
 .iterate_Rest{
 	border-bottom: 1px solid #C69C6D;
@@ -899,4 +900,130 @@ ul.pagination li {
     width: 2px;
     height: 449px;
     margin-right: 16px;
+}
+
+/* Login////////////////////////////////////////////////////////////////////////////////////////////////////////////////// */
+#light{
+	background-color: #F2F2F2;
+    border: 1px solid #E2E2E2;
+    height: 370px;
+    margin: 90px auto;
+    width: 330px;
+}
+#light_int{
+	padding: 20px;
+	font-weight: 800;
+}
+.light_body{
+	padding: 20px;
+	margin-top: 20px;
+}
+.light_top{
+	color: #4D4D4D;
+	font-family: 'Raleway', sans-serif;
+	padding: 20px;
+	font-weight: 800;
+	font-size: 24px;
+}
+.sep5{
+	border-top:  1px solid #D6D6D6;
+	border-bottom: none;
+	border-right: none;
+	border-left: none;; 
+	webkit-box-shadow:0 3px 8px 2px #E0C0A6;
+    box-shadow: 0 3px 8px 2px #E0C0A6;
+    box-shadow: 1px 1px 0 0 #FFFFFF;
+    margin-left: -20px;
+    width: 330px;
+    float: left;
+}
+#form_loguin h2{
+	font-family: 'Raleway', sans-serif;
+	font-size: 50px;
+}
+#form_loguin {
+	font-family: 'Raleway', sans-serif;
+}
+#form_loguin .form {
+	font-family: 'Raleway', sans-serif;
+	font-size: 12px;
+	color: #F7931E;
+}
+/* REGISTRE////////////////////////////////////////////////////////////////////////////////////////////////////////////////// */
+#light_Reg{
+	background-color: #F2F2F2;
+    border: 1px solid #E2E2E2;
+    height: 780px;
+    margin: 90px auto;
+    width: 960px;
+}
+#light_Reg_int{
+	padding: 14px;
+	font-weight: 800;
+	width: 250px;
+	float: left;
+}
+.light_Reg_body{
+	padding: 20px;
+	margin-top: 20px;
+}
+.light_Reg_top{
+	color: #4D4D4D;
+	font-family: 'Raleway', sans-serif;
+	padding: 20px;
+	font-weight: 800;
+	font-size: 24px;
+}
+.sep6{
+	border-top:  1px solid #D6D6D6;
+	border-bottom: none;
+	border-right: none;
+	border-left: none;; 
+	webkit-box-shadow:0 3px 8px 2px #E0C0A6;
+    box-shadow: 0 3px 8px 2px #E0C0A6;
+    box-shadow: 1px 1px 0 0 #FFFFFF;
+    margin-left: -14px;
+    width: 960px;
+    float: left;
+}
+#form_Reg h2{
+	font-family: 'Raleway', sans-serif;
+	font-size: 50px;
+}
+#form_Reg {
+	font-family: 'Raleway', sans-serif;
+}
+#form_Reg .form {
+	font-family: 'Raleway', sans-serif;
+	font-size: 12px;
+	color: #F7931E;
+}
+#light_Reg_int .inputs{
+	height: 30px;
+	margin-top: 4px;
+	margin-bottom: 20px;
+	margin-left: 0px;
+	width: 196px;
+	font-family: arial;
+	color: #888;
+}
+.inputs_short{
+	height: 30px;
+	margin-top: 4px;
+	margin-bottom: 20px;
+	margin-left: 0px;
+	width: 30px;
+	font-family: arial;
+	color: #888;
+}
+.inline{
+	float: left;
+	width: 60px;
+}
+.maps{
+	border: 1px solid #D6D6D6;
+    float: left;
+    height: 537px;
+    margin-top: 134px;
+    width: 641px;
 }

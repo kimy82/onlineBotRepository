@@ -109,6 +109,8 @@ public class WelcomeComandaAction extends ActionSupport implements ServletRespon
 		
 		this.begudaList = this.begudaBo.getAll("vi");
 		
+		if(begudaList.size()>5)
+			this.begudaList = this.begudaList.subList(0, 5);
 		this.dataActual = Utils.formatDate2(new Date());
 
 		// si teniem una comanda la recuperem
@@ -331,6 +333,8 @@ public class WelcomeComandaAction extends ActionSupport implements ServletRespon
 				this.comandaBo.save(comanda);
 
 				json = this.comandaService.createJSONForShoppingCart(platList, comanda.getId());
+				
+				
 			}
 		} catch (ComandaException ce) {
 			json = createErrorJSON("error in comanda service action");
@@ -370,6 +374,9 @@ public class WelcomeComandaAction extends ActionSupport implements ServletRespon
 				this.comandaBo.update(comanda);
 
 				json = this.comandaService.createJSONForBegudaList(begudaList);
+				StringBuffer jsonSB = new StringBuffer("{ \"begudes\": " + json);
+				jsonSB.append(", \"numComanda\" : \"" + comanda.getId() + "\" }");
+				json = jsonSB.toString();
 			}else{
 				Comandes comanda = new Comandes();
 				comanda.setPreu(0.0);
@@ -379,10 +386,16 @@ public class WelcomeComandaAction extends ActionSupport implements ServletRespon
 				begudaComanda.setBeguda(begudaToAdd);
 				begudaComanda.setPromo(this.promo);
 				begudaComanda.setNumBegudes(1);
+				begudaComanda.setNumBegudesPromo(0);
 				List<BegudaComanda>	begudes	= new LinkedList<BegudaComanda>();
 				begudes.add(begudaComanda);
 				comanda.setBegudes(begudes);
 				this.comandaBo.save(comanda);
+				
+				json = this.comandaService.createJSONForBegudaList(begudes);
+				StringBuffer jsonSB = new StringBuffer("{ \"begudes\": " + json);
+				jsonSB.append(", \"numComanda\" : \"" + comanda.getId() + "\" }");
+				json = jsonSB.toString();
 
 			}
 		} catch (ComandaException ce) {

@@ -2,53 +2,39 @@
 <%@ taglib prefix="s" uri="/struts-tags"%>
 <html>
 <head>
-<title><s:text name="txt.login.title" /></title>
+	<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+		pageEncoding="ISO-8859-1"%>
+	<META http-equiv="Content-Style-Type" content="text/css">
+	<meta http-equiv="content-type" content="text/html;charset=utf-8" />
+	<meta name="viewport" content="width=device-width,initial-scale=0.99,maximum-scale=0.99" />
+<title><s:text name="txt.welcome.principal" /></title>
 </head>
 <body onload='document.f.j_username.focus();'>
 
-	<h3><s:text name="txt.login.explanation" /></h3>
- 
-	<c:if test="${not empty error}">
-		<div class="errorblock">
-			Your login attempt was not successful, try again.<br /> Caused :
-			${sessionScope["SPRING_SECURITY_LAST_EXCEPTION"].message}
+<div id="light">
+	<div id="light_int">
+		<div class="light_top">
+			<s:text name="txt.login.title" />
 		</div>
-	</c:if>
- 
-	<form name='f' action="<c:url value='j_spring_security_check' />"
-		method='POST'   >
- 
-		<table>
-			<tr>
-				<td><s:text name="txt.user.usuario" />:</td>
-				<td><input type='text' name='j_username' value=''>
-				</td>
-			</tr>
-			<tr>
-				<td><s:text name="txt.user.password" />:</td>
-				<td><input type='password' name='j_password' />
-				</td>
-			</tr>
-			<tr>
-				<td colspan='2'><input name="submit" type="submit"
-					value="submit" />
-				</td>
-			</tr>
-			<tr>
-				<td colspan='2'><input name="reset" type="reset" />
-				</td>
-			</tr>
-			<tr>
-				<td colspan='2'><a name="register" type="button" href="<c:url value='/preRegisterUser.action'/>" ><s:text name="txt.user.register" /></a>
-				</td>
-			</tr>
-			<tr>
-				<td colspan='2'><a name="register" type="button" href="<c:url value='/preRecoverAcount.action'/>" ><s:text name="txt.user.forgot.password" /></a>
-				</td>
-			</tr>
-		</table>
- 
-	</form>
+		<hr class="sep5">
+		<div class="light_body">
+			<div id="form_loguin">
+				<form name='f' action="<c:url value='j_spring_security_check' />" method='POST'   >
+				<s:text name="txt.user.usuario" />*:<br> <input class="inputs" type="text" name='j_username' value="" ><br>
+				<s:text name="txt.user.password" />*:<br> <input type='password' class="inputs" name='j_password' /> <br>
+				<input class="boton" type="submit" value="ENTRAR">
+				</form>
+			</div>
+			<a name="register" type="button" href="<c:url value='/preRecoverAcount.action'/>" ><s:text name="txt.user.forgot.password" /></a>	
+					
+		</div>
+	</div>
+</dvi>
+	<!-- CSS -->
+	<link rel="stylesheet" type="text/css" href="<c:url value='/css/portamu/global.css' />" />
+	<link rel="stylesheet" type="text/css" href="<c:url value='/css/portamu/reset.css' />" />
 	
+	<!-- FONTS -->
+	<link href='http://fonts.googleapis.com/css?family=Raleway:800,400' rel='stylesheet' type='text/css'>
 </body>
 </html>

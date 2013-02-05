@@ -15,7 +15,7 @@ function getDateToday(){
 	return d.getFullYear()+"-"+(d.getMonth()+1)+"-"+d.getDate();
 }
 
-$( ".selector" ).click(function() {
+$( ".selector_jq" ).click(function() {
 	var id = $(this).attr("id");
 	confirmComanda.idRestaurant=id;
 	var comanda = window.localStorage.getItem("comanda");

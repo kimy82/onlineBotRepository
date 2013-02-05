@@ -5,6 +5,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Iterator;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.ResourceBundle;
 import java.util.Set;
@@ -77,8 +78,9 @@ public class ComandaServiceImpl implements ComandaService{
 		try{
 			Restaurant restaurant =this.restaurantsBo.load(idRestaurant, false, false, true);
 			ConfigRestaurant config = this.configRestaurantBo.load(Utils.getDate2(data), idRestaurant);
-			if (config == null || config.isObert()) {
-				String[] horesArray = (config == null) ? restaurant.getHores().split("\\W+") : config.getHores().split("\\W+");
+			if ((config == null || config.isObert()) && restaurant.getHores()!=null) {
+				
+					String[] horesArray = (config == null || config.getHores()==null) ? restaurant.getHores().split("\\W+") : config.getHores().split("\\W+");			
 				Date dataAvui = new Date();
 				int nextHour = 0;
 				if (data == Utils.formatDate2(dataAvui)) {				
@@ -216,7 +218,7 @@ public class ComandaServiceImpl implements ComandaService{
 			
 			ConfigRestaurant config = this.configRestaurantBo.load(Utils.getDate2(data), restaurant.getId());
 
-			if (config == null || config.isObert()) {
+			if ((config == null || config.isObert()) && restaurant.getHores()!=null) {
 
 				String[] horesArray = (config == null) ? restaurant.getHores().split("\\W+") : config.getHores().split("\\W+");
 				Date dataAvui = new Date();
@@ -538,7 +540,7 @@ public class ComandaServiceImpl implements ComandaService{
 
 			json.append(", \"numComanda\" : \"" + id + "\" }");
 
-			boolean valid = Utils.isValidJSON(json.toString());
+			//boolean valid = Utils.isValidJSON(json.toString());
 
 			return json.toString();
 
