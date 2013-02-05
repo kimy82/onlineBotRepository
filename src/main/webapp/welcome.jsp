@@ -33,12 +33,13 @@
 					<s:text name="txt.welcome.title.restaurants" />				
 				</div>
 				<s:iterator value="restaurantList" var="restaurant">
+				<c:set var="close" value="false"/>
 				<div class="iterate_Rest selector_jq" id="${restaurant.id}" >
 					<div class="img_Rest" style="background-image: url(/${initParam.app}/comanda/ImageAction.action?imageId=${restaurant.foto.id});" >
 						<div class="enter">
 							<c:if test="${not empty restaurant.configRestaurants}">
 								<c:set var="doneLoop" value="false"/>
-								<c:set var="close" value="false"/>
+								
 								<c:set var="configs" value="${restaurant.configRestaurants}" ></c:set>
 				
 				

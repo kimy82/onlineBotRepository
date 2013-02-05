@@ -266,11 +266,18 @@ $(document).ready(function() {
 		var nProductes = parseInt(numplats)+parseInt(numbegudes);
 		if(nProductes==1){
 			$("#numProduct").text(initParams.txtconfirm+" "+nProductes+" "+initParams.txtproducte);
-		}else{
+		}else if(nProductes>1){
 			$("#numProduct").text(initParams.txtconfirm+" "+nProductes+" "+initParams.txtproductes);
-		}
+		}		
+		
 		
 	}else{
+		window.localStorage.clear();
+		$("#numProduct").text(initParams.txtconfirm+" 0 "+initParams.txtproductes);
+	}
+	
+	if(isNaN(nProductes)){
+		window.localStorage.clear();
 		$("#numProduct").text(initParams.txtconfirm+" 0 "+initParams.txtproductes);
 	}
 });

@@ -21,6 +21,6 @@
 			<li><a href="Welcome.action?actualPage=${actualPage+1}">${actualPage+1}</a></li>
 		</c:if>
 		
-		<li id="next"><a href="#"><a href="Welcome.action?actualPage=${totalPage}" ><img src="<c:url value='/images/icono-paginador-fin.gif' />" style='vertical-align:middle'></a></a></li>
+		<li id="next"><a href="Welcome.action?actualPage=${totalPage}" ><img src="<c:url value='/images/icono-paginador-fin.gif' />" style='vertical-align:middle'></a></li>
 	</ul>
 </div>
