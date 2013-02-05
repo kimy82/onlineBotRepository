@@ -9,7 +9,7 @@
 			
 		</c:if>
 		<c:if test="${actualPage>0}">
-			<li><a href="<c:url value='/comanda/Welcome.action?actualPage=${actualPage-1}' />">${actualPage-1}</a></li>			
+			<li><a href="pagin(${actualPage-1})">${actualPage-1}</a></li>			
 		</c:if>
 				
 				<li><a href="#">${actualPage}</a></li>			
@@ -18,9 +18,16 @@
 			
 		</c:if>
 		<c:if test="${actualPage<totalPage}">
-			<li><a href="<c:url value='/comanda/Welcome.action?actualPage=${actualPage+1}' />">${actualPage+1}</a></li>
+			<li><a href="pagin(${actualPage+1})">${actualPage+1}</a></li>
 		</c:if>
 		
-		<li id="next"><a href="#"><a href="<c:url value='/comanda/Welcome.action?actualPage=${totalPage}' />" ><img src="<c:url value='/images/icono-paginador-fin.gif' />" style='vertical-align:middle'></a></a></li>
+		<li id="next"><a href="pagin(${totalPage})" ><img src="<c:url value='/images/icono-paginador-fin.gif' />" style='vertical-align:middle'></a></li>
 	</ul>
 </div>
+<script type="text/javascript" >
+function pagin(page){
+	
+	window.location.href="/"+context+"/comanda/Welcome.action?actualPage="+page+"&restaurantId="+idRestaurant+"&data="+window.localStorage.getItem("comanda.data");
+	
+}
+</script>

@@ -40,9 +40,9 @@
 				<hr class="sep2">
 				<s:iterator value="platList" var="plat">
 					<c:if test="${plat.actiu == true }" >
-						<div class="selector_jq ui-widget-content iterate_Rest" id="draggable_${plat.id}" >
-						<div class="img_Rest">
-	  						<img  src="/${initParam.app}/comanda/ImageAction.action?imageId=${plat.foto.id}">
+						<div class="iterate_Rest">
+						<div class="selector_jq ui-widget-content img_Rest" id="draggable_${plat.id}" >
+	  						<img height="202" src="/${initParam.app}/comanda/ImageAction.action?imageId=${plat.foto.id}">
 	  					</div>
 	  					<div class="format">
 			  				<div class="titol_Rest">
@@ -64,8 +64,8 @@
 					</c:if>
 					
 					<c:if test="${plat.actiu == false }" >
-						<div class="selector_jq ui-widget-content  iterate_Rest" id="draggable_${plat.id}" title="Plat no actiu per avui" >
-						<div class="img_Rest_CLOSE">
+						<div class="iterate_Rest"  title="Plat no actiu per avui" >
+						<div class="selector_jq ui-widget-content  img_Rest_CLOSE" id="draggable_${plat.id}">
 	  						<img class="img_CLOSE" src="/${initParam.app}/comanda/ImageAction.action?imageId=${plat.foto.id}">
 	  					</div>
 	  					<div class="format">
@@ -109,9 +109,9 @@
 					
 					<s:iterator value="begudaList" var="beguda" >
 						<hr class="sep4">
-						<div class="selectorBeg ui-widget-content iterate_ref" id="draggable_${beguda.id}" >
-							<div class="img_Rest">
-	  							<img src="/${initParam.app}/comanda/ImageAction.action?imageId=${beguda.foto.id}">
+						<div class="iterate_ref" >
+							<div class="img_Rest ui-widget-content selectorBeg" id="draggable_${beguda.id}" >
+	  							<img height="202" src="/${initParam.app}/comanda/ImageAction.action?imageId=${beguda.foto.id}">
 	  						</div>
 							<div class="format">
 					  				<div class="titol_Rest">
@@ -192,7 +192,7 @@
 	<!-- CSS portamu -->
 	
 	<link rel="stylesheet" href="<c:url value='/css/coin-slider-styles.css' />" type="text/css" />
-	<!-- link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/base/jquery-ui.css" rel="stylesheet" type="text/css" / -->
+	<link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/base/jquery-ui.css" rel="stylesheet" type="text/css" />
 	<link type="text/css" rel="stylesheet" href="<c:url value='/css/online.css' />" />
 	<script src="<c:url value='/js/jquery/jquery.js' />" type="text/javascript"></script>
 	<script src="<c:url value='/js/jquery/jquery.ui.core.js' />" type="text/javascript"></script>

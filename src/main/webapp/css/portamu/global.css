@@ -320,6 +320,7 @@ h2{
     box-shadow: 0 3px 8px 2px #E0C0A6;
     box-shadow: 1px 1px 0 0 #FFFFFF;
     margin-bottom: 20px;
+    overflow: hidden;
 }
 .titol_Rest{
 	margin-top: 18px;
@@ -339,6 +340,7 @@ h2{
 	float: left;
 	font-family: 'Raleway', sans-serif;
 	font-weight: 800;
+	 overflow: hidden;
 
 }
 .cos_Rest{
@@ -625,8 +627,8 @@ background: #F7931E;
 }
 
 img.img_CLOSE { 
-
-
+	height: 202px;
+	width: 245px;
 }
 #restaurants .img_Rest_CLOSE{
 	width: 230px;
@@ -642,6 +644,7 @@ img.img_CLOSE {
 	-ms-filter: grayscale(100%);
 	-o-filter: grayscale(100%);
 	filter: gray;
+	overflow: hidden;
 }
 #restaurants .format{
 	height: 290px;
