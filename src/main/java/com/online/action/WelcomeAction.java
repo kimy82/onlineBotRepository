@@ -44,7 +44,9 @@ public class WelcomeAction extends ActionSupport implements ServletResponseAware
 		
 		this.restaurantList = this.restaurantsBo.getAll(true, false, false);
 		inizializePagin();
-		this.restaurantList = this.restaurantList.subList(actualPage*rppPage, (actualPage+1)*rppPage);
+		if(this.restaurantList.size()>this.rppPage)
+			this.restaurantList = this.restaurantList.subList(actualPage*rppPage, (actualPage+1)*rppPage);
+			
 		this.dataAvui = Utils.formatDate2(new Date());
 
 		return SUCCESS;

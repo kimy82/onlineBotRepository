@@ -104,7 +104,7 @@
 					<div id="begudes_titol">
 						<s:text name="txt.afegir.vi" />
 					</div>
-					<s:iterator value="begudaList" var="beguda" begin="0" end="5" >
+					<s:iterator value="begudaList" var="beguda" begin="0" end="2" >
 						<hr class="sep4">
 						<div class="selectorBeg ui-widget-content iterate_ref" id="draggable_${beguda.id}" >
 							<div class="img_Rest">
@@ -222,7 +222,12 @@
 </div>  
 
 <!-- Scripts --> 
-	
+	<!-- CSS portamu --> 
+	<link rel="stylesheet" type="text/css" href="<c:url value='/css/portamu/global.css' />" />
+	<link rel="stylesheet" type="text/css" href="<c:url value='/css/portamu/reset.css' />" />
+	<!-- FONTS -->
+	<link href='http://fonts.googleapis.com/css?family=Raleway:800,400' rel='stylesheet' type='text/css'>
+	<!-- CSS portamu -->
 	<link rel="stylesheet" href="<c:url value='/css/coin-slider-styles.css' />" type="text/css" />
 	<link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/base/jquery-ui.css" rel="stylesheet" type="text/css" />
 	<link type="text/css" rel="stylesheet" href="<c:url value='/css/online.css' />" />

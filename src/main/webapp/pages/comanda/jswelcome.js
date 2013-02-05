@@ -169,7 +169,7 @@ $(function() {
 			if(ui.draggable.hasCalss("selectorBeg")){
 				var rawBeguda = item_id.split("_");
 				saveBegudaToComanda(rawBeguda[1]);
-			}else{}
+			}else{
 				var rawPlat = item_id.split("_");
 				var data = window.localStorage.setItem("comanda.data");			
 				savePlatToComanda(rawPlat[1]);

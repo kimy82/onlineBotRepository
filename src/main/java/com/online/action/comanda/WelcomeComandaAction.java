@@ -102,7 +102,8 @@ public class WelcomeComandaAction extends ActionSupport implements ServletRespon
 		
 		inizializePagin();
 		
-		this.platList = this.platList.subList(actualPage*rppPage, (actualPage+1)*rppPage);
+		if(this.platList.size()>this.rppPage)
+			this.platList = this.platList.subList(actualPage*rppPage, (actualPage+1)*rppPage);
 		
 		inizializeComments();
 		
@@ -544,8 +545,8 @@ public class WelcomeComandaAction extends ActionSupport implements ServletRespon
 		
 		List<Plat> list = new ArrayList();
 		
-		for(Plat plat : this.platList){			
-			  list.add(this.platsBo.loadPLatAndForos(this.idPlat));			
+		for(Plat plt : this.platList){			
+			  list.add(this.platsBo.loadPLatAndForos(plt.getId()));			
 		}
 		this.platList= list;
 		
