@@ -239,6 +239,12 @@ $("#infoPlat_dialog").dialog({
 		}
 	});
 
+function addProduct(id){
+	
+	$("#"+id).dblclick();
+	
+}
+
 function filterPlats(filter,id){
 	$("#plat_select_1").removeClass("selec");
 	$("#plat_select_2").removeClass("selec");
@@ -302,13 +308,15 @@ $(document).ready(function() {
 	$("#plat_select_2").removeClass("selec");
 	$("#plat_select_3").removeClass("selec");
 	
-	var filtre = window.localStorage.setItem("plats.order");
+	var filtre = window.localStorage.getItem("plats.order");
 	if(filtre=='primer'){
 		$("#plat_select_1").addClass("selec");
 	}else if(filtre=='segon'){
 		$("#plat_select_2").addClass("selec");
-	}else{
+	}else if(filtre=='postre'){
 		$("#plat_select_3").addClass("selec");
+	}else{
+		$("#plat_select_1").addClass("selec");
 	}
 });
 
