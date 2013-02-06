@@ -36,6 +36,7 @@ import com.online.model.Restaurant;
 import com.online.model.Users;
 import com.online.pojos.BasicSub;
 import com.online.services.impl.ComandaServiceImpl;
+import com.online.utils.Constants;
 import com.online.utils.Utils;
 import com.opensymphony.xwork2.ActionSupport;
 
@@ -86,6 +87,7 @@ public class WelcomeComandaAction extends ActionSupport implements ServletRespon
 	private Integer				actualPage;
 	private Integer				totalPage;
 	private Integer				rppPage =9;
+	private String				order="";
 
 
 	public String execute(){
@@ -98,10 +100,11 @@ public class WelcomeComandaAction extends ActionSupport implements ServletRespon
 		
 		this.platList.clear();
 		this.restaurant = this.restaurantsBo.load(this.idRestaurant, true, false, false);
-		this.platList.addAll(this.restaurant.getPlats());
+	
 		
 		inizializePagin();
 		
+		this.platList.addAll(this.restaurant.getPlats(this.order));
 		if(this.platList.size()>this.rppPage)
 			this.platList = this.platList.subList(actualPage*rppPage, (actualPage+1)*rppPage);
 		
@@ -550,6 +553,7 @@ public class WelcomeComandaAction extends ActionSupport implements ServletRespon
 	
 	private void  inizializePagin(){
 		this.actualPage= (request.getParameter("actualPage")!=null && !request.getParameter("actualPage").equals(""))? Integer.parseInt(request.getParameter("actualPage")): 0;
+		this.order = (request.getParameter("order")!=null && !request.getParameter("order").equals(""))? request.getParameter("order") : Constants.TIPUS_PLAT_ANY;
 		this.totalPage = this.platList.size()/this.rppPage;
 	}
 	

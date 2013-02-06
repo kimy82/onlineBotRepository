@@ -2,9 +2,11 @@ package com.online.model;
 
 import java.io.Serializable;
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.Set;
 
 import com.google.gson.annotations.Expose;
+import com.online.utils.Constants;
 
 public class Restaurant implements Serializable{
 
@@ -145,6 +147,20 @@ public class Restaurant implements Serializable{
 		if(restaurant.getId() == this.id) return true;
 		return false;
 	}
-	
+
+	public Set<Plat> getPlats(String tipus){
+		
+		if(tipus.equals(Constants.TIPUS_PLAT_ANY)) return this.plats;
+		
+		Iterator<Plat> itera = this.plats.iterator();
+		Set<Plat> platList = new HashSet<Plat>();
+		while(itera.hasNext()){
+			Plat plat = (Plat)itera.next();
+			if(plat.getTipus().equals(tipus)){
+				platList.add(plat);
+			}
+		}
+		return platList;
+	}
 
 }

@@ -3,7 +3,7 @@
 
 <div id="pagination">
 	<ul class="pagination">
-		<li id="prev"><a href="<c:url value='/comanda/Welcome.action?actualPage=0' />" ><img src="<c:url value='/images/icono-paginador-inicio.gif' />" style='vertical-align:middle'></a></li>
+		<li id="prev"><a href="pagin(0)" ><img src="<c:url value='/images/icono-paginador-inicio.gif' />" style='vertical-align:middle'></a></li>
 		
 		<c:if test="${actualPage==0}">
 			
@@ -26,8 +26,11 @@
 </div>
 <script type="text/javascript" >
 function pagin(page){
-	
-	window.location.href="/"+context+"/comanda/Welcome.action?actualPage="+page+"&restaurantId="+idRestaurant+"&data="+window.localStorage.getItem("comanda.data");
-	
+	var order = window.localStorage.getItem("plats.order");
+	if(order=='undefined' || order==null){
+		window.location.href="/"+context+"/comanda/Welcome.action?actualPage="+page+"&restaurantId="+idRestaurant+"&data="+window.localStorage.getItem("comanda.data");
+	}else{
+		window.location.href="/"+context+"/comanda/Welcome.action?actualPage="+page+"&restaurantId="+idRestaurant+"&data="+window.localStorage.getItem("comanda.data")+"&order="+order;
+	}	
 }
 </script>

@@ -32,9 +32,9 @@
 				</div>
 				<div class="selector">
 					<ul>
-					<li><a class="selec" href="#" onclick="filterPlats('primers')" ><s:text name="txt.plat.primer" /></a></li>
-					<li><a href="#" onclick="filterPlats('segons')" ><s:text name="txt.plat.segon" /></a></li>
-					<li><a href="#" onclick="filterPlats('postres')" ><s:text name="txt.plat.postre" /></a></li>
+					<li><a class="selec" id="plat_select_1" href="#" onclick="filterPlats('primer', this.id)" ><s:text name="txt.plat.primer" /></a></li>
+					<li><a href="#" id="plat_select_2" onclick="filterPlats('segon', this.id)" ><s:text name="txt.plat.segon" /></a></li>
+					<li><a href="#" id="plat_select_3" onclick="filterPlats('postre', this.id)" ><s:text name="txt.plat.postre" /></a></li>
 					</ul>
 				</div>
 				<hr class="sep2">

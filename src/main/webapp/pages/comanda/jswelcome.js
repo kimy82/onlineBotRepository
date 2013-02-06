@@ -239,6 +239,15 @@ $("#infoPlat_dialog").dialog({
 		}
 	});
 
+function filterPlats(filter,id){
+	$("#plat_select_1").removeClass("selec");
+	$("#plat_select_2").removeClass("selec");
+	$("#plat_select_3").removeClass("selec");
+	$("#"+id).addClass("selec");
+	window.localStorage.setItem("plats.order",filter);
+	var data = window.localStorage.getItem("comanda.data");
+	window.location.href = "/"+context+"/comanda/Welcome.action?restaurantId="+idRestaurant+"&data="+data+"&order="+filter;	
+}
 
 var comanda = window.localStorage.getItem("comanda");
 
@@ -287,6 +296,19 @@ $(document).ready(function() {
 	if(isNaN(nProductes)){
 		window.localStorage.clear();
 		$("#numProduct").text(initParams.txtconfirm+" 0 "+initParams.txtproductes);
+	}
+	
+	$("#plat_select_1").removeClass("selec");
+	$("#plat_select_2").removeClass("selec");
+	$("#plat_select_3").removeClass("selec");
+	
+	var filtre = window.localStorage.setItem("plats.order");
+	if(filtre=='primer'){
+		$("#plat_select_1").addClass("selec");
+	}else if(filtre=='segon'){
+		$("#plat_select_2").addClass("selec");
+	}else{
+		$("#plat_select_3").addClass("selec");
 	}
 });
 
