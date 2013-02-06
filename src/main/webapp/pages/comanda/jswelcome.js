@@ -332,7 +332,7 @@ $(document).ready(function() {
    				errorOnline.error("Error in AJAX: "+json.error);	
    			}else{
    				if(json!=null){   					
-   					$("#hora_int").val(json.hora+ "H");   				
+   					$("#hora_int").text(json.hora+ "H");   				
    				}
    			}				
 		  },
