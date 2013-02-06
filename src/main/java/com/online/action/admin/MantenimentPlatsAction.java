@@ -131,6 +131,14 @@ public class MantenimentPlatsAction extends ActionSupport implements ServletResp
 					for(String idStringRestaurant : stringRestaurants ){
 						if(this.plat.getId()!=null){
 							Plat platToSave = this.platsBo.load(this.plat.getId(), false);
+								platToSave.setDescripcio(this.plat.getDescripcio());
+								platToSave.setNom(this.plat.getNom());
+								platToSave.setPreu(this.plat.getPreu());			
+								platToSave.setTipus(this.plat.getTipus());
+								platToSave.setTempsPreparacio(this.plat.getTempsPreparacio());
+								platToSave.setCodi(this.plat.getCodi());
+								platToSave.setPrioritat(this.plat.getPrioritat());
+								platToSave.setActiu(this.plat.isActiu());
 							Image image = getImageFromUpload();
 							if(image!=null)
 								platToSave.setFoto(image);
@@ -144,6 +152,7 @@ public class MantenimentPlatsAction extends ActionSupport implements ServletResp
 							platToSave.setTempsPreparacio(this.plat.getTempsPreparacio());
 							platToSave.setCodi(this.plat.getCodi());
 							platToSave.setPrioritat(this.plat.getPrioritat());
+							platToSave.setActiu(this.plat.isActiu());
 							
 							Image image = getImageFromUpload();
 							platToSave.setFoto(image);
