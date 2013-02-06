@@ -169,7 +169,7 @@ h2{
 .confirm a  {
     background-color: #8CC63F;
     display: block;
-  	margin: -12px -12px 0 141px;
+  	margin: -12px -12px 0 0px;
     padding: 15px !important;
     text-shadow: none;
 }
@@ -307,7 +307,6 @@ h2{
     box-shadow: 0 3px 8px 2px #E0C0A6;
     border:  1px solid #777;
     text-align: center;
-    overflow: hidden;
 }
 .iterate_Rest{
 	border-bottom: 1px solid #C69C6D;
@@ -320,7 +319,6 @@ h2{
     box-shadow: 0 3px 8px 2px #E0C0A6;
     box-shadow: 1px 1px 0 0 #FFFFFF;
     margin-bottom: 20px;
-    overflow: hidden;
 }
 .titol_Rest{
 	margin-top: 18px;
@@ -340,7 +338,6 @@ h2{
 	float: left;
 	font-family: 'Raleway', sans-serif;
 	font-weight: 800;
-	 overflow: hidden;
 
 }
 .cos_Rest{
@@ -577,9 +574,16 @@ background: #F7931E;
 	color: #3FA9F5;
 }
 .price{
-	font-family: 'Raleway', sans-serif;
-	font-weight: 800;
-	font-size: 19px;
+	background-color: #3FA9F5;
+    border: 1px solid #BDBBBB;
+    border-radius: 3px 3px 3px 3px;
+    color: #333333;
+    font-family: 'Raleway',sans-serif;
+    font-size: 12px;
+    font-weight: 800;
+    margin-left: 0;
+    margin-top: 69px;
+    padding: 10px;
 }
 .coments{
 	font-family: arial;
@@ -598,7 +602,7 @@ background: #F7931E;
 }
 .right_price{
 	float:right;
-	margin-top: -6px;
+	margin-top: 0px;
 }
 #afegir{
 	float: left;
@@ -627,8 +631,6 @@ background: #F7931E;
 }
 
 img.img_CLOSE { 
-	height: 202px;
-	width: 245px;
 }
 #restaurants .img_Rest_CLOSE{
 	width: 230px;
@@ -644,7 +646,6 @@ img.img_CLOSE {
 	-ms-filter: grayscale(100%);
 	-o-filter: grayscale(100%);
 	filter: gray;
-	overflow: hidden;
 }
 #restaurants .format{
 	height: 290px;
@@ -703,7 +704,7 @@ img.img_CLOSE {
 }
 #carreta{
 	width: 191px;
-	background-color:rgba(255,255,255,0.50);
+	background:rgba(255,255,255,0.50);
 	height: 100%;
 	border: 1px solid #E2E2E2;
 }
@@ -814,7 +815,6 @@ img.img_CLOSE {
 	width: 500px;
 	float: right;
 	text-align: right;
-	margin-top: 79px;
 	font-size: 14px;
 }
 #ben a{
@@ -1030,3 +1030,4 @@ ul.pagination li {
     margin-top: 134px;
     width: 641px;
 }
+/* Login////////////////////////////////////////////////////////////////////////////////////////////////////////////////// */

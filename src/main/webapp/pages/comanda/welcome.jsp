@@ -11,7 +11,7 @@
 	<meta name="viewport" content="width=device-width,initial-scale=0.99,maximum-scale=0.99" />
 	<title><s:text name="txt.welcome.principal" /></title>	
 </head>
-<body>
+<body id="restaurants">
 <c:import url="/pages/includes/headerContext.jsp" />
 <c:import url="/pages/includes/divLogin.jsp" />
 <div id="container">
@@ -42,7 +42,7 @@
 					<c:if test="${plat.actiu == true }" >
 						<div class="iterate_Rest">
 						<div class="selector_jq ui-widget-content img_Rest" id="draggable_${plat.id}" >
-	  						<img height="202" src="/${initParam.app}/comanda/ImageAction.action?imageId=${plat.foto.id}">
+	  						<img height="152" src="/${initParam.app}/comanda/ImageAction.action?imageId=${plat.foto.id}">
 	  					</div>
 	  					<div class="format">
 			  				<div class="titol_Rest">
