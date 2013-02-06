@@ -70,7 +70,8 @@ $(function() {
 	       					var numBegudesPromo=0;           					
 	       					var preuBegudes = 0.0;
 	       					var html="";
-	       					var begudes= json.begudes;
+	       					var begudes= json.begudes;	       					
+	       					$("#disp_beguda").html("");
 	       					$.each(begudes, function(index, value) { 
 	       					 	
 	       					 	if(value.promo==true || value.promo=='true'){
@@ -79,6 +80,8 @@ $(function() {
 	       					 	}else{
 	       					 		numBegudes= numBegudes+value.numBegudes;
 	       					 		preuBegudes=  parseFloat(preuBegudes) + (parseFloat(value.beguda.preu)*value.numBegudes);
+	       							var li= value.numBegudes+" <span class='plats'>x</span> "+$("#p_desc_beg_"+value.beguda.id).text()+"<br><br>";
+	    							$("#disp_beguda").append(li);
 	       						}	       				
 	       						
 	       					});
@@ -96,8 +99,7 @@ $(function() {
 	       					}	       						       				
 	       					
 	       					$("#numComanda").text(json.numComanda);
-	       					var li="1 <span class='plats'>x</span> "+$("#p_desc_beg_"+idBeguda).text()+"<br><br>";
-							$("#disp_plate").append(li);
+	       				
 	       				}
 	       			}				
 	  		  },
@@ -141,8 +143,14 @@ $(function() {
 									$("#preu").text(preuFinal.toFixed(2));
 								}
 								
-								var li="1 <span class='plats'>x</span> "+$("#p_desc_"+idPlat).text()+"<br><br>";
-								$("#disp_plate").append(li);
+								var plats= json.platsNames;	       					
+		       					$("#disp_plate").html("");
+		       					$.each(plats, function(index, value) { 		       					 	
+		       							var li= value.numPlats+" <span class='plats'>x</span> "+$("#p_desc_"+value.idPlat).text()+"<br><br>";
+		    							$("#disp_plate").append(li);		       						
+		       					});
+								
+								
 							}
 						}
 					},

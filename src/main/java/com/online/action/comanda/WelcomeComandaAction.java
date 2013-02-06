@@ -293,7 +293,7 @@ public class WelcomeComandaAction extends ActionSupport implements ServletRespon
 			inizilizeDadesComandaPlat();
 			if (this.idComanda != null) {
 				// recuperem la comanda i afegim plat
-				Comandes comanda = this.comandaBo.load(this.idComanda);
+				Comandes comanda = this.comandaBo.load(this.idComanda);				
 				List<PlatComanda> platList = comanda.getPlats();
 				Plat platToAdd = this.platsBo.load(this.idPlat, false);
 
@@ -302,7 +302,7 @@ public class WelcomeComandaAction extends ActionSupport implements ServletRespon
 					if (comandaService.checkPlatInList(platList, platToAdd)) {
 						for (PlatComanda plt : platList) {
 							if (plt.getPlat().getId().toString().equals(platToAdd.getId().toString())) {
-								plt.setNumPlats(plt.getNumPlats() + 1);
+								plt.setNumPlats(plt.getNumPlats() + 1);										
 							}
 						}
 						comanda.setPlats(platList);
@@ -315,8 +315,7 @@ public class WelcomeComandaAction extends ActionSupport implements ServletRespon
 					}
 					this.comandaBo.update(comanda);
 				}
-
-				json = this.comandaService.createJSONForShoppingCart(platList, comanda.getId());
+				json = this.comandaService.createJSONForShoppingCart(comanda.getPlats(), comanda.getId());
 
 			} else {
 				// creem comanda i afegim plat

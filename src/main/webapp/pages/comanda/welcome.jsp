@@ -149,13 +149,12 @@
 								</div>
 								<hr class="sep3">
 								<div class="car_pro">
-									<s:text name="comanda.num.plats" />:<label id="numplats" ></label>
-									<div id="disp_plate">
-										
-									</div>															
+									<s:text name="comanda.num.plats" />:<label id="numplats" ></label><br></br>
 									<s:text name="comanda.num.begudes" />:<label id="numbegudes" ></label>
-									<div id="disp_beguda">
-										
+									<div id="disp_plate">										
+									</div>															
+									
+									<div id="disp_beguda">										
 									</div>
 								</div>
 								<hr class="sep3">

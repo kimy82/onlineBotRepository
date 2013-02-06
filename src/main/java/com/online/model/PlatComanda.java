@@ -57,8 +57,5 @@ public class PlatComanda{
 	
 		this.id = id;
 	}
-
-
-
 	
 }

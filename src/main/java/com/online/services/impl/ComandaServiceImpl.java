@@ -42,9 +42,9 @@ public class ComandaServiceImpl implements ComandaService{
 	private ComandaBo			comandaBo;
 
 	private ResourceBundle		resource;
-	
-	
-	public Comandes getComandaToRepeat(Comandes comanda) throws ComandaException{
+
+	public Comandes getComandaToRepeat( Comandes comanda ) throws ComandaException{
+
 		Comandes newComanda = new Comandes();
 		newComanda.setAddress(comanda.getAddress());
 		newComanda.setaDomicili(comanda.getaDomicili());
@@ -53,37 +53,42 @@ public class ComandaServiceImpl implements ComandaService{
 		newComanda.setObservacions(comanda.getObservacions());
 		newComanda.setPlats(comanda.getPlats());
 		newComanda.setUser(comanda.getUser());
-		Double preu =getPreuOfComanda(newComanda);
+		Double preu = getPreuOfComanda(newComanda);
 		newComanda.setPreu(preu);
 		return newComanda;
 	}
-	
-	public int getNumBegudes(List<BegudaComanda> listBeguda) throws ComandaException{
-		int numBegudes=0;
-		for(BegudaComanda begudacomanda : listBeguda){
-			numBegudes = numBegudes+begudacomanda.getNumBegudes();
+
+	public int getNumBegudes( List<BegudaComanda> listBeguda ) throws ComandaException{
+
+		int numBegudes = 0;
+		for (BegudaComanda begudacomanda : listBeguda) {
+			numBegudes = numBegudes + begudacomanda.getNumBegudes();
 		}
 		return numBegudes;
 	}
-	
-	public int getNumPlats(List<PlatComanda> platList) throws ComandaException{
-		int numPlats=0;
-		for(PlatComanda platcomanda : platList){
-			numPlats = numPlats+platcomanda.getNumPlats();
+
+	public int getNumPlats( List<PlatComanda> platList ) throws ComandaException{
+
+		int numPlats = 0;
+		for (PlatComanda platcomanda : platList) {
+			numPlats = numPlats + platcomanda.getNumPlats();
 		}
 		return numPlats;
 	}
-	public String getHora(Integer idRestaurant, String data)throws ComandaException{
-		String hora="";
-		try{
-			Restaurant restaurant =this.restaurantsBo.load(idRestaurant, false, false, true);
+
+	public String getHora( Integer idRestaurant, String data ) throws ComandaException{
+
+		String hora = "";
+		try {
+			Restaurant restaurant = this.restaurantsBo.load(idRestaurant, false, false, true);
 			ConfigRestaurant config = this.configRestaurantBo.load(Utils.getDate2(data), idRestaurant);
-			if ((config == null || config.isObert()) && restaurant.getHores()!=null) {
-				
-					String[] horesArray = (config == null || config.getHores()==null) ? restaurant.getHores().split("\\W+") : config.getHores().split("\\W+");			
+			if ((config == null || config.isObert()) && restaurant.getHores() != null) {
+
+				String[] horesArray = (config == null || config.getHores() == null) ? restaurant.getHores().split("\\W+") : config
+						.getHores().split("\\W+");
 				Date dataAvui = new Date();
 				int nextHour = 0;
-				if (data == Utils.formatDate2(dataAvui)) {				
+				if (data == Utils.formatDate2(dataAvui)) {
 					int hour = Calendar.getInstance().get(Calendar.HOUR_OF_DAY);
 					int minute = Calendar.getInstance().get(Calendar.MINUTE) + 40;
 					if (minute < 30) {
@@ -99,104 +104,104 @@ public class ComandaServiceImpl implements ComandaService{
 				for (String hor : horesArray) {
 					if (hor.equals("")) {
 
-					} else if (hor.equals("0800") && nextHour<=800) {
-						hora="08:00";
+					} else if (hor.equals("0800") && nextHour <= 800) {
+						hora = "08:00";
 						break;
-					} else if (hor.equals("0830")&& nextHour<=830) {
-						hora="08:30";
+					} else if (hor.equals("0830") && nextHour <= 830) {
+						hora = "08:30";
 						break;
-					} else if (hor.equals("0900")&& nextHour<=900) {
-						hora="09:00";
+					} else if (hor.equals("0900") && nextHour <= 900) {
+						hora = "09:00";
 						break;
-					} else if (hor.equals("0930")&& nextHour<=930) {
-						hora="09:30";
+					} else if (hor.equals("0930") && nextHour <= 930) {
+						hora = "09:30";
 						break;
-					} else if (hor.equals("1000")&& nextHour<=1000) {
-						hora="10:00";
+					} else if (hor.equals("1000") && nextHour <= 1000) {
+						hora = "10:00";
 						break;
-					} else if (hor.equals("1030")&& nextHour<=1030) {
-						hora="10:30";
+					} else if (hor.equals("1030") && nextHour <= 1030) {
+						hora = "10:30";
 						break;
-					} else if (hor.equals("1100")&& nextHour<=1100) {
-						hora="11:00";
+					} else if (hor.equals("1100") && nextHour <= 1100) {
+						hora = "11:00";
 						break;
-					} else if (hor.equals("1130")&& nextHour<=1130) {
-						hora="11:30";
+					} else if (hor.equals("1130") && nextHour <= 1130) {
+						hora = "11:30";
 						break;
-					} else if (hor.equals("1200")&& nextHour<=1200) {
-						hora="12:00";
+					} else if (hor.equals("1200") && nextHour <= 1200) {
+						hora = "12:00";
 						break;
-					} else if (hor.equals("1230")&& nextHour<=1230) {
-						hora="12:30";
+					} else if (hor.equals("1230") && nextHour <= 1230) {
+						hora = "12:30";
 						break;
-					} else if (hor.equals("1300")&& nextHour<=1300) {
-						hora="13:00";
+					} else if (hor.equals("1300") && nextHour <= 1300) {
+						hora = "13:00";
 						break;
-					} else if (hor.equals("1330")&& nextHour<=1330) {
-						hora="13:30";
+					} else if (hor.equals("1330") && nextHour <= 1330) {
+						hora = "13:30";
 						break;
-					} else if (hor.equals("1400")&& nextHour<=1400) {
-						hora="14:00";
+					} else if (hor.equals("1400") && nextHour <= 1400) {
+						hora = "14:00";
 						break;
-					} else if (hor.equals("1430")&& nextHour<=1430) {
-						hora="14:30";
+					} else if (hor.equals("1430") && nextHour <= 1430) {
+						hora = "14:30";
 						break;
-					} else if (hor.equals("1500")&& nextHour<=1500) {
-						hora="15:00";
+					} else if (hor.equals("1500") && nextHour <= 1500) {
+						hora = "15:00";
 						break;
-					} else if (hor.equals("1530")&& nextHour<=1530) {
-						hora="15:30";
+					} else if (hor.equals("1530") && nextHour <= 1530) {
+						hora = "15:30";
 						break;
-					} else if (hor.equals("1600")&& nextHour<=1600) {
-						hora="16:00";
+					} else if (hor.equals("1600") && nextHour <= 1600) {
+						hora = "16:00";
 						break;
-					} else if (hor.equals("1630")&& nextHour<=1630) {
-						hora="16:30";
+					} else if (hor.equals("1630") && nextHour <= 1630) {
+						hora = "16:30";
 						break;
-					} else if (hor.equals("1700")&& nextHour<=1700) {
-						hora="17:00";
+					} else if (hor.equals("1700") && nextHour <= 1700) {
+						hora = "17:00";
 						break;
-					} else if (hor.equals("1730")&& nextHour<=1730) {
-						hora="17:30";
+					} else if (hor.equals("1730") && nextHour <= 1730) {
+						hora = "17:30";
 						break;
-					} else if (hor.equals("1800")&& nextHour<=1800) {
-						hora="18:00";
+					} else if (hor.equals("1800") && nextHour <= 1800) {
+						hora = "18:00";
 						break;
-					} else if (hor.equals("1830")&& nextHour<=1830) {
-						hora="18:30";
+					} else if (hor.equals("1830") && nextHour <= 1830) {
+						hora = "18:30";
 						break;
-					} else if (hor.equals("1900")&& nextHour<=1900) {
-						hora="19:00";
+					} else if (hor.equals("1900") && nextHour <= 1900) {
+						hora = "19:00";
 						break;
-					} else if (hor.equals("1930")&& nextHour<=1930) {
-						hora="19:30";
+					} else if (hor.equals("1930") && nextHour <= 1930) {
+						hora = "19:30";
 						break;
-					} else if (hor.equals("2000")&& nextHour<=2000) {
-						hora="20:00";
+					} else if (hor.equals("2000") && nextHour <= 2000) {
+						hora = "20:00";
 						break;
-					} else if (hor.equals("2030")&& nextHour<=2030) {
-						hora="20:30";
+					} else if (hor.equals("2030") && nextHour <= 2030) {
+						hora = "20:30";
 						break;
-					} else if (hor.equals("2100")&& nextHour<=2100) {
-						hora="21:00";
+					} else if (hor.equals("2100") && nextHour <= 2100) {
+						hora = "21:00";
 						break;
-					} else if (hor.equals("2130")&& nextHour<=2130) {
-						hora="21:30";
+					} else if (hor.equals("2130") && nextHour <= 2130) {
+						hora = "21:30";
 						break;
-					} else if (hor.equals("2200")&& nextHour<=2200) {
-						hora="22:00";
+					} else if (hor.equals("2200") && nextHour <= 2200) {
+						hora = "22:00";
 						break;
-					} else if (hor.equals("2230")&& nextHour<=2230) {
-						hora="22:30";
+					} else if (hor.equals("2230") && nextHour <= 2230) {
+						hora = "22:30";
 						break;
-					} else if (hor.equals("2300") && nextHour<=2300) {
-						hora="23:00";
+					} else if (hor.equals("2300") && nextHour <= 2300) {
+						hora = "23:00";
 						break;
-					} else if (hor.equals("2330")&& nextHour<=2330) {
-						hora="23:30";
+					} else if (hor.equals("2330") && nextHour <= 2330) {
+						hora = "23:30";
 						break;
-					} else if (hor.equals("2400")&& nextHour<=2400) {
-						hora="24:00";
+					} else if (hor.equals("2400") && nextHour <= 2400) {
+						hora = "24:00";
 						break;
 					}
 				}
@@ -205,20 +210,21 @@ public class ComandaServiceImpl implements ComandaService{
 			throw new ComandaException(e, "Error getting hora of comanda");
 		}
 		return hora;
-		
+
 	}
+
 	public HoresDTO setHoresFeature( HoresDTO horesDTO, String data, Comandes comanda ) throws ComandaException{
 
 		Set<Restaurant> restaurantSet = getRestaurants(comanda);
 		Iterator iteraRestaurant = restaurantSet.iterator();
-		
+
 		while (iteraRestaurant.hasNext()) {
-			
+
 			Restaurant restaurant = (Restaurant) iteraRestaurant.next();
-			
+
 			ConfigRestaurant config = this.configRestaurantBo.load(Utils.getDate2(data), restaurant.getId());
 
-			if ((config == null || config.isObert()) && restaurant.getHores()!=null) {
+			if ((config == null || config.isObert()) && restaurant.getHores() != null) {
 
 				String[] horesArray = (config == null) ? restaurant.getHores().split("\\W+") : config.getHores().split("\\W+");
 				Date dataAvui = new Date();
@@ -240,71 +246,71 @@ public class ComandaServiceImpl implements ComandaService{
 				for (String hora : horesArray) {
 					if (hora.equals("")) {
 
-					} else if (hora.equals("0800") && nextHour<=800) {
+					} else if (hora.equals("0800") && nextHour <= 800) {
 						horesDTO.set_0800("true");
-					} else if (hora.equals("0830")&& nextHour<=830) {
+					} else if (hora.equals("0830") && nextHour <= 830) {
 						horesDTO.set_0830("true");
-					} else if (hora.equals("0900")&& nextHour<=900) {
+					} else if (hora.equals("0900") && nextHour <= 900) {
 						horesDTO.set_0900("true");
-					} else if (hora.equals("0930")&& nextHour<=930) {
+					} else if (hora.equals("0930") && nextHour <= 930) {
 						horesDTO.set_0930("true");
-					} else if (hora.equals("1000")&& nextHour<=1000) {
+					} else if (hora.equals("1000") && nextHour <= 1000) {
 						horesDTO.set_1000("true");
-					} else if (hora.equals("1030")&& nextHour<=1030) {
+					} else if (hora.equals("1030") && nextHour <= 1030) {
 						horesDTO.set_1030("true");
-					} else if (hora.equals("1100")&& nextHour<=1100) {
+					} else if (hora.equals("1100") && nextHour <= 1100) {
 						horesDTO.set_1100("true");
-					} else if (hora.equals("1130")&& nextHour<=1130) {
+					} else if (hora.equals("1130") && nextHour <= 1130) {
 						horesDTO.set_1130("true");
-					} else if (hora.equals("1200")&& nextHour<=1200) {
+					} else if (hora.equals("1200") && nextHour <= 1200) {
 						horesDTO.set_1200("true");
-					} else if (hora.equals("1230")&& nextHour<=1230) {
+					} else if (hora.equals("1230") && nextHour <= 1230) {
 						horesDTO.set_1230("true");
-					} else if (hora.equals("1300")&& nextHour<=1300) {
+					} else if (hora.equals("1300") && nextHour <= 1300) {
 						horesDTO.set_1300("true");
-					} else if (hora.equals("1330")&& nextHour<=1330) {
+					} else if (hora.equals("1330") && nextHour <= 1330) {
 						horesDTO.set_1330("true");
-					} else if (hora.equals("1400")&& nextHour<=1400) {
+					} else if (hora.equals("1400") && nextHour <= 1400) {
 						horesDTO.set_1400("true");
-					} else if (hora.equals("1430")&& nextHour<=1430) {
+					} else if (hora.equals("1430") && nextHour <= 1430) {
 						horesDTO.set_1430("true");
-					} else if (hora.equals("1500")&& nextHour<=1500) {
+					} else if (hora.equals("1500") && nextHour <= 1500) {
 						horesDTO.set_1500("true");
-					} else if (hora.equals("1530")&& nextHour<=1530) {
+					} else if (hora.equals("1530") && nextHour <= 1530) {
 						horesDTO.set_1530("true");
-					} else if (hora.equals("1600")&& nextHour<=1600) {
+					} else if (hora.equals("1600") && nextHour <= 1600) {
 						horesDTO.set_1600("true");
-					} else if (hora.equals("1630")&& nextHour<=1630) {
+					} else if (hora.equals("1630") && nextHour <= 1630) {
 						horesDTO.set_1630("true");
-					} else if (hora.equals("1700")&& nextHour<=1700) {
+					} else if (hora.equals("1700") && nextHour <= 1700) {
 						horesDTO.set_1700("true");
-					} else if (hora.equals("1730")&& nextHour<=1730) {
+					} else if (hora.equals("1730") && nextHour <= 1730) {
 						horesDTO.set_1730("true");
-					} else if (hora.equals("1800")&& nextHour<=1800) {
+					} else if (hora.equals("1800") && nextHour <= 1800) {
 						horesDTO.set_1800("true");
-					} else if (hora.equals("1830")&& nextHour<=1830) {
+					} else if (hora.equals("1830") && nextHour <= 1830) {
 						horesDTO.set_1830("true");
-					} else if (hora.equals("1900")&& nextHour<=1900) {
+					} else if (hora.equals("1900") && nextHour <= 1900) {
 						horesDTO.set_1900("true");
-					} else if (hora.equals("1930")&& nextHour<=1930) {
+					} else if (hora.equals("1930") && nextHour <= 1930) {
 						horesDTO.set_1930("true");
-					} else if (hora.equals("2000")&& nextHour<=2000) {
+					} else if (hora.equals("2000") && nextHour <= 2000) {
 						horesDTO.set_2000("true");
-					} else if (hora.equals("2030")&& nextHour<=2030) {
+					} else if (hora.equals("2030") && nextHour <= 2030) {
 						horesDTO.set_2030("true");
-					} else if (hora.equals("2100")&& nextHour<=2100) {
+					} else if (hora.equals("2100") && nextHour <= 2100) {
 						horesDTO.set_2100("true");
-					} else if (hora.equals("2130")&& nextHour<=2130) {
+					} else if (hora.equals("2130") && nextHour <= 2130) {
 						horesDTO.set_2130("true");
-					} else if (hora.equals("2200")&& nextHour<=2200) {
+					} else if (hora.equals("2200") && nextHour <= 2200) {
 						horesDTO.set_2200("true");
-					} else if (hora.equals("2230")&& nextHour<=2230) {
+					} else if (hora.equals("2230") && nextHour <= 2230) {
 						horesDTO.set_2230("true");
-					} else if (hora.equals("2300") && nextHour<=2300) {
+					} else if (hora.equals("2300") && nextHour <= 2300) {
 						horesDTO.set_2300("true");
-					} else if (hora.equals("2330")&& nextHour<=2330) {
+					} else if (hora.equals("2330") && nextHour <= 2330) {
 						horesDTO.set_2330("true");
-					} else if (hora.equals("2400")&& nextHour<=2400) {
+					} else if (hora.equals("2400") && nextHour <= 2400) {
 						horesDTO.set_2400("true");
 					}
 				}
@@ -320,9 +326,9 @@ public class ComandaServiceImpl implements ComandaService{
 			List<BegudaComanda> begudaComandaList = comanda.getBegudes();
 			List<BegudaComanda> newBegudaComandaList = new ArrayList<BegudaComanda>();
 			for (BegudaComanda begudaComanda : begudaComandaList) {
-					begudaComanda.setNumBegudesPromo(0);
-					newBegudaComandaList.add(begudaComanda);
-				
+				begudaComanda.setNumBegudesPromo(0);
+				newBegudaComandaList.add(begudaComanda);
+
 			}
 			comanda.setBegudes(newBegudaComandaList);
 			this.comandaBo.update(comanda);
@@ -411,8 +417,8 @@ public class ComandaServiceImpl implements ComandaService{
 			List<BegudaComanda> listBeguda = comanda.getBegudes();
 			List<PlatComanda> platList = comanda.getPlats();
 			if (!listBeguda.isEmpty()) {
-				for (BegudaComanda begudaComanda : listBeguda) {					
-						preuComanda = preuComanda + (begudaComanda.getNumBegudes() * begudaComanda.getBeguda().getPreu());
+				for (BegudaComanda begudaComanda : listBeguda) {
+					preuComanda = preuComanda + (begudaComanda.getNumBegudes() * begudaComanda.getBeguda().getPreu());
 				}
 			}
 
@@ -448,10 +454,10 @@ public class ComandaServiceImpl implements ComandaService{
 			boolean existInList = false;
 			if (begudaList.size() > 0) {
 				for (BegudaComanda bg : begudaList) {
-					if (bg.getBeguda().getId().equals(beguda.getId()) ) {
-						if(promo == true){
-							bg.setNumBegudesPromo(bg.getNumBegudesPromo()+1);
-						}else{						
+					if (bg.getBeguda().getId().equals(beguda.getId())) {
+						if (promo == true) {
+							bg.setNumBegudesPromo(bg.getNumBegudesPromo() + 1);
+						} else {
 							bg.setNumBegudes(bg.getNumBegudes() + 1);
 						}
 						existInList = true;
@@ -460,12 +466,12 @@ public class ComandaServiceImpl implements ComandaService{
 			}
 			if (!existInList) {
 				BegudaComanda begudaComanda = new BegudaComanda();
-				begudaComanda.setPromo(promo);//CANVI
+				begudaComanda.setPromo(promo);// CANVI
 				begudaComanda.setBeguda(beguda);
-				if(promo == true){
+				if (promo == true) {
 					begudaComanda.setNumBegudesPromo(1);
 					begudaComanda.setNumBegudes(0);
-				}else{						
+				} else {
 					begudaComanda.setNumBegudesPromo(0);
 					begudaComanda.setNumBegudes(1);
 				}
@@ -524,25 +530,21 @@ public class ComandaServiceImpl implements ComandaService{
 
 		try {
 			Double preuComanda = 0.0;
-			List<String> platsSring = new ArrayList<String>();
 			Integer numPlats = 0;
+			List<PlatComandaCart> platComandaCartList = new ArrayList<PlatComandaCart>();
 			for (PlatComanda pl : platList) {
-				platsSring.add(pl.getPlat().getNom());
+				
 				preuComanda = preuComanda + (pl.getPlat().getPreu() * pl.getNumPlats());
 				numPlats = numPlats + pl.getNumPlats();
+				PlatComandaCart platComandaCart = new PlatComandaCart(numPlats,pl.getPlat().getId());
+				platComandaCartList.add(platComandaCart);
 			}
 
-			ComandaCart comandaCart = new ComandaCart(String.valueOf(preuComanda), platsSring, String.valueOf(numPlats));
+			ComandaCart comandaCart = new ComandaCart(String.valueOf(preuComanda), platComandaCartList, String.valueOf(numPlats), id);
 
-			Gson gson = new GsonBuilder().setPrettyPrinting().excludeFieldsWithoutExposeAnnotation().create();
-			StringBuffer json = new StringBuffer(gson.toJson(comandaCart));
-			json.setLength(json.length() - 1);
+			String json =createJSONComandaCart(comandaCart);		
 
-			json.append(", \"numComanda\" : \"" + id + "\" }");
-
-			//boolean valid = Utils.isValidJSON(json.toString());
-
-			return json.toString();
+			return json;
 
 		} catch (Exception e) {
 			throw new ComandaException(e, "Error creating JSON for cart");
@@ -565,22 +567,63 @@ public class ComandaServiceImpl implements ComandaService{
 		}
 	}
 
+	public class PlatComandaCart{
+		
+		@Expose
+		private Integer				numPlats;
+		
+		@Expose
+		private Long				idPlat;		
+				
+		public PlatComandaCart( Integer numPlats, Long idPlat ) {
+
+			super();
+			this.numPlats = numPlats;
+			this.idPlat = idPlat;
+		}
+
+		public Integer getNumPlats(){
+		
+			return numPlats;
+		}
+
+		public void setNumPlats( Integer numPlats ){
+		
+			this.numPlats = numPlats;
+		}
+
+		public Long getIdPlat(){
+		
+			return idPlat;
+		}
+
+		public void setIdPlat( Long idPlat ){
+		
+			this.idPlat = idPlat;
+		}
+		
+		
+	}
 	public class ComandaCart{
 
 		@Expose
-		private String			preu		= "0.0";
+		private String				preu		= "0.0";
 
 		@Expose
-		private List<String>	platsNames	= new ArrayList<String>();
+		private Long				numComanda;
+		
+		@Expose
+		private List<PlatComandaCart>	platsNames	= new ArrayList<PlatComandaCart>();
 
 		@Expose
-		private String			numPlats	= "0";
+		private String				numPlats	= "0";
 
-		public ComandaCart( String preu, List<String> platsNames, String numPlats ) {
+		public ComandaCart( String preu, List<PlatComandaCart> platsNames, String numPlats, Long numComanda ) {
 
 			this.preu = preu;
 			this.platsNames = platsNames;
 			this.numPlats = numPlats;
+			this.numComanda = numComanda;
 		}
 
 		public String getPreu(){
@@ -593,12 +636,12 @@ public class ComandaServiceImpl implements ComandaService{
 			this.preu = preu;
 		}
 
-		public List<String> getPlatsNames(){
+		public List<PlatComandaCart> getPlatsNames(){
 
 			return platsNames;
 		}
 
-		public void setPlatsNames( List<String> platsNames ){
+		public void setPlatsNames( List<PlatComandaCart> platsNames ){
 
 			this.platsNames = platsNames;
 		}
@@ -613,21 +656,40 @@ public class ComandaServiceImpl implements ComandaService{
 			this.numPlats = numPlats;
 		}
 
+		public Long getNumComanda(){
+		
+			return numComanda;
+		}
+
+		public void setNumComanda( Long numComanda ){
+		
+			this.numComanda = numComanda;
+		}
+
 	}
 
 	// PRIVATE
-	
-	private Set<Restaurant>  getRestaurants( Comandes comanda){
+	private String createJSONComandaCart( ComandaCart comandacart){
+
+		Gson gson = new GsonBuilder().setPrettyPrinting().excludeFieldsWithoutExposeAnnotation().create();
+		StringBuffer json = new StringBuffer(gson.toJson(comandacart));
+		
+		return json.toString();
+	}
+
+	private Set<Restaurant> getRestaurants( Comandes comanda ){
+
 		int temps = 0;
 		List<PlatComanda> platComandaList = comanda.getPlats();
-		
+
 		Set<Restaurant> restaurantSet = new HashSet<Restaurant>();
 		for (PlatComanda platComanda : platComandaList) {
 			restaurantSet.add(platComanda.getPlat().getRestaurants().iterator().next());
 		}
 		return restaurantSet;
-		
+
 	}
+
 	private int calculaTempsPreparacioGlobal( Comandes comanda ){
 
 		int temps = 0;
@@ -690,19 +752,19 @@ public class ComandaServiceImpl implements ComandaService{
 
 			ConfigRestaurant configRestaurant = configRestaurantBo.load(dia, idRestaurant);
 			Restaurant restaurant = this.restaurantsBo.load(idRestaurant, false, false, false);
-			if(configRestaurant == null){
-				
+			if (configRestaurant == null) {
+
 				String hores = restaurant.getHores();
-				if(!hores.contains(hora)){
+				if (!hores.contains(hora)) {
 					return this.resource.getString("txt.restaurant.no.obert") + " " + restaurant.getNom();
 				}
-			}else if (configRestaurant != null && configRestaurant.isObert()) {
+			} else if (configRestaurant != null && configRestaurant.isObert()) {
 				String hores = configRestaurant.getHores();
-				if(!hores.contains(hora)){
+				if (!hores.contains(hora)) {
 					return this.resource.getString("txt.restaurant.no.obert") + " " + restaurant.getNom();
 				}
-				
-			}else if(configRestaurant != null && !configRestaurant.isObert()){
+
+			} else if (configRestaurant != null && !configRestaurant.isObert()) {
 				return this.resource.getString("txt.restaurant.no.obert") + " " + restaurant.getNom();
 			}
 		}
