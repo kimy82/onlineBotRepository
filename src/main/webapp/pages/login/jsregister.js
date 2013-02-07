@@ -18,6 +18,11 @@ function validateEmail(email) {
     return re.test(email);
 } 
 
+function ismaxlength(obj,mlength){
+	if (obj.getAttribute && obj.value.length>mlength)
+		obj.value=obj.value.substring(0,mlength);
+}
+
 function validate(){
 	
 	var self = $("#registerForm")[0];
@@ -33,9 +38,19 @@ function validate(){
 		$("#username").css('border', 'solid 1px rgb(135,155,179)');	
 	}
 	
-	if(!validateEmail(self.username.value)){
+	if(self.email.value==''){
+	 	
+		$("#email").css('border', 'solid 1px red');
+		alertOnline.subalertes(initParamsbis.txtusernameempty);			
+		return false;
 		
-		$("#username").css('border', 'solid 1px red');
+	}else{
+		$("#email").css('border', 'solid 1px rgb(135,155,179)');	
+	}
+	
+	if(!validateEmail(self.email.value)){
+		
+		$("#email").css('border', 'solid 1px red');
 		alertOnline.subalertes(initParamsbis.txtusernamewrong);			
 		return false;
 	}

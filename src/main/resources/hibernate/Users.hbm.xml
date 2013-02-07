@@ -23,6 +23,12 @@
 		<property name="telNumber" type="string">
 			<column name="TELEFON" length="10" />
 		</property>
+		<property name="nom" type="string">
+			<column name="NOM" length="45" />
+		</property>
+		<property name="indicacions" type="string">
+			<column name="INDICACIONS" length="200" />
+		</property>
 		<many-to-one name="userRole" class="com.online.model.UserRole" 
 				 column="USER_ID" not-null="true" cascade="all" lazy="false" unique="true" insert="false" update="false" />
 	</class>

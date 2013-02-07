@@ -27,6 +27,10 @@ public class Users implements Serializable{
 	private String				address;
 
 	private String				telNumber;
+	
+	private String				indicacions;
+	
+	private String				nom;
 
 	// CONSTRUCTORS
 	public Users( String username ) {
@@ -112,7 +116,25 @@ public class Users implements Serializable{
 	
 		this.telNumber = telNumber;
 	}
+
+	public String getIndicacions(){
 	
+		return indicacions;
+	}
+
+	public void setIndicacions( String indicacions ){
 	
+		this.indicacions = indicacions;
+	}
+
+	public String getNom(){
+	
+		return nom;
+	}
+
+	public void setNom( String nom ){
+	
+		this.nom = nom;
+	}		
 
 }

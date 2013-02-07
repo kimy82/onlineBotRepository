@@ -20,6 +20,9 @@ public class LoginAction extends ActionSupport implements ServletRequestAware{
 	private String		password;
 	private String 		address;
 	private String		telefon;
+	private String		nom;
+	private String		altres;
+	private String		email;
 	
 	HttpServletRequest	request;
 
@@ -42,9 +45,12 @@ public class LoginAction extends ActionSupport implements ServletRequestAware{
 		try {
 
 			user.setPassword(Utils.createSHA(this.password));
-			user.setUsername(this.username);
+			user.setUsername(this.email);
+			user.setNom(this.username);
 			user.setAddress(this.address);
 			user.setTelNumber(this.telefon);
+			user.setNom(this.nom);
+			user.setIndicacions(this.altres);
 			
 			this.usersBo.save(user);
 
@@ -130,5 +136,30 @@ public class LoginAction extends ActionSupport implements ServletRequestAware{
 
 		return this.request;
 	}
+
+	public void setAddress( String address ){
+	
+		this.address = address;
+	}
+
+	public void setTelefon( String telefon ){
+	
+		this.telefon = telefon;
+	}
+
+	public void setNom( String nom ){
+	
+		this.nom = nom;
+	}
+
+	public void setAltres( String altres ){
+	
+		this.altres = altres;
+	}
+
+	public void setEmail( String email ){
+	
+		this.email = email;
+	}		
 
 }

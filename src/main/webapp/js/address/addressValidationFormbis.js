@@ -45,7 +45,7 @@ Addressbis.addressValidation.prototype._init= function(){
 
 Addressbis.addressValidation.prototype.checkAdd = function(){
 	var address = $("#carrerbis").val()+","+$("#codibis").val()+", Girona, Spain";
-    var addressToSave = $("#carrerbis").val()+"-"+$("#codibis").val()
+    var addressToSave = $("#carrerbis").val()+"-"+$("#numcarrerbis").val()+"-"+$("#numpis").val()+"-"+$("#porta").val()+"-"+$("#codibis").val()
 	if($("#carrerbis").val() == '' || $("#codibis").val() == '' ){
 		return false;
 	}

@@ -282,7 +282,10 @@ if (comanda != 'undefined' && comanda != null) {
 }
 
 $(document).ready(function() {
+	
 	var comanda = window.localStorage.getItem("comanda");
+	var filtre = window.localStorage.getItem("plats.order");
+	
 	if(comanda != 'undefined' && comanda != null){
 		var numplats = window.localStorage.getItem("comanda.numplats");
 		var numbegudes = window.localStorage.getItem("comanda.numbegudes");
@@ -308,7 +311,7 @@ $(document).ready(function() {
 	$("#plat_select_2").removeClass("selec");
 	$("#plat_select_3").removeClass("selec");
 	
-	var filtre = window.localStorage.getItem("plats.order");
+
 	if(filtre=='primer'){
 		$("#plat_select_1").addClass("selec");
 	}else if(filtre=='segon'){
