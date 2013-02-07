@@ -49,7 +49,6 @@ public class LoginAction extends ActionSupport implements ServletRequestAware{
 			user.setNom(this.username);
 			user.setAddress(this.address);
 			user.setTelNumber(this.telefon);
-			user.setNom(this.nom);
 			user.setIndicacions(this.altres);
 			
 			this.usersBo.save(user);

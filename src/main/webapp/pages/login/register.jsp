@@ -19,10 +19,10 @@
 				<s:form class="form" action="registerUser" id="registerForm" >
 					
 				<s:text name="user.username" />*:<br> <s:textfield cssClass="inputs" key="username" id="username" theme="simple" onkeyup="return ismaxlength(this,45)" /><br>
-				<s:text name="user.telNumber" />*:<br> <s:textfield cssClass="inputs" key="telNumber" id="telNumber" theme="simple" /><br>
+				<s:text name="user.telNumber" />*:<br> <s:textfield cssClass="inputs" key="telefon" id="telefon" theme="simple" /><br>
 				<s:text name="user.email" />*:<br> <s:textfield cssClass="inputs" key="email" id="email" theme="simple" /><br>
-				<s:text name="user.password" />*:<br> <s:textfield cssClass="inputs" key="password" id="password" theme="simple" /><br>
-				<s:text name="user.password.retype" />*:<br> <s:textfield cssClass="inputs" key="confirmPassword" id="confirmPassword" theme="simple" /><br>
+				<s:text name="user.password" />*:<br> <s:password cssClass="inputs" key="password" id="password" theme="simple" /><br>
+				<s:text name="user.password.retype" />*:<br> <s:password cssClass="inputs" key="confirmPassword" id="confirmPassword" theme="simple" /><br>
 		
 				<s:hidden key="address" id="comandaddressbis" ></s:hidden>
 				

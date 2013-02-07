@@ -631,6 +631,11 @@ background: #F7931E;
 }
 
 img.img_CLOSE { 
+    float: left;
+    height: 152px;
+    text-align: center;
+    width: 230px;
+}
 }
 #restaurants .img_Rest_CLOSE{
 	width: 230px;
