@@ -6,15 +6,103 @@
 <head>
 	<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 		pageEncoding="ISO-8859-1"%>
-	<META http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 	<META http-equiv="Content-Style-Type" content="text/css">
-	<title><s:text name="txt.welcome.comanda.principal" /></title>	
+	<meta http-equiv="content-type" content="text/html;charset=utf-8" />
+	<meta name="viewport" content="width=device-width,initial-scale=0.99,maximum-scale=0.99" />
+	<title><s:text name="txt.welcome.principal" /></title>	
 </head>
 <body>
 <c:import url="/pages/includes/headerContext.jsp" />
-<c:import url="/pages/includes/goHome.jsp" />
+<c:import url="/pages/includes/divLogin.jsp" />
 
-<div id="draggables_pl" style="width: 500px; height: 400px;" align="left" >
+<div id="container">
+
+	<div id="content">
+			<!-- menu -->
+				<c:import url="/pages/includes/menuHeader.jsp" />
+			<!-- END menu -->
+			<!-- Language -->
+				<c:import url="/pages/includes/divLanguage.jsp" />
+			<!-- END language -->
+			<!-- Content seccio-->
+		<div id="content_seccion">
+			<!-- seccion Restaurants-->
+			<div id="seccion">
+				<div id="rest">
+					<s:text name="txt.begudes.title" />
+				</div>
+				<hr class="sep2">
+				<s:iterator value="begudaList" var="beguda">
+					<hr class="sep4">
+					<div class="iterate_ref" >
+							<div class="img_Rest ui-widget-content selectorBeg" id="draggable_${beguda.id}" >
+	  							<img height="202" src="/${initParam.app}/comanda/ImageAction.action?imageId=${beguda.foto.id}">
+	  						</div>
+							<div class="format">
+					  				<div class="titol_Rest">
+					  					<h1 id="p_desc_beg_${beguda.id}" >${beguda.nom}</h2>
+					  				</div>
+					  				<div class="cos_Rest">
+					  					<p>${beguda.descripcio}</p><br><br>
+					  				</div>
+	  						</div>
+							<div id="afegir">
+								<div class="left_price">
+									<a href="#" class="entrar" onclick="addProduct('draggable_${beguda.id}')" ><s:text name="txt.plat.afegir" /></a>
+								</div>
+								<div class="right_price">
+									 <span class="price">${beguda.preu} &euro;</span><br>
+								</div>
+								<hr class="sep">
+							</div>							
+						</div>
+				</s:iterator>
+				</div>
+			</div>
+			
+			<!-- Dreta-->						
+				<div id="left">
+					<div id="bar_left">
+						<img src="<c:url value='/img/elements/bar3.png' />">
+					</div>
+					<div id="bar_right">
+						<div id="droppable"  class="ui-widget-header">
+							<div id="carreta">
+								<div class="car_int">
+									<s:text name="txt.carreta" /><label id="numComanda"></label>
+								</div>
+								<hr class="sep3">
+								<div class="car_pro">
+									<s:text name="comanda.num.plats" />:<label id="numplats" ></label><br></br>
+									<s:text name="comanda.num.begudes" />:<label id="numbegudes" ></label>
+									<div id="disp_plate">										
+									</div>															
+									
+									<div id="disp_beguda">										
+									</div>
+								</div>
+								<hr class="sep3">
+								<div class="car_sub">
+									<s:text name="txt.subtotal" /> <br>
+									<label id="preu" ></label> &euro; <br><br>
+									<a href="#" class="btn_conf" onclick="goToComandaPas1();"  ><s:text name="txt.comanda.comfirmar" /></a>
+								</div>
+								<div class="hora">
+									<s:text name="txt.propera.hora" />: <br><br>
+									<span class="hora_int" id="hora_int" ></span>
+								</div>
+							</div>
+						
+						<!--End RIght-->
+					</div>
+				
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+				
+<!--  div id="draggables_pl" style="width: 500px; height: 400px;" align="left" >
 	<s:iterator value="begudaList" var="beguda">
 		
 			<div class="selector ui-widget-content" id="draggable_${beguda.id}" >
@@ -52,13 +140,18 @@
 	   <s:hidden key="comanda.id" id="idcomanda" ></s:hidden>	  
 </div>
 
-</div>
+</div-->
 <div id="infoBeguda_dialog" class="filtres filtres-oberts" title="<s:text name='txt.info.title' />">	 		
 </div>  
 
 <!-- Scripts --> 
+	<!-- CSS portamu --> 
+	<link rel="stylesheet" type="text/css" href="<c:url value='/css/portamu/global.css' />" />
+	<link rel="stylesheet" type="text/css" href="<c:url value='/css/portamu/reset.css' />" />
+	<!-- FONTS -->
+	<link href='http://fonts.googleapis.com/css?family=Raleway:800,400' rel='stylesheet' type='text/css'>
+	<!-- CSS portamu -->
 	
-	<link rel="stylesheet" href="<c:url value='/css/coin-slider-styles.css' />" type="text/css" />
 	<link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/base/jquery-ui.css" rel="stylesheet" type="text/css" />
 	<link type="text/css" rel="stylesheet" href="<c:url value='/css/online.css' />" />
 	<script src="<c:url value='/js/jquery/jquery.js' />" type="text/javascript"></script>
@@ -72,9 +165,11 @@
 	<script src="<c:url value='/js/jquery/jquery.ui.resizable.js'/>" type="text/javascript"></script>
 	<script src="<c:url value='/js/jquery/jquery.effects.core.js'/>" type="text/javascript"></script>
 	<script src="<c:url value='/js/jquery/jquery.bgiframe-2.1.1.js'/>" type="text/javascript"></script>
-	<script type="text/javascript" src="<c:url value='/js/slider/coin-slider.min.js' />"></script>
+	<script type="text/javascript" src="<c:url value='/js/slider/coin-slider.min.js' />"></script>	
 	<script src="<c:url value='/pages/comanda/begudes/jsbegudes.js'/>" type="text/javascript"></script>
-	
+	<script type="text/javascript" >
+		var initParams = new InitParams("<s:text name='txt.welcome.confirmar' />","<s:text name='txt.welcome.productes' />","<s:text name='txt.welcome.producte' />");
+	</script>
 	<c:import url="/pages/includes/alertOnline.jsp" />
 	<c:import url="/pages/includes/errorAjax.jsp" />
 </body>

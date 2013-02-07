@@ -74,6 +74,7 @@ public class WelcomeComandaAction extends ActionSupport implements ServletRespon
 	private boolean				promo;
 	private HoresDTO			horesDTO;
 	private int					numPlats			= 0;
+	private int					numBegudes			= 0;
 
 	private String				nameAuth;
 
@@ -515,6 +516,7 @@ public class WelcomeComandaAction extends ActionSupport implements ServletRespon
 
 		// this.comandaService.checkComandaPromocions(comanda, resource);
 		this.numPlats = this.comandaService.getNumPlats(this.platComandaList);
+		this.numBegudes= this.comandaService.getNumBegudes(comanda.getBegudes());
 		this.platComandaList = comanda.getPlats();
 
 		return SUCCESS;
@@ -887,4 +889,13 @@ public class WelcomeComandaAction extends ActionSupport implements ServletRespon
 		this.rppPage = rppPage;
 	}
 
+	public int getNumBegudes() {
+		return numBegudes;
+	}
+
+	public void setNumBegudes(int numBegudes) {
+		this.numBegudes = numBegudes;
+	}
+
+	
 }

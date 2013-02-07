@@ -209,6 +209,7 @@
 		//Carrega del cistell de compra 
 			$("#numComanda").text('${requestScope.idComanda}');
 			$("#numplats").text('${requestScope.numPlats}');
+			$("#numbegudes").text('${requestScope.numBegudes}');			
 			$("#preu").text('${requestScope.comanda.preu}');   
 			var dataActual = '${requestScope.dataActual}';
 			var idRestaurant = '${requestScope.restaurant.id}';

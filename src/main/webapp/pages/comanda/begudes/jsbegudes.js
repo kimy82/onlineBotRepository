@@ -1,6 +1,15 @@
+///////////////////////////////////
+//variables per textos en locale
+var initParams=null ;
+function InitParams(txtconfirm,txtproductes,txtproducte){		
+	this.txtconfirm = txtconfirm;
+	this.txtproductes = txtproductes;
+	this.txtproducte = txtproducte;
+}
+
 $(function() {
 
-	$(".selector").dblclick(function() {
+	$(".selectorBeg").dblclick(function() {
 
 		var dragBeguda = $(this).clone();
 		dragBeguda.appendTo("#droppable");
@@ -16,13 +25,13 @@ $(function() {
 			var item_id = $(this).attr("id");
 			var rawBeguda = item_id.split("_");
 			saveBegudaToComanda(rawBeguda[1]);
-			$(this).css("visiblity", "hidden");
-			$(this).css("display", "none");
+			$(dragBeguda).css("visiblity", "hidden");
+			$(dragBeguda).css("display", "none");
 		});
 
 	});
 
-	$(".selector").draggable({
+	$(".selectorBeg").draggable({
 		helper : 'clone',
 		start : function(event, ui) {
 			var id = $(this).attr("id");
@@ -35,13 +44,18 @@ $(function() {
 		drop : function(event, ui) {
 
 			var item_id = ui.draggable.attr("id");
-			var rawBeguda = item_id.split("_");
-			var data = window.localStorage.setItem("comanda.data");			
+			var rawBeguda = item_id.split("_");		
 			saveBegudaToComanda(rawBeguda[1]);
 
 		}
 	});
 });
+
+function addProduct(id){
+	
+	$("#"+id).dblclick();
+	
+}
 
 function saveBegudaToComanda(idBeguda){
 	
@@ -63,7 +77,9 @@ function saveBegudaToComanda(idBeguda){
        					var numBegudesPromo=0;           					
        					var preuBegudes = 0.0;
        					var html="";
-       					$.each(json, function(index, value) { 
+       					var begudes= json.begudes;	       					
+       					$("#disp_beguda").html("");
+       					$.each(begudes, function(index, value) { 
        					 	
        					 	if(value.promo==true || value.promo=='true'){
        					 		numBegudesPromo=numBegudesPromo+value.numBegudes;
@@ -71,21 +87,26 @@ function saveBegudaToComanda(idBeguda){
        					 	}else{
        					 		numBegudes= numBegudes+value.numBegudes;
        					 		preuBegudes=  parseFloat(preuBegudes) + (parseFloat(value.beguda.preu)*value.numBegudes);
-       						}
-       						html=html+"<div class='selector'>"+value.beguda.nom+"<br>"+value.beguda.preu+"</div>";
+       							var li= value.numBegudes+" <span class='plats'>x</span> "+$("#p_desc_beg_"+value.beguda.id).text()+"<br><br>";
+    							$("#disp_beguda").append(li);
+       						}	       				
        						
        					});
        				
        					window.localStorage.setItem("comanda.promo.nBegudes.added",numBegudesPromo);
        					window.localStorage.setItem("comanda.numbegudes",numBegudes);
-       					window.localStorage.setItem("comanda.beguda.preu",preuBegudes.toFixed(2));
-       					$("#begudes").html(html);
-       					$("#numbegudes").text(numBegudes);
-       					$("#numbegudespromo").text(numBegudesPromo);
+       					window.localStorage.setItem("comanda.beguda.preu",preuBegudes.toFixed(2));	       					
+       					$("#numbegudes").text(numBegudes);	       				
        					var preuComanda = window.localStorage.getItem("comanda.preu");
-       					var preuFinal = parseFloat(preuComanda) + parseFloat(preuBegudes);
-       					$("#preu").text(preuFinal.toFixed(2));
-       				}
+       					if(preuComanda!= 'undefined' && preuComanda != null){
+       						var preuFinal = parseFloat(preuComanda) + parseFloat(preuBegudes);
+       						$("#preu").text(preuFinal.toFixed(2));
+       					}else{
+       						$("#preu").text(preuBegudes.toFixed(2));
+       					}	       						       				
+       					
+       					$("#numComanda").text(json.numComanda);
+       					}
        			}				
   		  },
   		  error: function(e){  errorOnline.error("Error in AJAX");	
@@ -129,12 +150,14 @@ var comanda = window.localStorage.getItem("comanda");
 
 if (comanda != 'undefined' && comanda != null) {
 
-	$("#idcomanda").val(comanda);
-	
 	$("#numComanda").text(comanda);
 
 	var preu = window.localStorage.getItem("comanda.preu");
 	if (preu != 'undefined' && preu != null) {
+		var preuBegudes = window.localStorage.getItem("comanda.beguda.preu");
+		if (preuBegudes != 'undefined' && preuBegudes != null) {
+			preu =  parseFloat(preu) + parseFloat(preuBegudes);
+		}
 		$("#preu").text(preu);
 	}
 
@@ -148,3 +171,31 @@ if (comanda != 'undefined' && comanda != null) {
 		$("#numbegudes").text(numbegudes);
 	}
 }
+
+$(document).ready(function() {
+	
+	var comanda = window.localStorage.getItem("comanda");
+	
+	if(comanda != 'undefined' && comanda != null){
+		var numplats = window.localStorage.getItem("comanda.numplats");
+		var numbegudes = window.localStorage.getItem("comanda.numbegudes");
+		var nProductes = parseInt(numplats)+parseInt(numbegudes);
+		if(nProductes==1){
+			$("#numProduct").text(initParams.txtconfirm+" "+nProductes+" "+initParams.txtproducte);
+		}else if(nProductes>1){
+			$("#numProduct").text(initParams.txtconfirm+" "+nProductes+" "+initParams.txtproductes);
+		}		
+				
+	}else{
+		window.localStorage.clear();
+		$("#numProduct").text(initParams.txtconfirm+" 0 "+initParams.txtproductes);
+	}
+	
+	if(isNaN(nProductes)){
+		window.localStorage.clear();
+		$("#numProduct").text(initParams.txtconfirm+" 0 "+initParams.txtproductes);
+	}		
+});
+
+
+
