@@ -46,7 +46,8 @@ public class MantenimentPlatsAction extends ActionSupport implements ServletResp
 	private Integer			idRestaurant;
 	private String			idRestaurants;
 	private Long			idPlat=null;
-
+	private Integer			prioritat=0;
+	
 	private List<Basic>		restaurantBasicList	= new LinkedList<Basic>();
 	private List<Basic>		tipusPlat	= new LinkedList<Basic>();
 
@@ -90,7 +91,33 @@ public class MantenimentPlatsAction extends ActionSupport implements ServletResp
 		return Action.SUCCESS;
 
 	}
+	
+	public String ajaxChangePrioritatPlat(){
+		ServletOutputStream out = null;
+		String json = "";
 
+		try {
+			out = this.response.getOutputStream();
+			inizializeIdPlat();
+			inizializePrioritat();
+			this.platsBo.changePriority(idPlat, prioritat);
+			json="{\"estat\" : \"ok\"}";
+		} catch (BOException boe) {
+			json = createErrorJSON("error in ajax action: Error in BO");
+		} catch (NumberFormatException e) {
+			json = createErrorJSON("error in ajax action: wrong params");
+		} catch (Exception e) {
+			json = createErrorJSON("error in ajax action");
+		}
+
+		try {
+			out.print(json);
+		} catch (IOException e) {
+			throw new GeneralException(e, "possibly ServletOutputStream null");
+		}
+		return null;
+	}
+	
 	public String ajaxDeletePlatAction(){
 
 		ServletOutputStream out = null;
@@ -249,6 +276,17 @@ public class MantenimentPlatsAction extends ActionSupport implements ServletResp
 		
 		if (idPlat == null) {
 			throw new NumberFormatException("Plat or restaurant id null");
+		}
+
+	}
+	
+	private void inizializePrioritat() throws NumberFormatException{
+
+		this.prioritat = (request.getParameter("prioritat") != null && !request.getParameter("prioritat").equals("")) ? Integer.parseInt(request
+				.getParameter("prioritat")) : null;
+		
+		if (prioritat == null) {
+			this.prioritat=0;
 		}
 
 	}

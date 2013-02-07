@@ -18,4 +18,6 @@ public interface PlatsBo{
 	List<Plat> getAll() throws BOException;
 
 	Plat loadPLatAndForos( Long id ) throws BOException;
+	
+	void changePriority(Long idPlat, Integer prioritat)throws BOException;
 }

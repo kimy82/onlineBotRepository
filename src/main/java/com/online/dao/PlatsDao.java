@@ -20,4 +20,5 @@ public interface PlatsDao{
 	
 	Plat loadPLatAndForos( Long id );
 	
+	void changePriority(Long idPlat, Integer prioritat);
 }

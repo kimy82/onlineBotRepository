@@ -20,6 +20,19 @@ public class PlatsDaoImpl extends HibernateDaoSupport implements PlatsDao{
 		getHibernateTemplate().update(plat);
 	}
 	
+	public void changePriority(Long idPlat, Integer prioritat){
+		
+		Session session = this.getSessionFactory().openSession();
+		session.beginTransaction();
+		
+		SQLQuery sql =session.createSQLQuery("update plats set prioritat="+prioritat+"  where plat_id="+idPlat);
+		sql.executeUpdate();	
+		
+		session.getTransaction().commit();	
+		
+		session.close();
+	}
+	
 	public void delete(Plat plat){
 		
 		Session session = this.getSessionFactory().openSession();

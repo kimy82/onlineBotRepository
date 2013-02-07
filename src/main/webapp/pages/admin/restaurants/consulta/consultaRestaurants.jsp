@@ -107,6 +107,7 @@
 							<tr>
 								<th><s:text name="mant.retaurants.table.plats.nom" /></th>
 								<th><s:text name="mant.retaurants.table.plats.descripcio" /></th>
+								<th><s:text name="mant.retaurants.table.plats.prioritat" /></th>
 								<th><s:text name="mant.retaurants.table.plats.preu" /></th>	
 								<th width="40px" ></th>						
 							</tr>
@@ -146,7 +147,8 @@
 			"<s:text  name='datatables.loading'/>",
 			"<s:text  name='txt.avis.borrat'/>",
 			"<s:text  name='mant.restaurant.txtconfirm.delete.plat'/>",
-			"<s:text  name='mant.restaurant.txtconfirm.delete.restaurant'/>");
+			"<s:text  name='mant.restaurant.txtconfirm.delete.restaurant'/>",
+			"<s:text  name='mant.restaurants.prioritat.canviat'/>");
 </script>
 </body>
 </html>

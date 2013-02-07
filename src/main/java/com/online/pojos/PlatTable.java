@@ -13,6 +13,9 @@ public class PlatTable extends Plat{
 	@Expose
 	private String				accio				= "";
 
+	@Expose
+	private String				prioritatPlat		= "";
+
 	// CONSTRUCTORS
 
 	public PlatTable() {
@@ -39,4 +42,16 @@ public class PlatTable extends Plat{
 		this.accio = accio;
 	}
 
+	public String getPrioritatPlat(){
+	
+		return prioritatPlat;
+	}
+
+	public void setPrioritatPlat( String prioritatPlat ){
+	
+		this.prioritatPlat = prioritatPlat;
+	}
+
+	
+	
 }

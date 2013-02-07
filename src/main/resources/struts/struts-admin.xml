@@ -119,6 +119,10 @@
 		<action name="ajaxDeletePlatAction"
 			class="com.online.action.admin.MantenimentPlatsAction" method="ajaxDeletePlatAction">
 		</action>
+		<action name="ajaxChangePrioritatPlat"
+			class="com.online.action.admin.MantenimentPlatsAction" method="ajaxChangePrioritatPlat">
+		</action>
+		
 		
 		<!-- Actions per config -->
 		<action name="config" class="com.online.action.admin.MantenimentConfigAction"

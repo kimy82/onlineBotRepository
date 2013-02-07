@@ -1,7 +1,7 @@
 ///////////////////////////////////
 //variables per textos en locale
 var initTableParams=null ;
-function InitTableParams(txtlast,txtnext,txtprevious,txtfirst,txtloading,txtborrat,txtconfirmborraplat,txtconfirmborrarest){		
+function InitTableParams(txtlast,txtnext,txtprevious,txtfirst,txtloading,txtborrat,txtconfirmborraplat,txtconfirmborrarest,txtguardat){		
 		this.txtlast=txtlast;
 		this.txtnext=txtnext;
 		this.txtprevious=txtprevious;
@@ -10,6 +10,7 @@ function InitTableParams(txtlast,txtnext,txtprevious,txtfirst,txtloading,txtborr
 		this.txtborrat=txtborrat;
 		this.txtconfirmborraplat= txtconfirmborraplat;
 		this.txtconfirmborrarest= txtconfirmborrarest;
+		this.txtguardat = txtguardat;
 }
 
 function ismaxlength(obj,mlength){
@@ -196,6 +197,29 @@ function reloadTableRestaurants(){
 	oTableRest.fnDeleteRow( 0 );
 }
 
+function changePrioritat(idPlat){
+	
+	var prioritat = $("#prior_"+idPlat).val();
+	data ="idPlat="+idPlat+"&prioritat="+prioritat;
+	$.ajax({
+		  type: "POST",
+		  url: '/'+context+'/admin/ajaxChangePrioritatPlat.action',
+		  dataType: 'json',
+		  data: data,
+		  success: function(json){	
+			  if(json!=null && json.error!=null){
+   				$("#errorsajaxlabel").text(json.error);
+   				$("#errorsajax").show();
+   			}else{
+					 alert(initTableParams.txtguardat);							
+   			}				
+		  },
+		  error: function(e){   $("#errorsajaxlabel").text("Error in ajax call");
+								$("#errorsajax").show();  		
+		  					}
+		});
+	
+}
 
 var  oTableRest=null;
 var  oTablePlats=null;
@@ -272,6 +296,7 @@ $(document).ready(function() {
 			 "aoColumns" : [
 			                  { "mDataProp":"nom","bSortable": false },
 			                  { "mDataProp":"descripcio", "bSortable": false },
+			                  { "mDataProp":"prioritatPlat", "bSortable": false },
 			                  { "mDataProp":"preu", "bSortable": false},
 			                  { "mDataProp":"accio", "bSortable": false}	
 			            ],

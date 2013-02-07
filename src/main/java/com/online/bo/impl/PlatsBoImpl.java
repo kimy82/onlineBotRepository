@@ -2,6 +2,9 @@ package com.online.bo.impl;
 
 import java.util.List;
 
+import org.hibernate.SQLQuery;
+import org.hibernate.Session;
+
 import com.online.bo.PlatsBo;
 import com.online.dao.PlatsDao;
 import com.online.exceptions.BOException;
@@ -29,6 +32,15 @@ public class PlatsBoImpl implements PlatsBo{
 		platsDao.delete(plat);
 	}
 
+	public void changePriority(Long idPlat, Integer prioritat)throws BOException{
+		
+		if(idPlat==null){
+			throw new BOException("NUll id to change priority");
+		}
+		
+		this.platsDao.changePriority(idPlat, prioritat);
+	}
+	
 	public Plat load( Long id ,boolean lazy) throws BOException{
 
 		if (id == null)
