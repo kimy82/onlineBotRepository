@@ -87,7 +87,7 @@ function saveBegudaToComanda(idBeguda){
        					 	}else{
        					 		numBegudes= numBegudes+value.numBegudes;
        					 		preuBegudes=  parseFloat(preuBegudes) + (parseFloat(value.beguda.preu)*value.numBegudes);
-       							var li= value.numBegudes+" <span class='plats'>x</span> "+$("#p_desc_beg_"+value.beguda.id).text()+"<br><br>";
+       							var li= value.numBegudes+" <span class='plats'>x</span> "+value.beguda.nom+"<br><br>";
     							$("#disp_beguda").append(li);
        						}	       				
        						
@@ -174,6 +174,12 @@ $(document).ready(function() {
 		if(numplats == 'undefined' || numplats == null){
 			numplats=0;
 			window.localStorage.setItem("comanda.numplats","0");
+		}else{
+			
+			var lis= window.localStorage.getItem("comanda.plats.lis");
+			if(lis != 'undefined' && lis!=null){
+				$("#disp_plate").append(lis);
+			}
 		}
 		
 		if (numplats != 'undefined' && numplats != null) {
@@ -185,6 +191,11 @@ $(document).ready(function() {
 		if(numbegudes == 'undefined' || numbegudes == null){
 			numbegudes=0;
 			window.localStorage.setItem("comanda.numbegudes","0");
+		}else{
+			var lis= window.localStorage.getItem("comanda.begudes.lis");
+			if(lis != 'undefined' && lis!=null){
+				$("#disp_beguda").append(lis);
+			}
 		}
 		if (numbegudes != 'undefined' && numbegudes != null) {
 			$("#numbegudes").text(numbegudes);

@@ -536,7 +536,7 @@ public class ComandaServiceImpl implements ComandaService{
 				
 				preuComanda = preuComanda + (pl.getPlat().getPreu() * pl.getNumPlats());
 				numPlats = numPlats + pl.getNumPlats();
-				PlatComandaCart platComandaCart = new PlatComandaCart(numPlats,pl.getPlat().getId());
+				PlatComandaCart platComandaCart = new PlatComandaCart(numPlats,pl.getPlat().getId(),pl.getPlat().getNom());
 				platComandaCartList.add(platComandaCart);
 			}
 
@@ -574,13 +574,18 @@ public class ComandaServiceImpl implements ComandaService{
 		
 		@Expose
 		private Long				idPlat;		
+		
+		@Expose
+		private String				nomPlat;	
 				
-		public PlatComandaCart( Integer numPlats, Long idPlat ) {
+		public PlatComandaCart( Integer numPlats, Long idPlat, String nomPlat ) {
 
 			super();
 			this.numPlats = numPlats;
 			this.idPlat = idPlat;
+			this.nomPlat= nomPlat;
 		}
+		
 
 		public Integer getNumPlats(){
 		
@@ -600,6 +605,18 @@ public class ComandaServiceImpl implements ComandaService{
 		public void setIdPlat( Long idPlat ){
 		
 			this.idPlat = idPlat;
+		}
+
+
+		public String getNomPlat(){
+		
+			return nomPlat;
+		}
+
+
+		public void setNomPlat( String nomPlat ){
+		
+			this.nomPlat = nomPlat;
 		}
 		
 		

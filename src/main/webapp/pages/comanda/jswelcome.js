@@ -72,6 +72,7 @@ $(function() {
 	       					var html="";
 	       					var begudes= json.begudes;	       					
 	       					$("#disp_beguda").html("");
+	       					var lis="";
 	       					$.each(begudes, function(index, value) { 
 	       					 	
 	       					 	if(value.promo==true || value.promo=='true'){
@@ -79,13 +80,15 @@ $(function() {
 	       					 		
 	       					 	}else{
 	       					 		numBegudes= numBegudes+value.numBegudes;
-	       					 		preuBegudes=  parseFloat(preuBegudes) + (parseFloat(value.beguda.preu)*value.numBegudes);
-	       							var li= value.numBegudes+" <span class='plats'>x</span> "+$("#p_desc_beg_"+value.beguda.id).text()+"<br><br>";
+	       					 		preuBegudes=  parseFloat(preuBegudes) + (parseFloat(value.beguda.preu)*value.numBegudes);	       					 		
+	       							var li= value.numBegudes+" <span class='plats'>x</span> "+value.beguda.nom+"<br><br>";
+	       							lis = lis+li;
 	    							$("#disp_beguda").append(li);
 	       						}	       				
 	       						
 	       					});
 	       				
+	       					window.localStorage.setItem("comanda.begudes.lis",lis);
 	       					window.localStorage.setItem("comanda.promo.nBegudes.added",numBegudesPromo);
 	       					window.localStorage.setItem("comanda.numbegudes",numBegudes);
 	       					window.localStorage.setItem("comanda.beguda.preu",preuBegudes.toFixed(2));	       					
@@ -147,11 +150,14 @@ $(function() {
 								
 								var plats= json.platsNames;	       					
 		       					$("#disp_plate").html("");
+		       					var lis= "";
 		       					$.each(plats, function(index, value) { 		       					 	
-		       							var li= value.numPlats+" <span class='plats'>x</span> "+$("#p_desc_"+value.idPlat).text()+"<br><br>";
+		       							var li= value.numPlats+" <span class='plats'>x</span> "+value.nomPlat+"<br><br>";
+		       							 lis=lis+li;		       					
 		    							$("#disp_plate").append(li);		       						
 		       					});
-								
+
+		       					window.localStorage.setItem("comanda.plats.lis",lis);
 								
 							}
 						}
@@ -257,31 +263,6 @@ function filterPlats(filter,id){
 	window.location.href = "/"+context+"/comanda/Welcome.action?restaurantId="+idRestaurant+"&data="+data+"&order="+filter;	
 }
 
-var comanda = window.localStorage.getItem("comanda");
-
-if (comanda != 'undefined' && comanda != null) {
-
-	$("#numComanda").text(comanda);
-
-	var preu = window.localStorage.getItem("comanda.preu");
-	if (preu != 'undefined' && preu != null) {
-		var preuBegudes = window.localStorage.getItem("comanda.beguda.preu");
-		if (preuBegudes != 'undefined' && preuBegudes != null) {
-			preu =  parseFloat(preu) + parseFloat(preuBegudes);
-		}
-		$("#preu").text(preu);
-	}
-
-	var numplats = window.localStorage.getItem("comanda.numplats");
-	if (numplats != 'undefined' && numplats != null) {
-		$("#numplats").text(numplats);
-	}
-
-	var numbegudes = window.localStorage.getItem("comanda.numbegudes");
-	if (numbegudes != 'undefined' && numbegudes != null) {
-		$("#numbegudes").text(numbegudes);
-	}
-}
 
 $(document).ready(function() {
 	
@@ -289,16 +270,49 @@ $(document).ready(function() {
 	var filtre = window.localStorage.getItem("plats.order");
 	
 	if(comanda != 'undefined' && comanda != null){
+		$("#numComanda").text(comanda);
+		
+		
+		var preu = window.localStorage.getItem("comanda.preu");
+		if (preu != 'undefined' && preu != null) {
+			var preuBegudes = window.localStorage.getItem("comanda.beguda.preu");
+			if (preuBegudes != 'undefined' && preuBegudes != null) {
+				preu =  parseFloat(preu) + parseFloat(preuBegudes);
+			}
+			$("#preu").text(preu);
+		}
+
 		var numplats = window.localStorage.getItem("comanda.numplats");
 		if(numplats == 'undefined' || numplats == null){
 			numplats=0;
 			window.localStorage.setItem("comanda.numplats","0");
+		}else{
+			
+			var lis= window.localStorage.getItem("comanda.plats.lis");
+			if(lis != 'undefined' && lis!=null){
+				$("#disp_plate").append(lis);
+			}
 		}
+		
+		if (numplats != 'undefined' && numplats != null) {
+			$("#numplats").text(numplats);
+		}
+
 		var numbegudes = window.localStorage.getItem("comanda.numbegudes");
 		if(numbegudes == 'undefined' || numbegudes == null){
 			numbegudes=0;
 			window.localStorage.setItem("comanda.numbegudes","0");
+		}else{
+			var lis= window.localStorage.getItem("comanda.begudes.lis");
+			if(lis != 'undefined' && lis!=null){
+				$("#disp_beguda").append(lis);
+			}
 		}
+	
+		if (numbegudes != 'undefined' && numbegudes != null) {
+			$("#numbegudes").text(numbegudes);
+		}
+	
 		var nProductes = parseInt(numplats)+parseInt(numbegudes);
 		if(nProductes==1){
 			$("#numProduct").text(initParams.txtconfirm+" "+nProductes+" "+initParams.txtproducte);
@@ -332,8 +346,7 @@ $(document).ready(function() {
 	}else{
 		$("#plat_select_1").addClass("selec");
 	}
-});
-
+	
 	var dataComanda = window.localStorage.getItem("comanda.data");
 	var data ="data="+dataComanda+"&restaurantId="+idRestaurant;
 	$.ajax({
@@ -353,3 +366,6 @@ $(document).ready(function() {
 		  error: function(e){  errorOnline.error("Error in AJAX");	
 		  					}
 		});	
+});
+
+	
