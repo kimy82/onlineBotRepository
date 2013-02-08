@@ -79,6 +79,7 @@ public class WelcomeComandaAction extends ActionSupport implements ServletRespon
 	private String				nameAuth;
 
 	private ComandaServiceImpl	comandaService;
+	private List<Restaurant>	restaurantList;
 
 	private Users				user;
 
@@ -117,6 +118,7 @@ public class WelcomeComandaAction extends ActionSupport implements ServletRespon
 			this.begudaList = this.begudaList.subList(0, 5);
 		this.dataActual = Utils.formatDate2(new Date());
 
+		this.restaurantList = this.restaurantsBo.getAll(true, false, false);
 		// si teniem una comanda la recuperem
 		if (this.idComanda != null) {
 			goToPas1Action();
@@ -132,6 +134,7 @@ public class WelcomeComandaAction extends ActionSupport implements ServletRespon
 		this.nameAuth = auth.getName();
 
 		this.begudaList = this.begudaBo.getAll("vi");
+		this.restaurantList = this.restaurantsBo.getAll(true, false, false);
 
 		return SUCCESS;
 
@@ -143,6 +146,7 @@ public class WelcomeComandaAction extends ActionSupport implements ServletRespon
 		this.nameAuth = auth.getName();
 
 		this.begudaList = this.begudaBo.getAll("refresc");
+		this.restaurantList = this.restaurantsBo.getAll(true, false, false);
 
 		return SUCCESS;
 
@@ -895,6 +899,16 @@ public class WelcomeComandaAction extends ActionSupport implements ServletRespon
 
 	public void setNumBegudes(int numBegudes) {
 		this.numBegudes = numBegudes;
+	}
+
+	public List<Restaurant> getRestaurantList(){
+	
+		return restaurantList;
+	}
+
+	public void setRestaurantList( List<Restaurant> restaurantList ){
+	
+		this.restaurantList = restaurantList;
 	}
 
 	

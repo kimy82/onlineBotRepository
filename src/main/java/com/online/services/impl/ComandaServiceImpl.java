@@ -226,7 +226,7 @@ public class ComandaServiceImpl implements ComandaService{
 
 			if ((config == null || config.isObert()) && restaurant.getHores() != null) {
 
-				String[] horesArray = (config == null) ? restaurant.getHores().split("\\W+") : config.getHores().split("\\W+");
+				String[] horesArray = (config.getHores() == null) ? restaurant.getHores().split("\\W+") : config.getHores().split("\\W+");
 				Date dataAvui = new Date();
 				int nextHour = 0;
 				if (data == Utils.formatDate2(dataAvui)) {

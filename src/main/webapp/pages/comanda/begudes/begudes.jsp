@@ -101,46 +101,6 @@
 		</div>
 	</div>
 </div>
-				
-<!--  div id="draggables_pl" style="width: 500px; height: 400px;" align="left" >
-	<s:iterator value="begudaList" var="beguda">
-		
-			<div class="selector ui-widget-content" id="draggable_${beguda.id}" >
-		
-		
-			<table>
-				<tr><td rowspan="4" ><a href="#"><image src="<c:url value='/images/shopping_cart.png' />" ></image></a></td>
-				
-					<td></td>
-				</tr>
-				<tr>
-					<td>${beguda.nom}</td>
-					<td>${beguda.preu}</td>				
-					<td rowspan="2" ><img id="imageRestaurant" width="200px"  src="/${initParam.app}/comanda/ImageAction.action?imageId=${beguda.foto.id}" /></td> 
-				</tr>
-				<tr>
-					<td colspan="3" >${beguda.descripcio}</td>
-				</tr>
-			</table>
-		</div>
-	</s:iterator>
-</div>
-
-
-<div id="droppable"  class="ui-widget-header abs">
-  <a href="#" onclick="goToComandaPas1();" >  <image src="<c:url value='/images/shopping_cart.png' />" ></image></a>
-    	<br>
-	   <s:text name="comanda.num.id" />:<label id="numComanda"></label>
-	    <br>
-	   <s:text name="comanda.num.plats" />:<label id="numplats" ></label>
-	   <br>
-	   <s:text name="comanda.num.begudes" />:<label id="numbegudes" ></label>
-	    <br>
-	   <s:text name="comanda.preu" />:<label id="preu" ></label>
-	   <s:hidden key="comanda.id" id="idcomanda" ></s:hidden>	  
-</div>
-
-</div-->
 <div id="infoBeguda_dialog" class="filtres filtres-oberts" title="<s:text name='txt.info.title' />">	 		
 </div>  
 

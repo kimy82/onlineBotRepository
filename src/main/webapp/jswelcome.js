@@ -88,7 +88,16 @@ $(document).ready(function() {
 	var comanda = window.localStorage.getItem("comanda");
 	if(comanda != 'undefined' && comanda != null){
 		var numplats = window.localStorage.getItem("comanda.numplats");
+		if(numplats == 'undefined' || numplats == null){
+			numplats=0;
+			window.localStorage.setItem("comanda.numplats","0");
+		}
+		
 		var numbegudes = window.localStorage.getItem("comanda.numbegudes");
+		if(numbegudes == 'undefined' || numbegudes == null){
+			numbegudes=0;
+			window.localStorage.setItem("comanda.numbegudes","0");
+		}
 		var nProductes = parseInt(numplats)+parseInt(numbegudes);
 		if(nProductes==1){
 			$("#numProduct").text(initParams.txtconfirm+" "+nProductes+" "+initParams.txtproducte);
@@ -96,16 +105,17 @@ $(document).ready(function() {
 			$("#numProduct").text(initParams.txtconfirm+" "+nProductes+" "+initParams.txtproductes);
 		}		
 		
+		if(isNaN(nProductes)){
+			window.localStorage.clear();
+			$("#numProduct").text(initParams.txtconfirm+" 0 "+initParams.txtproductes);
+		}
 		
 	}else{
 		window.localStorage.clear();
 		$("#numProduct").text(initParams.txtconfirm+" 0 "+initParams.txtproductes);
 	}
 	
-	if(isNaN(nProductes)){
-		window.localStorage.clear();
-		$("#numProduct").text(initParams.txtconfirm+" 0 "+initParams.txtproductes);
-	}
+	
 });
 
 
