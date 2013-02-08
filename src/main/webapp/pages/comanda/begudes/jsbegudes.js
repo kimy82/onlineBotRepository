@@ -58,8 +58,8 @@ function addProduct(id){
 }
 
 function saveBegudaToComanda(idBeguda){
-	
-	var data ="idBeguda="+idBeguda+"&idComanda="+$("#idcomanda").val()+"&promo=false";
+	var comanda = $("#numComanda").text(comanda);
+	var data ="idBeguda="+idBeguda+"&idComanda="+comanda+"&promo=false";
   	$.ajax({
   		  type: "POST",
   		  url: '/'+context+'/comanda/ajaxLoadBeguda.action',

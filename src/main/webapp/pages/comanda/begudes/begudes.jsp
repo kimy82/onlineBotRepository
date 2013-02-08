@@ -74,7 +74,7 @@
 								<hr class="sep3">
 								<div class="car_pro">
 									<s:text name="comanda.num.plats" />:<label id="numplats" ></label><br></br>
-									<s:text name="comanda.num.begudes" />:<label id="numbegudes" ></label>
+									<s:text name="comanda.num.begudes" />:<label id="numbegudes" ></label>									 
 									<div id="disp_plate">										
 									</div>															
 									
