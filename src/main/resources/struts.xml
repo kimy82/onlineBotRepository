@@ -8,7 +8,16 @@
 	<constant name="struts.action.extension" value="action" />
 	<constant name="struts.custom.i18n.resources" value="MessageResources" />
 	
+	
+	
 	<package name="default" namespace="/" extends="struts-default">
+	
+		<global-results>
+            <result name="error" >/error.jsp</result>
+        </global-results>
+        <global-exception-mappings>
+            <exception-mapping exception="java.lang.Exception" result="error"/>
+        </global-exception-mappings>
 		<action name="Welcome" class="com.online.action.WelcomeAction"
 			method="execute">
 			<result name="success">/welcome.jsp</result>
@@ -48,7 +57,8 @@
 		</action>
 		<action name="setNewsLetter"
 			class="com.online.action.WelcomeAction" method="setNewsLetter">
-		</action>			
+		</action>
+					
 	</package>
 	
 	<!-- Accions protegides dins el rol d'usuari -->

@@ -7,6 +7,12 @@
 	
 	<package name="foro" namespace="/foro" extends="struts-default">	
 		
+		<global-results>
+            <result name="error" >/error.jsp</result>
+        </global-results>
+        <global-exception-mappings>
+            <exception-mapping exception="java.lang.Exception" result="error"/>
+        </global-exception-mappings>
 		<action name="foro" class="com.online.action.foro.ForoAction"
 			method="execute">
 			<result name="success">/pages/foro/foro.jsp</result>
@@ -20,7 +26,6 @@
 		</action>
 		<action name="ajaxSavePunctuacioForPlat"
 			class="com.online.action.foro.ForoAction" method="ajaxSavePunctuacioForPlat">
-		</action>
-		
+		</action>		
 	</package>
 </struts>

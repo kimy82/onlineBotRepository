@@ -4,39 +4,48 @@
 "http://struts.apache.org/dtds/struts-2.0.dtd">
 
 <struts>
-	
+
 	<package name="comanda" namespace="/comanda" extends="struts-default">
-	
+
+		
 		<result-types>
 			<result-type name="imageResult"
 				class="com.online.result.CustomImageBytesResult" />
 		</result-types>
 
+		<global-results>
+			<result name="error">/error.jsp</result>
+		</global-results>
+		<global-exception-mappings>
+			<exception-mapping exception="java.lang.Exception"
+				result="error" />
+		</global-exception-mappings>
+		
 		<action name="Welcome" class="com.online.action.comanda.WelcomeComandaAction"
 			method="execute">
 			<result name="success">/pages/comanda/welcome.jsp</result>
-		</action>		
-		<action name="checkComanda"
-			class="com.online.action.comanda.WelcomeComandaAction" method="checkComanda">
 		</action>
-		<action name="ajaxLoadPlat"
-			class="com.online.action.comanda.WelcomeComandaAction" method="ajaxLoadPlat">
+		<action name="checkComanda" class="com.online.action.comanda.WelcomeComandaAction"
+			method="checkComanda">
 		</action>
-		<action name="ajaxLoadNumPlat"
-			class="com.online.action.comanda.WelcomeComandaAction" method="ajaxLoadNumPlat">
-		</action>		
-		<action name="ajaxLoadBeguda"
-			class="com.online.action.comanda.WelcomeComandaAction" method="ajaxLoadBeguda">
+		<action name="ajaxLoadPlat" class="com.online.action.comanda.WelcomeComandaAction"
+			method="ajaxLoadPlat">
 		</action>
-		<action name="checkComandaPromos"
-			class="com.online.action.comanda.WelcomeComandaAction" method="checkComandaPromos">
-		</action>		
-		<action name="deleteBegudesPromo"
-			class="com.online.action.comanda.WelcomeComandaAction" method="deleteBegudesPromo">
-		</action>		
-		<action name="loadHores"
-			class="com.online.action.comanda.WelcomeComandaAction" method="loadHores">
-		</action>			
+		<action name="ajaxLoadNumPlat" class="com.online.action.comanda.WelcomeComandaAction"
+			method="ajaxLoadNumPlat">
+		</action>
+		<action name="ajaxLoadBeguda" class="com.online.action.comanda.WelcomeComandaAction"
+			method="ajaxLoadBeguda">
+		</action>
+		<action name="checkComandaPromos" class="com.online.action.comanda.WelcomeComandaAction"
+			method="checkComandaPromos">
+		</action>
+		<action name="deleteBegudesPromo" class="com.online.action.comanda.WelcomeComandaAction"
+			method="deleteBegudesPromo">
+		</action>
+		<action name="loadHores" class="com.online.action.comanda.WelcomeComandaAction"
+			method="loadHores">
+		</action>
 		<action name="goToPas1Action" class="com.online.action.comanda.WelcomeComandaAction"
 			method="goToPas1Action">
 			<result name="success">/pages/comanda/infoComanda.jsp</result>
@@ -49,14 +58,13 @@
 			method="getRefrescos">
 			<result name="success">/pages/comanda/begudes/begudes.jsp</result>
 		</action>
-		<action name="getHoraComanda"
-			class="com.online.action.comanda.WelcomeComandaAction" method="getHoraComanda">
+		<action name="getHoraComanda" class="com.online.action.comanda.WelcomeComandaAction"
+			method="getHoraComanda">
 		</action>
 		<!-- Action que carrega image de la BBDD -->
 		<action name="ImageAction" class="com.online.image.ImageAction">
 			<result name="success" type="imageResult">
 			</result>
-		</action>
-
+		</action>		
 	</package>
 </struts>

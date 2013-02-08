@@ -13,6 +13,13 @@
 				class="com.online.result.CustomImageBytesResult" />
 		</result-types>
 		
+		<global-results>
+            <result name="error" >/error.jsp</result>
+        </global-results>
+        <global-exception-mappings>
+            <exception-mapping exception="java.lang.Exception" result="error"/>
+        </global-exception-mappings>
+        
 		<!-- Action menu principal Admin -->
 		<action name="menu" class="com.online.action.admin.WelcomeAdminAction"
 			method="execute">
@@ -252,5 +259,6 @@
 		<action name="ajaxDeleteCommentAction"
 			class="com.online.action.admin.MantenimentCommentsAction" method="ajaxDeleteCommentAction">
 		</action>
+		
 	</package>
 </struts>
