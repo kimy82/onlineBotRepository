@@ -452,7 +452,8 @@ background: #F7931E;
 	margin-top: 82px;
 }
 #form_arribem{
-	margin-bottom: 20px;
+	margin-bottom: 0px;
+	margin-top:20px;
 }
 .menu_general a{
 	color: #333;
@@ -494,7 +495,7 @@ background: #F7931E;
 	margin-left: 0px;
 }
 #newsletter{
-	margin-top: 20px;
+	margin-top: 0px;
 }
 #credits{
 	background-color: #222;
@@ -631,11 +632,6 @@ background: #F7931E;
 }
 
 img.img_CLOSE { 
-    float: left;
-    height: 152px;
-    text-align: center;
-    width: 230px;
-}
 }
 #restaurants .img_Rest_CLOSE{
 	width: 230px;
