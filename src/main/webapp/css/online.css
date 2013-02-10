@@ -28,27 +28,3 @@
 .prevBtn {
 	left: 0px;
 }
-
-.ui-corner-all, .ui-corner-bottom, .ui-corner-left, .ui-corner-bl {
-    border-bottom-left-radius: 4px;
-}
-.ui-corner-all, .ui-corner-bottom, .ui-corner-left, .ui-corner-bl {
-    border-bottom-left-radius: 4px;
-}
-.ui-corner-all, .ui-corner-top, .ui-corner-right, .ui-corner-tr {
-    border-top-right-radius: 4px;
-}
-.ui-corner-all, .ui-corner-top, .ui-corner-left, .ui-corner-tl {
-    border-top-left-radius: 4px;
-}
-
-.ui-widget-content {
-    background: url("http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/base/images/ui-bg_flat_75_ffffff_40x100.png") repeat-x scroll 50% 50% #FFFFFF;
-    border: 1px solid #AAAAAA;
-    color: #222222;
-}
-.ui-dialog {
-    overflow: hidden;
-    padding: 0.2em;
-    position: absolute;    
-}

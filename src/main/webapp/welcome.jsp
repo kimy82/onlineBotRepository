@@ -34,7 +34,7 @@
 				</div>
 				<s:iterator value="restaurantList" var="restaurant">
 				<c:set var="close" value="false"/>
-				<div class="iterate_Rest selector_jq" id="${restaurant.id}" >
+				<div class="iterate_Rest"  >
 					<div class="img_Rest" style="background-image: url(/${initParam.app}/comanda/ImageAction.action?imageId=${restaurant.foto.id});" >
 						<div class="enter">
 							<c:if test="${not empty restaurant.configRestaurants}">
@@ -48,12 +48,12 @@
 									<c:if test="${config.obert==true && not doneLoop}">
 					
 										<c:if test="${config.data eq dataAvui }">
-											<a href="#" class="entrar" ><s:text name="txt.inicia.comanda" /></a>
+											<a href="#" id="${restaurant.id}" class="entrar selector_jq" ><s:text name="txt.inicia.comanda" /></a>
 											<input type="hidden" id="dataObert_${restaurant.id}" value="${dataAvui}" />
 										</c:if>
 										<c:if test="${config.data ne dataAvui }">	
 											<c:set var="close" value="true"/>				
-											<a href="#" class="entrar_CLOSE" ><s:text name="txt.inicia.comanda.tal.dia" />&nbsp; ${config.data}</a>
+											<a href="#" id="${restaurant.id}" class="entrar_CLOSE selector_jq" ><s:text name="txt.inicia.comanda.tal.dia" />&nbsp; ${config.data}</a>
 											<input type="hidden" id="dataObert_${restaurant.id}" value="${config.data}" />
 										</c:if> 
 										<c:set var="doneLoop" value="true"/>
@@ -61,7 +61,7 @@
 								</c:forEach>
 							</c:if>
 							<c:if test="${empty restaurant.configRestaurants}">
-								<a href="#" class="entrar"><s:text name="txt.inicia.comanda" /></a>
+								<a href="#" id="${restaurant.id}" class="entrar selector_jq"><s:text name="txt.inicia.comanda" /></a>
 								<input type="hidden" id="dataObert_${restaurant.id}" value="${dataAvui}" />
 							</c:if>	
 							<br>
@@ -148,7 +148,7 @@
 	<!-- CSS portamu -->
 	
 	<link rel="stylesheet" href="<c:url value='/css/coin-slider-styles.css' />" type="text/css" />
-	<link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/base/jquery-ui.css" rel="stylesheet" type="text/css" />
+	<!--  link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/base/jquery-ui.css" rel="stylesheet" type="text/css" /-->
 	<link type="text/css" rel="stylesheet" href="<c:url value='/css/online.css' />" />
 	<script src="<c:url value='/js/jquery/jquery.js' />" type="text/javascript"></script>
 	<script src="<c:url value='/js/jquery/jquery.ui.core.js' />" type="text/javascript"></script>

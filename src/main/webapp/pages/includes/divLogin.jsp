@@ -28,9 +28,9 @@
 		</c:if>
 	</div>
 </div>
-<div id="login_dialog" class="filtres filtres-oberts" title="<s:text name='txt.user.login' />">	 		
+<div id="login_dialog" class="filtres filtres-oberts" >	 		
 </div> 
-<div id="regist_dialog" class="filtres filtres-oberts" title="<s:text name='txt.user.register' />">	 		
+<div id="regist_dialog" class="filtres filtres-oberts ui-dialog-titlebar ui-dialog ui-widget ui-widget-content ui-corner-all ui-draggable ui-resizable">	 		
 </div> 
 <script type="text/javascript" >
 function goToLogin(){
@@ -45,7 +45,12 @@ function goToLogin(){
 			   $("#login_dialog").dialog("close"); 			  
 			}
 	});
-    $("#login_dialog").dialog("open");    
+    $("#login_dialog").dialog("open"); 
+    $("#login_dialog").siblings('div.ui-dialog-titlebar').remove();  
+    $("#login_dialog").removeClass("ui-dialog-content");
+    $("#login_dialog").removeClass("ui-widget-content");
+   	$("#login_dialog").addClass("ui-dialog-titlebar ui-widget-header ui-corner-all ui-helper-clearfix");
+   	
 }
 
 function goToRegist(){
@@ -60,6 +65,7 @@ function goToRegist(){
 			   $("#regist_dialog").dialog("close"); 			  
 			}
 	});
-    $("#regist_dialog").dialog("open");    
+    $("#regist_dialog").dialog("open");
+    $(".ui-widget-header").hide(); 
 }
 </script>

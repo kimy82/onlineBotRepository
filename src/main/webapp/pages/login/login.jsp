@@ -18,7 +18,7 @@
 		</div>
 		<hr class="sep5">
 		<div class="light_body">
-			<div id="form_loguin">
+			<div id="form_loguin" class="form">
 				<form name='f' action="<c:url value='j_spring_security_check' />" method='POST'   >
 				<s:text name="txt.user.usuario" />*:<br> <input class="inputs" type="text" name='j_username' value="" ><br>
 				<s:text name="txt.user.password" />*:<br> <input type='password' class="inputs" name='j_password' /> <br>

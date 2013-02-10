@@ -11,7 +11,7 @@
 	<meta name="viewport" content="width=device-width,initial-scale=0.99,maximum-scale=0.99" />
 	<title><s:text name="txt.welcome.principal" /></title>	
 </head>
-<body>
+<body id="restaurants" >
 <c:import url="/pages/includes/headerContext.jsp" />
 <c:import url="/pages/includes/divLogin.jsp" />
 

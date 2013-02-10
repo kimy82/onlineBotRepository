@@ -42,7 +42,7 @@
 					<c:if test="${plat.actiu == true }" >
 						<div class="iterate_Rest">
 						<div class="selector_jq ui-widget-content img_Rest" id="draggable_${plat.id}" >
-	  						<img height="152" src="/${initParam.app}/comanda/ImageAction.action?imageId=${plat.foto.id}">
+	  						<img height="152" width="230" src="/${initParam.app}/comanda/ImageAction.action?imageId=${plat.foto.id}">
 	  					</div>
 	  					<div class="format">
 			  				<div class="titol_Rest">
@@ -66,7 +66,7 @@
 					<c:if test="${plat.actiu == false }" >
 						<div class="iterate_Rest"  title="Plat no actiu per avui" >
 						<div class="selector_jq ui-widget-content  img_Rest_CLOSE" id="draggable_${plat.id}">
-	  						<img class="img_CLOSE" src="/${initParam.app}/comanda/ImageAction.action?imageId=${plat.foto.id}">
+	  						<img height="152" width="230" class="img_CLOSE" src="/${initParam.app}/comanda/ImageAction.action?imageId=${plat.foto.id}">
 	  					</div>
 	  					<div class="format">
 			  				<div class="titol_Rest_CLOSE">
@@ -111,7 +111,7 @@
 						<hr class="sep4">
 						<div class="iterate_ref" >
 							<div class="img_Rest ui-widget-content selectorBeg" id="draggable_${beguda.id}" >
-	  							<img height="202" src="/${initParam.app}/comanda/ImageAction.action?imageId=${beguda.foto.id}">
+	  							<img height="152" width="230" src="/${initParam.app}/comanda/ImageAction.action?imageId=${beguda.foto.id}">
 	  						</div>
 							<div class="format">
 					  				<div class="titol_Rest">
