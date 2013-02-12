@@ -30,7 +30,7 @@
 </div>
 <div id="login_dialog" class="filtres filtres-oberts" >	 		
 </div> 
-<div id="regist_dialog" class="filtres filtres-oberts ui-dialog-titlebar ui-dialog ui-widget ui-widget-content ui-corner-all ui-draggable ui-resizable">	 		
+<div id="regist_dialog" class="filtres filtres-oberts">	 		
 </div> 
 <script type="text/javascript" >
 function goToLogin(){
@@ -66,6 +66,9 @@ function goToRegist(){
 			}
 	});
     $("#regist_dialog").dialog("open");
-    $(".ui-widget-header").hide(); 
+    $("#regist_dialog").siblings('div.ui-dialog-titlebar').remove();  
+    $("#regist_dialog").removeClass("ui-dialog-content");
+    $("#regist_dialog").removeClass("ui-widget-content");
+   	$("#regist_dialog").addClass("ui-helper-clearfix");
 }
 </script>
