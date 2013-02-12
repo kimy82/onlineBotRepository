@@ -502,7 +502,13 @@ function saveBegudaToComanda(idBeguda,promo,amount){
        					window.localStorage.setItem("comanda.numbegudes",numBegudes);
        					window.localStorage.setItem("comanda.beguda.preu",preuBegudes.toFixed(2));           					           				
        					var preuComanda = window.localStorage.getItem("comanda.preu");
-       					var preuFinal = parseFloat(preuComanda) + parseFloat(preuBegudes);
+       					
+       					var transport=0;
+       					if($("#adomicili").is(':checked')){
+       						transport=40;
+       					}
+       					
+       					var preuFinal = parseFloat(preuComanda) + parseFloat(preuBegudes)+ parseFloat(transport);
        					$("#preu").text(preuFinal.toFixed(2));
        					$("#labelpreutotalPromo").text(preuFinal.toFixed(2));
        					initPromoDescompteFromStorage();
