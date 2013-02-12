@@ -45,21 +45,12 @@ public class Comandes implements Serializable{
 	protected Double 				importDescomte;
 
 	private Date					fentrada;
+	
+	protected Boolean				targeta;
 
 	
 
 	// CONSTRUCTORS
-
-	public Boolean getaDomicili(){
-
-		return aDomicili;
-	}
-
-	public void setaDomicili( Boolean aDomicili ){
-
-		this.aDomicili = aDomicili;
-	}
-
 	public Comandes() {
 
 		super();
@@ -195,7 +186,23 @@ public class Comandes implements Serializable{
 	
 		this.importDescomte = importDescomte;
 	}
+	public Boolean getaDomicili(){
+
+		return aDomicili;
+	}
+
+	public void setaDomicili( Boolean aDomicili ){
+
+		this.aDomicili = aDomicili;
+	}
 	
+	public Boolean getTargeta() {
+		return targeta;
+	}
+
+	public void setTargeta(Boolean targeta) {
+		this.targeta = targeta;
+	}	
 	
 	
 }

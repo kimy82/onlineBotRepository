@@ -281,6 +281,11 @@ function checkComandaJS(){
 			adomicili=true;
 		}
 		
+		var targeta =false;
+		if($("#targeta").is(':checked')){
+			targeta=true;
+		}
+		
 		var address = $("#comandaddress").val();
 		if(address==''){
 			alertOnline.alertes(initParams.txtcheckaddress);
@@ -288,7 +293,7 @@ function checkComandaJS(){
 		}
 		address =  address.replace(/\n/g, "");
 		$("#chargeBar").show();
-		var data ="idComanda="+comanda+"&dia="+dia+"&hora="+hora+"&aDomicili="+adomicili+"&address="+address;
+		var data ="idComanda="+comanda+"&dia="+dia+"&hora="+hora+"&aDomicili="+adomicili+"&targeta="+targeta+"&address="+address;
 	  	$.ajax({
 	  		  type: "POST",
 	  		  url: '/'+context+'/comanda/checkComanda.action',
@@ -809,8 +814,8 @@ $(document).ready(function() {
 				if (preuBegudes != 'undefined' && preuBegudes != null) {
 					preu =  parseFloat(preu) + parseFloat(preuBegudes);
 				}
-				$("#preu").text(preu.toFixed(2));			
-				$("#labelpreutotalPromo").text(preu.toFixed(2));
+				$("#preu").text(parseFloat(preu).toFixed(2));			
+				$("#labelpreutotalPromo").text(parseFloat(preu).toFixed(2));
 			}
 
 			var numplats = window.localStorage.getItem("comanda.numplats");

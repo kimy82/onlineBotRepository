@@ -23,7 +23,7 @@
 			<!-- Language -->
 				<c:import url="/pages/includes/divLanguage.jsp" />
 			<!-- END language -->
-			<div class="titols_comanda"> afageix alguna beguda a la teva comanda </div>
+			<div class="titols_comanda"> <s:text name="txt.add.some.drink" /></div>
 			<div id="recordatori">
 				<div id="slider" style=" height:219px; width:1000px;"  >
 				    <ul>
@@ -53,11 +53,11 @@
 					<table id="order">
 						<thead>
 							<tr>
-							<th class="titolars pro" scope="col">PRODUCTES</th>
-							<th class="titolars des" scope="col">DESCRIPCIÓ</th>
-							<th class="titolars pre" scope="col">PREU UNITARI</th>
-							<th class="titolars can" scope="col">CANTITAT</th>
-							<th class="titolars tot" scope="col">TOTAL</th>
+							<th class="titolars pro" scope="col"><s:text name="txt.table.infocomanda.th1" /></th>
+							<th class="titolars des" scope="col"><s:text name="txt.table.infocomanda.th2" /></th>
+							<th class="titolars pre" scope="col"><s:text name="txt.table.infocomanda.th3" /></th>
+							<th class="titolars can" scope="col"><s:text name="txt.table.infocomanda.th4" /></th>
+							<th class="titolars tot" scope="col"><s:text name="txt.table.infocomanda.th5" /></th>
 							<th class="titolars elm" scope="col"></th>
 							</tr>
 						</thead>
@@ -123,28 +123,28 @@
 									</td>
 									<td class="total"><label id="labelpreutotal_b_p_${begudaComanda.beguda.id}">0</label> &euro; </td>
 									<td class="elimi">
-										<input class='elimin' type='submit' onclick='deletePromoApplied();'  value='TREURE PROMOCIO'>
+										<input class='elimin' type='submit' onclick='deletePromoApplied();'  value="<s:text name='txt.infocomanda.treure.promo' />">
 									</td>								
 									</tr>
 								</c:if>
 							</s:iterator>
 							<tr>
-								<td class="img_order" colspan="4">TRANSPORT</td>
+								<td class="img_order" colspan="4"><s:text name="txt.table.infocomanda.transport" /></td>
 								<td class="total"><label id="transport_lb"></label>&euro; </td>
 								<td class="total"></td>
 							</tr>
 							<tr>
-								<td class="img_order" colspan="4">SUBTOTAL</td>
+								<td class="img_order" colspan="4"><s:text name="txt.table.infocomanda.subtotal" /></td>
 								<td class="total"><label id="preu"></label>&euro;  </td>
 								<td class="total"></td>
 							</tr>
 							<tr>
-								<td class="img_order" colspan="4">DESCOMPTES PROMOCIONS</td>
+								<td class="img_order" colspan="4"><s:text name="txt.table.infocomanda.promos" /></td>
 								<td class="total"><label id="promoImp"></label></td>
 								<td class="total"></td>
 							</tr>
 							<tr>
-								<td class="img_order" colspan="4">TOTAL</td>
+								<td class="img_order" colspan="4"><s:text name="txt.table.infocomanda.total" /></td>
 								<td class="total" ><label id="labelpreutotalPromo"></label> &euro;</td>
 								<td class="total"></td>
 							</tr>						
@@ -161,6 +161,7 @@
 					
 														
 					<s:checkbox key="comanda.aDomicili" onclick="addDomicili()"  id="adomicili"   ></s:checkbox>
+					<s:checkbox key="comanda.targeta" id="targeta"   ></s:checkbox>
 					<s:hidden  key="comanda.hora" id="comandahora" ></s:hidden>					
 					<s:hidden key="comanda.id" id="idcomanda" ></s:hidden>	                   
 					<s:hidden key="comanda.address" id="comandaddress"></s:hidden>			

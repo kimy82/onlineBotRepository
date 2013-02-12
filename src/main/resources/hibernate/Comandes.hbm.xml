@@ -32,6 +32,9 @@
 		<property name="aDomicili" type="boolean" lazy="false" >
 			<column name="ADOMICILI"  />
 		</property>		
+		<property name="targeta" type="boolean" lazy="false" >
+			<column name="TARGETA"  />
+		</property>	
 		<property name="fentrada" type="date">
 			<column name="FENTRADA"  />
 		</property>

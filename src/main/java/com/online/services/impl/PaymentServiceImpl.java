@@ -7,6 +7,9 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import org.apache.wink.client.Resource;
+import org.apache.wink.client.RestClient;
+
 import com.online.exceptions.PaymentException;
 import com.online.model.Comandes;
 import com.online.model.PlatComanda;
@@ -15,7 +18,31 @@ import com.online.services.PaymentService;
 public class PaymentServiceImpl implements PaymentService {
 
 	private Comandes comanda;
-
+	private final String CODI_MAQUINA_ADMIN="AC001";
+	
+	public void  sendOrder(boolean toAdmins, List<String> orders) throws PaymentException {
+		
+		for(String order : orders){
+			RestClient client = new RestClient();
+			Resource resource = client.resource("http://localhost/ComandaRest/jaxrs/comandes/file");
+			String[] orderVec = order.split("&");
+			int iterador=0;
+			for(String param : orderVec){
+				if(toAdmins && iterador==0){
+					String[] params = param.split("=");
+					resource.queryParam(params[0],CODI_MAQUINA_ADMIN);
+				}else{
+					String[] params = param.split("=");
+					resource.queryParam(params[0],params[1]);
+				}
+				iterador=iterador+1;
+				
+			}					
+			String response = resource.accept("text/plain").get(String.class);
+		}
+		
+	}
+	
 	public List<String> getComandaOrders(Comandes comanda)
 			throws PaymentException {
 

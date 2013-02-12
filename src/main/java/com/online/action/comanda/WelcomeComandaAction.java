@@ -68,6 +68,7 @@ public class WelcomeComandaAction extends ActionSupport implements ServletRespon
 	private String				hora;
 	private Date				dia;
 	private String				aDomicili;
+	private String				targeta;
 	private Integer				nplats				= null;
 	private String				address;
 	private String				data;
@@ -219,6 +220,7 @@ public class WelcomeComandaAction extends ActionSupport implements ServletRespon
 				this.comanda.setHora(Utils.getHora(this.hora));
 				this.comanda.setDia(this.dia);
 				this.comanda.setaDomicili(Boolean.valueOf(aDomicili));
+				this.comanda.setTargeta(Boolean.valueOf(targeta));
 				this.comanda.setAddress(this.address);
 
 				if (this.comanda.getUser() == null) {
@@ -686,6 +688,8 @@ public class WelcomeComandaAction extends ActionSupport implements ServletRespon
 					.getParameter("dia"));
 			this.aDomicili = (request.getParameter("aDomicili") == null || request.getParameter("aDomicili").equals("")) ? null : request
 					.getParameter("aDomicili");
+			this.targeta = (request.getParameter("targeta") == null || request.getParameter("targeta").equals("")) ? null : request
+					.getParameter("targeta");
 
 		} catch (Exception e) {
 			throw new WrongParamException("wrong id of comanda");

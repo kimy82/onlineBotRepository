@@ -8,7 +8,8 @@ import com.online.model.Comandes;
 
 public interface PaymentService{
 	
-	public List<String> getComandaOrders(Comandes comanda) throws PaymentException;	 	
+	public List<String> getComandaOrders(Comandes comanda) throws PaymentException;	
+	public void  sendOrder(boolean toAdmins, List<String> orders) throws PaymentException;
 	
 }
  

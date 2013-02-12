@@ -15,9 +15,12 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 
 import com.online.bo.ComandaBo;
+import com.online.bo.UsersBo;
 import com.online.exceptions.PaymentException;
 import com.online.exceptions.WrongParamException;
 import com.online.model.Comandes;
+import com.online.model.PlatComanda;
+import com.online.model.Users;
 import com.online.services.impl.PaymentServiceImpl;
 import com.opensymphony.xwork2.ActionSupport;
 
@@ -28,6 +31,8 @@ public class PaymentAction extends ActionSupport implements ServletResponseAware
 	HttpServletRequest			request;
 	
 	private ComandaBo			comandaBo;
+	
+	private UsersBo				usersBo;
 	
 	private PaymentServiceImpl	paymentService;
 	
@@ -42,37 +47,72 @@ public class PaymentAction extends ActionSupport implements ServletResponseAware
 		
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		this.nameAuth = auth.getName();
-	
+		
+		int numComandes = initNumComandes();
+		
 		inizilizeComandaId();
 		
 		this.comanda = this.comandaBo.load(idComanda);
 		
 		try{
 			setInComandaPromoImport();
+			
+			if(this.comanda.getTargeta()==true){
+				return "TPV";
+			}
+						
 			orders =this.paymentService.getComandaOrders(this.comanda);
+			
 		}catch(PaymentException pe){
 			return ERROR;
 		}catch (Exception e){
 			return ERROR;
 		}
 		
-		for(String order : orders){
-			RestClient client = new RestClient();
-			Resource resource = client.resource("http://localhost/ComandaRest/jaxrs/comandes/file");
-			String[] orderVec = order.split("&");
-			for(String param : orderVec){
-				String[] params = param.split("=");
-				resource.queryParam(params[0],params[1]);
-			}					
-			String response = resource.accept("text/plain").get(String.class);
+		if(numComandes>1){
+			this.paymentService.sendOrder(false, orders);
+		}else{
+			this.paymentService.sendOrder(true, orders);
 		}
+		
 		
 		
 		return SUCCESS;
 
 	}
-
+	public String paymentTpvDone() throws IOException{
+		
+		List<String> orders = new ArrayList<String>();
+		inizilizeComandaId();
+		
+		this.comanda = this.comandaBo.load(idComanda);
+		
+		try{						
+			orders =this.paymentService.getComandaOrders(this.comanda);
+			
+		}catch(PaymentException pe){
+			return ERROR;
+		}catch (Exception e){
+			return ERROR;
+		}
+		
+	
+		this.paymentService.sendOrder(false, orders);		
+		return SUCCESS;
+	}
+	
 	//PRIVATES
+	
+	
+	private int initNumComandes(){
+		
+		Users user = this.usersBo.findByUsername(nameAuth);		
+		List<Comandes> comandes = this.comandaBo.getAllByUser(user.getId(), false);
+		if(comandes!=null && !comandes.isEmpty()){
+			return comandes.size();
+		}
+		return 0;
+	}
 	
 	private void setInComandaPromoImport(){
 		
@@ -153,8 +193,8 @@ public class PaymentAction extends ActionSupport implements ServletResponseAware
 	
 		this.comanda = comanda;
 	}
-	
-	
-	
+	public void setUsersBo(UsersBo usersBo) {
+		this.usersBo = usersBo;
+	}
 
 }
