@@ -326,7 +326,6 @@ $(document).ready(function() {
 		}
 		
 	}else{
-		window.localStorage.clear();
 		$("#numProduct").text(initParams.txtconfirm+" 0 "+initParams.txtproductes);
 	}
 	

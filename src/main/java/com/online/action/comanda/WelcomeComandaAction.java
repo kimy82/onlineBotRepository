@@ -57,6 +57,7 @@ public class WelcomeComandaAction extends ActionSupport implements ServletRespon
 	List<Plat>					platList			= new ArrayList<Plat>();
 	List<Beguda>				begudaList			= new ArrayList<Beguda>();
 	List<PlatComanda>			platComandaList		= new ArrayList<PlatComanda>();
+	List<BegudaComanda>			begudaComandaList	= new ArrayList<BegudaComanda>();
 
 	private List<BasicSub>		refrescList			= new ArrayList<BasicSub>();
 
@@ -75,6 +76,7 @@ public class WelcomeComandaAction extends ActionSupport implements ServletRespon
 	private HoresDTO			horesDTO;
 	private int					numPlats			= 0;
 	private int					numBegudes			= 0;
+	private Integer				amount=0;
 
 	private String				nameAuth;
 
@@ -368,14 +370,19 @@ public class WelcomeComandaAction extends ActionSupport implements ServletRespon
 
 			out = this.response.getOutputStream();
 			inizilizeDadesComandaBeguda();
+			inizializeAmount();
 			if (this.idComanda != null) {
 				// recuperem la comanda i afegim plat
 				Comandes comanda = this.comandaBo.load(this.idComanda);
 				List<BegudaComanda> begudaList = comanda.getBegudes();
 				Beguda begudaToAdd = this.begudaBo.load(this.idBeguda);
-
-				begudaList = comandaService.addBegudaInList(begudaList, begudaToAdd, this.promo);
-
+				if(this.amount<0){
+					for(int i=this.amount; i<0; i++)
+						begudaList = comandaService.removeBegudaInList(begudaList, begudaToAdd, this.promo);
+				}else{
+					for(int i=0; i<this.amount;i++)
+						begudaList = comandaService.addBegudaInList(begudaList, begudaToAdd, this.promo);
+				}
 				comanda.setBegudes(begudaList);
 
 				this.comandaBo.update(comanda);
@@ -514,12 +521,14 @@ public class WelcomeComandaAction extends ActionSupport implements ServletRespon
 			BasicSub basic = new BasicSub(beguda.getFoto().getId(), beguda.getNom());
 			basic.setIdSub(beguda.getId());
 			basic.setTipus(beguda.getTipus());
+			basic.setPreu(beguda.getPreu());
 			this.refrescList.add(basic);
 
 		}
 
 		// this.comandaService.checkComandaPromocions(comanda, resource);
 		this.numPlats = this.comandaService.getNumPlats(this.platComandaList);
+		this.begudaComandaList = comanda.getBegudes();
 		this.numBegudes= this.comandaService.getNumBegudes(comanda.getBegudes());
 		this.platComandaList = comanda.getPlats();
 
@@ -556,7 +565,9 @@ public class WelcomeComandaAction extends ActionSupport implements ServletRespon
 	}
 
 	// private methods
-	
+	private void inizializeAmount(){
+		this.amount= (request.getParameter("amount")!=null && !request.getParameter("amount").equals(""))? Integer.parseInt(request.getParameter("amount")): 1;
+	}
 	private void  inizializePagin(){
 		this.actualPage= (request.getParameter("actualPage")!=null && !request.getParameter("actualPage").equals(""))? Integer.parseInt(request.getParameter("actualPage")): 0;
 		this.order = (request.getParameter("order")!=null && !request.getParameter("order").equals(""))? request.getParameter("order") : Constants.TIPUS_PLAT_ANY;
@@ -909,6 +920,14 @@ public class WelcomeComandaAction extends ActionSupport implements ServletRespon
 	public void setRestaurantList( List<Restaurant> restaurantList ){
 	
 		this.restaurantList = restaurantList;
+	}
+
+	public List<BegudaComanda> getBegudaComandaList() {
+		return begudaComandaList;
+	}
+
+	public void setBegudaComandaList(List<BegudaComanda> begudaComandaList) {
+		this.begudaComandaList = begudaComandaList;
 	}
 
 	

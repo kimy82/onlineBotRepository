@@ -1032,3 +1032,169 @@ ul.pagination li {
     width: 641px;
 }
 /* Login////////////////////////////////////////////////////////////////////////////////////////////////////////////////// */
+#recordatori {
+    border: 1px solid #777777;
+    float: left;
+    height: 240px;
+    width: 1000px;
+}
+#carrito .iterate_Rec {
+    border-right: 1px solid #777777;
+    float: left;
+    height: 241px;
+    margin-bottom: 0;
+    margin-right: 0;
+    width: 230px;
+}
+#carrito .img_Rest {
+    border: medium none;
+    box-shadow: 0 3px 8px 2px #E0C0A6;
+    float: left;
+    height: 152px;
+    text-align: center;
+    width: 230px;
+}
+#carrito .format {
+    float: left;
+    height: 37px;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+#carrito .titol_Rest {
+    color: #F7931E;
+    float: left;
+    font-family: 'Raleway',sans-serif;
+    font-size: 13px;
+    font-weight: 800;
+    margin-top: 8px;
+    padding-left: 10px;
+    padding-right: 10px;
+    text-align: center;
+    width: 212px;
+}
+#carrito #afegir {
+    float: left;
+    height: 25px;
+    margin-top: 6px;
+    padding: 10px;
+    text-align: center;
+    width: 212px;
+}
+#preus {
+    float: left;
+    margin-top: 50px;
+    width: 1000px;
+}
+
+#formpreus {
+    float: left;
+    margin-top: 50px;
+    width: 1000px;
+}
+#order {
+    width: 100%;
+}
+.titols_comanda {
+    -moz-border-bottom-colors: none;
+    -moz-border-left-colors: none;
+    -moz-border-right-colors: none;
+    -moz-border-top-colors: none;
+    background-color: #F7931E;
+    border-color: #777777 #777777 -moz-use-text-color;
+    border-image: none;
+    border-style: solid solid none;
+    border-width: 1px 1px medium;
+    float: left;
+    font-family: 'Raleway',sans-serif;
+    font-size: 11px;
+    font-weight: 800;
+    height: 15px;
+    margin-top: 50px;
+    padding: 13px;
+    text-transform: uppercase;
+}
+.titolars {
+    background-color: #999999;
+    font-family: 'Raleway',sans-serif;
+    font-size: 13px;
+    font-weight: 800;
+    padding: 14px 10px;
+}
+.pro {
+    width: 95px;
+}
+.des {
+    width: 267px;
+}
+.descri {
+    font-family: arial;
+    font-size: 11px;
+    padding: 20px;
+    vertical-align: middle;
+}
+.pre {
+    width: 140px;
+}
+.can {
+    width: 140px;
+}
+.elm {
+}
+.preusun {
+    font-family: 'Raleway',sans-serif;
+    font-weight: 800;
+    text-align: center;
+    vertical-align: middle;
+}
+.mores {
+    background-color: #333333;
+    border: 1px solid #BDBBBB;
+    color: white;
+    cursor: pointer;
+    font-family: arial;
+    font-size: 18px;
+    margin-left: 5px;
+    padding: 6px 11px;
+}
+.canti {
+    font-family: 'Raleway',sans-serif;
+    font-weight: 800;
+    text-align: center;
+    vertical-align: middle;
+}
+.total {
+    font-family: 'Raleway',sans-serif;
+    font-weight: 800;
+    text-align: center;
+    vertical-align: middle;
+}
+.elimi {
+    text-align: center;
+    vertical-align: middle;
+}
+.elimin {
+    background-color: #333333;
+    border: 1px solid #BDBBBB;
+    color: white;
+    cursor: pointer;
+    font-family: arial;
+    font-size: 12px;
+    padding: 9px 11px;
+    text-align: center;
+    vertical-align: middle;
+}
+.tb {
+    background-color: #F2F2F2;
+}
+.tb td {
+    background-color: #F2F2F2;
+    border-bottom: 1px solid #ADADAD;
+    border-right: 1px solid #ADADAD;
+}
+.tit {
+    color: #F7931E;
+    font-family: 'Raleway',sans-serif;
+    font-size: 13px;
+    font-weight: 800;
+    text-transform: uppercase;
+}

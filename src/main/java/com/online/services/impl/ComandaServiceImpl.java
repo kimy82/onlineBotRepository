@@ -447,7 +447,29 @@ public class ComandaServiceImpl implements ComandaService{
 			throw new ComandaException(e, "Error creating JSON of beguda list");
 		}
 	}
+	public List<BegudaComanda> removeBegudaInList(List<BegudaComanda> begudaList, Beguda beguda,boolean promo) throws ComandaException{
+		
+		try {
+			
+			if (begudaList.size() > 0) {
+				for (BegudaComanda bg : begudaList) {
+					if (bg.getBeguda().getId().equals(beguda.getId())) {
+						if (promo == true) {
+							bg.setNumBegudesPromo(bg.getNumBegudesPromo() -1 );
+						} else {
+							bg.setNumBegudes(bg.getNumBegudes() -1);
+						}				
+					}
+				}
+			}
+			
+			return begudaList;
 
+		} catch (Exception e) {
+			throw new ComandaException(e, "Error adding beguda in list");
+		}
+	}
+	
 	public List<BegudaComanda> addBegudaInList( List<BegudaComanda> begudaList, Beguda beguda, boolean promo ) throws ComandaException{
 
 		try {

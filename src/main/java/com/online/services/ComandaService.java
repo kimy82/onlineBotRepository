@@ -18,6 +18,8 @@ public interface ComandaService{
 	public boolean checkPlatForMoreThanTwoRestaurants(List<PlatComanda> platList, Plat plat) throws ComandaException;
 	
 	public List<BegudaComanda> addBegudaInList(List<BegudaComanda> begudaList, Beguda beguda,boolean promo) throws ComandaException;
+	
+	public List<BegudaComanda> removeBegudaInList(List<BegudaComanda> begudaList, Beguda beguda,boolean promo) throws ComandaException;
 	 
 	public String createJSONForShoppingCart(List<PlatComanda> platList, Long id) throws ComandaException;
 	

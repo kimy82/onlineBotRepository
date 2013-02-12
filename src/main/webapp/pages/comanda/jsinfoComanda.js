@@ -4,7 +4,7 @@ var initParams=null ;
 
 function InitParams(txtBegudaNoPromocio,txtNoMoreDrinksToAddinPromo,txtAddDrinkstoBox, 
 					txtdescompteaplicat,txtpromodeleted, txtfaltahora, txtcheckaddress, 
-					checkok, checkko){		
+					checkok, checkko,txtconfirm,txtproductes,txtproducte){		
 		this.txtBegudaNoPromocio=txtBegudaNoPromocio;
 		this.txtNoMoreDrinksToAddinPromo=txtNoMoreDrinksToAddinPromo;
 		this.txtAddDrinkstoBox = txtAddDrinkstoBox;
@@ -14,6 +14,9 @@ function InitParams(txtBegudaNoPromocio,txtNoMoreDrinksToAddinPromo,txtAddDrinks
 		this.txtcheckaddress = txtcheckaddress;
 		this.checkok = checkok;
 		this.checkko = checkko;
+		this.txtconfirm = txtconfirm;
+		this.txtproductes = txtproductes;
+		this.txtproducte = txtproducte;
 }
 //progress var
 						window.setTimeout(function() {
@@ -31,11 +34,6 @@ function InitParams(txtBegudaNoPromocio,txtNoMoreDrinksToAddinPromo,txtAddDrinks
 $("#chargeBar").hide();
 
 function initNumPlats(){
-	
-	var numplats = window.localStorage.getItem("comanda.numplats");
-	if (numplats != 'undefined' && numplats != null) {
-		$("#numplats").text(numplats);
-	}	
 }
 
 function initNumBegudes(){
@@ -179,33 +177,75 @@ function onlyEntero(value,id){
 }
 
 function saveNewPLatAmount(id,value){
-	if(onlyEntero(value,id)){
-		 var preu = $("#platpreu_"+id).text();
+	
+		 var preuPlat = $("#platpreu_"+id).text();
+		 var preu = $("#preu").text();
 		 var numPlatsAnt = window.localStorage.getItem("comanda.plat_"+id);
 		 if(numPlatsAnt != 'undefined' && numPlatsAnt != null){
 			 
-			 var nPlatsAdded = parseInt(value)-parseInt(numPlatsAnt);
+			 var nPlatsAdded = parseInt(value);
+			 $("#labelnum_"+id).text(parseInt(numPlatsAnt)+parseInt(value));
+			 window.localStorage.setItem("comanda.plat_"+id,parseInt(numPlatsAnt)+parseInt(value));
 			 
-			 window.localStorage.setItem("comanda.plat_"+id,value);
-			 
-			 var preuToAdd = parseFloat(preu)*nPlatsAdded;
-			 var preuActual = $("#preu").text();
+			 var preuToAdd = parseFloat(preuPlat)*nPlatsAdded;
+			 var preuActual = $("#labelpreutotal_"+id).text();
 			 var newPreu = preuToAdd+parseFloat(preuActual);
-			 $("#preu").text(parseFloat(newPreu).toFixed(2));
+			 $("#labelpreutotal_"+id).text(parseFloat(newPreu).toFixed(2));
 			 
-			 window.localStorage.setItem("comanda.preu",parseFloat(newPreu).toFixed(2));
+			 var preuCom = parseFloat(preu)+preuToAdd;
+			 $("#preu").text(parseFloat(preuCom).toFixed(2));
+			 $("#labelpreutotalPromo").text(parseFloat(preuCom).toFixed(2));
 			 
-			 var nPlats = $("#numplats").text();
+			 var preuPlats =  window.localStorage.getItem("comanda.preu");
+			 window.localStorage.setItem("comanda.preu",parseFloat(parseFloat(preuPlats)+ parseFloat(preuToAdd)).toFixed(2));
 			 
-			 $("#numplats").text(parseInt(nPlats)+nPlatsAdded);
-			 window.localStorage.setItem("comanda.numplats",parseInt(nPlats)+nPlatsAdded);
+			 initPromoDescompteFromStorage();
 			 //Guardem els plats afegits
 			 savePlatToComanda(id,nPlatsAdded);
-		 }else{
-			 
-			 //Si entrem aki hi ha hagut un error
-			 alertOnline.alertes("Please try again!! or remove the plat. There aren't more");								 
-		 }
+		
+	}
+}
+function eliminaPlat(id){
+	window.localStorage.setItem("comanda.plat_"+id,"0");
+	 var n = $("#labelnum_"+id).text();
+	 $("#labelnum_"+id).text("0");	
+	 var preuTotalPlat = $("#labelpreutotal_"+id).text();
+	 $("#labelpreutotal_"+id).text("0");
+	 var preu =  $("#preu").text();
+	 var preuComanda = parseFloat(preu)-parseFloat(preuTotalPlat);
+	 $("#preu").text(parseFloat(preuComanda).toFixed(2));
+	 $("#labelpreutotalPromo").text(parseFloat(preuComanda).toFixed(2));
+	 initPromoDescompteFromStorage();
+	 savePlatToComanda(id,-n); 
+	 
+}
+
+function eliminaBeguda(id){
+	 var n = $("#labelnum_b_"+id).text();
+	 $("#labelnum_b_"+id).text("0");	
+	 var preuTotalBeguda = $("#labelpreutotal_b_"+id).text();
+	 $("#labelpreutotal_b_"+id).text("0");
+	 var preu =  $("#preu").text();
+	 var preuComanda = parseFloat(preu)-parseFloat(preuTotalBeguda);
+	 $("#preu").text(parseFloat(preuComanda).toFixed(2));
+	 $("#labelpreutotalPromo").text(parseFloat(preuComanda).toFixed(2));
+	 saveBegudaToComanda(id,false,-n); 
+}
+
+function addDomicili(){
+	var preu = $("#preu").text();
+	 var preuT = $("#labelpreutotalPromo").text();
+	 
+	if($("#adomicili").is(':checked')){		 		 
+		 $("#transport_lb").text("40");
+		 $("#preu").text(parseFloat(parseFloat(preu)+parseFloat(40)).toFixed(2));		 
+		 $("#labelpreutotalPromo").text(parseFloat(parseFloat(preuT)+parseFloat(40)).toFixed(2));
+		 initPromoDescompteFromStorage();
+	}else{
+		 $("#transport_lb").text("0");
+		 $("#preu").text(parseFloat(parseFloat(preu)-parseFloat(40)).toFixed(2));
+		 $("#labelpreutotalPromo").text(parseFloat(parseFloat(preuT)-parseFloat(40)).toFixed(2));
+		 initPromoDescompteFromStorage();
 	}
 }
 
@@ -268,16 +308,14 @@ function checkComandaJS(){
 	       					alertOnline.alertes(json.alerta);	       					
 	       					$("#chargeBar").hide();
 	       					return;
-	       				}
-	       				
+	       				}	       				
 	       				if(json.comandaOK !=null ){
 	       					alertOnline.alertes(json.comandaOK);	       					
 	       					$("#chargeBar").hide();	       					
 	       					$("#checkPromocionsDisponibles").show();
 	       					payComanda();
 	       					return;
-	       				}
-	       						       			
+	       				}	       						       		
 	       			}	  			  		  			  		  			  	
 	  			  $("#chargeBar").hide();
 	  		  },
@@ -286,12 +324,12 @@ function checkComandaJS(){
 	  		});
 	}
 }
-$(function(){
+var func = $(function(){
 	
-	$( ".draggable" ).dblclick(function() {
+	$( ".draggable" ).click(function() {
 		
 		var dragBeguda =$(this).clone();
-		dragBeguda.appendTo("#slider");
+		dragBeguda.appendTo("#preus");
 		
 		dragBeguda.animate({
 							    width: "90%",
@@ -312,7 +350,7 @@ $(function(){
 	
 	function addingBegudaMangaer(id,tipus){
 			if(window.promoBeguda == null || window.promoBeguda.promo!="true" ){	
-				saveBegudaToComanda(id,false);
+				saveBegudaToComanda(id,false,1);
 			}else{
 				if(window.promoBeguda.numBegudesAdded < window.promoBeguda.numBegudes){
 	    			if(tipus!= window.promoBeguda.tipusBeguda){
@@ -322,64 +360,13 @@ $(function(){
 	    			//Afegim beguda al contador
 	    			var n = window.promoBeguda.numBegudesAdded;
 	    			window.promoBeguda.numBegudesAdded = parseInt(n) +1;
-	    			saveBegudaToComanda(id,true);
+	    			saveBegudaToComanda(id,true,1);
 	    		}else{
 	    			alertOnline.alertes(initParams.txtNoMoreDrinksToAddinPromo);	    			
 	    		}
 			}
 	}
-	
-	function saveBegudaToComanda(idBeguda,promo){
-		
-		var data ="idBeguda="+idBeguda+"&idComanda="+$("#idcomanda").val()+"&promo="+promo;
-      	$.ajax({
-      		  type: "POST",
-      		  url: '/'+context+'/comanda/ajaxLoadBeguda.action',
-      		  dataType: 'json',
-      		  data: data,
-      		  success: function(json){	
-      			  if(json!=null && json.error!=null){           				
-           				errorOnline.error("Error in AJAX: "+json.error);	
-           			}else{
-           				if(json.alerta!=null){
-           					alertOnline.alertes(json.alerta);
-           					
-           				}else{
-           					var numBegudes=0;
-           					var numBegudesPromo=0;           					
-           					var preuBegudes = 0.0;
-           					var html="";
-           					var begudes = json.begudes;
-           					$.each(begudes, function(index, value) { 
-           					 	           					 	
-           					 		numBegudesPromo=numBegudesPromo+value.numBegudesPromo;
-
-           					 		numBegudes= numBegudes+value.numBegudes;
-
-           					 		preuBegudes=  parseFloat(preuBegudes) + parseFloat(value.beguda.preu)*value.numBegudes;
-           						}
-           						
-           					 		html=html+"<div class='selector'>"+value.beguda.nom+"<br>"+value.beguda.preu+"</div>";
-           						
-           					});
-           				
-           					window.localStorage.setItem("comanda.promo.nBegudes.added",numBegudesPromo);
-           					window.localStorage.setItem("comanda.numbegudes",numBegudes);
-           					window.localStorage.setItem("comanda.beguda.preu",preuBegudes.toFixed(2));
-           					$("#begudes").html(html);
-           					$("#numbegudes").text(numBegudes);
-           					$("#numbegudespromo").text(numBegudesPromo);
-           					var preuComanda = window.localStorage.getItem("comanda.preu");
-           					var preuFinal = parseFloat(preuComanda) + parseFloat(preuBegudes);
-           					$("#preu").text(preuFinal.toFixed(2));
-           				}
-           			}				
-      		  },
-      		  error: function(e){  errorOnline.error("Error in AJAX");	
-      		  					}
-      		});	
-	}
-	
+			
 	$( ".draggable" ).draggable({
 		 helper:'clone',		
 		 start: function(event,ui){				
@@ -394,6 +381,138 @@ $(function(){
 	    }
 	});
 });
+
+function saveBegudaToComanda(idBeguda,promo,amount){
+	
+	var data ="idBeguda="+idBeguda+"&idComanda="+$("#idcomanda").val()+"&amount="+amount+"&promo="+promo;
+  	$.ajax({
+  		  type: "POST",
+  		  url: '/'+context+'/comanda/ajaxLoadBeguda.action',
+  		  dataType: 'json',
+  		  data: data,
+  		  success: function(json){	
+  			  if(json!=null && json.error!=null){           				
+       				errorOnline.error("Error in AJAX: "+json.error);	
+       			}else{
+       				if(json.alerta!=null){
+       					alertOnline.alertes(json.alerta);       					
+       				}else{
+       					var numBegudes=0;
+       					var numBegudesPromo=0;           					
+       					var preuBegudes = 0.0;
+       					var html="";
+       					var begudes = json.begudes;
+       					$('#beguda_'+idBeguda).remove();
+       					var table=document.getElementById("order");
+       					$.each(begudes, function(index, value){ 
+       					 	           					 	
+       						numBegudesPromo=numBegudesPromo+value.numBegudesPromo;
+
+   					 		numBegudes= numBegudes+value.numBegudes;
+
+   					 		preuBegudes=  parseFloat(preuBegudes) + parseFloat(value.beguda.preu)*value.numBegudes;           					
+   					 		   					 		
+   					 		if(value.beguda.id==idBeguda){
+   					 			
+   					 			if(value.numBegudes!=0){
+	       					 		var row=table.insertRow(1);
+	       					 		
+	       					 		$(row).addClass("selector_pl");
+	       					 		row.id="beguda_"+value.beguda.id;
+	       					 		
+	       					 		var cell1=row.insertCell(0);
+	       					 		var cell2=row.insertCell(1);
+	       					 		var cell3=row.insertCell(2);
+	       					 		var cell4=row.insertCell(3);
+	       					 		var cell5=row.insertCell(4);
+	       					 		var cell6=row.insertCell(5);
+	       					 		
+	       					 		
+	       					 		$(cell1).addClass("img_order");
+	       					 		cell1.innerHTML="<img width='114px' src='"+context+"/comanda/ImageAction.action?imageId="+idBeguda+"' />";
+	       					 		
+	       					 		
+	       					 		$(cell2).addClass("descri");
+	       					 		cell2.innerHTML="<span class='tit'>"+value.beguda.nom+"</span><br>"+value.beguda.descripcio+"</td>";
+	       					 		
+	       					 		
+	       					 		$(cell3).addClass("preusun");
+	       					 		cell3.innerHTML="<label id='begudapreu_"+value.beguda.id+"' >"+value.beguda.preu+"</label>&euro;";
+	       					 		
+	       					 		
+	       					 		$(cell4).addClass("canti");
+	       					 		cell4.innerHTML="<input class='mores' type='submit' onclick='saveBegudaToComanda("+value.beguda.id+",false,-1);' value='-'><label id='labelnum_b_"+value.beguda.id+"'>"+value.numBegudes+"</label><input class='mores' type='submit' onclick='saveBegudaToComanda("+value.beguda.id+",false,1);' value='+'>";
+	       					 		
+										
+									$(cell5).addClass("total");
+	       					 		cell5.innerHTML="<label id='labelpreutotal_b_"+value.beguda.id+"'>"+parseFloat(parseFloat(value.beguda.preu)*parseFloat(value.numBegudes)).toFixed(2)+"</label> &euro;";
+	       					 		
+	       					 		
+	       					 		$(cell6).addClass("elimi");
+	       					 		cell6.innerHTML="<input class='elimin' type='submit' onclick='eliminaBeguda("+value.beguda.id+")'  value='ELIMINAR'>";
+   					 			}
+   					 			if(value.numBegudesPromo!=0){
+	   					 			var row=table.insertRow(1);
+	       					 		
+	       					 		
+	   					 			$(row).addClass("selector_pl");
+	       					 		row.id="beguda_p_"+value.beguda.id;
+	       					 		var list = window.localStorage.getItem("comanda.promo.begudes.list");
+	       					 		if(list == 'undefined' || list == null){
+	       					 			window.localStorage.setItem("comanda.promo.begudes.list",value.beguda.id);
+	       					 		}else{
+	       					 			window.localStorage.setItem("comanda.promo.begudes.list",list+","+value.beguda.id);
+	       					 		}
+	       					 		
+	       					 		var cell1=row.insertCell(0);
+	       					 		var cell2=row.insertCell(1);
+	       					 		var cell3=row.insertCell(2);
+	       					 		var cell4=row.insertCell(3);
+	       					 		var cell5=row.insertCell(4);
+	       					 		var cell6=row.insertCell(5);
+	       					 		
+	       					 		
+	       					 		$(cell1).addClass("img_order");
+	       					 		cell1.innerHTML="<img width='114px' src='"+context+"/comanda/ImageAction.action?imageId="+idBeguda+"' />";
+	       					 		
+	       					 		
+	       					 		$(cell2).addClass("descri");
+	       					 		cell2.innerHTML="<span class='tit'>"+value.beguda.nom+"</span><br>"+value.beguda.descripcio+"</td>";
+	       					 		
+	       					 		
+	       					 		$(cell3).addClass("preusun");
+	       					 		cell3.innerHTML="<label id='begudapreu_p_"+value.beguda.id+"' >"+value.beguda.preu+"</label>&euro;";
+	       					 		
+	       					 		
+	       					 		$(cell4).addClass("canti");
+	       					 		cell4.innerHTML="<label id='labelnum_b_p_"+value.beguda.id+"'>"+value.numBegudesPromo+"</label>";
+	       					 		
+										
+									$(cell5).addClass("total");
+	       					 		cell5.innerHTML="<label id='labelpreutotal_b_p_"+value.beguda.id+"'>0</label> &euro;";
+	       					 		
+	       					 		
+	       					 		$(cell6).addClass("elimi");
+	       					 		cell6.innerHTML="<input class='elimin' type='submit' onclick='deletePromoApplied();'  value='TREURE PROMOCIO'>";
+   					 			}
+       						}       					 	   					 		      					 		           					       						 		       					 	
+       					});
+       					
+       					window.localStorage.setItem("comanda.promo.nBegudes.added",numBegudesPromo);
+       					window.localStorage.setItem("comanda.numbegudes",numBegudes);
+       					window.localStorage.setItem("comanda.beguda.preu",preuBegudes.toFixed(2));           					           				
+       					var preuComanda = window.localStorage.getItem("comanda.preu");
+       					var preuFinal = parseFloat(preuComanda) + parseFloat(preuBegudes);
+       					$("#preu").text(preuFinal.toFixed(2));
+       					$("#labelpreutotalPromo").text(preuFinal.toFixed(2));
+       					initPromoDescompteFromStorage();
+       			}   
+  		  }
+  		  },
+  		  error: function(e){  errorOnline.error("Error in AJAX");	
+  		  					}
+  		});	
+}
 
 //---------------------------------------------------------------------------------------------------------------------
     Calendar.setup({
@@ -549,14 +668,20 @@ function addPromoImport(importDescompte, tipusDescompte){
 		preuBegudes=0.0;
 		window.localStorage.setItem("comanda.beguda.preu","0.0");
 	}
-	var preu =  parseFloat(preuPlats)+ parseFloat(preuBegudes);
+	var transport= 0;
+	if($("#adomicili").is(':checked')){
+		transport=40;
+	}
+	var preu =  parseFloat(preuPlats)+ parseFloat(preuBegudes)+ parseFloat(transport);
 	
 	if(tipusDescompte=='1' || tipusDescompte=='tant per cent %' ){
 		var preuF = parseFloat(preu)*((100-parseFloat(importDescompte))/100);
-		$("#preu").text(preu+" (-"+importDescompte+" %) ="+parseFloat(preuF).toFixed(2));
+		$("#promoImp").text("-"+importDescompte+" %");
+		$("#labelpreutotalPromo").text(preu+" (-"+importDescompte+" %) ="+parseFloat(preuF).toFixed(2));
 	}else{
 		var preuF = parseFloat(preu)-parseFloat(importDescompte);
-		$("#preu").text(preu+" (-"+importDescompte+" Euros) ="+parseFloat(preuF).toFixed(2));
+		$("#promoImp").text("-"+importDescompte+" Euros");
+		$("#labelpreutotalPromo").text(preu+" (-"+importDescompte+" Euros) ="+parseFloat(preuF).toFixed(2));
 	}
 	
 	$("#checkPromocionsDisponibles").hide();
@@ -581,9 +706,15 @@ function deletePromoApplied(){
 		
 		var preuPlats = window.localStorage.getItem("comanda.preu");
 		var preuBegudes = window.localStorage.getItem("comanda.beguda.preu");
-		var preu =  parseFloat(preuPlats)+ parseFloat(preuBegudes);
+		var transport= 0;
+		if($("#adomicili").is(':checked')){
+			transport=40;
+		}
 		
-		$("#preu").text(preu);
+		var preu =  parseFloat(preuPlats)+ parseFloat(preuBegudes)+ parseFloat(transport);
+		
+		$("#promoImp").text("");
+		$("#labelpreutotalPromo").text(preu.toFixed());
 		
 	}
 	if(isPromoBeguda!='undefined' && isPromoBeguda!=null){
@@ -592,6 +723,13 @@ function deletePromoApplied(){
 		window.localStorage.removeItem("comanda.promo.nBegudes.total");
 		window.localStorage.removeItem("comanda.promo.beguda.tipus");
 		
+		var list = window.localStorage.getItem("comanda.promo.begudes.list");
+		if(list!='undefined' && list!=null){
+			var array = list.split(",");
+			$.each(array, function(index, value){
+				$('#beguda_p_'+value).remove();			
+			});
+		}
 		window.promoBeguda= null;
 		
 		$("#numbegudespromo").text("0");
@@ -652,6 +790,53 @@ $("#dialog_promo").dialog( { autoOpen: false,
 });
 
 $(document).ready(function() {
-	initPromoBegudaFromStorage();
-	initPromoDescompteFromStorage();
+	
+		var comanda = window.localStorage.getItem("comanda");		
+		
+		if(comanda != 'undefined' && comanda != null){
+			$("#numComanda").text(comanda);
+			
+			
+			var preu = window.localStorage.getItem("comanda.preu");
+			if (preu != 'undefined' && preu != null) {
+				var preuBegudes = window.localStorage.getItem("comanda.beguda.preu");
+				if (preuBegudes != 'undefined' && preuBegudes != null) {
+					preu =  parseFloat(preu) + parseFloat(preuBegudes);
+				}
+				$("#preu").text(preu.toFixed(2));			
+				$("#labelpreutotalPromo").text(preu.toFixed(2));
+			}
+
+			var numplats = window.localStorage.getItem("comanda.numplats");
+			if(numplats == 'undefined' || numplats == null){
+				numplats=0;
+				window.localStorage.setItem("comanda.numplats","0");
+			}
+			
+
+			var numbegudes = window.localStorage.getItem("comanda.numbegudes");
+			if(numbegudes == 'undefined' || numbegudes == null){
+				numbegudes=0;
+				window.localStorage.setItem("comanda.numbegudes","0");
+			}
+		
+		
+			var nProductes = parseInt(numplats)+parseInt(numbegudes);
+			if(nProductes==1){
+				$("#numProduct").text(initParams.txtconfirm+" "+nProductes+" "+initParams.txtproducte);
+			}else if(nProductes>1){
+				$("#numProduct").text(initParams.txtconfirm+" "+nProductes+" "+initParams.txtproductes);
+			}		
+			
+			if(isNaN(nProductes)){
+				window.localStorage.clear();
+				$("#numProduct").text(initParams.txtconfirm+" 0 "+initParams.txtproductes);
+			}
+			
+		}else{
+			$("#numProduct").text(initParams.txtconfirm+" 0 "+initParams.txtproductes);
+		}
+		
+		initPromoBegudaFromStorage();
+		initPromoDescompteFromStorage();
 });
