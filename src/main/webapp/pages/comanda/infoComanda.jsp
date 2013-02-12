@@ -518,7 +518,7 @@ $("#idcomanda").val('${requestScope.idComanda}');
 $("#numComanda").text('${requestScope.idComanda}');
 $("#dia").val('${requestScope.horesDTO.data}');
 
-window.localStorage.setItem("comanda.preu",'${requestScope.comanda.preu}');
+//window.localStorage.setItem("comanda.preu",'${requestScope.comanda.preu}');
 
 initNumPlats();
 initNumBegudes();
