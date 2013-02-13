@@ -50,6 +50,8 @@ function goToLogin(){
     $("#login_dialog").removeClass("ui-dialog-content");
     $("#login_dialog").removeClass("ui-widget-content");
    	$("#login_dialog").addClass("ui-dialog-titlebar ui-widget-header ui-corner-all ui-helper-clearfix");
+	$(".ui-widget-content").css("background-color", "transparent");
+   	$(".ui-widget-content").css("border", "0px");
    	
 }
 
@@ -70,5 +72,7 @@ function goToRegist(){
     $("#regist_dialog").removeClass("ui-dialog-content");
     $("#regist_dialog").removeClass("ui-widget-content");
    	$("#regist_dialog").addClass("ui-helper-clearfix");
+   	$(".ui-widget-content").css("background-color", "transparent");
+   	$(".ui-widget-content").css("border", "0px");
 }
 </script>
