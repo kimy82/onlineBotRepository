@@ -1,0 +1,76 @@
+
+.boton{ padding: 10px; color: white; background-color: #D9E021; border: 1px solid #bdbbbb; margin-left: 0px; font-family: 'Raleway', sans-serif; font-weight: 800; font-size: 12px; cursor: pointer; } {
+}
+.boton:hover{ padding: 10px; color: white; background-color: #333; border: 1px solid #bdbbbb; margin-left: 0px; font-family: 'Raleway', sans-serif; font-weight: 800; font-size: 12px; cursor: pointer; } {
+}
+.inputs{ height: 30px; margin-top: 4px; margin-bottom: 20px; margin-left: 0px; width: 189px; font-family: arial; color: #888; } {
+}
+a, .boton, .news{ /* Firefox */ -moz-transition-property: all; -moz-transition-duration: 0.2s; -moz-transition-timing-function: ease; -moz-transition-delay: 0s; /* Chrome / Safari */ -webkit-transition-property: all; -webkit-transition-duration: 0.2s; -webkit-transition-timing-function: ease; -webkit-transition-delay: 0s; /* Opera */ -o-transition-property: all; -o-transition-duration: 0.2s; -o-transition-timing-function: ease; -o-transition-delay: 0s; /* Default */ transition-property: all; transition-duration: 0.2s; transition-timing-function: ease; transition-delay: 0s; } {
+}
+#light{
+	background-color: #F2F2F2;
+    border: 1px solid #E2E2E2;
+    height: 370px;
+    margin: 90px auto;
+    width: 330px;
+}
+#light_int{
+	padding: 20px;
+	font-weight: 800;
+}
+.light_body{
+	padding: 20px;
+	margin-top: 20px;
+}
+.light_top{
+	color: #4D4D4D;
+	font-family: 'Raleway', sans-serif;
+	padding: 20px;
+	font-weight: 800;
+	font-size: 24px;
+}
+.sep5{
+	border-top:  1px solid #D6D6D6;
+	border-bottom: none;
+	border-right: none;
+	border-left: none;; 
+	webkit-box-shadow:0 3px 8px 2px #E0C0A6;
+    box-shadow: 0 3px 8px 2px #E0C0A6;
+    box-shadow: 1px 1px 0 0 #FFFFFF;
+    margin-left: -20px;
+    width: 330px;
+    float: left;
+}
+#form_loguin h2{
+	font-family: 'Raleway', sans-serif;
+	font-size: 50px;
+}
+#form_loguin {
+	font-family: 'Raleway', sans-serif;
+}
+#form_loguin form {
+	font-family: 'Raleway', sans-serif;
+	font-size: 12px;
+	color: #F7931E;
+}
+.ui-widget-overlay {
+position: absolute;
+top: 0;
+left: 0;
+width: 100%;
+height: 100%;
+background: #333;
+opacity: 0.9;
+filter: Alpha(Opacity=30)/*{opacityOverlay}*/;
+}
+.ui-dialog {
+padding: 0.2em;
+position: absolute;
+top:0px!important;
+}
+.ui-draggable{
+float:none;
+padding: 0.2em;
+position: absolute!important;
+height: 20px!important;
+}

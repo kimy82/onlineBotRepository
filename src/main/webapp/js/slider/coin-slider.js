@@ -60,7 +60,7 @@
 			
 				
 			// create title bar
-			$('#'+el.id).append("<div class='cs-title' id='cs-title-"+el.id+"' style='position: absolute; bottom:0; left: 0; z-index: 1000;'></div>");
+			$('#'+el.id).append("<div class='cs-title' id='cs-title-"+el.id+"' style='position: absolute; bottom:0; left: 0; z-index: 500;'></div>");
 						
 			$.setFields(el);
 			
@@ -238,7 +238,7 @@
 				'position' 	: 'absolute',
 				'top'		: params[el.id].height/2 - 15,
 				'left'		: 0,
-				'z-index' 	: 1001,
+				'z-index' 	: 501,
 				'line-height': '30px',
 				'opacity'	: params[el.id].opacity
 			}).click( function(e){
@@ -251,7 +251,7 @@
 				'position' 	: 'absolute',
 				'top'		: params[el.id].height/2 - 15,
 				'right'		: 0,
-				'z-index' 	: 1001,
+				'z-index' 	: 501,
 				'line-height': '30px',
 				'opacity'	: params[el.id].opacity
 			}).click( function(e){

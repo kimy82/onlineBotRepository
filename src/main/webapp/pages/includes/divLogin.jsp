@@ -38,7 +38,7 @@ function goToLogin(){
 	$("#login_dialog").load("/"+context+"/login.action");	
 	$("#login_dialog").dialog({ 
 		   autoOpen: false,
-		   height: 370,
+		   height: 94,
 		   width: 330,
 		   modal: true,
 		   close: function(event, ui) { 			   

@@ -1,0 +1,100 @@
+/* REGISTRE////////////////////////////////////////////////////////////////////////////////////////////////////////////////// */
+#light_Reg{
+	background-color: #F2F2F2;
+    border: 1px solid #E2E2E2;
+    height:900px;
+    margin: 90px auto;
+    width: 960px;
+}
+#light_Reg_int{
+	padding: 14px;
+	font-weight: 800;
+	width: 250px;
+	float: left;
+}
+.light_Reg_body{
+	padding: 20px;
+	margin-top: 20px;
+}
+.light_Reg_top{
+	color: #4D4D4D;
+	font-family: 'Raleway', sans-serif;
+	padding: 20px;
+	font-weight: 800;
+	font-size: 24px;
+	text-transform: uppercase;
+}
+.sep6{
+	border-top:  1px solid #D6D6D6;
+	border-bottom: none;
+	border-right: none;
+	border-left: none;; 
+	webkit-box-shadow:0 3px 8px 2px #E0C0A6;
+    box-shadow: 0 3px 8px 2px #E0C0A6;
+    box-shadow: 1px 1px 0 0 #FFFFFF;
+    margin-left: -14px;
+    width: 960px;
+    float: left;
+}
+#form_Reg h2{
+	font-family: 'Raleway', sans-serif;
+	font-size: 50px;
+}
+#form_Reg {
+	font-family: 'Raleway', sans-serif;
+}
+#form_Reg form {
+	font-family: 'Raleway', sans-serif;
+	font-size: 12px;
+	color: #F7931E;
+}
+#light_Reg_int .inputs{
+	height: 30px;
+	margin-top: 4px;
+	margin-bottom: 20px;
+	margin-left: 0px;
+	width: 196px;
+	font-family: arial;
+	color: #888;
+}
+.inputs_short{
+	height: 30px;
+	margin-top: 4px;
+	margin-bottom: 20px;
+	margin-left: 0px;
+	width: 30px;
+	font-family: arial;
+	color: #888;
+}
+.inline{
+	float: left;
+	width: 60px;
+}
+.maps{
+	border: 1px solid #D6D6D6;
+    float: left;
+    height: 671px;
+    margin-top: 134px;
+    width: 641px;
+}
+.ui-widget-overlay {
+position: absolute;
+top: 0;
+left: 0;
+width: 100%;
+height: 100%;
+background: #333;
+opacity: 0.9;
+filter: Alpha(Opacity=30)/*{opacityOverlay}*/;
+}
+.ui-dialog {
+top:20px!important;
+padding: 0.2em;
+position: absolute;
+}
+.ui-dialog, .ui-widget, .ui-widget-content, .ui-corner-all, .ui-draggable, .ui-resizable{
+
+padding: 0.2em;
+position: absolute!important;
+height: 20px!important;
+}

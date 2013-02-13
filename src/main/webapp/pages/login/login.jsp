@@ -11,7 +11,7 @@
 </head>
 <body onload='document.f.j_username.focus();'>
 
-<div id="light">
+<div id="light" class="ui-dialog-titlebar">
 	<div id="light_int">
 		<div class="light_top">
 			<s:text name="txt.login.title" />
@@ -20,7 +20,7 @@
 		<div class="light_body">
 			<div id="form_loguin" class="form">
 				<form name='f' action="<c:url value='j_spring_security_check' />" method='POST'   >
-				<s:text name="txt.user.usuario" />*:<br> <input class="inputs" type="text" name='j_username' value="" ><br>
+				<s:text name="txt.user.usuario" />*:<br> <input class="inputs" type="text" name='j_username' ><br>
 				<s:text name="txt.user.password" />*:<br> <input type='password' class="inputs" name='j_password' /> <br>
 				<input class="boton" type="submit" value="ENTRAR">
 				</form>
@@ -31,7 +31,7 @@
 	</div>
 </dvi>
 	<!-- CSS -->
-	<link rel="stylesheet" type="text/css" href="<c:url value='/css/portamu/global.css' />" />
+	<link rel="stylesheet" type="text/css" href="<c:url value='/css/portamu/loguin.css' />" />
 	<link rel="stylesheet" type="text/css" href="<c:url value='/css/portamu/reset.css' />" />
 	
 	<!-- FONTS -->

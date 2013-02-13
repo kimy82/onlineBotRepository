@@ -10,7 +10,7 @@
 
 <div id="light_Reg">
 	<div id="light_Reg_int">
-		<div class="light_top">
+		<div class="light_Reg_top">
 			<s:text name="txt.register.info" />
 		</div>
 		<hr class="sep6">
@@ -38,19 +38,19 @@
 		</div>
 	</div>
 	<div class="maps" id="map_canvasbis">	
-		<iframe width="641" height="537" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.es/maps?f=q&amp;source=s_q&amp;hl=ca&amp;geocode=&amp;q=Carrer+Doctor+Antic+Roca,+23,+Girona&amp;aq=0&amp;oq=Carrer+Doctor+Antic+Roca+23,+Girona&amp;sll=41.973792,2.822064&amp;sspn=0.007314,0.015836&amp;g=Carrer+Doctor+Antic+Roca,+Girona&amp;ie=UTF8&amp;hq=&amp;hnear=Carrer+Doctor+Antic+Roca,+23,+17003+Girona&amp;ll=41.973793,2.822059&amp;spn=0.007314,0.015836&amp;t=m&amp;z=14&amp;output=embed"></iframe><br /><small><a href="https://maps.google.es/maps?f=q&amp;source=embed&amp;hl=ca&amp;geocode=&amp;q=Carrer+Doctor+Antic+Roca,+23,+Girona&amp;aq=0&amp;oq=Carrer+Doctor+Antic+Roca+23,+Girona&amp;sll=41.973792,2.822064&amp;sspn=0.007314,0.015836&amp;g=Carrer+Doctor+Antic+Roca,+Girona&amp;ie=UTF8&amp;hq=&amp;hnear=Carrer+Doctor+Antic+Roca,+23,+17003+Girona&amp;ll=41.973793,2.822059&amp;spn=0.007314,0.015836&amp;t=m&amp;z=14" style="color:#0000FF;text-align:left">Mostra un mapa més gran</a></small>
+		<iframe width="67" height="671" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.es/maps?f=q&amp;source=s_q&amp;hl=ca&amp;geocode=&amp;q=Carrer+Doctor+Antic+Roca,+23,+Girona&amp;aq=0&amp;oq=Carrer+Doctor+Antic+Roca+23,+Girona&amp;sll=41.973792,2.822064&amp;sspn=0.007314,0.015836&amp;g=Carrer+Doctor+Antic+Roca,+Girona&amp;ie=UTF8&amp;hq=&amp;hnear=Carrer+Doctor+Antic+Roca,+23,+17003+Girona&amp;ll=41.973793,2.822059&amp;spn=0.007314,0.015836&amp;t=m&amp;z=14&amp;output=embed"></iframe><br /><small><a href="https://maps.google.es/maps?f=q&amp;source=embed&amp;hl=ca&amp;geocode=&amp;q=Carrer+Doctor+Antic+Roca,+23,+Girona&amp;aq=0&amp;oq=Carrer+Doctor+Antic+Roca+23,+Girona&amp;sll=41.973792,2.822064&amp;sspn=0.007314,0.015836&amp;g=Carrer+Doctor+Antic+Roca,+Girona&amp;ie=UTF8&amp;hq=&amp;hnear=Carrer+Doctor+Antic+Roca,+23,+17003+Girona&amp;ll=41.973793,2.822059&amp;spn=0.007314,0.015836&amp;t=m&amp;z=14" style="color:#0000FF;text-align:left">Mostra un mapa més gran</a></small>
 	</div>
 </div>
 
 <!-- Scripts --> 
 	<!-- CSS -->
-	<link rel="stylesheet" type="text/css" href="<c:url value='/css/portamu/global.css' />" />
+	<link rel="stylesheet" type="text/css" href="<c:url value='/css/portamu/registre.css' />" />
 	<link rel="stylesheet" type="text/css" href="<c:url value='/css/portamu/reset.css' />" />
 	
 	<!-- FONTS -->
 	<link href='http://fonts.googleapis.com/css?family=Raleway:800,400' rel='stylesheet' type='text/css'>
 	<c:import url="/pages/includes/headerContext.jsp" />
-	<link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/base/jquery-ui.css" rel="stylesheet" type="text/css" />	
+		
 	
 	<!-- Per validar l'adreca -->
 	<script src="<c:url value='/js/address/autocompleteStreet.js'/>" type="text/javascript"></script>
