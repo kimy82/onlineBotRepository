@@ -5,36 +5,43 @@
 	<div class="page">
 		<div id="main">
 		   		<form id="MyForm" name="MyForm" action="form.html">
-					<div id="map_canvas" style="float: right; height: 200px; width: 400px;"></div>				                
-					                <table>
-						                <tr>
-						                	<td>						                	
-	                        					<label for="carrer">
-	                        							 <s:text name="adreca.carrer" /></label>		
-	                        					<input type="text" id="carrer"  />  
-	                        					
-	                        					<label for="numcarrer">
-	                        							  <s:text name="adreca.numcarrer" /></label>		
-	                        					<input type="text" id="numcarrer"  />
-	                        					
-	                        					<label for="codi">
-	                        							  <s:text name="adreca.codipostal" /></label>		
-	                        					<input type="text" id="codi"  />
-	                        					
-	                        					<label for="poble">
-	                        							  <s:text name="adreca.poble" /></label>		
-	                        					<input type="text" id="poble" disabled="disabled" value="Girona"  />                            						                    													    										                
-						                    </td>
-						                </tr>
-						                <tr>
-							                <td>				                
-							                    <input id="checkAdd" value="<s:text name="txt.button.address.ok" />" type="button" />
-							                </td>
-							                <td>
-							                <label id="addressOK" ></label>
-							                </td>    
-						                </tr>
-					                </table>
+					<table>
+						  <tr class="myform">
+							  <th>						                	
+		                      <label for="carrer"><s:text name="adreca.carrer" /></label><br>
+		                      </th>
+		                      <th>
+		                      <label for="numcarrer"> <s:text name="adreca.numcarrer" /></label><br>		
+		                      </th>
+		                      <th>
+		                      <label for="codi"><s:text name="adreca.codipostal" /></label><br>		
+		                      </th>
+		                      <th>
+		                      <label for="poble"><s:text name="adreca.poble" /></label><br>		
+							  </th>							               
+						  </tr>
+						   <tr>
+							  <th>						                	
+		                      <input type="text" id="carrer" class="inputs sepa" />  
+		                      </th>
+		                      <th>
+		                      <input type="text" id="numcarrer" class="numca sepa"  />
+		                      </th>
+		                      <th>
+		                      <input type="text" id="codi" class="posta sepa" />
+		                      </th>
+		                      <th>
+		                      <input type="text" id="poble" disabled="disabled" value="Girona" class="inputs sepa" />                            						                    													    										                
+							  </th>
+							   <th>
+							   <input class="boton" id="checkAdd" value="<s:text name="txt.button.address.ok" />" type="button" />		
+							   </th>
+							   <th>
+							  <label id="addressOK" ></label>	
+							   </th>			               
+						  </tr>
+					  </table>
 				</form>
+				<div id="map_canvas" style="float: left; height: 250px; width: 1000px; display:none"></div>
 		</div>
 	</div>

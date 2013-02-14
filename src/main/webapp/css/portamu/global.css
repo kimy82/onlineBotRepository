@@ -1007,6 +1007,7 @@ ul.pagination li {
 }
 .pro {
     width: 95px;
+    border-left: 1px solid #ADADAD;
 }
 .des {
     width: 267px;
@@ -1030,6 +1031,14 @@ ul.pagination li {
     font-weight: 800;
     text-align: center;
     vertical-align: middle;
+}
+.trans {
+    font-family: 'Raleway',sans-serif;
+    font-weight: 800;
+    text-align: right;
+    vertical-align: middle;
+    padding:20px;
+    font-size: 13px;
 }
 .mores {
     background-color: #333333;
@@ -1075,6 +1084,7 @@ ul.pagination li {
     background-color: #F2F2F2;
     border-bottom: 1px solid #ADADAD;
     border-right: 1px solid #ADADAD;
+    border-left: 1px solid #ADADAD;
 }
 .tit {
     color: #F7931E;
@@ -1083,12 +1093,63 @@ ul.pagination li {
     font-weight: 800;
     text-transform: uppercase;
 }
+#dialog_confirm {
+     background: none repeat scroll 0% 0% white;
+     font-family: raleway;
+     font-weight: bold;
+     padding: 20px;
+     text-transform: uppercase;
+}
 
-
-
-
-
-
+#dialog_confirm .boton{        
+     margin-right:20px;
+     margin-top:10px;
+    text-transform:uppercase;
+}
+.ui-widget-overlay {
+position: absolute;
+top: 0;
+left: 0;
+width: 100%;
+height: 100%;
+background: #333;
+opacity: 0.9;
+filter: Alpha(Opacity=30)/*{opacityOverlay}*/;
+}
+.ui-dialog {
+padding: 0.2em;
+position: absolute;
+top:0px!important;
+}
+.sepa{
+	margin-right: 15px;
+}
+.numca{
+	height: 30px;
+	margin-top: 4px;
+	margin-bottom: 20px;
+	margin-left: 0px;
+	width: 30px;
+	font-family: arial;
+	color: #888;
+}
+.posta{
+	height: 30px;
+	margin-top: 4px;
+	margin-bottom: 20px;
+	margin-left: 0px;
+	width: 110px;
+	font-family: arial;
+	color: #888;
+}
+.myform th{
+	text-align: left;
+	color: #F7931E;
+    font-family: 'Raleway',sans-serif;
+    font-size: 13px;
+    font-weight: 800;
+    text-transform: uppercase;
+}
 
 
 

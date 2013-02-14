@@ -106,7 +106,7 @@
 						<input type="hidden" id="poble" disabled="disabled" value="Girona"  />
 						</form>
 					</div>
-					<div id="map_canvas" style="float: right; height: 200px; width: 200px;"></div>	
+					<div id="map_canvas" style="float: right; height: 200px; width: 200px; display:none;"></div>	
 					<!--End Form-->
 					<img src="img/elements/bar5.png">
 					<!--Newssletter-->

@@ -5,8 +5,8 @@
 	 <h2><label id="confirmOn" > </label></h2>		
 	 <table>
 	 	<tr>
-	 		<td><input type="button" id="cancel" value="cancel"  onclick="confirmOnline.close();" /> </td>
-	 		<td><input type="button" id="aceptar" value="Aceptar"  /></td>
+	 		<td><input class="boton" type="button" id="cancel" value="cancel"  onclick="confirmOnline.close();" /> </td>
+	 		<td><input class="boton" type="button" id="aceptar" value="Aceptar"  /></td>
 	 	</tr>
 	 </table>
 </div>  
@@ -17,8 +17,8 @@ $("#dialog_confirm").dialog( { autoOpen: false,
 	  modal: true,
 	  position: 'center',
 	  draggable: true,
-	  height: 220,
-	  width: 450,	
+	  height: 170,
+	  width: 300,	
 	  open: function(event, ui) { 		
 		$('#dialog_confirm').css('overflow', 'hidden');		
 	 }

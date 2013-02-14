@@ -65,7 +65,7 @@
 							<s:iterator value="platComandaList" var="platComanda">
 								<tr class="selector_pl" id="plat_${platComanda.plat.id}" >
 									<td class="img_order">
-										<img width="114px" src="/${initParam.app}/comanda/ImageAction.action?imageId=${platComanda.plat.foto.id}">
+										<img width="151px" src="/${initParam.app}/comanda/ImageAction.action?imageId=${platComanda.plat.foto.id}">
 									</td>
 									<td class="descri">
 									<span class="tit">${platComanda.plat.nom}</span>
@@ -88,7 +88,7 @@
 								<c:if test="${begudaComanda.numBegudes>0}" >
 									<tr class="selector_bg" id="beguda_${begudaComanda.beguda.id}" >
 									<td class="img_order">
-										<img width="114px" src="/${initParam.app}/comanda/ImageAction.action?imageId=${begudaComanda.beguda.foto.id}">
+										<img width="151px" src="/${initParam.app}/comanda/ImageAction.action?imageId=${begudaComanda.beguda.foto.id}">
 									</td>
 									<td class="descri">
 									<span class="tit">${begudaComanda.beguda.nom}</span>
@@ -110,7 +110,7 @@
 								<c:if test="${begudaComanda.numBegudesPromo>0}" >
 									<tr class="selector_bg" id="beguda_p_${begudaComanda.beguda.id}" >
 									<td class="img_order">
-										<img width="114px" src="/${initParam.app}/comanda/ImageAction.action?imageId=${begudaComanda.beguda.foto.id}">
+										<img width="151px" src="/${initParam.app}/comanda/ImageAction.action?imageId=${begudaComanda.beguda.foto.id}">
 									</td>
 									<td class="descri">
 									<span class="tit">${begudaComanda.beguda.nom}</span>
@@ -129,52 +129,48 @@
 								</c:if>
 							</s:iterator>
 							<tr>
-								<td class="img_order" colspan="4"><s:text name="txt.table.infocomanda.transport" /></td>
+								<td class="trans" colspan="4"><s:text name="txt.table.infocomanda.transport" /></td>
 								<td class="total"><label id="transport_lb"></label>&euro; </td>
 								<td class="total"></td>
 							</tr>
 							<tr>
-								<td class="img_order" colspan="4"><s:text name="txt.table.infocomanda.subtotal" /></td>
+								<td class="trans" colspan="4"><s:text name="txt.table.infocomanda.subtotal" /></td>
 								<td class="total"><label id="preu"></label>&euro;  </td>
 								<td class="total"></td>
 							</tr>
 							<tr>
-								<td class="img_order" colspan="4"><s:text name="txt.table.infocomanda.promos" /></td>
+								<td class="trans" colspan="4"><s:text name="txt.table.infocomanda.promos" /></td>
 								<td class="total"><label id="promoImp"></label></td>
 								<td class="total"></td>
 							</tr>
 							<tr>
-								<td class="img_order" colspan="4"><s:text name="txt.table.infocomanda.total" /></td>
+								<td class="trans" colspan="4"><s:text name="txt.table.infocomanda.total" /></td>
 								<td class="total" ><label id="labelpreutotalPromo"></label> &euro;</td>
 								<td class="total"></td>
 							</tr>						
 						</tbody>
 					</table>
 			</div>
-		</div>
+		
 	<div id="formpreus" >	
-	<c:import url="/pages/includes/address.jsp" />	
-	<s:form action="checkComanda" method="POST" enctype="multipart/form-data" >
+			
+			<div id="check"></div>
+				<s:form action="checkComanda" method="POST" enctype="multipart/form-data" >
 					<td><s:text name="comanda.dia" ></s:text></td>
 					<td><s:textfield key="comanda.dia"  id="dia" maxlength="10" size="12" onfocus="blur()" theme="simple" onchange="reloadHores()" ></s:textfield>
-									<img  src="<c:url value='/images/calendar/calendar_full.png'/>"  id="llencadorData1" ></td>
-					
-														
+					<img  src="<c:url value='/images/calendar/calendar_full.png'/>"  id="llencadorData1" ></td>									
 					<s:checkbox key="comanda.aDomicili" onclick="addDomicili()"  id="adomicili"   ></s:checkbox>
 					<s:checkbox key="comanda.targeta" id="targeta"   ></s:checkbox>
 					<s:hidden  key="comanda.hora" id="comandahora" ></s:hidden>					
 					<s:hidden key="comanda.id" id="idcomanda" ></s:hidden>	                   
-					<s:hidden key="comanda.address" id="comandaddress"></s:hidden>			
-																							
+					<s:hidden key="comanda.address" id="comandaddress"></s:hidden>																				
 					<tr><td><input type="button"  onclick="checkComandaJS();" value="Pay Comanda" /></td><td>  <div id="chargeBar"></div></td></tr>
-					
-					
-	</s:form>	
-	
-	<table>
+				</s:form>	
+			<c:import url="/pages/includes/address.jsp" />
+			<table>
 					<tr><td><s:text name="comanda.hora" ></s:text></td></tr>										
 					<tr>
-						<c:if test="${requestScope.horesDTO._0800 ne 'true'}">
+						<!-- <c:if test="${requestScope.horesDTO._0800 ne 'true'}">
 							<td><input type="button"  id="0800" value="0800" class="notcheck" onclick="checKHour(this.id)" /></td>
 						</c:if>
 						<c:if test="${requestScope.horesDTO._0800 eq 'true'}">
@@ -341,7 +337,7 @@
 						<c:if test="${requestScope.horesDTO._1930 eq 'true'}">
 							<td><input type="button"  id="1930" value="1930" class="check" onclick="checKHour(this.id)" /></td>
 						</c:if>
-						
+						-->
 						<c:if test="${requestScope.horesDTO._2000 ne 'true'}">
 							<td><input type="button"  id="2000" value="2000" class="notcheck" onclick="checKHour(this.id)" /></td>
 						</c:if>
@@ -440,6 +436,7 @@
 			</ul>
 </div>  	
 </div>
+</div>
 <!-- END container -->
 <div id="footer">
 	<div id="footer_int">
@@ -472,11 +469,12 @@
 			background-color: green;
 		}
 	</style>
-	<link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/base/jquery-ui.css" rel="stylesheet" type="text/css" />
+	
 	<link rel="stylesheet" type="text/css" media="all" href="<c:url value='/css/calendar-blau.css' />" title="win2k-cold-1" />
 	<link rel="stylesheet" type="text/css" media="all" href="<c:url value='/css/sudoSlider.css' />"  />	
 	<link type="text/css" rel="stylesheet" href="<c:url value='/css/progress.css' />" />
 	<link type="text/css" rel="stylesheet" href="<c:url value='/css/online.css' />" />
+		<link type="text/css" rel="stylesheet" href="<c:url value='/css/portamu/prova.css' />" />
 
 	<script src="<c:url value='/js/jquery/jquery.js' />" type="text/javascript"></script>
 	<script src="<c:url value='/js/jquery/jquery.ui.core.js' />" type="text/javascript"></script>
