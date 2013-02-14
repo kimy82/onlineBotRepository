@@ -23,4 +23,6 @@ public interface UsersDao {
 	void setEmailToDB( String email );
 	
 	List<NewsLetter> getEmailsFromDB();
+	
+	boolean checkUserBeguda( Long idUser, Long idBeguda );
 }

@@ -179,8 +179,7 @@ public class MantenimentPlatsAction extends ActionSupport implements ServletResp
 							platToSave.setTempsPreparacio(this.plat.getTempsPreparacio());
 							platToSave.setCodi(this.plat.getCodi());
 							platToSave.setPrioritat(this.plat.getPrioritat());
-							platToSave.setActiu(this.plat.isActiu());
-							
+							platToSave.setActiu(this.plat.isActiu());							
 							Image image = getImageFromUpload();
 							platToSave.setFoto(image);
 							this.platsBo.save(platToSave);						

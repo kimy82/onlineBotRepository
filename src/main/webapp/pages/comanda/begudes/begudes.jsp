@@ -54,6 +54,17 @@
 									 <span class="price">${beguda.preu} &euro;</span><br>
 								</div>
 								<hr class="sep">
+							</div>
+							<div class="coments">
+								<img class="estrelles_rest" src="/${initParam.app}/img/elements/estrelles${beguda.votacio.punctuacio}.jpg">	
+								<br>
+								<span class="coments_titol"><s:text name="txt.coments.valoracions" /></span><br>
+								<p>								
+										<c:set var="comments" value="${beguda.comments}" ></c:set>
+										<c:forEach items="${comments}" var="comt" begin="0" end="2" >																									
+											${fn:substring(comt.comment, 0, 25)}.																																															
+										</c:forEach>									
+								<a href="#" class="more" onclick="goToInfoBeguda(${beguda.id})" ><s:text name="txt.leer.mas" /></a></p>
 							</div>							
 						</div>
 				</s:iterator>
@@ -101,7 +112,7 @@
 		</div>
 	</div>
 </div>
-<div id="infoBeguda_dialog" class="filtres filtres-oberts" title="<s:text name='txt.info.title' />">	 		
+<div id="infoBeguda_dialog" class="filtres filtres-oberts">	 		
 </div>  
 
 <!-- Scripts --> 
@@ -112,7 +123,7 @@
 	<link href='http://fonts.googleapis.com/css?family=Raleway:800,400' rel='stylesheet' type='text/css'>
 	<!-- CSS portamu -->
 	
-	<link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/base/jquery-ui.css" rel="stylesheet" type="text/css" />
+	<!-- link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/base/jquery-ui.css" rel="stylesheet" type="text/css" / -->
 	<link type="text/css" rel="stylesheet" href="<c:url value='/css/online.css' />" />
 	<script src="<c:url value='/js/jquery/jquery.js' />" type="text/javascript"></script>
 	<script src="<c:url value='/js/jquery/jquery.ui.core.js' />" type="text/javascript"></script>

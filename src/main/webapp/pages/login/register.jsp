@@ -18,11 +18,11 @@
 			<div id="form_Reg">
 				<s:form class="form" action="registerUser" id="registerForm" >
 					
-				<s:text name="user.username" />*:<br> <s:textfield cssClass="inputs" key="username" id="username" theme="simple" onkeyup="return ismaxlength(this,45)" /><br>
-				<s:text name="user.telNumber" />*:<br> <s:textfield cssClass="inputs" key="telefon" id="telefon" theme="simple" /><br>
-				<s:text name="user.email" />*:<br> <s:textfield cssClass="inputs" key="email" id="email" theme="simple" /><br>
-				<s:text name="user.password" />*:<br> <s:password cssClass="inputs" key="password" id="password" theme="simple" /><br>
-				<s:text name="user.password.retype" />*:<br> <s:password cssClass="inputs" key="confirmPassword" id="confirmPassword" theme="simple" /><br>
+				<s:text name="user.username" />*:<br> <s:textfield cssClass="inputs" key="username" id="username" theme="simple" onclick="focus()" onkeyup="return ismaxlength(this,45)" /><br>
+				<s:text name="user.telNumber" />*:<br> <s:textfield cssClass="inputs" key="telefon" id="telefon" theme="simple" onclick="focus()" /><br>
+				<s:text name="user.email" />*:<br> <s:textfield cssClass="inputs" key="email" id="email" theme="simple" onclick="focus()" /><br>
+				<s:text name="user.password" />*:<br> <s:password cssClass="inputs" key="password" id="password" theme="simple" onclick="focus()" /><br>
+				<s:text name="user.password.retype" />*:<br> <s:password cssClass="inputs" key="confirmPassword" id="confirmPassword" theme="simple" onclick="focus()" /><br>
 		
 				<s:hidden key="address" id="comandaddressbis" ></s:hidden>
 				
@@ -30,7 +30,7 @@
 					
 				
 				<br><br><br>
-				<s:text name="user.altres" />*:<br> <s:textfield cssClass="inputs" key="altres" id="altres" theme="simple" onkeyup="return ismaxlength(this,200)" /><br>
+				<s:text name="user.altres" />*:<br> <s:textfield cssClass="inputs" key="altres" id="altres" theme="simple" onkeyup="return ismaxlength(this,200)" onclick="focus()" /><br>
 				
 				<input class="boton" type="button" onclick="validate();" value="<s:text name='txt.user.register' />">
 				</s:form>

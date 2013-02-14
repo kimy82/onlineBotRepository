@@ -1,6 +1,8 @@
 package com.online.model;
 
 import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
 
 import com.google.gson.annotations.Expose;
 
@@ -31,6 +33,10 @@ public class Beguda implements Serializable{
 	protected String			tipus;
 	
 	protected Image				foto;
+	
+	protected Set<ForoBeguda>			comments			= new HashSet<ForoBeguda>(0);
+	
+	protected VotacioBeguda		votacio;
 
 	// CONSTRUCTORS
 	 
@@ -107,6 +113,26 @@ public class Beguda implements Serializable{
 	public void setFoto( Image foto ){
 	
 		this.foto = foto;
+	}
+
+	public Set<ForoBeguda> getComments(){
+	
+		return comments;
+	}
+
+	public void setComments( Set<ForoBeguda> comments ){
+	
+		this.comments = comments;
+	}
+
+	public VotacioBeguda getVotacio(){
+	
+		return votacio;
+	}
+
+	public void setVotacio( VotacioBeguda votacio ){
+	
+		this.votacio = votacio;
 	}
 	
 	

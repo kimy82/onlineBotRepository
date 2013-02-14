@@ -2,13 +2,12 @@ package com.online.dao.impl;
 
 import java.util.List;
 
-import org.hibernate.SQLQuery;
+import org.hibernate.Hibernate;
 import org.hibernate.Session;
 import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
 
 import com.online.dao.BegudaDao;
 import com.online.model.Beguda;
-import com.online.model.Plat;
 
 public class BegudaDaoImpl extends HibernateDaoSupport implements BegudaDao{
 	
@@ -52,12 +51,43 @@ public class BegudaDaoImpl extends HibernateDaoSupport implements BegudaDao{
 		return getHibernateTemplate().loadAll(Beguda.class);
 	}
 	
-	public List<Beguda> getAll(String tipus){
+	public List<Beguda> getAll(String tipus, boolean initComentsAndVotacions){
 
-		return getHibernateTemplate().find("from Beguda bg where bg.tipus=?", tipus);
+		Session session = this.getSessionFactory().openSession();
+
+		session.beginTransaction();
+		
+		List<Beguda> begudaList =(List<Beguda>) session.createQuery("from Beguda bg where bg.tipus='"+tipus+"'").list();
+		if(initComentsAndVotacions){
+			for(Beguda bg : begudaList){
+				Hibernate.initialize(bg.getComments());				
+				Hibernate.initialize(bg.getVotacio());
+			}
+		}
+		session.close();
+		return begudaList;
 	}
 
+	public Beguda loadBegudaAndForos( Long id ){
 
+		Session session = this.getSessionFactory().openSession();
+
+		session.beginTransaction();
+		@SuppressWarnings("unchecked")
+		List<Beguda> begudaList = (List<Beguda>) session.createQuery("from Beguda bg where bg.id=" + id).list();
+		if (begudaList.isEmpty())
+			return null;
+		
+		Beguda beguda = begudaList.get(0);
+		
+		Hibernate.initialize(beguda.getComments());
+		
+		Hibernate.initialize(beguda.getVotacio());
+		
+		session.close();
+
+		return beguda;
+	}
 
 	
 	

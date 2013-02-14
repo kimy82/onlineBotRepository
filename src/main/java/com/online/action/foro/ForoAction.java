@@ -14,16 +14,20 @@ import org.apache.struts2.interceptor.ServletResponseAware;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 
+import com.online.bo.BegudaBo;
 import com.online.bo.ForoBo;
 import com.online.bo.PlatsBo;
 import com.online.bo.UsersBo;
 import com.online.bo.VotacionsBo;
 import com.online.exceptions.GeneralException;
 import com.online.exceptions.WrongParamException;
+import com.online.model.Beguda;
 import com.online.model.Foro;
+import com.online.model.ForoBeguda;
 import com.online.model.Plat;
 import com.online.model.Users;
 import com.online.model.VotacioTMP;
+import com.online.model.VotacioTMPBeguda;
 import com.opensymphony.xwork2.ActionSupport;
 
 public class ForoAction extends ActionSupport implements ServletResponseAware,
@@ -34,17 +38,20 @@ public class ForoAction extends ActionSupport implements ServletResponseAware,
 	 */
 	private static final long serialVersionUID = 1L;
 	private PlatsBo platsBo;
+	private BegudaBo begudaBo;
 
 	private UsersBo usersBo;
 	private ForoBo foroBo;
 	private VotacionsBo votacionsBo;
 
 	private Long idPlat;
+	private Long idBeguda;
 	private Long idComment;
 	private String nameAuth;
 
 	private Users user;
 	private Plat plat;
+	private Beguda beguda;
 	private String comment;
 	private int punctuation;
 
@@ -81,7 +88,37 @@ public class ForoAction extends ActionSupport implements ServletResponseAware,
 		return SUCCESS;
 
 	}
+	public String foroBeguda() {
 
+		inizializeBegudaId();
+		getUserFromContext();
+		boolean allowComments = false;
+		if (this.user != null)
+			allowComments = this.usersBo.checkUserBeguda(this.user.getId(),
+					idBeguda);
+			if(allowComments){
+			VotacioTMPBeguda votTMP =	this.votacionsBo.getBeguda(this.idBeguda, this.user.getId());
+				if(votTMP!=null && votTMP.getDia().compareTo(new Date())==0){
+					allowComments=false;
+				}
+			}
+
+		if (!allowComments) {
+			this.nameAuth = "anonymousUser";
+		} else {
+			this.nameAuth = "ROLE_USER";
+		}
+
+		if (this.user != null
+				&& this.user.getUserRole().getRole().equals("ROLE_ADMIN")) {
+			this.nameAuth = "ROLE_ADMIN";
+		}
+
+		this.beguda = this.begudaBo.loadBegudaAndForos(this.idBeguda);
+		return SUCCESS;
+
+	}
+	
 	public String ajaxSaveCommentForPlat() {
 
 		ServletOutputStream out = null;
@@ -141,6 +178,53 @@ public class ForoAction extends ActionSupport implements ServletResponseAware,
 			return createErrorJSON("Error deleting comment" + e);
 		}
 	}
+	public String ajaxDeleteCommentForBeguda() {
+
+		try {
+			inizializeBegudaId();
+			inizializeCommentId();
+			this.beguda = this.begudaBo.loadBegudaAndForos(this.idBeguda);
+			Set<ForoBeguda> newForoList = new HashSet<ForoBeguda>();
+			if (this.beguda != null) {
+				Set<ForoBeguda> foroList = this.beguda.getComments();
+				for (ForoBeguda foro : foroList) {
+					if (!foro.getId().equals(this.idComment)) {
+						newForoList.add(foro);
+					}
+				}
+				this.beguda.setComments(newForoList);
+				this.begudaBo.update(beguda);
+			}
+			return null;
+		} catch (Exception e) {
+			return createErrorJSON("Error deleting comment" + e);
+		}
+	}
+	
+	
+	public String ajaxSaveCommentForBeguda() {
+
+		try {
+			inizializeBegudaId();
+			inizializeCommentId();
+			this.beguda = this.begudaBo.loadBegudaAndForos(this.idBeguda);
+			Set<ForoBeguda> newForoList = new HashSet<ForoBeguda>();
+			if (this.beguda != null) {
+				Set<ForoBeguda> foroList = this.beguda.getComments();
+				for (ForoBeguda foro : foroList) {
+					if (!foro.getId().equals(this.idComment)) {
+						newForoList.add(foro);
+					}
+				}
+				this.beguda.setComments(newForoList);
+				this.begudaBo.update(beguda);
+			}
+			return null;
+		} catch (Exception e) {
+			return createErrorJSON("Error deleting comment" + e);
+		}
+	}
+	
 	public String ajaxSavePunctuacioForPlat() {
 
 		try {
@@ -160,6 +244,26 @@ public class ForoAction extends ActionSupport implements ServletResponseAware,
 			return createErrorJSON("Error saving votacio" + e);
 		}
 	}
+	public String ajaxSavePunctuacioForBeguda() {
+
+		try {
+			inizializeBegudaId();
+			inizializePuntuacio();
+			getUserFromContext();
+			
+			VotacioTMPBeguda votacioTMP = new VotacioTMPBeguda();
+			votacioTMP.setBegudaId(idBeguda);
+			votacioTMP.setPunctuacio(punctuation);
+			votacioTMP.setUserId(this.user.getId());
+			votacioTMP.setDia(new Date());
+			this.votacionsBo.saveTMPBeguda(votacioTMP);
+			
+			return null;
+		} catch (Exception e) {
+			return createErrorJSON("Error saving votacio" + e);
+		}
+	}
+	
 	
 	// private methods
 	
@@ -179,6 +283,17 @@ public class ForoAction extends ActionSupport implements ServletResponseAware,
 				.parseLong(request.getParameter("idPlat"));
 		if (this.idPlat == null) {
 			throw new WrongParamException("null plat id");
+		}
+
+	}
+	
+	private void inizializeBegudaId() throws WrongParamException {
+
+		this.idBeguda = (request.getParameter("idBeguda") == null || request
+				.getParameter("idBeguda").equals("")) ? null : Long
+				.parseLong(request.getParameter("idBeguda"));
+		if (this.idBeguda == null) {
+			throw new WrongParamException("null beguda id");
 		}
 
 	}
@@ -288,5 +403,16 @@ public class ForoAction extends ActionSupport implements ServletResponseAware,
 	public void setVotacionsBo(VotacionsBo votacionsBo) {
 		this.votacionsBo = votacionsBo;
 	}
+	public void setBegudaBo( BegudaBo begudaBo ){
 	
+		this.begudaBo = begudaBo;
+	}
+	public Beguda getBeguda(){
+	
+		return beguda;
+	}
+	public void setBeguda( Beguda beguda ){
+	
+		this.beguda = beguda;
+	}			
 }

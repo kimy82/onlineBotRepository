@@ -9,6 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.online.dao.VotacionsDao;
 import com.online.model.VotacioTMP;
+import com.online.model.VotacioTMPBeguda;
 import com.online.utils.Utils;
 
 public class VotacionsDaoImpl extends HibernateDaoSupport implements VotacionsDao{
@@ -18,6 +19,12 @@ public class VotacionsDaoImpl extends HibernateDaoSupport implements VotacionsDa
 	
 	public void saveTMP(VotacioTMP votacioTMP){
 				
+		getHibernateTemplate().save(votacioTMP);
+		
+	}
+	
+	public void saveTMPBeguda(VotacioTMPBeguda votacioTMP){
+		
 		getHibernateTemplate().save(votacioTMP);
 		
 	}
@@ -40,6 +47,16 @@ public class VotacionsDaoImpl extends HibernateDaoSupport implements VotacionsDa
 	public VotacioTMP get(Long idplat, Long idUser){
 		
 	List<VotacioTMP> list =  (List<VotacioTMP>) getHibernateTemplate().find("from VotacioTMP vtmp where vtmp.platId="+idplat+" and vtmp.userId="+idUser+" and vtmp.dia='"+Utils.formatDate2(new Date())+"'");
+	if(!list.isEmpty()){
+		return list.get(0);
+	}
+		return null;
+	}
+	
+	
+	public VotacioTMPBeguda getBeguda(Long idBeguda, Long idUser){
+		
+	List<VotacioTMPBeguda> list =  (List<VotacioTMPBeguda>) getHibernateTemplate().find("from VotacioTMPBeguda vtmp where vtmp.begudaId="+idBeguda+" and vtmp.userId="+idUser+" and vtmp.dia='"+Utils.formatDate2(new Date())+"'");
 	if(!list.isEmpty()){
 		return list.get(0);
 	}

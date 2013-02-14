@@ -11,9 +11,9 @@ public class BegudaBoImpl implements BegudaBo{
 
 	private BegudaDao	begudaDao;
 
-	public List<Beguda> getAll(String tipus) throws BOException{
+	public List<Beguda> getAll(String tipus,boolean initComentsAndVotacions) throws BOException{ 
 		
-		return begudaDao.getAll(tipus);
+		return begudaDao.getAll(tipus, initComentsAndVotacions);
 		
 	}
 	
@@ -46,6 +46,14 @@ public class BegudaBoImpl implements BegudaBo{
 	public List<Beguda> getAll(){
 
 		return begudaDao.getAll();
+	}
+	
+	public Beguda loadBegudaAndForos( Long id ) throws BOException{
+		
+		if (id == null)
+			throw new BOException("NUll id to load");
+		
+		return begudaDao.loadBegudaAndForos(id);
 	}
 
 	// PRIVATE METHODS

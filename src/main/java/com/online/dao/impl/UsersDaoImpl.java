@@ -87,7 +87,24 @@ public class UsersDaoImpl extends HibernateDaoSupport implements UsersDao{
 		return false;
 
 	}
+	
+	public boolean checkUserBeguda( Long idUser, Long idBeguda ){
 
+		Session session = this.getSessionFactory().openSession();
+		session.beginTransaction();
+		Criteria criteria = session.createCriteria(Comandes.class);
+		criteria.createAlias("user", "user").add(Restrictions.eq("user.id", idUser));
+		criteria.createAlias("begudes", "begudes").add(Restrictions.eq("begudes.beguda.id", idBeguda));
+		List<Comandes> comandalist = criteria.list();
+
+		if (!comandalist.isEmpty()) {
+			return true;
+		}
+
+		return false;
+
+	}
+	
 	@Transactional
 	public List<Users> getAll(){
 

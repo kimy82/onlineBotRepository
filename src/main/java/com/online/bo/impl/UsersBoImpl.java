@@ -32,7 +32,16 @@ public class UsersBoImpl implements UsersBo{
 		
 		return this.usersDao.checkUserPlat(idUser, idPlat);
 	}
-	
+	public boolean checkUserBeguda( Long idUser, Long idBeguda ) throws BOException{
+		if(idBeguda == null ){
+			throw new BOException("Null beguda to check");
+		} 
+		
+		if(idUser==null)
+			return false;
+		
+		return this.usersDao.checkUserBeguda(idUser, idBeguda);
+	}
 	public void save( Users user ) throws BOException, Exception{
 
 		checkUser(user);

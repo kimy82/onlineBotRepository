@@ -17,6 +17,8 @@ public interface BegudaBo{
 	
 	List<Beguda> getAll();
 	
-	List<Beguda> getAll(String tipus) throws BOException;
+	List<Beguda> getAll(String tipus, boolean initComentsAndVotacions) throws BOException;
+	
+	public Beguda loadBegudaAndForos( Long id ) throws BOException;
 
 }

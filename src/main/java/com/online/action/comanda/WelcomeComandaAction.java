@@ -115,7 +115,7 @@ public class WelcomeComandaAction extends ActionSupport implements ServletRespon
 		
 		inizializeComments();
 		
-		this.begudaList = this.begudaBo.getAll("vi");
+		this.begudaList = this.begudaBo.getAll("vi",false);
 		
 		if(begudaList.size()>5)
 			this.begudaList = this.begudaList.subList(0, 5);
@@ -136,7 +136,7 @@ public class WelcomeComandaAction extends ActionSupport implements ServletRespon
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		this.nameAuth = auth.getName();
 
-		this.begudaList = this.begudaBo.getAll("vi");
+		this.begudaList = this.begudaBo.getAll("vi",true);
 		this.restaurantList = this.restaurantsBo.getAll(true, false, false);
 
 		return SUCCESS;
@@ -148,7 +148,7 @@ public class WelcomeComandaAction extends ActionSupport implements ServletRespon
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		this.nameAuth = auth.getName();
 
-		this.begudaList = this.begudaBo.getAll("refresc");
+		this.begudaList = this.begudaBo.getAll("refresc",false);
 		this.restaurantList = this.restaurantsBo.getAll(true, false, false);
 
 		return SUCCESS;

@@ -16,5 +16,7 @@ public interface BegudaDao{
 	
 	List<Beguda> getAll();
 	
-	List<Beguda> getAll(String tipus);
+	List<Beguda> getAll(String tipus, boolean initComentsAndVotacions);
+	
+	Beguda loadBegudaAndForos( Long id );
 }

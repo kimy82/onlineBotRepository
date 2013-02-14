@@ -32,5 +32,7 @@ public interface UsersBo {
 	public void setEmailToDB( String email ) throws BOException;
 	
 	public List<NewsLetter> getEmailsFromDB( ) throws BOException;
+	
+	public boolean checkUserBeguda( Long idUser, Long idBeguda ) throws BOException;
 
 }

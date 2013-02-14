@@ -22,6 +22,16 @@
 		</property>		
 		<many-to-one name="foto" class="com.online.model.Image" cascade="all" >	
 			<column name="IMAGE_ID"></column>	
-		</many-to-one>		
+		</many-to-one>	
+		<one-to-one name="votacio" class="com.online.model.VotacioBeguda" cascade="save-update">			
+		</one-to-one>	
+		 <set name="comments" table="beguda_foro" inverse="false" lazy="true" fetch="select" cascade="delete" >
+            <key>
+                <column name="BEGUDA_ID" not-null="true" />
+            </key>
+            <many-to-many entity-name="com.online.model.ForoBeguda">
+                <column name="FOROB_ID" not-null="true" />
+            </many-to-many>
+        </set>	
 	</class>
 </hibernate-mapping>

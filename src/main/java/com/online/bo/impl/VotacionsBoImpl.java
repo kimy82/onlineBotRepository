@@ -6,6 +6,7 @@ import com.online.bo.VotacionsBo;
 import com.online.dao.VotacionsDao;
 import com.online.exceptions.BOException;
 import com.online.model.VotacioTMP;
+import com.online.model.VotacioTMPBeguda;
 
 public class VotacionsBoImpl implements VotacionsBo {
 
@@ -32,9 +33,21 @@ public class VotacionsBoImpl implements VotacionsBo {
 		return this.votacionsDao.get(idplat, idUser);
 		
 	}
+	public VotacioTMPBeguda getBeguda(Long idBeguda, Long idUser)throws BOException {
+
+		if(idBeguda==null || idUser==null){
+			throw new BOException("Null params to get the tmp votacio");
+		}
+		return this.votacionsDao.getBeguda(idBeguda, idUser);
+	}
 	public void saveTMP(VotacioTMP votacioTMP) throws BOException {
 		checkVotacioToSave(votacioTMP);
 		this.votacionsDao.saveTMP(votacioTMP);
+	}
+	
+	public void saveTMPBeguda(VotacioTMPBeguda votacioTMP) throws BOException {
+		checkVotacioBegudaToSave(votacioTMP);
+		this.votacionsDao.saveTMPBeguda(votacioTMP);
 	}
 
 	public void deleteAllTMP() throws BOException {
@@ -52,6 +65,14 @@ public class VotacionsBoImpl implements VotacionsBo {
 	private void checkVotacioToSave(VotacioTMP votacioTMP) throws BOException {
 
 		if (votacioTMP == null || votacioTMP.getPlatId() == null
+				|| votacioTMP.getUserId() == null) {
+			throw new BOException("Null votacio to save");
+		}
+	}
+	
+	private void checkVotacioBegudaToSave(VotacioTMPBeguda votacioTMP) throws BOException {
+
+		if (votacioTMP == null || votacioTMP.getBegudaId() == null
 				|| votacioTMP.getUserId() == null) {
 			throw new BOException("Null votacio to save");
 		}

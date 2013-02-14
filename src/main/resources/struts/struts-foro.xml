@@ -18,14 +18,28 @@
 			<result name="success">/pages/foro/foro.jsp</result>
 			<result name="error">/error.jsp</result>
 		</action>		
+		<action name="foroBeguda" class="com.online.action.foro.ForoAction"
+			method="foroBeguda">
+			<result name="success">/pages/foro/foroBeguda.jsp</result>
+			<result name="error">/error.jsp</result>
+		</action>	
 		<action name="ajaxSaveCommentForPlat"
 			class="com.online.action.foro.ForoAction" method="ajaxSaveCommentForPlat">
+		</action>
+		<action name="ajaxSaveCommentForBeguda"
+			class="com.online.action.foro.ForoAction" method="ajaxSaveCommentForBeguda">
 		</action>
 		<action name="ajaxDeleteCommentForPlat"
 			class="com.online.action.foro.ForoAction" method="ajaxDeleteCommentForPlat">
 		</action>
+			<action name="ajaxDeleteCommentForBeguda"
+			class="com.online.action.foro.ForoAction" method="ajaxDeleteCommentForBeguda">
+		</action>
 		<action name="ajaxSavePunctuacioForPlat"
 			class="com.online.action.foro.ForoAction" method="ajaxSavePunctuacioForPlat">
-		</action>		
+		</action>	
+			<action name="ajaxSavePunctuacioForBeguda"
+			class="com.online.action.foro.ForoAction" method="ajaxSavePunctuacioForBeguda">
+		</action>	
 	</package>
 </struts>
