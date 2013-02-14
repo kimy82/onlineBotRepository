@@ -67,7 +67,7 @@
 			<table>
 				<c:if test="${nameAuth ne 'anonymousUser' }">
 					<tr>
-						<td><textarea rows="4" cols="60" id="newComment" ></textarea></td>
+						<td><textarea rows="4" cols="60" id="newComment" onclick="focus()" ></textarea></td>
 					</tr>
 					<tr>
 						<td><input type="button" onclick="saveComment()"  value="Submit" /></td>
