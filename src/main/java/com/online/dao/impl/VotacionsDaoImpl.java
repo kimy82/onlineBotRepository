@@ -34,6 +34,11 @@ public class VotacionsDaoImpl extends HibernateDaoSupport implements VotacionsDa
 		return votList.size();
 	}
 	
+	public int countBeguda(Long idbeguda , int star){
+		List<VotacioTMPBeguda> votList = getHibernateTemplate().find("from VotacioTMPBeguda vot where vot.begudaId="+idbeguda+" and vot.punctuation="+star);
+		return votList.size();
+	}
+	
 	public void deleteAllTMP(){
 		
 		Session session = this.getSessionFactory().openSession();

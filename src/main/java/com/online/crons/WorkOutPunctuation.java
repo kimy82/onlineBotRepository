@@ -10,13 +10,15 @@ import org.quartz.Job;
 import org.quartz.JobExecutionContext;
 import org.quartz.JobExecutionException;
 
-import com.online.bo.ConfigRestaurantBo;
+import com.online.bo.BegudaBo;
 import com.online.bo.PlatsBo;
 import com.online.bo.RestaurantsBo;
 import com.online.bo.VotacionsBo;
+import com.online.model.Beguda;
 import com.online.model.ConfigRestaurant;
 import com.online.model.Plat;
 import com.online.model.Restaurant;
+import com.online.model.VotacioBeguda;
 import com.online.model.VotacioPlat;
 import com.online.model.VotacioRestaurant;
 
@@ -28,6 +30,7 @@ public class WorkOutPunctuation implements Job
 		System.out.println("Hello Quartz!");
 		VotacionsBo votacionsBo = (VotacionsBo)context.getJobDetail().getJobDataMap().get("votacionsBo");
 		PlatsBo platsBo = (PlatsBo)context.getJobDetail().getJobDataMap().get("platsBo");
+		BegudaBo begudaBo = (BegudaBo)context.getJobDetail().getJobDataMap().get("begudaBo");
 		RestaurantsBo restaurantsBo = (RestaurantsBo)context.getJobDetail().getJobDataMap().get("restaurantsBo");
 		
 		
@@ -82,6 +85,35 @@ public class WorkOutPunctuation implements Job
 						int puntuacioRestaurant= votacionsPlatsTotals/nplats;
 						restaurant.getVotacio().setPunctuacio(puntuacioRestaurant);
 					}
+				}
+			List<Beguda> begudaList = begudaBo.getAll("vi", true);
+				for(Beguda bg : begudaList){
+					if(bg.getVotacio()==null){
+						VotacioBeguda votacio = new VotacioBeguda();
+						votacio.setBeguda(bg);						
+						votacio.setPunctuacio(3);
+						bg.setVotacio(votacio);
+					}
+					int star1 = votacionsBo.countBeguda(bg.getId(), 1);
+					int star2 = votacionsBo.countBeguda(bg.getId(), 2);
+					int star3 = votacionsBo.countBeguda(bg.getId(), 3);
+					int star4 = votacionsBo.countBeguda(bg.getId(), 4);
+					int star5 = votacionsBo.countBeguda(bg.getId(), 5);
+					
+					int totalVots =star1+star2+star3+star4+star5;
+					
+					if(totalVots==0){
+						VotacioBeguda votacio = new VotacioBeguda();
+						votacio.setBeguda(bg);						
+						votacio.setPunctuacio(3);					
+						bg.setVotacio(votacio);
+						
+					}else{
+						int totalPuntuacio = star1+(star2*2)+(star3*3)+(star4*4)+(star5*5);
+						int puntuacio = (totalPuntuacio/totalVots);					
+						bg.getVotacio().setPunctuacio(puntuacio); 
+					}															
+					begudaBo.update(bg);
 				}
 	
 		} catch (Exception e) {

@@ -16,6 +16,10 @@ public class VotacionsBoImpl implements VotacionsBo {
 		return this.votacionsDao.count(idplat, star);
 	}
 	
+	public int countBeguda(Long idbeguda , int star)throws BOException{
+		return this.votacionsDao.countBeguda(idbeguda, star);
+	}
+	
 	
 	public VotacioTMP getLast(Long idplat, Long idUser)throws BOException{
 		try{

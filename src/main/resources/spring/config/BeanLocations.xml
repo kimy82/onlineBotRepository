@@ -43,6 +43,7 @@
                  <entry key="message" value="executing job!" />
                  <entry key="votacionsBo" value-ref="votacionsBo" />
                  <entry key="platsBo" value-ref="platsBo" />
+                  <entry key="begudaBo" value-ref="begudaBo" />
                  <entry key="restaurantsBo" value-ref="restaurantsBo" />                
             </map>
         </property>

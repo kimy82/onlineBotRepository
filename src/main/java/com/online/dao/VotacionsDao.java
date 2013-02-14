@@ -16,5 +16,6 @@ public interface VotacionsDao {
 	int count(Long idplat , int star);
 	VotacioTMP getLast(Long idplat, Long idUser);
 	VotacioTMPBeguda getBeguda(Long idBeguda, Long idUser);
+	int countBeguda(Long idbeguda , int star);
 	
 }

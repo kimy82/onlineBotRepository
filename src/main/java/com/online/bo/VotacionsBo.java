@@ -18,5 +18,6 @@ public interface VotacionsBo {
 	VotacioTMP getLast(Long idplat, Long idUser)throws BOException;
 	VotacioTMPBeguda getBeguda(Long idBeguda, Long idUser)throws BOException;
 	void saveTMPBeguda(VotacioTMPBeguda votacioTMP) throws BOException;
+	int countBeguda(Long idbeguda , int star)throws BOException;
 
 }
