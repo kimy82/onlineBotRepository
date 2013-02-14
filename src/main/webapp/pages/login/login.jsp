@@ -20,8 +20,8 @@
 		<div class="light_body">
 			<div id="form_loguin" class="form">
 				<form name='f' action="<c:url value='j_spring_security_check' />" method='POST'   >
-				<s:text name="txt.user.usuario" />*:<br> <input class="inputs" type="text" name='j_username' ><br>
-				<s:text name="txt.user.password" />*:<br> <input type='password' class="inputs" name='j_password' /> <br>
+				<s:text name="txt.user.usuario" />*:<br> <input class="inputs" type="text" name='j_username' onclick="focus()" ><br>
+				<s:text name="txt.user.password" />*:<br> <input type='password' class="inputs" name='j_password' onclick="focus()" /> <br>
 				<input class="boton" type="submit" value="ENTRAR">
 				</form>
 			</div>

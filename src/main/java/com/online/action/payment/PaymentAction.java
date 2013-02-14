@@ -86,7 +86,8 @@ public class PaymentAction extends ActionSupport implements ServletResponseAware
 		inizilizeComandaId();
 		
 		this.comanda = this.comandaBo.load(idComanda);
-		
+		this.comanda.setPagada(true);
+		this.comandaBo.update(comanda);
 		try{						
 			orders =this.paymentService.getComandaOrders(this.comanda);
 			

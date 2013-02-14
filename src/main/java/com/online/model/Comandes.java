@@ -40,6 +40,8 @@ public class Comandes implements Serializable{
 
 	protected Boolean				aDomicili;
 	
+	protected Boolean				pagada;
+	
 	protected String 				tipuDescomte;
 	
 	protected Double 				importDescomte;
@@ -202,7 +204,16 @@ public class Comandes implements Serializable{
 
 	public void setTargeta(Boolean targeta) {
 		this.targeta = targeta;
-	}	
+	}
+
+	public Boolean getPagada(){
 	
+		return pagada;
+	}
+
+	public void setPagada( Boolean pagada ){
+	
+		this.pagada = pagada;
+	}			
 	
 }

@@ -28,16 +28,24 @@ public class PaymentServiceImpl implements PaymentService {
 			String[] orderVec = order.split("&");
 			int iterador=0;
 			for(String param : orderVec){
+				String[] params = param.split("=");
+				
 				if(toAdmins && iterador==0){
-					String[] params = param.split("=");
+					
 					resource.queryParam(params[0],CODI_MAQUINA_ADMIN);
+					
+				}else if(toAdmins && params[0].equals("telnumber")){
+					
+					resource.queryParam(params[0],transformTel(params[1]));
+					
 				}else{
-					String[] params = param.split("=");
+					
 					resource.queryParam(params[0],params[1]);
 				}
 				iterador=iterador+1;
 				
-			}					
+			}		
+			resource.queryParam("admin",String.valueOf(toAdmins));
 			String response = resource.accept("text/plain").get(String.class);
 		}
 		
@@ -65,12 +73,15 @@ public class PaymentServiceImpl implements PaymentService {
 				// Ordenem dades per filtrar per restaurants
 				String codi = platComanda.getPlat().getRestaurants().iterator()
 						.next().getCodiMaquina();
-				restaurants.add(codi);
+				String nom = platComanda.getPlat().getRestaurants().iterator()
+						.next().getNom();
+				restaurants.add(codi+"_"+((nom==null)?"":nom));
 
 				int nPlats = platComanda.getNumPlats();
 				String nomPlat = platComanda.getPlat().getNom();
+				String codiPlat = platComanda.getPlat().getCodi();
 				Double preuPlat = platComanda.getPlat().getPreu() * nPlats;
-				String comandaSinglePlat = nPlats + ";" + nomPlat + ";"
+				String comandaSinglePlat = nPlats + ";" +"("+codiPlat+")"+ nomPlat + ";"
 						+ preuPlat;
 				if (comandes.containsKey(codi)) {
 					String numIdsPlats = comandes.get(codi);
@@ -86,9 +97,10 @@ public class PaymentServiceImpl implements PaymentService {
 			}
 			for (String cod : restaurants) {
 				// creem order per cada restaurant
-				String[] platsId = comandes.get(cod).split(";");
+				String[] infoRestaurant = cod.split("_");
+				String[] platsId = comandes.get(infoRestaurant[0]).split(";");
 				StringBuffer comandaSB = new StringBuffer("");
-				StringBuffer comandaOrderSB = new StringBuffer("resid=" + cod
+				StringBuffer comandaOrderSB = new StringBuffer("resid=" + infoRestaurant[0]
 						+ "&comanda=");
 
 				for (String idPlat : platsId) {
@@ -107,17 +119,38 @@ public class PaymentServiceImpl implements PaymentService {
 				comandaOrderSB.append("&total=" + this.comanda.getPreu());
 
 				comandaOrderSB.append("&nom="
-						+ this.comanda.getUser().getUsername());
+						+ this.comanda.getUser().getUsername()+"/r");
 
 				comandaOrderSB.append("&address="
-						+ this.comanda.getUser().getAddress());
+						+ this.comanda.getUser().getAddress()+"/r");
 
 				comandaOrderSB.append("&diahora=" + this.comanda.getHora()
 						+ " " + this.comanda.getDia());
 
 				comandaOrderSB.append("&telnumber="
 						+ this.comanda.getUser().getTelNumber());
-
+				
+				comandaOrderSB.append("&comandaName=Comanda:"+this.comanda.getId()+"/r");
+				
+				comandaOrderSB.append("&comandaHora=H.Com.:"+this.comanda.getFentrada()+"/r");
+				
+				comandaOrderSB.append("&comandaEntrega=H.Entrega:"+this.comanda.getHora()+"/r");
+				
+				comandaOrderSB.append("&comandaLimit=H.Limit:"+this.comanda.getHora()+"/r");
+				
+				if(this.comanda.getPagada()!=null && this.comanda.getPagada()==true){
+					comandaOrderSB.append("&pagada=PAGAT/r");
+				}else{
+					comandaOrderSB.append("&pagada=NO PAGAT/r");
+				}
+				
+				if(this.comanda.getObservacions()!=null){
+					comandaOrderSB.append("&comment="+this.comanda.getObservacions()+"/r");
+				}else{
+					comandaOrderSB.append("&comment=Sense comentaris/r");
+				}
+				comandaOrderSB.append("&nomRest=Rest.:"+infoRestaurant[1]+"/r");
+				
 				orders.add(comandaOrderSB.toString());
 			}
 		} catch (Exception e) {
@@ -127,4 +160,12 @@ public class PaymentServiceImpl implements PaymentService {
 	}
 
 	// PRIVATE
+	private String transformTel(String tel){
+		StringBuffer toSentTel= new StringBuffer("");
+		String[] vecTel= tel.split("");
+		for(String t : vecTel){
+			toSentTel.append(t+"*1");
+		}
+		return toSentTel.toString();
+	}
 }
