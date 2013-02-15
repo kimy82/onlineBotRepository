@@ -109,6 +109,7 @@
 																		
 	</script>
 	<c:import url="/pages/includes/subAlertOnline.jsp" />
+	<c:import url="/pages/includes/subErrorAjax.jsp" />
 	
 </body>
 </html>

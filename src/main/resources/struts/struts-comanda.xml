@@ -56,7 +56,7 @@
 		</action>
 		<action name="getRefrescos" class="com.online.action.comanda.WelcomeComandaAction"
 			method="getRefrescos">
-			<result name="success">/pages/comanda/begudes/begudes.jsp</result>
+			<result name="success">/pages/comanda/begudes/begudesRefresc.jsp</result>
 		</action>
 		<action name="getHoraComanda" class="com.online.action.comanda.WelcomeComandaAction"
 			method="getHoraComanda">

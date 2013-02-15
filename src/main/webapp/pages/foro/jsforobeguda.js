@@ -119,7 +119,7 @@ function saveComment() {
 		var comment = $("#newComment").val();
 		if(insult.detectInsult(comment, initParams.txtalertinsult))return;
 		
-		var data = "idBeguda=" + idPlat + "&comment=" + comment;
+		var data = "idBeguda=" + idBeguda + "&comment=" + comment;
 		
 		$.ajax({
 					type : "POST",

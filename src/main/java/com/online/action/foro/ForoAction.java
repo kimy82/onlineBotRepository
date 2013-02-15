@@ -204,25 +204,40 @@ public class ForoAction extends ActionSupport implements ServletResponseAware,
 	
 	public String ajaxSaveCommentForBeguda() {
 
+		
+		ServletOutputStream out = null;
+		String json = "";
+
 		try {
+			out = this.response.getOutputStream();
 			inizializeBegudaId();
-			inizializeCommentId();
+			inizializeComment();
+			getUserFromContext();
 			this.beguda = this.begudaBo.loadBegudaAndForos(this.idBeguda);
-			Set<ForoBeguda> newForoList = new HashSet<ForoBeguda>();
 			if (this.beguda != null) {
 				Set<ForoBeguda> foroList = this.beguda.getComments();
-				for (ForoBeguda foro : foroList) {
-					if (!foro.getId().equals(this.idComment)) {
-						newForoList.add(foro);
-					}
-				}
-				this.beguda.setComments(newForoList);
+				ForoBeguda foro = new ForoBeguda();
+				foro.setComment(comment);
+				foro.setBeguda(beguda);
+				this.foroBo.saveBeguda(foro);
+				foroList.add(foro);
 				this.begudaBo.update(beguda);
+
+				json = "{ \"idComment\": \"" + foro.getId() + "\"}";
+
 			}
-			return null;
+
 		} catch (Exception e) {
-			return createErrorJSON("Error deleting comment" + e);
+			json = createErrorJSON("Error saving comment" + e);
 		}
+
+		try {
+			if (!json.equals(""))
+				out.print(json);
+		} catch (IOException e) {
+			throw new GeneralException(e, "possibly ServletOutputStream null");
+		}
+		return null;
 	}
 	
 	public String ajaxSavePunctuacioForPlat() {
