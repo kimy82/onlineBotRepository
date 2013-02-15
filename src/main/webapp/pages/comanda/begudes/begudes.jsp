@@ -34,9 +34,9 @@
 				<hr class="sep2">
 				<s:iterator value="begudaList" var="beguda">
 					<hr class="sep4">
-					<div class="iterate_ref" >
+					<div class="iterate_Rest" >
 							<div class="img_Rest ui-widget-content selectorBeg" id="draggable_${beguda.id}" >
-	  							<img height="202" src="/${initParam.app}/comanda/ImageAction.action?imageId=${beguda.foto.id}">
+	  							<img height="152" width="230" src="/${initParam.app}/comanda/ImageAction.action?imageId=${beguda.foto.id}">
 	  						</div>
 							<div class="format">
 					  				<div class="titol_Rest">

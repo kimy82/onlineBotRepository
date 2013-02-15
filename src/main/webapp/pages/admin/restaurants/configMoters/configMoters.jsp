@@ -65,7 +65,7 @@
 						<thead>
 							<tr>
 								<th><s:text name="mant.moters.dia" /></th>
-								<th>08:00</th>
+								<!--<th>08:00</th>
 								<th>08:30</th>	
 								<th>09:00</th>
 								<th>09:30</th>
@@ -88,7 +88,7 @@
 								<th>18:00</th>
 								<th>18:30</th>
 								<th>19:00</th>
-								<th>19:30</th>
+								<th>19:30</th>-->
 								<th>20:00</th>
 								<th>20:30</th>
 								<th>21:00</th>

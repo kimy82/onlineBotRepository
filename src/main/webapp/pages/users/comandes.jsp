@@ -11,7 +11,17 @@
 	<title><s:text name="txt.info.comandes.title" /></title>
 </head>
 
-<body>
+<body id="personal">
+<c:import url="/pages/includes/headerContext.jsp" />
+<c:import url="/pages/includes/divLogin.jsp" />
+<div id="container">
+<div id="content">
+		<!-- menu -->
+			<c:import url="/pages/includes/menuHeader.jsp" />
+		<!-- END menu -->
+		<!-- Language -->
+			<c:import url="/pages/includes/divLanguage.jsp" />
+		<!-- END language -->
 <h2><s:text name="txt.info.user" /></h2>
 <br>
 <c:import url="/pages/includes/headerContext.jsp" />
@@ -19,8 +29,8 @@
 <br><a href="#" onclick="openDialog('infoUser');" ><s:text name="txt.canvi.dades.personals" /></a>	
 <h2><s:text name="txt.info.comandes.user.title" /></h2>
 
- 			<div  style="width:500px;" alig="center">
-				<table class="selecciom dataTable" id="tbl_comandes_user" width="500px">
+ 			<div  width="1000px" alig="center">
+				<table class="selecciom dataTable" id="tbl_comandes_user" width="1000px">
 					<thead>
 						<tr>
 							<th><s:text name="user.comandes.table.dia" /></th>
@@ -87,6 +97,14 @@
 	<link rel="stylesheet" href="<c:url value='/css/demo_table.css' />" type="text/css"   media="screen" />
 	<link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/base/jquery-ui.css" rel="stylesheet" type="text/css" />
 	<link type="text/css" rel="stylesheet" href="<c:url value='/css/online.css' />" />
+	
+	<!-- CSS portamu --> 
+	<link rel="stylesheet" type="text/css" href="<c:url value='/css/portamu/prova.css' />" />
+	<link rel="stylesheet" type="text/css" href="<c:url value='/css/portamu/global.css' />" />
+	<link rel="stylesheet" type="text/css" href="<c:url value='/css/portamu/reset.css' />" />
+	<!-- FONTS -->
+	<link href='http://fonts.googleapis.com/css?family=Raleway:800,400' rel='stylesheet' type='text/css'>
+	<!-- CSS portamu -->
 
 	<script src="<c:url value='/js/jquery/jquery.js' />" type="text/javascript"></script>
 	<script src="<c:url value='/js/jquery/jquery.ui.core.js' />" type="text/javascript"></script>
@@ -135,6 +153,22 @@
 	</c:if>
 	<c:import url="/pages/includes/alertOnline.jsp" />
 	<c:import url="/pages/includes/errorAjax.jsp" />
-	
+	</div>
+	<!-- END Content-->
+</div>	
+<!-- END container -->
+<div id="footer">
+	<div id="footer_int">
+		<div id="footer_rigth">
+		
+		</div>
+	</div>
+</div>
+<div id="credits">
+	<div id="int_credits">
+		<s:text name="txt.footer.reserved" />
+	</div>
+</div>
+	</div>
 </body>
 </html>

@@ -58,7 +58,7 @@ $(document).ready(function() {
 				"iDisplayLength": 22,
 				 "aoColumns" : [
 				                  { "mDataProp":"dia","bSortable": false, sWidth: '50px' },
-				                  { "mDataProp":"h0800", "bSortable": false, sWidth: '50px' },
+				                 /* { "mDataProp":"h0800", "bSortable": false, sWidth: '50px' },
 				                  { "mDataProp":"h0830", "bSortable": false, sWidth: '20px' },
 				                  { "mDataProp":"h0900", "bSortable": false, sWidth: '20px' },
 				                  { "mDataProp":"h0930", "bSortable": false, sWidth: '20px' },
@@ -81,7 +81,7 @@ $(document).ready(function() {
 				                  { "mDataProp":"h1800", "bSortable": false, sWidth: '20px' },
 				                  { "mDataProp":"h1830", "bSortable": false, sWidth: '20px' },
 				                  { "mDataProp":"h1900", "bSortable": false, sWidth: '20px' },
-				                  { "mDataProp":"h1930", "bSortable": false, sWidth: '20px' },
+				                  { "mDataProp":"h1930", "bSortable": false, sWidth: '20px' },*/
 				                  { "mDataProp":"h2000", "bSortable": false, sWidth: '20px' },
 				                  { "mDataProp":"h2030", "bSortable": false, sWidth: '20px' },				                  
 				                  { "mDataProp":"h2100", "bSortable": false, sWidth: '20px' },

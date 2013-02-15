@@ -1,39 +1,54 @@
 #container {
-    position: relative;
+     position: relative;
 }
+
 #slider ul, #slider li {
-    display: block;
-    list-style: none outside none;
-    position: relative;
+     display: block;
+     list-style: none outside none;
+     position: relative;
 }
 
 #slider li {
-	width: 206px;
+     width: 206px;
 }
 
 .prevBtn {
-	left: 302px;
-	top: 240px;
+     left: -40px;
+     top: 60px;
 }
 
 #slider {
-    overflow: hidden;
-    position: absolute;
+     overflow: hidden;
+     position: absolute;
 }
+
 .prevBtn, .nextBtn {
-    cursor: pointer;
-    display: block;
-    height: 77px;
-    position: absolute;
-    z-index: 1000;
+     cursor: pointer;
+     display: block;
+     height: 77px;
+     position: relative;
+     z-index: 1000;
 }
+
 .nextBtn {
-    left: 1335px;
-    top: 230px;
+     left: 1001px;
+     top: -20px;
 }
+
 .nextBtn {
-    background: url("../images/btn_next.gif") no-repeat scroll 0 0 transparent;
+     background: #333;
+     width:40px
 }
+.nextBtn:hover {
+     background: #3FA9F5;
+     width:40px
+}
+
 .prevBtn {
-    background: url("../images/btn_prev.gif") no-repeat scroll 0 0 transparent;
+    background: #333;
+    width:40px
+}
+.prevBtn:hover {
+     background: #3FA9F5;
+     width:40px
 }
