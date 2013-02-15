@@ -30,12 +30,12 @@ public class VotacionsDaoImpl extends HibernateDaoSupport implements VotacionsDa
 	}
 	
 	public int count(Long idplat , int star){
-		List<VotacioTMP> votList = getHibernateTemplate().find("from VotacioTMP vot where vot.platId="+idplat+" and vot.punctuation="+star);
+		List<VotacioTMP> votList = getHibernateTemplate().find("from VotacioTMP vot where vot.platId="+idplat+" and vot.punctuacio="+star);
 		return votList.size();
 	}
 	
 	public int countBeguda(Long idbeguda , int star){
-		List<VotacioTMPBeguda> votList = getHibernateTemplate().find("from VotacioTMPBeguda vot where vot.begudaId="+idbeguda+" and vot.punctuation="+star);
+		List<VotacioTMPBeguda> votList = getHibernateTemplate().find("from VotacioTMPBeguda vot where vot.begudaId="+idbeguda+" and vot.punctuacio="+star);
 		return votList.size();
 	}
 	

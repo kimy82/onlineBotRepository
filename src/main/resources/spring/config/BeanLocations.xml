@@ -58,15 +58,25 @@
             </map>
         </property>
     </bean -->
+     <bean id="onstartup" class="org.springframework.scheduling.quartz.SimpleTriggerBean">
+		<property name="jobDetail" ref="job" />
+		<property name="startDelay" value="10000" />
+		<!-- repeat every 50 seconds -->
+		<property name="repeatInterval" value="50000" />
+		<property name="repeatCount" value="0" />
+	</bean>
 	<bean id="trigger" class="org.springframework.scheduling.quartz.CronTriggerBean">
 	    <property name="jobDetail" ref="job" />
 	    <!-- run at 1 PM every day -->
 	    <property name="cronExpression" value="0 0 1 * * ?" />
 	</bean>
+	
+	
     <bean id="schedulerFactory" class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
         <property name="triggers">
             <list>
                 <ref local="trigger" />
+                <ref local="onstartup" />                
             </list>
         </property>
     </bean>

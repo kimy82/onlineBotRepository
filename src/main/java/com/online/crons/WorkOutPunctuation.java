@@ -31,9 +31,7 @@ public class WorkOutPunctuation implements Job
 		VotacionsBo votacionsBo = (VotacionsBo)context.getJobDetail().getJobDataMap().get("votacionsBo");
 		PlatsBo platsBo = (PlatsBo)context.getJobDetail().getJobDataMap().get("platsBo");
 		BegudaBo begudaBo = (BegudaBo)context.getJobDetail().getJobDataMap().get("begudaBo");
-		RestaurantsBo restaurantsBo = (RestaurantsBo)context.getJobDetail().getJobDataMap().get("restaurantsBo");
-		
-		
+		RestaurantsBo restaurantsBo = (RestaurantsBo)context.getJobDetail().getJobDataMap().get("restaurantsBo");		
 		
 		try {
 				List<Restaurant> restaurants = restaurantsBo.getAll(false,false,true);
