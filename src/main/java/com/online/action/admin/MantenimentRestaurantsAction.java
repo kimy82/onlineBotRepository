@@ -78,6 +78,7 @@ public class MantenimentRestaurantsAction extends ActionSupport implements Servl
 				return Action.SUCCESS;
 
 			restaurant.setDescripcio(this.restaurant.getDescripcio());
+			restaurant.setDescripcioES(this.restaurant.getDescripcioES());
 			restaurant.setNom(this.restaurant.getNom());
 			restaurant.setHores(this.restaurant.getHores());
 			restaurant.setCodiMaquina(this.restaurant.getCodiMaquina());
@@ -118,6 +119,7 @@ public class MantenimentRestaurantsAction extends ActionSupport implements Servl
 			Restaurant restaurant = new Restaurant();
 
 			restaurant.setDescripcio(this.restaurant.getDescripcio());
+			restaurant.setDescripcioES(this.restaurant.getDescripcioES());
 			restaurant.setNom(this.restaurant.getNom());
 			restaurant.setCodiMaquina(this.restaurant.getCodiMaquina());
 			restaurant.setHores(this.restaurant.getHores());

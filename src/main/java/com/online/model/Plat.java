@@ -18,6 +18,9 @@ public class Plat implements Serializable{
 
 	@Expose
 	private String				nom;
+	
+	@Expose
+	private String				nomES;
 
 	@Expose
 	private String				descripcio;		
@@ -202,4 +205,16 @@ public class Plat implements Serializable{
 	
 		this.descripcioES = descripcioES;
 	}
+
+	public String getNomES(){
+	
+		return nomES;
+	}
+
+	public void setNomES( String nomES ){
+	
+		this.nomES = nomES;
+	}
+	
+	
 }

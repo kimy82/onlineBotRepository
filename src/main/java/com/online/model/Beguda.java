@@ -24,6 +24,9 @@ public class Beguda implements Serializable{
 	private String				nom;
 	
 	@Expose
+	private String				nomES;
+	
+	@Expose
 	private String				descripcio;
 	
 	@Expose
@@ -147,6 +150,15 @@ public class Beguda implements Serializable{
 	
 		this.descripcioES = descripcioES;
 	}
+
+	public String getNomES(){
 	
+		return nomES;
+	}
+
+	public void setNomES( String nomES ){
+	
+		this.nomES = nomES;
+	}		
 	
 }

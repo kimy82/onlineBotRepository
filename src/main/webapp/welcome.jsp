@@ -9,7 +9,7 @@
 	<META http-equiv="Content-Style-Type" content="text/css">
 	<meta http-equiv="content-type" content="text/html;charset=utf-8" />
 	<meta name="viewport" content="width=device-width,initial-scale=0.99,maximum-scale=0.99" />
-	<title> <s:text name="txt.welcome.principal" />${sessionScope.WW_TRANS_I18N_LOCALE}	</title>	
+	<title> <s:text name="txt.welcome.principal" />	</title>	
 </head>
 <body>
 <c:import url="/pages/includes/headerContext.jsp" />
@@ -74,7 +74,12 @@
 		  					<h1>${restaurant.nom}</h2>
 		  				</div>
 	  					<div class="cos_Rest_CLOSE">
-	  						<p>${restaurant.descripcio}</p>
+	  						<c:if test="${sessionScope.WW_TRANS_I18N_LOCALE=='ca'}">
+	  							<p>${restaurant.descripcio}</p>
+	  						</c:if>
+	  						<c:if test="${sessionScope.WW_TRANS_I18N_LOCALE=='es'}">
+	  							<p>${restaurant.descripcioES}</p>
+	  						</c:if>
 	  					</div>
 	  				</c:if>
 	  				<c:if test="${close==false}">
@@ -82,7 +87,12 @@
 	  						<h1>${restaurant.nom}</h2>
 	  					</div>
 	  					<div class="cos_Rest">
-	  						<p>${restaurant.descripcio}</p>
+	  						<c:if test="${sessionScope.WW_TRANS_I18N_LOCALE=='ca'}">
+	  							<p>${restaurant.descripcio}</p>
+	  						</c:if>
+	  						<c:if test="${sessionScope.WW_TRANS_I18N_LOCALE=='es'}">
+	  							<p>${restaurant.descripcioES}</p>
+	  						</c:if>
 	  					</div>
 	  				</c:if>
 	  				

@@ -41,6 +41,7 @@
 					<s:select list="restaurantBasicList" key="idRestaurants" id="restaurantsid" listKey="id" listValue="descripcio" headerKey="0" headerValue="Restaurant" >					
 					</s:select>
 					<s:textfield key="plat.nom" id="nomplat" onkeyup="return ismaxlength(this,100)"  ></s:textfield>
+					<s:textfield key="plat.nomES" id="nomplatES" onkeyup="return ismaxlength(this,100)"  ></s:textfield>
 					<s:textfield key="plat.prioritat" id="prioritatplat" onkeyup="onlyEntero(this.value,this.id)"  ></s:textfield>
 					<s:textfield key="plat.tempsPreparacio" id="tempsplat" onkeyup="onlyEntero(this.value,this.id)"  ></s:textfield>
 					<s:textfield key="plat.codi" id="codiplat" onkeyup="return ismaxlength(this,20)"  ></s:textfield>
@@ -84,6 +85,7 @@
 			"<s:text  name='txt.error.number'/>");
 	
 	$("#nomplat").val("${plat.nom}");
+	$("#nomplatES").val("${plat.nomES}");
 	$("#prioritatplat").val("${plat.prioritat}");
 	$("#descplat").val("${plat.descripcio}");
 	$("#descplatES").val("${plat.descripcioES}");

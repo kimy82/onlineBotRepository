@@ -49,7 +49,13 @@
 			  					<h1 id="p_desc_${plat.id}" >${plat.nom}</h2>
 			  				</div>
 			  				<div class="cos_Rest">
-			  					<p>${plat.descripcio}</p><br><br>
+			  				<c:if test="${sessionScope.WW_TRANS_I18N_LOCALE=='ca'}">
+	  							<p>${plat.descripcio}</p>
+	  						</c:if>
+	  						<c:if test="${sessionScope.WW_TRANS_I18N_LOCALE=='es'}">
+	  							<p>${plat.descripcioES}</p>
+	  						</c:if>
+			  					
 			  				</div>
 	  					</div>
 	  					<div id="afegir">
@@ -70,10 +76,16 @@
 	  					</div>
 	  					<div class="format">
 			  				<div class="titol_Rest_CLOSE">
-			  					<h1>${plat.nom}</h2>
+			  					<h1 id="p_desc_${plat.id}" >${plat.nom}</h2>
 			  				</div>
 			  				<div class="cos_Rest_CLOSE">
-			  					<p id="p_desc_${plat.id}" >${plat.descripcio}</p><br><br>
+			  					<c:if test="${sessionScope.WW_TRANS_I18N_LOCALE=='ca'}">
+	  								<p>${plat.descripcio}</p>
+	  							</c:if>
+	  							<c:if test="${sessionScope.WW_TRANS_I18N_LOCALE=='es'}">
+	  								<p>${plat.descripcioES}</p>
+	  							</c:if>			  					
+			  					<br><br>
 			  				</div>
 		  				</div>
 		  				<div id="afegir">
@@ -115,10 +127,25 @@
 	  						</div>
 							<div class="format">
 					  				<div class="titol_Rest">
-					  					<h1 id="p_desc_beg_${beguda.id}" >${beguda.nom}</h2>
+					  					<h1 id="p_desc_beg_${beguda.id}" >
+					  					<c:if test="${sessionScope.WW_TRANS_I18N_LOCALE=='ca'}">
+	  										${beguda.nom}
+	  									</c:if>
+	  									<c:if test="${sessionScope.WW_TRANS_I18N_LOCALE=='es'}">
+	  										${beguda.nomES}
+	  									</c:if>
+					  					
+					  					</h2>
 					  				</div>
 					  				<div class="cos_Rest">
-					  					<p>${beguda.descripcio}</p><br><br>
+					  					<p>
+						  					<c:if test="${sessionScope.WW_TRANS_I18N_LOCALE=='ca'}">
+		  										${beguda.descripcio}
+		  									</c:if>
+		  									<c:if test="${sessionScope.WW_TRANS_I18N_LOCALE=='es'}">
+		  										${beguda.descripcioES}
+		  									</c:if>
+					  					</p><br><br>
 					  				</div>
 	  						</div>
 							<div id="afegir">

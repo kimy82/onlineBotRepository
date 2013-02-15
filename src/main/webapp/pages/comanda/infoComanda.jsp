@@ -31,10 +31,17 @@
 					    	<li class="draggable" id="${refresc.idSub}" title="${refresc.tipus}">
 					    			<div id="iterate_Rec" >
 					    				<div id="img_Rest" >
-					    					<img id="imageRefresc_${refresc.id}" width="200px"  src="/${initParam.app}/comanda/ImageAction.action?imageId=${refresc.id}" title="${refresc.descripcio} -> Double Click to Add" />
+					    					<img id="imageRefresc_${refresc.id}" width="200px"  src="/${initParam.app}/comanda/ImageAction.action?imageId=${refresc.id}" title="-> Double Click to Add" />
 					    				</div>
 					    				<div class="titol_Rest">
-											<h1>${refresc.descripcio}</h1>
+											<h1>
+												<c:if test="${sessionScope.WW_TRANS_I18N_LOCALE=='ca'}">
+		  											${refresc.descripcio}
+		  										</c:if>
+		  										<c:if test="${sessionScope.WW_TRANS_I18N_LOCALE=='es'}">
+		  											${refresc.descripcioES}
+		  										</c:if>											
+											</h1>
 										</div>
 										<div class="left_price">
 											<a class="entrar draggable" href="#"><s:text name="txt.plat.afegir" /></a>
@@ -68,9 +75,22 @@
 										<img width="151px" src="/${initParam.app}/comanda/ImageAction.action?imageId=${platComanda.plat.foto.id}">
 									</td>
 									<td class="descri">
-									<span class="tit">${platComanda.plat.nom}</span>
+										<span class="tit">
+											<c:if test="${sessionScope.WW_TRANS_I18N_LOCALE=='ca'}">
+		  											${platComanda.plat.nom}
+		  									</c:if>
+		  									<c:if test="${sessionScope.WW_TRANS_I18N_LOCALE=='es'}">
+		  											${platComanda.plat.nomES}
+		  									</c:if>												
+										</span>
 									<br>
-										${platComanda.plat.descripcio}
+											<c:if test="${sessionScope.WW_TRANS_I18N_LOCALE=='ca'}">
+		  											${platComanda.plat.descripcio}
+		  									</c:if>
+		  									<c:if test="${sessionScope.WW_TRANS_I18N_LOCALE=='es'}">
+		  											${platComanda.plat.descripcioES}
+		  									</c:if>	
+										
 									</td>
 									<td class="preusun"><label id="platpreu_${platComanda.plat.id}" >${platComanda.plat.preu}</label>&euro; </td>
 									<td class="canti">										
@@ -91,9 +111,22 @@
 										<img width="151px" src="/${initParam.app}/comanda/ImageAction.action?imageId=${begudaComanda.beguda.foto.id}">
 									</td>
 									<td class="descri">
-									<span class="tit">${begudaComanda.beguda.nom}</span>
+										<span class="tit">
+											<c:if test="${sessionScope.WW_TRANS_I18N_LOCALE=='ca'}">
+		  											${begudaComanda.beguda.nom}
+		  									</c:if>
+		  									<c:if test="${sessionScope.WW_TRANS_I18N_LOCALE=='es'}">
+		  											${begudaComanda.beguda.nomES}
+		  									</c:if>											
+										</span>
 									<br>
-										${begudaComanda.beguda.descripcio}
+										<c:if test="${sessionScope.WW_TRANS_I18N_LOCALE=='ca'}">
+		  											${begudaComanda.beguda.descripcio}
+		  								</c:if>
+		  								<c:if test="${sessionScope.WW_TRANS_I18N_LOCALE=='es'}">
+		  											${begudaComanda.beguda.descripcioES}
+		  								</c:if>	
+										
 									</td>
 									<td class="preusun"><label id="begudapreu_${begudaComanda.beguda.id}" >${begudaComanda.beguda.preu}</label>&euro; </td>
 									<td class="canti">										
@@ -113,9 +146,21 @@
 										<img width="151px" src="/${initParam.app}/comanda/ImageAction.action?imageId=${begudaComanda.beguda.foto.id}">
 									</td>
 									<td class="descri">
-									<span class="tit">${begudaComanda.beguda.nom}</span>
+										<span class="tit">
+											<c:if test="${sessionScope.WW_TRANS_I18N_LOCALE=='ca'}">
+		  											${begudaComanda.beguda.nom}
+		  									</c:if>
+		  									<c:if test="${sessionScope.WW_TRANS_I18N_LOCALE=='es'}">
+		  											${begudaComanda.beguda.nomES}
+		  									</c:if>	
+										</span>
 									<br>
-										${begudaComanda.beguda.descripcio}
+										<c:if test="${sessionScope.WW_TRANS_I18N_LOCALE=='ca'}">
+		  											${begudaComanda.beguda.descripcio}
+		  								</c:if>
+		  								<c:if test="${sessionScope.WW_TRANS_I18N_LOCALE=='es'}">
+		  											${begudaComanda.beguda.descripcioES}
+		  								</c:if>	
 									</td>
 									<td class="preusun"><label id="begudapreu_p_${begudaComanda.beguda.id}" >${begudaComanda.beguda.preu}</label>&euro; </td>
 									<td class="canti">										

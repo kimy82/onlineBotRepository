@@ -149,6 +149,9 @@ function showDivRestaurant(id){
 					 	if(json.descripcio!=null){
 					 		document.getElementById("descrestaurant").value= json.descripcio;
 					 	}
+					 	if(json.descripcioES!=null){
+					 		document.getElementById("descrestaurantES").value= json.descripcioES;
+					 	}
 					 	if(json.id!=null){
 					 		document.getElementById("idRestaurant").value= json.id;					 		
 					 	}

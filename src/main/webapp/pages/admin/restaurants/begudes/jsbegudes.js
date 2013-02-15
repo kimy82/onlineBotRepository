@@ -49,6 +49,7 @@ function opendivNewBeguda(){
 
 function resetForm(){
 		$("#nomBeguda").val("");
+		$("#nomBegudaES").val("");
 		$("#tipusBeguda option:first").attr('selected','selected');		
 		$("#importBeguda").val("");
 		$("#descripcioBeguda").val("");
@@ -79,6 +80,7 @@ function showDivBeguda(id){
 					 	
 					 		$("#id").val(json.id);
 					 		$("#nomBeguda").val(json.nom);
+					 		$("#nomBegudaES").val(json.nomES);
 					 		$("#tipusBeguda").val(json.tipus);					 		
 					 		$("#importBeguda").val(json.preu);
 					 		$("#descripcioBeguda").val(json.descripcio);

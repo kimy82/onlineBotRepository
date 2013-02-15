@@ -59,6 +59,7 @@
 					<div id="apd_div">
 						<s:form action="saveBeguda" method="POST" enctype="multipart/form-data" >
 							<s:textfield key="beguda.nom" id="nomBeguda"  ></s:textfield>
+							<s:textfield key="beguda.nomES" id="nomBegudaES"  ></s:textfield>
 							<s:select list="tipusBegudaList" key="beguda.tipus" id="tipusBeguda" listKey="descripcio" listValue="descripcio">					
 							</s:select>					
 							<s:textfield key="beguda.preu"  id="importBeguda" onblur="onlyDouble(this.value,this.id)" ></s:textfield>		

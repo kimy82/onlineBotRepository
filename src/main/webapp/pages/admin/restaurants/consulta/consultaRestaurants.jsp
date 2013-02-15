@@ -53,6 +53,7 @@
 				<s:form action="saveRestaurant" method="POST" enctype="multipart/form-data" >
 					<s:textfield key="restaurant.nom" id="nomrestaurant"  ></s:textfield>
 					<s:textarea key="restaurant.descripcio" id="descrestaurant" cols="40" rows="4" ></s:textarea>			
+					<s:textarea key="restaurant.descripcioES" id="descrestaurantES" cols="40" rows="4" ></s:textarea>
 					<s:textfield key="restaurant.codiMaquina" id="codiMaquina" onkeyup="return ismaxlength(this,20)"  ></s:textfield>				
 					<s:file name="fileUpload" label="Canvia la foto" size="40" />
 					<s:hidden key="restaurant.id"  id="idRestaurant" ></s:hidden>

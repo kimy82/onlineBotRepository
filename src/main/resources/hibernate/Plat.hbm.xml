@@ -9,9 +9,11 @@
 			<generator class="increment" />
 		</id>
 		<property name="nom" type="string" lazy="false" >
-			<column name="NOM" length="45" not-null="true" />
+			<column name="NOM" length="200" not-null="true" />
 		</property>
-		
+		<property name="nomES" type="string" lazy="false" >
+			<column name="NOM_ES" length="200" not-null="true" />
+		</property>
 		<property name="descripcio" type="string" lazy="false" >
 			<column name="DESCRIPCIO" length="200" not-null="true" />
 		</property>		

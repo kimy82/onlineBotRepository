@@ -159,7 +159,9 @@ public class MantenimentPlatsAction extends ActionSupport implements ServletResp
 						if(this.plat.getId()!=null){
 							Plat platToSave = this.platsBo.load(this.plat.getId(), false);
 								platToSave.setDescripcio(this.plat.getDescripcio());
+								platToSave.setDescripcioES(this.plat.getDescripcioES());
 								platToSave.setNom(this.plat.getNom());
+								platToSave.setNomES(this.plat.getNomES());
 								platToSave.setPreu(this.plat.getPreu());			
 								platToSave.setTipus(this.plat.getTipus());
 								platToSave.setTempsPreparacio(this.plat.getTempsPreparacio());
@@ -173,7 +175,9 @@ public class MantenimentPlatsAction extends ActionSupport implements ServletResp
 						}else{
 							Plat platToSave = new Plat();
 							platToSave.setDescripcio(this.plat.getDescripcio());
+							platToSave.setDescripcioES(this.plat.getDescripcioES());
 							platToSave.setNom(this.plat.getNom());
+							platToSave.setNomES(this.plat.getNomES());
 							platToSave.setPreu(this.plat.getPreu());			
 							platToSave.setTipus(this.plat.getTipus());
 							platToSave.setTempsPreparacio(this.plat.getTempsPreparacio());
