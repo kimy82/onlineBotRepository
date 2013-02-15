@@ -34,14 +34,14 @@
 					    					<img id="imageRefresc_${refresc.id}" width="200px"  src="/${initParam.app}/comanda/ImageAction.action?imageId=${refresc.id}" title="-> Double Click to Add" />
 					    				</div>
 					    				<div class="titol_Rest">
-											<h1>
-												<c:if test="${sessionScope.WW_TRANS_I18N_LOCALE=='ca'}">
+					    					
+											<h1><c:if test="${sessionScope.WW_TRANS_I18N_LOCALE=='ca'}">
 		  											${refresc.descripcio}
 		  										</c:if>
 		  										<c:if test="${sessionScope.WW_TRANS_I18N_LOCALE=='es'}">
 		  											${refresc.descripcioES}
-		  										</c:if>											
-											</h1>
+		  										</c:if>	
+		  									</h1>
 										</div>
 										<div class="left_price">
 											<a class="entrar draggable" href="#"><s:text name="txt.plat.afegir" /></a>
@@ -72,7 +72,7 @@
 							<s:iterator value="platComandaList" var="platComanda">
 								<tr class="selector_pl" id="plat_${platComanda.plat.id}" >
 									<td class="img_order">
-										<img width="151px" src="/${initParam.app}/comanda/ImageAction.action?imageId=${platComanda.plat.foto.id}">
+										<img width="103px" src="/${initParam.app}/comanda/ImageAction.action?imageId=${platComanda.plat.foto.id}">
 									</td>
 									<td class="descri">
 										<span class="tit">
@@ -94,8 +94,8 @@
 									</td>
 									<td class="preusun"><label id="platpreu_${platComanda.plat.id}" >${platComanda.plat.preu}</label>&euro; </td>
 									<td class="canti">										
-										<input class="mores" type="submit" onclick="saveNewPLatAmount(${platComanda.plat.id}, -1)" value="-">
 										<label id="labelnum_${platComanda.plat.id}">${platComanda.numPlats}</label>
+										<input class="mores" type="submit" onclick="saveNewPLatAmount(${platComanda.plat.id}, -1)" value="-">
 										<input class="mores" type="submit" onclick="saveNewPLatAmount(${platComanda.plat.id}, 1)" value="+">
 									</td>
 									<td class="total"><label id="labelpreutotal_${platComanda.plat.id}">${platComanda.plat.preu*platComanda.numPlats}</label> &euro; </td>
@@ -108,8 +108,9 @@
 								<c:if test="${begudaComanda.numBegudes>0}" >
 									<tr class="selector_bg" id="beguda_${begudaComanda.beguda.id}" >
 									<td class="img_order">
-										<img width="151px" src="/${initParam.app}/comanda/ImageAction.action?imageId=${begudaComanda.beguda.foto.id}">
+										<img width="103px" src="/${initParam.app}/comanda/ImageAction.action?imageId=${begudaComanda.beguda.foto.id}">
 									</td>
+									
 									<td class="descri">
 										<span class="tit">
 											<c:if test="${sessionScope.WW_TRANS_I18N_LOCALE=='ca'}">
@@ -143,7 +144,7 @@
 								<c:if test="${begudaComanda.numBegudesPromo>0}" >
 									<tr class="selector_bg" id="beguda_p_${begudaComanda.beguda.id}" >
 									<td class="img_order">
-										<img width="151px" src="/${initParam.app}/comanda/ImageAction.action?imageId=${begudaComanda.beguda.foto.id}">
+										<img width="103px" src="/${initParam.app}/comanda/ImageAction.action?imageId=${begudaComanda.beguda.foto.id}">
 									</td>
 									<td class="descri">
 										<span class="tit">
@@ -212,7 +213,7 @@
 					<tr><td><input type="button"  onclick="checkComandaJS();" value="Pay Comanda" /></td><td>  <div id="chargeBar"></div></td></tr>
 				</s:form>	
 			<c:import url="/pages/includes/address.jsp" />
-			<table>
+			<table class="hours">
 					<tr><td><s:text name="comanda.hora" ></s:text></td></tr>										
 					<tr>
 						<!-- <c:if test="${requestScope.horesDTO._0800 ne 'true'}">
@@ -562,7 +563,6 @@ $("#idcomanda").val('${requestScope.idComanda}');
 $("#numComanda").text('${requestScope.idComanda}');
 $("#dia").val('${requestScope.horesDTO.data}');
 
-//window.localStorage.setItem("comanda.preu",'${requestScope.comanda.preu}');
 
 initNumPlats();
 initNumBegudes();
