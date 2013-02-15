@@ -42,7 +42,8 @@ public class WelcomeAction extends ActionSupport implements ServletResponseAware
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		this.nameAuth = auth.getName();
 		
-		session.put("WW_TRANS_I18N_LOCALE", new Locale("ca"));
+		if(session.get("WW_TRANS_I18N_LOCALE")==null || session.get("WW_TRANS_I18N_LOCALE").equals(""))
+			session.put("WW_TRANS_I18N_LOCALE", new Locale("ca"));
 		
 		this.restaurantList = this.restaurantsBo.getAll(true, false, false);
 		inizializePagin();

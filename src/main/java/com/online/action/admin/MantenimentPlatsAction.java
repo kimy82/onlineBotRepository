@@ -169,7 +169,7 @@ public class MantenimentPlatsAction extends ActionSupport implements ServletResp
 								platToSave.setPrioritat(this.plat.getPrioritat());
 								platToSave.setActiu(this.plat.isActiu());
 							Image image = getImageFromUpload();
-							if(image!=null)
+							if(image!=null && image.getImage()!=null)
 								platToSave.setFoto(image);
 							this.platsBo.update(platToSave);
 						}else{
