@@ -25,6 +25,19 @@
 				</s:iterator>								
 			</table>
 	</div>
+	  <s:select list="listBegudes" headerKey="" headerValue="Escull una beguda" id="begudaId" listKey="id" listValue="nom" onchange="loadCommentsBeguda(this.value)" ></s:select>
+    <div class="comments_foro" id="beguda_${beguda.id}" >
+			<table id="comments_tbl_b" >
+		
+			    <s:iterator value="beguda.comments" var="comt">
+							<tr id="${comt.id}" >
+								<td>${comt.comment}</td>																				
+									
+							    <td><a href="#" onclick="deleteCommentBeguda(${comt.id})" ><img src="<c:url value='/images/delete.png' />" /> </a></td>																									
+							</tr>						
+				</s:iterator>								
+			</table>
+	</div>
 
 
 

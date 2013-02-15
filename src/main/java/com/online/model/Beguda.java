@@ -27,6 +27,9 @@ public class Beguda implements Serializable{
 	private String				descripcio;
 	
 	@Expose
+	private String				descripcioES;
+	
+	@Expose
 	private Double				preu;	
 	
 	@Expose
@@ -134,7 +137,16 @@ public class Beguda implements Serializable{
 	
 		this.votacio = votacio;
 	}
+
+	public String getDescripcioES(){
 	
+		return descripcioES;
+	}
+
+	public void setDescripcioES( String descripcioES ){
+	
+		this.descripcioES = descripcioES;
+	}
 	
 	
 }

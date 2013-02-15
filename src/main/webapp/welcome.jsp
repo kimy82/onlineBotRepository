@@ -9,7 +9,7 @@
 	<META http-equiv="Content-Style-Type" content="text/css">
 	<meta http-equiv="content-type" content="text/html;charset=utf-8" />
 	<meta name="viewport" content="width=device-width,initial-scale=0.99,maximum-scale=0.99" />
-	<title> <s:text name="txt.welcome.principal" /></title>	
+	<title> <s:text name="txt.welcome.principal" />${sessionScope.WW_TRANS_I18N_LOCALE}	</title>	
 </head>
 <body>
 <c:import url="/pages/includes/headerContext.jsp" />
@@ -88,7 +88,8 @@
 	  				
 				</div>
 				</s:iterator>	
-				<c:import url="/pages/includes/pagination.jsp" />						
+				<c:import url="/pages/includes/pagination.jsp" />	
+								
 		</div>
 		
 		<div id="left">

@@ -51,6 +51,7 @@
 						<s:checkbox  key="plat.actiu" id="actiuplat" ></s:checkbox>
 					</c:if>
 					<s:textarea key="plat.descripcio" id="descplat" cols="40" rows="4" onkeyup="return ismaxlength(this,1000)" ></s:textarea>	
+					<s:textarea key="plat.descripcioES" id="descplatES" cols="40" rows="4" onkeyup="return ismaxlength(this,1000)" ></s:textarea>
 					<s:textfield key="plat.preu" id="preuplat" onblur=" onlyDouble(this.value, this.id)" ></s:textfield>
 					<s:select list="tipusPlat" key="plat.tipus" id="tipusplat" listKey="descripcio" listValue="descripcio" headerKey="" headerValue="" ></s:select>											
 					<s:file name="fileUpload" label="Escull una fotografia" size="40" />	
@@ -85,6 +86,7 @@
 	$("#nomplat").val("${plat.nom}");
 	$("#prioritatplat").val("${plat.prioritat}");
 	$("#descplat").val("${plat.descripcio}");
+	$("#descplatES").val("${plat.descripcioES}");
 	$("#preuplat").val("${plat.preu}");
 	$("#tipusplat [value='${plat.tipus}']").attr('selected', true);
 	$("#restaurantsid [value='${idRestaurants}']").attr('selected', true);

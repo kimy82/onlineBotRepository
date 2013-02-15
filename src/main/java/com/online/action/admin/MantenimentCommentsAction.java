@@ -10,11 +10,13 @@ import javax.servlet.http.HttpServletResponse;
 import org.apache.struts2.interceptor.ServletRequestAware;
 import org.apache.struts2.interceptor.ServletResponseAware;
 
+import com.online.bo.BegudaBo;
 import com.online.bo.PlatsBo;
 import com.online.exceptions.WrongParamException;
+import com.online.model.Beguda;
 import com.online.model.Foro;
+import com.online.model.ForoBeguda;
 import com.online.model.Plat;
-import com.online.pojos.Basic;
 import com.opensymphony.xwork2.ActionSupport;
 
 public class MantenimentCommentsAction extends ActionSupport implements ServletResponseAware, ServletRequestAware{
@@ -24,18 +26,24 @@ public class MantenimentCommentsAction extends ActionSupport implements ServletR
 	 */
 	private static final long	serialVersionUID	= 1L;
 	private PlatsBo				platsBo;
+	private BegudaBo			begudaBo;
 
 	private Long				idPlat;
+	private Long				idBeguda;
 	private Long				idComment;
 
 	private Plat				plat;
+	private Beguda				beguda;
 	private List<Plat>			listPlats;
+	private List<Beguda>		listBegudes;
 	HttpServletResponse			response;
 	HttpServletRequest			request;
 
 	public String execute(){
-		
+
 		this.listPlats = this.platsBo.getAll();
+		this.listBegudes= this.begudaBo.getAll("vi", false);
+		
 		return SUCCESS;
 	}
 
@@ -43,7 +51,18 @@ public class MantenimentCommentsAction extends ActionSupport implements ServletR
 
 		inizializePlatId();
 		this.listPlats = this.platsBo.getAll();
+		this.listBegudes= this.begudaBo.getAll("vi", false);
 		this.plat = this.platsBo.loadPLatAndForos(this.idPlat);
+		return SUCCESS;
+
+	}
+	
+	public String loadCommentsBeguda(){
+
+		inizializeBegudaId();
+		this.listPlats = this.platsBo.getAll();
+		this.listBegudes= this.begudaBo.getAll("vi", false);
+		this.beguda = this.begudaBo.loadBegudaAndForos(this.idBeguda);
 		return SUCCESS;
 
 	}
@@ -70,14 +89,48 @@ public class MantenimentCommentsAction extends ActionSupport implements ServletR
 			return createErrorJSON("Error deleting comment" + e);
 		}
 	}
+	
+	public String ajaxDeleteCommentBegudaAction(){
+
+		try {
+			inizializeBegudaId();
+			inizializeCommentId();
+			this.beguda = this.begudaBo.loadBegudaAndForos(this.idBeguda);
+			Set<ForoBeguda> newForoList = new HashSet<ForoBeguda>();
+			if (this.beguda != null) {
+				Set<ForoBeguda> foroList = this.beguda.getComments();
+				for (ForoBeguda foro : foroList) {
+					if (!foro.getId().equals(this.idComment)) {
+						newForoList.add(foro);
+					}
+				}
+				this.beguda.setComments(newForoList);
+				this.begudaBo.update(beguda);
+			}
+			return null;
+		} catch (Exception e) {
+			return createErrorJSON("Error deleting comment" + e);
+		}
+	}
 
 	// private methods
 
 	private void inizializePlatId() throws WrongParamException{
 
-		this.idPlat = (request.getParameter("idPlat") == null || request.getParameter("idPlat").equals("")) ? null : Long.parseLong(request.getParameter("idPlat"));
+		this.idPlat = (request.getParameter("idPlat") == null || request.getParameter("idPlat").equals("")) ? null : Long.parseLong(request
+				.getParameter("idPlat"));
 		if (this.idPlat == null) {
 			throw new WrongParamException("null plat id");
+		}
+
+	}
+	
+	private void inizializeBegudaId() throws WrongParamException{
+
+		this.idBeguda = (request.getParameter("idBeguda") == null || request.getParameter("idBeguda").equals("")) ? null : Long.parseLong(request
+				.getParameter("idBeguda"));
+		if (this.idBeguda == null) {
+			throw new WrongParamException("null beguda id");
 		}
 
 	}
@@ -98,7 +151,7 @@ public class MantenimentCommentsAction extends ActionSupport implements ServletR
 		jsonSB.append("\"}");
 		return jsonSB.toString();
 	}
-	
+
 	// SETTERS i GETTERS
 	public void setPlatsBo( PlatsBo platsBo ){
 
@@ -136,12 +189,39 @@ public class MantenimentCommentsAction extends ActionSupport implements ServletR
 	}
 
 	public List<Plat> getListPlats(){
-	
+
 		return listPlats;
 	}
 
 	public void setListPlats( List<Plat> listPlats ){
-	
+
 		this.listPlats = listPlats;
-	}	
+	}
+
+	public List<Beguda> getListBegudes(){
+	
+		return listBegudes;
+	}
+
+	public void setListBegudes( List<Beguda> listBegudes ){
+	
+		this.listBegudes = listBegudes;
+	}
+
+	public void setBegudaBo( BegudaBo begudaBo ){
+	
+		this.begudaBo = begudaBo;
+	}
+
+	public Beguda getBeguda(){
+	
+		return beguda;
+	}
+
+	public void setBeguda( Beguda beguda ){
+	
+		this.beguda = beguda;
+	}
+	
+	
 }

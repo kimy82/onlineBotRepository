@@ -17,6 +17,9 @@ public class Promocio implements Serializable{
 	private String				nom;
 	
 	@Expose
+	private String				nomES;
+	
+	@Expose
 	private String				tipuDescompte;
 	
 	@Expose
@@ -94,7 +97,15 @@ public class Promocio implements Serializable{
 	
 		this.tipusBeguda = tipusBeguda;
 	}
+
+	public String getNomES(){
 	
+		return nomES;
+	}
+
+	public void setNomES( String nomES ){
 	
+		this.nomES = nomES;
+	}		
 
 }

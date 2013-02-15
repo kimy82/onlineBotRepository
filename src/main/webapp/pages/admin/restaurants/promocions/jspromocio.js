@@ -45,13 +45,15 @@ function opendivNewPromo(){
 
 function resetForm(){
 		$("#nompromo_apd").val("");
+		$("#nompromoES_apd").val("");
 		$("#tipuDescompte_apd").val("");
 		$("#descompteImport_apd").val("");
 		$("#importAPartirDe").val("");
 		$("#dia").val("");
 		$("#numBegudes_apd").val("");
 		$("#numBegudes_pnc").val("");
-		$("#nompromo_pnc").val("")
+		$("#nompromo_pnc").val("");
+		$("#nompromoES_pnc").val("");
  		$("#tipuDescompte_pnc").val("");
  		$("#descompteImport_pnc").val("");
  		$("#numComandes").val("");
@@ -89,6 +91,7 @@ function goToPromocio(id){
 					 	if(json.tipus=='apd'){
 					 		$("#id_apd").val(json.id);
 					 		$("#nompromo_apd").val(json.nom);
+					 		$("#nompromoES_apd").val(json.nomES);
 					 		$("#tipuDescompte_apd").val(json.tipuDescompte);
 					 		$("#numBegudes_apd").val(json.numBegudes);					 		
 					 		$("#tipusBeguda_apd option[value='"+json.tipusBeguda+"']").attr("selected","selected");  					 		
@@ -100,7 +103,8 @@ function goToPromocio(id){
 					 	}
 					 	if(json.tipus=='pnc'){
 					 		$("#id_pnc").val("");
-					 		$("#nompromo_pnc").val(json.nom)
+					 		$("#nompromo_pnc").val(json.nom);
+					 		$("#nompromoES_pnc").val(json.nomES);
 					 		$("#tipuDescompte_pnc").val(json.tipuDescompte);
 					 		$("#descompteImport_pnc").val(json.descompteImport);
 					 		$("#tipusBeguda_pnc option[value='"+json.tipusBeguda+"']").attr("selected","selected"); 

@@ -40,6 +40,7 @@
 					<s:textfield key="restaurant.nom" id="nomrestaurant" onkeyup="return ismaxlength(this,200)"  ></s:textfield>
 					<s:textfield key="restaurant.codiMaquina" id="codiMaquina" onkeyup="return ismaxlength(this,20)"  ></s:textfield>
 					<s:textarea key="restaurant.descripcio" id="descrestaurant" onkeyup="return ismaxlength(this,1000)" cols="40" rows="4" ></s:textarea>							
+					<s:textarea key="restaurant.descripcioES" id="descrestaurantES" onkeyup="return ismaxlength(this,1000)" cols="40" rows="4" ></s:textarea>
 					<s:file name="fileUpload" label="Escull una fotografia" size="40" />	
 					<s:hidden key="restaurant.hores" id="horesRestaurant" />									
 					<s:submit></s:submit>

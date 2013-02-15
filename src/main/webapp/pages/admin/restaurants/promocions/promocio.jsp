@@ -64,6 +64,7 @@
 					<div id="apd_div">
 						<s:form action="savePromocioAPartirDe" method="POST" enctype="multipart/form-data" >
 							<s:textfield key="promocioAPartirDeDTF.nom" id="nompromo_apd"  ></s:textfield>
+							<s:textfield key="promocioAPartirDeDTF.nomES" id="nompromoES_apd"  ></s:textfield>
 							<s:select list="tipusDescompteList" key="promocioAPartirDeDTF.tipuDescompte" listKey="descripcio" listValue="descripcio">					
 							</s:select>					
 							<s:textfield key="promocioAPartirDeDTF.descompteImport"  id="descompteImport_apd" onblur="onlyDouble(this.value,this.id)" ></s:textfield>		
@@ -83,6 +84,7 @@
 					<div id="pnc_div">
 						<s:form action="savePromocioNumComandes" method="POST" enctype="multipart/form-data" >
 							<s:textfield key="promocioNumComandes.nom" id="nompromo_pnc"  ></s:textfield>
+							<s:textfield key="promocioNumComandes.nomES" id="nompromoES_pnc"  ></s:textfield>
 							<s:select list="tipusDescompteList" key="promocioNumComandes.tipuDescompte" listKey="descripcio" listValue="descripcio">					
 							</s:select>										
 							<s:textfield key="promocioNumComandes.descompteImport"  id="descompteImport_pnc"  onblur="onlyDouble(this.value,this.id)" ></s:textfield>

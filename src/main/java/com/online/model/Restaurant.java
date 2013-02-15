@@ -22,6 +22,9 @@ public class Restaurant implements Serializable{
 
 	@Expose
 	private String					descripcio;
+	
+	@Expose
+	private String					descripcioES;
 
 	protected Set<Plat>				plats				= new HashSet<Plat>(0);
 	protected Set<ConfigRestaurant>	configRestaurants	= new HashSet<ConfigRestaurant>(0);
@@ -139,6 +142,16 @@ public class Restaurant implements Serializable{
 	public void setHores( String hores ){
 	
 		this.hores = hores;
+	}
+	
+	public String getDescripcioES(){
+		
+		return descripcioES;
+	}
+
+	public void setDescripcioES( String descripcioES ){
+	
+		this.descripcioES = descripcioES;
 	}
 	
 	@Override

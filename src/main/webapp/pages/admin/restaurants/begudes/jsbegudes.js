@@ -52,6 +52,8 @@ function resetForm(){
 		$("#tipusBeguda option:first").attr('selected','selected');		
 		$("#importBeguda").val("");
 		$("#descripcioBeguda").val("");
+		$("#descripcioBegudaES").val("");
+		
 		$("#id").val("");		
 }
 
@@ -80,7 +82,7 @@ function showDivBeguda(id){
 					 		$("#tipusBeguda").val(json.tipus);					 		
 					 		$("#importBeguda").val(json.preu);
 					 		$("#descripcioBeguda").val(json.descripcio);
-					 		
+					 		$("#descripcioBegudaES").val(json.descripcioES);
 					 		$("#infobegudanew").show('slow');					 							 			 					 										 					 						 					 						  
      			}				
 		  },

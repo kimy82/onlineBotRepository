@@ -256,9 +256,18 @@
 			<result name="success">/pages/admin/restaurants/comentaris/comentaris.jsp</result>
 			<result name="error">/error.jsp</result>		
 		</action>
+			<action name="loadCommentsBeguda" class="com.online.action.admin.MantenimentCommentsAction"
+			method="loadCommentsBeguda">
+			<result name="success">/pages/admin/restaurants/comentaris/comentaris.jsp</result>
+			<result name="error">/error.jsp</result>		
+		</action>
 		<action name="ajaxDeleteCommentAction"
 			class="com.online.action.admin.MantenimentCommentsAction" method="ajaxDeleteCommentAction">
 		</action>
+		<action name="ajaxDeleteCommentBegudaAction"
+			class="com.online.action.admin.MantenimentCommentsAction" method="ajaxDeleteCommentBegudaAction">
+		</action>
+		
 		
 	</package>
 </struts>

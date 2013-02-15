@@ -20,7 +20,10 @@ public class Plat implements Serializable{
 	private String				nom;
 
 	@Expose
-	private String				descripcio;
+	private String				descripcio;		
+
+	@Expose
+	private String				descripcioES;
 
 	@Expose
 	private Double				preu;
@@ -189,5 +192,14 @@ public class Plat implements Serializable{
 	
 		this.tempsPreparacio = tempsPreparacio;
 	}		
+
+	public String getDescripcioES(){
+		
+		return descripcioES;
+	}
+
+	public void setDescripcioES( String descripcioES ){
 	
+		this.descripcioES = descripcioES;
+	}
 }
