@@ -113,7 +113,7 @@ public class MantenimentBegudaAction extends ActionSupport implements ServletRes
 			}
 			
 			Image image = getImageFromUpload();
-			if(image.getImage()!=null)
+			if(image!=null && image.getImage()!=null)
 				this.beguda.setFoto(image);
 			
 			if (this.beguda.getId() == null) {
