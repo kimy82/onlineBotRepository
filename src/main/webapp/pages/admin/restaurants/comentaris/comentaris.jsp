@@ -10,8 +10,15 @@
 	<META http-equiv="Content-Style-Type" content="text/css">
 	<title><s:text name="txt.gestio.comentaris" /></title>	
 </head>
-<body>
+<body id="coment">
 	<c:import url="/pages/includes/headerContext.jsp" />
+	<div class="content">
+	<div class="container">
+		<div class="topadmin">
+		<div id="int_left">
+			<img src="<c:url value='/img/elements/logo_portamu.png' />">
+		</div>
+		</div>
     <s:select list="listPlats" headerKey="" headerValue="Escull un plat" id="platId" listKey="id" listValue="nom" onchange="loadComments(this.value)" ></s:select>
     <div class="comments_foro" id="plat_${plat.id}" >
 			<table id="comments_tbl" >
@@ -42,6 +49,10 @@
 
 
 </div>
+</div>
+</div>
+	<link rel="stylesheet" href="<c:url value='/css/admin.css' />" type="text/css"   media="screen" />
+	<link rel="stylesheet" href="<c:url value='/css/portamu/reset.css' />" type="text/css"   media="screen" />
 
 <!-- Scripts --> 
 	

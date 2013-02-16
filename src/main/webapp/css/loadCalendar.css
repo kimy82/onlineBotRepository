@@ -1,172 +1,184 @@
 div.datepicker {
-	position: relative;
-	font-family: Arial, Helvetica, sans-serif;
-	font-size: 12px;
-	position: absolute;
-	cursor: default;
-	top: 0;
-	left: 0;
-	border: 1px solid;
-	display: none;
+     cursor: default;
+     display: none;
+     font-family: Arial,Helvetica,sans-serif;
+     font-size: 13px;
+     left: 0px;
+     position: absolute;
+     top: 0px;
 }
+
 .datepickerContainer {
-	background: #FFFFFF;
-	color: #000000;
-	position: relative;
+     background: none repeat scroll 0% 0% #FFFFFF;
+     color: #000000;
+     position: relative;
 }
 
-
-table.months{
-  border:none;
-  width:800px;
+table.months {
+     border: medium none;
+     width: 800px;
 }
 
 table.months tr {
-  border:none;
+     border: medium none;
 }
 
 table.months tr td {
-  border:none;
+     border: medium none;
 }
 
-
-table.months div{
-	width:250px;
+table.months div {
+     width: 250px;
 }
 
 .datepickerHidden {
-	display: none;
+     display: none;
 }
+
 div.datepicker table {
-	border-collapse:collapse;
+     border-collapse: collapse;
 }
+
 div.datepicker {
-	color: #000000;
-	text-decoration: none;
-	cursor: default;
-	outline: none;
+     color: #000000;
+     cursor: default;
+     outline: medium none;
+     text-decoration: none;
 }
+
 div.datepicker table td {
-	text-align: center;
-	padding: 0;
-	margin: 0;
+     margin: 0px;
+     padding: 10px;
+     text-align: center;
 }
+
 div.datepicker th {
-	text-align: center;
-	color: #999;
-	font-weight: normal;
+     color: #999999;
+     font-weight: normal;
+     text-align: center;
 }
+
 div.datepicker tbody th {
-	text-align: center;
+     text-align: center;
 }
+
 div.datepicker tbody a {
-	display: block;
+     display: block;
 }
+
 .datepickerDays {
-	width: 20px;
-	line-height: 16px;
-	height: 16px;
-	padding-right: 2px;
-	font-size: 12px;
+     font-size: 12px;
+     height: 16px;
+     line-height: 16px;
+     padding-right: 2px;
+     width: 20px;
 }
-.datepickerYears ,
-.datepickerMonths {
-	width: 44px;
-	line-height: 36px;
-	height: 36px;
-	text-align: center;
+
+.datepickerYears, .datepickerMonths {
+     height: 36px;
+     line-height: 36px;
+     text-align: center;
+     width: 44px;
 }
+
 td.datepickerNotInMonth {
-	background: rgb(192,192,192);
-	color: black;
-}
-tbody.datepickerDays td.datepickerSelectedOk{
-	background: rgb(75,119,75);
-	color: white;
+     background: none repeat scroll 0% 0% #C0C0C0;
+     color: black;
 }
 
-tbody.datepickerDays td.datepickerSelectedNook{
-	background: rgb(255,0,0);
-	color: white;
+tbody.datepickerDays td.datepickerSelectedOk {
+     background: none repeat scroll 0% 0% #4B774B;
+     color: white;
 }
 
-tr.datepickerDoW th{
-	font-size: 12px;
-	width:27px;
-	background: rgb(88,129,178);
-	color: white;
-	margin:5px 5px 0 0;
-	text-align: center;
-  border:none;
+tbody.datepickerDays td.datepickerSelectedNook {
+     background: none repeat scroll 0% 0% #FF0000;
+     color: white;
+}
+
+tr.datepickerDoW th {
+     background: none repeat scroll 0% 0% #5881B2;
+     border: medium none;
+     color: white;
+     font-size: 12px;
+     margin: 5px 5px 0px 0px;
+     text-align: center;
+     width: 27px;
 }
 
 tbody.datepickerDays td.datepickerNotInMonth.datepickerSelected {
-	background: #17384d;
+     background: none repeat scroll 0% 0% #17384D;
 }
-tbody.datepickerYears td.datepickerSelected,
-tbody.datepickerMonths td.datepickerSelected{
-	background: #17384d;
+
+tbody.datepickerYears td.datepickerSelected, tbody.datepickerMonths td.datepickerSelected {
+     background: none repeat scroll 0% 0% #17384D;
 }
+
 div.datepicker tbody th {
-	text-align: center;
+     text-align: center;
 }
+
 .datepickerSpace div {
-	width: 20px;
+     width: 20px;
 }
+
 .datepickerMonth {
-	width: 100%;
-	height: 20px;
-	line-height: 20px;
-	background: rgb(51,51,153);
+     background: none repeat scroll 0% 0% #333399;
+     height: 20px;
+     line-height: 20px;
+     width: 100%;
 }
-.datepickerMonth span{
-	text-align: center;
-	color:white;
+
+.datepickerMonth span {
+     color: white;
+     text-align: center;
 }
-.datepickerGoNext  {
-	float: right;
-	width: 20px;
+
+.datepickerGoNext {
+     float: right;
+     width: 20px;
 }
-.datepickerGoPrev  {
-	float: left;
-	width: 20px;
+
+.datepickerGoPrev {
+     float: left;
+     width: 20px;
 }
-table.datepickerViewDays tbody.datepickerMonths,
-table.datepickerViewDays tbody.datepickerYears {
-	display: none;
+
+table.datepickerViewDays tbody.datepickerMonths, table.datepickerViewDays tbody.datepickerYears {
+     display: none;
 }
-table.datepickerViewMonths tbody.datepickerDays,
-table.datepickerViewMonths tbody.datepickerYears,
-table.datepickerViewMonths tr.datepickerDoW {
-	display: none;
+
+table.datepickerViewMonths tbody.datepickerDays, table.datepickerViewMonths tbody.datepickerYears, table.datepickerViewMonths tr.datepickerDoW {
+     display: none;
 }
-table.datepickerViewYears tbody.datepickerDays,
-table.datepickerViewYears tbody.datepickerMonths,
-table.datepickerViewYears tr.datepickerDoW {
-	display: none;
+
+table.datepickerViewYears tbody.datepickerDays, table.datepickerViewYears tbody.datepickerMonths, table.datepickerViewYears tr.datepickerDoW {
+     display: none;
 }
-td.datepickerDisabled ,
-td.datepickerDisabled.datepickerNotInMonth {
-	font-size: 12px;
-	color: #333;
+
+td.datepickerDisabled, td.datepickerDisabled.datepickerNotInMonth {
+     color: #333333;
+     font-size: 12px;
 }
-td.datepickerSpecial  {
-	font-size: 12px;
-	background: rgb(70,70,134);
-	color: white;
+
+td.datepickerSpecial {
+     background: none repeat scroll 0% 0% #464686;
+     color: white;
+     font-size: 12px;
 }
-td.datepickerSpecial.datepickerSelected  {
-	background: #a00;
+
+td.datepickerSpecial.datepickerSelected {
+     background: none repeat scroll 0% 0% #AA0000;
 }
 
 td.datepickerWeekend {
-	font-size: 12px;
-	background: rgb(129,160,206);
-	color: black;
+     background: none repeat scroll 0% 0% #81A0CE;
+     color: black;
+     font-size: 12px;
 }
 
 .border_selected span {
-    color: black;
-    font-weight:bold;
-    font-size:16px;
+     color: black;
+     font-size: 16px;
+     font-weight: bold;
 }

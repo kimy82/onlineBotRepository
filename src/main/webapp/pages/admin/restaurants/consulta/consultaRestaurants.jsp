@@ -13,8 +13,15 @@
 <link rel="stylesheet" href="<c:url value='/css/components.css' />" type="text/css"   media="screen" />  
 <link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/base/jquery-ui.css" rel="stylesheet" type="text/css" />
 </head>
-<body>
+<body id="conrest">
 <c:import url="/pages/includes/headerContext.jsp" />
+<div class="content">
+	<div class="container">
+	<div class="topadmin">
+		<div id="int_left">
+			<img src="<c:url value='/img/elements/logo_portamu.png' />">
+		</div>
+		</div>
 <div align="center">
     <div id="div_pantalla" style="width:950px;" alig="">
       <c:import url="pestanas.jsp" />
@@ -121,6 +128,8 @@
 		</div>
 	</div>
 </div>
+</div>
+</div>
 <!-- Scripts --> 
 	<style>
 		.notcheck{
@@ -130,7 +139,8 @@
 			background-color: green;
 		}
 	</style>
-
+	<link rel="stylesheet" href="<c:url value='/css/admin.css' />" type="text/css"   media="screen" />
+	<link rel="stylesheet" href="<c:url value='/css/portamu/reset.css' />" type="text/css"   media="screen" />
 	<link rel="stylesheet" href="<c:url value='/css/demo_table.css' />" type="text/css"   media="screen" />
 	<link rel="stylesheet" href="<c:url value='/css/components.css' />" type="text/css"   media="screen" />  
 	<link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/base/jquery-ui.css" rel="stylesheet" type="text/css" />

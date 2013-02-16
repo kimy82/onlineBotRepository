@@ -82,15 +82,15 @@ $(document).ready(function() {
 				                  { "mDataProp":"h1830", "bSortable": false, sWidth: '20px' },
 				                  { "mDataProp":"h1900", "bSortable": false, sWidth: '20px' },
 				                  { "mDataProp":"h1930", "bSortable": false, sWidth: '20px' },*/
-				                  { "mDataProp":"h2000", "bSortable": false, sWidth: '20px' },
-				                  { "mDataProp":"h2030", "bSortable": false, sWidth: '20px' },				                  
-				                  { "mDataProp":"h2100", "bSortable": false, sWidth: '20px' },
-				                  { "mDataProp":"h2130", "bSortable": false, sWidth: '20px' },
-				                  { "mDataProp":"h2200", "bSortable": false, sWidth: '20px' },
-				                  { "mDataProp":"h2230", "bSortable": false, sWidth: '20px' },
-				                  { "mDataProp":"h2300", "bSortable": false, sWidth: '20px' },
-				                  { "mDataProp":"h2330", "bSortable": false, sWidth: '20px' },
-				                  { "mDataProp":"h2400", "bSortable": false, sWidth: '20px' }
+				                  { "mDataProp":"h2000", "bSortable": false, sWidth: '40px' },
+				                  { "mDataProp":"h2030", "bSortable": false, sWidth: '40px' },				                  
+				                  { "mDataProp":"h2100", "bSortable": false, sWidth: '40px' },
+				                  { "mDataProp":"h2130", "bSortable": false, sWidth: '40px' },
+				                  { "mDataProp":"h2200", "bSortable": false, sWidth: '40px' },
+				                  { "mDataProp":"h2230", "bSortable": false, sWidth: '40px' },
+				                  { "mDataProp":"h2300", "bSortable": false, sWidth: '40px' },
+				                  { "mDataProp":"h2330", "bSortable": false, sWidth: '40px' },
+				                  { "mDataProp":"h2400", "bSortable": false, sWidth: '40px' }
 				            ],
 				"sPaginationType": "full_numbers",
 				"oLanguage": {
@@ -102,8 +102,8 @@ $(document).ready(function() {
 				        "sPrevious": "<img src='/"+context+"/images/icono-paginador-anterior.gif' style='vertical-align:middle'>&nbsp;"+initTableParams.txtprevious
 				      }
 				    },
-				"sScrollY": "800",		    
-				"sScrollX": "352",	
+				"sScrollY": "100%",		    
+				"sScrollX": "100%",	
 			    "bScrollCollapse": true,
 	    		"bProcessing": false,
 	    		"bServerSide": false,

@@ -50,7 +50,7 @@ body {
 
 button, input, select, textarea {
      color: #333333;
-     font-family: Verdana,Tahoma,Geneva,sans-serif;
+     font-family: arial ,sans-serif;
 }
 
 a:link, a:visited {
@@ -166,6 +166,7 @@ table {
      font-size: 1em;
      text-align: left;
      width: 100%;
+     background-color: white;
 }
 
 #wwFormTable table {
@@ -1416,7 +1417,7 @@ div.minifitxa-secundaria .seleccionat .se {
 }
 
 ul.pestanyes, ul.pestanyes-submenu {
-     background-color: #FFF6E9;
+     background-color: #F9F9F9;
      list-style-type: none;
      margin: 0px;
      padding: 0px;
@@ -3081,4 +3082,71 @@ xml {
 img.centrarimagen {
      display: table;
      margin: auto;
+}
+
+
+.pestanyes a {
+     font-weight: 800;
+}
+
+.pestanyes a:hover {
+     color: #F7931E;
+}
+
+.pestanyes li {
+     z-index: 503;
+}
+
+.pestanyes li img {
+     margin-top: 0px;
+     vertical-align: text-top;
+}
+
+.pestanyes ul li {
+     display: block;
+     float: left;
+     position: relative;
+     white-space: nowrap;
+}
+
+.pestanyes li ul {
+     display: none;
+     margin-top: 12px;
+     white-space: nowrap;
+}
+
+.pestanyes ul li a {
+     text-decoration: none;
+}
+
+.pestanyes li:hover ul {
+     display: block;
+     position: absolute;
+}
+
+.pestanyes li:hover li {
+     float: none;
+     font-size: 11px;
+     margin-left: 0px;
+}
+
+.pestanyes li:hover li a:hover {
+     background: none repeat scroll 0% 0% #F7931E;
+}
+
+.pestanyes li:hover li a {
+     background-color: #3FA9F5;
+     color: white;
+     display: block;
+     margin: -15px 4px 15px;
+     padding: 8px;
+     text-align: left;
+     text-shadow: none;
+     white-space: nowrap;
+     width: 145px;
+     border-bottom: 1px solid white;
+}
+
+#div_body h2 {
+     margin-top: 50px;
 }

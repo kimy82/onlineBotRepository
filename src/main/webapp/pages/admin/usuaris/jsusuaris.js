@@ -58,7 +58,7 @@ $(document).ready(function() {
 			
 		//taula dels usuaris
 	oTableUsuaris =$("#tbl_usuaris").dataTable( {
-					"iDisplayLength": 2,
+					"iDisplayLength": 20,
 					 "aoColumns" : [
 					                  { "mDataProp":"username","bSortable": false, sWidth: '130px' },
 					                  { "mDataProp":"enabled", "bSortable": false, sWidth: '120px' },
@@ -75,7 +75,7 @@ $(document).ready(function() {
 					        "sPrevious": "<img src='/"+context+"/images/icono-paginador-anterior.gif' style='vertical-align:middle'>&nbsp;"+initTableParams.txtprevious
 					      }
 					    },
-					"sScrollY": "500",		    
+					"sScrollY": "100%",		    
 					"sScrollX": "700",	
 				    "bScrollCollapse": true,
 		    		"bProcessing": false,

@@ -7,8 +7,15 @@
 <head>
     <title><s:text name="txt.config.moters.title.gestio" /></title>     	        
 </head>
-<body>
+<body id="confMot">
 <c:import url="/pages/includes/headerContext.jsp" />
+<div class="content">
+	<div class="container">
+	<div class="topadmin">
+		<div id="int_left">
+			<img src="<c:url value='/img/elements/logo_portamu.png' />">
+		</div>
+		</div>
 <div align="center">
     <div id="div_pantalla" style="width:950px;" alig="">
       <c:import url="pestanas.jsp" />
@@ -32,7 +39,7 @@
 			       	 
 			         </tr>
 			    </table>
-			    <div  style="width:950px; height: 300px;" alig="center" >
+			    <div  style="width:950px; height: 127px;" alig="center" margin-bottom="20px;">
 			    		<s:form action="saveConfigMotersForRang" method="POST" enctype="multipart/form-data" >
 							<tr>
 								<td><s:text name="motersRang.diaIni" ></s:text></td>
@@ -59,7 +66,7 @@
 							<s:submit></s:submit>
 						</s:form>	
 			    </div>
-				<div  style="width:950px; height: 300px;" alig="center" >
+				<div  style="width:950px; height: 100%;" alig="center" >
 				  <c:import url="calendar.jsp" /> 
 					<table class="selecciom dataTable" id="tbl_moters">
 						<thead>
@@ -111,8 +118,11 @@
 </center>
 </div>
 </div>
+</div>
+</div>
 
-
+	<link rel="stylesheet" href="<c:url value='/css/admin.css' />" type="text/css"   media="screen" />
+	<link rel="stylesheet" href="<c:url value='/css/portamu/reset.css' />" type="text/css"   media="screen" />
     <link rel="stylesheet" href="<c:url value='/css/loadCalendar.css' />" type="text/css" />
     <link rel="stylesheet" href="<c:url value='/css/participadasCalendar.css'/>" type="text/css" />         
    	<link rel="stylesheet" href="<c:url value='/css/demo_table.css' />" type="text/css"   media="screen" />

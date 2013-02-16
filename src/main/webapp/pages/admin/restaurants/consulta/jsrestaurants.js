@@ -235,7 +235,7 @@ $(document).ready(function() {
 			
 		//taula dels restaurants
 		oTableRest =$("#tbl_restaurants").dataTable( {
-					"iDisplayLength": 2,
+					"iDisplayLength": 12,
 					 "aoColumns" : [
 					                  { "mDataProp":"nom","bSortable": false, sWidth: '150px' },
 					                  { "mDataProp":"descripcio", "bSortable": false, sWidth: '350px' },
@@ -251,7 +251,7 @@ $(document).ready(function() {
 					        "sPrevious": "<img src='/"+context+"/images/icono-paginador-anterior.gif' style='vertical-align:middle'>&nbsp;"+initTableParams.txtprevious
 					      }
 					    },
-					"sScrollY": "400",		    
+					"sScrollY": "100%",		    
 					"sScrollX": "700",	
 				    "bScrollCollapse": true,
 		    		"bProcessing": false,

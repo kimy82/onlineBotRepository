@@ -7,8 +7,15 @@
 <head>
     <title><s:text name="txt.config.restaurants.title.gestio" /></title>     
 </head>
-<body>
+<body id="conf">
 <c:import url="/pages/includes/headerContext.jsp" />
+<div class="content">
+	<div class="container">
+		<div class="topadmin">
+		<div id="int_left">
+			<img src="<c:url value='/img/elements/logo_portamu.png' />">
+		</div>
+		</div>
 <div align="center">
     <div id="div_pantalla" style="width:950px;" alig="">
       <c:import url="pestanas.jsp" />
@@ -85,6 +92,10 @@
 </center>
 </div>
 </div>
+</div>
+</div>
+	<link rel="stylesheet" href="<c:url value='/css/admin.css' />" type="text/css"   media="screen" />
+	<link rel="stylesheet" href="<c:url value='/css/portamu/reset.css' />" type="text/css"   media="screen" />
 <!-- Scripts --> 
 	<style>
 		.notcheck{
