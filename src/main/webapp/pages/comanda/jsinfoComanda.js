@@ -4,7 +4,7 @@ var initParams=null ;
 
 function InitParams(txtBegudaNoPromocio,txtNoMoreDrinksToAddinPromo,txtAddDrinkstoBox, 
 					txtdescompteaplicat,txtpromodeleted, txtfaltahora, txtcheckaddress, 
-					checkok, checkko,txtconfirm,txtproductes,txtproducte){		
+					checkok, checkko,txtconfirm,txtproductes,txtproducte,txtnomesdomocili){		
 		this.txtBegudaNoPromocio=txtBegudaNoPromocio;
 		this.txtNoMoreDrinksToAddinPromo=txtNoMoreDrinksToAddinPromo;
 		this.txtAddDrinkstoBox = txtAddDrinkstoBox;
@@ -17,6 +17,7 @@ function InitParams(txtBegudaNoPromocio,txtNoMoreDrinksToAddinPromo,txtAddDrinks
 		this.txtconfirm = txtconfirm;
 		this.txtproductes = txtproductes;
 		this.txtproducte = txtproducte;
+		this.txtnomesdomocili = txtnomesdomocili;
 }
 //progress var
 						window.setTimeout(function() {
@@ -32,6 +33,8 @@ function InitParams(txtBegudaNoPromocio,txtNoMoreDrinksToAddinPromo,txtAddDrinks
 						}, 500);
 
 $("#chargeBar").hide();
+$("#arecollir_div").hide();
+$("#adomicili_div").hide();
 
 function initNumPlats(){
 }
@@ -233,15 +236,19 @@ function eliminaBeguda(id){
 }
 
 function addDomicili(){
-	var preu = $("#preu").text();
+	 var preu = $("#preu").text();
 	 var preuT = $("#labelpreutotalPromo").text();
-	 
-	if($("#adomicili").is(':checked')){		 		 
+	 $("#arecollir_div").hide('slow'); 
+	if($("#adomicili").is(':checked')){		
+		
+		 $("#arecollir").attr('checked',false);		 
 		 $("#transport_lb").text("40");
 		 $("#preu").text(parseFloat(parseFloat(preu)+parseFloat(40)).toFixed(2));		 
 		 $("#labelpreutotalPromo").text(parseFloat(parseFloat(preuT)+parseFloat(40)).toFixed(2));
 		 initPromoDescompteFromStorage();
+		 $("#adomicili_div").show('slow');
 	}else{
+		 $("#adomicili_div").hide('slow');
 		 $("#transport_lb").text("0");
 		 $("#preu").text(parseFloat(parseFloat(preu)-parseFloat(40)).toFixed(2));
 		 $("#labelpreutotalPromo").text(parseFloat(parseFloat(preuT)-parseFloat(40)).toFixed(2));
@@ -249,6 +256,56 @@ function addDomicili(){
 	}
 }
 
+function targeta(){
+	
+	$("#targetaContrarembols").val("targeta");
+	$("#contrarembols").attr('checked',false);
+	
+}
+
+function contrarembols(){
+	$("#targetaContrarembols").val("contrarembols");
+	$("#targeta").attr('checked',false);
+	
+}
+
+
+function addRecollir(){
+	$("#adomicili_div").hide('slow');
+	
+	
+	
+	if($("#arecollir").is(':checked')){		 		 
+	
+		$("#adomicili").attr('checked',false);
+		var idcomanda= window.localStorage.getItem("comanda");
+		var data ="idComanda="+idcomanda;
+	  	$.ajax({
+	  		  type: "POST",
+	  		  url: '/'+context+'/comanda/ajaxLoadInfoARecollir.action',
+	  		  dataType: 'json',
+	  		  data: data,
+	  		  success: function(json){	
+	  			  if(json!=null && json.error!=null){
+	  				errorOnline.error("Error in AJAX: "+json.error);	
+	       		  }else{
+	       			  if(json.moreThanOne=='true' || json.moreThanOne==true){	       				  
+	       				alertOnline.alertes(initParams.txtnomesdomocili);	 
+	       			  }
+	       			$("#targetaContrarembols").val("targeta");
+	       			$("#address_restaurant").text(json.address);
+	       			$("#arecollir_div").show('slow');
+	       		  }				
+	  		  },
+	  		  error: function(e){   errorOnline.error("Error in AJAX");	
+	  		  					}
+	  		});	
+		
+		
+	}else{
+		$("#arecollir_div").hide('slow'); 
+	}
+}
 function savePlatToComanda(idPlat,nPlats){
 	var idcomanda= window.localStorage.getItem("comanda");
 	var data ="idPlat="+idPlat+"&idComanda="+idcomanda+"&nplats="+nPlats;
@@ -277,21 +334,30 @@ function checkComandaJS(){
 			return;
 		}
 		var adomicili =false;
+		var address = $("#comandaddress").val();
 		if($("#adomicili").is(':checked')){
-			adomicili=true;
+			
+			adomicili=true;			
+			
+			if(address==''){
+				alertOnline.alertes(initParams.txtcheckaddress);
+				return;
+			}
+			address =  address.replace(/\n/g, "");
 		}
 		
 		var targeta =false;
-		if($("#targeta").is(':checked')){
+		
+		var targetaContrarembols = $("#targetaContrarembols").val();
+		if(targetaContrarembols=='contrarembols'){
+			
+		}else if (targetaContrarembols=='targeta'){
+			targeta=true;
+		}else{
 			targeta=true;
 		}
 		
-		var address = $("#comandaddress").val();
-		if(address==''){
-			alertOnline.alertes(initParams.txtcheckaddress);
-			return;
-		}
-		address =  address.replace(/\n/g, "");
+		
 		$("#chargeBar").show();
 		var data ="idComanda="+comanda+"&dia="+dia+"&hora="+hora+"&aDomicili="+adomicili+"&targeta="+targeta+"&address="+address;
 	  	$.ajax({

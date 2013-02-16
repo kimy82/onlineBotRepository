@@ -208,7 +208,7 @@
 </div>
 <div id="infoPlat_dialog" class="filtres filtres-oberts" title="<s:text name='txt.info.title' />">	 		
 </div>  
-
+<c:import url="/pages/includes/endPage.jsp" />
 <!-- Scripts --> 
 	<!-- CSS portamu --> 
 	<link rel="stylesheet" type="text/css" href="<c:url value='/css/portamu/global.css' />" />
