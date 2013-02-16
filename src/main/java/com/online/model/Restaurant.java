@@ -36,6 +36,8 @@ public class Restaurant implements Serializable{
 
 	@Expose
 	private String					hores;
+	
+	private String 					address;
 
 	protected VotacioRestaurant		votacio;
 
@@ -152,8 +154,16 @@ public class Restaurant implements Serializable{
 	public void setDescripcioES( String descripcioES ){
 	
 		this.descripcioES = descripcioES;
-	}
+	}		
 	
+	public String getAddress() {
+		return address;
+	}
+
+	public void setAddress(String address) {
+		this.address = address;
+	}
+
 	@Override
 	public boolean equals( Object obj ){
 		Restaurant restaurant = (Restaurant)obj;

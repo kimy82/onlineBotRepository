@@ -138,18 +138,7 @@
 	<!-- END Content-->
 </div>	
 <!-- END container -->
-<div id="footer">
-	<div id="footer_int">
-		<div id="footer_rigth">
-		
-		</div>
-	</div>
-</div>
-<div id="credits">
-	<div id="int_credits">
-		<s:text name="txt.footer.reserved" />
-	</div>
-</div>
+<c:import url="/pages/includes/endPage.jsp" />
 
 	<!-- CSS portamu --> 
 	<link rel="stylesheet" type="text/css" href="<c:url value='/css/portamu/prova.css' />" />

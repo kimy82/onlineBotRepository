@@ -34,6 +34,7 @@ import com.online.model.Plat;
 import com.online.model.PlatComanda;
 import com.online.model.Restaurant;
 import com.online.model.Users;
+import com.online.pojos.ARecollirDTO;
 import com.online.pojos.BasicSub;
 import com.online.services.impl.ComandaServiceImpl;
 import com.online.utils.Constants;
@@ -245,7 +246,44 @@ public class WelcomeComandaAction extends ActionSupport implements ServletRespon
 		}
 		return null;
 	}
+	
+	public String ajaxLoadInfoARecollir(){
+		
+		ServletOutputStream out = null;
+		String json = null;
+		
+		try {
+			out = this.response.getOutputStream();
+			inizilizeComandaId();
+			this.comanda = this.comandaBo.load(this.idComanda);
+			
+			boolean moreThanOne = this.comandaService.checkMoreThanOneRestaurant(comanda);
+			
+			String address = this.comandaService.getAddressOfRestaurant(comanda);
+			
+			ARecollirDTO aRecollir = new ARecollirDTO(moreThanOne, address);
+			
+			Gson gson = new GsonBuilder().setPrettyPrinting().excludeFieldsWithoutExposeAnnotation().create();
+			StringBuffer jsonSB = new StringBuffer(gson.toJson(aRecollir));
+			
+			json= jsonSB.toString();
+			
+		} catch (ComandaException ce) {
+			json = createErrorJSON("error in comanda service action");
+		} catch (Exception e) {
+			json = createErrorJSON("error in ajax action");
+		}
 
+		try {
+			out.print(json);
+		} catch (IOException e) {
+			throw new GeneralException(e, "possibly ServletOutputStream null");
+		}
+
+		return null;
+	}
+	
+	
 	public String ajaxLoadNumPlat(){
 
 		ServletOutputStream out = null;

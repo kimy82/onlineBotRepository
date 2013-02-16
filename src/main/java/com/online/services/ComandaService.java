@@ -45,5 +45,9 @@ public interface ComandaService{
 	
 	public String getHora(Integer idRestaurant, String data)throws ComandaException;
 	
+	public boolean checkMoreThanOneRestaurant (Comandes comanda) throws ComandaException;
+	
+	public String getAddressOfRestaurant (Comandes comanda) throws ComandaException;
+	
 }
  

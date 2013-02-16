@@ -46,6 +46,9 @@
 		<action name="loadHores" class="com.online.action.comanda.WelcomeComandaAction"
 			method="loadHores">
 		</action>
+		<action name="ajaxLoadInfoARecollir" class="com.online.action.comanda.WelcomeComandaAction"
+			method="ajaxLoadInfoARecollir">
+		</action>		
 		<action name="goToPas1Action" class="com.online.action.comanda.WelcomeComandaAction"
 			method="goToPas1Action">
 			<result name="success">/pages/comanda/infoComanda.jsp</result>

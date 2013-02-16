@@ -57,7 +57,42 @@ public class ComandaServiceImpl implements ComandaService{
 		newComanda.setPreu(preu);
 		return newComanda;
 	}
-
+	
+	public String getAddressOfRestaurant (Comandes comanda) throws ComandaException{
+		
+		List<PlatComanda> listPlats = comanda.getPlats();
+		String address="";
+		for (PlatComanda pl : listPlats) {
+			Iterator<Restaurant> restaurantsIterator = pl.getPlat().getRestaurants().iterator();
+			while (restaurantsIterator.hasNext()) {
+				Restaurant rest = restaurantsIterator.next();
+				address =rest.getAddress();
+				break;
+			}
+		}
+		
+		return address;
+	}
+	
+	public boolean checkMoreThanOneRestaurant (Comandes comanda) throws ComandaException{
+		
+		List<PlatComanda> listPlats = comanda.getPlats();
+		Set<String> restaurants = new HashSet<String>();
+		
+		for (PlatComanda pl : listPlats) {
+			Iterator<Restaurant> restaurantsIterator = pl.getPlat().getRestaurants().iterator();
+			while (restaurantsIterator.hasNext()) {
+				Restaurant rest = restaurantsIterator.next();
+				restaurants.add(rest.getNom());
+				break;
+			}
+		}
+		
+		if (restaurants.size() > 2) {
+			return true;
+		}
+		return false;
+	}
 	public int getNumBegudes( List<BegudaComanda> listBeguda ) throws ComandaException{
 
 		int numBegudes = 0;

@@ -34,9 +34,13 @@ public class PaymentServiceImpl implements PaymentService {
 					
 					resource.queryParam(params[0],CODI_MAQUINA_ADMIN);
 					
-				}else if(toAdmins && params[0].equals("telnumber")){
+				}else if(!toAdmins && params[0].equals("telnumber")){
 					
 					resource.queryParam(params[0],transformTel(params[1]));
+					
+				}else if(toAdmins && params[0].equals("orderNum")){
+					
+					resource.queryParam(params[0],"11_"+params[1]);
 					
 				}else{
 					
@@ -104,7 +108,7 @@ public class PaymentServiceImpl implements PaymentService {
 						+ "&comanda=");
 
 				for (String idPlat : platsId) {
-					comandaSB.append(comandes.get(cod + "_" + idPlat) + ";");
+					comandaSB.append(comandes.get(infoRestaurant[0] + "_" + idPlat) + ";");
 				}
 
 				comandaOrderSB.append(comandaSB.toString());
@@ -164,7 +168,7 @@ public class PaymentServiceImpl implements PaymentService {
 		StringBuffer toSentTel= new StringBuffer("");
 		String[] vecTel= tel.split("");
 		for(String t : vecTel){
-			toSentTel.append(t+"*1");
+			toSentTel.append(t+"p1");
 		}
 		return toSentTel.toString();
 	}

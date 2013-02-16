@@ -16,7 +16,31 @@ public class BegudaDaoImpl extends HibernateDaoSupport implements BegudaDao{
 	}
 	
 	public void update(Beguda beguda){
-		getHibernateTemplate().update(beguda);
+		Beguda begudaFromDB = getHibernateTemplate().load(Beguda.class, beguda.getId());
+		
+		if(beguda.getNom()!=null){
+			begudaFromDB.setNom(beguda.getNom());
+		}
+		if(beguda.getNomES()!=null){
+			begudaFromDB.setNomES(beguda.getNomES());
+		}
+		
+		if(beguda.getFoto()!=null){
+			begudaFromDB.setFoto(beguda.getFoto());
+		}
+		if(beguda.getDescripcio()!=null){
+			begudaFromDB.setDescripcio(beguda.getDescripcio());
+		}
+		if(beguda.getDescripcioES()!=null){
+			begudaFromDB.setDescripcioES(beguda.getDescripcioES());
+		}
+		if(beguda.getTipus()!=null){
+			begudaFromDB.setTipus(beguda.getTipus());
+		}
+		if(beguda.getPreu()!=null){
+			begudaFromDB.setPreu(beguda.getPreu());
+		}
+		getHibernateTemplate().update(begudaFromDB);
 	}
 	
 	public void delete(Beguda beguda){

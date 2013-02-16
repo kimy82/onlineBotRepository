@@ -70,7 +70,8 @@ public class PaymentAction extends ActionSupport implements ServletResponseAware
 		}
 		
 		if(numComandes>1){
-			this.paymentService.sendOrder(false, orders);
+			this.paymentService.sendOrder(true, orders);
+			this.paymentService.sendOrder(false, orders);		
 		}else{
 			this.paymentService.sendOrder(true, orders);
 		}
@@ -97,7 +98,7 @@ public class PaymentAction extends ActionSupport implements ServletResponseAware
 			return ERROR;
 		}
 		
-	
+		this.paymentService.sendOrder(true, orders);	
 		this.paymentService.sendOrder(false, orders);		
 		return SUCCESS;
 	}
