@@ -5,19 +5,18 @@ function ismaxlength(obj,mlength){
 		obj.value=obj.value.substring(0,mlength);
 }
 
-function onlyDouble(value,name){
-	var preu = value;
-	 var n=preu.split(",");
+function onlyDouble(value,id){
+	 var n=value.split(".");
 	  if(n.length==1){
-		  //value=value+",00";
+		  value=value+".00";
 	  }
-	 if(preu =='' || /^[0-9]*\,[0-9]*$/.test(preu)){
-		$('input[id='+name+']').css('border', 'solid 1px rgb(135,155,179)');
+	  if(value =='' || /^[0-9]*\.[0-9]*$/.test(value)){
+		$('#'+id).css('border', 'solid 1px rgb(135,155,179)');
 	}else{
-		$('input[id='+name+']').css('border', 'solid 1px red');
+		$('#'+id).css('border', 'solid 1px red');
 		alert(initTableParams.txterrordouble);
 	}
-} 
+}  
 
 function onlyEntero(value,id){
 	  if(value =='' || /^[0-9]*$/.test(value)){

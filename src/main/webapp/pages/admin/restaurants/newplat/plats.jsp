@@ -60,7 +60,7 @@
 					</c:if>
 					<s:textarea key="plat.descripcio" id="descplat" cols="40" rows="4" onkeyup="return ismaxlength(this,1000)" ></s:textarea>	
 					<s:textarea key="plat.descripcioES" id="descplatES" cols="40" rows="4" onkeyup="return ismaxlength(this,1000)" ></s:textarea>
-					<s:textfield key="plat.preu" id="preuplat" onblur=" onlyDouble(this.value, this.id)" ></s:textfield>
+					<s:textfield key="plat.preu" id="preuplat" onblur="onlyDouble(this.value,this.id)" ></s:textfield>
 					<s:select list="tipusPlat" key="plat.tipus" id="tipusplat" listKey="descripcio" listValue="descripcio" headerKey="" headerValue="" ></s:select>											
 					<s:file name="fileUpload" label="Escull una fotografia" size="40" />	
 					<s:hidden key="plat.id" id="idplat" ></s:hidden>				

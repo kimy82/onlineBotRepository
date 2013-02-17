@@ -123,7 +123,7 @@ public class ComandaServiceImpl implements ComandaService{
 						.getHores().split("\\W+");
 				Date dataAvui = new Date();
 				int nextHour = 0;
-				if (data == Utils.formatDate2(dataAvui)) {
+				if (data.equals(Utils.formatDate2(dataAvui))) {
 					int hour = Calendar.getInstance().get(Calendar.HOUR_OF_DAY);
 					int minute = Calendar.getInstance().get(Calendar.MINUTE) + 40;
 					if (minute < 30) {
@@ -264,7 +264,7 @@ public class ComandaServiceImpl implements ComandaService{
 				String[] horesArray = (config==null || config.getHores() == null) ? restaurant.getHores().split("\\W+") : config.getHores().split("\\W+");
 				Date dataAvui = new Date();
 				int nextHour = 0;
-				if (data == Utils.formatDate2(dataAvui)) {
+				if (data.equals(Utils.formatDate2(dataAvui))) {
 					int tempsPreparacio = calculaTempsPreparacioGlobal(comanda);
 					int hour = Calendar.getInstance().get(Calendar.HOUR_OF_DAY);
 					int minute = Calendar.getInstance().get(Calendar.MINUTE) + tempsPreparacio;

@@ -44,7 +44,9 @@
 				
 				
 								<c:forEach items="${configs}" var="config" >
-					
+								
+									
+									
 									<c:if test="${config.obert==true && not doneLoop}">
 					
 										<c:if test="${config.data eq dataAvui }">
@@ -53,7 +55,7 @@
 										</c:if>
 										<c:if test="${config.data ne dataAvui }">	
 											<c:set var="close" value="true"/>				
-											<a href="#" id="${restaurant.id}" class="entrar_CLOSE selector_jq" ><s:text name="txt.inicia.comanda.tal.dia" />&nbsp; ${config.data}</a>
+											<a href="#" id="${restaurant.id}" class="entrar_CLOSE selector_jq" ><s:text name="txt.inicia.comanda.tal.dia" />&nbsp; ${fn:substring(config.data, 5, 10)}</a>
 											<input type="hidden" id="dataObert_${restaurant.id}" value="${config.data}" />
 										</c:if> 
 										<c:set var="doneLoop" value="true"/>

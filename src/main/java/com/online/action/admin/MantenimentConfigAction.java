@@ -26,6 +26,7 @@ import com.online.model.ConfigRestaurant;
 import com.online.model.Moters;
 import com.online.model.Restaurant;
 import com.online.pojos.Basic;
+import com.online.utils.Utils;
 import com.opensymphony.xwork2.Action;
 import com.opensymphony.xwork2.ActionSupport;
 
@@ -65,8 +66,8 @@ public class MantenimentConfigAction extends ActionSupport implements ServletRes
 					String[] stringRestaurants = this.idRestaurants.split(",");
 					for (String idStringRestaurant : stringRestaurants) {
 						
-						Restaurant restaurant = this.restaurantsBo.load(Integer.parseInt(idStringRestaurant.trim()), false, true, true);
-
+						Restaurant restaurant = this.restaurantsBo.load(Integer.parseInt(idStringRestaurant), false, true, true);
+						
 						Date date = getDate(this.dia);															
 
 						ConfigRestaurant configRestToSave = new ConfigRestaurant();
@@ -75,21 +76,9 @@ public class MantenimentConfigAction extends ActionSupport implements ServletRes
 						configRestToSave.setHores(this.configRestaurant.getHores());
 						configRestToSave.setIdRestaurant(Integer.parseInt(idStringRestaurant));
 
-						ConfigRestaurant configRestaurantInDB = this.configRestaurantBo.load(date, Integer.parseInt(idStringRestaurant));
-						if (configRestaurantInDB == null) {
-							this.configRestaurantBo.save(configRestToSave);
-							Set<ConfigRestaurant> configRestaurants = restaurant.getConfigRestaurants();
-							configRestaurants.add(configRestToSave);
-						} else {
-							configRestaurantInDB.setObert(configRestToSave.isObert());
-							configRestaurantInDB.setHores(configRestToSave.getHores());
-							this.configRestaurantBo.update(configRestaurantInDB);
-						}
-
-						if (configRestaurantInDB == null) {
-							this.restaurantsBo.update(restaurant);
-						}
-
+						saveConfig(restaurant,date,configRestToSave);			
+						saveLastObert(restaurant);
+												
 					}
 				}
 			}
@@ -157,7 +146,67 @@ public class MantenimentConfigAction extends ActionSupport implements ServletRes
 	}
 
 	// private methods
+	
+	private void saveLastObert(Restaurant restaurant){
+		Restaurant restaurantBis = this.restaurantsBo.load(restaurant.getId(), false, true, true);
+		Set<ConfigRestaurant> setconfig = restaurantBis.getConfigRestaurants();
+		if(setconfig.isEmpty()) return;
+		
+		boolean oneObert=false;
+		StringBuffer datasClosedSB = new StringBuffer("");
+		for(ConfigRestaurant cnf : setconfig){
+			if(cnf.isObert()) oneObert=true;
+			if(!cnf.isObert()) datasClosedSB.append(Utils.formatDate2(cnf.getData()));
+		}
+		
+		String datasClosed = datasClosedSB.toString();
+		if(!oneObert){
+			Calendar calendar = Calendar.getInstance();
+			boolean continueLoop = true;
+			int i=0;
+			while(continueLoop){
+				
+				calendar.add(Calendar.DAY_OF_YEAR, i);
+				Date dataToCheck = calendar.getTime();
+				i++;
+				if(!datasClosed.contains(Utils.formatDate2(dataToCheck))){
+					
+					ConfigRestaurant configRestToSave = new ConfigRestaurant();
+					configRestToSave.setData(dataToCheck);
+					configRestToSave.setObert(true);
+					configRestToSave.setHores(this.configRestaurant.getHores());
+					configRestToSave.setIdRestaurant(restaurantBis.getId());
+					
+					saveConfig(restaurantBis,dataToCheck,configRestToSave);	
+					continueLoop=false;
+				}
+			}
+			
+		}
+	}
+	
+	
+	private void saveConfig(Restaurant restaurant, Date date, ConfigRestaurant configRestToSave){
 
+		
+															
+
+		ConfigRestaurant configRestaurantInDB = this.configRestaurantBo.load(date, restaurant.getId());
+		if (configRestaurantInDB == null) {
+			this.configRestaurantBo.save(configRestToSave);
+			Set<ConfigRestaurant> configRestaurants = restaurant.getConfigRestaurants();
+			configRestaurants.add(configRestToSave);
+		} else {
+			configRestaurantInDB.setObert(configRestToSave.isObert());
+			configRestaurantInDB.setHores(configRestToSave.getHores());
+			this.configRestaurantBo.update(configRestaurantInDB);
+		}
+
+		if (configRestaurantInDB == null) {
+			this.restaurantsBo.update(restaurant);
+		}
+				
+	}
 	private void loadRestaurantsBasicList(){
 
 		List<Restaurant> restaurantList = this.restaurantsBo.getAll(true,true,true);
