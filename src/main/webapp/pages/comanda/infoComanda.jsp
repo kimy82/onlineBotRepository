@@ -25,10 +25,10 @@
 			<!-- END language -->
 			<div class="titols_comanda"> <s:text name="txt.add.some.drink" /></div>
 			<div id="recordatori">
-				<div id="slider" style=" height:219px; width:1000px;"  >
-				    <ul>
+				<div id="slider" style=" height:260px; width:1000px; top:140px;"  >
+				    <ul style="height:260px;">
 				    	<s:iterator value="refrescList" var="refresc">
-					    	<li class="draggable" id="${refresc.idSub}" title="${refresc.tipus}">
+					    	<li class="draggable" style="height:260px;" id="${refresc.idSub}" title="${refresc.tipus}">
 					    			<div id="iterate_Rec" >
 					    				<div id="img_Rest" >
 					    					<img id="imageRefresc_${refresc.id}" width="200px"  src="/${initParam.app}/comanda/ImageAction.action?imageId=${refresc.id}" title="-> Double Click to Add" />
@@ -341,7 +341,7 @@ var initParams = new InitParams("<s:text name='txt.beguda.no.tipus.promo' />","<
 								"<s:text name='txt.promo.descompte.aplicat' />","<s:text name='txt.promo.deleted' />","<s:text name='comanda.falta.hora' />",
 								"<s:text name='comanda.check.address' />","<s:text name='comanda.user.check.ok' />","<s:text name='comanda.user.check.ko' />",
 								"<s:text name='txt.welcome.confirmar' />","<s:text name='txt.welcome.productes' />","<s:text name='txt.welcome.producte' />",
-								"<s:text name='txt.infocomanda.arecollir.more.than.one' />");
+								"<s:text name='txt.infocomanda.arecollir.more.than.one' />","<s:text name='txt.infocomanda.boto.treure.promo' />");
 								
 
 $("#idcomanda").val('${requestScope.idComanda}');

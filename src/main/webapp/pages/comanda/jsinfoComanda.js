@@ -4,7 +4,8 @@ var initParams=null ;
 
 function InitParams(txtBegudaNoPromocio,txtNoMoreDrinksToAddinPromo,txtAddDrinkstoBox, 
 					txtdescompteaplicat,txtpromodeleted, txtfaltahora, txtcheckaddress, 
-					checkok, checkko,txtconfirm,txtproductes,txtproducte,txtnomesdomocili){		
+					checkok, checkko,txtconfirm,txtproductes,txtproducte,txtnomesdomocili,
+					txtbottreurepromo){		
 		this.txtBegudaNoPromocio=txtBegudaNoPromocio;
 		this.txtNoMoreDrinksToAddinPromo=txtNoMoreDrinksToAddinPromo;
 		this.txtAddDrinkstoBox = txtAddDrinkstoBox;
@@ -18,6 +19,7 @@ function InitParams(txtBegudaNoPromocio,txtNoMoreDrinksToAddinPromo,txtAddDrinks
 		this.txtproductes = txtproductes;
 		this.txtproducte = txtproducte;
 		this.txtnomesdomocili = txtnomesdomocili;
+		this.txtbottreurepromo = txtbottreurepromo;
 }
 //progress var
 						window.setTimeout(function() {
@@ -564,7 +566,7 @@ function saveBegudaToComanda(idBeguda,promo,amount){
 	       					 		
 	       					 		
 	       					 		$(cell6).addClass("elimi");
-	       					 		cell6.innerHTML="<input class='elimin' type='submit' onclick='deletePromoApplied();'  value='TREURE PROMOCIO'>";
+	       					 		cell6.innerHTML="<input class='elimin' type='submit' onclick='deletePromoApplied();'  value='"+initParams.txtbottreurepromo+"'>";
    					 			}
        						}       					 	   					 		      					 		           					       						 		       					 	
        					});
