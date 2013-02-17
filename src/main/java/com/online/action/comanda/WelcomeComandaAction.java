@@ -340,6 +340,7 @@ public class WelcomeComandaAction extends ActionSupport implements ServletRespon
 		try {
 
 			out = this.response.getOutputStream();
+			ResourceBundle resource = getTexts("MessageResources");
 			inizilizeDadesComandaPlat();
 			if (this.idComanda != null) {
 				// recuperem la comanda i afegim plat
@@ -365,7 +366,7 @@ public class WelcomeComandaAction extends ActionSupport implements ServletRespon
 					}
 					this.comandaBo.update(comanda);
 				}
-				json = this.comandaService.createJSONForShoppingCart(comanda.getPlats(), comanda.getId());
+				json = this.comandaService.createJSONForShoppingCart(comanda.getPlats(), comanda.getId(),resource);
 
 			} else {
 				// creem comanda i afegim plat
@@ -381,7 +382,7 @@ public class WelcomeComandaAction extends ActionSupport implements ServletRespon
 				comanda.setPlats(platList);
 				this.comandaBo.save(comanda);
 
-				json = this.comandaService.createJSONForShoppingCart(platList, comanda.getId());
+				json = this.comandaService.createJSONForShoppingCart(platList, comanda.getId(), resource);
 				
 				
 			}

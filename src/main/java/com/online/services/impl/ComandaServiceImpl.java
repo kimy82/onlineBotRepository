@@ -432,6 +432,17 @@ public class ComandaServiceImpl implements ComandaService{
 						return checkMoters;
 					}
 				}
+				
+				//Control plat inactiu
+				if(Utils.formatDate2(dia).equals(Utils.formatDate2(new Date()))){
+					List<PlatComanda> listPlats = comanda.getPlats();
+					for(PlatComanda platComanda :  listPlats){
+						if(!platComanda.getPlat().isActiu()){
+							Alerta alert= new Alerta(this.resource.getString("txt.infocomanda.comandako.plat.inactiu"));
+							return alert.getJSON();
+						}
+					}
+				}
 
 			} else {
 				return checkDades;
@@ -583,8 +594,10 @@ public class ComandaServiceImpl implements ComandaService{
 		}
 	}
 
-	public String createJSONForShoppingCart( List<PlatComanda> platList, Long id ) throws ComandaException{
-
+	public String createJSONForShoppingCart( List<PlatComanda> platList, Long id, ResourceBundle resource ) throws ComandaException{
+		
+		this.resource=resource;
+		
 		try {
 			Double preuComanda = 0.0;
 			Integer numPlats = 0;
@@ -593,7 +606,11 @@ public class ComandaServiceImpl implements ComandaService{
 				
 				preuComanda = preuComanda + (pl.getPlat().getPreu() * pl.getNumPlats());
 				numPlats = numPlats + pl.getNumPlats();
-				PlatComandaCart platComandaCart = new PlatComandaCart(numPlats,pl.getPlat().getId(),pl.getPlat().getNom());
+				String nomPlat=pl.getPlat().getNom();
+				if(!pl.getPlat().isActiu()){
+					nomPlat = nomPlat+" "+this.resource.getString("txt.plat.no.actiu");
+				}
+				PlatComandaCart platComandaCart = new PlatComandaCart(numPlats,pl.getPlat().getId(),nomPlat);
 				platComandaCartList.add(platComandaCart);
 			}
 
@@ -678,6 +695,36 @@ public class ComandaServiceImpl implements ComandaService{
 		
 		
 	}
+	public class Alerta{
+		
+		@Expose
+		private String				alerta		= "";
+
+						
+		public Alerta(String alerta) {
+			this.alerta = alerta;
+		}
+
+		public String getAlerta() {
+			return alerta;
+		}
+
+		public void setAlerta(String alerta) {
+			this.alerta = alerta;
+		}
+		
+		public String getJSON(){
+			Alerta alert = new Alerta(this.alerta);
+			Gson gson = new GsonBuilder().setPrettyPrinting().excludeFieldsWithoutExposeAnnotation().create();
+			StringBuffer json = new StringBuffer(gson.toJson(alert));
+			
+			return json.toString();
+			
+		}
+		
+		
+	}
+	
 	public class ComandaCart{
 
 		@Expose
@@ -862,7 +909,7 @@ public class ComandaServiceImpl implements ComandaService{
 		jsonSB.append("\"}");
 		return jsonSB.toString();
 	}
-
+	
 	// GETTERS i SETTERS
 
 	public void setConfigRestaurantBo( ConfigRestaurantBo configRestaurantBo ){

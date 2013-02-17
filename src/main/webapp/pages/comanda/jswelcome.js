@@ -115,6 +115,7 @@ $(function() {
 	function savePlatToComanda(idPlat) {
 
 		var data = "idPlat=" + idPlat + "&idComanda=" + $("#numComanda").text();
+		
 		$.ajax({
 					type : "POST",
 					url : '/'+context+'/comanda/ajaxLoadPlat.action',
