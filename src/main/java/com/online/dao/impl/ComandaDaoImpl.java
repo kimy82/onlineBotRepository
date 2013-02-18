@@ -34,6 +34,23 @@ public class ComandaDaoImpl extends HibernateDaoSupport implements ComandaDao{
 		return comandaList;
 
 	}
+	
+	public List<Comandes> getAllgetAllToConfirm(){
+
+		List<Comandes> comandaList = new ArrayList<Comandes>();
+
+		Session session = this.getSessionFactory().openSession();
+		session.beginTransaction();
+
+		Query query = session.createQuery("from Comandes cmd where cmd.revisio=?").setBoolean(0, true);
+
+		comandaList = ((List<Comandes>) query.list());
+
+		session.close();
+
+		return comandaList;
+
+	}
 
 	public void save( Comandes comanda ){
 

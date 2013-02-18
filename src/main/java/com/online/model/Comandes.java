@@ -49,6 +49,8 @@ public class Comandes implements Serializable{
 	private Date					fentrada;
 	
 	protected Boolean				targeta;
+	
+	protected Boolean				revisio;
 
 	
 
@@ -214,6 +216,17 @@ public class Comandes implements Serializable{
 	public void setPagada( Boolean pagada ){
 	
 		this.pagada = pagada;
+	}
+
+	public Boolean getRevisio(){
+	
+		return revisio;
+	}
+
+	public void setRevisio( Boolean revisio ){
+	
+		this.revisio = revisio;
 	}			
+	
 	
 }

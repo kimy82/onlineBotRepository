@@ -268,6 +268,19 @@
 			class="com.online.action.admin.MantenimentCommentsAction" method="ajaxDeleteCommentBegudaAction">
 		</action>
 		
-		
+		<!-- actions per primeres comandes  -->
+		<action name="primeresComandes" class="com.online.action.admin.MantenimentComandesAction"
+			method="execute">
+			<result name="success">/pages/admin/comandes/comandes.jsp</result>		
+		</action>
+		<action name="ajaxTablePrimeresComandesAction"
+			class="com.online.action.admin.MantenimentComandesAction" method="ajaxTablePrimeresComandesAction">
+		</action>
+		<action name="ajaxSendComanda"
+			class="com.online.action.admin.MantenimentComandesAction" method="ajaxSendComanda">
+		</action>				
+		<action name="ajaxDeleteComanda"
+			class="com.online.action.admin.MantenimentComandesAction" method="ajaxDeleteComanda">
+		</action>						
 	</package>
 </struts>

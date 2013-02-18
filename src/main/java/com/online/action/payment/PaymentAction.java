@@ -73,6 +73,8 @@ public class PaymentAction extends ActionSupport implements ServletResponseAware
 			this.paymentService.sendOrder(true, orders);
 			this.paymentService.sendOrder(false, orders);		
 		}else{
+			this.comanda.setRevisio(true);
+			this.comandaBo.update(comanda);
 			this.paymentService.sendOrder(true, orders);
 		}
 		

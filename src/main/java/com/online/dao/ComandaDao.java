@@ -19,4 +19,6 @@ public interface ComandaDao{
 	List<Comandes> getAllByUser(Long id, boolean initPLatComanda);
 	
 	List<Comandes> getAllByUserAndTemps(Long id, Integer lastNdias);
+	
+	List<Comandes> getAllgetAllToConfirm();
 }

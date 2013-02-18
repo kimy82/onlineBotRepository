@@ -21,6 +21,12 @@ public class ComandaBoImpl implements ComandaBo{
 		return this.comandaDao.getAllByUserAndTemps(id, lastNdias);
 	}
 	
+	public List<Comandes> getAllToConfirm() throws BOException{
+		
+		return this.comandaDao.getAllgetAllToConfirm();
+		
+	}
+	
 	public void save( Comandes comanda ) throws BOException{
 
 		checkComanda(comanda);

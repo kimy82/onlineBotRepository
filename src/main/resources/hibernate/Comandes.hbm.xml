@@ -38,6 +38,9 @@
 		<property name="targeta" type="boolean" lazy="false" >
 			<column name="TARGETA"  />
 		</property>	
+		<property name="revisio" type="boolean" lazy="false" >
+			<column name="REVISIO"  />
+		</property>	
 		<property name="fentrada" type="date">
 			<column name="FENTRADA"  />
 		</property>

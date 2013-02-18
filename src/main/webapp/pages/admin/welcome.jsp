@@ -20,17 +20,19 @@
 		<td><a href="<c:url value='begudes.action' />" ><img width="100px" src="<c:url value='/images/admin/begudes.png' />"></a></td>
 		<td><a href="<c:url value='presentacio.action' />" ><img width="100px" src="<c:url value='/images/admin/presentacio.png' />"></a></td>
 		<td><a href="<c:url value='comments.action' />" ><img width="100px" src="<c:url value='/images/admin/comentaris.png' />"></a></td>
+		<td></td>
 		</tr>
 		<tr>
 		<td class="first"><a href="<c:url value='usuaris.action' />" >Usuaris</a></td>
 		<td><a href="<c:url value='plats.action' />" >Plats</a></td>
 		<td><a href="<c:url value='restaurants.action' />" >Restaurants</a></td>
-		<td><a href="<c:url value='config.action' />" >Config</a></td>
-		<td><a href="<c:url value='configMoters.action' />" >Config Moters</a></td>
+		<td><a href="<c:url value='config.action' />" >Config.</a></td>
+		<td><a href="<c:url value='configMoters.action' />" >Config. Moters</a></td>
 		<td><a href="<c:url value='promocions.action' />" >Promos</a></td>
 		<td><a href="<c:url value='begudes.action' />" >Begudes</a></td>
 		<td><a href="<c:url value='presentacio.action' />" >Slider</a></td>
 		<td><a href="<c:url value='comments.action' />" >Comments</a></td>
+		<td><a href="<c:url value='primeresComandes.action' />" >Control comandes</a></td>
 		</tr>
 		
 		
