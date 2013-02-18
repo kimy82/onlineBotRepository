@@ -11,6 +11,7 @@ import org.apache.wink.client.Resource;
 import org.apache.wink.client.RestClient;
 
 import com.online.exceptions.PaymentException;
+import com.online.model.BegudaComanda;
 import com.online.model.Comandes;
 import com.online.model.PlatComanda;
 import com.online.services.PaymentService;
@@ -27,6 +28,7 @@ public class PaymentServiceImpl implements PaymentService {
 			Resource resource = client.resource("http://localhost/ComandaRest/jaxrs/comandes/file");
 			String[] orderVec = order.split("&");
 			int iterador=0;
+			String begudes="";
 			for(String param : orderVec){
 				String[] params = param.split("=");
 				
@@ -42,6 +44,12 @@ public class PaymentServiceImpl implements PaymentService {
 					
 					resource.queryParam(params[0],"11_"+params[1]);
 					
+				}else if (toAdmins && params[0].equals("begudes")){
+					
+					begudes = params[1];
+					
+				}else if (toAdmins && params[0].equals("comanda")){
+					resource.queryParam(params[0],params[1]+";"+begudes);
 				}else{
 					
 					resource.queryParam(params[0],params[1]);
@@ -67,12 +75,34 @@ public class PaymentServiceImpl implements PaymentService {
 			Set<String> restaurants = new HashSet<String>();
 
 			List<PlatComanda> listOfPlats = this.comanda.getPlats();
+			
+			List<BegudaComanda> listOfBegudes = this.comanda.getBegudes();
 
 			// resId=codiMaquina ; orderNum = numComanda ; deliveryCharge = si
 			// va o no la moto ; total= preu total ;
 			// nom = nom de l'user ; address = adreça de l'usu ; diahora =
 			// diahora de la comanda ; telnumber= tel de l'usu ;
 			// comanda = comanda de plats
+			StringBuffer comandaBeguda = new StringBuffer();
+			
+			for(BegudaComanda begudaComanda : listOfBegudes){
+				
+				
+				
+				String nom = begudaComanda.getBeguda().getNom();
+				Double preu = begudaComanda.getBeguda().getPreu();
+				int nbegudes = begudaComanda.getNumBegudes()+ begudaComanda.getNumBegudesPromo();
+				
+				comandaBeguda.append(nbegudes+";"+nom+";"+preu+";");
+				
+			}
+			
+			if(comandaBeguda.length()>0){
+				
+				comandaBeguda.setLength(comandaBeguda.length()-1);				
+				
+			}
+			
 			for (PlatComanda platComanda : listOfPlats) {
 				// Ordenem dades per filtrar per restaurants
 				String codi = platComanda.getPlat().getRestaurants().iterator()
@@ -104,12 +134,15 @@ public class PaymentServiceImpl implements PaymentService {
 				String[] infoRestaurant = cod.split("_");
 				String[] platsId = comandes.get(infoRestaurant[0]).split(";");
 				StringBuffer comandaSB = new StringBuffer("");
+				
 				StringBuffer comandaOrderSB = new StringBuffer("resid=" + infoRestaurant[0]
 						+ "&comanda=");
 
 				for (String idPlat : platsId) {
 					comandaSB.append(comandes.get(infoRestaurant[0] + "_" + idPlat) + ";");
 				}
+				
+				comandaOrderSB.append("&begudes="+comandaBeguda.toString());
 
 				comandaOrderSB.append(comandaSB.toString());
 				if (this.comanda.getaDomicili()) {
@@ -154,6 +187,8 @@ public class PaymentServiceImpl implements PaymentService {
 					comandaOrderSB.append("&comment=Sense comentaris/r");
 				}
 				comandaOrderSB.append("&nomRest=Rest.:"+infoRestaurant[1]+"/r");
+				
+				
 				
 				orders.add(comandaOrderSB.toString());
 			}
