@@ -1,17 +1,20 @@
 <%@ page import="java.util.Locale"%>
-<div> 
-     <table> 
+<div id="divleft"> 
+     <table class="calconf"> 
       <tr>	
-       <td>
+       <td class="caltop">
           <div id="div_calendar" class="month" ></div>
        </td>
-       <td style=vertical-align:bottom >       
-          <div id="div_buttons_prev" ></div>	     
+       <td class="calprev" >       
+          <div id="div_buttons_prev" >PREVIA</div>	     
        </td>
-       <td style=vertical-align:bottom >       
-          <div id="div_buttons_next" ></div>
-       </td>            
+       <td class="calnext" >       
+          <div id="div_buttons_next" >SEGUENTS</div>
+       </td>  
+       
+                 
       </tr>	
      </table>
 </div>      	      	
-      	
+
+      

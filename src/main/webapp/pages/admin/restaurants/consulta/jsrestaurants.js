@@ -252,7 +252,7 @@ $(document).ready(function() {
 					      }
 					    },
 					"sScrollY": "100%",		    
-					"sScrollX": "700",	
+					"sScrollX": "100%",	
 				    "bScrollCollapse": true,
 		    		"bProcessing": false,
 		    		"bServerSide": true,

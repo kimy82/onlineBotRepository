@@ -19,6 +19,7 @@
 			<img src="<c:url value='/img/elements/logo_portamu.png' />">
 		</div>
 		</div>
+		<c:import url="pestanas.jsp" />
     <s:select list="listPlats" headerKey="" headerValue="Escull un plat" id="platId" listKey="id" listValue="nom" onchange="loadComments(this.value)" ></s:select>
     <div class="comments_foro" id="plat_${plat.id}" >
 			<table id="comments_tbl" >
@@ -53,7 +54,7 @@
 </div>
 	<link rel="stylesheet" href="<c:url value='/css/admin.css' />" type="text/css"   media="screen" />
 	<link rel="stylesheet" href="<c:url value='/css/portamu/reset.css' />" type="text/css"   media="screen" />
-
+	<link rel="stylesheet" href="<c:url value='/css/components.css' />" type="text/css"   media="screen" />
 <!-- Scripts --> 
 	
 	<link rel="stylesheet" href="<c:url value='/css/coin-slider-styles.css' />" type="text/css" />

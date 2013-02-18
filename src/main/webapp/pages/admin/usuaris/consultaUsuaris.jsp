@@ -32,7 +32,7 @@
 			</div>
 			<br>
 	
-	  		 <div  style="width:800px; alig="center">
+	  		 <div  style="width:950px; align:center;">
 				<table class="selecciom dataTable" id="tbl_usuaris" width="800px">
 					<thead>
 						<tr>
