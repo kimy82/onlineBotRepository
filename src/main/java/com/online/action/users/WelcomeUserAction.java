@@ -205,11 +205,11 @@ public class WelcomeUserAction extends ActionSupport implements ServletResponseA
 			inizializeTableParams();
 			json = getInfoAndCreateJSONForComandesUser();
 		} catch (BOException boe) {
-			json = createErrorJSON("error in ajax action: Error in BO");
+			json = Utils.createErrorJSONForDataTable("error in ajax action: Error in BO",this.sEcho);
 		} catch (NumberFormatException e) {
-			json = createErrorJSON("error in ajax action: wrong params");
+			json = Utils.createErrorJSONForDataTable("error in ajax action: wrong params",this.sEcho);
 		} catch (Exception e) {
-			json = createErrorJSON("error in ajax action");
+			json = Utils.createErrorJSONForDataTable("error in ajax action", this.sEcho);
 		}
 
 		try {
@@ -252,23 +252,6 @@ public class WelcomeUserAction extends ActionSupport implements ServletResponseA
 		} catch (NumberFormatException nfe) {
 			throw new WrongParamException("Id comanda wrong");
 		}
-	}
-
-	private String createErrorJSON( String error ){
-
-		StringBuffer jsonSB = new StringBuffer("{");
-		jsonSB.append("\"sEcho\": " + sEcho + ",\"error\":\"" + error
-				+ "\" ,\"iTotalRecords\":\"0\", \"iTotalDisplayRecords\":\"0\", \"aaData\":  []");
-		jsonSB.append("}");
-		return jsonSB.toString();
-	}
-
-	private String createEmptyJSON(){
-
-		StringBuffer jsonSB = new StringBuffer("{");
-		jsonSB.append("\"sEcho\": " + sEcho + ",\"iTotalRecords\":\"0\", \"iTotalDisplayRecords\":\"0\", \"aaData\":  []");
-		jsonSB.append("}");
-		return jsonSB.toString();
 	}
 
 	private void inizializeTableParams() throws WrongParamException{

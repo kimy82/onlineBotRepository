@@ -105,9 +105,7 @@ public class PaymentAction extends ActionSupport implements ServletResponseAware
 		return SUCCESS;
 	}
 	
-	//PRIVATES
-	
-	
+	//PRIVATES	
 	private int initNumComandes(){
 		
 		Users user = this.usersBo.findByUsername(nameAuth);		

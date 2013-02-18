@@ -25,7 +25,7 @@
 			method="execute">
 			<result name="success">/pages/comanda/welcome.jsp</result>
 		</action>
-		<action name="checkComanda" class="com.online.action.comanda.WelcomeComandaAction"
+		<action name="checkComanda" class="com.online.action.comanda.FinalComandaAction"
 			method="checkComanda">
 		</action>
 		<action name="ajaxLoadPlat" class="com.online.action.comanda.WelcomeComandaAction"
@@ -53,11 +53,11 @@
 			method="goToPas1Action">
 			<result name="success">/pages/comanda/infoComanda.jsp</result>
 		</action>
-		<action name="getVins" class="com.online.action.comanda.WelcomeComandaAction"
+		<action name="getVins" class="com.online.action.comanda.AuxiliarComandaAction"
 			method="getVins">
 			<result name="success">/pages/comanda/begudes/begudes.jsp</result>
 		</action>
-		<action name="getRefrescos" class="com.online.action.comanda.WelcomeComandaAction"
+		<action name="getRefrescos" class="com.online.action.comanda.AuxiliarComandaAction"
 			method="getRefrescos">
 			<result name="success">/pages/comanda/begudes/begudesRefresc.jsp</result>
 		</action>

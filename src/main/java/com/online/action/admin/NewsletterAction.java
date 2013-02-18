@@ -14,6 +14,7 @@ import com.online.bo.UsersBo;
 import com.online.exceptions.GeneralException;
 import com.online.model.NewsLetter;
 import com.online.model.Users;
+import com.online.utils.Utils;
 import com.opensymphony.xwork2.ActionSupport;
 
 
@@ -49,7 +50,7 @@ public class NewsletterAction extends ActionSupport implements ServletResponseAw
 			this.usersBo.sendEmails(this.txtToSend, emails);
 			
 		} catch (Exception e) {
-			json = createErrorJSON("error in ajax action");
+			json = Utils.createErrorJSON("error in ajax action");
 		}
 
 		try {
@@ -74,16 +75,8 @@ public class NewsletterAction extends ActionSupport implements ServletResponseAw
 		emails.setLength(emails.length()-1);
 		return emails.toString().split(",");
 	}
-	private String createErrorJSON( String error ){
-
-		StringBuffer jsonSB = new StringBuffer("{");
-		jsonSB.append("\"error\":\"" + error
-				+ "\" ");
-		jsonSB.append("}");
-		return jsonSB.toString();
-	}
+	
 	// Getters i setters
-
 	public void setServletResponse( HttpServletResponse response ){
 
 		this.response = response;

@@ -148,4 +148,53 @@ public class Utils{
 		}
 		return hora;
 	}
+	
+	public static String createErrorJSON( String error ){
+
+		StringBuffer jsonSB = new StringBuffer("{");
+		jsonSB.append("\"error\":\"" + error);
+		jsonSB.append("\"}");
+		return jsonSB.toString();
+	}
+	
+	public static String createNotLogedJSON( String error ){
+
+		StringBuffer jsonSB = new StringBuffer("{");
+		jsonSB.append("\"alertLoged\":\"" + error + "\"");
+		jsonSB.append("}");
+		return jsonSB.toString();
+	}
+	
+	public static String createErrorJSONForDataTable( String error, String sEcho ){
+
+		StringBuffer jsonSB = new StringBuffer("{");
+		jsonSB.append("\"sEcho\": " + sEcho + ",\"error\":\"" + error
+				+ "\" ,\"iTotalRecords\":\"0\", \"iTotalDisplayRecords\":\"0\", \"aaData\":  []");
+		jsonSB.append("}");
+		return jsonSB.toString();
+	}
+	
+	public static String createEmptyJSONForDataTable(String sEcho){
+
+		StringBuffer jsonSB = new StringBuffer("{");
+		jsonSB.append("\"sEcho\": " + sEcho + ",\"iTotalRecords\":\"0\", \"iTotalDisplayRecords\":\"0\", \"aaData\":  []");
+		jsonSB.append("}");
+		return jsonSB.toString();
+	}
+	
+	public static  String createEmptyJSON(){
+
+		StringBuffer jsonSB = new StringBuffer("{");
+		jsonSB.append("}");
+		return jsonSB.toString();
+	}
+	
+	public static String createJSONForTable( String json, String sEcho ){
+
+		StringBuffer jsonSB = new StringBuffer("{");
+		jsonSB.append("\"sEcho\": " + sEcho + ", \"iTotalRecords\":\"1\", \"iTotalDisplayRecords\":\"1\", \"aaData\": [");
+		jsonSB.append(json);
+		jsonSB.append("]}");
+		return jsonSB.toString();
+	}
 }

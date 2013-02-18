@@ -24,6 +24,7 @@ import com.online.model.Plat;
 import com.online.model.Restaurant;
 import com.online.pojos.Basic;
 import com.online.utils.Constants;
+import com.online.utils.Utils;
 import com.opensymphony.xwork2.Action;
 import com.opensymphony.xwork2.ActionSupport;
 
@@ -103,11 +104,11 @@ public class MantenimentPlatsAction extends ActionSupport implements ServletResp
 			this.platsBo.changePriority(idPlat, prioritat);
 			json="{\"estat\" : \"ok\"}";
 		} catch (BOException boe) {
-			json = createErrorJSON("error in ajax action: Error in BO");
+			json = Utils.createErrorJSON("error in ajax action: Error in BO");
 		} catch (NumberFormatException e) {
-			json = createErrorJSON("error in ajax action: wrong params");
+			json = Utils.createErrorJSON("error in ajax action: wrong params");
 		} catch (Exception e) {
-			json = createErrorJSON("error in ajax action");
+			json = Utils.createErrorJSON("error in ajax action");
 		}
 
 		try {
@@ -132,11 +133,11 @@ public class MantenimentPlatsAction extends ActionSupport implements ServletResp
 			
 
 		} catch (BOException boe) {
-			json = createErrorJSON("error in ajax action: Error in BO");
+			json = Utils.createErrorJSON("error in ajax action: Error in BO");
 		} catch (NumberFormatException e) {
-			json = createErrorJSON("error in ajax action: wrong params");
+			json = Utils.createErrorJSON("error in ajax action: wrong params");
 		} catch (Exception e) {
-			json = createErrorJSON("error in ajax action");
+			json = Utils.createErrorJSON("error in ajax action");
 		}
 
 		try {
@@ -250,14 +251,6 @@ public class MantenimentPlatsAction extends ActionSupport implements ServletResp
 			image.setDescripcio(this.fileUploadFileName);
 		}
 		return image;
-	}
-
-	private String createErrorJSON( String error ){
-
-		StringBuffer jsonSB = new StringBuffer("{");
-		jsonSB.append("\"error\":\"" + error + "\" ");
-		jsonSB.append("}");
-		return jsonSB.toString();
 	}
 
 	private void inizializeParamsTODeletePlat() throws NumberFormatException{

@@ -36,7 +36,6 @@ public class MantenimentConfigMotersAction extends ActionSupport implements Serv
 
 	private String				dia;
 	private Integer				numMoters			= null;
-	private Moters				moter				= new Moters();
 	private MotersRang			motersRang			= new MotersRang();
 	private Date				date;
 	private String				hora;
@@ -98,9 +97,9 @@ public class MantenimentConfigMotersAction extends ActionSupport implements Serv
 			}
 			json = "{\"ok\" : \"ok\"}";
 		} catch (WrongParamException e) {
-			json = createErrorJSON("error in ajax action: wrong params");
+			json = Utils.createErrorJSON("error in ajax action: wrong params");
 		} catch (Exception e) {
-			json = createErrorJSON("error in ajax action");
+			json = Utils.createErrorJSON("error in ajax action");
 		}
 
 		try {
@@ -121,9 +120,9 @@ public class MantenimentConfigMotersAction extends ActionSupport implements Serv
 			inizializeTableMotersParams();
 			json = searchInfoANDcreateJSONForMoters();
 		} catch (WrongParamException e) {
-			json = createErrorJSON("error in ajax action: wrong params");
+			json = Utils.createErrorJSON("error in ajax action: wrong params");
 		} catch (Exception e) {
-			json = createErrorJSON("error in ajax action");
+			json = Utils.createErrorJSON("error in ajax action");
 		}
 
 		try {
@@ -139,8 +138,9 @@ public class MantenimentConfigMotersAction extends ActionSupport implements Serv
 	private void processMoterRang() throws BOException, NumberFormatException{
 
 		if (this.motersRang.getDiaIni() != null && !this.motersRang.getDiaIni().equals("") && this.motersRang.getDiaFi() != null
-				&& !this.motersRang.getDiaFi().equals("") && this.motersRang.getHoraIni() != null && !this.motersRang.getHoraIni().equals("")
-				&& this.motersRang.getHoraFi() != null && !this.motersRang.getHoraFi().equals("")) {
+				&& !this.motersRang.getDiaFi().equals("") && this.motersRang.getHoraIni() != null
+				&& !this.motersRang.getHoraIni().equals("") && this.motersRang.getHoraFi() != null
+				&& !this.motersRang.getHoraFi().equals("")) {
 
 			String[] diaIniVec = this.motersRang.getDiaIni().split("-");
 			String[] diaFiVec = this.motersRang.getDiaFi().split("-");
@@ -246,19 +246,19 @@ public class MantenimentConfigMotersAction extends ActionSupport implements Serv
 		if (horaDiaVec.length != 2) {
 			throw new WrongParamException("Hora o dia mal informats");
 		} else {
-			this.date = getDate(horaDiaVec[1]);
+			this.date = Utils.getDate(horaDiaVec[1]);
 			this.hora = horaDiaVec[0];
 		}
 	}
 
 	private String searchInfoANDcreateJSONForMoters(){
 
-		List<Moters> motersForDate = this.motersBo.load(getDate(this.dia));
+		List<Moters> motersForDate = this.motersBo.load(Utils.getDate(this.dia));
 		ConfigMotersTable configMotersTable = new ConfigMotersTable(this.dia);
 		configMotersTable.setDia(this.dia);
 		if (motersForDate == null || motersForDate.isEmpty()) {
 			Gson gson = new GsonBuilder().setPrettyPrinting().create();
-			return createJSONForTable(gson.toJson(configMotersTable));
+			return Utils.createJSONForTable(gson.toJson(configMotersTable), this.sEcho);
 		}
 		for (Moters moter : motersForDate) {
 			if (moter.getHora().equals("0800")) {
@@ -397,17 +397,8 @@ public class MantenimentConfigMotersAction extends ActionSupport implements Serv
 		}
 
 		Gson gson = new GsonBuilder().setPrettyPrinting().create();
-		return createJSONForTable(gson.toJson(configMotersTable));
+		return Utils.createJSONForTable(gson.toJson(configMotersTable), this.sEcho);
 
-	}
-
-	private String createJSONForTable( String json ){
-
-		StringBuffer jsonSB = new StringBuffer("{");
-		jsonSB.append("\"sEcho\": " + sEcho + ", \"iTotalRecords\":\"1\", \"iTotalDisplayRecords\":\"1\", \"aaData\": [");
-		jsonSB.append(json);
-		jsonSB.append("]}");
-		return jsonSB.toString();
 	}
 
 	private void inizializeTableMotersParams() throws WrongParamException{
@@ -425,39 +416,6 @@ public class MantenimentConfigMotersAction extends ActionSupport implements Serv
 			throw new WrongParamException("No hi ha dia");
 		}
 	}
-
-	private String createErrorJSON( String error ){
-
-		StringBuffer jsonSB = new StringBuffer("{");
-		jsonSB.append("\"error\":\"" + error + "\"");
-		jsonSB.append("}");
-		return jsonSB.toString();
-	}
-
-	private Date getDate( String dia ) throws RuntimeException{
-
-		String[] diaS = dia.split("-");
-		if (diaS.length != 3) {
-			throw new RuntimeException("wrong dia");
-		}
-
-		String numDia = diaS[0];
-		String month = diaS[1];
-		String year = diaS[2];
-
-		Calendar calendar = Calendar.getInstance();
-		calendar.set(Integer.parseInt(year), (Integer.parseInt(month)-1), Integer.parseInt(numDia));
-		return calendar.getTime();
-
-	}
-
-	private String createEmptyJSON(){
-
-		StringBuffer jsonSB = new StringBuffer("{");
-		jsonSB.append("}");
-		return jsonSB.toString();
-	}
-
 	// Getters i setters
 
 	public void setMotersBo( MotersBo motersBo ){
@@ -473,11 +431,6 @@ public class MantenimentConfigMotersAction extends ActionSupport implements Serv
 	public void setDia( String dia ){
 
 		this.dia = dia;
-	}
-
-	public void setMoter( Moters moter ){
-
-		this.moter = moter;
 	}
 
 	public void setServletResponse( HttpServletResponse response ){

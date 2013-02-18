@@ -69,7 +69,7 @@ public class MantenimentBegudaAction extends ActionSupport implements ServletRes
 			Gson gson = new GsonBuilder().setPrettyPrinting().excludeFieldsWithoutExposeAnnotation().create();
 			json = gson.toJson(beguda);
 		} catch (Exception e) {
-			json = createErrorJSON("error in ajax action");
+			json = Utils.createErrorJSON("error in ajax action");
 		}
 
 		try {
@@ -90,9 +90,9 @@ public class MantenimentBegudaAction extends ActionSupport implements ServletRes
 			inizializeTableParams();
 			json = searchInfoANDcreateJSONForBegudes();
 		} catch (NumberFormatException e) {
-			json = createErrorJSON("error in ajax action: wrong params");
+			json = Utils.createErrorJSONForDataTable("error in ajax action: wrong params",this.sEcho);
 		} catch (Exception e) {
-			json = createErrorJSON("error in ajax action");
+			json = Utils.createErrorJSONForDataTable("error in ajax action",this.sEcho);
 		}
 
 		try {
@@ -152,11 +152,11 @@ public class MantenimentBegudaAction extends ActionSupport implements ServletRes
 			this.begudaBo.delete(beguda);
 
 		} catch (BOException boe) {
-			json = createErrorJSON("error in ajax action: Error in BO");
+			json = Utils.createErrorJSONForDataTable("error in ajax action: Error in BO",this.sEcho);
 		} catch (NumberFormatException e) {
-			json = createErrorJSON("error in ajax action: wrong params");
+			json = Utils.createErrorJSONForDataTable("error in ajax action: wrong params",this.sEcho);
 		} catch (Exception e) {
-			json = createErrorJSON("error in ajax action");
+			json = Utils.createErrorJSONForDataTable("error in ajax action", this.sEcho);
 		}
 
 		try {
@@ -222,24 +222,7 @@ public class MantenimentBegudaAction extends ActionSupport implements ServletRes
 		jsonSB.append("}");
 		return jsonSB.toString();
 
-	}
-
-	private String createErrorJSON( String error ){
-
-		StringBuffer jsonSB = new StringBuffer("{");
-		jsonSB.append("\"sEcho\": " + sEcho + ",\"error\":\"" + error
-				+ "\" ,\"iTotalRecords\":\"0\", \"iTotalDisplayRecords\":\"0\", \"aaData\":  []");
-		jsonSB.append("}");
-		return jsonSB.toString();
-	}
-
-	private String createEmptyJSON(){
-
-		StringBuffer jsonSB = new StringBuffer("{");
-		jsonSB.append("\"sEcho\": " + sEcho + ",\"iTotalRecords\":\"0\", \"iTotalDisplayRecords\":\"0\", \"aaData\":  []");
-		jsonSB.append("}");
-		return jsonSB.toString();
-	}
+	}	
 
 	private void inizializeTableParams() throws NumberFormatException{
 

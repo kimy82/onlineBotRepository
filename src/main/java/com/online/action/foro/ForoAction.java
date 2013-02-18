@@ -28,50 +28,49 @@ import com.online.model.Plat;
 import com.online.model.Users;
 import com.online.model.VotacioTMP;
 import com.online.model.VotacioTMPBeguda;
+import com.online.utils.Utils;
 import com.opensymphony.xwork2.ActionSupport;
 
-public class ForoAction extends ActionSupport implements ServletResponseAware,
-		ServletRequestAware {
+public class ForoAction extends ActionSupport implements ServletResponseAware, ServletRequestAware{
 
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 1L;
-	private PlatsBo platsBo;
-	private BegudaBo begudaBo;
+	private static final long	serialVersionUID	= 1L;
+	private PlatsBo				platsBo;
+	private BegudaBo			begudaBo;
 
-	private UsersBo usersBo;
-	private ForoBo foroBo;
-	private VotacionsBo votacionsBo;
+	private UsersBo				usersBo;
+	private ForoBo				foroBo;
+	private VotacionsBo			votacionsBo;
 
-	private Long idPlat;
-	private Long idBeguda;
-	private Long idComment;
-	private String nameAuth;
+	private Long				idPlat;
+	private Long				idBeguda;
+	private Long				idComment;
+	private String				nameAuth;
 
-	private Users user;
-	private Plat plat;
-	private Beguda beguda;
-	private String comment;
-	private int punctuation;
+	private Users				user;
+	private Plat				plat;
+	private Beguda				beguda;
+	private String				comment;
+	private int					punctuation;
 
-	HttpServletResponse response;
-	HttpServletRequest request;
+	HttpServletResponse			response;
+	HttpServletRequest			request;
 
-	public String execute() {
+	public String execute(){
 
 		inizializePlatId();
 		getUserFromContext();
 		boolean allowComments = false;
 		if (this.user != null)
-			allowComments = this.usersBo.checkUserPlat(this.user.getId(),
-					idPlat);
-			if(allowComments){
-			VotacioTMP votTMP =	this.votacionsBo.get(this.idPlat, this.user.getId());
-				if(votTMP!=null && votTMP.getDia().compareTo(new Date())==0){
-					allowComments=false;
-				}
+			allowComments = this.usersBo.checkUserPlat(this.user.getId(), idPlat);
+		if (allowComments) {
+			VotacioTMP votTMP = this.votacionsBo.get(this.idPlat, this.user.getId());
+			if (votTMP != null && votTMP.getDia().compareTo(new Date()) == 0) {
+				allowComments = false;
 			}
+		}
 
 		if (!allowComments) {
 			this.nameAuth = "anonymousUser";
@@ -79,8 +78,7 @@ public class ForoAction extends ActionSupport implements ServletResponseAware,
 			this.nameAuth = "ROLE_USER";
 		}
 
-		if (this.user != null
-				&& this.user.getUserRole().getRole().equals("ROLE_ADMIN")) {
+		if (this.user != null && this.user.getUserRole().getRole().equals("ROLE_ADMIN")) {
 			this.nameAuth = "ROLE_ADMIN";
 		}
 
@@ -88,20 +86,20 @@ public class ForoAction extends ActionSupport implements ServletResponseAware,
 		return SUCCESS;
 
 	}
-	public String foroBeguda() {
+
+	public String foroBeguda(){
 
 		inizializeBegudaId();
 		getUserFromContext();
 		boolean allowComments = false;
 		if (this.user != null)
-			allowComments = this.usersBo.checkUserBeguda(this.user.getId(),
-					idBeguda);
-			if(allowComments){
-			VotacioTMPBeguda votTMP =	this.votacionsBo.getBeguda(this.idBeguda, this.user.getId());
-				if(votTMP!=null && votTMP.getDia().compareTo(new Date())==0){
-					allowComments=false;
-				}
+			allowComments = this.usersBo.checkUserBeguda(this.user.getId(), idBeguda);
+		if (allowComments) {
+			VotacioTMPBeguda votTMP = this.votacionsBo.getBeguda(this.idBeguda, this.user.getId());
+			if (votTMP != null && votTMP.getDia().compareTo(new Date()) == 0) {
+				allowComments = false;
 			}
+		}
 
 		if (!allowComments) {
 			this.nameAuth = "anonymousUser";
@@ -109,8 +107,7 @@ public class ForoAction extends ActionSupport implements ServletResponseAware,
 			this.nameAuth = "ROLE_USER";
 		}
 
-		if (this.user != null
-				&& this.user.getUserRole().getRole().equals("ROLE_ADMIN")) {
+		if (this.user != null && this.user.getUserRole().getRole().equals("ROLE_ADMIN")) {
 			this.nameAuth = "ROLE_ADMIN";
 		}
 
@@ -118,8 +115,8 @@ public class ForoAction extends ActionSupport implements ServletResponseAware,
 		return SUCCESS;
 
 	}
-	
-	public String ajaxSaveCommentForPlat() {
+
+	public String ajaxSaveCommentForPlat(){
 
 		ServletOutputStream out = null;
 		String json = "";
@@ -144,7 +141,7 @@ public class ForoAction extends ActionSupport implements ServletResponseAware,
 			}
 
 		} catch (Exception e) {
-			json = createErrorJSON("Error saving comment" + e);
+			json = Utils.createErrorJSON("Error saving comment" + e);
 		}
 
 		try {
@@ -156,7 +153,7 @@ public class ForoAction extends ActionSupport implements ServletResponseAware,
 		return null;
 	}
 
-	public String ajaxDeleteCommentForPlat() {
+	public String ajaxDeleteCommentForPlat(){
 
 		try {
 			inizializePlatId();
@@ -175,10 +172,11 @@ public class ForoAction extends ActionSupport implements ServletResponseAware,
 			}
 			return null;
 		} catch (Exception e) {
-			return createErrorJSON("Error deleting comment" + e);
+			return Utils.createErrorJSON("Error deleting comment" + e);
 		}
 	}
-	public String ajaxDeleteCommentForBeguda() {
+
+	public String ajaxDeleteCommentForBeguda(){
 
 		try {
 			inizializeBegudaId();
@@ -197,14 +195,12 @@ public class ForoAction extends ActionSupport implements ServletResponseAware,
 			}
 			return null;
 		} catch (Exception e) {
-			return createErrorJSON("Error deleting comment" + e);
+			return Utils.createErrorJSON("Error deleting comment" + e);
 		}
 	}
-	
-	
-	public String ajaxSaveCommentForBeguda() {
 
-		
+	public String ajaxSaveCommentForBeguda(){
+
 		ServletOutputStream out = null;
 		String json = "";
 
@@ -228,7 +224,7 @@ public class ForoAction extends ActionSupport implements ServletResponseAware,
 			}
 
 		} catch (Exception e) {
-			json = createErrorJSON("Error saving comment" + e);
+			json = Utils.createErrorJSON("Error saving comment" + e);
 		}
 
 		try {
@@ -239,73 +235,71 @@ public class ForoAction extends ActionSupport implements ServletResponseAware,
 		}
 		return null;
 	}
-	
-	public String ajaxSavePunctuacioForPlat() {
+
+	public String ajaxSavePunctuacioForPlat(){
 
 		try {
 			inizializePlatId();
 			inizializePuntuacio();
 			getUserFromContext();
-			
+
 			VotacioTMP votacioTMP = new VotacioTMP();
 			votacioTMP.setPlatId(idPlat);
 			votacioTMP.setPunctuacio(punctuation);
 			votacioTMP.setUserId(this.user.getId());
 			votacioTMP.setDia(new Date());
 			this.votacionsBo.saveTMP(votacioTMP);
-			
+
 			return null;
 		} catch (Exception e) {
-			return createErrorJSON("Error saving votacio" + e);
+			return Utils.createErrorJSON("Error saving votacio" + e);
 		}
 	}
-	public String ajaxSavePunctuacioForBeguda() {
+
+	public String ajaxSavePunctuacioForBeguda(){
 
 		try {
 			inizializeBegudaId();
 			inizializePuntuacio();
 			getUserFromContext();
-			
+
 			VotacioTMPBeguda votacioTMP = new VotacioTMPBeguda();
 			votacioTMP.setBegudaId(idBeguda);
 			votacioTMP.setPunctuacio(punctuation);
 			votacioTMP.setUserId(this.user.getId());
 			votacioTMP.setDia(new Date());
 			this.votacionsBo.saveTMPBeguda(votacioTMP);
-			
+
 			return null;
 		} catch (Exception e) {
-			return createErrorJSON("Error saving votacio" + e);
+			return Utils.createErrorJSON("Error saving votacio" + e);
 		}
 	}
-	
-	
-	// private methods
-	
-	private void inizializePuntuacio() throws WrongParamException {
 
-		this.punctuation = (request.getParameter("punctuacio") == null || request
-				.getParameter("punctuacio").equals("")) ? 0 : Integer.parseInt(request.getParameter("punctuacio"));
+	// private methods
+
+	private void inizializePuntuacio() throws WrongParamException{
+
+		this.punctuation = (request.getParameter("punctuacio") == null || request.getParameter("punctuacio").equals("")) ? 0 : Integer
+				.parseInt(request.getParameter("punctuacio"));
 		if (request.getParameter("punctuacio") == null) {
 			throw new WrongParamException("null puntuacio id");
 		}
 	}
 
-	private void inizializePlatId() throws WrongParamException {
+	private void inizializePlatId() throws WrongParamException{
 
-		this.idPlat = (request.getParameter("idPlat") == null || request
-				.getParameter("idPlat").equals("")) ? null : Long
-				.parseLong(request.getParameter("idPlat"));
+		this.idPlat = (request.getParameter("idPlat") == null || request.getParameter("idPlat").equals("")) ? null : Long.parseLong(request
+				.getParameter("idPlat"));
 		if (this.idPlat == null) {
 			throw new WrongParamException("null plat id");
 		}
 
 	}
-	
-	private void inizializeBegudaId() throws WrongParamException {
 
-		this.idBeguda = (request.getParameter("idBeguda") == null || request
-				.getParameter("idBeguda").equals("")) ? null : Long
+	private void inizializeBegudaId() throws WrongParamException{
+
+		this.idBeguda = (request.getParameter("idBeguda") == null || request.getParameter("idBeguda").equals("")) ? null : Long
 				.parseLong(request.getParameter("idBeguda"));
 		if (this.idBeguda == null) {
 			throw new WrongParamException("null beguda id");
@@ -313,35 +307,24 @@ public class ForoAction extends ActionSupport implements ServletResponseAware,
 
 	}
 
-	private void inizializeCommentId() throws WrongParamException {
+	private void inizializeCommentId() throws WrongParamException{
 
-		this.idComment = (request.getParameter("idComment") == null || request
-				.getParameter("idComment").equals("")) ? null : Long
+		this.idComment = (request.getParameter("idComment") == null || request.getParameter("idComment").equals("")) ? null : Long
 				.parseLong(request.getParameter("idComment"));
 		if (this.idComment == null) {
 			throw new WrongParamException("null comment id");
 		}
 	}
 
-	private void inizializeComment() throws WrongParamException {
+	private void inizializeComment() throws WrongParamException{
 
-		this.comment = (request.getParameter("comment") == null) ? null
-				: request.getParameter("comment");
+		this.comment = (request.getParameter("comment") == null) ? null : request.getParameter("comment");
 
 	}
 
-	private String createErrorJSON(String error) {
+	private void getUserFromContext(){
 
-		StringBuffer jsonSB = new StringBuffer("{");
-		jsonSB.append("\"error\":\"" + error);
-		jsonSB.append("\"}");
-		return jsonSB.toString();
-	}
-
-	private void getUserFromContext() {
-
-		Authentication auth = SecurityContextHolder.getContext()
-				.getAuthentication();
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		this.nameAuth = auth.getName();
 		if (!this.nameAuth.equals("anonymousUser")) {
 			this.user = this.usersBo.findByUsername(this.nameAuth);
@@ -351,83 +334,88 @@ public class ForoAction extends ActionSupport implements ServletResponseAware,
 	}
 
 	// SETTERS i GETTERS
-	public void setPlatsBo(PlatsBo platsBo) {
+	public void setPlatsBo( PlatsBo platsBo ){
 
 		this.platsBo = platsBo;
 	}
 
-	public HttpServletResponse getServletResponse() {
+	public HttpServletResponse getServletResponse(){
 
 		return this.response;
 	}
 
-	public void setServletRequest(HttpServletRequest request) {
+	public void setServletRequest( HttpServletRequest request ){
 
 		this.request = request;
 	}
 
-	public HttpServletRequest getServletRequest() {
+	public HttpServletRequest getServletRequest(){
 
 		return this.request;
 	}
 
-	public void setServletResponse(HttpServletResponse response) {
+	public void setServletResponse( HttpServletResponse response ){
 
 		this.response = response;
 	}
 
-	public void setUsersBo(UsersBo usersBo) {
+	public void setUsersBo( UsersBo usersBo ){
 
 		this.usersBo = usersBo;
 	}
 
-	public Users getUser() {
+	public Users getUser(){
 
 		return user;
 	}
 
-	public void setUser(Users user) {
+	public void setUser( Users user ){
 
 		this.user = user;
 	}
 
-	public Plat getPlat() {
+	public Plat getPlat(){
 
 		return plat;
 	}
 
-	public void setPlat(Plat plat) {
+	public void setPlat( Plat plat ){
 
 		this.plat = plat;
 	}
 
-	public String getNameAuth() {
+	public String getNameAuth(){
 
 		return nameAuth;
 	}
 
-	public void setNameAuth(String nameAuth) {
+	public void setNameAuth( String nameAuth ){
 
 		this.nameAuth = nameAuth;
 	}
 
-	public void setForoBo(ForoBo foroBo) {
+	public void setForoBo( ForoBo foroBo ){
+
 		this.foroBo = foroBo;
 	}
 
-	public void setVotacionsBo(VotacionsBo votacionsBo) {
+	public void setVotacionsBo( VotacionsBo votacionsBo ){
+
 		this.votacionsBo = votacionsBo;
 	}
+
 	public void setBegudaBo( BegudaBo begudaBo ){
-	
+
 		this.begudaBo = begudaBo;
 	}
+
 	public Beguda getBeguda(){
-	
+
 		return beguda;
 	}
+
 	public void setBeguda( Beguda beguda ){
-	
+
 		this.beguda = beguda;
-	}			
+	}
 }

@@ -17,6 +17,7 @@ import com.online.model.Beguda;
 import com.online.model.Foro;
 import com.online.model.ForoBeguda;
 import com.online.model.Plat;
+import com.online.utils.Utils;
 import com.opensymphony.xwork2.ActionSupport;
 
 public class MantenimentCommentsAction extends ActionSupport implements ServletResponseAware, ServletRequestAware{
@@ -86,7 +87,7 @@ public class MantenimentCommentsAction extends ActionSupport implements ServletR
 			}
 			return null;
 		} catch (Exception e) {
-			return createErrorJSON("Error deleting comment" + e);
+			return Utils.createErrorJSON("Error deleting comment" + e);
 		}
 	}
 	
@@ -109,7 +110,7 @@ public class MantenimentCommentsAction extends ActionSupport implements ServletR
 			}
 			return null;
 		} catch (Exception e) {
-			return createErrorJSON("Error deleting comment" + e);
+			return Utils.createErrorJSON("Error deleting comment" + e);
 		}
 	}
 
@@ -142,14 +143,6 @@ public class MantenimentCommentsAction extends ActionSupport implements ServletR
 		if (this.idComment == null) {
 			throw new WrongParamException("null comment id");
 		}
-	}
-
-	private String createErrorJSON( String error ){
-
-		StringBuffer jsonSB = new StringBuffer("{");
-		jsonSB.append("\"error\":\"" + error);
-		jsonSB.append("\"}");
-		return jsonSB.toString();
 	}
 
 	// SETTERS i GETTERS

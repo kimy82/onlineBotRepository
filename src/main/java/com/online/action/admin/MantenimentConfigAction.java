@@ -68,7 +68,7 @@ public class MantenimentConfigAction extends ActionSupport implements ServletRes
 						
 						Restaurant restaurant = this.restaurantsBo.load(Integer.parseInt(idStringRestaurant), false, true, true);
 						
-						Date date = getDate(this.dia);															
+						Date date = Utils.getDate(this.dia);															
 
 						ConfigRestaurant configRestToSave = new ConfigRestaurant();
 						configRestToSave.setData(date);
@@ -113,9 +113,9 @@ public class MantenimentConfigAction extends ActionSupport implements ServletRes
 		try {
 			out = this.response.getOutputStream();
 			if (this.idRestaurant == null || this.dia == null || this.dia.equals("")) {
-				json.append(createEmptyJSON());
+				json.append(Utils.createEmptyJSON());
 			} else {
-				Date date = getDate(this.dia);
+				Date date = Utils.getDate(this.dia);
 				ConfigRestaurant connfigrestaurant = this.configRestaurantBo.load(date, this.idRestaurant);
 				if(connfigrestaurant==null ||connfigrestaurant.getHores()==null || connfigrestaurant.getHores().equals("")){
 					Restaurant restaurant = this.restaurantsBo.load(idRestaurant, false, false, false);
@@ -134,7 +134,7 @@ public class MantenimentConfigAction extends ActionSupport implements ServletRes
 
 			}
 		} catch (Exception e) {
-			json.append(createErrorJSON("error in ajax action"));
+			json.append(Utils.createErrorJSON("error in ajax action"));
 		}
 
 		try {
@@ -220,38 +220,6 @@ public class MantenimentConfigAction extends ActionSupport implements ServletRes
 			}
 		}
 		Collections.sort(restaurantBasicList);
-	}
-
-	private String createErrorJSON( String error ){
-
-		StringBuffer jsonSB = new StringBuffer("{");
-		jsonSB.append("\"error\":\"" + error + "\"");
-		jsonSB.append("}");
-		return jsonSB.toString();
-	}
-
-	private String createEmptyJSON(){
-
-		StringBuffer jsonSB = new StringBuffer("{");
-		jsonSB.append("}");
-		return jsonSB.toString();
-	}
-
-	private Date getDate( String dia ) throws RuntimeException{
-
-		String[] diaS = dia.split("-");
-		if (diaS.length != 3) {
-			throw new RuntimeException("wrong dia");
-		}
-
-		String numDia = diaS[0];
-		String month = diaS[1];
-		String year = diaS[2];
-
-		Calendar calendar = Calendar.getInstance();
-		calendar.set(Integer.parseInt(year), (Integer.parseInt(month)-1), Integer.parseInt(numDia));
-		return calendar.getTime();
-
 	}
 
 	// Getters i setters

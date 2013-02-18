@@ -66,12 +66,7 @@ public class WelcomeComandaAction extends ActionSupport implements ServletRespon
 	private Long				idPlat				= null;
 	private Long				idBeguda			= null;
 	private Integer				idRestaurant		= null;
-	private String				hora;
-	private Date				dia;
-	private String				aDomicili;
-	private String				targeta;
 	private Integer				nplats				= null;
-	private String				address;
 	private String				data;
 	private String				dataActual;
 	private boolean				promo;
@@ -132,30 +127,6 @@ public class WelcomeComandaAction extends ActionSupport implements ServletRespon
 
 	}
 
-	public String getVins(){
-
-		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-		this.nameAuth = auth.getName();
-
-		this.begudaList = this.begudaBo.getAll("vi",true);
-		this.restaurantList = this.restaurantsBo.getAll(true, false, false);
-
-		return SUCCESS;
-
-	}
-	
-	public String getRefrescos(){
-
-		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-		this.nameAuth = auth.getName();
-
-		this.begudaList = this.begudaBo.getAll("refresc",false);
-		this.restaurantList = this.restaurantsBo.getAll(true, false, false);
-
-		return SUCCESS;
-
-	}
-
 	public String checkComandaPromos(){
 
 		ServletOutputStream out = null;
@@ -168,7 +139,7 @@ public class WelcomeComandaAction extends ActionSupport implements ServletRespon
 			this.nameAuth = auth.getName();
 
 			if (this.nameAuth.equals("anonymousUser")) {
-				json = createNotLogedJSON("User not loged. Login before...");
+				json = Utils.createNotLogedJSON("User not loged. Login before...");
 			} else {
 				inizilizeComandaId();
 
@@ -185,58 +156,9 @@ public class WelcomeComandaAction extends ActionSupport implements ServletRespon
 			}
 
 		} catch (ComandaException ce) {
-			json = createErrorJSON("error in comanda service action");
+			json = Utils.createErrorJSON("error in comanda service action");
 		} catch (Exception e) {
-			json = createErrorJSON("error in ajax action");
-		}
-
-		try {
-			out.print(json);
-		} catch (IOException e) {
-			throw new GeneralException(e, "possibly ServletOutputStream null");
-		}
-		return null;
-	}
-
-	public String checkComanda(){
-
-		ServletOutputStream out = null;
-		String json = "";
-		ResourceBundle resource = getTexts("MessageResources");
-
-		try {
-			out = this.response.getOutputStream();
-			Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-			this.nameAuth = auth.getName();
-
-			if (this.nameAuth.equals("anonymousUser")) {
-				json = createNotLogedJSON("User not loged. Login before...");
-			} else {
-				inizilizeComandaId();
-				inizilizeComandaDiaHoraADomicili();
-				inizializeAddress();
-
-				this.comanda = this.comandaBo.load(this.idComanda);
-
-				this.comanda.setHora(Utils.getHora(this.hora));
-				this.comanda.setDia(this.dia);
-				this.comanda.setaDomicili(Boolean.valueOf(aDomicili));
-				this.comanda.setTargeta(Boolean.valueOf(targeta));
-				this.comanda.setAddress(this.address);
-
-				if (this.comanda.getUser() == null) {
-					Users user = this.usersBo.findByUsername(this.nameAuth);
-					this.comanda.setUser(user);
-				}
-				this.comanda.setPreu(this.comandaService.getPreuOfComanda(comanda));
-				this.comandaBo.update(this.comanda);
-				json = this.comandaService.checkComandaProblems(this.comanda, resource);
-			}
-
-		} catch (ComandaException ce) {
-			json = createErrorJSON("error in comanda service action");
-		} catch (Exception e) {
-			json = createErrorJSON("error in ajax action");
+			json = Utils.createErrorJSON("error in ajax action");
 		}
 
 		try {
@@ -269,9 +191,9 @@ public class WelcomeComandaAction extends ActionSupport implements ServletRespon
 			json= jsonSB.toString();
 			
 		} catch (ComandaException ce) {
-			json = createErrorJSON("error in comanda service action");
+			json = Utils.createErrorJSON("error in comanda service action");
 		} catch (Exception e) {
-			json = createErrorJSON("error in ajax action");
+			json = Utils.createErrorJSON("error in ajax action");
 		}
 
 		try {
@@ -314,9 +236,9 @@ public class WelcomeComandaAction extends ActionSupport implements ServletRespon
 
 			}
 		} catch (ComandaException ce) {
-			json = createErrorJSON("error in comanda service action");
+			json = Utils.createErrorJSON("error in comanda service action");
 		} catch (Exception e) {
-			json = createErrorJSON("error in ajax action");
+			json = Utils.createErrorJSON("error in ajax action");
 		}
 
 		try {
@@ -387,9 +309,9 @@ public class WelcomeComandaAction extends ActionSupport implements ServletRespon
 				
 			}
 		} catch (ComandaException ce) {
-			json = createErrorJSON("error in comanda service action");
+			json = Utils.createErrorJSON("error in comanda service action");
 		} catch (Exception e) {
-			json = createErrorJSON("error in ajax action");
+			json = Utils.createErrorJSON("error in ajax action");
 		}
 
 		try {
@@ -454,9 +376,9 @@ public class WelcomeComandaAction extends ActionSupport implements ServletRespon
 
 			}
 		} catch (ComandaException ce) {
-			json = createErrorJSON("error in comanda service action");
+			json = Utils.createErrorJSON("error in comanda service action");
 		} catch (Exception e) {
-			json = createErrorJSON("error in ajax action");
+			json = Utils.createErrorJSON("error in ajax action");
 		}
 
 		try {
@@ -487,9 +409,9 @@ public class WelcomeComandaAction extends ActionSupport implements ServletRespon
 			json = "{\"hora\":\""+hora+"\"}";
 
 		} catch (ComandaException ce) {
-			json = createErrorJSON("error in comanda service action");
+			json = Utils.createErrorJSON("error in comanda service action");
 		} catch (Exception e) {
-			json = createErrorJSON("error in ajax action");
+			json = Utils.createErrorJSON("error in ajax action");
 		}
 
 		try {
@@ -524,9 +446,9 @@ public class WelcomeComandaAction extends ActionSupport implements ServletRespon
 			json = gson.toJson(horesDTO);
 
 		} catch (ComandaException ce) {
-			json = createErrorJSON("error in comanda service action");
+			json = Utils.createErrorJSON("error in comanda service action");
 		} catch (Exception e) {
-			json = createErrorJSON("error in ajax action");
+			json = Utils.createErrorJSON("error in ajax action");
 		}
 
 		try {
@@ -590,9 +512,9 @@ public class WelcomeComandaAction extends ActionSupport implements ServletRespon
 			this.comandaService.deleteBegudesPromo(this.comanda);
 
 		} catch (ComandaException ce) {
-			json = createErrorJSON("error in comanda service action");
+			json = Utils.createErrorJSON("error in comanda service action");
 		} catch (Exception e) {
-			json = createErrorJSON("error in ajax action");
+			json = Utils.createErrorJSON("error in ajax action");
 		}
 
 		try {
@@ -617,7 +539,7 @@ public class WelcomeComandaAction extends ActionSupport implements ServletRespon
 	
 	private void inizializeComments(){
 		
-		List<Plat> list = new ArrayList();
+		List<Plat> list = new ArrayList<Plat>();
 		
 		for(Plat plt : this.platList){			
 			  list.add(this.platsBo.loadPLatAndForos(plt.getId()));			
@@ -632,22 +554,6 @@ public class WelcomeComandaAction extends ActionSupport implements ServletRespon
 		String name = auth.getName();
 		return this.usersBo.findByUsername(name);
 
-	}
-
-	private String createErrorJSON( String error ){
-
-		StringBuffer jsonSB = new StringBuffer("{");
-		jsonSB.append("\"error\":\"" + error);
-		jsonSB.append("\"}");
-		return jsonSB.toString();
-	}
-
-	private String createNotLogedJSON( String error ){
-
-		StringBuffer jsonSB = new StringBuffer("{");
-		jsonSB.append("\"alertLoged\":\"" + error + "\"");
-		jsonSB.append("}");
-		return jsonSB.toString();
 	}
 
 	private void inizilizeDadesComandaPlat() throws WrongParamException{
@@ -674,15 +580,6 @@ public class WelcomeComandaAction extends ActionSupport implements ServletRespon
 		this.data = (request.getParameter("data") == null || request.getParameter("data").equals("")) ? null : request.getParameter("data");
 		if (this.data == null) {
 			throw new WrongParamException("null data of comanda");
-		}
-	}
-
-	private void inizializeAddress() throws WrongParamException{
-
-		this.address = (request.getParameter("address") == null || request.getParameter("address").equals("")) ? null : request
-				.getParameter("address");
-		if (this.address == null) {
-			throw new WrongParamException("null address of comanda");
 		}
 	}
 
@@ -715,24 +612,6 @@ public class WelcomeComandaAction extends ActionSupport implements ServletRespon
 			throw new WrongParamException("wrong id of comanda");
 		}
 
-	}
-
-	private void inizilizeComandaDiaHoraADomicili() throws WrongParamException{
-
-		try {
-
-			this.hora = (request.getParameter("hora") == null || request.getParameter("hora").equals("")) ? null : request
-					.getParameter("hora");
-			this.dia = (request.getParameter("dia") == null || request.getParameter("dia").equals("")) ? null : Utils.getDate2(request
-					.getParameter("dia"));
-			this.aDomicili = (request.getParameter("aDomicili") == null || request.getParameter("aDomicili").equals("")) ? null : request
-					.getParameter("aDomicili");
-			this.targeta = (request.getParameter("targeta") == null || request.getParameter("targeta").equals("")) ? null : request
-					.getParameter("targeta");
-
-		} catch (Exception e) {
-			throw new WrongParamException("wrong id of comanda");
-		}
 	}
 
 	private void getUserAllInfoFromContext(){
@@ -972,6 +851,4 @@ public class WelcomeComandaAction extends ActionSupport implements ServletRespon
 	public void setBegudaComandaList(List<BegudaComanda> begudaComandaList) {
 		this.begudaComandaList = begudaComandaList;
 	}
-
-	
 }

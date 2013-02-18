@@ -96,7 +96,9 @@ public class WelcomeAction extends ActionSupport implements ServletResponseAware
 
 		this.localeToChange = request.getParameter("locale");
 	}
-
+	
+	
+	//GETTERS i SETTERS
 	public HttpServletResponse getServletResponse(){
 
 		return this.response;

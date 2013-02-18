@@ -21,6 +21,7 @@ import com.online.model.Restaurant;
 import com.online.model.Users;
 import com.online.pojos.RestaurantTable;
 import com.online.pojos.UsersTable;
+import com.online.utils.Utils;
 import com.opensymphony.xwork2.ActionSupport;
 
 
@@ -64,11 +65,11 @@ public class MantenimentUsuarisAction extends ActionSupport implements ServletRe
 			
 
 		} catch (BOException boe) {
-			json = createErrorJSON("error in ajax action: Error in BO");
+			json = Utils.createErrorJSON("error in ajax action: Error in BO");
 		} catch (NumberFormatException e) {
-			json = createErrorJSON("error in ajax action: wrong params"+ e.getMessage());
+			json = Utils.createErrorJSON("error in ajax action: wrong params"+ e.getMessage());
 		} catch (Exception e) {
-			json = createErrorJSON("error in ajax action");
+			json = Utils.createErrorJSON("error in ajax action");
 		}
 
 		try {
@@ -89,9 +90,9 @@ public class MantenimentUsuarisAction extends ActionSupport implements ServletRe
 			inizializeTableParams();		
 			json = searchInfoANDcreateJSONForUsuaris();
 		} catch (NumberFormatException e) {
-			json = createErrorJSON("error in ajax action: wrong params");
+			json = Utils.createErrorJSONForDataTable("error in ajax action: wrong params",this.sEcho);		
 		} catch (Exception e) {
-			json = createErrorJSON("error in ajax action");
+			json = Utils.createErrorJSONForDataTable("error in ajax action",this.sEcho);
 		}
 
 		try {
@@ -135,22 +136,7 @@ public class MantenimentUsuarisAction extends ActionSupport implements ServletRe
 		return jsonSB.toString();
 
 	}
-	private String createErrorJSON( String error ){
-
-		StringBuffer jsonSB = new StringBuffer("{");
-		jsonSB.append("\"sEcho\": " + sEcho + ",\"error\":\"" + error
-				+ "\" ,\"iTotalRecords\":\"0\", \"iTotalDisplayRecords\":\"0\", \"aaData\":  []");
-		jsonSB.append("}");
-		return jsonSB.toString();
-	}
-
-	private String createEmptyJSON(){
-
-		StringBuffer jsonSB = new StringBuffer("{");
-		jsonSB.append("\"sEcho\": " + sEcho + ",\"iTotalRecords\":\"0\", \"iTotalDisplayRecords\":\"0\", \"aaData\":  []");
-		jsonSB.append("}");
-		return jsonSB.toString();
-	}
+	
 	private void inizializeTableParams() throws NumberFormatException{
 		
 		this.sEcho = request.getParameter("sEcho");
