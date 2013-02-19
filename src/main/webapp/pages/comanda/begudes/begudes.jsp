@@ -139,9 +139,13 @@
 	<script type="text/javascript" src="<c:url value='/js/slider/coin-slider.min.js' />"></script>	
 	<script src="<c:url value='/pages/comanda/begudes/jsbegudes.js'/>" type="text/javascript"></script>
 	<script type="text/javascript" >
-		var initParams = new InitParams("<s:text name='txt.welcome.confirmar' />","<s:text name='txt.welcome.productes' />","<s:text name='txt.welcome.producte' />");
+		var initParams = new InitParams("<s:text name='txt.welcome.confirmar' />","<s:text name='txt.welcome.productes' />",
+										"<s:text name='txt.welcome.producte' />","<s:text name='txt.avis.restaurant.tancat' />",
+										"<s:text name='txt.comanda.existeix.vol.continuar' />");
 	</script>
-	<c:import url="/pages/includes/alertOnline.jsp" />
+	
+	<c:import url="/pages/includes/confirmOnline.jsp" />
 	<c:import url="/pages/includes/errorAjax.jsp" />
+	<c:import url="/pages/includes/alertOnline.jsp" />
 </body>
 </html>

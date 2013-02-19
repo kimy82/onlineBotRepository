@@ -89,6 +89,7 @@ public class WelcomeComandaAction extends ActionSupport implements ServletRespon
 	private Integer				totalPage;
 	private Integer				rppPage =9;
 	private String				order="";
+	private String				dataAvui;
 
 
 	public String execute(){
@@ -119,6 +120,7 @@ public class WelcomeComandaAction extends ActionSupport implements ServletRespon
 
 		this.restaurantList = this.restaurantsBo.getAll(true, false, false);
 		
+		this.dataAvui = Utils.formatDate2(new Date());
 		// si teniem una comanda la recuperem
 		if (this.idComanda != null) {
 			goToPas1Action();
@@ -852,4 +854,13 @@ public class WelcomeComandaAction extends ActionSupport implements ServletRespon
 	public void setBegudaComandaList(List<BegudaComanda> begudaComandaList) {
 		this.begudaComandaList = begudaComandaList;
 	}
+
+	public String getDataAvui() {
+		return dataAvui;
+	}
+
+	public void setDataAvui(String dataAvui) {
+		this.dataAvui = dataAvui;
+	}
+	
 }

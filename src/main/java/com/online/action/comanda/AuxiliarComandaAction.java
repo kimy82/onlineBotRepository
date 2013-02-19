@@ -1,6 +1,7 @@
 package com.online.action.comanda;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -15,6 +16,7 @@ import com.online.bo.BegudaBo;
 import com.online.bo.RestaurantsBo;
 import com.online.model.Beguda;
 import com.online.model.Restaurant;
+import com.online.utils.Utils;
 import com.opensymphony.xwork2.ActionSupport;
 
 public class AuxiliarComandaAction extends ActionSupport implements ServletResponseAware, ServletRequestAware{
@@ -30,6 +32,7 @@ public class AuxiliarComandaAction extends ActionSupport implements ServletRespo
 	private List<Restaurant>	restaurantList;
 	
 	private String				nameAuth;
+	private String				dataAvui;
 
 	HttpServletResponse			response;
 	HttpServletRequest			request;
@@ -47,6 +50,7 @@ public class AuxiliarComandaAction extends ActionSupport implements ServletRespo
 
 		this.begudaList = this.begudaBo.getAll("vi",true);
 		this.restaurantList = this.restaurantsBo.getAll(true, false, false);
+		this.dataAvui = Utils.formatDate2(new Date());
 
 		return SUCCESS;
 
@@ -59,6 +63,7 @@ public class AuxiliarComandaAction extends ActionSupport implements ServletRespo
 
 		this.begudaList = this.begudaBo.getAll("refresc",false);
 		this.restaurantList = this.restaurantsBo.getAll(true, false, false);
+		this.dataAvui = Utils.formatDate2(new Date());
 
 		return SUCCESS;
 
@@ -124,4 +129,12 @@ public class AuxiliarComandaAction extends ActionSupport implements ServletRespo
 	
 		this.restaurantList = restaurantList;
 	}
+	public String getDataAvui() {
+		return dataAvui;
+	}
+
+	public void setDataAvui(String dataAvui) {
+		this.dataAvui = dataAvui;
+	}
+	
 }
