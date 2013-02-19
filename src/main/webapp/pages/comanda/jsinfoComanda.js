@@ -60,6 +60,44 @@ function initAddress(){
 	
 }
 
+function goToRestaurantMenu(id){
+	var comanda = window.localStorage.getItem("comanda");
+	var data = window.localStorage.getItem("comanda.data");
+	if(comanda != 'undefined' && comanda != null){
+		acceptComandaDialog();
+	}else{
+		window.location.href="/"+context+"/comanda/Welcome.action?restaurantId="+id+"&data="+dataInicialComanda;
+	}
+}
+
+var actionCloseConfirm = function(){
+	var data = window.localStorage.getItem("comanda.data");
+	var idRestaurant = window.localStorage.getItem("comanda.restaurant");
+	if(idRestaurant=='undefined' || idRestaurant==null) return;
+	window.localStorage.clear();	
+	window.localStorage.setItem("comanda.data",data);
+	window.localStorage.setItem("comanda.restaurant",idRestaurant);
+	window.location.href="/"+context+"/comanda/Welcome.action?restaurantId="+idRestaurant+"&data="+data;
+}
+
+function acceptComandaDialog(){
+	confirmOnline.closeSetFunc(actionCloseConfirm);
+	confirmOnline.confirm(initParams.txtconfirmcontinuar,confirmComanda);
+}
+
+var confirmComanda = function (){
+									var comanda = window.localStorage.getItem("comanda");
+									var idRestaurant = window.localStorage.getItem("comanda.restaurant");
+									if(idRestaurant=='undefined' || idRestaurant==null) return;
+									if($("#list_rest_"+idRestaurant).hasClass("tancat")){
+										alertOnline.alertes(initParams.txtavisrestauranttancat);	
+									}
+									if(comanda != 'undefined' && comanda != null){
+										var data = window.localStorage.getItem("comanda.data");
+										window.location.href="/"+context+"/comanda/Welcome.action?restaurantId="+idRestaurant+"&idComanda="+comanda+"&data="+data;
+									}
+								}
+
 function reloadHores(){
 	var dia = $("#dia").val();
 	var data = window.localStorage.setItem("comanda.data",dia);

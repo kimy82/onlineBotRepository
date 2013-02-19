@@ -46,6 +46,7 @@ public class WelcomeAction extends ActionSupport implements ServletResponseAware
 			session.put("WW_TRANS_I18N_LOCALE", new Locale("ca"));
 		
 		this.restaurantList = this.restaurantsBo.getAll(true, false, false);
+		
 		inizializePagin();
 		if(this.restaurantList.size()>this.rppPage)
 			this.restaurantList = this.restaurantList.subList(actualPage*rppPage, (actualPage+1)*rppPage);

@@ -240,11 +240,14 @@
 			$("#preu").text('${requestScope.comanda.preu}');   
 			var dataActual = '${requestScope.dataActual}';
 			var idRestaurant = '${requestScope.restaurant.id}';
+			window.localStorage.setItem("comanda.restaurant",idRestaurant);
 	</script>
 	<script src="<c:url value='/pages/comanda/jswelcome.js'/>" type="text/javascript"></script>
 	
 	<script type="text/javascript" >
-		var initParams = new InitParams("<s:text name='txt.welcome.confirmar' />","<s:text name='txt.welcome.productes' />","<s:text name='txt.welcome.producte' />");
+		var initParams = new InitParams("<s:text name='txt.welcome.confirmar' />","<s:text name='txt.welcome.productes' />",
+										"<s:text name='txt.welcome.producte' />","<s:text name='txt.comanda.existeix.vol.continuar' />",
+										"<s:text name='txt.avis.restaurant.tancat' />");
 	</script>
 	<c:import url="/pages/includes/confirmOnline.jsp" />
 	<c:import url="/pages/includes/alertOnline.jsp" />

@@ -32,6 +32,8 @@ La comanda s'ha realitzat.
 	<script src="<c:url value='/js/jquery/jquery.ui.resizable.js'/>" type="text/javascript"></script>
 	<script src="<c:url value='/js/jquery/jquery.effects.core.js'/>" type="text/javascript"></script>
 	<script src="<c:url value='/js/jquery/jquery.bgiframe-2.1.1.js'/>" type="text/javascript"></script>
-
+	<script type="text/javascript" >
+		window.localStorage.clear();
+	</script>
 </body>
 </html>

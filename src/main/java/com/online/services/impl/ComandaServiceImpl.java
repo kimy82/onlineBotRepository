@@ -252,7 +252,8 @@ public class ComandaServiceImpl implements ComandaService{
 
 		Set<Restaurant> restaurantSet = getRestaurants(comanda);
 		Iterator iteraRestaurant = restaurantSet.iterator();
-
+		boolean secondRestaurant=false;
+		HoresDTO horesDTOSecond = new HoresDTO();
 		while (iteraRestaurant.hasNext()) {
 
 			Restaurant restaurant = (Restaurant) iteraRestaurant.next();
@@ -278,77 +279,154 @@ public class ComandaServiceImpl implements ComandaService{
 						nextHour = Integer.parseInt(String.valueOf(hour + 2) + "30");
 					}
 				}
-				for (String hora : horesArray) {
-					if (hora.equals("")) {
-
-					} else if (hora.equals("0800") && nextHour <= 800) {
-						horesDTO.set_0800("true");
-					} else if (hora.equals("0830") && nextHour <= 830) {
-						horesDTO.set_0830("true");
-					} else if (hora.equals("0900") && nextHour <= 900) {
-						horesDTO.set_0900("true");
-					} else if (hora.equals("0930") && nextHour <= 930) {
-						horesDTO.set_0930("true");
-					} else if (hora.equals("1000") && nextHour <= 1000) {
-						horesDTO.set_1000("true");
-					} else if (hora.equals("1030") && nextHour <= 1030) {
-						horesDTO.set_1030("true");
-					} else if (hora.equals("1100") && nextHour <= 1100) {
-						horesDTO.set_1100("true");
-					} else if (hora.equals("1130") && nextHour <= 1130) {
-						horesDTO.set_1130("true");
-					} else if (hora.equals("1200") && nextHour <= 1200) {
-						horesDTO.set_1200("true");
-					} else if (hora.equals("1230") && nextHour <= 1230) {
-						horesDTO.set_1230("true");
-					} else if (hora.equals("1300") && nextHour <= 1300) {
-						horesDTO.set_1300("true");
-					} else if (hora.equals("1330") && nextHour <= 1330) {
-						horesDTO.set_1330("true");
-					} else if (hora.equals("1400") && nextHour <= 1400) {
-						horesDTO.set_1400("true");
-					} else if (hora.equals("1430") && nextHour <= 1430) {
-						horesDTO.set_1430("true");
-					} else if (hora.equals("1500") && nextHour <= 1500) {
-						horesDTO.set_1500("true");
-					} else if (hora.equals("1530") && nextHour <= 1530) {
-						horesDTO.set_1530("true");
-					} else if (hora.equals("1600") && nextHour <= 1600) {
-						horesDTO.set_1600("true");
-					} else if (hora.equals("1630") && nextHour <= 1630) {
-						horesDTO.set_1630("true");
-					} else if (hora.equals("1700") && nextHour <= 1700) {
-						horesDTO.set_1700("true");
-					} else if (hora.equals("1730") && nextHour <= 1730) {
-						horesDTO.set_1730("true");
-					} else if (hora.equals("1800") && nextHour <= 1800) {
-						horesDTO.set_1800("true");
-					} else if (hora.equals("1830") && nextHour <= 1830) {
-						horesDTO.set_1830("true");
-					} else if (hora.equals("1900") && nextHour <= 1900) {
-						horesDTO.set_1900("true");
-					} else if (hora.equals("1930") && nextHour <= 1930) {
-						horesDTO.set_1930("true");
-					} else if (hora.equals("2000") && nextHour <= 2000) {
-						horesDTO.set_2000("true");
-					} else if (hora.equals("2030") && nextHour <= 2030) {
-						horesDTO.set_2030("true");
-					} else if (hora.equals("2100") && nextHour <= 2100) {
-						horesDTO.set_2100("true");
-					} else if (hora.equals("2130") && nextHour <= 2130) {
-						horesDTO.set_2130("true");
-					} else if (hora.equals("2200") && nextHour <= 2200) {
-						horesDTO.set_2200("true");
-					} else if (hora.equals("2230") && nextHour <= 2230) {
-						horesDTO.set_2230("true");
-					} else if (hora.equals("2300") && nextHour <= 2300) {
-						horesDTO.set_2300("true");
-					} else if (hora.equals("2330") && nextHour <= 2330) {
-						horesDTO.set_2330("true");
-					} else if (hora.equals("2400") && nextHour <= 2400) {
-						horesDTO.set_2400("true");
+				if(secondRestaurant==false){
+					for (String hora : horesArray) {
+						if (hora.equals("")) {
+	
+						} else if (hora.equals("0800") && nextHour <= 800) {
+							horesDTO.set_0800("true");
+						} else if (hora.equals("0830") && nextHour <= 830) {
+							horesDTO.set_0830("true");
+						} else if (hora.equals("0900") && nextHour <= 900) {
+							horesDTO.set_0900("true");
+						} else if (hora.equals("0930") && nextHour <= 930) {
+							horesDTO.set_0930("true");
+						} else if (hora.equals("1000") && nextHour <= 1000) {
+							horesDTO.set_1000("true");
+						} else if (hora.equals("1030") && nextHour <= 1030) {
+							horesDTO.set_1030("true");
+						} else if (hora.equals("1100") && nextHour <= 1100) {
+							horesDTO.set_1100("true");
+						} else if (hora.equals("1130") && nextHour <= 1130) {
+							horesDTO.set_1130("true");
+						} else if (hora.equals("1200") && nextHour <= 1200) {
+							horesDTO.set_1200("true");
+						} else if (hora.equals("1230") && nextHour <= 1230) {
+							horesDTO.set_1230("true");
+						} else if (hora.equals("1300") && nextHour <= 1300) {
+							horesDTO.set_1300("true");
+						} else if (hora.equals("1330") && nextHour <= 1330) {
+							horesDTO.set_1330("true");
+						} else if (hora.equals("1400") && nextHour <= 1400) {
+							horesDTO.set_1400("true");
+						} else if (hora.equals("1430") && nextHour <= 1430) {
+							horesDTO.set_1430("true");
+						} else if (hora.equals("1500") && nextHour <= 1500) {
+							horesDTO.set_1500("true");
+						} else if (hora.equals("1530") && nextHour <= 1530) {
+							horesDTO.set_1530("true");
+						} else if (hora.equals("1600") && nextHour <= 1600) {
+							horesDTO.set_1600("true");
+						} else if (hora.equals("1630") && nextHour <= 1630) {
+							horesDTO.set_1630("true");
+						} else if (hora.equals("1700") && nextHour <= 1700) {
+							horesDTO.set_1700("true");
+						} else if (hora.equals("1730") && nextHour <= 1730) {
+							horesDTO.set_1730("true");
+						} else if (hora.equals("1800") && nextHour <= 1800) {
+							horesDTO.set_1800("true");
+						} else if (hora.equals("1830") && nextHour <= 1830) {
+							horesDTO.set_1830("true");
+						} else if (hora.equals("1900") && nextHour <= 1900) {
+							horesDTO.set_1900("true");
+						} else if (hora.equals("1930") && nextHour <= 1930) {
+							horesDTO.set_1930("true");
+						} else if (hora.equals("2000") && nextHour <= 2000) {
+							horesDTO.set_2000("true");
+						} else if (hora.equals("2030") && nextHour <= 2030) {
+							horesDTO.set_2030("true");
+						} else if (hora.equals("2100") && nextHour <= 2100) {
+							horesDTO.set_2100("true");
+						} else if (hora.equals("2130") && nextHour <= 2130) {
+							horesDTO.set_2130("true");
+						} else if (hora.equals("2200") && nextHour <= 2200) {
+							horesDTO.set_2200("true");
+						} else if (hora.equals("2230") && nextHour <= 2230) {
+							horesDTO.set_2230("true");
+						} else if (hora.equals("2300") && nextHour <= 2300) {
+							horesDTO.set_2300("true");
+						} else if (hora.equals("2330") && nextHour <= 2330) {
+							horesDTO.set_2330("true");
+						} else if (hora.equals("2400") && nextHour <= 2400) {
+							horesDTO.set_2400("true");
+						}
 					}
 				}
+				if(secondRestaurant){
+					for (String hora : horesArray) {
+						if (hora.equals("")) {
+	
+						} else if (hora.equals("0800") && nextHour <= 800 && horesDTO.get_0800().equals("true") ) {
+							horesDTOSecond.set_0800("true");
+						} else if (hora.equals("0830") && nextHour <= 830 && horesDTO.get_0830().equals("true")) {
+							horesDTOSecond.set_0830("true");
+						} else if (hora.equals("0900") && nextHour <= 900 && horesDTO.get_0900().equals("true")) {
+							horesDTOSecond.set_0900("true");
+						} else if (hora.equals("0930") && nextHour <= 930 && horesDTO.get_0930().equals("true")) {
+							horesDTOSecond.set_0930("true");
+						} else if (hora.equals("1000") && nextHour <= 1000 && horesDTO.get_1000().equals("true")) {
+							horesDTOSecond.set_1000("true");
+						} else if (hora.equals("1030") && nextHour <= 1030 && horesDTO.get_1030().equals("true")) {
+							horesDTOSecond.set_1030("true");
+						} else if (hora.equals("1100") && nextHour <= 1100 && horesDTO.get_1100().equals("true")) {
+							horesDTOSecond.set_1100("true");
+						} else if (hora.equals("1130") && nextHour <= 1130 && horesDTO.get_1130().equals("true")) {
+							horesDTOSecond.set_1130("true");
+						} else if (hora.equals("1200") && nextHour <= 1200 && horesDTO.get_1200().equals("true")) {
+							horesDTOSecond.set_1200("true");
+						} else if (hora.equals("1230") && nextHour <= 1230 && horesDTO.get_1230().equals("true")) {
+							horesDTOSecond.set_1230("true");
+						} else if (hora.equals("1300") && nextHour <= 1300 && horesDTO.get_1300().equals("true")) {
+							horesDTOSecond.set_1300("true");
+						} else if (hora.equals("1330") && nextHour <= 1330 && horesDTO.get_1330().equals("true")) {
+							horesDTOSecond.set_1330("true");
+						} else if (hora.equals("1400") && nextHour <= 1400 && horesDTO.get_1400().equals("true")) {
+							horesDTOSecond.set_1400("true");
+						} else if (hora.equals("1430") && nextHour <= 1430 && horesDTO.get_1430().equals("true")) {
+							horesDTOSecond.set_1430("true");
+						} else if (hora.equals("1500") && nextHour <= 1500 && horesDTO.get_1500().equals("true")) {
+							horesDTOSecond.set_1500("true");
+						} else if (hora.equals("1530") && nextHour <= 1530 && horesDTO.get_1530().equals("true")) {
+							horesDTOSecond.set_1530("true");
+						} else if (hora.equals("1600") && nextHour <= 1600 && horesDTO.get_1600().equals("true")) {
+							horesDTOSecond.set_1600("true");
+						} else if (hora.equals("1630") && nextHour <= 1630 && horesDTO.get_1630().equals("true")) {
+							horesDTOSecond.set_1630("true");
+						} else if (hora.equals("1700") && nextHour <= 1700 && horesDTO.get_1700().equals("true")) {
+							horesDTOSecond.set_1700("true");
+						} else if (hora.equals("1730") && nextHour <= 1730 && horesDTO.get_1730().equals("true")) {
+							horesDTOSecond.set_1730("true");
+						} else if (hora.equals("1800") && nextHour <= 1800 && horesDTO.get_1800().equals("true")) {
+							horesDTOSecond.set_1800("true");
+						} else if (hora.equals("1830") && nextHour <= 1830 && horesDTO.get_1830().equals("true")) {
+							horesDTOSecond.set_1830("true");
+						} else if (hora.equals("1900") && nextHour <= 1900 && horesDTO.get_1900().equals("true")) {
+							horesDTOSecond.set_1900("true");
+						} else if (hora.equals("1930") && nextHour <= 1930 && horesDTO.get_1930().equals("true")) {
+							horesDTOSecond.set_1930("true");
+						} else if (hora.equals("2000") && nextHour <= 2000 && horesDTO.get_2000().equals("true")) {
+							horesDTOSecond.set_2000("true");
+						} else if (hora.equals("2030") && nextHour <= 2030 && horesDTO.get_2030().equals("true")) {
+							horesDTOSecond.set_2030("true");
+						} else if (hora.equals("2100") && nextHour <= 2100 && horesDTO.get_2100().equals("true")) {
+							horesDTOSecond.set_2100("true");
+						} else if (hora.equals("2130") && nextHour <= 2130 && horesDTO.get_2130().equals("true")) {
+							horesDTOSecond.set_2130("true");
+						} else if (hora.equals("2200") && nextHour <= 2200 && horesDTO.get_2200().equals("true")) {
+							horesDTOSecond.set_2200("true");
+						} else if (hora.equals("2230") && nextHour <= 2230 && horesDTO.get_2230().equals("true")) {
+							horesDTOSecond.set_2230("true");
+						} else if (hora.equals("2300") && nextHour <= 2300 && horesDTO.get_2300().equals("true")) {
+							horesDTOSecond.set_2300("true");
+						} else if (hora.equals("2330") && nextHour <= 2330 && horesDTO.get_2330().equals("true")) {
+							horesDTOSecond.set_2330("true");
+						} else if (hora.equals("2400") && nextHour <= 2400 && horesDTO.get_2400().equals("true")) {
+							horesDTOSecond.set_2400("true");
+						}
+					}
+					horesDTO = horesDTOSecond;
+				}
+				secondRestaurant=true;
 			}
 		}
 

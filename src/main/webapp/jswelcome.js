@@ -1,7 +1,7 @@
 ///////////////////////////////////
 //variables per textos en locale
 var initParams=null ;
-function InitParams(txtconfirmcontinuar,txtconfirm,txtproductes,txtproducte,txtguardat,txtwrongemail){		
+function InitParams(txtconfirmcontinuar,txtconfirm,txtproductes,txtproducte,txtguardat,txtwrongemail, txtavisrestauranttancat){		
 	
 	this.txtconfirmcontinuar= txtconfirmcontinuar;
 	this.txtconfirm = txtconfirm;
@@ -9,6 +9,7 @@ function InitParams(txtconfirmcontinuar,txtconfirm,txtproductes,txtproducte,txtg
 	this.txtproducte = txtproducte;
 	this.txtguardat = txtguardat; 
 	this.txtwrongemail = txtwrongemail;
+	this.txtavisrestauranttancat = txtavisrestauranttancat;
 }
 function getDateToday(){
 	var d=new Date();
@@ -18,6 +19,7 @@ function getDateToday(){
 $( ".selector_jq" ).click(function() {
 	var id = $(this).attr("id");
 	confirmComanda.idRestaurant=id;
+	window.localStorage.setItem("comanda.restaurant", id);
 	var comanda = window.localStorage.getItem("comanda");
 	var dataInicialComanda =$("#dataObert_"+id).val();
 	window.localStorage.setItem("comanda.data",dataInicialComanda);
@@ -28,11 +30,18 @@ $( ".selector_jq" ).click(function() {
 	}
 });
 
+function goToRestaurantMenu(id){
+	document.getElementById(id).click();
+}
+
 var actionCloseConfirm = function(){
 	var data = window.localStorage.getItem("comanda.data");
+	var idRestaurant = window.localStorage.getItem("comanda.restaurant");
+	if(idRestaurant=='undefined' || idRestaurant==null) return;
 	window.localStorage.clear();	
 	window.localStorage.setItem("comanda.data",data);
-	window.location.href="/"+context+"/comanda/Welcome.action?restaurantId="+confirmComanda.idRestaurant+"&data="+data;
+	window.localStorage.setItem("comanda.restaurant",idRestaurant);
+	window.location.href="/"+context+"/comanda/Welcome.action?restaurantId="+idRestaurant+"&data="+data;
 }
 
 function acceptComandaDialog(){
@@ -42,9 +51,14 @@ function acceptComandaDialog(){
 
 var confirmComanda = function (){
 									var comanda = window.localStorage.getItem("comanda");
+									var idRestaurant = window.localStorage.getItem("comanda.restaurant");
+									if(idRestaurant=='undefined' || idRestaurant==null) return;
+									if($("#list_rest_"+idRestaurant).hasClass("tancat")){
+										alertOnline.alertes(initParams.txtavisrestauranttancat);	
+									}
 									if(comanda != 'undefined' && comanda != null){
 										var data = window.localStorage.getItem("comanda.data");
-										window.location.href="/"+context+"/comanda/Welcome.action?restaurantId="+confirmComanda.idRestaurant+"&idComanda="+comanda+"&data="+data;
+										window.location.href="/"+context+"/comanda/Welcome.action?restaurantId="+idRestaurant+"&idComanda="+comanda+"&data="+data;
 									}
 								}
 

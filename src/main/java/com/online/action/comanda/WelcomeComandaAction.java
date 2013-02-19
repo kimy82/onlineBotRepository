@@ -118,6 +118,7 @@ public class WelcomeComandaAction extends ActionSupport implements ServletRespon
 		this.dataActual = Utils.formatDate2(new Date());
 
 		this.restaurantList = this.restaurantsBo.getAll(true, false, false);
+		
 		// si teniem una comanda la recuperem
 		if (this.idComanda != null) {
 			goToPas1Action();
@@ -481,7 +482,7 @@ public class WelcomeComandaAction extends ActionSupport implements ServletRespon
 		List<Beguda> begudaList = this.begudaBo.getAll();
 		for (Beguda beguda : begudaList) {
 
-			BasicSub basic = new BasicSub(beguda.getFoto().getId(), beguda.getNom());
+			BasicSub basic = new BasicSub((beguda.getFoto()==null? 0 :beguda.getFoto().getId()), beguda.getNom());
 			basic.setIdSub(beguda.getId());
 			basic.setTipus(beguda.getTipus());
 			basic.setPreu(beguda.getPreu());

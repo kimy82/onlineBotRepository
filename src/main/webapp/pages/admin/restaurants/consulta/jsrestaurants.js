@@ -54,11 +54,8 @@ function deleteRestaurant(id){
 		    return;
 	  }
 	  else {
-			  
 			
-			var idRestaurant = document.getElementById("idRestaurant").value
-			
-			data ="idRestaurant="+idRestaurant;
+			data ="idRestaurant="+id;
 			$.ajax({
 				  type: "POST",
 				  url: '/'+context+'/admin/ajaxDeleteRestaurantAction.action',
