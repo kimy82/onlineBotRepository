@@ -279,6 +279,7 @@ public class WelcomeUserAction extends ActionSupport implements ServletResponseA
 			if (cmdUserTable.getObservacions() == null)
 				cmdUserTable.setObservacions("");
 			cmdUserTable.setPlatsString(getNomPLats(comanda));
+			cmdUserTable.setLinks(getLinksVotacions(comanda));
 			cmdUserTable.setAccio("<a href=\"#\" onclick=\"repeatComanda(" + comanda.getId()
 					+ ")\" ><img src=\"../images/shopping_cart.png\"></a>");
 			comandaTableList.add(cmdUserTable);
@@ -299,11 +300,24 @@ public class WelcomeUserAction extends ActionSupport implements ServletResponseA
 
 		StringBuffer nomPlats = new StringBuffer("");
 		for (PlatComanda platComanda : comanda.getPlats()) {
-			nomPlats.append(platComanda.getPlat().getNom());
+			nomPlats.append(platComanda.getPlat().getNom()+"<br>");
+		}
+		if (nomPlats.length() != 0)
+			nomPlats.setLength(nomPlats.length() - 4);
+
+	
+
+		return nomPlats.toString();
+	}
+	
+	private String getLinksVotacions( Comandes comanda ){
+
+		StringBuffer nomPlats = new StringBuffer("");
+		for (PlatComanda platComanda : comanda.getPlats()) {		
 			nomPlats.append("<a href='#' onclick='goToVotarPlat(" + platComanda.getPlat().getId()+ ")' ><img  src='/onlineBot/images/info.gif' /></a><br>");
 		}
 		if (nomPlats.length() != 0)
-			nomPlats.setLength(nomPlats.length() - 1);
+			nomPlats.setLength(nomPlats.length() - 4);
 
 	
 

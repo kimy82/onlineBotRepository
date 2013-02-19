@@ -35,6 +35,7 @@
 						<tr>
 							<th><s:text name="user.comandes.table.dia" /></th>
 							<th><s:text name="user.comandes.table.plats" /></th>
+							<th><s:text name="user.comandes.table.links" /></th>
 							<th><s:text name="user.comandes.table.preu" /></th>
 							<th><s:text name="user.comandes.table.descripcio" /></th>
 							<th width="40px"></th>

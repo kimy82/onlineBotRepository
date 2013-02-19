@@ -119,6 +119,7 @@
 							<tr>
 								<th><s:text name="mant.retaurants.table.plats.nom" /></th>
 								<th><s:text name="mant.retaurants.table.plats.descripcio" /></th>
+								<th><s:text name="mant.retaurants.table.plats.actiu" /></th>
 								<th><s:text name="mant.retaurants.table.plats.prioritat" /></th>
 								<th><s:text name="mant.retaurants.table.plats.preu" /></th>	
 								<th width="40px" ></th>						

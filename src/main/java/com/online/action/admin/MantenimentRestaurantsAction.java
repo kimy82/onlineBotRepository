@@ -320,6 +320,7 @@ public class MantenimentRestaurantsAction extends ActionSupport implements Servl
 				BeanUtils.copyProperties(plat, platTable);
 				platTable.setAccio("<a href=\"#\" onclick=\"deletePlat("+plat.getId()+")\" ><img src=\"../images/delete.png\"></a>");
 				platTable.setPrioritatPlat("<input type=\"text\" id=\"prior_"+platTable.getId()+"\" value=\""+platTable.getPrioritat()+"\" /><a href=\"#\" onclick=\"changePrioritat("+plat.getId()+")\" ><img src=\"../images/save.png\"></a>");
+				platTable.setActiuPlat((plat.isActiu())? "SI" :"NO");
 				subPlatTableList.add(platTable);
 			}
 			Gson gson = new GsonBuilder().setPrettyPrinting().excludeFieldsWithoutExposeAnnotation().create();

@@ -297,6 +297,7 @@ $(document).ready(function() {
 			                  { "mDataProp":"nom","bSortable": false },
 			                  { "mDataProp":"descripcio", "bSortable": false },
 			                  { "mDataProp":"prioritatPlat", "bSortable": false },
+			                  { "mDataProp":"actiuPlat", "bSortable": false },
 			                  { "mDataProp":"preu", "bSortable": false},
 			                  { "mDataProp":"accio", "bSortable": false}	
 			            ],

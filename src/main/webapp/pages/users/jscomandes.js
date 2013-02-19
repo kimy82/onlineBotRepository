@@ -183,6 +183,7 @@ $(document).ready(function() {
 					 "aoColumns" : [
 					                  { "mDataProp":"dia","bSortable": false, sWidth: '150px' },
 					                  { "mDataProp":"platsString", "bSortable": false, sWidth: '350px' },
+					                  { "mDataProp":"links", "bSortable": false, sWidth: '20px' },
 					                  { "mDataProp":"preu", "bSortable": false, sWidth: '40px' },
 					                  { "mDataProp":"observacions", "bSortable": false, sWidth: '40px' },
 					                  { "mDataProp":"accio", "bSortable": false, sWidth: '40px' }

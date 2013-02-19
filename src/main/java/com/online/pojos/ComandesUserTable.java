@@ -21,6 +21,9 @@ public class ComandesUserTable{
 	private String				platsString;
 	
 	@Expose
+	private String		    	links;
+	
+	@Expose
 	private String		    	observacions;
 
 	@Expose
@@ -90,6 +93,18 @@ public class ComandesUserTable{
 	public void setObservacions( String observacions ){
 	
 		this.observacions = observacions;
+	}
+
+
+	public String getLinks(){
+	
+		return links;
+	}
+
+
+	public void setLinks( String links ){
+	
+		this.links = links;
 	}
 	
 	
