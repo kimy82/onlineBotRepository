@@ -31,6 +31,7 @@ public class NewsletterAction extends ActionSupport implements ServletResponseAw
 	private UsersBo usersBo;
 	
 	private String txtToSend = "";
+	private String target = "news";
 
 	public String execute(){
 		return SUCCESS;
@@ -41,6 +42,7 @@ public class NewsletterAction extends ActionSupport implements ServletResponseAw
 
 		ServletOutputStream out = null;
 		this.txtToSend = request.getParameter("txt");
+		this.target = request.getParameter("target");
 		
 		String json = "{}";
 		try {
@@ -65,13 +67,19 @@ public class NewsletterAction extends ActionSupport implements ServletResponseAw
 	private String[] getEmailsFromUsers(){
 		StringBuffer emails = new StringBuffer(); 		
 		List<Users> users = this.usersBo.getAll();
-		for (Users user : users){
-			emails.append(user.getUsername()+",");
+		
+		if(this.target!=null && this.target.equals("users")){
+			for (Users user : users){
+				emails.append(user.getUsername()+",");
+			}
 		}
-		List<NewsLetter> newsEmails = this.usersBo.getEmailsFromDB();
-		for (NewsLetter email : newsEmails){
-			emails.append(email.getEmail()+",");
-		}		
+		
+		if(this.target!=null && this.target.equals("news")){
+			List<NewsLetter> newsEmails = this.usersBo.getEmailsFromDB();
+			for (NewsLetter email : newsEmails){
+				emails.append(email.getEmail()+",");
+			}		
+		}
 		emails.setLength(emails.length()-1);
 		return emails.toString().split(",");
 	}

@@ -14,8 +14,8 @@ function send(){
 		    return;
 	  }
 	  else {			  				
-			
-			data ="txt="+$('#mytextbox').val();
+			var target = $('#target').val()
+			data ="txt="+$('#mytextbox').val()+"&target="+target;
 			$.ajax({
 				  type: "POST",
 				  url: '/'+context+'/admin/ajaxSendLetterAction.action',
