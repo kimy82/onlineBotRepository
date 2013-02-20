@@ -39,6 +39,13 @@ public class UsersDaoImpl extends HibernateDaoSupport implements UsersDao{
 			getHibernateTemplate().saveOrUpdate(newsletterEmail);
 	}
 
+	public void deleteEmailToDB( Long id ){
+
+		NewsLetter newsLetter =  getHibernateTemplate().load(NewsLetter.class, id);		
+		getHibernateTemplate().delete(newsLetter);
+		
+	}
+	
 	public List<NewsLetter> getEmailsFromDB(){
 		return getHibernateTemplate().loadAll(NewsLetter.class);
 	}

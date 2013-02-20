@@ -25,4 +25,7 @@ public interface UsersDao {
 	List<NewsLetter> getEmailsFromDB();
 	
 	boolean checkUserBeguda( Long idUser, Long idBeguda );
+	
+	public void deleteEmailToDB( Long id );
+	
 }

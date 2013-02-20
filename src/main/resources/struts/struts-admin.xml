@@ -169,10 +169,19 @@
 			method="execute">
 			<result name="success">/pages/admin/usuaris/newsletter/newsletter.jsp</result>		
 		</action>
+		<action name="letterUsuaris" class="com.online.action.admin.MantenimentLetterUsuarisAction"
+			method="execute">
+			<result name="success">/pages/admin/usuaris/newsletter/usuaris/letterUsuaris.jsp</result>		
+		</action>
 		<action name="ajaxSendLetterAction"
 			class="com.online.action.admin.NewsletterAction" method="ajaxSendLetterAction">
 		</action>
-		
+		<action name="ajaxDeleteLetterUserAction"
+			class="com.online.action.admin.MantenimentLetterUsuarisAction" method="ajaxDeleteLetterUserAction">
+		</action>
+		<action name="ajaxTableLetterUsuarisAction"
+			class="com.online.action.admin.MantenimentLetterUsuarisAction" method="ajaxTableLetterUsuarisAction">
+		</action>		
 		<!-- Actions per promocions -->
 		<action name="promocions" class="com.online.action.admin.MantenimentPromocionsAction"
 			method="execute">

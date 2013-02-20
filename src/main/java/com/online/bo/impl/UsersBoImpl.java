@@ -71,6 +71,14 @@ public class UsersBoImpl implements UsersBo{
 		checkUserToDeleteWithId(user);
 		usersDao.delete(user);
 	}
+	
+	public void deleteEmailToDB( Long id ) throws BOException{
+
+		if(id == null || id.equals("")){
+			throw new BOException("error id null");
+		}
+		this.usersDao.deleteEmailToDB(id);		
+	}
 
 	public void sendEmail( String txt, String email) throws BOException{
 

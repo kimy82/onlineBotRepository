@@ -29,10 +29,12 @@ public interface UsersBo {
 	
 	boolean checkUserPlat(Long idUser, Long idPlat) throws BOException;
 	
-	public void setEmailToDB( String email ) throws BOException;
+	void setEmailToDB( String email ) throws BOException;
 	
-	public List<NewsLetter> getEmailsFromDB( ) throws BOException;
+	List<NewsLetter> getEmailsFromDB( ) throws BOException;
 	
-	public boolean checkUserBeguda( Long idUser, Long idBeguda ) throws BOException;
+	boolean checkUserBeguda( Long idUser, Long idBeguda ) throws BOException;
+	
+	void deleteEmailToDB( Long id ) throws BOException;
 
 }

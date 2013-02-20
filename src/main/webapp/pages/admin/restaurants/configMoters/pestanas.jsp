@@ -4,7 +4,8 @@
       <ul class="pestanyes">               
 	      <li id="pestanya.mto"><a href="#" >USUARIS</a>
 		      	<ul>
-			      	<li id="pestanya.mto"><a href="<c:url value='usuaris.action' />" >Manteniment usuaris</a></a></li>    
+			      	<li id="pestanya.mto"><a href="<c:url value='usuaris.action' />" >Manteniment usuaris</a></li>
+			      	<li id="pestanya.mto"><a href="<c:url value='letterUsuaris.action' />" >Newsletter usuaris</a></li>     
 			      	<li id="pestanya.mto"><a href="<c:url value='newsletter.action' />" ><s:text name="txt.pestanya.newsletter" /></a></li>
 		      	</ul></li>  
 		  <li id="pestanya.mto"><a href="#" >ALTES</a>

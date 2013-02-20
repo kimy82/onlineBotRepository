@@ -156,10 +156,10 @@ public class PaymentServiceImpl implements PaymentService {
 				comandaOrderSB.append("&total=" + this.comanda.getPreu());
 
 				comandaOrderSB.append("&nom="
-						+ this.comanda.getUser().getUsername()+"/r");
+						+ this.comanda.getUser().getUsername());
 
 				comandaOrderSB.append("&address="
-						+ this.comanda.getUser().getAddress()+"/r");
+						+ this.comanda.getUser().getAddress());
 
 				comandaOrderSB.append("&diahora=" + this.comanda.getHora()
 						+ " " + this.comanda.getDia());
@@ -167,26 +167,26 @@ public class PaymentServiceImpl implements PaymentService {
 				comandaOrderSB.append("&telnumber="
 						+ this.comanda.getUser().getTelNumber());
 				
-				comandaOrderSB.append("&comandaName=Comanda:"+this.comanda.getId()+"/r");
+				comandaOrderSB.append("&comandaName=Comanda:"+this.comanda.getId());
 				
-				comandaOrderSB.append("&comandaHora=H.Com.:"+this.comanda.getFentrada()+"/r");
+				comandaOrderSB.append("&comandaHora=H.Comanda:"+this.comanda.getFentrada());
 				
-				comandaOrderSB.append("&comandaEntrega=H.Entrega:"+this.comanda.getHora()+"/r");
+				comandaOrderSB.append("&comandaEntrega=H.Entrega:"+this.comanda.getHora());
 				
-				comandaOrderSB.append("&comandaLimit=H.Limit:"+this.comanda.getHora()+"/r");
+				comandaOrderSB.append("&comandaLimit=H.Limit:"+this.comanda.getHora());
 				
 				if(this.comanda.getPagada()!=null && this.comanda.getPagada()==true){
-					comandaOrderSB.append("&pagada=PAGAT/r");
+					comandaOrderSB.append("&pagada=PAGAT");
 				}else{
-					comandaOrderSB.append("&pagada=NO PAGAT/r");
+					comandaOrderSB.append("&pagada=NO PAGAT");
 				}
 				
 				if(this.comanda.getObservacions()!=null){
-					comandaOrderSB.append("&comment="+this.comanda.getObservacions()+"/r");
+					comandaOrderSB.append("&comment="+this.comanda.getObservacions());
 				}else{
-					comandaOrderSB.append("&comment=Sense comentaris/r");
+					comandaOrderSB.append("&comment=Sense comentaris");
 				}
-				comandaOrderSB.append("&nomRest=Rest.:"+infoRestaurant[1]+"/r");
+				comandaOrderSB.append("&nomRest=Restaurant:"+infoRestaurant[1]);
 				
 				
 				

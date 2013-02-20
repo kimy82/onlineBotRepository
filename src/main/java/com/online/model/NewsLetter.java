@@ -2,6 +2,8 @@ package com.online.model;
 
 import java.io.Serializable;
 
+import com.google.gson.annotations.Expose;
+
 public class NewsLetter implements Serializable{
 
 	/**
@@ -9,7 +11,10 @@ public class NewsLetter implements Serializable{
 	 */
 	private static final long	serialVersionUID	= 1L;
 	
+	@Expose
 	private String email;
+	
+	@Expose
 	private Long id;
 
 
