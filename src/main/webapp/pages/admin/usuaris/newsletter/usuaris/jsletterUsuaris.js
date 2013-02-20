@@ -54,13 +54,33 @@ $("#errorsajax").hide();
 $(document).ready(function() {
 				
 	//taula dels usuaris
-	oTableLetterUsuaris =$("#tbl_letterusuaris").dataTable( {
-					"iDisplayLength": 20,
+	oTableLetterUsuaris =$("#tbl_letterusuaris").dataTable( {					
+					"iDisplayLength": 3,
 					 "aoColumns" : [
 					                  { "mDataProp":"email","bSortable": false, sWidth: '130px' },					                 
 					                  { "mDataProp":"accio", "bSortable": false, sWidth: '120px' }					                  
 					            ],
 					"sPaginationType": "full_numbers",
+					"sDom": 'T<"clear">lfrtip',
+			    	"oTableTools": {
+			    			"sSwfPath": "/"+context+"/swf/copy_csv_xls_pdf.swf",
+			    			"aButtons": [
+			    				"copy",			    				
+			    				{
+			    					"sExtends":    "collection",
+			    					"sButtonText": "Save",
+			    					"aButtons":    [ "csv", "xls", "pdf" ]
+			    				},{
+			                        "sExtends":    "text",
+			                        "sButtonText": "Show All",
+			                        "fnClick": function ( nButton, oConfig, oFlash ) {			                            
+			                            var oSettings = oTableLetterUsuaris.fnSettings();
+			                            oSettings._iDisplayLength=100;
+			                            oTableLetterUsuaris.fnDraw();
+			                        }
+			                    }
+			    			]			        	
+			        },
 					"oLanguage": {
 						  "sProcessing": "<img src='/"+context+"/images/large-loading.gif' style='vertical-align:middle'>&nbsp;"+initTableParams.txtloading,
 					      "oPaginate": {

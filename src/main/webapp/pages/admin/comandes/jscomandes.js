@@ -73,7 +73,7 @@ $(document).ready(function() {
 
 	
 			
-		//taula dels restaurants
+		
 	oTableComandes =$("#tbl_comandes").dataTable( {
 					"iDisplayLength": 12,
 					 "aoColumns" : [
@@ -86,6 +86,26 @@ $(document).ready(function() {
 					                  { "mDataProp":"accioBorrar", "bSortable": false, sWidth: '40px' }
 					            ],
 					"sPaginationType": "full_numbers",
+					"sDom": 'T<"clear">lfrtip',
+			    	"oTableTools": {
+			    			"sSwfPath": "/"+context+"/swf/copy_csv_xls_pdf.swf",
+			    			"aButtons": [
+			    				"copy",			    				
+			    				{
+			    					"sExtends":    "collection",
+			    					"sButtonText": "Save",
+			    					"aButtons":    [ "csv", "xls", "pdf" ]
+			    				},{
+			                        "sExtends":    "text",
+			                        "sButtonText": "Show All",
+			                        "fnClick": function ( nButton, oConfig, oFlash ) {			                            
+			                            var oSettings = oTableComandes.fnSettings();
+			                            oSettings._iDisplayLength=100;
+			                            oTableComandes.fnDraw();
+			                        }
+			                    }
+			    			]			        	
+			        },
 					"oLanguage": {
 						  "sProcessing": "<img src='/"+context+"/images/large-loading.gif' style='vertical-align:middle'>&nbsp;"+initTableParams.txtloading,
 					      "oPaginate": {

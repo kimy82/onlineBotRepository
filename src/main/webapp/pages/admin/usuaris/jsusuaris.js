@@ -66,6 +66,26 @@ $(document).ready(function() {
 					                  
 					            ],
 					"sPaginationType": "full_numbers",
+					"sDom": 'T<"clear">lfrtip',
+			    	"oTableTools": {
+			    			"sSwfPath": "/"+context+"/swf/copy_csv_xls_pdf.swf",
+			    			"aButtons": [
+			    				"copy",			    				
+			    				{
+			    					"sExtends":    "collection",
+			    					"sButtonText": "Save",
+			    					"aButtons":    [ "csv", "xls", "pdf" ]
+			    				},{
+			                        "sExtends":    "text",
+			                        "sButtonText": "Show All",
+			                        "fnClick": function ( nButton, oConfig, oFlash ) {			                            
+			                            var oSettings = oTableUsuaris.fnSettings();
+			                            oSettings._iDisplayLength=100;
+			                            oTableUsuaris.fnDraw();
+			                        }
+			                    }
+			    			]			        	
+			        },
 					"oLanguage": {
 						  "sProcessing": "<img src='/"+context+"/images/large-loading.gif' style='vertical-align:middle'>&nbsp;"+initTableParams.txtloading,
 					      "oPaginate": {
