@@ -340,7 +340,7 @@ td.details {
      width: 950px;
 	 float:left;
 	 text-align:center;
-	 margin-top: 20px;
+	 margin-top: -10px;
 }
 
 .paging_full_numbers a:active {
@@ -613,6 +613,7 @@ div.box {
     clear: both;
     width: 950px;
     margin-top: 20px;
+    margin-bottom: 30px;
 }
 #conrest .dataTables_scroll{
     background-color: #F5F5F5;
