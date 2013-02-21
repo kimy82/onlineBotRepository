@@ -21,27 +21,30 @@ public class UsersBoImpl implements UsersBo{
 	private UsersDao			usersDao;
 	private SendingEmailService	sendingEmailService;
 
-	public boolean checkUserPlat(Long idUser, Long idPlat) throws BOException{
-		
-		if(idPlat == null ){
+	public boolean checkUserPlat( Long idUser, Long idPlat ) throws BOException{
+
+		if (idPlat == null) {
 			throw new BOException("Null plat to check");
-		} 
-		
-		if(idUser==null)
+		}
+
+		if (idUser == null)
 			return false;
-		
+
 		return this.usersDao.checkUserPlat(idUser, idPlat);
 	}
+
 	public boolean checkUserBeguda( Long idUser, Long idBeguda ) throws BOException{
-		if(idBeguda == null ){
+
+		if (idBeguda == null) {
 			throw new BOException("Null beguda to check");
-		} 
-		
-		if(idUser==null)
+		}
+
+		if (idUser == null)
 			return false;
-		
+
 		return this.usersDao.checkUserBeguda(idUser, idBeguda);
 	}
+
 	public void save( Users user ) throws BOException, Exception{
 
 		checkUser(user);
@@ -54,47 +57,57 @@ public class UsersBoImpl implements UsersBo{
 		usersDao.update(user);
 	}
 
+	public Users load( Long id )throws BOException{
+
+		if (id == null || id.equals("")) {
+			throw new BOException("error id user buit");
+		}
+
+		return this.usersDao.load(id);
+	}
+
 	public void setEmailToDB( String email ) throws BOException{
 
-		if(email == null || email.equals("")){
+		if (email == null || email.equals("")) {
 			throw new BOException("error email buit");
 		}
 		usersDao.setEmailToDB(email);
 	}
-	public List<NewsLetter> getEmailsFromDB( ) throws BOException{
-		
+
+	public List<NewsLetter> getEmailsFromDB() throws BOException{
+
 		return usersDao.getEmailsFromDB();
 	}
-	
+
 	public void delete( Users user ) throws BOException{
 
 		checkUserToDeleteWithId(user);
 		usersDao.delete(user);
 	}
-	
+
 	public void deleteEmailToDB( Long id ) throws BOException{
 
-		if(id == null || id.equals("")){
+		if (id == null || id.equals("")) {
 			throw new BOException("error id null");
 		}
-		this.usersDao.deleteEmailToDB(id);		
+		this.usersDao.deleteEmailToDB(id);
 	}
 
-	public void sendEmail( String txt, String email) throws BOException{
+	public void sendEmail( String txt, String email ) throws BOException{
 
 		try {
-			this.sendingEmailService.sendEmail(txt, email);	
+			this.sendingEmailService.sendEmail(txt, email);
 		} catch (EmailException e) {
 			throw new BOException(e, "error en el Servei de mail");
 		}
 	}
-	
-	public void sendEmails( String txt, String[] emails) throws BOException{
+
+	public void sendEmails( String txt, String[] emails ) throws BOException{
 
 		try {
-			
-			this.sendingEmailService.sendEmailsTo(txt, emails);	
-			
+
+			this.sendingEmailService.sendEmailsTo(txt, emails);
+
 		} catch (AddressException e) {
 			throw new BOException(e, "error en el Servei de mail");
 		} catch (EmailException e) {
@@ -120,8 +133,7 @@ public class UsersBoImpl implements UsersBo{
 		usersDao.update(user);
 		return password;
 	}
-	
-	
+
 	public List<Users> getAll(){
 
 		return usersDao.getAll();
@@ -132,7 +144,7 @@ public class UsersBoImpl implements UsersBo{
 
 		return RandomStringUtils.randomAlphanumeric(8);
 	}
-	
+
 	private void checkUserToDeleteWithId( Users user ) throws BOException{
 
 		if (user == null || user.getId() == null) {

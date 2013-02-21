@@ -51,6 +51,16 @@
 </div>
 </div>
 </div>
+<div id="user_dialog" class="filtres filtres-oberts">
+	<h1><s:text name="txt.user.nom" /></h1><label id="usernom" ></label><br>
+	<h1><s:text name="txt.user.email" /></h1><label id="useremail" ></label><br>
+	<h1><s:text name="txt.user.tel" /></h1><label id="usertel" ></label><br>
+	<h1><s:text name="txt.user.address" /></h1><label id="useraddress" ></label><br>	 		
+	<h1><s:text name="txt.user.indicacions" /></h1><label id="userind" ></label><br>
+	<h1><s:text name="txt.user.nComandesRealitzades" /></h1><label id="nComandesRealitzades" ></label><br>
+	<h1><s:text name="txt.user.nComandesAmbTargeta" /></h1><label id="nComandesAmbTargeta" ></label><br>
+	<h1><s:text name="txt.user.nComandesSenseTargeta" /></h1><label id="nComandesSenseTargeta" ></label><br>
+</div> 
 <!-- Scripts --> 
 	<link rel="stylesheet" href="<c:url value='/css/admin.css' />" type="text/css"   media="screen" />
 	<link rel="stylesheet" href="<c:url value='/css/portamu/reset.css' />" type="text/css"   media="screen" />
@@ -61,6 +71,16 @@
 
 	<script src="<c:url value='/js/jquery/jquery.js' />" type="text/javascript"></script>
 	<script src="<c:url value='/js/jquery/jquery.ui.core.js' />" type="text/javascript"></script>
+	<script src="<c:url value='/js/jquery/jquery.ui.widget.js'/>" type="text/javascript"></script>
+	<script src="<c:url value='/js/jquery/jquery.ui.mouse.js'/>" type="text/javascript"></script>
+	<script src="<c:url value='/js/jquery/jquery.ui.dialog.js' />" type="text/javascript"></script>
+	<script src="<c:url value='/js/jquery/jquery.ui.position.js'/>" type="text/javascript"></script>
+	<script src="<c:url value='/js/jquery/jquery.ui.draggable.js'/>" type="text/javascript"></script>
+	<script src="<c:url value='/js/jquery/jquery.ui.droppable.js'/>" type="text/javascript"></script>
+	<script src="<c:url value='/js/jquery/jquery.ui.resizable.js'/>" type="text/javascript"></script>
+	<script src="<c:url value='/js/jquery/jquery.effects.core.js'/>" type="text/javascript"></script>
+	<script src="<c:url value='/js/jquery/jquery.bgiframe-2.1.1.js'/>" type="text/javascript"></script>
+	
 	<script src="<c:url value='/js/jquery/jquery.dataTables.js'/>" type="text/javascript"></script>
 	<script src="<c:url value='/js/jquery/TableTools.js'/>" type="text/javascript"></script>
 	<script src="<c:url value='/js/jquery/ZeroClipboard.js'/>" type="text/javascript"></script>

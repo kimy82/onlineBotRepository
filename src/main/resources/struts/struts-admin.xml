@@ -39,6 +39,9 @@
 		<action name="ajaxDeleteUserAction"
 			class="com.online.action.admin.MantenimentUsuarisAction" method="ajaxDeleteUserAction">
 		</action>
+		<action name="ajaxInfoUserAction"
+			class="com.online.action.admin.MantenimentUsuarisAction" method="ajaxInfoUserAction">
+		</action>
 		
 		<!-- Actions per restaurants -->
 		<action name="restaurants"

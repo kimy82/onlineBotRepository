@@ -43,6 +43,68 @@ function deleteUser(id){
 	  }
 }
 
+$("#user_dialog").dialog({ 
+	   autoOpen: false,
+	   height: 194,
+	   width: 330,
+	   modal: true,
+	   close: function(event, ui) { 			   
+		   $("#user_dialog").dialog("close"); 			  
+		}
+});
+
+function infoUser(id){
+	data ="id="+id;
+	$.ajax({
+		  type: "POST",
+		  url: '/'+context+'/admin/ajaxInfoUserAction.action',
+		  dataType: 'json',
+		  data: data,
+		  success: function(json){	
+			  if(json!=null && json.error!=null){
+   				$("#errorsajaxlabel").text(json.error);
+   				$("#errorsajax").show();
+	   			}else{
+	
+	   				if(json.nom!=null){
+	   					$("#usernom").text(json.nom);
+	   				}
+	   				if(json.username!=null){
+	   					$("#useremail").text(json.username);
+	   				}
+	   				
+	   				if(json.address!=null){
+	   					$("#useraddress").text(json.address);
+	   				}
+	   				
+	   				if(json.telNumber!=null){
+	   					$("#usertel").text(json.telNumber);
+	   				}
+	   				
+	   				if(json.indicacions!=null){
+	   					$("#userind").text(json.indicacions);
+	   				}
+	   				
+	   				if(json.numComandesRealitzades!=null){
+	   					$("#nComandesRealitzades").text(json.numComandesRealitzades);
+	   				}
+	   				if(json.numComandesAmbTargeta!=null){
+	   					$("#nComandesAmbTargeta").text(json.numComandesAmbTargeta);
+	   				}
+	   				
+	   				if(json.numComandesSenseTargeta!=null){
+	   					$("#nComandesSenseTargeta").text(json.numComandesSenseTargeta);
+	   				}
+	   				
+	   				$("#user_dialog").dialog("open"); 
+	   			}				
+		  },
+		  error: function(e){   $("#errorsajaxlabel").text("Error in ajax call");
+								$("#errorsajax").show();  		
+		  					}
+		});
+}
+
 function reloadTableUsers(){
 	oTableUsuaris.fnDeleteRow( 0 );
 }

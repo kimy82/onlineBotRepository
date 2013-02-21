@@ -36,5 +36,7 @@ public interface UsersBo {
 	boolean checkUserBeguda( Long idUser, Long idBeguda ) throws BOException;
 	
 	void deleteEmailToDB( Long id ) throws BOException;
+	
+	Users load( Long id )throws BOException;
 
 }

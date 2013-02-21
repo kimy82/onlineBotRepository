@@ -112,6 +112,10 @@ public class UsersDaoImpl extends HibernateDaoSupport implements UsersDao{
 
 	}
 	
+	public Users load( Long id ){
+		return getHibernateTemplate().load(Users.class,id);
+	}
+	
 	@Transactional
 	public List<Users> getAll(){
 
