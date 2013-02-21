@@ -293,6 +293,15 @@
 		</action>				
 		<action name="ajaxDeleteComanda"
 			class="com.online.action.admin.MantenimentComandesAction" method="ajaxDeleteComanda">
-		</action>						
+		</action>		
+					
+		<!-- actions per totes les comandes  -->	
+		<action name="allComandes" class="com.online.action.admin.MantenimentComandesAction"
+			method="allComandes">
+			<result name="success">/pages/admin/comandes/all/comandes.jsp</result>		
+		</action>
+		<action name="ajaxTableAllComandesAction"
+			class="com.online.action.admin.MantenimentComandesAction" method="ajaxTableAllComandesAction">
+		</action>
 	</package>
 </struts>
