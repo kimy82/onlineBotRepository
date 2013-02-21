@@ -133,7 +133,8 @@ public class AllComandesTable{
 		
 			String name1 = cmd1.getTelefon();
 			String name2 = cmd2.getTelefon();
-			
+			if(name1==null)name1="-";
+			if(name2==null)name2="-";
 			//ascending order
 			return name1.compareTo(name2);			
 		}

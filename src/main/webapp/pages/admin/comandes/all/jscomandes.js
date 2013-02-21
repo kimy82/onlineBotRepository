@@ -55,9 +55,9 @@ $(document).ready(function() {
 			                        "sExtends":    "text",
 			                        "sButtonText": "Show All",
 			                        "fnClick": function ( nButton, oConfig, oFlash ) {			                            
-			                            var oSettings = oTableComandes.fnSettings();
+			                            var oSettings = oTableAllComandes.fnSettings();
 			                            oSettings._iDisplayLength=100;
-			                            oTableComandes.fnDraw();
+			                            oTableAllComandes.fnDraw();
 			                        }
 			                    }
 			    			]			        	

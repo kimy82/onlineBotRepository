@@ -222,11 +222,11 @@ public class MantenimentComandesAction extends ActionSupport implements ServletR
 				Comandes comandaInitialized = this.comandaBo.load(comanda.getId());
 				String metodePagament = getMethodPagament(comanda);
 				String nomRestaurant = getNomRestaurant(comandaInitialized);
-				String username = (comanda.getUser()==null)?"":comanda.getUser().getUsername(); 
-				String tel = (comanda.getUser()==null)?"":comanda.getUser().getTelNumber();
+				String username = (comanda.getUser()==null)?"-":comanda.getUser().getUsername(); 
+				String tel = (comanda.getUser()==null || comanda.getUser().getTelNumber()==null)?"-":comanda.getUser().getTelNumber();
 				AllComandesTable allComandesTable = new AllComandesTable(username, tel,comanda.getAddress()==null ? "" : comanda.getAddress() ,
-																		 (comanda.getDia()==null?"" : Utils.formatDate2(comanda.getDia())) + " " + comanda.getHora()==null?"":comanda.getHora(), 
-																		 (comanda.getPreu()==null ? "" :String.valueOf(comanda.getPreu())), nomRestaurant, metodePagament);
+																		 (comanda.getDia()==null?"-" : Utils.formatDate2(comanda.getDia())) + " " + (comanda.getHora()==null?"-":comanda.getHora()), 
+																		 (comanda.getPreu()==null ? "-" :String.valueOf(comanda.getPreu())), nomRestaurant, metodePagament);
 
 				
 				comandesTableList.add(allComandesTable);
@@ -266,7 +266,7 @@ public class MantenimentComandesAction extends ActionSupport implements ServletR
 		if(this.columna==6)
 			Collections.sort(comandesTableList, AllComandesTable.metodeComparator);
 		
-		if(this.sortDireccio!=null && this.sortDireccio.equals("DESC")){
+		if(this.sortDireccio!=null && this.sortDireccio.equals("desc")){
 			Collections.reverse(comandesTableList);
 		}
 	}
@@ -294,10 +294,10 @@ public class MantenimentComandesAction extends ActionSupport implements ServletR
 				return comanda.getPlats().get(0).getPlat().getRestaurants().iterator().next().getNom();
 
 			} else {
-				return "";
+				return "-";
 			}
 		} catch (Exception e) {
-			return "";
+			return "-";
 		}
 	}
 

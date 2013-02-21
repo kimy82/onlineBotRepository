@@ -144,10 +144,10 @@ public class MantenimentUsuarisAction extends ActionSupport implements ServletRe
 		int numComandesSenseTargeta=0;
 		for(Comandes cmd : comandes){
 			
-			if(cmd.getPagada()){
+			if(cmd.getPagada()!=null && cmd.getPagada()==true){
 				numComandesRealitzades++;
 			}
-			if(cmd.getTargeta()){
+			if(cmd.getTargeta()!=null &&cmd.getTargeta()==true){
 				numComandesAmbTargeta++;
 			}else{
 				numComandesSenseTargeta++;
@@ -224,5 +224,10 @@ public class MantenimentUsuarisAction extends ActionSupport implements ServletRe
 
 		this.usersBo = usersBo;
 	}
+
+	public void setComandaBo(ComandaBo comandaBo) {
+		this.comandaBo = comandaBo;
+	}
+	
 
 }
