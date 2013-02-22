@@ -90,6 +90,7 @@ public class WelcomeComandaAction extends ActionSupport implements ServletRespon
 	private Integer				rppPage =9;
 	private String				order="";
 	private String				dataAvui;
+	private boolean				aDomicili=false;
 
 
 	public String execute(){
@@ -442,7 +443,7 @@ public class WelcomeComandaAction extends ActionSupport implements ServletRespon
 			this.comanda = this.comandaBo.load(this.idComanda);
 			horesDTO = new HoresDTO();
 			horesDTO.setData(data);
-			horesDTO = this.comandaService.setHoresFeature(horesDTO, this.data, this.comanda);
+			horesDTO = this.comandaService.setHoresFeature(horesDTO, this.data, this.comanda,this.aDomicili);
 
 			Gson gson = new GsonBuilder().setPrettyPrinting().excludeFieldsWithoutExposeAnnotation().create();
 
@@ -473,7 +474,7 @@ public class WelcomeComandaAction extends ActionSupport implements ServletRespon
 		this.comanda = this.comandaBo.load(this.idComanda);
 		horesDTO = new HoresDTO();
 		horesDTO.setData(data);
-		horesDTO = this.comandaService.setHoresFeature(horesDTO, this.data, this.comanda);
+		horesDTO = this.comandaService.setHoresFeature(horesDTO, this.data, this.comanda,false);
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		this.nameAuth = auth.getName();
 
@@ -581,6 +582,7 @@ public class WelcomeComandaAction extends ActionSupport implements ServletRespon
 	private void inizializeData() throws WrongParamException{
 
 		this.data = (request.getParameter("data") == null || request.getParameter("data").equals("")) ? null : request.getParameter("data");
+		this.aDomicili = (request.getParameter("aDomicili") == null || request.getParameter("aDomicili").equals("")) ? false : Boolean.parseBoolean(request.getParameter("aDomicili"));
 		if (this.data == null) {
 			throw new WrongParamException("null data of comanda");
 		}

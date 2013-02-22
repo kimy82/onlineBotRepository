@@ -8,25 +8,25 @@
 			<column name="USER_ID" />
 			<generator class="increment" />
 		</id>
-		<property name="username" type="string">
+		<property name="username" type="string" lazy="false" >
 			<column name="USERNAME" length="45" not-null="true" unique="true" />
 		</property>
 		<property name="password" type="string">
 			<column name="PASSWORD" length="200" not-null="true" unique="true" />
 		</property>
-		<property name="enabled" type="int">
+		<property name="enabled" type="int" lazy="false" >
 			<column name="ENABLED" length="2" not-null="true" />
 		</property>
-		<property name="address" type="string">
+		<property name="address" type="string" lazy="false">
 			<column name="ADDRESS" length="200" />
 		</property>
-		<property name="telNumber" type="string">
+		<property name="telNumber" type="string" lazy="false" >
 			<column name="TELEFON" length="10" />
 		</property>
-		<property name="nom" type="string">
+		<property name="nom" type="string" lazy="false">
 			<column name="NOM" length="45" />
 		</property>
-		<property name="indicacions" type="string">
+		<property name="indicacions" type="string" lazy="false" >
 			<column name="INDICACIONS" length="200" />
 		</property>
 		<many-to-one name="userRole" class="com.online.model.UserRole" 

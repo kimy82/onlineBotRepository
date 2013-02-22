@@ -102,8 +102,13 @@ function reloadHores(){
 	var dia = $("#dia").val();
 	var data = window.localStorage.setItem("comanda.data",dia);
 	var comanda = window.localStorage.getItem("comanda");
-	var data = "data="+dia+"&idComanda="+comanda;
 	
+	var data = "data="+dia+"&idComanda="+comanda;
+	if($("#adomicili").is(':checked')){
+		data=data+"&aDomicili=true"		
+	}else{		
+		data=data+"&aDomicili=false"
+	}
   	$.ajax({
   		  type: "POST",
   		  url: '/'+context+'/comanda/loadHores.action',
@@ -294,6 +299,7 @@ function addDomicili(){
 		 $("#labelpreutotalPromo").text(parseFloat(parseFloat(preuT)-parseFloat(40)).toFixed(2));
 		 initPromoDescompteFromStorage();
 	}
+	reloadHores();
 }
 
 function targeta(){

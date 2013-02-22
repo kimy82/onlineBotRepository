@@ -248,12 +248,13 @@ public class ComandaServiceImpl implements ComandaService{
 
 	}
 
-	public HoresDTO setHoresFeature( HoresDTO horesDTO, String data, Comandes comanda ) throws ComandaException{
+	public HoresDTO setHoresFeature( HoresDTO horesDTO, String data, Comandes comanda, boolean aDomicili ) throws ComandaException{
 
 		Set<Restaurant> restaurantSet = getRestaurants(comanda);
 		Iterator iteraRestaurant = restaurantSet.iterator();
 		boolean secondRestaurant=false;
 		HoresDTO horesDTOSecond = new HoresDTO();
+		HoresDTO horesDTOMoters = new HoresDTO();
 		while (iteraRestaurant.hasNext()) {
 
 			Restaurant restaurant = (Restaurant) iteraRestaurant.next();
@@ -427,6 +428,87 @@ public class ComandaServiceImpl implements ComandaService{
 					horesDTO = horesDTOSecond;
 				}
 				secondRestaurant=true;
+			}
+		}
+		if(aDomicili){
+			List<Moters> motersList =  this.motersBo.load(Utils.getDate2(data));
+			for(Moters moter : motersList){
+				int numMotersAvailable = 0;
+				if(moter.getNumeroMoters()==null || moter.getNumeroMoters()==0){
+					numMotersAvailable= moter.getNumeroMoters()-(moter.getNumeroMotersUsed()==null? 0:moter.getNumeroMotersUsed());  
+				}
+				
+				if(numMotersAvailable==0)continue;
+				
+				if (moter.getHora().equals("")) {
+					
+				} else if (moter.getHora().equals("0800") &&  horesDTO.get_0800().equals("true") ) {
+					horesDTOMoters.set_0800("true");
+				} else if (moter.getHora().equals("0830") &&  horesDTO.get_0830().equals("true")) {
+					horesDTOMoters.set_0830("true");
+				} else if (moter.getHora().equals("0900") &&  horesDTO.get_0900().equals("true")) {
+					horesDTOMoters.set_0900("true");
+				} else if (moter.getHora().equals("0930") && horesDTO.get_0930().equals("true")) {
+					horesDTOMoters.set_0930("true");
+				} else if (moter.getHora().equals("1000") && horesDTO.get_1000().equals("true")) {
+					horesDTOMoters.set_1000("true");
+				} else if (moter.getHora().equals("1030") &&  horesDTO.get_1030().equals("true")) {
+					horesDTOMoters.set_1030("true");
+				} else if (moter.getHora().equals("1100") &&  horesDTO.get_1100().equals("true")) {
+					horesDTOMoters.set_1100("true");
+				} else if (moter.getHora().equals("1130") &&  horesDTO.get_1130().equals("true")) {
+					horesDTOMoters.set_1130("true");
+				} else if (moter.getHora().equals("1200") && horesDTO.get_1200().equals("true")) {
+					horesDTOMoters.set_1200("true");
+				} else if (moter.getHora().equals("1230") &&  horesDTO.get_1230().equals("true")) {
+					horesDTOMoters.set_1230("true");
+				} else if (moter.getHora().equals("1300") &&  horesDTO.get_1300().equals("true")) {
+					horesDTOMoters.set_1300("true");
+				} else if (moter.getHora().equals("1330") &&  horesDTO.get_1330().equals("true")) {
+					horesDTOMoters.set_1330("true");
+				} else if (moter.getHora().equals("1400") &&  horesDTO.get_1400().equals("true")) {
+					horesDTOMoters.set_1400("true");
+				} else if (moter.getHora().equals("1430") &&  horesDTO.get_1430().equals("true")) {
+					horesDTOMoters.set_1430("true");
+				} else if (moter.getHora().equals("1500") &&  horesDTO.get_1500().equals("true")) {
+					horesDTOMoters.set_1500("true");
+				} else if (moter.getHora().equals("1530") && horesDTO.get_1530().equals("true")) {
+					horesDTOMoters.set_1530("true");
+				} else if (moter.getHora().equals("1600") && horesDTO.get_1600().equals("true")) {
+					horesDTOMoters.set_1600("true");
+				} else if (moter.getHora().equals("1630") &&  horesDTO.get_1630().equals("true")) {
+					horesDTOMoters.set_1630("true");
+				} else if (moter.getHora().equals("1700") &&  horesDTO.get_1700().equals("true")) {
+					horesDTOMoters.set_1700("true");
+				} else if (moter.getHora().equals("1730") &&  horesDTO.get_1730().equals("true")) {
+					horesDTOMoters.set_1730("true");
+				} else if (moter.getHora().equals("1800") &&  horesDTO.get_1800().equals("true")) {
+					horesDTOMoters.set_1800("true");
+				} else if (moter.getHora().equals("1830") && horesDTO.get_1830().equals("true")) {
+					horesDTOMoters.set_1830("true");
+				} else if (moter.getHora().equals("1900") &&  horesDTO.get_1900().equals("true")) {
+					horesDTOMoters.set_1900("true");
+				} else if (moter.getHora().equals("1930") &&  horesDTO.get_1930().equals("true")) {
+					horesDTOMoters.set_1930("true");
+				} else if (moter.getHora().equals("2000") &&  horesDTO.get_2000().equals("true")) {
+					horesDTOMoters.set_2000("true");
+				} else if (moter.getHora().equals("2030") &&  horesDTO.get_2030().equals("true")) {
+					horesDTOMoters.set_2030("true");
+				} else if (moter.getHora().equals("2100") &&  horesDTO.get_2100().equals("true")) {
+					horesDTOMoters.set_2100("true");
+				} else if (moter.getHora().equals("2130") &&  horesDTO.get_2130().equals("true")) {
+					horesDTOMoters.set_2130("true");
+				} else if (moter.getHora().equals("2200") &&  horesDTO.get_2200().equals("true")) {
+					horesDTOMoters.set_2200("true");
+				} else if (moter.getHora().equals("2230") &&  horesDTO.get_2230().equals("true")) {
+					horesDTOMoters.set_2230("true");
+				} else if (moter.getHora().equals("2300") &&  horesDTO.get_2300().equals("true")) {
+					horesDTOMoters.set_2300("true");
+				} else if (moter.getHora().equals("2330") &&  horesDTO.get_2330().equals("true")) {
+					horesDTOMoters.set_2330("true");
+				} else if (moter.getHora().equals("2400") &&  horesDTO.get_2400().equals("true")) {
+					horesDTOMoters.set_2400("true");
+				}				
 			}
 		}
 

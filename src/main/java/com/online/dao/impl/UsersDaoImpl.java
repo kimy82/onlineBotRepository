@@ -113,7 +113,12 @@ public class UsersDaoImpl extends HibernateDaoSupport implements UsersDao{
 	}
 	
 	public Users load( Long id ){
-		return getHibernateTemplate().load(Users.class,id);
+		List<Users> userFounds = (List<Users>) getHibernateTemplate().find("from Users u where u.id = ?",id);
+		if (userFounds.isEmpty())
+			return null;
+		Users userFound = userFounds.get(0);
+		return userFound;
+		// getHibernateTemplate().load(Users.class,id);
 	}
 	
 	@Transactional

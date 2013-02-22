@@ -35,7 +35,7 @@ public interface ComandaService{
 	
 	public void deleteBegudesPromo(Comandes comanda) throws ComandaException;
 	
-	public HoresDTO  setHoresFeature(HoresDTO horesDTO, String data, Comandes comanda) throws ComandaException;
+	public HoresDTO  setHoresFeature(HoresDTO horesDTO, String data, Comandes comanda,boolean aDomicili) throws ComandaException;
 	
 	public int getNumPlats(List<PlatComanda> platList) throws ComandaException;
 	

@@ -160,7 +160,7 @@ public class MantenimentUsuarisAction extends ActionSupport implements ServletRe
 		userDialog.setNumComandesRealitzades(numComandesRealitzades);
 		userDialog.setNumComandesSenseTargeta(numComandesSenseTargeta);
 		Gson gson = new GsonBuilder().setPrettyPrinting().create();
-		return gson.toJson(user);
+		return gson.toJson(userDialog);
 	}
 
 	private String searchInfoANDcreateJSONForUsuaris(){

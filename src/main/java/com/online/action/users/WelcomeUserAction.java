@@ -130,7 +130,7 @@ public class WelcomeUserAction extends ActionSupport implements ServletResponseA
 
 			horesDTO = new HoresDTO();
 			horesDTO.setData(data);
-			horesDTO = this.comandaService.setHoresFeature(horesDTO, this.data, this.comanda);
+			horesDTO = this.comandaService.setHoresFeature(horesDTO, this.data, this.comanda,false);
 			Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 			this.nameAuth = auth.getName();
 
