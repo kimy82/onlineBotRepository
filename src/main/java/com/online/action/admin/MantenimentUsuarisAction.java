@@ -19,6 +19,7 @@ import com.online.bo.UsersBo;
 import com.online.exceptions.BOException;
 import com.online.exceptions.GeneralException;
 import com.online.model.Comandes;
+import com.online.model.PlatComanda;
 import com.online.model.Users;
 import com.online.pojos.UsersDialog;
 import com.online.pojos.UsersTable;
@@ -126,7 +127,7 @@ public class MantenimentUsuarisAction extends ActionSupport implements ServletRe
 	}
 
 	// private methods
-
+	
 	private void inizializeParamTODeleteUser() throws NumberFormatException{
 
 		this.idUser = (request.getParameter("id") == null) ? null : Long.parseLong(request.getParameter("id"));

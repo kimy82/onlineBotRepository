@@ -39,6 +39,7 @@ $(document).ready(function() {
 					                  { "mDataProp":"hora",  sWidth: '40px' },
 					                  { "mDataProp":"preu",  sWidth: '40px' },
 					                  { "mDataProp":"restaurant",  sWidth: '40px' },
+					                  { "mDataProp":"plats", "bSortable": false, sWidth: '40px'  },
 					                  { "mDataProp":"metodePagament",  sWidth: '40px' }					                  
 					            ],
 					"sPaginationType": "full_numbers",

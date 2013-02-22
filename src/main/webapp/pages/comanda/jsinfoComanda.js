@@ -648,7 +648,7 @@ function saveBegudaToComanda(idBeguda,promo,amount){
 new Address.addressValidation();
 
 
-$("#checkPromocionsDisponibles").show();
+$("#checkPromocionsDisponibles").hide();
 $("#deletePromoApplied").hide();
 
 

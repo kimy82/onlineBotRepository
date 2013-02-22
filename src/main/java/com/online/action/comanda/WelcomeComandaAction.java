@@ -478,10 +478,15 @@ public class WelcomeComandaAction extends ActionSupport implements ServletRespon
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		this.nameAuth = auth.getName();
 
+		if(!this.nameAuth.equals("anonymousUser")){
+			Users user = this.usersBo.findByUsername(nameAuth);
+			this.comanda.setUser(user);
+		}
+		
 		Double preu = this.comandaService.getPreuOfComanda(this.comanda);
-
 		this.comanda.setPreu(preu);
-
+		
+		this.comandaBo.update(comanda);
 		List<Beguda> begudaList = this.begudaBo.getAll();
 		for (Beguda beguda : begudaList) {
 

@@ -28,6 +28,9 @@ public class AllComandesTable{
 	private String preu;
 	
 	@Expose
+	private String plats;
+	
+	@Expose
 	private String restaurant;
 	
 	@Expose
@@ -38,7 +41,7 @@ public class AllComandesTable{
 	public AllComandesTable() {	
 	}
 	
-	public AllComandesTable( String nom, String telefon, String address, String hora, String preu, String restaurant, String metodePagament) {
+	public AllComandesTable( String nom, String telefon, String address, String hora, String preu, String restaurant, String metodePagament, String plats) {
 
 		this.nom = nom;
 		this.telefon = telefon;
@@ -47,6 +50,7 @@ public class AllComandesTable{
 		this.preu = preu;
 		this.restaurant = restaurant;	
 		this.metodePagament= metodePagament;
+		this.plats=plats;
 		
 	}
 	
@@ -109,8 +113,20 @@ public class AllComandesTable{
 	public void setMetodePagament( String metodePagament ){
 	
 		this.metodePagament = metodePagament;
-	}			
+	}		
 	
+	public String getPlats(){
+	
+		return plats;
+	}
+
+	public void setPlats( String plats ){
+	
+		this.plats = plats;
+	}
+
+
+
 	public static Comparator<AllComandesTable> nameComparator  = new Comparator<AllComandesTable>() {
 
 		public int compare(AllComandesTable cmd1, AllComandesTable cmd2) {

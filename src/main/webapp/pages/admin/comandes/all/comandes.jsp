@@ -41,6 +41,7 @@
 							<th><s:text name="tbl.comandes.hora" /></th>
 							<th><s:text name="tbl.comandes.confirm.preu" /></th>
 							<th><s:text name="tbl.comandes.nomrestaurant" /></th>
+							<th><s:text name="tbl.comandes.plats" /></th>
 							<th><s:text name="tbl.comandes.method.pagament" /></th>																												
 						</tr>
 					</thead>

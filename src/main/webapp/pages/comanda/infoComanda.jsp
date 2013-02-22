@@ -364,7 +364,8 @@ function submitLog(){
 	    },
 	    success: function(json) {
 	        if (json.result == "ok") {
-	        	$("#loged").text(initParams.checkok);	             
+	        	$("#loged").text(initParams.checkok);	
+	        	$("#checkPromocionsDisponibles").show();
 	        } else if (json.result == "error") {	        	
 	        	$("#loged").text(initParams.checkko);
 	        }
@@ -381,7 +382,11 @@ if(addressToLoad==''){
 initAddress();
 
 </script>
-
+<c:if test="${nameAuth eq 'anonymousUser' }">
+	<script type="text/javascript" >
+		$("#checkPromocionsDisponibles").show();
+	</script>
+</c:if>
 <c:if test="${not empty requestScope.recoveredComanda}">
 <script type="text/javascript" >
 window.localStorage.clear();

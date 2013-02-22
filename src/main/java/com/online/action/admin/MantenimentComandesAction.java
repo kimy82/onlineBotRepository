@@ -20,6 +20,7 @@ import com.online.bo.ComandaBo;
 import com.online.bo.UsersBo;
 import com.online.exceptions.GeneralException;
 import com.online.model.Comandes;
+import com.online.model.PlatComanda;
 import com.online.pojos.AllComandesTable;
 import com.online.pojos.ComandesTable;
 import com.online.services.impl.PaymentServiceImpl;
@@ -223,10 +224,11 @@ public class MantenimentComandesAction extends ActionSupport implements ServletR
 				String metodePagament = getMethodPagament(comanda);
 				String nomRestaurant = getNomRestaurant(comandaInitialized);
 				String username = (comanda.getUser()==null)?"-":comanda.getUser().getUsername(); 
+				String plats = getNomPLats(comandaInitialized);
 				String tel = (comanda.getUser()==null || comanda.getUser().getTelNumber()==null)?"-":comanda.getUser().getTelNumber();
 				AllComandesTable allComandesTable = new AllComandesTable(username, tel,comanda.getAddress()==null ? "" : comanda.getAddress() ,
 																		 (comanda.getDia()==null?"-" : Utils.formatDate2(comanda.getDia())) + " " + (comanda.getHora()==null?"-":comanda.getHora()), 
-																		 (comanda.getPreu()==null ? "-" :String.valueOf(comanda.getPreu())), nomRestaurant, metodePagament);
+																		 (comanda.getPreu()==null ? "-" :String.valueOf(comanda.getPreu())), nomRestaurant, metodePagament,plats);
 
 				
 				comandesTableList.add(allComandesTable);
@@ -263,7 +265,7 @@ public class MantenimentComandesAction extends ActionSupport implements ServletR
 		if(this.columna==5)
 			Collections.sort(comandesTableList, AllComandesTable.restaurantComparator);
 		
-		if(this.columna==6)
+		if(this.columna==7)
 			Collections.sort(comandesTableList, AllComandesTable.metodeComparator);
 		
 		if(this.sortDireccio!=null && this.sortDireccio.equals("desc")){
@@ -299,6 +301,20 @@ public class MantenimentComandesAction extends ActionSupport implements ServletR
 		} catch (Exception e) {
 			return "-";
 		}
+	}
+	
+	private String getNomPLats( Comandes comanda ){
+
+		StringBuffer nomPlats = new StringBuffer(" ");
+		for (PlatComanda platComanda : comanda.getPlats()) {
+			nomPlats.append(platComanda.getPlat().getNom()+"<br>");
+		}
+		if (nomPlats.length() != 0)
+			nomPlats.setLength(nomPlats.length() - 4);
+
+	
+
+		return nomPlats.toString();
 	}
 
 	private void inizializeTableParams() throws NumberFormatException{
