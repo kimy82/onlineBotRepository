@@ -33,7 +33,6 @@
 				</div>
 				<hr class="sep2">
 				<s:iterator value="begudaList" var="beguda">
-					<hr class="sep4">
 					<div class="iterate_Rest" >
 							<div class="img_Rest ui-widget-content selectorBeg" id="draggable_${beguda.id}" >
 	  							<img height="152" width="230" src="/${initParam.app}/comanda/ImageAction.action?imageId=${beguda.foto.id}">
@@ -68,9 +67,7 @@
 							</div>							
 						</div>
 				</s:iterator>
-				</div>
 			</div>
-			
 			<!-- Dreta-->						
 				<div id="left">
 					<div id="bar_left">
@@ -114,6 +111,7 @@
 </div>
 <div id="infoBeguda_dialog" class="filtres filtres-oberts">	 		
 </div>  
+<c:import url="/pages/includes/endPage.jsp" />
 
 <!-- Scripts --> 
 	<!-- CSS portamu --> 

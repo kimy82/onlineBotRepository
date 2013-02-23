@@ -9,7 +9,8 @@
 	<META http-equiv="Content-Style-Type" content="text/css">
 	<meta http-equiv="content-type" content="text/html;charset=utf-8" />
 	<meta name="viewport" content="width=device-width,initial-scale=0.99,maximum-scale=0.99" />
-	<title> <s:text name="txt.welcome.principal" />	</title>	
+	<title> <s:text name="txt.welcome.principal" />	</title>
+	
 </head>
 <body>
 <c:import url="/pages/includes/headerContext.jsp" />
@@ -172,7 +173,7 @@
 	<script src="<c:url value='/js/address/addressValidationForm.js'/>" type="text/javascript"></script>
 		<script src="<c:url value='/js/address/addressValidationFormbis.js'/>" type="text/javascript"></script>
 	<script src="http://maps.google.com/maps/api/js?sensor=false" type="text/javascript"></script>
-
+	
 	<script src="<c:url value='/jswelcome.js'/>" type="text/javascript"></script>
 <script type="text/javascript" >
 new Address.addressValidation();

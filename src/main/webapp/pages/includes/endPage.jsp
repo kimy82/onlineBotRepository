@@ -5,7 +5,7 @@
 <div id="footer">
 	<div id="footer_int">
 		<div id="footer_rigth">
-		
+		<div class="tweet"></div>
 		</div>
 	</div>
 </div>

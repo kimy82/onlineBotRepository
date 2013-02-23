@@ -5,6 +5,7 @@
 <html>
 <head>
 	<meta http-equiv="content-type" content="text/html;charset=utf-8" />
+	
 </head>
 <body>
 
@@ -38,7 +39,7 @@
 		</div>
 	</div>
 	<div class="maps" id="map_canvasbis">	
-		<iframe width="67" height="671" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.es/maps?f=q&amp;source=s_q&amp;hl=ca&amp;geocode=&amp;q=Carrer+Doctor+Antic+Roca,+23,+Girona&amp;aq=0&amp;oq=Carrer+Doctor+Antic+Roca+23,+Girona&amp;sll=41.973792,2.822064&amp;sspn=0.007314,0.015836&amp;g=Carrer+Doctor+Antic+Roca,+Girona&amp;ie=UTF8&amp;hq=&amp;hnear=Carrer+Doctor+Antic+Roca,+23,+17003+Girona&amp;ll=41.973793,2.822059&amp;spn=0.007314,0.015836&amp;t=m&amp;z=14&amp;output=embed"></iframe><br /><small><a href="https://maps.google.es/maps?f=q&amp;source=embed&amp;hl=ca&amp;geocode=&amp;q=Carrer+Doctor+Antic+Roca,+23,+Girona&amp;aq=0&amp;oq=Carrer+Doctor+Antic+Roca+23,+Girona&amp;sll=41.973792,2.822064&amp;sspn=0.007314,0.015836&amp;g=Carrer+Doctor+Antic+Roca,+Girona&amp;ie=UTF8&amp;hq=&amp;hnear=Carrer+Doctor+Antic+Roca,+23,+17003+Girona&amp;ll=41.973793,2.822059&amp;spn=0.007314,0.015836&amp;t=m&amp;z=14" style="color:#0000FF;text-align:left">Mostra un mapa més gran</a></small>
+		<iframe width="649" height="649px" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.es/maps?f=q&amp;source=s_q&amp;hl=ca&amp;geocode=&amp;q=Carrer+Doctor+Antic+Roca,+23,+Girona&amp;aq=0&amp;oq=Carrer+Doctor+Antic+Roca+23,+Girona&amp;sll=41.973792,2.822064&amp;sspn=0.007314,0.015836&amp;g=Carrer+Doctor+Antic+Roca,+Girona&amp;ie=UTF8&amp;hq=&amp;hnear=Carrer+Doctor+Antic+Roca,+23,+17003+Girona&amp;ll=41.973793,2.822059&amp;spn=0.007314,0.015836&amp;t=m&amp;z=14&amp;output=embed"></iframe><br />
 	</div>
 </div>
 
@@ -46,6 +47,7 @@
 	<!-- CSS -->
 	<link rel="stylesheet" type="text/css" href="<c:url value='/css/portamu/registre.css' />" />
 	<link rel="stylesheet" type="text/css" href="<c:url value='/css/portamu/reset.css' />" />
+	<link rel="stylesheet" type="text/css" href="<c:url value='/css/portamu/prova.css' />" />
 	
 	<!-- FONTS -->
 	<link href='http://fonts.googleapis.com/css?family=Raleway:800,400' rel='stylesheet' type='text/css'>
@@ -56,6 +58,7 @@
 	<script src="<c:url value='/js/address/autocompleteStreet.js'/>" type="text/javascript"></script>
 	<script src="<c:url value='/js/address/autocompleteCodi.js'/>" type="text/javascript"></script>
 	<script src="<c:url value='/pages/login/jsregister.js' />" type="text/javascript"></script>
+	
 
 <script type="text/javascript" >		
 

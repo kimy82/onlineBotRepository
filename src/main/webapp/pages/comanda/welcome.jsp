@@ -10,6 +10,8 @@
 	<meta http-equiv="content-type" content="text/html;charset=utf-8" />
 	<meta name="viewport" content="width=device-width,initial-scale=0.99,maximum-scale=0.99" />
 	<title><s:text name="txt.welcome.principal" /></title>	
+	
+	
 </head>
 <body id="restaurants">
 <c:import url="/pages/includes/headerContext.jsp" />
@@ -114,13 +116,14 @@
 				</s:iterator>
 				<c:import url="/pages/includes/paginationPlats.jsp" />
 					<!-- begudes-->
-				<div id="begudes">
+				
 					<div id="begudes_titol">
 						<s:text name="txt.afegir.vi" />
 					</div>
 					
-					<s:iterator value="begudaList" var="beguda" >
+					
 						<hr class="sep4">
+						<s:iterator value="begudaList" var="beguda" >
 						<div class="iterate_ref" >
 							<div class="img_Rest ui-widget-content selectorBeg" id="draggable_${beguda.id}" >
 	  							<img height="152" width="230" src="/${initParam.app}/comanda/ImageAction.action?imageId=${beguda.foto.id}">
@@ -156,11 +159,12 @@
 									 <span class="price">${beguda.preu} &euro;</span><br>
 								</div>
 								<hr class="sep">
-							</div>							
+							</div>
+														
 						</div>
 					</s:iterator>
 				</div>
-			</div>
+			
 			
 			<!-- Dreta-->			
 			
@@ -231,6 +235,9 @@
 	<script src="<c:url value='/js/jquery/jquery.ui.resizable.js'/>" type="text/javascript"></script>
 	<script src="<c:url value='/js/jquery/jquery.effects.core.js'/>" type="text/javascript"></script>
 	<script src="<c:url value='/js/jquery/jquery.bgiframe-2.1.1.js'/>" type="text/javascript"></script>
+	
+	
+	
 	
 	<script type="text/javascript" >		
 		//Carrega del cistell de compra 

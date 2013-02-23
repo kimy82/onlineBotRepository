@@ -127,32 +127,30 @@
 TABLE.dataTable {
      border-collapse: collapse;
      clear: both;
-     font-size: 14px;
+     float: left;
+     font-family: arial;
+     font-size: 13px;
      text-align: left;
      width: 100%;
-     font-family:arial;
-     float:left;
 }
 
 .contenidor-taula {
-     margin-bottom: 1.4em;
      position: relative;
 }
 
 TABLE.dataTable THEAD TR {
-     background:#999999;
+     background: none repeat scroll 0% 0% #F7931E;
      position: relative;
      z-index: 9;
 }
 
 TABLE.dataTable THEAD TR TH {
-     border: 1px solid #999;
      color: #424242;
      font-weight: bold;
+     padding: 10px;
+     text-align: left;
+     text-transform: uppercase;
      z-index: 11;
-     text-transform:uppercase;
-     padding:10px;
-     text-align:left;
 }
 
 TABLE.dataTable TBODY TH {
@@ -162,20 +160,18 @@ TABLE.dataTable TBODY TH {
 }
 
 TABLE.dataTable TBODY TD {
-    
-     border-top: 1px solid #e0e0e0;
+     border-top: 1px solid #E0E0E0;
 }
 
 TABLE.dataTable TH {
      padding: 3px 6px;
      text-align: left;
-     vertical-align: center;
 }
 
 TABLE.dataTable TD {
      padding: 10px;
+     text-transform: uppercase;
      vertical-align: middle;
-    text-transform: uppercase;
 }
 
 table.dataTable THEAD TR th a {
@@ -187,23 +183,23 @@ table.dataTable THEAD TR th a:hover {
 }
 
 TABLE.dataTable TBODY TR:hover {
-     background-color: #3FA9F5;
+     background-color: #f2be8b;
 }
 
 tr.odd td.sorting_1:hover {
-     background-color: #3FA9F5;
+     background-color: #f2be8b;
 }
 
 tr.even td.sorting_1:hover {
-     background-color: #3FA9F5;
+     background-color: #f2be8b;
 }
 
 tr.even:hover td.sorting_1 {
-     background-color: #3FA9F5;
+     background-color: #f2be8b;
 }
 
 tr.odd:hover td.sorting_1 {
-     background-color: #3FA9F5;
+     background-color: #f2be8b;
 }
 
 th.firstheader {
@@ -272,19 +268,19 @@ table.display tr.even.gradeU {
 
 tr.odd {
      background-color: #F5F5F5;
-     border:1px solid #E0E0E0;
+     border: 1px solid #E0E0E0;
 }
 
 tr.even {
      background-color: white;
-      border:1px solid #E0E0E0;
+     border: 1px solid #E0E0E0;
 }
 
 .dataTables_scroll {
-     clear: both;
-     background-color: #f5f5f5;
-     width:1000px;
+     background-color: #F5F5F5;
      border: 1px solid #F1F1F1;
+     clear: both;
+     width: 1000px;
 }
 
 .dataTables_scrollBody {
@@ -335,66 +331,102 @@ td.details {
 }
 
 .paging_full_numbers {
+     float: left;
      height: 40px;
      line-height: 22px;
+     margin-top: 0px;
+     text-align: center;
      width: 950px;
-	 float:left;
-	 text-align:center;
-	 margin-top: -10px;
 }
 
 .paging_full_numbers a:active {
      outline: medium none;
-
 }
 
 .paging_full_numbers a:hover {
      text-decoration: none;
-
 }
 
 .paging_full_numbers a.paginate_button {
-    color: #A8A8A8 !important;
-    cursor: pointer;
-    font-family: arial;
-    font-size: 13px;
-    margin: 20px;
-    padding: 10px;
-
+     color: #A8A8A8 ! important;
+     cursor: pointer;
+     font-family: arial;
+     font-size: 13px;
+    
+     padding: 10px;
 }
 
 .paging_full_numbers a.paginate_button_disabled {
      color: #A8A8A8 ! important;
      cursor: pointer;
-     margin: 20px;
-     padding: 10px;
-	 font-family:arial;
-	 font-size:13px;
+    background-color: white;
+    border: 1px solid #E2E2E2;
+    border-radius: 2px 2px 2px 2px;
+    color: #888888;
+    font-family: arial;
+    font-size: 11px;
+    padding: 4px 12px;
+}
+.paging_full_numbers a.paginate_button_disabled:hover {
+     color: #A8A8A8 ! important;
+     cursor: pointer;
+    background-color: white;
+   
+    border-radius: 2px 2px 2px 2px;
+    color: #888888;
+    font-family: arial;
+    font-size: 11px;
+    padding: 4px 12px;
 }
 
 .paging_full_numbers a.paginate_active {
-     color: #777! important;
+     color: #A8A8A8 ! important;
      cursor: pointer;
-     margin: 0px 3px;
-     padding: 2px 5px;
-     font-family:arial;
-     font-size:13px;
+    
+     
+    background-color: white;
+    border: 1px solid #E2E2E2;
+    border-radius: 2px 2px 2px 2px;
+    color: #888888;
+    font-family: arial;
+    font-size: 11px;
+    padding: 4px 12px;
 }
 
 .paging_full_numbers a.paginate_button {
-     background-color: white;
-     border: 1px solid #e3e3e3;
+    color: #A8A8A8 ! important;
+     cursor: pointer;
+    
+     
+    background-color: white;
+    border: 1px solid #E2E2E2;
+    border-radius: 2px 2px 2px 2px;
+    color: #888888;
+    font-family: arial;
+    font-size: 11px;
+    padding: 4px 12px;
 }
 
 .paging_full_numbers a.paginate_button:hover {
-     background-color:#f3f3f3;
-     text-decoration: none! important;
+     color: #333;
+    border: 1px solid #333;
+    border-radius: 2px 2px 2px 2px;
+    padding: 4px 12px;
+     text-decoration: none ! important;
 }
 
 .paging_full_numbers a.paginate_active {
-     background-color: white;
-     padding:10px;
-     border: 1px solid #e3e3e3;
+     color: #A8A8A8 ! important;
+     cursor: pointer;
+    
+     
+    background-color: white;
+    border: 1px solid #E2E2E2;
+    border-radius: 2px 2px 2px 2px;
+    color: #888888;
+    font-family: arial;
+    font-size: 11px;
+    padding: 4px 12px;
 }
 
 table.display tr.even.row_selected td {
@@ -596,71 +628,109 @@ div.box {
      overflow: auto;
      padding: 0px;
 }
-#confMot .dataTables_scrollHeadInner{
-    float:left;
+
+#confMot .dataTables_scrollHeadInner {
+     float: left;
 }
 
 #confMot .dataTables_scroll {
-    background-color: #F5F5F5;
-    border: 1px solid #F1F1F1;
-    clear: both;
-    width: 950px;
-    margin-top: 20px;
+     background-color: #F5F5F5;
+     border: 1px solid #F1F1F1;
+     clear: both;
+     margin-top: 20px;
+     width: 950px;
 }
- #users .dataTables_scroll{
-    background-color: #F5F5F5;
-    border: 1px solid #F1F1F1;
-    clear: both;
-    width: 950px;
-    margin-top: 20px;
-    margin-bottom: 30px;
+
+#users .dataTables_scroll {
+     background-color: #F5F5F5;
+     border: 1px solid #F1F1F1;
+     clear: both;
+     margin-bottom: 30px;
+     margin-top: 20px;
+     width: 950px;
 }
-#conrest .dataTables_scroll{
-    background-color: #F5F5F5;
-    border: 1px solid #F1F1F1;
-    clear: both;
-    width: 950px;
-    margin-top: 20px;
+
+#conrest .dataTables_scroll {
+     background-color: #F5F5F5;
+     border: 1px solid #F1F1F1;
+     clear: both;
+     margin-top: 20px;
+     width: 950px;
 }
-#promo .dataTables_scroll{
-    background-color: #F5F5F5;
-    border: 1px solid #F1F1F1;
-    clear: both;
-    width: 950px;
-    margin-top: 20px;
+
+#promo .dataTables_scroll {
+     background-color: #F5F5F5;
+     border: 1px solid #F1F1F1;
+     clear: both;
+     margin-top: 20px;
+     width: 950px;
 }
-#newrest .dataTables_scroll{
-    background-color: #F5F5F5;
-    border: 1px solid #F1F1F1;
-    clear: both;
-    width: 950px;
-    margin-top: 20px;
+
+#newrest .dataTables_scroll {
+     background-color: #F5F5F5;
+     border: 1px solid #F1F1F1;
+     clear: both;
+     margin-top: 20px;
+     width: 950px;
 }
-#plats .dataTables_scroll{
-    background-color: #F5F5F5;
-    border: 1px solid #F1F1F1;
-    clear: both;
-    width: 950px;
-    margin-top: 20px;
+
+#plats .dataTables_scroll {
+     background-color: #F5F5F5;
+     border: 1px solid #F1F1F1;
+     clear: both;
+     margin-top: 20px;
+     width: 950px;
 }
-#conf .dataTables_scroll{
-    background-color: #F5F5F5;
-    border: 1px solid #F1F1F1;
-    clear: both;
-    width: 950px;
-    margin-top: 20px;
+
+#conf .dataTables_scroll {
+     background-color: #F5F5F5;
+     border: 1px solid #F1F1F1;
+     clear: both;
+     margin-top: 20px;
+     width: 950px;
 }
-#coment .dataTables_scroll{
-    background-color: #F5F5F5;
-    border: 1px solid #F1F1F1;
-    clear: both;
-    width: 950px;
-    margin-top: 20px;
+
+#coment .dataTables_scroll {
+     background-color: #F5F5F5;
+     border: 1px solid #F1F1F1;
+     clear: both;
+     margin-top: 20px;
+     width: 950px;
 }
-#begu .dataTables_scroll{
-    background-color: #F5F5F5;
-    border: 1px solid #F1F1F1;
-    clear: both;
-    width: 950px;
-    margin-top: 20px;
+
+#begu .dataTables_scroll {
+     background-color: #F5F5F5;
+     border: 1px solid #F1F1F1;
+     clear: both;
+     margin-top: 20px;
+     width: 950px;
+}
+#tbl_comandes_user_paginate{
+    margin-top:20px;
+}
+.dataTables_scroll{
+	
+	-webkit-box-shadow: 0px 7px 26px 1px rgb(233, 209, 187);
+    box-shadow: 0px 7px 26px 1px rgb(233, 209, 187);
+}
+
+#tbl_comandes_user_first {
+     float: left;
+     margin-right: 10px;
+}
+
+#tbl_comandes_user_last {
+     float: right;
+     margin-right: 10px;
+}
+
+#tbl_comandes_user_previous {
+     float: left;
+}
+
+#tbl_comandes_user_next {
+     float: right;
+}
+#tbl_comandes_user_paginate{
+	width:1000px;
 }

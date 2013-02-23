@@ -22,80 +22,98 @@
 		<!-- Language -->
 			<c:import url="/pages/includes/divLanguage.jsp" />
 		<!-- END language -->
-<h2><s:text name="txt.info.user" /></h2>
-<br>
 <c:import url="/pages/includes/headerContext.jsp" />
-<c:import url="/pages/includes/goHome.jsp" />	
-<br><a href="#" onclick="openDialog('infoUser');" ><s:text name="txt.canvi.dades.personals" /></a>	
-<h2><s:text name="txt.info.comandes.user.title" /></h2>
-
- 			<div  width="1000px" alig="center">
-				<table class="selecciom dataTable" id="tbl_comandes_user" width="1000px">
-					<thead>
-						<tr>
-							<th><s:text name="user.comandes.table.dia" /></th>
-							<th><s:text name="user.comandes.table.plats" /></th>
-							<th><s:text name="user.comandes.table.links" /></th>
-							<th><s:text name="user.comandes.table.preu" /></th>
-							<th><s:text name="user.comandes.table.descripcio" /></th>
-							<th width="40px"></th>
-						</tr>
-					</thead>
-					<tbody>
-					</tbody>
-				</table>
-			</div>
-			
-	<h2><s:text name="txt.info.promos" /></h2>
-			<div style="width:500px;" alig="center" >
-				<ul>
-				
-				<s:iterator value="promoListAPartirDe" var="promoAPD" >
-				
-				
-					<c:if test="${not empty promoAPD.numBegudes}">
-						<li><s:text name="txt.promo.info.begudes.n1" /> ${promoAPD.numBegudes } <s:text name="txt.promo.info.n2" /> ${promoAPD.tipusBeguda} <s:text name="txt.promo.info.n3" /> ${promoAPD.importAPartirDe}</li>
-					</c:if>
-					<c:if test="${not empty promoAPD.descompteImport}">
-						<li><s:text name="txt.promo.info.import.n1" />  ${promAPD.descompteImport }<s:text name="txt.promo.info.en" /> ${promoAPD.tipuDescompte} <s:text name="txt.promo.info.n3" /> ${promoAPD.importAPartirDe}</li>
-					</c:if>
-				
-				</s:iterator>
-				<s:iterator value="promocioNumComandes" var="promoNC" >
-				
-				
-					<c:if test="${not empty promoNC.numBegudes}">
-						<li><s:text name="txt.promo.info.begudes.n1" /> ${promoNC.numBegudes } <s:text name="txt.promo.info.n2" /> ${promoNC.tipusBeguda} <s:text name="txt.promo.info.n3" /> ${promoNC.numComandes} <s:text name="txt.promo.info.en" /> ${promoNC.temps } <s:text name="txt.promo.info.dies" /></li>
-					</c:if>
-					<c:if test="${not empty promoNC.descompteImport}">
-						<li><s:text name="txt.promo.info.import.n1" />  ${promoNC.descompteImport } <s:text name="txt.promo.info.en" /> ${promoNC.tipuDescompte} <s:text name="txt.promo.info.n3" /> ${promoNC.numComandes} <s:text name="txt.promo.info.en" /> ${promoNC.temps } <s:text name="txt.promo.info.dies" /></li>
-					</c:if>
-				
-				</s:iterator>
-				</ul>
-			</div>		
-<!-- Scripts --> 
-<!-- Dialog per escollir promocio -->
-<div id="dialog_details" class="filtres filtres-oberts" title="<s:text name="txt.canvi.details.title" />">
- 
-	 <h1><s:text name="txt.canvi.details" /></h1>
-	 
-	 			<c:import url="/pages/includes/address.jsp" />	
-	 					
-
-				<s:form  action="saveUserDetails" id="saveUserDetails" method="POST" enctype="multipart/form-data" >
-						<s:textfield key="user.username" id="username" onkeyup="return ismaxlength(this,45)"  ></s:textfield>											                   
-						<s:textfield key="user.telNumber" id="telNumber" onkeyup="return ismaxlength(this,9)" ></s:textfield>						                    
-						<s:hidden key="user.id" id="idUser" ></s:hidden>							
-						<tr><td><s:text name="user.password" /></td><td><s:password key="user.password" id="password" onkeyup="return ismaxlength(this,45)" value="" theme="simple" ></s:password></td>
-						<td><s:text name="txt.password.retype" />:</td><td><input type="password" id="passwordRetyped" onblur="checkPassword()"/></td></tr>						
-						<s:hidden key="user.address" id="comandaddress" ></s:hidden>
-						<tr><td><input type="button"  onclick="fillAddress()" value="submit"/></td></tr>	                    															
-				</s:form>	
-</div> 
+					<div id="content_per">
+					<div id="content_left">
+					<div id="canvia">
+					<h2><s:text name="txt.info.user" /></h2>
+					<h1><s:text name="txt.canvi.details" /></h1>
+			 
+			 			<c:import url="/pages/includes/addresses.jsp" />	
+			 		
+						<s:form  action="saveUserDetails" id="saveUserDetails" method="POST" enctype="multipart/form-data" >
+								<s:textfield key="user.username" id="username" onkeyup="return ismaxlength(this,45)"  ></s:textfield>											                   
+								<s:textfield key="user.telNumber" id="telNumber" onkeyup="return ismaxlength(this,9)" ></s:textfield>						                    
+								<s:hidden key="user.id" id="idUser" ></s:hidden>							
+								<s:text name="user.password" /><s:password key="user.password" id="password" onkeyup="return ismaxlength(this,45)" value="" theme="simple" ></s:password>
+								<s:text name="txt.password.retype" />:<input type="password" id="passwordRetyped" onblur="checkPassword()"/>					
+								<s:hidden key="user.address" id="comandaddress" ></s:hidden>
+								<input type="button"  onclick="fillAddress()" value="submit"/>	                    															
+						</s:form>	
+					</div>
+					
+					<div id="promocionsdiv">
+					
+						<h2><span class="promocions_peso"><s:text name="txt.info.promos" /></span></h2>
+						<div class="prom_int" style="width:350px;" alig="center" >
+						<ul>
+						<s:iterator value="promoListAPartirDe" var="promoAPD" >
+						
+						
+							<c:if test="${not empty promoAPD.numBegudes}">
+								<li><s:text name="txt.promo.info.begudes.n1" /> ${promoAPD.numBegudes } <s:text name="txt.promo.info.n2" /> ${promoAPD.tipusBeguda} <s:text name="txt.promo.info.n3" /> ${promoAPD.importAPartirDe}</li>
+							</c:if>
+							<c:if test="${not empty promoAPD.descompteImport}">
+								<li><s:text name="txt.promo.info.import.n1" />  ${promAPD.descompteImport }<s:text name="txt.promo.info.en" /> ${promoAPD.tipuDescompte} <s:text name="txt.promo.info.n3" /> ${promoAPD.importAPartirDe}</li>
+							</c:if>
+						
+						</s:iterator>
+						<s:iterator value="promocioNumComandes" var="promoNC" >
+						
+						
+							<c:if test="${not empty promoNC.numBegudes}">
+								<li><s:text name="txt.promo.info.begudes.n1" /> ${promoNC.numBegudes } <s:text name="txt.promo.info.n2" /> ${promoNC.tipusBeguda} <s:text name="txt.promo.info.n3" /> ${promoNC.numComandes} <s:text name="txt.promo.info.en" /> ${promoNC.temps } <s:text name="txt.promo.info.dies" /></li>
+							</c:if>
+							<c:if test="${not empty promoNC.descompteImport}">
+								<li><s:text name="txt.promo.info.import.n1" />  ${promoNC.descompteImport } <s:text name="txt.promo.info.en" /> ${promoNC.tipuDescompte} <s:text name="txt.promo.info.n3" /> ${promoNC.numComandes} <s:text name="txt.promo.info.en" /> ${promoNC.temps } <s:text name="txt.promo.info.dies" /></li>
+							</c:if>
+						
+						</s:iterator>
+						</ul>
+						</div>
+					</div>	
+		 			</div>
+		 			<div id="content_right">
+		 			<div id="taula" width="650px" alig="center">
+						<table class="selecciom dataTable" id="tbl_comandes_user" width="650px">
+							<thead>
+								<tr>
+									<th><s:text name="user.comandes.table.dia" /></th>
+									<th><s:text name="user.comandes.table.plats" /></th>
+									<th><s:text name="user.comandes.table.links" /></th>
+									<th><s:text name="user.comandes.table.preu" /></th>
+									<th><s:text name="user.comandes.table.descripcio" /></th>
+									
+								</tr>
+							</thead>
+							<tbody>
+							</tbody>
+						</table>
+					</div>
+					</div>
+					</div>
+		<!-- Scripts --> 
+		<!-- Dialog per escollir promocio -->
+		<div id="dialog_details" class="filtres filtres-oberts" title="<s:text name="txt.canvi.details.title" />">
+		 
+			 <h1><s:text name="txt.canvi.details" /></h1>
+			 
+			 			<c:import url="/pages/includes/address.jsp" />	
+			 					
+		
+						<s:form  action="saveUserDetails" id="saveUserDetails" method="POST" enctype="multipart/form-data" >
+								<s:textfield key="user.username" id="username" onkeyup="return ismaxlength(this,45)"  ></s:textfield>											                   
+								<s:textfield key="user.telNumber" id="telNumber" onkeyup="return ismaxlength(this,9)" ></s:textfield>						                    
+								<s:hidden key="user.id" id="idUser" ></s:hidden>							
+								<s:text name="user.password" /><s:password key="user.password" id="password" onkeyup="return ismaxlength(this,45)" value="" theme="simple" ></s:password>
+								<s:text name="txt.password.retype" />:</td><td><input type="password" id="passwordRetyped" onblur="checkPassword()"/>					
+								<s:hidden key="user.address" id="comandaddress" ></s:hidden>
+								<input type="button"  onclick="fillAddress()" value="submit"/>	                    															
+						</s:form>	
+		</div> 
 <div id="votaPlats_dialog" class="filtres filtres-oberts" title="<s:text name='txt.info.title' />">	 		
 </div>  
-	<link rel="stylesheet" href="<c:url value='/css/demo_table.css' />" type="text/css"   media="screen" />
+	<link rel="stylesheet" href="<c:url value='/css/portamu/tables.css' />" type="text/css"   media="screen" />
 	<link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/base/jquery-ui.css" rel="stylesheet" type="text/css" />
 	<link type="text/css" rel="stylesheet" href="<c:url value='/css/online.css' />" />
 	

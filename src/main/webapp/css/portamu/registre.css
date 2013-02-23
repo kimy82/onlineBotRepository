@@ -2,7 +2,7 @@
 #light_Reg{
 	background-color: #F2F2F2;
     border: 1px solid #E2E2E2;
-    height:900px;
+    height:808px;
     margin: 90px auto;
     width: 960px;
 }
@@ -14,7 +14,7 @@
 }
 .light_Reg_body{
 	padding: 20px;
-	margin-top: 20px;
+	margin-top: 6px;
 }
 .light_Reg_top{
 	color: #4D4D4D;
@@ -51,7 +51,7 @@
 #light_Reg_int .inputs{
 	height: 30px;
 	margin-top: 4px;
-	margin-bottom: 20px;
+	margin-bottom: 10px;
 	margin-left: 0px;
 	width: 196px;
 	font-family: arial;
@@ -73,8 +73,8 @@
 .maps{
 	border: 1px solid #D6D6D6;
     float: left;
-    height: 671px;
-    margin-top: 134px;
+    height: 649px;
+    margin-top: 119px;
     width: 641px;
 }
 .ui-widget-overlay {

@@ -93,8 +93,8 @@ h2{
 #container{
 	background: url(../../img/elements/content_background.jpg) no-repeat;
 	height: 780px;
-	
 }
+
 #content{
 	width: 1000px;
 	margin: auto;
@@ -416,7 +416,7 @@ h2{
 .entrar_CLOSE:hover{
 	padding: 10px;
 	color: white;
-	background-color: #F7931E;
+	background-color: #777;
 	border: 1px solid #bdbbbb;
 	margin-left: 0px;
 	font-family: 'Raleway', sans-serif;
@@ -426,7 +426,7 @@ h2{
 	margin-top: 69px;
 	-moz-border-radius: 3px;
 	-webkit-border-radius: 3px;
-	border-radius: 3px;
+	border-radius: 3px; 
 }
 .prova{
 	margin-top: 5px;
@@ -711,6 +711,7 @@ img.img_CLOSE {
     font-weight: 800;
     height:22px;
     width: 758px;
+    text-transform: uppercase;
 }
 #carreta{
 	width: 191px;
@@ -1175,37 +1176,31 @@ top:0px!important;
 	margin-top: 18px;
 	color: #F7931E;
 	font-size: 19px;
-	width: 222px;
+	width: 170px;
 	float: left;
 	font-family: 'Raleway', sans-serif;
 	font-weight: 800;
 	text-transform: uppercase;
 	margin-bottom: 20px;
 }
-.iterate_ref{
+#refresc .iterate_ref{
 	width: 175px;
-	height: 425px;
+	height: 206px;
 	float: left;
 	margin-right: 12px;
-    margin-bottom: 20px;
+    margin-bottom: 4px;
     margin-top: 9px;
     border-bottom: 1px solid #C69C6D;
 	border-right:  1px solid #C69C6D;
 }
-#begudes{
-	border: 1px solid #E2E2E2;
-    float: left;
-    margin-left: -20px;
-    margin-top: 60px;
-    padding: 20px;
-    width: 744px;
-    height: 463px;
-}
+
 #begudes_titol{
 	color: #333;
 	font-family: 'Raleway', sans-serif;
 	font-weight: 800;
 	font-size: 12px;
+	float: left;
+	margin-top: 30px;
 }
 .sep4{
 	border-top:  1px solid #E2E2E2;
@@ -1216,9 +1211,9 @@ top:0px!important;
     box-shadow: 0 3px 8px 2px #E0C0A6;
     box-shadow: 1px 1px 0 0 #FFFFFF;
     float: left;
-    margin-left: -20px;
-    margin-top: 23px;
-    width: 784px;
+    margin-left: 0px;
+    margin-top: 7px;
+    width: 765px;
 }
 .separadora{
 	border-right: 1px solid #E2E2E2;
@@ -1228,4 +1223,45 @@ top:0px!important;
     width: 2px;
     height: 449px;
     margin-right: 16px;
+}
+#topmenu li:hover .tancat a {
+     background-color: #777777;
+     color: white;
+     display: block;
+     margin: -15px 0px 0px;
+     padding: 15px;
+     text-shadow: 1px 1px #333333;
+     white-space: nowrap;
+     width: 138px;
+}
+#topmenu li:hover .tancat a:hover {
+    background-color: #777;
+    color: white;
+    display: block;
+    margin: -15px 0 0;
+    padding: 15px;
+    text-shadow: 1px 1px #333;
+    white-space: nowrap;
+    width: 138px;
+}
+.iterate_ref{
+	border-bottom: 1px solid #C69C6D;
+    border-right: 1px solid #C69C6D;
+    box-shadow: 1px 1px 0 0 #FFFFFF;
+    float: left;
+    height: 425px;
+    margin-bottom: 20px;
+    margin-right: 12px;
+    width: 246px;
+   
+}
+.dades{
+	font-family: raleway;
+     text-transform: uppercase;
+     font-weight:800;
+     background-color: white;
+     padding:10px;
+     border:1px solid #c3c3c3;
+     color:#333;
+     margin-top:20px;
 }

@@ -11,7 +11,7 @@
 	<meta name="viewport" content="width=device-width,initial-scale=0.99,maximum-scale=0.99" />
 	<title><s:text name="txt.welcome.principal" /></title>	
 </head>
-<body id="restaurants" >
+<body id="refresc" >
 <c:import url="/pages/includes/headerContext.jsp" />
 <c:import url="/pages/includes/divLogin.jsp" />
 
@@ -33,17 +33,13 @@
 				</div>
 				<hr class="sep2">
 				<s:iterator value="begudaList" var="beguda">
-					<hr class="sep4">
 					<div class="iterate_ref" >
 							<div class="img_Rest ui-widget-content selectorBeg" id="draggable_${beguda.id}" >
-	  							<img height="202" src="/${initParam.app}/comanda/ImageAction.action?imageId=${beguda.foto.id}">
+	  							<img height="110" src="/${initParam.app}/comanda/ImageAction.action?imageId=${beguda.foto.id}">
 	  						</div>
 							<div class="format">
 					  				<div class="titol_Rest">
 					  					<h1 id="p_desc_beg_${beguda.id}" >${beguda.nom}</h2>
-					  				</div>
-					  				<div class="cos_Rest">
-					  					<p>${beguda.descripcio}</p><br><br>
 					  				</div>
 	  						</div>
 							<div id="afegir">
@@ -53,11 +49,10 @@
 								<div class="right_price">
 									 <span class="price">${beguda.preu} &euro;</span><br>
 								</div>
-								<hr class="sep">
+								
 							</div>											
 						</div>
 				</s:iterator>
-				</div>
 			</div>
 			
 			<!-- Dreta-->						
@@ -103,7 +98,7 @@
 </div>
 <div id="infoBeguda_dialog" class="filtres filtres-oberts">	 		
 </div>  
-
+<c:import url="/pages/includes/endPage.jsp" />
 <!-- Scripts --> 
 	<!-- CSS portamu --> 
 	<link rel="stylesheet" type="text/css" href="<c:url value='/css/portamu/global.css' />" />

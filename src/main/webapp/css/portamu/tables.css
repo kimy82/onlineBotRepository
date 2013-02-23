@@ -1,0 +1,170 @@
+.dataTables_scroll {
+     background-color: white;
+     border: 1px solid #D3D3D3;
+     margin-top: 30px;
+     width: 650px;
+}
+
+.odd {
+     background-color: #F5F5F5;
+     border: 1px solid #E3E3E3;
+}
+
+#personal td {
+    
+}
+
+.dataTables_scrollHead {
+     background-color: #F7931E;
+     width: 650px;
+}
+
+TABLE.dataTable THEAD TR TH {
+     color: #424242;
+     font-family: raleway;
+     font-size: 13px;
+     font-weight: bold;
+     padding: 10px;
+     text-align: left;
+     text-transform: uppercase;
+     width: 650px;
+     z-index: 11;
+}
+
+TABLE.dataTable TD {
+     font-family: arial;
+     font-size: 13px;
+     padding-bottom: 10px;
+     padding-left: 20px;
+     padding-top: 10px;
+     text-transform: capitalize;
+     vertical-align: middle;
+}
+
+tr:hover {
+     background-color: #F7931E;
+}
+
+.dataTables_scrollHeadInner {
+     padding: 10px;
+}
+
+#tbl_comandes_user_length {
+     display: none;
+}
+
+#tbl_comandes_user_filter {
+     display: none;
+}
+
+#tbl_comandes_user_info {
+     display: none;
+}
+
+#tbl_comandes_user_paginate {
+     float: left;
+     margin-top: 20px;
+     text-align: center;
+     width: 650px;
+}
+
+#tbl_comandes_user_paginate a {
+     background-color: white;
+     border-radius: 2px 2px 2px 2px;
+     border: 1px solid #E2E2E2;
+     color: #A8A8A8;
+     cursor: pointer;
+     font-family: arial;
+     font-size: 11px;
+     padding: 4px 12px;
+}
+
+#tbl_comandes_user_paginate a:hover {
+     background-color: white;
+     border-radius: 2px 2px 2px 2px;
+     border: 1px solid #333333;
+     color: #333333 ! important;
+     cursor: pointer;
+     font-family: arial;
+     font-size: 11px;
+     padding: 4px 12px;
+}
+
+#tbl_comandes_user_next {
+     float: right;
+     margin-top: -6px ! important;
+}
+
+#tbl_comandes_user_last {
+     float: right;
+     margin-left: 10px;
+     margin-right: 1px;
+     margin-top: -6px ! important;
+}
+
+#tbl_comandes_user_first {
+     float: left;
+     margin-top: -6px ! important;
+}
+
+#tbl_comandes_user_previous {
+     float: left;
+     margin-top: -6px ! important;
+}
+
+.paginate_button {
+     margin: 10px ! important;
+}
+
+.paginate_active {
+     background-color: #F7931E ! important;
+     color: #333333 ! important;
+     margin: 10px ! important;
+     padding: 30px;
+}
+
+#taula {
+     float: left;
+     width: 650px;
+}
+
+#canvia {
+     float: left;
+     margin-right: 20px;
+     width: 330px;
+}
+
+#canvia .numca {
+     color: #888888;
+     font-family: arial;
+     height: 30px;
+     margin-bottom: 20px;
+     margin-left: 0px;
+     margin-top: 4px;
+     width: 30px;
+}
+
+#canvia .posta {
+     color: #888888;
+     font-family: arial;
+     height: 30px;
+     margin-bottom: 20px;
+     margin-left: 0px;
+     margin-top: 4px;
+     width: 110px;
+}
+#content_per{
+    width:1000px;
+    float:left;
+    margin-top:30px
+}    
+#content_left{
+    width:350px;
+    float:left;
+    margin-top:30px
+}
+#content_right{
+    width:650px;
+    float:left;
+    margin-top:30px
+} 
