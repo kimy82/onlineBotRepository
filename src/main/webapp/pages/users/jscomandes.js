@@ -179,14 +179,14 @@ $(document).ready(function() {
 				
 		//taula de les comandes d'un user
 	oTablecomandes =$("#tbl_comandes_user").dataTable( {
-					"iDisplayLength": 12,
+					"iDisplayLength": 6,
 					 "aoColumns" : [
 					                  { "mDataProp":"dia","bSortable": false, sWidth: '150px' },
-					                  { "mDataProp":"platsString", "bSortable": false, sWidth: '350px' },
+					                  { "mDataProp":"platsString", "bSortable": false, sWidth: '250px' },
 					                  { "mDataProp":"links", "bSortable": false, sWidth: '20px' },
 					                  { "mDataProp":"preu", "bSortable": false, sWidth: '40px' },
-					                  { "mDataProp":"observacions", "bSortable": false, sWidth: '40px' },
-					                  { "mDataProp":"accio", "bSortable": false, sWidth: '40px' }
+					          
+					                  { "mDataProp":"accio", "bSortable": false, sWidth: '140px' }
 					            ],
 					"sPaginationType": "full_numbers",
 					"oLanguage": {
@@ -198,8 +198,8 @@ $(document).ready(function() {
 					        "sPrevious": "<img src='/"+context+"/images/icono-paginador-anterior.gif' style='vertical-align:middle'>&nbsp;"+initTableParams.txtprevious
 					      }
 					    },
-					"sScrollY": "300",		    
-					"sScrollX": "752",	
+					"sScrollY": "100%",		    
+					"sScrollX": "700",	
 				    "bScrollCollapse": true,
 		    		"bProcessing": false,
 		    		"bServerSide": true,
