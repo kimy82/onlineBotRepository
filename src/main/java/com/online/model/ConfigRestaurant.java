@@ -97,4 +97,13 @@ public class ConfigRestaurant implements Serializable{
 	
 		this.hores = hores;
 	}		
+	
+	@Override
+	public boolean equals(Object obj) {
+		ConfigRestaurant config = (ConfigRestaurant)obj;
+		if(this.id==config.id){
+			return true;
+		}
+		return false;
+	}
 }

@@ -59,11 +59,7 @@ public class WorkOutPunctuation implements Job
 						int totalVots =star1+star2+star3+star4+star5;
 						
 						if(totalVots==0){
-							VotacioPlat votacio = new VotacioPlat();
-							votacio.setPlat(plat);						
-							votacio.setPunctuacio(3);
-							votacionsPlatsTotals=votacionsPlatsTotals+3;
-							plat.setVotacio(votacio);
+														
 						}else{
 							int totalPuntuacio = star1+(star2*2)+(star3*3)+(star4*4)+(star5*5);
 							int puntuacio = (totalPuntuacio/totalVots);
@@ -79,6 +75,7 @@ public class WorkOutPunctuation implements Job
 						votacio.setRestaurant(restaurant);						
 						votacio.setPunctuacio(3);
 						restaurant.setVotacio(votacio);
+						restaurantsBo.update(restaurant);
 					}else{
 						int puntuacioRestaurant= votacionsPlatsTotals/nplats;
 						restaurant.getVotacio().setPunctuacio(puntuacioRestaurant);
@@ -100,17 +97,15 @@ public class WorkOutPunctuation implements Job
 					
 					int totalVots =star1+star2+star3+star4+star5;
 					
-					if(totalVots==0){
-						VotacioBeguda votacio = new VotacioBeguda();
-						votacio.setBeguda(bg);						
-						votacio.setPunctuacio(3);					
-						bg.setVotacio(votacio);
+					if(totalVots==0 ){
+						bg.getVotacio().setPunctuacio(3);
 						
 					}else{
 						int totalPuntuacio = star1+(star2*2)+(star3*3)+(star4*4)+(star5*5);
 						int puntuacio = (totalPuntuacio/totalVots);					
-						bg.getVotacio().setPunctuacio(puntuacio); 
-					}															
+						bg.getVotacio().setPunctuacio(puntuacio);
+					}
+																				
 					begudaBo.update(bg);
 				}
 	
