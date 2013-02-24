@@ -72,11 +72,10 @@ function validateEmail(email) {
     return re.test(email);
 } 
 
-
 function saveEmail(){
 	var email = $("#email").val();
 	if(!validateEmail(email)){
-		alertOnline.alertes(initParams.txtwrongemail);
+		$("#error").text(initParams.txtwrongemail);
 		return;
 	}
 	var data = "email="+email;
@@ -90,7 +89,7 @@ function saveEmail(){
   			  if(json!=null && json.error!=null){
   				errorOnline.error("Error in AJAX: "+json.error);	
   			  }else{
-  				alertOnline.alertes(initParams.txtguardat);		
+  				$("#error").text(initParams.txtguardat);		
   			  }				
   		  },
   		  error: function(e){   errorOnline.error("Error in AJAX");	

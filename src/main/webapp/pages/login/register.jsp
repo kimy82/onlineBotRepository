@@ -41,6 +41,7 @@
 	<div class="maps" id="map_canvasbis">	
 		<iframe width="649" height="649px" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.es/maps?f=q&amp;source=s_q&amp;hl=ca&amp;geocode=&amp;q=Carrer+Doctor+Antic+Roca,+23,+Girona&amp;aq=0&amp;oq=Carrer+Doctor+Antic+Roca+23,+Girona&amp;sll=41.973792,2.822064&amp;sspn=0.007314,0.015836&amp;g=Carrer+Doctor+Antic+Roca,+Girona&amp;ie=UTF8&amp;hq=&amp;hnear=Carrer+Doctor+Antic+Roca,+23,+17003+Girona&amp;ll=41.973793,2.822059&amp;spn=0.007314,0.015836&amp;t=m&amp;z=14&amp;output=embed"></iframe><br />
 	</div>
+	<label id="errorRegist" style="font-style: italic; color: red;" ></label>
 </div>
 
 <!-- Scripts --> 
@@ -61,10 +62,8 @@
 	
 
 <script type="text/javascript" >		
-
-new Addressbis.addressValidation();
-initParamsbis = new  InitParamsbis( "<s:text name='txt.user.empty' />","<s:text name='txt.user.wrong' />", "<s:text name='txt.password.empty' />","<s:text name='txt.password.noteq' />","<s:text name='txt.tel.empty' />","<s:text name='txt.address.empty' />");
+	new Addressbis.addressValidation();
+	initParamsbis = new  InitParamsbis( "<s:text name='txt.user.empty' />","<s:text name='txt.user.wrong' />", "<s:text name='txt.password.empty' />","<s:text name='txt.password.noteq' />","<s:text name='txt.tel.empty' />","<s:text name='txt.address.empty' />");
 </script> 
-<c:import url="/pages/includes/subAlertOnline.jsp" />
 </body>
 </html>

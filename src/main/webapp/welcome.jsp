@@ -127,8 +127,11 @@
 					<div id="newsletter">
 						<h2><s:text name="txt.welcome.newsletter.title" /></h2><br>
 						<form class="form" action="#">
-						<s:text name="txt.welcome.newsletter.title2" /><br> <input class="newsin" type="text" value="<s:text name="txt.welcome.newsletter.value" />" id="email" >
-						<input class="news" type="button" onclick="saveEmail()" value="">
+						<s:text name="txt.welcome.newsletter.title2" /><br> <input class="newsin" type="text" value="<s:text name="txt.welcome.newsletter.value" />" id="email" />
+						<input class="news" type="button" onclick="saveEmail()" value="" />
+						<label id="error" style="font-style: italic; color: red;" ></label>
+						
+						
 						</form>
 					</div>
 					<!--End RIght-->

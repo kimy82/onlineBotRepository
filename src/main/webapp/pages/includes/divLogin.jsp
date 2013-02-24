@@ -8,7 +8,7 @@
 		</div>
 		<div id="int_right">
 			<ul>
-			<c:if test="${nameAuth eq 'anonymousUser' }">
+			<c:if test="${requestScope.nameAuth eq 'anonymousUser' }">
 				<li><img src="<c:url value='/img/elements/bar.png' />"></li>
 				<li><a name="register" type="button" onclick="goToRegist()" href="#" > <s:text name="txt.user.register" /></a></li>
 				<li><img src="<c:url value='/img/elements/bar.png' />"></li>
@@ -17,10 +17,10 @@
 			</c:if>	
 			</ul>
 		</div>
-		<c:if test="${nameAuth ne 'anonymousUser' }">
+		<c:if test="${requestScope.nameAuth ne 'anonymousUser' }">
 		<div id="ben">
 			<ul>
-			<li><s:text name="txt.bengingut" /> ${nameAuth}, <a href="<c:url value='/user/comandesPasades.action' />" ><s:text name="txt.comandes.historic" /></a></li>
+			<li><s:text name="txt.bengingut" /> ${requestScope.nameUser} <a href="<c:url value='/user/comandesPasades.action' />" ><s:text name="txt.comandes.historic" /></a></li>
 			<li class="last"><img src="<c:url value='/img/elements/bar.png' />"></li>
 			<li><a href="<c:url value='/j_spring_security_logout' />" > <s:text name="txt.user.logout" /></a></li>
 			</ul>

@@ -31,7 +31,7 @@ function validate(){
 	if(self.username.value==''){
 	 	
 		$("#username").css('border', 'solid 1px red');
-		alertOnline.subalertes(initParamsbis.txtusernameempty);			
+		$("#errorRegist").text(initParamsbis.txtusernameempty);			
 		return false;
 		
 	}else{
@@ -41,7 +41,7 @@ function validate(){
 	if(self.email.value==''){
 	 	
 		$("#email").css('border', 'solid 1px red');
-		alertOnline.subalertes(initParamsbis.txtusernameempty);			
+		$("#errorRegist").text(initParamsbis.txtusernameempty);			
 		return false;
 		
 	}else{
@@ -51,21 +51,21 @@ function validate(){
 	if(!validateEmail(self.email.value)){
 		
 		$("#email").css('border', 'solid 1px red');
-		alertOnline.subalertes(initParamsbis.txtusernamewrong);			
+		$("#errorRegist").text(initParamsbis.txtusernamewrong);			
 		return false;
 	}
 	
 	if(self.password.value==''){
 	 	
 		$("#password").css('border', 'solid 1px red');
-		alertOnline.subalertes(InitParamsbis.txtpasswordempty);			
+		$("#errorRegist").text(InitParamsbis.txtpasswordempty);			
 		return false;
 		
 	}else{
 		if(self.password.value!=self.confirmPassword.value){
 			$("#confirmPassword").css('border', 'solid 1px red');
 			$("#password").css('border', 'solid 1px red');
-			alertOnline.subalertes(initParamsbis.txtpasswordnotequal);				
+			$("#errorRegist").text(initParamsbis.txtpasswordnotequal);				
 		}else{
 			$("#confirmPassword").css('border', 'solid 1px rgb(135,155,179)');
 			$("#password").css('border', 'solid 1px rgb(135,155,179)');
@@ -75,7 +75,7 @@ function validate(){
 	if(self.telefon.value==''){
 		
 		$("#telefon").css('border', 'solid 1px red');
-		alertOnline.subalertes(initParamsbis.txttelempty);			
+		$("#errorRegist").text(initParamsbis.txttelempty);			
 		return false;
 		
 	}else{
@@ -85,7 +85,7 @@ function validate(){
 	if(self.comandaddressbis.value==''){
 		
 		$("#comandaddressbis").css('border', 'solid 1px red');
-		alertOnline.subalertes(initParamsbis.txtaddressempty);			
+		$("#errorRegist").text(initParamsbis.txtaddressempty);			
 		return false;
 		
 	}else{
@@ -95,19 +95,3 @@ function validate(){
 	self.submit();
 		
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
