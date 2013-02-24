@@ -1,10 +1,7 @@
 package com.online.action.comanda;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.LinkedList;
-import java.util.List;
 import java.util.ResourceBundle;
 
 import javax.servlet.ServletOutputStream;
@@ -16,28 +13,15 @@ import org.apache.struts2.interceptor.ServletResponseAware;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import com.online.bo.BegudaBo;
 import com.online.bo.ComandaBo;
-import com.online.bo.PlatsBo;
-import com.online.bo.RestaurantsBo;
 import com.online.bo.UsersBo;
 import com.online.exceptions.ComandaException;
 import com.online.exceptions.GeneralException;
 import com.online.exceptions.WrongParamException;
-import com.online.model.Beguda;
-import com.online.model.BegudaComanda;
 import com.online.model.Comandes;
 import com.online.model.HoresDTO;
-import com.online.model.Plat;
-import com.online.model.PlatComanda;
-import com.online.model.Restaurant;
 import com.online.model.Users;
-import com.online.pojos.ARecollirDTO;
-import com.online.pojos.BasicSub;
 import com.online.services.impl.ComandaServiceImpl;
-import com.online.utils.Constants;
 import com.online.utils.Utils;
 import com.opensymphony.xwork2.ActionSupport;
 
@@ -51,14 +35,6 @@ public class FinalComandaAction extends ActionSupport implements ServletResponse
 
 	private UsersBo				usersBo;
 	private Comandes			comanda;
-	private Restaurant			restaurant;
-
-	List<Plat>					platList			= new ArrayList<Plat>();
-	List<Beguda>				begudaList			= new ArrayList<Beguda>();
-	List<PlatComanda>			platComandaList		= new ArrayList<PlatComanda>();
-	List<BegudaComanda>			begudaComandaList	= new ArrayList<BegudaComanda>();
-
-	private List<BasicSub>		refrescList			= new ArrayList<BasicSub>();
 
 	private Long				idComanda			= null;
 	private String				hora;
@@ -68,26 +44,12 @@ public class FinalComandaAction extends ActionSupport implements ServletResponse
 	private String				address;
 	private String				dataActual;
 
-	private HoresDTO			horesDTO;
-	private int					numPlats			= 0;
-	private int					numBegudes			= 0;
-
-
 	private String				nameAuth;
 	private ComandaServiceImpl	comandaService;
-	private List<Restaurant>	restaurantList;
-
-	private Users				user;
 
 	HttpServletResponse			response;
 	HttpServletRequest			request;
 	
-	private Integer				actualPage;
-	private Integer				totalPage;
-	private Integer				rppPage =9;
-
-
-
 	public String execute(){
 
 		return SUCCESS;
@@ -134,7 +96,7 @@ public class FinalComandaAction extends ActionSupport implements ServletResponse
 		} catch (Exception e) {
 			json = Utils.createErrorJSON("error in ajax action");
 		}
-
+		
 		try {
 			out.print(json);
 		} catch (IOException e) {
@@ -148,7 +110,7 @@ public class FinalComandaAction extends ActionSupport implements ServletResponse
 
 		this.address = (request.getParameter("address") == null || request.getParameter("address").equals("")) ? null : request
 				.getParameter("address");
-		if (this.address == null) {
+		if (this.address == null && this.aDomicili==null || this.aDomicili.equals("true")) {
 			throw new WrongParamException("null address of comanda");
 		}
 	}
@@ -183,16 +145,6 @@ public class FinalComandaAction extends ActionSupport implements ServletResponse
 	}
 
 	// SETTERS i GETTERS
-	public List<Plat> getPlatList(){
-
-		return platList;
-	}
-
-	public void setPlatList( List<Plat> platList ){
-
-		this.platList = platList;
-	}
-
 	public HttpServletResponse getServletResponse(){
 
 		return this.response;
@@ -221,16 +173,6 @@ public class FinalComandaAction extends ActionSupport implements ServletResponse
 	public void setComandaService( ComandaServiceImpl comandaService ){
 
 		this.comandaService = comandaService;
-	}
-
-	public List<PlatComanda> getPlatComandaList(){
-
-		return platComandaList;
-	}
-
-	public void setPlatComandaList( List<PlatComanda> platComandaList ){
-
-		this.platComandaList = platComandaList;
 	}
 
 	public Comandes getComanda(){
@@ -263,39 +205,9 @@ public class FinalComandaAction extends ActionSupport implements ServletResponse
 		this.idComanda = idComanda;
 	}
 
-	public List<BasicSub> getRefrescList(){
-
-		return refrescList;
-	}
-
-	public void setRefrescList( List<BasicSub> refrescList ){
-
-		this.refrescList = refrescList;
-	}
-
 	public void setUsersBo( UsersBo usersBo ){
 
 		this.usersBo = usersBo;
-	}
-
-	public HoresDTO getHoresDTO(){
-
-		return horesDTO;
-	}
-
-	public void setHoresDTO( HoresDTO horesDTO ){
-
-		this.horesDTO = horesDTO;
-	}
-
-	public Users getUser(){
-
-		return user;
-	}
-
-	public void setUser( Users user ){
-
-		this.user = user;
 	}
 
 	public String getDataActual(){
@@ -308,91 +220,5 @@ public class FinalComandaAction extends ActionSupport implements ServletResponse
 		this.dataActual = dataActual;
 	}
 
-	public int getNumPlats(){
 
-		return numPlats;
-	}
-
-	public void setNumPlats( int numPlats ){
-
-		this.numPlats = numPlats;
-	}
-
-	public List<Beguda> getBegudaList(){
-
-		return begudaList;
-	}
-
-	public void setBegudaList( List<Beguda> begudaList ){
-
-		this.begudaList = begudaList;
-	}
-
-	public Restaurant getRestaurant(){
-	
-		return restaurant;
-	}
-
-	public void setRestaurant( Restaurant restaurant ){
-	
-		this.restaurant = restaurant;
-	}
-
-	public Integer getActualPage(){
-	
-		return actualPage;
-	}
-
-	public void setActualPage( Integer actualPage ){
-	
-		this.actualPage = actualPage;
-	}
-
-	public Integer getTotalPage(){
-	
-		return totalPage;
-	}
-
-	public void setTotalPage( Integer totalPage ){
-	
-		this.totalPage = totalPage;
-	}
-
-	public Integer getRppPage(){
-	
-		return rppPage;
-	}
-
-	public void setRppPage( Integer rppPage ){
-	
-		this.rppPage = rppPage;
-	}
-
-	public int getNumBegudes() {
-		return numBegudes;
-	}
-
-	public void setNumBegudes(int numBegudes) {
-		this.numBegudes = numBegudes;
-	}
-
-	public List<Restaurant> getRestaurantList(){
-	
-		return restaurantList;
-	}
-
-	public void setRestaurantList( List<Restaurant> restaurantList ){
-	
-		this.restaurantList = restaurantList;
-	}
-
-	public List<BegudaComanda> getBegudaComandaList() {
-		return begudaComandaList;
-	}
-
-	public void setBegudaComandaList(List<BegudaComanda> begudaComandaList) {
-		this.begudaComandaList = begudaComandaList;
-	}
-
-	
 }

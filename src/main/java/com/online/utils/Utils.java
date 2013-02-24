@@ -11,6 +11,8 @@ import java.util.List;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonParseException;
 import com.google.gson.JsonParser;
+import com.online.bo.UsersBo;
+import com.online.model.Users;
 import com.online.pojos.Basic;
 
 public class Utils{
@@ -31,6 +33,16 @@ public class Utils{
 			hexString.append(hex);
 		}
 		return hexString.toString();
+	}
+	
+	public static String getNameUser( String username, UsersBo usersBo ) throws NoSuchAlgorithmException{
+
+		if(username==null || username.equals("anonymousUser")){
+			return "";
+		}else{
+			Users user = usersBo.findByUsername(username);
+			return (user==null || user.getNom()==null)? "": user.getNom();
+		}	
 	}
 	
 	public static boolean isValidJSON(final String json) {

@@ -1,5 +1,6 @@
 package com.online.action;
 
+import java.security.NoSuchAlgorithmException;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
@@ -29,6 +30,7 @@ public class WelcomeAction extends ActionSupport implements ServletResponseAware
 	private UsersBo				usersBo;
 	private List<Restaurant>	restaurantList;
 	private String				nameAuth;
+	private String				nameUser;
 	private String				dataAvui;
 	private String				localeToChange;
 	Map<String, Object>			session;
@@ -37,10 +39,12 @@ public class WelcomeAction extends ActionSupport implements ServletResponseAware
 	private Integer				totalPage;
 	private Integer				rppPage =9;
 
-	public String execute(){
+	public String execute() {
 
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-		this.nameAuth = auth.getName();
+		this.nameAuth = auth.getName();			
+		
+		setUserName();
 		
 		if(session.get("WW_TRANS_I18N_LOCALE")==null || session.get("WW_TRANS_I18N_LOCALE").equals(""))
 			session.put("WW_TRANS_I18N_LOCALE", new Locale("ca"));
@@ -84,6 +88,18 @@ public class WelcomeAction extends ActionSupport implements ServletResponseAware
 	}
 
 	// PRIVATES
+	
+	private void setUserName(){
+		
+		try{
+			
+			this.nameUser = Utils.getNameUser(nameAuth, usersBo);
+			
+		}catch(Exception e){
+			this.nameUser="";
+		}
+		
+	}
 	private void  inizializePagin(){
 		this.actualPage= (request.getParameter("actualPage")!=null && !request.getParameter("actualPage").equals(""))? Integer.parseInt(request.getParameter("actualPage")): 0;
 		this.totalPage = this.restaurantList.size()/this.rppPage;
@@ -203,6 +219,15 @@ public class WelcomeAction extends ActionSupport implements ServletResponseAware
 	public void setTotalPage( Integer totalPage ){
 	
 		this.totalPage = totalPage;
+	}
+
+	public String getNameUser() {
+		return nameUser;
+	}
+
+	public void setNameUser(String nameUser) {
+		this.nameUser = nameUser;
 	}		
+	
 
 }

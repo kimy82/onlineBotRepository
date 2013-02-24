@@ -46,7 +46,11 @@ public class PaymentServiceImpl implements PaymentService {
 					
 				}else if (toAdmins && params[0].equals("begudes")){
 					
-					begudes = params[1];
+					begudes = (params.length==1)?"": params[1];
+					
+				}else if (!toAdmins && params[0].equals("begudes")){
+					
+					begudes = "";
 					
 				}else if (toAdmins && params[0].equals("comanda")){
 					resource.queryParam(params[0],params[1]+";"+begudes);
@@ -135,16 +139,15 @@ public class PaymentServiceImpl implements PaymentService {
 				String[] platsId = comandes.get(infoRestaurant[0]).split(";");
 				StringBuffer comandaSB = new StringBuffer("");
 				
-				StringBuffer comandaOrderSB = new StringBuffer("resid=" + infoRestaurant[0]
-						+ "&comanda=");
-
+				StringBuffer comandaOrderSB = new StringBuffer("resid=" + infoRestaurant[0]);
+				comandaOrderSB.append("&begudes="+comandaBeguda.toString());
+				
 				for (String idPlat : platsId) {
 					comandaSB.append(comandes.get(infoRestaurant[0] + "_" + idPlat) + ";");
 				}
-				
-				comandaOrderSB.append("&begudes="+comandaBeguda.toString());
+				comandaOrderSB.append("&comanda="+comandaSB.toString());
 
-				comandaOrderSB.append(comandaSB.toString());
+				
 				if (this.comanda.getaDomicili()) {
 					comandaOrderSB.append("&deliveryCharge=3.0");
 				} else {

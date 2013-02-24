@@ -18,7 +18,7 @@ public class VotacioRestaurant implements Serializable {
 	private Long nvots;
 
 	@Expose
-	private Long id;
+	private Integer id;
 	
 	@Expose
 	private int punctuacio;
@@ -50,11 +50,11 @@ public class VotacioRestaurant implements Serializable {
 	}
 
 
-	public Long getId() {
+	public Integer getId() {
 		return id;
 	}
 
-	public void setId(Long id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 

@@ -5,6 +5,8 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Locale;
+import java.util.Map;
 import java.util.ResourceBundle;
 
 import javax.servlet.ServletOutputStream;
@@ -13,6 +15,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.apache.struts2.interceptor.ServletRequestAware;
 import org.apache.struts2.interceptor.ServletResponseAware;
+import org.apache.struts2.interceptor.SessionAware;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 
@@ -41,7 +44,7 @@ import com.online.utils.Constants;
 import com.online.utils.Utils;
 import com.opensymphony.xwork2.ActionSupport;
 
-public class WelcomeComandaAction extends ActionSupport implements ServletResponseAware, ServletRequestAware{
+public class WelcomeComandaAction extends ActionSupport implements ServletResponseAware, ServletRequestAware, SessionAware{
 
 	/**
 	 * 
@@ -76,6 +79,8 @@ public class WelcomeComandaAction extends ActionSupport implements ServletRespon
 	private Integer				amount=0;
 
 	private String				nameAuth;
+	private String				nameUser;
+	
 
 	private ComandaServiceImpl	comandaService;
 	private List<Restaurant>	restaurantList;
@@ -84,6 +89,7 @@ public class WelcomeComandaAction extends ActionSupport implements ServletRespon
 
 	HttpServletResponse			response;
 	HttpServletRequest			request;
+	Map<String, Object>			session;
 	
 	private Integer				actualPage;
 	private Integer				totalPage;
@@ -97,6 +103,12 @@ public class WelcomeComandaAction extends ActionSupport implements ServletRespon
 
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		this.nameAuth = auth.getName();
+		
+		setUserName();
+		
+		if(session.get("WW_TRANS_I18N_LOCALE")==null || session.get("WW_TRANS_I18N_LOCALE").equals(""))
+			session.put("WW_TRANS_I18N_LOCALE", new Locale("ca"));
+		
 		inizializeRestaurantId();
 		inizilizeComandaId();
 		// Recoperem tots els plats disponibles.
@@ -537,6 +549,18 @@ public class WelcomeComandaAction extends ActionSupport implements ServletRespon
 	}
 
 	// private methods
+	private void setUserName(){
+		
+		try{
+			
+			this.nameUser = Utils.getNameUser(nameAuth, usersBo);
+			
+		}catch(Exception e){
+			this.nameUser="";
+		}
+		
+	}
+
 	private void inizializeAmount(){
 		this.amount= (request.getParameter("amount")!=null && !request.getParameter("amount").equals(""))? Integer.parseInt(request.getParameter("amount")): 1;
 	}
@@ -868,6 +892,19 @@ public class WelcomeComandaAction extends ActionSupport implements ServletRespon
 
 	public void setDataAvui(String dataAvui) {
 		this.dataAvui = dataAvui;
+	}
+	
+	public void setSession( Map<String, Object> session ){
+
+		this.session = session;
+	}
+
+	public String getNameUser() {
+		return nameUser;
+	}
+
+	public void setNameUser(String nameUser) {
+		this.nameUser = nameUser;
 	}
 	
 }
