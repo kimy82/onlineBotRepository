@@ -22,8 +22,21 @@ $( ".selector_jq" ).click(function() {
 	window.localStorage.setItem("comanda.restaurant", id);
 	var comanda = window.localStorage.getItem("comanda");
 	var dataInicialComanda =$("#dataObert_"+id).val();
+
+	var comandaConfirm = window.localStorage.getItem("comanda.confirm");
+	
+	if(comandaConfirm !='undefined' && comandaConfirm!=null){
+		var currentDay = new Date();
+		if((currentDay.getTime()-comandaConfirm)>60*4){
+			window.localStorage.removeItem("comanda.confirm");
+		}
+	}
+	
+	comandaConfirm = window.localStorage.getItem("comanda.confirm");
 	window.localStorage.setItem("comanda.data",dataInicialComanda);
-	if(comanda != 'undefined' && comanda != null){
+	if(comanda != 'undefined' && comanda != null && comandaConfirm == null ){
+		var day = new Date();
+		window.localStorage.setItem("comanda.confirm",day.getTime());
 		acceptComandaDialog();
 	}else{
 		window.location.href="/"+context+"/comanda/Welcome.action?restaurantId="+id+"&data="+dataInicialComanda;
@@ -62,6 +75,12 @@ var confirmComanda = function (){
 									}
 								}
 
+
+//Borra el param quan tanquem la window
+var resetConfirm = function() {
+	  window.localStorage.removeItem("comanda.confirm");
+	  return '';
+};
 
 $(document).ready(function() {
     $('#coin-slider').coinslider({ width: 1000,height: 299});

@@ -126,7 +126,21 @@ function goToRestaurantMenu(id){
 	var comanda = window.localStorage.getItem("comanda");
 	var data = window.localStorage.getItem("comanda.data");
 	window.localStorage.setItem("comanda.restaurant",id);
-	if(comanda != 'undefined' && comanda != null){
+	
+	var comandaConfirm = window.localStorage.getItem("comanda.confirm");
+	
+	if(comandaConfirm !='undefined' && comandaConfirm!=null){
+		var currentDay = new Date();
+		if((currentDay.getTime()-comandaConfirm)>60*4){
+			window.localStorage.removeItem("comanda.confirm");
+		}
+	}
+	
+	comandaConfirm = window.localStorage.getItem("comanda.confirm");
+	
+	if(comanda != 'undefined' && comanda != null && comandaConfirm == null){
+		var day = new Date();
+		window.localStorage.setItem("comanda.confirm",day.getTime());
 		acceptComandaDialog();
 	}else{
 		window.location.href="/"+context+"/comanda/Welcome.action?restaurantId="+id+"&data="+dataInicialComanda;
