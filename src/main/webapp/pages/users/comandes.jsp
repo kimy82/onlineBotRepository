@@ -92,28 +92,12 @@
 					</div>
 					</div>
 					</div>
-		<!-- Scripts --> 
-		<!-- Dialog per escollir promocio -->
-		<div id="dialog_details" class="filtres filtres-oberts" title="<s:text name="txt.canvi.details.title" />">
-		 
-			 <h1><s:text name="txt.canvi.details" /></h1>
-			 
-			 			<c:import url="/pages/includes/address.jsp" />	
-			 					
-		
-						<s:form  action="saveUserDetails" id="saveUserDetails" method="POST" enctype="multipart/form-data" >
-								<s:textfield key="user.username" id="username" onkeyup="return ismaxlength(this,45)"  ></s:textfield>											                   
-								<s:textfield key="user.telNumber" id="telNumber" onkeyup="return ismaxlength(this,9)" ></s:textfield>						                    
-								<s:hidden key="user.id" id="idUser" ></s:hidden>							
-								<s:text name="user.password" /><s:password key="user.password" id="password" onkeyup="return ismaxlength(this,45)" value="" theme="simple" ></s:password>
-								<s:text name="txt.password.retype" />:</td><td><input type="password" id="passwordRetyped" onblur="checkPassword()"/>					
-								<s:hidden key="user.address" id="comandaddress" ></s:hidden>
-								<input type="button"  onclick="fillAddress()" value="submit"/>	                    															
-						</s:form>	
-		</div> 
 <div id="votaPlats_dialog" class="filtres filtres-oberts" title="<s:text name='txt.info.title' />">	 		
 </div>  
-	<link rel="stylesheet" href="<c:url value='/css/portamu/tables.css' />" type="text/css"   media="screen" />
+	
+	
+<!-- scripts -->
+<link rel="stylesheet" href="<c:url value='/css/portamu/tables.css' />" type="text/css"   media="screen" />
 	<link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/base/jquery-ui.css" rel="stylesheet" type="text/css" />
 	<link type="text/css" rel="stylesheet" href="<c:url value='/css/online.css' />" />
 	
@@ -176,18 +160,6 @@
 	<!-- END Content-->
 </div>	
 <!-- END container -->
-<div id="footer">
-	<div id="footer_int">
-		<div id="footer_rigth">
-		
-		</div>
-	</div>
-</div>
-<div id="credits">
-	<div id="int_credits">
-		<s:text name="txt.footer.reserved" />
-	</div>
-</div>
-	</div>
+	<c:import url="/pages/includes/endPage.jsp" />
 </body>
 </html>

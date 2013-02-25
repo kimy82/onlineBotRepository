@@ -257,6 +257,8 @@
 			</result>
 			<result name="error">/error.jsp</result>		
 		</action>
+		
+		
 		<!-- Actions  de gestio de comentaris -->
 		<action name="comments" class="com.online.action.admin.MantenimentCommentsAction"
 			method="execute">
@@ -279,6 +281,12 @@
 		<action name="ajaxDeleteCommentBegudaAction"
 			class="com.online.action.admin.MantenimentCommentsAction" method="ajaxDeleteCommentBegudaAction">
 		</action>
+		<action name="loadAllComments" class="com.online.action.admin.MantenimentCommentsAction"
+			method="loadAllComments">
+			<result name="success">/pages/admin/restaurants/comentaris/comentaris.jsp</result>
+			<result name="error">/error.jsp</result>		
+		</action>
+		
 		
 		<!-- actions per primeres comandes  -->
 		<action name="primeresComandes" class="com.online.action.admin.MantenimentComandesAction"
@@ -294,6 +302,7 @@
 		<action name="ajaxDeleteComanda"
 			class="com.online.action.admin.MantenimentComandesAction" method="ajaxDeleteComanda">
 		</action>		
+					
 					
 		<!-- actions per totes les comandes  -->	
 		<action name="allComandes" class="com.online.action.admin.MantenimentComandesAction"

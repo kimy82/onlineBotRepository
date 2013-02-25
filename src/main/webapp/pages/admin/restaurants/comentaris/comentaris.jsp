@@ -20,7 +20,7 @@
 		</div>
 		</div>
 		<c:import url="pestanas.jsp" />
-    <s:select list="listPlats" headerKey="" headerValue="Escull un plat" id="platId" listKey="id" listValue="nom" onchange="loadComments(this.value)" ></s:select>
+    <s:select list="listPlats" headerKey="" headerValue="Escull un plat" id="platId" listKey="id" listValue="nom" onchange="loadComments(this.value)" ></s:select>    
     <div class="comments_foro" id="plat_${plat.id}" >
 			<table id="comments_tbl" >
 		
@@ -28,7 +28,7 @@
 							<tr id="${comt.id}" >
 								<td>${comt.comment}</td>																				
 									
-							    <td><a href="#" onclick="deleteComment(${comt.id})" ><img src="<c:url value='/images/delete.png' />" /> </a></td>																									
+							    <td><a href="#" onclick="deleteComment(${plat.id},${comt.id})" ><img src="<c:url value='/images/delete.png' />" /> </a></td>																									
 							</tr>						
 				</s:iterator>								
 			</table>
@@ -46,8 +46,27 @@
 				</s:iterator>								
 			</table>
 	</div>
-
-
+	<s:text name="txt.load.all.comentaris" /><input type="checkbox" id="loadAll" onclick="loadAllComments()" />
+ <div class="comments_all" id="comments_all" >
+			<table id="comments_tbl_all" >
+		
+			    <s:iterator value="listComments" var="comt">
+			    		<c:if test="${not empty comt.idPlat}">
+			    			<tr id="all_pl_${comt.idComment}" >
+								<td>${comt.comment}</td>																													
+							    <td><a href="#" onclick="deleteCommentFormAll(${comt.idPlat},${comt.idComment})" ><img src="<c:url value='/images/delete.png' />" /> </a></td>																									
+							</tr>
+			    		</c:if>
+			    		<c:if test="${not empty comt.idBeguda}">
+			    			<tr id="all_bg_${comt.idComment}" >
+								<td>${comt.comment}</td>																													
+							    <td><a href="#" onclick="deleteCommentFromAllBeguda(${comt.idBeguda},${comt.idComment})" ><img src="<c:url value='/images/delete.png' />" /> </a></td>																									
+							</tr>
+			    		</c:if>
+												
+				</s:iterator>								
+			</table>
+	</div>
 
 </div>
 </div>

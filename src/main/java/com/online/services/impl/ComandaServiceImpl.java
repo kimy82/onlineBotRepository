@@ -16,6 +16,7 @@ import com.google.gson.annotations.Expose;
 import com.online.bo.ComandaBo;
 import com.online.bo.ConfigRestaurantBo;
 import com.online.bo.MotersBo;
+import com.online.bo.PlatsBo;
 import com.online.bo.PromocionsBo;
 import com.online.bo.RestaurantsBo;
 import com.online.exceptions.ComandaException;
@@ -40,22 +41,35 @@ public class ComandaServiceImpl implements ComandaService{
 	private RestaurantsBo		restaurantsBo;
 	private PromocionsBo		promocionsBo;
 	private ComandaBo			comandaBo;
+	private PlatsBo				platsBo;
 
 	private ResourceBundle		resource;
 
 	public Comandes getComandaToRepeat( Comandes comanda ) throws ComandaException{
 
-		Comandes newComanda = new Comandes();
+		List<PlatComanda> platList = new LinkedList<PlatComanda>();
+		
+		Comandes newComanda = new Comandes();			
 		newComanda.setAddress(comanda.getAddress());
 		newComanda.setaDomicili(comanda.getaDomicili());
 		newComanda.setDia(new Date());
 		newComanda.setFentrada(new Date());
 		newComanda.setObservacions(comanda.getObservacions());
-		newComanda.setPlats(comanda.getPlats());
+		
+		for(PlatComanda pl : comanda.getPlats()){
+			
+			PlatComanda platComanda = new PlatComanda();
+			platComanda.setPlat(pl.getPlat());
+			platComanda.setNumPlats(pl.getNumPlats());
+			platList.add(platComanda);
+		}
+		
+		newComanda.setPlats(platList);
 		newComanda.setUser(comanda.getUser());
 		Double preu = getPreuOfComanda(newComanda);
 		newComanda.setPreu(preu);
 		return newComanda;
+
 	}
 	
 	public String getAddressOfRestaurant (Comandes comanda) throws ComandaException{
@@ -1102,4 +1116,8 @@ public class ComandaServiceImpl implements ComandaService{
 		this.comandaBo = comandaBo;
 	}
 
+	public void setPlatsBo( PlatsBo platsBo ){
+	
+		this.platsBo = platsBo;
+	}
 }

@@ -44,7 +44,7 @@ public class MantenimentPresentacioAction extends ActionSupport implements Servl
 
 		try {
 			
-			int numPhoto = request.getParameter("foto")!=null ? Integer.parseInt(request.getParameter("foto")): 1;
+			String numPhoto = request.getParameter("foto")!=null ? request.getParameter("foto"): "1";
 			Image image = getImageFromUpload(numPhoto);
 
 		} catch (ImageException ime) {
@@ -62,7 +62,7 @@ public class MantenimentPresentacioAction extends ActionSupport implements Servl
 	// PRIVATE METHODS
 
 
-	private Image getImageFromUpload(int numPhoto) throws ImageException{ 
+	private Image getImageFromUpload(String numPhoto) throws ImageException{ 
 
 		Image image = null;
 		if (this.fileUpload != null) {

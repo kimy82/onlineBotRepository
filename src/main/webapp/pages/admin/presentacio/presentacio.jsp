@@ -22,32 +22,61 @@
 			<br>	
 	  		 <div  style="width:800px; height: 500px;" alig="center">
 				<s:form action="newFotoPresentacio" method="POST" enctype="multipart/form-data" >										
-					<s:file name="fileUpload" label="Escull una fotografia" size="40" />					
-					<s:submit name="foto" value="1" ></s:submit>
+					<s:file name="fileUpload" label="Escull la 1ra foto en CATALÀ" size="40" />					
+					<s:submit name="foto" value="1_ca" ></s:submit>
 				</s:form>
 				<s:form action="newFotoPresentacio" method="POST" enctype="multipart/form-data" >										
-					<s:file name="fileUpload" label="Escull una fotografia" size="40" />					
-					<s:submit name="foto" value="2" ></s:submit>
+					<s:file name="fileUpload" label="Escull la 2na foto en CATALÀ" size="40" />					
+					<s:submit name="foto" value="2_ca" ></s:submit>
 				</s:form>	
 				<s:form action="newFotoPresentacio" method="POST" enctype="multipart/form-data" >										
-					<s:file name="fileUpload" label="Escull una fotografia" size="40" />					
-					<s:submit name="foto" value="3" ></s:submit>
+					<s:file name="fileUpload" label="Escull la 3ra foto en CATALÀ" size="40" />					
+					<s:submit name="foto" value="3_ca" ></s:submit>
 				</s:form>	
 				<s:form action="newFotoPresentacio" method="POST" enctype="multipart/form-data" >										
-					<s:file name="fileUpload" label="Escull una fotografia" size="40" />					
-					<s:submit name="foto" value="4" ></s:submit>
+					<s:file name="fileUpload" label="Escull la 4rt foto en CATALÀ" size="40" />					
+					<s:submit name="foto" value="4_ca" ></s:submit>
 				</s:form>	
 				<s:form action="newFotoPresentacio" method="POST" enctype="multipart/form-data" >										
-					<s:file name="fileUpload" label="Escull una fotografia" size="40" />					
-					<s:submit name="foto" value="5" ></s:submit>
+					<s:file name="fileUpload" label="Escull la 5na foto en CATALÀ" size="40" />					
+					<s:submit name="foto" value="5_ca" ></s:submit>
 				</s:form>	
 				<s:form action="newFotoPresentacio" method="POST" enctype="multipart/form-data" >										
-					<s:file name="fileUpload" label="Escull una fotografia" size="40" />					
-					<s:submit name="foto" value="6" ></s:submit>
+					<s:file name="fileUpload" label="Escull la 6na foto en CATALÀ" size="40" />					
+					<s:submit name="foto" value="6_ca" ></s:submit>
 				</s:form>	
 				<s:form action="newFotoPresentacio" method="POST" enctype="multipart/form-data" >										
-					<s:file name="fileUpload" label="Escull una fotografia" size="40" />					
-					<s:submit name="foto" value="7" ></s:submit>
+					<s:file name="fileUpload" label="Escull la 7na foto en CATALÀ" size="40" />					
+					<s:submit name="foto" value="7_ca" ></s:submit>
+				</s:form>		
+				
+				<s:form action="newFotoPresentacio" method="POST" enctype="multipart/form-data" >										
+					<s:file name="fileUpload" label="Escull la 1ra foto en CASTELLÀ" size="40" />					
+					<s:submit name="foto" value="1_es" ></s:submit>
+				</s:form>
+				<s:form action="newFotoPresentacio" method="POST" enctype="multipart/form-data" >										
+					<s:file name="fileUpload" label="Escull la 2na foto en CASTELLÀ" size="40" />					
+					<s:submit name="foto" value="2_es" ></s:submit>
+				</s:form>	
+				<s:form action="newFotoPresentacio" method="POST" enctype="multipart/form-data" >										
+					<s:file name="fileUpload" label="Escull la 3ra foto en CASTELLÀ" size="40" />					
+					<s:submit name="foto" value="3_es" ></s:submit>
+				</s:form>	
+				<s:form action="newFotoPresentacio" method="POST" enctype="multipart/form-data" >										
+					<s:file name="fileUpload" label="Escull la 4rt foto en CASTELLÀ" size="40" />					
+					<s:submit name="foto" value="4_es" ></s:submit>
+				</s:form>	
+				<s:form action="newFotoPresentacio" method="POST" enctype="multipart/form-data" >										
+					<s:file name="fileUpload" label="Escull la 5na foto en CASTELLÀ" size="40" />					
+					<s:submit name="foto" value="5_es" ></s:submit>
+				</s:form>	
+				<s:form action="newFotoPresentacio" method="POST" enctype="multipart/form-data" >										
+					<s:file name="fileUpload" label="Escull la 6na foto en CASTELLÀ" size="40" />					
+					<s:submit name="foto" value="6_es" ></s:submit>
+				</s:form>	
+				<s:form action="newFotoPresentacio" method="POST" enctype="multipart/form-data" >										
+					<s:file name="fileUpload" label="Escull la 7na foto en CASTELLÀ" size="40" />					
+					<s:submit name="foto" value="7_es" ></s:submit>
 				</s:form>		
 			</div>				
 		</div>

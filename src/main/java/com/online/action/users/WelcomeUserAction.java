@@ -131,13 +131,14 @@ public class WelcomeUserAction extends ActionSupport implements ServletResponseA
 			horesDTO = new HoresDTO();
 			horesDTO.setData(data);
 			horesDTO = this.comandaService.setHoresFeature(horesDTO, this.data, this.comanda,false);
+			
 			Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 			this.nameAuth = auth.getName();
 
 			List<Beguda> begudaList = this.begudaBo.getAll();
 			for (Beguda beguda : begudaList) {
 
-				BasicSub basic = new BasicSub(beguda.getFoto().getId(), beguda.getNom());
+				BasicSub basic = new BasicSub(((beguda.getFoto()!=null)?beguda.getFoto().getId() : 0), beguda.getNom());
 				basic.setIdSub(beguda.getId());
 				basic.setTipus(beguda.getTipus());
 				this.refrescList.add(basic);
@@ -284,7 +285,7 @@ public class WelcomeUserAction extends ActionSupport implements ServletResponseA
 					+ ")\" ><img src=\"../images/shopping_cart.png\"></a>");
 			comandaTableList.add(cmdUserTable);
 		}
-		Gson gson = new GsonBuilder().setPrettyPrinting().excludeFieldsWithoutExposeAnnotation().create();
+		Gson gson = new GsonBuilder().setPrettyPrinting().serializeNulls().excludeFieldsWithoutExposeAnnotation().create();
 		String json = gson.toJson(comandaTableList);
 		StringBuffer jsonSB = new StringBuffer("{");
 		jsonSB.append("\"sEcho\": " + sEcho + ", \"iTotalRecords\":\"" + this.numComandes + "\", \"iTotalDisplayRecords\":\""

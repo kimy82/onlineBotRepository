@@ -236,7 +236,7 @@ public class MantenimentComandesAction extends ActionSupport implements ServletR
 
 			order(comandesTableList);
 			
-			Gson gson = new GsonBuilder().setPrettyPrinting().excludeFieldsWithoutExposeAnnotation().create();
+			Gson gson = new GsonBuilder().setPrettyPrinting().serializeNulls().excludeFieldsWithoutExposeAnnotation().create();
 			String json = gson.toJson(comandesTableList);
 			StringBuffer jsonSB = new StringBuffer("{");
 			jsonSB.append("\"sEcho\": " + sEcho + ", \"iTotalRecords\":\"" + comandesList.size() + "\", \"iTotalDisplayRecords\":\""

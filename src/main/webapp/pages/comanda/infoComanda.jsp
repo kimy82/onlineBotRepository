@@ -18,7 +18,7 @@
 
 	<div id="content">
 			<!-- menu -->
-				<c:import url="/pages/includes/menuHeader.jsp" />
+				<c:import url="/pages/includes/menuHeaderNoConfirm.jsp" />
 			<!-- END menu -->
 			<!-- Language -->
 				<c:import url="/pages/includes/divLanguage.jsp" />
