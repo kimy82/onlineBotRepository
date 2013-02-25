@@ -27,7 +27,7 @@ $( ".selector_jq" ).click(function() {
 	
 	if(comandaConfirm !='undefined' && comandaConfirm!=null){
 		var currentDay = new Date();
-		if((currentDay.getTime()-comandaConfirm)>60*4){
+		if((currentDay.getTime()-comandaConfirm)>60*confirmTime){
 			window.localStorage.removeItem("comanda.confirm");
 		}
 	}

@@ -3,4 +3,5 @@
 
 <script type="text/javascript" >
 var context= "${initParam.app}";
+var confirmTime=parseInt(${initParam.confirmTime})
 </script>

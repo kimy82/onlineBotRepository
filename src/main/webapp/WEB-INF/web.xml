@@ -10,6 +10,11 @@
 		<param-name>app</param-name>
 		<param-value>onlineBot</param-value>
 	</context-param>
+	<context-param>
+		<description>temps en segons</description>
+		<param-name>confirmTime</param-name>
+		<param-value>3000</param-value>		
+	</context-param>
 	
 	<filter>
 		<filter-name>springSecurityFilterChain</filter-name>
