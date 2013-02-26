@@ -143,7 +143,7 @@ function goToRestaurantMenu(id){
 		window.localStorage.setItem("comanda.confirm",day.getTime());
 		acceptComandaDialog();
 	}else{
-		window.location.href="/"+context+"/comanda/Welcome.action?restaurantId="+id+"&data="+dataInicialComanda;
+		window.location.href="/"+context+"/comanda/Welcome.action?restaurantId="+id+"&data="+data;
 	}
 }
 

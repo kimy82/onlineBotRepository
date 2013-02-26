@@ -63,7 +63,7 @@ function initAddress(){
 function goToRestaurantMenu(id){
 	var comanda = window.localStorage.getItem("comanda");
 	var data = window.localStorage.getItem("comanda.data");
-var comandaConfirm = window.localStorage.getItem("comanda.confirm");
+	var comandaConfirm = window.localStorage.getItem("comanda.confirm");
 	
 	if(comandaConfirm !='undefined' && comandaConfirm!=null){
 		var currentDay = new Date();
@@ -79,7 +79,7 @@ var comandaConfirm = window.localStorage.getItem("comanda.confirm");
 		window.localStorage.setItem("comanda.confirm",day.getTime());
 		acceptComandaDialog();
 	}else{
-		window.location.href="/"+context+"/comanda/Welcome.action?restaurantId="+id+"&data="+dataInicialComanda;
+		window.location.href="/"+context+"/comanda/Welcome.action?restaurantId="+id+"&data="+data;
 	}
 }
 

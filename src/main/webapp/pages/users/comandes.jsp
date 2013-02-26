@@ -154,6 +154,7 @@
 		$("#codi").val(addArray[1]);
 	</script>
 	</c:if>
+	<c:import url="/pages/includes/confirmOnline.jsp" />
 	<c:import url="/pages/includes/alertOnline.jsp" />
 	<c:import url="/pages/includes/errorAjax.jsp" />
 	</div>
