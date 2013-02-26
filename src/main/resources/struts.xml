@@ -35,8 +35,9 @@
 			<result name="input">/pages/login/register.jsp</result>	
 			<result name="error">/error.jsp</result>		
 		</action>
-		<action name="preRegisterUser" >
-			<result>/pages/login/register.jsp</result>
+		<action name="preRegisterUser" class="com.online.action.LoginAction" method="preRegisterUser" >
+			<result name="success" >/pages/login/register.jsp</result>
+			<result name="error">/error.jsp</result>
 		</action>
 		<action name="loginfailed" class="com.online.action.LoginAction" method="loginfailed" >
 			<result name="success" >/pages/login/login.jsp</result>

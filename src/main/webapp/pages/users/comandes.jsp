@@ -10,7 +10,6 @@
 	<META http-equiv="Content-Style-Type" content="text/css">
 	<title><s:text name="txt.info.comandes.title" /></title>
 </head>
-
 <body id="personal">
 <c:import url="/pages/includes/headerContext.jsp" />
 <c:import url="/pages/includes/divLogin.jsp" />
@@ -151,7 +150,7 @@
 		var addArray = address.split("-");
 		
 		$("#carrer").val(addArray[0]);
-		$("#codi").val(addArray[1]);
+		$("#codi").val(addArray[addArray.length-1]);
 	</script>
 	</c:if>
 	<c:import url="/pages/includes/confirmOnline.jsp" />

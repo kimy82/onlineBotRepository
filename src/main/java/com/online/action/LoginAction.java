@@ -34,10 +34,22 @@ public class LoginAction extends ActionSupport implements ServletRequestAware{
 
 	public String login(){
 
+		if(request.getParameter("dialog")!=null)
+			request.setAttribute("dialog", "true");
+		
 		return SUCCESS;
 
 	}
 
+	public String preRegisterUser(){
+
+		if(request.getParameter("dialog")!=null)
+			request.setAttribute("dialog", "true");
+		
+		return SUCCESS;
+
+	}
+	
 	public String registerUser(){
 
 		Users user = new Users();

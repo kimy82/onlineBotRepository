@@ -11,6 +11,11 @@
 
 <div id="light_Reg">
 	<div id="light_Reg_int">
+		<c:if test="${dialog eq 'true'}">
+			<div id="moveRegist" class="ui-dialog-titlebar ui-widget-header ui-corner-all ui-helper-clearfix addmove">
+				MOVE(image)
+			</div>
+		</c:if>
 		<div class="light_Reg_top">
 			<s:text name="txt.register.info" />
 		</div>
@@ -28,12 +33,16 @@
 				<s:hidden key="address" id="comandaddressbis" ></s:hidden>
 				
 				<c:import url="/pages/includes/addressbis.jsp" />	
-					
-				
+									
 				<br><br><br>
 				<s:text name="user.altres" />*:<br> <s:textfield cssClass="inputs" key="altres" id="altres" theme="simple" onkeyup="return ismaxlength(this,200)" onclick="focus()" /><br>
 				
 				<input class="boton" type="button" onclick="validate();" value="<s:text name='txt.user.register' />">
+				
+				<c:if test="${dialog eq 'true'}">
+					&nbsp;<input class='boton' type='button' onclick='closeRegist()' value='TANCA' />
+				</c:if>
+				
 				</s:form>
 			</div>				
 		</div>

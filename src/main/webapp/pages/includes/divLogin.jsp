@@ -35,7 +35,7 @@
 <script type="text/javascript" >
 function goToLogin(){
 	
-	$("#login_dialog").load("/"+context+"/login.action");	
+	$("#login_dialog").load("/"+context+"/login.action?dialog=true");	
 	$("#login_dialog").dialog({ 
 		   autoOpen: false,
 		   height: 94,
@@ -48,16 +48,22 @@ function goToLogin(){
     $("#login_dialog").dialog("open"); 
     $("#login_dialog").siblings('div.ui-dialog-titlebar').remove();  
     $("#login_dialog").removeClass("ui-dialog-content");
-    $("#login_dialog").removeClass("ui-widget-content");
-   	$("#login_dialog").addClass("ui-dialog-titlebar ui-widget-header ui-corner-all ui-helper-clearfix");
+	$("#login_dialog").removeClass("ui-widget-content");
+   	$("#move").addClass("ui-dialog-titlebar ui-widget-header ui-corner-all ui-helper-clearfix");
 	$(".ui-widget-content").css("background-color", "transparent");
    	$(".ui-widget-content").css("border", "0px");
-   	
+}
+
+function closeLoguin(){
+	$("#login_dialog").dialog("close"); 			  
+}
+function closeRegist(){
+	$("#regist_dialog").dialog("close");
 }
 
 function goToRegist(){
 	
-	$("#regist_dialog").load("/"+context+"/preRegisterUser.action");	
+	$("#regist_dialog").load("/"+context+"/preRegisterUser.action?dialog=true");	
 	$("#regist_dialog").dialog({ 
 		   autoOpen: false,
 		   height: 780,
@@ -67,12 +73,14 @@ function goToRegist(){
 			   $("#regist_dialog").dialog("close"); 			  
 			}
 	});
+	
     $("#regist_dialog").dialog("open");
     $("#regist_dialog").siblings('div.ui-dialog-titlebar').remove();  
     $("#regist_dialog").removeClass("ui-dialog-content");
     $("#regist_dialog").removeClass("ui-widget-content");
-   	$("#regist_dialog").addClass("ui-helper-clearfix");
+ 	$("#moveRegist").addClass("ui-dialog-titlebar ui-widget-header ui-corner-all ui-helper-clearfix");
    	$(".ui-widget-content").css("background-color", "transparent");
    	$(".ui-widget-content").css("border", "0px");
+   	
 }
 </script>

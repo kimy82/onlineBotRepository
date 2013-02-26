@@ -11,8 +11,13 @@
 </head>
 <body onload='document.f.j_username.focus();'>
 
-<div id="light" class="ui-dialog-titlebar">
+<div id="light">
 	<div id="light_int">
+		<c:if test="${dialog eq 'true'}">
+			<div id="move" class="ui-dialog-titlebar ui-widget-header ui-corner-all ui-helper-clearfix addmove">
+				MOVE(image)
+			</div>
+		</c:if>
 		<div class="light_top">
 			<s:text name="txt.login.title" />
 		</div>
@@ -22,14 +27,20 @@
 				<form name='f' action="<c:url value='/j_spring_security_check' />" method='POST'   >
 				<s:text name="txt.user.usuario" />*:<br> <input class="inputs" type="text" name='j_username' onclick="focus()" ><br>
 				<s:text name="txt.user.password" />*:<br> <input type='password' class="inputs" name='j_password' onclick="focus()" /> <br>
-				<input class="boton" type="submit" value="ENTRAR">
+				
+				<input class="boton" type="submit" value="ENTRAR" />
+				<c:if test="${dialog eq 'true'}">
+					&nbsp;<input class="boton" style="text-align: right;" type="button" onclick="closeLoguin()" value="TANCA" />
+				</c:if>
 				</form>
 			</div>
-			<a name="register" type="button" href="<c:url value='/preRecoverAcount.action'/>" ><s:text name="txt.user.forgot.password" /></a>	
+			<a name="register" type="button" href="<c:url value='/preRecoverAcount.action'/>" ><s:text name="txt.user.forgot.password" /></a>
+				
+			<br>	
 					
 		</div>
 	</div>
-</dvi>
+</div>
 	<!-- CSS -->
 	<link rel="stylesheet" type="text/css" href="<c:url value='/css/portamu/loguin.css' />" />
 	<link rel="stylesheet" type="text/css" href="<c:url value='/css/portamu/reset.css' />" />

@@ -789,7 +789,7 @@ public class ComandaServiceImpl implements ComandaService{
 				if(!pl.getPlat().isActiu()){
 					nomPlat = nomPlat+" "+this.resource.getString("txt.plat.no.actiu");
 				}
-				PlatComandaCart platComandaCart = new PlatComandaCart(numPlats,pl.getPlat().getId(),nomPlat);
+				PlatComandaCart platComandaCart = new PlatComandaCart(pl.getNumPlats(),pl.getPlat().getId(),nomPlat);
 				platComandaCartList.add(platComandaCart);
 			}
 
