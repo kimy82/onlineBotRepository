@@ -2,16 +2,10 @@ package com.online.action.admin;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
 import javax.servlet.ServletOutputStream;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
-import org.apache.struts2.interceptor.ServletRequestAware;
-import org.apache.struts2.interceptor.ServletResponseAware;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -23,10 +17,10 @@ import com.online.model.Moters;
 import com.online.pojos.Basic;
 import com.online.pojos.ConfigMotersTable;
 import com.online.pojos.MotersRang;
+import com.online.supplier.extend.ActionSuportOnline;
 import com.online.utils.Utils;
-import com.opensymphony.xwork2.ActionSupport;
 
-public class MantenimentConfigMotersAction extends ActionSupport implements ServletResponseAware, ServletRequestAware{
+public class MantenimentConfigMotersAction extends ActionSuportOnline{
 
 	/**
 	 * 
@@ -41,14 +35,6 @@ public class MantenimentConfigMotersAction extends ActionSupport implements Serv
 	private String				hora;
 
 	private List<Basic>			horaList			= new ArrayList<Basic>();
-
-	private String				sEcho;
-	private int					lenght				= 0;
-	private int					inici				= 0;
-	private String				sortDireccio		= null;
-
-	HttpServletResponse			response;
-	HttpServletRequest			request;
 
 	public String execute(){
 
@@ -405,17 +391,12 @@ public class MantenimentConfigMotersAction extends ActionSupport implements Serv
 
 		this.dia = this.request.getParameter("dia") == null || this.request.getParameter("dia").equals("") ? null : this.request
 				.getParameter("dia");
-		this.sEcho = request.getParameter("sEcho");
-		this.lenght = (request.getParameter("iDisplayLength") == null) ? 10 : Integer.parseInt(request.getParameter("iDisplayLength"));
-		this.inici = (request.getParameter("iDisplayStart") == null) ? 0 : Integer.parseInt(request.getParameter("iDisplayStart"));
-		this.sortDireccio = request.getParameter("sSortDir_0");
-		if (this.sortDireccio == null)
-			this.sortDireccio = "ASC";
-
+		this.inizializeTableParams();
 		if (this.dia == null) {
 			throw new WrongParamException("No hi ha dia");
 		}
 	}
+
 	// Getters i setters
 
 	public void setMotersBo( MotersBo motersBo ){
@@ -431,26 +412,6 @@ public class MantenimentConfigMotersAction extends ActionSupport implements Serv
 	public void setDia( String dia ){
 
 		this.dia = dia;
-	}
-
-	public void setServletResponse( HttpServletResponse response ){
-
-		this.response = response;
-	}
-
-	public HttpServletResponse getServletResponse(){
-
-		return this.response;
-	}
-
-	public void setServletRequest( HttpServletRequest request ){
-
-		this.request = request;
-	}
-
-	public HttpServletRequest getServletRequest(){
-
-		return this.request;
 	}
 
 	public MotersRang getMotersRang(){

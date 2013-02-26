@@ -6,12 +6,6 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Set;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
-import org.apache.struts2.interceptor.ServletRequestAware;
-import org.apache.struts2.interceptor.ServletResponseAware;
-
 import com.online.bo.BegudaBo;
 import com.online.bo.PlatsBo;
 import com.online.exceptions.WrongParamException;
@@ -20,10 +14,10 @@ import com.online.model.Foro;
 import com.online.model.ForoBeguda;
 import com.online.model.Plat;
 import com.online.pojos.ForoDTO;
+import com.online.supplier.extend.ActionSuportOnline;
 import com.online.utils.Utils;
-import com.opensymphony.xwork2.ActionSupport;
 
-public class MantenimentCommentsAction extends ActionSupport implements ServletResponseAware, ServletRequestAware{
+public class MantenimentCommentsAction extends ActionSuportOnline{
 
 	/**
 	 * 
@@ -40,9 +34,7 @@ public class MantenimentCommentsAction extends ActionSupport implements ServletR
 	private Beguda				beguda;
 	private List<Plat>			listPlats;
 	private List<Beguda>		listBegudes;
-	private List<ForoDTO>		listComments = new LinkedList<ForoDTO> ();
-	HttpServletResponse			response;
-	HttpServletRequest			request;
+	private List<ForoDTO>		listComments		= new LinkedList<ForoDTO>();
 
 	public String execute(){
 
@@ -65,8 +57,8 @@ public class MantenimentCommentsAction extends ActionSupport implements ServletR
 
 	public String loadAllComments(){
 
-		this.beguda=null;
-		this.plat=null;
+		this.beguda = null;
+		this.plat = null;
 		this.listPlats = this.platsBo.getAll();
 		this.listBegudes = this.begudaBo.getAll("vi", false);
 		this.listComments.clear();
@@ -83,9 +75,9 @@ public class MantenimentCommentsAction extends ActionSupport implements ServletR
 				this.listComments.add(foroDTO);
 			}
 		}
-		
+
 		for (Beguda beguda : listBegudes) {
-			Beguda bg= this.begudaBo.loadBegudaAndForos(beguda.getId());
+			Beguda bg = this.begudaBo.loadBegudaAndForos(beguda.getId());
 			Set<ForoBeguda> foroSet = bg.getComments();
 			Iterator foroItera = foroSet.iterator();
 			while (foroItera.hasNext()) {
@@ -196,26 +188,6 @@ public class MantenimentCommentsAction extends ActionSupport implements ServletR
 		this.platsBo = platsBo;
 	}
 
-	public HttpServletResponse getServletResponse(){
-
-		return this.response;
-	}
-
-	public void setServletRequest( HttpServletRequest request ){
-
-		this.request = request;
-	}
-
-	public HttpServletRequest getServletRequest(){
-
-		return this.request;
-	}
-
-	public void setServletResponse( HttpServletResponse response ){
-
-		this.response = response;
-	}
-
 	public Plat getPlat(){
 
 		return plat;
@@ -262,15 +234,13 @@ public class MantenimentCommentsAction extends ActionSupport implements ServletR
 	}
 
 	public List<ForoDTO> getListComments(){
-	
+
 		return listComments;
 	}
 
 	public void setListComments( List<ForoDTO> listComments ){
-	
+
 		this.listComments = listComments;
 	}
-	
-	
 
 }

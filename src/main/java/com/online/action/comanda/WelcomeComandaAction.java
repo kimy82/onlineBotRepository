@@ -6,16 +6,10 @@ import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Locale;
-import java.util.Map;
 import java.util.ResourceBundle;
 
 import javax.servlet.ServletOutputStream;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 
-import org.apache.struts2.interceptor.ServletRequestAware;
-import org.apache.struts2.interceptor.ServletResponseAware;
-import org.apache.struts2.interceptor.SessionAware;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 
@@ -40,11 +34,11 @@ import com.online.model.Users;
 import com.online.pojos.ARecollirDTO;
 import com.online.pojos.BasicSub;
 import com.online.services.impl.ComandaServiceImpl;
+import com.online.supplier.extend.ActionSuportOnlineSession;
 import com.online.utils.Constants;
 import com.online.utils.Utils;
-import com.opensymphony.xwork2.ActionSupport;
 
-public class WelcomeComandaAction extends ActionSupport implements ServletResponseAware, ServletRequestAware, SessionAware{
+public class WelcomeComandaAction extends ActionSuportOnlineSession{
 
 	/**
 	 * 
@@ -86,10 +80,6 @@ public class WelcomeComandaAction extends ActionSupport implements ServletRespon
 	private List<Restaurant>	restaurantList;
 
 	private Users				user;
-
-	HttpServletResponse			response;
-	HttpServletRequest			request;
-	Map<String, Object>			session;
 	
 	private Integer				actualPage;
 	private Integer				totalPage;
@@ -675,26 +665,6 @@ public class WelcomeComandaAction extends ActionSupport implements ServletRespon
 		this.platList = platList;
 	}
 
-	public HttpServletResponse getServletResponse(){
-
-		return this.response;
-	}
-
-	public void setServletRequest( HttpServletRequest request ){
-
-		this.request = request;
-	}
-
-	public HttpServletRequest getServletRequest(){
-
-		return this.request;
-	}
-
-	public void setServletResponse( HttpServletResponse response ){
-
-		this.response = response;
-	}
-
 	public void setComandaBo( ComandaBo comandaBo ){
 
 		this.comandaBo = comandaBo;
@@ -878,7 +848,7 @@ public class WelcomeComandaAction extends ActionSupport implements ServletRespon
 		this.restaurantList = restaurantList;
 	}
 
-	public List<BegudaComanda> getBegudaComandaList() {
+	public List<BegudaComanda> getBegudaComandaList(){
 		return begudaComandaList;
 	}
 
@@ -894,10 +864,6 @@ public class WelcomeComandaAction extends ActionSupport implements ServletRespon
 		this.dataAvui = dataAvui;
 	}
 	
-	public void setSession( Map<String, Object> session ){
-
-		this.session = session;
-	}
 
 	public String getNameUser() {
 		return nameUser;

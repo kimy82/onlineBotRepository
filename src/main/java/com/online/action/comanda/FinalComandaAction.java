@@ -8,8 +8,6 @@ import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.apache.struts2.interceptor.ServletRequestAware;
-import org.apache.struts2.interceptor.ServletResponseAware;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 
@@ -19,13 +17,12 @@ import com.online.exceptions.ComandaException;
 import com.online.exceptions.GeneralException;
 import com.online.exceptions.WrongParamException;
 import com.online.model.Comandes;
-import com.online.model.HoresDTO;
 import com.online.model.Users;
 import com.online.services.impl.ComandaServiceImpl;
+import com.online.supplier.extend.ActionSuportOnline;
 import com.online.utils.Utils;
-import com.opensymphony.xwork2.ActionSupport;
 
-public class FinalComandaAction extends ActionSupport implements ServletResponseAware, ServletRequestAware{
+public class FinalComandaAction extends ActionSuportOnline{
 
 	/**
 	 * 
@@ -46,9 +43,6 @@ public class FinalComandaAction extends ActionSupport implements ServletResponse
 
 	private String				nameAuth;
 	private ComandaServiceImpl	comandaService;
-
-	HttpServletResponse			response;
-	HttpServletRequest			request;
 	
 	public String execute(){
 
@@ -145,26 +139,6 @@ public class FinalComandaAction extends ActionSupport implements ServletResponse
 	}
 
 	// SETTERS i GETTERS
-	public HttpServletResponse getServletResponse(){
-
-		return this.response;
-	}
-
-	public void setServletRequest( HttpServletRequest request ){
-
-		this.request = request;
-	}
-
-	public HttpServletRequest getServletRequest(){
-
-		return this.request;
-	}
-
-	public void setServletResponse( HttpServletResponse response ){
-
-		this.response = response;
-	}
-
 	public void setComandaBo( ComandaBo comandaBo ){
 
 		this.comandaBo = comandaBo;
@@ -219,6 +193,4 @@ public class FinalComandaAction extends ActionSupport implements ServletResponse
 
 		this.dataActual = dataActual;
 	}
-
-
 }

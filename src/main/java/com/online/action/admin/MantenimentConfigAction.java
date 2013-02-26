@@ -9,29 +9,21 @@ import java.util.List;
 import java.util.Set;
 
 import javax.servlet.ServletOutputStream;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
-import org.apache.struts2.interceptor.ServletRequestAware;
-import org.apache.struts2.interceptor.ServletResponseAware;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.online.bo.ConfigRestaurantBo;
-import com.online.bo.MotersBo;
 import com.online.bo.RestaurantsBo;
 import com.online.exceptions.BOException;
 import com.online.exceptions.GeneralException;
 import com.online.model.ConfigRestaurant;
-import com.online.model.Moters;
 import com.online.model.Restaurant;
 import com.online.pojos.Basic;
+import com.online.supplier.extend.ActionSuportOnline;
 import com.online.utils.Utils;
 import com.opensymphony.xwork2.Action;
-import com.opensymphony.xwork2.ActionSupport;
 
-
-public class MantenimentConfigAction extends ActionSupport implements ServletResponseAware, ServletRequestAware{
+public class MantenimentConfigAction extends ActionSuportOnline{
 
 	/**
 	 * 
@@ -47,9 +39,6 @@ public class MantenimentConfigAction extends ActionSupport implements ServletRes
 
 	private List<Basic>			restaurantBasicList	= new LinkedList<Basic>();
 
-	HttpServletResponse			response;
-	HttpServletRequest			request;
-
 	public String execute(){
 
 		loadRestaurantsBasicList();
@@ -60,15 +49,15 @@ public class MantenimentConfigAction extends ActionSupport implements ServletRes
 	public String saveConfig(){
 
 		try {
-			if ( this.configRestaurant != null) {
+			if (this.configRestaurant != null) {
 
 				if (!this.idRestaurants.isEmpty()) {
 					String[] stringRestaurants = this.idRestaurants.split(",");
 					for (String idStringRestaurant : stringRestaurants) {
-						
+
 						Restaurant restaurant = this.restaurantsBo.load(Integer.parseInt(idStringRestaurant), false, true, true);
-						
-						Date date = Utils.getDate(this.dia);															
+
+						Date date = Utils.getDate(this.dia);
 
 						ConfigRestaurant configRestToSave = new ConfigRestaurant();
 						configRestToSave.setData(date);
@@ -76,9 +65,9 @@ public class MantenimentConfigAction extends ActionSupport implements ServletRes
 						configRestToSave.setHores(this.configRestaurant.getHores());
 						configRestToSave.setIdRestaurant(Integer.parseInt(idStringRestaurant));
 
-						saveConfig(restaurant,date,configRestToSave);			
+						saveConfig(restaurant, date, configRestToSave);
 						saveLastObert(restaurant);
-												
+
 					}
 				}
 			}
@@ -117,20 +106,17 @@ public class MantenimentConfigAction extends ActionSupport implements ServletRes
 			} else {
 				Date date = Utils.getDate(this.dia);
 				ConfigRestaurant connfigrestaurant = this.configRestaurantBo.load(date, this.idRestaurant);
-				if(connfigrestaurant==null ||connfigrestaurant.getHores()==null || connfigrestaurant.getHores().equals("")){
+				if (connfigrestaurant == null || connfigrestaurant.getHores() == null || connfigrestaurant.getHores().equals("")) {
 					Restaurant restaurant = this.restaurantsBo.load(idRestaurant, false, false, false);
-				
-					 connfigrestaurant = new ConfigRestaurant();
-					 connfigrestaurant.setObert(true);
-					 connfigrestaurant.setHores(restaurant.getHores());
-				
+
+					connfigrestaurant = new ConfigRestaurant();
+					connfigrestaurant.setObert(true);
+					connfigrestaurant.setHores(restaurant.getHores());
+
 				}
-				
-				
-				
-					Gson gson = new GsonBuilder().setPrettyPrinting().excludeFieldsWithoutExposeAnnotation().create();					
-					json = new StringBuffer(gson.toJson(connfigrestaurant));					
-				
+
+				Gson gson = new GsonBuilder().setPrettyPrinting().excludeFieldsWithoutExposeAnnotation().create();
+				json = new StringBuffer(gson.toJson(connfigrestaurant));
 
 			}
 		} catch (Exception e) {
@@ -146,50 +132,50 @@ public class MantenimentConfigAction extends ActionSupport implements ServletRes
 	}
 
 	// private methods
-	
-	private void saveLastObert(Restaurant restaurant){
+
+	private void saveLastObert( Restaurant restaurant ){
+
 		Restaurant restaurantBis = this.restaurantsBo.load(restaurant.getId(), false, true, true);
 		Set<ConfigRestaurant> setconfig = restaurantBis.getConfigRestaurants();
-		if(setconfig.isEmpty()) return;
-		
-		boolean oneObert=false;
+		if (setconfig.isEmpty())
+			return;
+
+		boolean oneObert = false;
 		StringBuffer datasClosedSB = new StringBuffer("");
-		for(ConfigRestaurant cnf : setconfig){
-			if(cnf.isObert()) oneObert=true;
-			if(!cnf.isObert()) datasClosedSB.append(Utils.formatDate2(cnf.getData()));
+		for (ConfigRestaurant cnf : setconfig) {
+			if (cnf.isObert())
+				oneObert = true;
+			if (!cnf.isObert())
+				datasClosedSB.append(Utils.formatDate2(cnf.getData()));
 		}
-		
+
 		String datasClosed = datasClosedSB.toString();
-		if(!oneObert){
+		if (!oneObert) {
 			Calendar calendar = Calendar.getInstance();
 			boolean continueLoop = true;
-			int i=0;
-			while(continueLoop){
-				
+			int i = 0;
+			while (continueLoop) {
+
 				calendar.add(Calendar.DAY_OF_YEAR, i);
 				Date dataToCheck = calendar.getTime();
 				i++;
-				if(!datasClosed.contains(Utils.formatDate2(dataToCheck))){
-					
+				if (!datasClosed.contains(Utils.formatDate2(dataToCheck))) {
+
 					ConfigRestaurant configRestToSave = new ConfigRestaurant();
 					configRestToSave.setData(dataToCheck);
 					configRestToSave.setObert(true);
 					configRestToSave.setHores(this.configRestaurant.getHores());
 					configRestToSave.setIdRestaurant(restaurantBis.getId());
-					
-					saveConfig(restaurantBis,dataToCheck,configRestToSave);	
-					continueLoop=false;
+
+					saveConfig(restaurantBis, dataToCheck, configRestToSave);
+					continueLoop = false;
 				}
 			}
-			
+
 		}
 	}
-	
-	
-	private void saveConfig(Restaurant restaurant, Date date, ConfigRestaurant configRestToSave){
 
-		
-															
+	private void saveConfig( Restaurant restaurant, Date date, ConfigRestaurant configRestToSave ){
 
 		ConfigRestaurant configRestaurantInDB = this.configRestaurantBo.load(date, restaurant.getId());
 		if (configRestaurantInDB == null) {
@@ -205,11 +191,12 @@ public class MantenimentConfigAction extends ActionSupport implements ServletRes
 		if (configRestaurantInDB == null) {
 			this.restaurantsBo.update(restaurant);
 		}
-				
+
 	}
+
 	private void loadRestaurantsBasicList(){
 
-		List<Restaurant> restaurantList = this.restaurantsBo.getAll(true,true,true);
+		List<Restaurant> restaurantList = this.restaurantsBo.getAll(true, true, true);
 
 		if (restaurantList != null) {
 			for (Restaurant restaurant : restaurantList) {
@@ -270,28 +257,8 @@ public class MantenimentConfigAction extends ActionSupport implements ServletRes
 	}
 
 	public ConfigRestaurant getConfigRestaurant(){
-	
+
 		return configRestaurant;
-	}
-
-	public void setServletResponse( HttpServletResponse response ){
-
-		this.response = response;
-	}
-
-	public HttpServletResponse getServletResponse(){
-
-		return this.response;
-	}
-
-	public void setServletRequest( HttpServletRequest request ){
-
-		this.request = request;
-	}
-
-	public HttpServletRequest getServletRequest(){
-
-		return this.request;
 	}
 
 	public Integer getIdRestaurant(){

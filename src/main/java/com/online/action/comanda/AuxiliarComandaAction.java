@@ -7,8 +7,6 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.apache.struts2.interceptor.ServletRequestAware;
-import org.apache.struts2.interceptor.ServletResponseAware;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 
@@ -17,10 +15,10 @@ import com.online.bo.RestaurantsBo;
 import com.online.bo.UsersBo;
 import com.online.model.Beguda;
 import com.online.model.Restaurant;
+import com.online.supplier.extend.ActionSuportOnline;
 import com.online.utils.Utils;
-import com.opensymphony.xwork2.ActionSupport;
 
-public class AuxiliarComandaAction extends ActionSupport implements ServletResponseAware, ServletRequestAware{
+public class AuxiliarComandaAction extends ActionSuportOnline{
 
 	/**
 	 * 
@@ -37,8 +35,6 @@ public class AuxiliarComandaAction extends ActionSupport implements ServletRespo
 	private String				nameUser;
 	private String				dataAvui;
 
-	HttpServletResponse			response;
-	HttpServletRequest			request;
 
 	public String execute(){		
 
@@ -90,26 +86,6 @@ public class AuxiliarComandaAction extends ActionSupport implements ServletRespo
 	}
 	
 	// SETTERS i GETTERS
-	public HttpServletResponse getServletResponse(){
-
-		return this.response;
-	}
-
-	public void setServletRequest( HttpServletRequest request ){
-
-		this.request = request;
-	}
-
-	public HttpServletRequest getServletRequest(){
-
-		return this.request;
-	}
-
-	public void setServletResponse( HttpServletResponse response ){
-
-		this.response = response;
-	}
-	
 	public String getNameAuth(){
 
 		return nameAuth;
@@ -167,7 +143,6 @@ public class AuxiliarComandaAction extends ActionSupport implements ServletRespo
 
 	public void setUsersBo(UsersBo usersBo) {
 		this.usersBo = usersBo;
-	}
-	
+	}	
 	
 }

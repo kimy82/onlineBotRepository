@@ -7,10 +7,6 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.apache.struts2.interceptor.ServletRequestAware;
-import org.apache.struts2.interceptor.ServletResponseAware;
-import org.apache.wink.client.Resource;
-import org.apache.wink.client.RestClient;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 
@@ -19,16 +15,12 @@ import com.online.bo.UsersBo;
 import com.online.exceptions.PaymentException;
 import com.online.exceptions.WrongParamException;
 import com.online.model.Comandes;
-import com.online.model.PlatComanda;
 import com.online.model.Users;
 import com.online.services.impl.PaymentServiceImpl;
-import com.opensymphony.xwork2.ActionSupport;
+import com.online.supplier.extend.ActionSuportOnline;
 
 @SuppressWarnings("serial")
-public class PaymentAction extends ActionSupport implements ServletResponseAware, ServletRequestAware{
-
-	HttpServletResponse			response;
-	HttpServletRequest			request;
+public class PaymentAction extends ActionSuportOnline{
 	
 	private ComandaBo			comandaBo;
 	
@@ -137,26 +129,6 @@ public class PaymentAction extends ActionSupport implements ServletResponseAware
 	}
 	
 	//GETTERS i SETTERS
-	public HttpServletResponse getServletResponse(){
-
-		return this.response;
-	}
-
-	public void setServletRequest( HttpServletRequest request ){
-
-		this.request = request;
-	}
-
-	public HttpServletRequest getServletRequest(){
-
-		return this.request;
-	}
-
-	public void setServletResponse( HttpServletResponse response ){
-
-		this.response = response;
-	}
-
 	public String getNameAuth(){
 
 		return nameAuth;

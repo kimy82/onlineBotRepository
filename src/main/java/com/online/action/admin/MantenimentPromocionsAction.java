@@ -5,11 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.ServletOutputStream;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 
-import org.apache.struts2.interceptor.ServletRequestAware;
-import org.apache.struts2.interceptor.ServletResponseAware;
 import org.springframework.beans.BeanUtils;
 
 import com.google.gson.Gson;
@@ -24,23 +20,16 @@ import com.online.model.PromocioNumComandes;
 import com.online.pojos.Basic;
 import com.online.pojos.PromocioAPartirDeDTF;
 import com.online.pojos.PromocioTable;
+import com.online.supplier.extend.ActionSuportOnline;
 import com.online.utils.Utils;
 import com.opensymphony.xwork2.Action;
-import com.opensymphony.xwork2.ActionSupport;
 
-public class MantenimentPromocionsAction extends ActionSupport implements ServletResponseAware, ServletRequestAware{
+public class MantenimentPromocionsAction extends ActionSuportOnline{
 
 	/**
 	 * 
 	 */
 	private static final long		serialVersionUID		= 1L;
-	HttpServletResponse				response;
-	HttpServletRequest				request;
-
-	private String					sEcho;
-	private int						lenght					= 0;
-	private int						inici					= 0;
-	private String					sortDireccio			= null;
 
 	private PromocionsBo			promocionsBo;
 	private Promocio				promocio				= new Promocio();
@@ -48,7 +37,7 @@ public class MantenimentPromocionsAction extends ActionSupport implements Servle
 	private PromocioNumComandes		promocioNumComandes		= new PromocioNumComandes();
 
 	private List<Basic>				tipusDescompteList		= new ArrayList<Basic>();
-	private List<Basic>				tipusBegudaList		= new ArrayList<Basic>();
+	private List<Basic>				tipusBegudaList			= new ArrayList<Basic>();
 
 	private Integer					idPromo					= null;
 
@@ -70,7 +59,7 @@ public class MantenimentPromocionsAction extends ActionSupport implements Servle
 			inizializeTableParams();
 			json = searchInfoANDcreateJSONForPromos();
 		} catch (NumberFormatException e) {
-			json = Utils.createErrorJSONForDataTable("error in ajax action: wrong params",this.sEcho);
+			json = Utils.createErrorJSONForDataTable("error in ajax action: wrong params", this.sEcho);
 		} catch (Exception e) {
 			json = Utils.createErrorJSONForDataTable("error in ajax action", this.sEcho);
 		}
@@ -96,13 +85,13 @@ public class MantenimentPromocionsAction extends ActionSupport implements Servle
 			if (promo instanceof PromocioAPartirDe) {
 				PromocioAPartirDeDTF prDTF = new PromocioAPartirDeDTF();
 				PromocioAPartirDe pr = (PromocioAPartirDe) promo;
-				
+
 				BeanUtils.copyProperties(pr, prDTF);
-				if(pr.getDia()!=null){
+				if (pr.getDia() != null) {
 					String data = Utils.formatDate(pr.getDia());
 					prDTF.setDiaString(data);
 				}
-				
+
 				jsonSB.append(gson.toJson(prDTF));
 				jsonSB.setLength(jsonSB.length() - 1);
 				jsonSB.append(",\"tipus\" :\"apd\" }");
@@ -247,9 +236,12 @@ public class MantenimentPromocionsAction extends ActionSupport implements Servle
 
 			PromocioTable promoTable = new PromocioTable();
 			BeanUtils.copyProperties(promo, promoTable);
-			if(promoTable.getNumBegudes()==null)promoTable.setNumBegudes(0);
-			if(promoTable.getTipusBeguda()==null)promoTable.setTipusBeguda("-");
-			if(promoTable.getDescompteImport()==null)promoTable.setDescompteImport(0.0);
+			if (promoTable.getNumBegudes() == null)
+				promoTable.setNumBegudes(0);
+			if (promoTable.getTipusBeguda() == null)
+				promoTable.setTipusBeguda("-");
+			if (promoTable.getDescompteImport() == null)
+				promoTable.setDescompteImport(0.0);
 			promoTable.setNom("<a href=\"#\" onclick=\"goToPromocio(" + promo.getId() + ")\" >" + promo.getNom() + "</a>");
 			promoTable.setAccio("<a href=\"#\" onclick=\"deletePromocio(" + promo.getId() + ")\" ><img src=\"../images/delete.png\"></a>");
 			promoTableList.add(promoTable);
@@ -266,36 +258,7 @@ public class MantenimentPromocionsAction extends ActionSupport implements Servle
 
 	}
 
-	private void inizializeTableParams() throws NumberFormatException{
-
-		this.sEcho = request.getParameter("sEcho");
-		this.lenght = (request.getParameter("iDisplayLength") == null) ? 10 : Integer.parseInt(request.getParameter("iDisplayLength"));
-		this.inici = (request.getParameter("iDisplayStart") == null) ? 0 : Integer.parseInt(request.getParameter("iDisplayStart"));
-		this.sortDireccio = request.getParameter("sSortDir_0");
-		if (this.sortDireccio == null)
-			this.sortDireccio = "ASC";
-	}
-
 	// Getters i setters
-	public void setServletResponse( HttpServletResponse response ){
-
-		this.response = response;
-	}
-
-	public HttpServletResponse getServletResponse(){
-
-		return this.response;
-	}
-
-	public void setServletRequest( HttpServletRequest request ){
-
-		this.request = request;
-	}
-
-	public HttpServletRequest getServletRequest(){
-
-		return this.request;
-	}
 
 	public void setPromocionsBo( PromocionsBo promocionsBo ){
 
@@ -343,13 +306,13 @@ public class MantenimentPromocionsAction extends ActionSupport implements Servle
 	}
 
 	public List<Basic> getTipusBegudaList(){
-		
+
 		return tipusBegudaList;
 	}
 
 	public void setTipusBegudaList( List<Basic> tipusBegudaList ){
-	
+
 		this.tipusBegudaList = tipusBegudaList;
 	}
-	
+
 }

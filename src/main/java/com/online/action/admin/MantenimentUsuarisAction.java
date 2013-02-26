@@ -5,11 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.ServletOutputStream;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 
-import org.apache.struts2.interceptor.ServletRequestAware;
-import org.apache.struts2.interceptor.ServletResponseAware;
 import org.springframework.beans.BeanUtils;
 
 import com.google.gson.Gson;
@@ -19,26 +15,18 @@ import com.online.bo.UsersBo;
 import com.online.exceptions.BOException;
 import com.online.exceptions.GeneralException;
 import com.online.model.Comandes;
-import com.online.model.PlatComanda;
 import com.online.model.Users;
 import com.online.pojos.UsersDialog;
 import com.online.pojos.UsersTable;
+import com.online.supplier.extend.ActionSuportOnline;
 import com.online.utils.Utils;
-import com.opensymphony.xwork2.ActionSupport;
 
-public class MantenimentUsuarisAction extends ActionSupport implements ServletResponseAware, ServletRequestAware{
+public class MantenimentUsuarisAction extends ActionSuportOnline{
 
 	/**
 	 * 
 	 */
 	private static final long	serialVersionUID	= 1L;
-	HttpServletResponse			response;
-	HttpServletRequest			request;
-
-	private String				sEcho;
-	private int					lenght				= 0;
-	private int					inici				= 0;
-	private String				sortDireccio		= null;
 
 	private Long				idUser				= null;
 
@@ -127,7 +115,7 @@ public class MantenimentUsuarisAction extends ActionSupport implements ServletRe
 	}
 
 	// private methods
-	
+
 	private void inizializeParamTODeleteUser() throws NumberFormatException{
 
 		this.idUser = (request.getParameter("id") == null) ? null : Long.parseLong(request.getParameter("id"));
@@ -140,20 +128,20 @@ public class MantenimentUsuarisAction extends ActionSupport implements ServletRe
 
 		Users user = this.usersBo.load(idUser);
 		List<Comandes> comandes = this.comandaBo.getAllByUser(idUser, false);
-		int numComandesRealitzades=0;
-		int numComandesAmbTargeta=0;
-		int numComandesSenseTargeta=0;
-		for(Comandes cmd : comandes){
-			
-			if(cmd.getPagada()!=null && cmd.getPagada()==true){
+		int numComandesRealitzades = 0;
+		int numComandesAmbTargeta = 0;
+		int numComandesSenseTargeta = 0;
+		for (Comandes cmd : comandes) {
+
+			if (cmd.getPagada() != null && cmd.getPagada() == true) {
 				numComandesRealitzades++;
 			}
-			if(cmd.getTargeta()!=null &&cmd.getTargeta()==true){
+			if (cmd.getTargeta() != null && cmd.getTargeta() == true) {
 				numComandesAmbTargeta++;
-			}else{
+			} else {
 				numComandesSenseTargeta++;
 			}
-			
+
 		}
 		UsersDialog userDialog = new UsersDialog();
 		BeanUtils.copyProperties(user, userDialog);
@@ -190,45 +178,16 @@ public class MantenimentUsuarisAction extends ActionSupport implements ServletRe
 
 	}
 
-	private void inizializeTableParams() throws NumberFormatException{
-
-		this.sEcho = request.getParameter("sEcho");
-		this.lenght = (request.getParameter("iDisplayLength") == null) ? 10 : Integer.parseInt(request.getParameter("iDisplayLength"));
-		this.inici = (request.getParameter("iDisplayStart") == null) ? 0 : Integer.parseInt(request.getParameter("iDisplayStart"));
-		this.sortDireccio = request.getParameter("sSortDir_0");
-		if (this.sortDireccio == null)
-			this.sortDireccio = "ASC";
-	}
 
 	// Getters i setters
-	public void setServletResponse( HttpServletResponse response ){
-
-		this.response = response;
-	}
-
-	public HttpServletResponse getServletResponse(){
-
-		return this.response;
-	}
-
-	public void setServletRequest( HttpServletRequest request ){
-
-		this.request = request;
-	}
-
-	public HttpServletRequest getServletRequest(){
-
-		return this.request;
-	}
-
 	public void setUsersBo( UsersBo usersBo ){
 
 		this.usersBo = usersBo;
 	}
 
-	public void setComandaBo(ComandaBo comandaBo) {
+	public void setComandaBo( ComandaBo comandaBo ){
+
 		this.comandaBo = comandaBo;
 	}
-	
 
 }

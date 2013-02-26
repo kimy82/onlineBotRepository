@@ -1,7 +1,5 @@
 package com.online.action.admin;
 
-import java.io.File;
-import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -9,11 +7,7 @@ import java.util.List;
 import javassist.Modifier;
 
 import javax.servlet.ServletOutputStream;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 
-import org.apache.struts2.interceptor.ServletRequestAware;
-import org.apache.struts2.interceptor.ServletResponseAware;
 import org.springframework.beans.BeanUtils;
 
 import com.google.gson.Gson;
@@ -27,31 +21,19 @@ import com.online.model.Plat;
 import com.online.model.Restaurant;
 import com.online.pojos.PlatTable;
 import com.online.pojos.RestaurantTable;
+import com.online.supplier.extend.ActionSuportOnline;
 import com.online.utils.Utils;
 import com.opensymphony.xwork2.Action;
-import com.opensymphony.xwork2.ActionSupport;
 
-public class MantenimentRestaurantsAction extends ActionSupport implements ServletResponseAware, ServletRequestAware{
-
-
-	
+public class MantenimentRestaurantsAction extends ActionSuportOnline{
 
 	/**
 	 * 
 	 */
 	private static final long	serialVersionUID	= 1L;
-	private RestaurantsBo	restaurantsBo;
-	private String			sEcho;
-	private int				lenght			= 0;
-	private int				inici			= 0;
-	private String			sortDireccio	= null;
-	HttpServletResponse		response;
-	HttpServletRequest		request;
-	private Integer			idRestaurant	= null;
-	private Restaurant		restaurant		= new Restaurant();
-	private File			fileUpload;
-	private String			fileUploadContentType;
-	private String			fileUploadFileName;
+	private RestaurantsBo		restaurantsBo;
+	private Integer				idRestaurant		= null;
+	private Restaurant			restaurant			= new Restaurant();
 
 	public String execute(){
 
@@ -73,7 +55,7 @@ public class MantenimentRestaurantsAction extends ActionSupport implements Servl
 				addActionError("Error updating restaurant");
 				return Action.ERROR;
 			}
-			Restaurant restaurant = this.restaurantsBo.load(this.restaurant.getId(),true,false,false);
+			Restaurant restaurant = this.restaurantsBo.load(this.restaurant.getId(), true, false, false);
 
 			if (restaurant == null)
 				return Action.SUCCESS;
@@ -83,9 +65,9 @@ public class MantenimentRestaurantsAction extends ActionSupport implements Servl
 			restaurant.setNom(this.restaurant.getNom());
 			restaurant.setHores(this.restaurant.getHores());
 			restaurant.setCodiMaquina(this.restaurant.getCodiMaquina());
-			
+
 			Image image = getImageFromUpload();
-			if(image!=null)
+			if (image != null)
 				restaurant.setFoto(image);
 
 			this.restaurantsBo.update(restaurant);
@@ -108,7 +90,6 @@ public class MantenimentRestaurantsAction extends ActionSupport implements Servl
 		return Action.SUCCESS;
 
 	}
-	
 
 	public String saveNewRestaurant(){
 
@@ -155,7 +136,7 @@ public class MantenimentRestaurantsAction extends ActionSupport implements Servl
 			if (this.idRestaurant == null) {
 				json = Utils.createErrorJSON("Not restaurant selected");
 			} else {
-				Restaurant restaurant = restaurantsBo.load(idRestaurant,true,false,false);
+				Restaurant restaurant = restaurantsBo.load(idRestaurant, true, false, false);
 				Gson gson = new GsonBuilder().setPrettyPrinting().excludeFieldsWithModifiers(Modifier.PROTECTED).create();
 				json = gson.toJson(restaurant);
 			}
@@ -166,7 +147,7 @@ public class MantenimentRestaurantsAction extends ActionSupport implements Servl
 		try {
 			out.print(json);
 		} catch (IOException e) {
-			throw new GeneralException(e,"possibly ServletOutputStream null");
+			throw new GeneralException(e, "possibly ServletOutputStream null");
 		}
 		return null;
 	}
@@ -181,15 +162,15 @@ public class MantenimentRestaurantsAction extends ActionSupport implements Servl
 			inizializeTableParams();
 			json = searchInfoANDcreateJSONForRestaurants();
 		} catch (NumberFormatException e) {
-			json = Utils.createErrorJSONForDataTable("error in ajax action: wrong params",this.sEcho);
+			json = Utils.createErrorJSONForDataTable("error in ajax action: wrong params", this.sEcho);
 		} catch (Exception e) {
-			json = Utils.createErrorJSONForDataTable("error in ajax action",this.sEcho);
+			json = Utils.createErrorJSONForDataTable("error in ajax action", this.sEcho);
 		}
 
 		try {
 			out.print(json);
 		} catch (IOException e) {
-			throw new GeneralException(e,"possibly ServletOutputStream null");
+			throw new GeneralException(e, "possibly ServletOutputStream null");
 		}
 		return null;
 	}
@@ -206,18 +187,19 @@ public class MantenimentRestaurantsAction extends ActionSupport implements Servl
 					.getParameter("id")) : 1;
 			json = searchInfoANDcreateJSONForPlats();
 		} catch (NumberFormatException e) {
-			json = Utils.createErrorJSONForDataTable("error in ajax action: wrong params",this.sEcho);
+			json = Utils.createErrorJSONForDataTable("error in ajax action: wrong params", this.sEcho);
 		} catch (Exception e) {
-			json = Utils.createErrorJSONForDataTable("error in ajax action",this.sEcho);
+			json = Utils.createErrorJSONForDataTable("error in ajax action", this.sEcho);
 		}
 
 		try {
 			out.print(json);
 		} catch (IOException e) {
-			throw new GeneralException(e,"possibly ServletOutputStream null");
+			throw new GeneralException(e, "possibly ServletOutputStream null");
 		}
 		return null;
 	}
+
 	public String ajaxDeleteRestaurantAction(){
 
 		ServletOutputStream out = null;
@@ -227,9 +209,9 @@ public class MantenimentRestaurantsAction extends ActionSupport implements Servl
 			out = this.response.getOutputStream();
 
 			inizializeParamTODeleteRestaurant();
-			Restaurant restaurant = this.restaurantsBo.load(this.idRestaurant,true,false,false);
+			Restaurant restaurant = this.restaurantsBo.load(this.idRestaurant, true, false, false);
 			this.restaurantsBo.delete(restaurant);
-			
+
 		} catch (BOException boe) {
 			json = Utils.createErrorJSON("error in ajax action: Error in BO");
 		} catch (NumberFormatException e) {
@@ -250,10 +232,9 @@ public class MantenimentRestaurantsAction extends ActionSupport implements Servl
 
 	private void inizializeParamTODeleteRestaurant() throws NumberFormatException{
 
-	
-		this.idRestaurant = (request.getParameter("idRestaurant") != null && !request.getParameter("idRestaurant").equals("")) ? Integer.parseInt(request
-				.getParameter("idRestaurant")) : null;
-		if ( this.idRestaurant==null) {
+		this.idRestaurant = (request.getParameter("idRestaurant") != null && !request.getParameter("idRestaurant").equals("")) ? Integer
+				.parseInt(request.getParameter("idRestaurant")) : null;
+		if (this.idRestaurant == null) {
 			throw new NumberFormatException("Restaurant id null");
 		}
 
@@ -261,18 +242,19 @@ public class MantenimentRestaurantsAction extends ActionSupport implements Servl
 
 	private String searchInfoANDcreateJSONForRestaurants(){
 
-		List<Restaurant> restaurantList = restaurantsBo.getAll(true,true,true);
+		List<Restaurant> restaurantList = restaurantsBo.getAll(true, true, true);
 
 		List<Restaurant> subRestaurantList = restaurantList.subList(inici, ((inici + lenght) < restaurantList.size()) ? (inici + lenght)
 				: restaurantList.size());
-		
+
 		List<RestaurantTable> subrestaurantTableList = new ArrayList<RestaurantTable>();
 		for (Restaurant restaurant : subRestaurantList) {
 			restaurant.setNom("<a href='#' onclick='showDivRestaurant(this.id)' id='" + restaurant.getId() + "' >" + restaurant.getNom()
 					+ "</a>");
 			RestaurantTable restaurantTable = new RestaurantTable();
 			BeanUtils.copyProperties(restaurant, restaurantTable);
-			restaurantTable.setAccio("<a href=\"#\" onclick=\"deleteRestaurant("+restaurant.getId()+")\" ><img src=\"../images/delete.png\"></a>");
+			restaurantTable.setAccio("<a href=\"#\" onclick=\"deleteRestaurant(" + restaurant.getId()
+					+ ")\" ><img src=\"../images/delete.png\"></a>");
 			subrestaurantTableList.add(restaurantTable);
 		}
 		Gson gson = new GsonBuilder().setPrettyPrinting().excludeFieldsWithoutExposeAnnotation().create();
@@ -286,30 +268,9 @@ public class MantenimentRestaurantsAction extends ActionSupport implements Servl
 
 	}
 
-	private Image getImageFromUpload() throws ImageException{ 
-
-		Image image = null;
-		if (this.fileUpload != null) {
-			byte[] bFile = new byte[(int) this.fileUpload.length()];
-
-			try {
-				FileInputStream fileInputStream = new FileInputStream(this.fileUpload);
-				// convert file into array of bytes
-				fileInputStream.read(bFile);
-				fileInputStream.close();
-			} catch (Exception e) {
-				throw new ImageException(e,"error retrieving image in action");
-			}
-			image = new Image();
-			image.setImage(bFile);
-			image.setDescripcio(this.fileUploadFileName);
-		}
-		return image;
-	}
-
 	private String searchInfoANDcreateJSONForPlats(){
 
-		Restaurant restaurant = restaurantsBo.load(idRestaurant,true,false,false);
+		Restaurant restaurant = restaurantsBo.load(idRestaurant, true, false, false);
 		if (!restaurant.getPlats().isEmpty()) {
 			List<Plat> platList = new ArrayList<Plat>(restaurant.getPlats());
 			List<Plat> subPlatList = platList.subList(inici, ((inici + lenght) < platList.size()) ? (inici + lenght) : platList.size());
@@ -318,9 +279,11 @@ public class MantenimentRestaurantsAction extends ActionSupport implements Servl
 				plat.setNom("<a href='#' onclick='goToPlatInfo(this.id)' id='" + plat.getId() + "' >" + plat.getNom() + "</a>");
 				PlatTable platTable = new PlatTable();
 				BeanUtils.copyProperties(plat, platTable);
-				platTable.setAccio("<a href=\"#\" onclick=\"deletePlat("+plat.getId()+")\" ><img src=\"../images/delete.png\"></a>");
-				platTable.setPrioritatPlat("<input type=\"text\" id=\"prior_"+platTable.getId()+"\" value=\""+platTable.getPrioritat()+"\" /><a href=\"#\" onclick=\"changePrioritat("+plat.getId()+")\" ><img src=\"../images/save.png\"></a>");
-				platTable.setActiuPlat((plat.isActiu())? "SI" :"NO");
+				platTable.setAccio("<a href=\"#\" onclick=\"deletePlat(" + plat.getId() + ")\" ><img src=\"../images/delete.png\"></a>");
+				platTable.setPrioritatPlat("<input type=\"text\" id=\"prior_" + platTable.getId() + "\" value=\""
+						+ platTable.getPrioritat() + "\" /><a href=\"#\" onclick=\"changePrioritat(" + plat.getId()
+						+ ")\" ><img src=\"../images/save.png\"></a>");
+				platTable.setActiuPlat((plat.isActiu()) ? "SI" : "NO");
 				subPlatTableList.add(platTable);
 			}
 			Gson gson = new GsonBuilder().setPrettyPrinting().excludeFieldsWithoutExposeAnnotation().create();
@@ -336,40 +299,10 @@ public class MantenimentRestaurantsAction extends ActionSupport implements Servl
 		}
 	}
 
-	private void inizializeTableParams() throws NumberFormatException{
-		
-		this.sEcho = request.getParameter("sEcho");
-		this.lenght = (request.getParameter("iDisplayLength") == null) ? 10 : Integer.parseInt(request.getParameter("iDisplayLength"));
-		this.inici = (request.getParameter("iDisplayStart") == null) ? 0 : Integer.parseInt(request.getParameter("iDisplayStart"));
-		this.sortDireccio = request.getParameter("sSortDir_0");
-		if (this.sortDireccio == null)
-			this.sortDireccio = "ASC";
-	}
-
 	// SETTERS
 	public void setRestaurantsBo( RestaurantsBo restaurantsBo ){
 
 		this.restaurantsBo = restaurantsBo;
-	}
-
-	public void setServletResponse( HttpServletResponse response ){
-
-		this.response = response;
-	}
-
-	public HttpServletResponse getServletResponse(){
-
-		return this.response;
-	}
-
-	public void setServletRequest( HttpServletRequest request ){
-
-		this.request = request;
-	}
-
-	public HttpServletRequest getServletRequest(){
-
-		return this.request;
 	}
 
 	public Integer getIdRestaurant(){
@@ -390,36 +323,6 @@ public class MantenimentRestaurantsAction extends ActionSupport implements Servl
 	public void setRestaurant( Restaurant restaurant ){
 
 		this.restaurant = restaurant;
-	}
-
-	public String getFileUploadContentType(){
-
-		return fileUploadContentType;
-	}
-
-	public void setFileUploadContentType( String fileUploadContentType ){
-
-		this.fileUploadContentType = fileUploadContentType;
-	}
-
-	public String getFileUploadFileName(){
-
-		return fileUploadFileName;
-	}
-
-	public void setFileUploadFileName( String fileUploadFileName ){
-
-		this.fileUploadFileName = fileUploadFileName;
-	}
-
-	public File getFileUpload(){
-
-		return fileUpload;
-	}
-
-	public void setFileUpload( File fileUpload ){
-
-		this.fileUpload = fileUpload;
 	}
 
 }

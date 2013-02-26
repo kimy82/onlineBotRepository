@@ -2,17 +2,11 @@ package com.online.action.admin;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.ResourceBundle;
 
 import javax.servlet.ServletOutputStream;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
-import org.apache.struts2.interceptor.ServletRequestAware;
-import org.apache.struts2.interceptor.ServletResponseAware;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -24,32 +18,23 @@ import com.online.model.PlatComanda;
 import com.online.pojos.AllComandesTable;
 import com.online.pojos.ComandesTable;
 import com.online.services.impl.PaymentServiceImpl;
+import com.online.supplier.extend.ActionSuportOnline;
 import com.online.utils.Utils;
 import com.opensymphony.xwork2.Action;
-import com.opensymphony.xwork2.ActionSupport;
 
-public class MantenimentComandesAction extends ActionSupport implements ServletResponseAware, ServletRequestAware{
+public class MantenimentComandesAction extends ActionSuportOnline{
 
 	/**
 	 * 
 	 */
 	private static final long	serialVersionUID	= 1L;
-	private String				sEcho;
-	private int					lenght				= 12;
-	private int					inici				= 0;
-	private String				sortDireccio		= null;
-	private int					columna				= 0;
 
 	private ComandaBo			comandaBo;
 	private UsersBo				usersBo;
 	private PaymentServiceImpl	paymentService;
 
 	private Long				idComanda;
-	HttpServletResponse			response;
-	HttpServletRequest			request;
 
-	
-	
 	public String execute(){
 
 		return Action.SUCCESS;
@@ -223,19 +208,20 @@ public class MantenimentComandesAction extends ActionSupport implements ServletR
 				Comandes comandaInitialized = this.comandaBo.load(comanda.getId());
 				String metodePagament = getMethodPagament(comanda);
 				String nomRestaurant = getNomRestaurant(comandaInitialized);
-				String username = (comanda.getUser()==null)?"-":comanda.getUser().getUsername(); 
+				String username = (comanda.getUser() == null) ? "-" : comanda.getUser().getUsername();
 				String plats = getNomPLats(comandaInitialized);
-				String tel = (comanda.getUser()==null || comanda.getUser().getTelNumber()==null)?"-":comanda.getUser().getTelNumber();
-				AllComandesTable allComandesTable = new AllComandesTable(username, tel,comanda.getAddress()==null ? "" : comanda.getAddress() ,
-																		 (comanda.getDia()==null?"-" : Utils.formatDate2(comanda.getDia())) + " " + (comanda.getHora()==null?"-":comanda.getHora()), 
-																		 (comanda.getPreu()==null ? "-" :String.valueOf(comanda.getPreu())), nomRestaurant, metodePagament,plats);
+				String tel = (comanda.getUser() == null || comanda.getUser().getTelNumber() == null) ? "-" : comanda.getUser()
+						.getTelNumber();
+				AllComandesTable allComandesTable = new AllComandesTable(username, tel, comanda.getAddress() == null ? ""
+						: comanda.getAddress(), (comanda.getDia() == null ? "-" : Utils.formatDate2(comanda.getDia())) + " "
+						+ (comanda.getHora() == null ? "-" : comanda.getHora()), (comanda.getPreu() == null ? "-" : String.valueOf(comanda
+						.getPreu())), nomRestaurant, metodePagament, plats);
 
-				
 				comandesTableList.add(allComandesTable);
 			}
 
 			order(comandesTableList);
-			
+
 			Gson gson = new GsonBuilder().setPrettyPrinting().serializeNulls().excludeFieldsWithoutExposeAnnotation().create();
 			String json = gson.toJson(comandesTableList);
 			StringBuffer jsonSB = new StringBuffer("{");
@@ -248,36 +234,37 @@ public class MantenimentComandesAction extends ActionSupport implements ServletR
 			return Utils.createEmptyJSONForDataTable(this.sEcho);
 		}
 	}
-	
-	private void order(List<AllComandesTable> comandesTableList){
-		if(this.columna==0)
+
+	private void order( List<AllComandesTable> comandesTableList ){
+
+		if (this.columna == 0)
 			Collections.sort(comandesTableList, AllComandesTable.nameComparator);
-		
-		if(this.columna==1)
+
+		if (this.columna == 1)
 			Collections.sort(comandesTableList, AllComandesTable.telComparator);
-		
-		if(this.columna==3)
+
+		if (this.columna == 3)
 			Collections.sort(comandesTableList, AllComandesTable.horaComparator);
-		
-		if(this.columna==4)
+
+		if (this.columna == 4)
 			Collections.sort(comandesTableList, AllComandesTable.preuComparator);
-		
-		if(this.columna==5)
+
+		if (this.columna == 5)
 			Collections.sort(comandesTableList, AllComandesTable.restaurantComparator);
-		
-		if(this.columna==7)
+
+		if (this.columna == 7)
 			Collections.sort(comandesTableList, AllComandesTable.metodeComparator);
-		
-		if(this.sortDireccio!=null && this.sortDireccio.equals("desc")){
+
+		if (this.sortDireccio != null && this.sortDireccio.equals("desc")) {
 			Collections.reverse(comandesTableList);
 		}
 	}
-	
+
 	private String getMethodPagament( Comandes comanda ){
 
-		if (comanda.getPagada()!=null && comanda.getPagada()==true) {
+		if (comanda.getPagada() != null && comanda.getPagada() == true) {
 
-			if (comanda.getTargeta()!=null && comanda.getTargeta()==true) {
+			if (comanda.getTargeta() != null && comanda.getTargeta() == true) {
 				return "TARGETA";
 			} else {
 				return "SENSE TARGETA";
@@ -302,54 +289,20 @@ public class MantenimentComandesAction extends ActionSupport implements ServletR
 			return "-";
 		}
 	}
-	
+
 	private String getNomPLats( Comandes comanda ){
 
 		StringBuffer nomPlats = new StringBuffer(" ");
 		for (PlatComanda platComanda : comanda.getPlats()) {
-			nomPlats.append(platComanda.getPlat().getNom()+"<br>");
+			nomPlats.append(platComanda.getPlat().getNom() + "<br>");
 		}
 		if (nomPlats.length() != 0)
 			nomPlats.setLength(nomPlats.length() - 4);
 
-	
-
 		return nomPlats.toString();
 	}
 
-	private void inizializeTableParams() throws NumberFormatException{
-
-		this.sEcho = request.getParameter("sEcho");
-		this.lenght = (request.getParameter("iDisplayLength") == null) ? 12 : Integer.parseInt(request.getParameter("iDisplayLength"));
-		this.inici = (request.getParameter("iDisplayStart") == null) ? 0 : Integer.parseInt(request.getParameter("iDisplayStart"));
-		this.sortDireccio = request.getParameter("sSortDir_0");
-		if (request.getParameter("iSortCol_0") != null)
-			this.columna = Integer.parseInt(request.getParameter("iSortCol_0"));
-		if (this.sortDireccio == null)
-			this.sortDireccio = "ASC";
-	}
-
 	// SETTERS
-	public void setServletResponse( HttpServletResponse response ){
-
-		this.response = response;
-	}
-
-	public HttpServletResponse getServletResponse(){
-
-		return this.response;
-	}
-
-	public void setServletRequest( HttpServletRequest request ){
-
-		this.request = request;
-	}
-
-	public HttpServletRequest getServletRequest(){
-
-		return this.request;
-	}
-
 	public void setComandaBo( ComandaBo comandaBo ){
 
 		this.comandaBo = comandaBo;

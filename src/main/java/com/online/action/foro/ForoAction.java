@@ -9,8 +9,6 @@ import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.apache.struts2.interceptor.ServletRequestAware;
-import org.apache.struts2.interceptor.ServletResponseAware;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 
@@ -28,10 +26,10 @@ import com.online.model.Plat;
 import com.online.model.Users;
 import com.online.model.VotacioTMP;
 import com.online.model.VotacioTMPBeguda;
+import com.online.supplier.extend.ActionSuportOnline;
 import com.online.utils.Utils;
-import com.opensymphony.xwork2.ActionSupport;
 
-public class ForoAction extends ActionSupport implements ServletResponseAware, ServletRequestAware{
+public class ForoAction extends ActionSuportOnline{
 
 	/**
 	 * 
@@ -55,8 +53,6 @@ public class ForoAction extends ActionSupport implements ServletResponseAware, S
 	private String				comment;
 	private int					punctuation;
 
-	HttpServletResponse			response;
-	HttpServletRequest			request;
 
 	public String execute(){
 
@@ -337,26 +333,6 @@ public class ForoAction extends ActionSupport implements ServletResponseAware, S
 	public void setPlatsBo( PlatsBo platsBo ){
 
 		this.platsBo = platsBo;
-	}
-
-	public HttpServletResponse getServletResponse(){
-
-		return this.response;
-	}
-
-	public void setServletRequest( HttpServletRequest request ){
-
-		this.request = request;
-	}
-
-	public HttpServletRequest getServletRequest(){
-
-		return this.request;
-	}
-
-	public void setServletResponse( HttpServletResponse response ){
-
-		this.response = response;
 	}
 
 	public void setUsersBo( UsersBo usersBo ){

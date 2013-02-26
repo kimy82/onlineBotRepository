@@ -1,17 +1,11 @@
 package com.online.action.admin;
 
-import java.io.File;
-import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.ServletOutputStream;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 
-import org.apache.struts2.interceptor.ServletRequestAware;
-import org.apache.struts2.interceptor.ServletResponseAware;
 import org.springframework.beans.BeanUtils;
 
 import com.google.gson.Gson;
@@ -24,29 +18,19 @@ import com.online.model.Beguda;
 import com.online.model.Image;
 import com.online.pojos.Basic;
 import com.online.pojos.BegudaTable;
+import com.online.supplier.extend.ActionSuportOnline;
 import com.online.utils.Utils;
 import com.opensymphony.xwork2.Action;
-import com.opensymphony.xwork2.ActionSupport;
 
-public class MantenimentBegudaAction extends ActionSupport implements ServletResponseAware, ServletRequestAware{
+public class MantenimentBegudaAction extends ActionSuportOnline{
 
 	/**
 	 * 
 	 */
 	private static final long	serialVersionUID	= 1L;
 	private BegudaBo			begudaBo;
-	private String				sEcho;
-	private int					lenght				= 0;
-	private int					inici				= 0;
-	private String				sortDireccio		= null;
-	HttpServletResponse			response;
-	HttpServletRequest			request;
+
 	List<Basic>					tipusBegudaList		= new ArrayList<Basic>();
-
-	private File				fileUpload;
-	private String				fileUploadContentType;
-	private String				fileUploadFileName;
-
 	private Beguda				beguda				= new Beguda();
 	private Long				idBeguda;
 
@@ -90,9 +74,9 @@ public class MantenimentBegudaAction extends ActionSupport implements ServletRes
 			inizializeTableParams();
 			json = searchInfoANDcreateJSONForBegudes();
 		} catch (NumberFormatException e) {
-			json = Utils.createErrorJSONForDataTable("error in ajax action: wrong params",this.sEcho);
+			json = Utils.createErrorJSONForDataTable("error in ajax action: wrong params", this.sEcho);
 		} catch (Exception e) {
-			json = Utils.createErrorJSONForDataTable("error in ajax action",this.sEcho);
+			json = Utils.createErrorJSONForDataTable("error in ajax action", this.sEcho);
 		}
 
 		try {
@@ -111,11 +95,11 @@ public class MantenimentBegudaAction extends ActionSupport implements ServletRes
 				addActionError("Error saving beguda");
 				return Action.ERROR;
 			}
-			
+
 			Image image = getImageFromUpload();
-			if(image!=null && image.getImage()!=null)
+			if (image != null && image.getImage() != null)
 				this.beguda.setFoto(image);
-			
+
 			if (this.beguda.getId() == null) {
 				// Fem un save
 				this.begudaBo.save(beguda);
@@ -152,9 +136,9 @@ public class MantenimentBegudaAction extends ActionSupport implements ServletRes
 			this.begudaBo.delete(beguda);
 
 		} catch (BOException boe) {
-			json = Utils.createErrorJSONForDataTable("error in ajax action: Error in BO",this.sEcho);
+			json = Utils.createErrorJSONForDataTable("error in ajax action: Error in BO", this.sEcho);
 		} catch (NumberFormatException e) {
-			json = Utils.createErrorJSONForDataTable("error in ajax action: wrong params",this.sEcho);
+			json = Utils.createErrorJSONForDataTable("error in ajax action: wrong params", this.sEcho);
 		} catch (Exception e) {
 			json = Utils.createErrorJSONForDataTable("error in ajax action", this.sEcho);
 		}
@@ -168,27 +152,6 @@ public class MantenimentBegudaAction extends ActionSupport implements ServletRes
 	}
 
 	// PRIVATE METHODS
-	private Image getImageFromUpload() throws RuntimeException{
-
-		Image image = null;
-		if (this.fileUpload != null) {
-			byte[] bFile = new byte[(int) this.fileUpload.length()];
-
-			try {
-				FileInputStream fileInputStream = new FileInputStream(this.fileUpload);
-				// convert file into array of bytes
-				fileInputStream.read(bFile);
-				fileInputStream.close();
-			} catch (Exception e) {
-				throw new RuntimeException();
-			}
-			image = new Image();
-			image.setImage(bFile);
-			image.setDescripcio(this.fileUploadFileName);
-		}
-		return image;
-	}
-	
 	private void inizializeParamIDBeguda() throws NumberFormatException{
 
 		this.idBeguda = (request.getParameter("idBeguda") != null && !request.getParameter("idBeguda").equals("")) ? Long.parseLong(request
@@ -222,20 +185,9 @@ public class MantenimentBegudaAction extends ActionSupport implements ServletRes
 		jsonSB.append("}");
 		return jsonSB.toString();
 
-	}	
-
-	private void inizializeTableParams() throws NumberFormatException{
-
-		this.sEcho = request.getParameter("sEcho");
-		this.lenght = (request.getParameter("iDisplayLength") == null) ? 10 : Integer.parseInt(request.getParameter("iDisplayLength"));
-		this.inici = (request.getParameter("iDisplayStart") == null) ? 0 : Integer.parseInt(request.getParameter("iDisplayStart"));
-		this.sortDireccio = request.getParameter("sSortDir_0");
-		if (this.sortDireccio == null)
-			this.sortDireccio = "ASC";
 	}
 
 	// SETTERS
-
 	public Long getIdBeguda(){
 
 		return idBeguda;
@@ -249,26 +201,6 @@ public class MantenimentBegudaAction extends ActionSupport implements ServletRes
 	public void setBegudaBo( BegudaBo begudaBo ){
 
 		this.begudaBo = begudaBo;
-	}
-
-	public HttpServletResponse getServletResponse(){
-
-		return this.response;
-	}
-
-	public void setServletResponse( HttpServletResponse response ){
-
-		this.response = response;
-	}
-
-	public void setServletRequest( HttpServletRequest request ){
-
-		this.request = request;
-	}
-
-	public HttpServletRequest getServletRequest(){
-
-		return this.request;
 	}
 
 	public List<Basic> getTipusBegudaList(){
@@ -290,35 +222,4 @@ public class MantenimentBegudaAction extends ActionSupport implements ServletRes
 
 		this.beguda = beguda;
 	}
-	
-	public String getFileUploadContentType(){
-
-		return fileUploadContentType;
-	}
-
-	public void setFileUploadContentType( String fileUploadContentType ){
-
-		this.fileUploadContentType = fileUploadContentType;
-	}
-
-	public String getFileUploadFileName(){
-
-		return fileUploadFileName;
-	}
-
-	public void setFileUploadFileName( String fileUploadFileName ){
-
-		this.fileUploadFileName = fileUploadFileName;
-	}
-
-	public File getFileUpload(){
-
-		return fileUpload;
-	}
-
-	public void setFileUpload( File fileUpload ){
-
-		this.fileUpload = fileUpload;
-	}
-
 }

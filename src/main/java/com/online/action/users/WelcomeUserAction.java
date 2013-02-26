@@ -7,11 +7,7 @@ import java.util.Date;
 import java.util.List;
 
 import javax.servlet.ServletOutputStream;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 
-import org.apache.struts2.interceptor.ServletRequestAware;
-import org.apache.struts2.interceptor.ServletResponseAware;
 import org.springframework.beans.BeanUtils;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -39,18 +35,15 @@ import com.online.pojos.Basic;
 import com.online.pojos.BasicSub;
 import com.online.pojos.ComandesUserTable;
 import com.online.services.impl.ComandaServiceImpl;
+import com.online.supplier.extend.ActionSuportOnline;
 import com.online.utils.Utils;
-import com.opensymphony.xwork2.ActionSupport;
 
-public class WelcomeUserAction extends ActionSupport implements ServletResponseAware, ServletRequestAware{
+public class WelcomeUserAction extends ActionSuportOnline{
 
 	/**
 	 * 
 	 */
-	private static final long	serialVersionUID		= 1L;
-
-	HttpServletResponse			response;
-	HttpServletRequest			request;
+	private static final long	serialVersionUID	= 1L;
 
 	private ComandaBo			comandaBo;
 	private UsersBo				usersBo;
@@ -59,28 +52,24 @@ public class WelcomeUserAction extends ActionSupport implements ServletResponseA
 	private VotacionsBo			votacionsBo;
 	private ComandaServiceImpl	comandaService;
 	private Users				user;
-	private Long				idComanda				= null;
-	private Comandes			comanda					= null;
+	private Long				idComanda			= null;
+	private Comandes			comanda				= null;
 	private HoresDTO			horesDTO;
 
-	private String				sEcho;
-	private int					lenght					= 0;
-	private int					inici					= 0;
-	private String				sortDireccio			= null;
-	private int					numComandes				= 0;
+	private int					numComandes			= 0;
 	private String				data;
 	private String				nameAuth;
-	private String				recoveredComanda		= "true";
-	private int					numPlats				= 0;
-	private int					numBegudes				= 0;
+	private String				recoveredComanda	= "true";
+	private int					numPlats			= 0;
+	private int					numBegudes			= 0;
 
-	private List<Basic>			horaList				= new ArrayList<Basic>();
-	List<Comandes>				ComandaList				= new ArrayList<Comandes>();
-	List<PromocioAPartirDe>		promoListAPartirDe		= new ArrayList<PromocioAPartirDe>();
-	List<PromocioNumComandes>	promocioNumComandes		= new ArrayList<PromocioNumComandes>();
-	private List<BasicSub>		refrescList				= new ArrayList<BasicSub>();
-	List<PlatComanda>			platComandaList			= new ArrayList<PlatComanda>();
-	List<Plat>					platListToVote	= new ArrayList<Plat>();
+	private List<Basic>			horaList			= new ArrayList<Basic>();
+	List<Comandes>				ComandaList			= new ArrayList<Comandes>();
+	List<PromocioAPartirDe>		promoListAPartirDe	= new ArrayList<PromocioAPartirDe>();
+	List<PromocioNumComandes>	promocioNumComandes	= new ArrayList<PromocioNumComandes>();
+	private List<BasicSub>		refrescList			= new ArrayList<BasicSub>();
+	List<PlatComanda>			platComandaList		= new ArrayList<PlatComanda>();
+	List<Plat>					platListToVote		= new ArrayList<Plat>();
 
 	public String execute(){
 
@@ -130,15 +119,15 @@ public class WelcomeUserAction extends ActionSupport implements ServletResponseA
 
 			horesDTO = new HoresDTO();
 			horesDTO.setData(data);
-			horesDTO = this.comandaService.setHoresFeature(horesDTO, this.data, this.comanda,false);
-			
+			horesDTO = this.comandaService.setHoresFeature(horesDTO, this.data, this.comanda, false);
+
 			Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 			this.nameAuth = auth.getName();
 
 			List<Beguda> begudaList = this.begudaBo.getAll();
 			for (Beguda beguda : begudaList) {
 
-				BasicSub basic = new BasicSub(((beguda.getFoto()!=null)?beguda.getFoto().getId() : 0), beguda.getNom());
+				BasicSub basic = new BasicSub(((beguda.getFoto() != null) ? beguda.getFoto().getId() : 0), beguda.getNom());
 				basic.setIdSub(beguda.getId());
 				basic.setTipus(beguda.getTipus());
 				this.refrescList.add(basic);
@@ -206,9 +195,9 @@ public class WelcomeUserAction extends ActionSupport implements ServletResponseA
 			inizializeTableParams();
 			json = getInfoAndCreateJSONForComandesUser();
 		} catch (BOException boe) {
-			json = Utils.createErrorJSONForDataTable("error in ajax action: Error in BO",this.sEcho);
+			json = Utils.createErrorJSONForDataTable("error in ajax action: Error in BO", this.sEcho);
 		} catch (NumberFormatException e) {
-			json = Utils.createErrorJSONForDataTable("error in ajax action: wrong params",this.sEcho);
+			json = Utils.createErrorJSONForDataTable("error in ajax action: wrong params", this.sEcho);
 		} catch (Exception e) {
 			json = Utils.createErrorJSONForDataTable("error in ajax action", this.sEcho);
 		}
@@ -255,21 +244,6 @@ public class WelcomeUserAction extends ActionSupport implements ServletResponseA
 		}
 	}
 
-	private void inizializeTableParams() throws WrongParamException{
-
-		try {
-			this.sEcho = request.getParameter("sEcho");
-			this.lenght = (request.getParameter("iDisplayLength") == null) ? 10 : Integer.parseInt(request.getParameter("iDisplayLength"));
-			this.inici = (request.getParameter("iDisplayStart") == null) ? 0 : Integer.parseInt(request.getParameter("iDisplayStart"));
-			this.sortDireccio = request.getParameter("sSortDir_0");
-			if (this.sortDireccio == null)
-				this.sortDireccio = "ASC";
-		} catch (NumberFormatException nfe) {
-			throw new WrongParamException("wrong table params");
-		}
-
-	}
-
 	public String getInfoAndCreateJSONForComandesUser(){
 
 		List<Comandes> ComandaList = getComandesUserListAndSetNum();
@@ -301,26 +275,23 @@ public class WelcomeUserAction extends ActionSupport implements ServletResponseA
 
 		StringBuffer nomPlats = new StringBuffer("");
 		for (PlatComanda platComanda : comanda.getPlats()) {
-			nomPlats.append(platComanda.getPlat().getNom()+"<br>");
+			nomPlats.append(platComanda.getPlat().getNom() + "<br>");
 		}
 		if (nomPlats.length() != 0)
 			nomPlats.setLength(nomPlats.length() - 4);
-
-	
 
 		return nomPlats.toString();
 	}
-	
+
 	private String getLinksVotacions( Comandes comanda ){
 
 		StringBuffer nomPlats = new StringBuffer("");
-		for (PlatComanda platComanda : comanda.getPlats()) {		
-			nomPlats.append("<a href='#' onclick='goToVotarPlat(" + platComanda.getPlat().getId()+ ")' ><img  src='/onlineBot/images/info.gif' /></a><br>");
+		for (PlatComanda platComanda : comanda.getPlats()) {
+			nomPlats.append("<a href='#' onclick='goToVotarPlat(" + platComanda.getPlat().getId()
+					+ ")' ><img  src='/onlineBot/images/info.gif' /></a><br>");
 		}
 		if (nomPlats.length() != 0)
 			nomPlats.setLength(nomPlats.length() - 4);
-
-	
 
 		return nomPlats.toString();
 	}
@@ -359,26 +330,6 @@ public class WelcomeUserAction extends ActionSupport implements ServletResponseA
 	public void setComandaBo( ComandaBo comandaBo ){
 
 		this.comandaBo = comandaBo;
-	}
-
-	public void setServletResponse( HttpServletResponse response ){
-
-		this.response = response;
-	}
-
-	public HttpServletResponse getServletResponse(){
-
-		return this.response;
-	}
-
-	public void setServletRequest( HttpServletRequest request ){
-
-		this.request = request;
-	}
-
-	public HttpServletRequest getServletRequest(){
-
-		return this.request;
 	}
 
 	public Comandes getComanda(){
@@ -542,9 +493,7 @@ public class WelcomeUserAction extends ActionSupport implements ServletResponseA
 	}
 
 	public void setVotacionsBo( VotacionsBo votacionsBo ){
-	
+
 		this.votacionsBo = votacionsBo;
 	}
-	
-	
 }
