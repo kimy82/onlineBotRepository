@@ -134,7 +134,10 @@
 
 	
 		new Address.addressValidation();
-		var initParams = new  InitParams( "<s:text name='txt.user.empty' />", "<s:text name='txt.password.empty' />","<s:text name='txt.password.noteq' />","<s:text name='txt.tel.empty' />","<s:text name='txt.address.empty' />","<s:text name='error.double' />","<s:text name='error.number' />");
+		var initParams = new  InitParams( "<s:text name='txt.user.empty' />", "<s:text name='txt.password.empty' />","<s:text name='txt.password.noteq' />",
+										  "<s:text name='txt.tel.empty' />","<s:text name='txt.address.empty' />","<s:text name='error.double' />",
+										  "<s:text name='error.number' />", "<s:text name='txt.welcome.confirmar' />","<s:text name='txt.welcome.productes' />",
+										  "<s:text name='txt.welcome.producte' />");
 		var initTableParams = new InitTableParams(
 					"<s:text  name='datatables.paginate.last'/>",
 					"<s:text  name='datatables.paginate.next'/>",

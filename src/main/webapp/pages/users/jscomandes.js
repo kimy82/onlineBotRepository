@@ -11,7 +11,7 @@ function InitTableParams(txtlast,txtnext,txtprevious,txtfirst,txtloading,txtborr
 }
 
 var initParams=null ;
-function InitParams(txtusernameempty, txtpasswordempty,txtpasswordnotequal,txttelempty,txtaddressempty,txterrordouble,txterrornumber){		
+function InitParams(txtusernameempty, txtpasswordempty,txtpasswordnotequal,txttelempty,txtaddressempty,txterrordouble,txterrornumber, txtconfirm, txtproductes,txtproducte){		
 
 	this.txtusernameempty= txtusernameempty;
 	this.txtpasswordempty= txtpasswordempty;
@@ -20,6 +20,9 @@ function InitParams(txtusernameempty, txtpasswordempty,txtpasswordnotequal,txtte
 	this.txtaddressempty = txtaddressempty;
 	this.txterrordouble=txterrordouble;
 	this.txterrornumber=txterrornumber;
+	this.txtconfirm = txtconfirm;
+	this.txtproductes = txtproductes;
+	this.txtproducte = txtproducte;
 	
 }
 
@@ -275,4 +278,43 @@ $(document).ready(function() {
 		    	}
 			} );
 		
-} );
+	
+	var comanda = window.localStorage.getItem("comanda");
+	
+	if(comanda != 'undefined' && comanda != null){
+		$("#numComanda").text(comanda);
+		
+		
+		var numplats = window.localStorage.getItem("comanda.numplats");
+		if(numplats == 'undefined' || numplats == null){
+			numplats=0;
+			window.localStorage.setItem("comanda.numplats","0");
+		}
+		
+		if (numplats != 'undefined' && numplats != null) {
+			$("#numplats").text(numplats);
+		}
+
+		var numbegudes = window.localStorage.getItem("comanda.numbegudes");
+		if(numbegudes == 'undefined' || numbegudes == null){
+			numbegudes=0;
+			window.localStorage.setItem("comanda.numbegudes","0");
+		}
+	
+		
+		var nProductes = parseInt(numplats)+parseInt(numbegudes);
+		if(nProductes==1){
+			$("#numProduct").text(initParams.txtconfirm+" "+nProductes+" "+initParams.txtproducte);
+		}else if(nProductes>1){
+			$("#numProduct").text(initParams.txtconfirm+" "+nProductes+" "+initParams.txtproductes);
+		}		
+		
+		if(isNaN(nProductes)){
+			window.localStorage.clear();
+			$("#numProduct").text(initParams.txtconfirm+" 0 "+initParams.txtproductes);
+		}
+		
+	}else{
+		$("#numProduct").text(initParams.txtconfirm+" 0 "+initParams.txtproductes);
+	}
+});

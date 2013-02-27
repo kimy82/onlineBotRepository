@@ -181,7 +181,7 @@
 <script type="text/javascript" >
 new Address.addressValidation();
 var initParams = new InitParams("<s:text name='txt.comanda.existeix.vol.continuar' />","<s:text name='txt.welcome.confirmar' />",
-								"<s:text name='txt.welcome.productes' />","<s:text name='txt.welcome.productes' />",
+								"<s:text name='txt.welcome.productes' />","<s:text name='txt.welcome.producte' />",
 								"<s:text name='txt.comment.saved' />","<s:text name='txt.email.wrong' />","<s:text name='txt.avis.restaurant.tancat' />");
 </script>
 <c:import url="/pages/includes/confirmOnline.jsp" />
