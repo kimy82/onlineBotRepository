@@ -320,8 +320,7 @@ public class ForoAction extends ActionSuportOnline{
 
 	private void getUserFromContext(){
 
-		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-		this.nameAuth = auth.getName();
+		setAuthenticationUser();
 		if (!this.nameAuth.equals("anonymousUser")) {
 			this.user = this.usersBo.findByUsername(this.nameAuth);
 		} else {
@@ -358,16 +357,6 @@ public class ForoAction extends ActionSuportOnline{
 	public void setPlat( Plat plat ){
 
 		this.plat = plat;
-	}
-
-	public String getNameAuth(){
-
-		return nameAuth;
-	}
-
-	public void setNameAuth( String nameAuth ){
-
-		this.nameAuth = nameAuth;
 	}
 
 	public void setForoBo( ForoBo foroBo ){

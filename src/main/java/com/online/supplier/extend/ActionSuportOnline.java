@@ -8,6 +8,8 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.apache.struts2.interceptor.ServletRequestAware;
 import org.apache.struts2.interceptor.ServletResponseAware;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 
 import com.online.exceptions.WrongParamException;
 import com.online.model.Image;
@@ -27,6 +29,8 @@ public class ActionSuportOnline extends ActionSupport implements ServletResponse
 
 	protected HttpServletResponse	response;
 	protected HttpServletRequest	request;
+
+	protected String				nameAuth;
 
 	protected File					fileUpload;
 	protected String				fileUploadContentType;
@@ -54,7 +58,8 @@ public class ActionSuportOnline extends ActionSupport implements ServletResponse
 	}
 
 	protected void inizializeTableParams() throws WrongParamException{
-		try{
+
+		try {
 			this.sEcho = request.getParameter("sEcho");
 			this.lenght = (request.getParameter("iDisplayLength") == null) ? 10 : Integer.parseInt(request.getParameter("iDisplayLength"));
 			this.inici = (request.getParameter("iDisplayStart") == null) ? 0 : Integer.parseInt(request.getParameter("iDisplayStart"));
@@ -66,6 +71,13 @@ public class ActionSuportOnline extends ActionSupport implements ServletResponse
 		} catch (NumberFormatException nfe) {
 			throw new WrongParamException("wrong table params");
 		}
+	}
+
+	protected void setAuthenticationUser() throws NumberFormatException{
+
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		this.nameAuth = auth.getName();
+
 	}
 
 	// SETTERS
@@ -117,6 +129,16 @@ public class ActionSuportOnline extends ActionSupport implements ServletResponse
 	public void setFileUpload( File fileUpload ){
 
 		this.fileUpload = fileUpload;
+	}
+
+	public String getNameAuth(){
+
+		return nameAuth;
+	}
+
+	public void setNameAuth( String nameAuth ){
+
+		this.nameAuth = nameAuth;
 	}
 
 }

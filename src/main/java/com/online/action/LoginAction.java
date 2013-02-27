@@ -20,7 +20,6 @@ public class LoginAction extends ActionSupport implements ServletRequestAware{
 	private String		password;
 	private String 		address;
 	private String		telefon;
-	private String		nom;
 	private String		altres;
 	private String		email;
 	
@@ -156,11 +155,6 @@ public class LoginAction extends ActionSupport implements ServletRequestAware{
 	public void setTelefon( String telefon ){
 	
 		this.telefon = telefon;
-	}
-
-	public void setNom( String nom ){
-	
-		this.nom = nom;
 	}
 
 	public void setAltres( String altres ){

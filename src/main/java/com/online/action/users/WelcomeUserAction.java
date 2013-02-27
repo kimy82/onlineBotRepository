@@ -9,8 +9,6 @@ import java.util.List;
 import javax.servlet.ServletOutputStream;
 
 import org.springframework.beans.BeanUtils;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -58,7 +56,6 @@ public class WelcomeUserAction extends ActionSuportOnline{
 
 	private int					numComandes			= 0;
 	private String				data;
-	private String				nameAuth;
 	private String				recoveredComanda	= "true";
 	private int					numPlats			= 0;
 	private int					numBegudes			= 0;
@@ -121,8 +118,7 @@ public class WelcomeUserAction extends ActionSuportOnline{
 			horesDTO.setData(data);
 			horesDTO = this.comandaService.setHoresFeature(horesDTO, this.data, this.comanda, false);
 
-			Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-			this.nameAuth = auth.getName();
+			setAuthenticationUser();
 
 			List<Beguda> begudaList = this.begudaBo.getAll();
 			for (Beguda beguda : begudaList) {
@@ -213,8 +209,7 @@ public class WelcomeUserAction extends ActionSuportOnline{
 	// private methods
 	private void getUserAllInfoFromContext(){
 
-		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-		this.nameAuth = auth.getName();
+		setAuthenticationUser();
 		if (!this.nameAuth.equals("anonymousUser")) {
 			this.user = this.usersBo.findByUsername(this.nameAuth);
 		} else {
@@ -310,9 +305,8 @@ public class WelcomeUserAction extends ActionSuportOnline{
 
 	private Users getUserFromContext(){
 
-		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-		String name = auth.getName();
-		return this.usersBo.findByUsername(name);
+		setAuthenticationUser();
+		return this.usersBo.findByUsername(this.nameAuth);
 
 	}
 
@@ -410,16 +404,6 @@ public class WelcomeUserAction extends ActionSuportOnline{
 	public void setHoresDTO( HoresDTO horesDTO ){
 
 		this.horesDTO = horesDTO;
-	}
-
-	public String getNameAuth(){
-
-		return nameAuth;
-	}
-
-	public void setNameAuth( String nameAuth ){
-
-		this.nameAuth = nameAuth;
 	}
 
 	public List<BasicSub> getRefrescList(){

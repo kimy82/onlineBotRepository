@@ -5,13 +5,9 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.Locale;
 import java.util.ResourceBundle;
 
 import javax.servlet.ServletOutputStream;
-
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -70,59 +66,52 @@ public class WelcomeComandaAction extends ActionSuportOnlineSession{
 	private HoresDTO			horesDTO;
 	private int					numPlats			= 0;
 	private int					numBegudes			= 0;
-	private Integer				amount=0;
+	private Integer				amount				= 0;
 
-	private String				nameAuth;
 	private String				nameUser;
-	
 
 	private ComandaServiceImpl	comandaService;
 	private List<Restaurant>	restaurantList;
 
 	private Users				user;
-	
+
 	private Integer				actualPage;
 	private Integer				totalPage;
-	private Integer				rppPage =9;
-	private String				order="";
+	private Integer				rppPage				= 9;
+	private String				order				= "";
 	private String				dataAvui;
-	private boolean				aDomicili=false;
-
+	private boolean				aDomicili			= false;
 
 	public String execute(){
 
-		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-		this.nameAuth = auth.getName();
-		
+		setAuthenticationUser();
 		setUserName();
-		
-		if(session.get("WW_TRANS_I18N_LOCALE")==null || session.get("WW_TRANS_I18N_LOCALE").equals(""))
-			session.put("WW_TRANS_I18N_LOCALE", new Locale("ca"));
-		
+
+		setLocaleIfNull("ca");
+
 		inizializeRestaurantId();
 		inizilizeComandaId();
 		// Recoperem tots els plats disponibles.
-		
+
 		this.platList.clear();
 		this.restaurant = this.restaurantsBo.load(this.idRestaurant, true, false, false);
-	
-		
+
 		inizializePagin();
-		
+
 		this.platList.addAll(this.restaurant.getPlats(this.order));
-		if(this.platList.size()>this.rppPage)
-			this.platList = this.platList.subList(actualPage*rppPage, (actualPage+1)*rppPage);
-		
+		if (this.platList.size() > this.rppPage)
+			this.platList = this.platList.subList(actualPage * rppPage, (actualPage + 1) * rppPage);
+
 		inizializeComments();
-		
-		this.begudaList = this.begudaBo.getAll("vi",false);
-		
-		if(begudaList.size()>5)
+
+		this.begudaList = this.begudaBo.getAll("vi", false);
+
+		if (begudaList.size() > 5)
 			this.begudaList = this.begudaList.subList(0, 5);
 		this.dataActual = Utils.formatDate2(new Date());
 
 		this.restaurantList = this.restaurantsBo.getAll(true, false, false);
-		
+
 		this.dataAvui = Utils.formatDate2(new Date());
 		// si teniem una comanda la recuperem
 		if (this.idComanda != null) {
@@ -141,8 +130,7 @@ public class WelcomeComandaAction extends ActionSuportOnlineSession{
 
 		try {
 			out = this.response.getOutputStream();
-			Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-			this.nameAuth = auth.getName();
+			setAuthenticationUser();
 
 			if (this.nameAuth.equals("anonymousUser")) {
 				json = Utils.createNotLogedJSON("User not loged. Login before...");
@@ -174,28 +162,28 @@ public class WelcomeComandaAction extends ActionSuportOnlineSession{
 		}
 		return null;
 	}
-	
+
 	public String ajaxLoadInfoARecollir(){
-		
+
 		ServletOutputStream out = null;
 		String json = null;
-		
+
 		try {
 			out = this.response.getOutputStream();
 			inizilizeComandaId();
 			this.comanda = this.comandaBo.load(this.idComanda);
-			
+
 			boolean moreThanOne = this.comandaService.checkMoreThanOneRestaurant(comanda);
-			
+
 			String address = this.comandaService.getAddressOfRestaurant(comanda);
-			
+
 			ARecollirDTO aRecollir = new ARecollirDTO(moreThanOne, address);
-			
+
 			Gson gson = new GsonBuilder().setPrettyPrinting().excludeFieldsWithoutExposeAnnotation().create();
 			StringBuffer jsonSB = new StringBuffer(gson.toJson(aRecollir));
-			
-			json= jsonSB.toString();
-			
+
+			json = jsonSB.toString();
+
 		} catch (ComandaException ce) {
 			json = Utils.createErrorJSON("error in comanda service action");
 		} catch (Exception e) {
@@ -210,8 +198,7 @@ public class WelcomeComandaAction extends ActionSuportOnlineSession{
 
 		return null;
 	}
-	
-	
+
 	public String ajaxLoadNumPlat(){
 
 		ServletOutputStream out = null;
@@ -272,7 +259,7 @@ public class WelcomeComandaAction extends ActionSuportOnlineSession{
 			inizilizeDadesComandaPlat();
 			if (this.idComanda != null) {
 				// recuperem la comanda i afegim plat
-				Comandes comanda = this.comandaBo.load(this.idComanda);				
+				Comandes comanda = this.comandaBo.load(this.idComanda);
 				List<PlatComanda> platList = comanda.getPlats();
 				Plat platToAdd = this.platsBo.load(this.idPlat, false);
 
@@ -281,7 +268,7 @@ public class WelcomeComandaAction extends ActionSuportOnlineSession{
 					if (comandaService.checkPlatInList(platList, platToAdd)) {
 						for (PlatComanda plt : platList) {
 							if (plt.getPlat().getId().toString().equals(platToAdd.getId().toString())) {
-								plt.setNumPlats(plt.getNumPlats() + 1);										
+								plt.setNumPlats(plt.getNumPlats() + 1);
 							}
 						}
 						comanda.setPlats(platList);
@@ -294,7 +281,7 @@ public class WelcomeComandaAction extends ActionSuportOnlineSession{
 					}
 					this.comandaBo.update(comanda);
 				}
-				json = this.comandaService.createJSONForShoppingCart(comanda.getPlats(), comanda.getId(),resource);
+				json = this.comandaService.createJSONForShoppingCart(comanda.getPlats(), comanda.getId(), resource);
 
 			} else {
 				// creem comanda i afegim plat
@@ -311,8 +298,7 @@ public class WelcomeComandaAction extends ActionSuportOnlineSession{
 				this.comandaBo.save(comanda);
 
 				json = this.comandaService.createJSONForShoppingCart(platList, comanda.getId(), resource);
-				
-				
+
 			}
 		} catch (ComandaException ce) {
 			json = Utils.createErrorJSON("error in comanda service action");
@@ -345,11 +331,11 @@ public class WelcomeComandaAction extends ActionSuportOnlineSession{
 				Comandes comanda = this.comandaBo.load(this.idComanda);
 				List<BegudaComanda> begudaList = comanda.getBegudes();
 				Beguda begudaToAdd = this.begudaBo.load(this.idBeguda);
-				if(this.amount<0){
-					for(int i=this.amount; i<0; i++)
+				if (this.amount < 0) {
+					for (int i = this.amount; i < 0; i++)
 						begudaList = comandaService.removeBegudaInList(begudaList, begudaToAdd, this.promo);
-				}else{
-					for(int i=0; i<this.amount;i++)
+				} else {
+					for (int i = 0; i < this.amount; i++)
 						begudaList = comandaService.addBegudaInList(begudaList, begudaToAdd, this.promo);
 				}
 				comanda.setBegudes(begudaList);
@@ -360,21 +346,21 @@ public class WelcomeComandaAction extends ActionSuportOnlineSession{
 				StringBuffer jsonSB = new StringBuffer("{ \"begudes\": " + json);
 				jsonSB.append(", \"numComanda\" : \"" + comanda.getId() + "\" }");
 				json = jsonSB.toString();
-			}else{
+			} else {
 				Comandes comanda = new Comandes();
 				comanda.setPreu(0.0);
 				comanda.setFentrada(new Date());
 				Beguda begudaToAdd = this.begudaBo.load(this.idBeguda);
-				BegudaComanda	begudaComanda	= new BegudaComanda();
+				BegudaComanda begudaComanda = new BegudaComanda();
 				begudaComanda.setBeguda(begudaToAdd);
 				begudaComanda.setPromo(this.promo);
 				begudaComanda.setNumBegudes(1);
 				begudaComanda.setNumBegudesPromo(0);
-				List<BegudaComanda>	begudes	= new LinkedList<BegudaComanda>();
+				List<BegudaComanda> begudes = new LinkedList<BegudaComanda>();
 				begudes.add(begudaComanda);
 				comanda.setBegudes(begudes);
 				this.comandaBo.save(comanda);
-				
+
 				json = this.comandaService.createJSONForBegudaList(begudes);
 				StringBuffer jsonSB = new StringBuffer("{ \"begudes\": " + json);
 				jsonSB.append(", \"numComanda\" : \"" + comanda.getId() + "\" }");
@@ -395,7 +381,7 @@ public class WelcomeComandaAction extends ActionSuportOnlineSession{
 
 		return null;
 	}
-	
+
 	public String getHoraComanda(){
 
 		ServletOutputStream out = null;
@@ -409,10 +395,9 @@ public class WelcomeComandaAction extends ActionSuportOnlineSession{
 			inizializeRestaurantId();
 			inizializeData();
 
-			
 			String hora = this.comandaService.getHora(this.idRestaurant, this.data);
 
-			json = "{\"hora\":\""+hora+"\"}";
+			json = "{\"hora\":\"" + hora + "\"}";
 
 		} catch (ComandaException ce) {
 			json = Utils.createErrorJSON("error in comanda service action");
@@ -429,6 +414,7 @@ public class WelcomeComandaAction extends ActionSuportOnlineSession{
 		return null;
 
 	}
+
 	public String loadHores(){
 
 		ServletOutputStream out = null;
@@ -445,7 +431,7 @@ public class WelcomeComandaAction extends ActionSuportOnlineSession{
 			this.comanda = this.comandaBo.load(this.idComanda);
 			horesDTO = new HoresDTO();
 			horesDTO.setData(data);
-			horesDTO = this.comandaService.setHoresFeature(horesDTO, this.data, this.comanda,this.aDomicili);
+			horesDTO = this.comandaService.setHoresFeature(horesDTO, this.data, this.comanda, this.aDomicili);
 
 			Gson gson = new GsonBuilder().setPrettyPrinting().excludeFieldsWithoutExposeAnnotation().create();
 
@@ -476,23 +462,21 @@ public class WelcomeComandaAction extends ActionSuportOnlineSession{
 		this.comanda = this.comandaBo.load(this.idComanda);
 		horesDTO = new HoresDTO();
 		horesDTO.setData(data);
-		horesDTO = this.comandaService.setHoresFeature(horesDTO, this.data, this.comanda,false);
-		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-		this.nameAuth = auth.getName();
-
-		if(!this.nameAuth.equals("anonymousUser")){
+		horesDTO = this.comandaService.setHoresFeature(horesDTO, this.data, this.comanda, false);
+		setAuthenticationUser();
+		if (!this.nameAuth.equals("anonymousUser")) {
 			Users user = this.usersBo.findByUsername(nameAuth);
 			this.comanda.setUser(user);
 		}
-		
+
 		Double preu = this.comandaService.getPreuOfComanda(this.comanda);
 		this.comanda.setPreu(preu);
-		
+
 		this.comandaBo.update(comanda);
 		List<Beguda> begudaList = this.begudaBo.getAll();
 		for (Beguda beguda : begudaList) {
 
-			BasicSub basic = new BasicSub((beguda.getFoto()==null? 0 :beguda.getFoto().getId()), beguda.getNom());
+			BasicSub basic = new BasicSub((beguda.getFoto() == null ? 0 : beguda.getFoto().getId()), beguda.getNom());
 			basic.setIdSub(beguda.getId());
 			basic.setTipus(beguda.getTipus());
 			basic.setPreu(beguda.getPreu());
@@ -503,7 +487,7 @@ public class WelcomeComandaAction extends ActionSuportOnlineSession{
 		// this.comandaService.checkComandaPromocions(comanda, resource);
 		this.numPlats = this.comandaService.getNumPlats(this.platComandaList);
 		this.begudaComandaList = comanda.getBegudes();
-		this.numBegudes= this.comandaService.getNumBegudes(comanda.getBegudes());
+		this.numBegudes = this.comandaService.getNumBegudes(comanda.getBegudes());
 		this.platComandaList = comanda.getPlats();
 
 		return SUCCESS;
@@ -540,42 +524,44 @@ public class WelcomeComandaAction extends ActionSuportOnlineSession{
 
 	// private methods
 	private void setUserName(){
-		
-		try{
-			
+
+		try {
 			this.nameUser = Utils.getNameUser(nameAuth, usersBo);
-			
-		}catch(Exception e){
-			this.nameUser="";
+		} catch (Exception e) {
+			this.nameUser = "";
 		}
-		
 	}
 
 	private void inizializeAmount(){
-		this.amount= (request.getParameter("amount")!=null && !request.getParameter("amount").equals(""))? Integer.parseInt(request.getParameter("amount")): 1;
+
+		this.amount = (request.getParameter("amount") != null && !request.getParameter("amount").equals("")) ? Integer.parseInt(request
+				.getParameter("amount")) : 1;
 	}
-	private void  inizializePagin(){
-		this.actualPage= (request.getParameter("actualPage")!=null && !request.getParameter("actualPage").equals(""))? Integer.parseInt(request.getParameter("actualPage")): 0;
-		this.order = (request.getParameter("order")!=null && !request.getParameter("order").equals(""))? request.getParameter("order") : Constants.TIPUS_PLAT_ANY;
-		this.totalPage = this.platList.size()/this.rppPage;
+
+	private void inizializePagin(){
+
+		this.actualPage = (request.getParameter("actualPage") != null && !request.getParameter("actualPage").equals("")) ? Integer
+				.parseInt(request.getParameter("actualPage")) : 0;
+		this.order = (request.getParameter("order") != null && !request.getParameter("order").equals("")) ? request.getParameter("order")
+				: Constants.TIPUS_PLAT_ANY;
+		this.totalPage = this.platList.size() / this.rppPage;
 	}
-	
+
 	private void inizializeComments(){
-		
+
 		List<Plat> list = new ArrayList<Plat>();
-		
-		for(Plat plt : this.platList){			
-			  list.add(this.platsBo.loadPLatAndForos(plt.getId()));			
+
+		for (Plat plt : this.platList) {
+			list.add(this.platsBo.loadPLatAndForos(plt.getId()));
 		}
-		this.platList= list;
-		
+		this.platList = list;
+
 	}
-	
+
 	private Users getUserFromContext(){
 
-		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-		String name = auth.getName();
-		return this.usersBo.findByUsername(name);
+		setAuthenticationUser();
+		return this.usersBo.findByUsername(this.nameAuth);
 
 	}
 
@@ -601,7 +587,8 @@ public class WelcomeComandaAction extends ActionSuportOnlineSession{
 	private void inizializeData() throws WrongParamException{
 
 		this.data = (request.getParameter("data") == null || request.getParameter("data").equals("")) ? null : request.getParameter("data");
-		this.aDomicili = (request.getParameter("aDomicili") == null || request.getParameter("aDomicili").equals("")) ? false : Boolean.parseBoolean(request.getParameter("aDomicili"));
+		this.aDomicili = (request.getParameter("aDomicili") == null || request.getParameter("aDomicili").equals("")) ? false : Boolean
+				.parseBoolean(request.getParameter("aDomicili"));
 		if (this.data == null) {
 			throw new WrongParamException("null data of comanda");
 		}
@@ -640,8 +627,7 @@ public class WelcomeComandaAction extends ActionSuportOnlineSession{
 
 	private void getUserAllInfoFromContext(){
 
-		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-		this.nameAuth = auth.getName();
+		setAuthenticationUser();
 		if (!this.nameAuth.equals("anonymousUser")) {
 			this.user = this.usersBo.findByUsername(this.nameAuth);
 		} else {
@@ -693,16 +679,6 @@ public class WelcomeComandaAction extends ActionSuportOnlineSession{
 	public void setComanda( Comandes comanda ){
 
 		this.comanda = comanda;
-	}
-
-	public String getNameAuth(){
-
-		return nameAuth;
-	}
-
-	public void setNameAuth( String nameAuth ){
-
-		this.nameAuth = nameAuth;
 	}
 
 	public Long getIdComanda(){
@@ -791,86 +767,93 @@ public class WelcomeComandaAction extends ActionSuportOnlineSession{
 	}
 
 	public Restaurant getRestaurant(){
-	
+
 		return restaurant;
 	}
 
 	public void setRestaurant( Restaurant restaurant ){
-	
+
 		this.restaurant = restaurant;
 	}
 
 	public Integer getActualPage(){
-	
+
 		return actualPage;
 	}
 
 	public void setActualPage( Integer actualPage ){
-	
+
 		this.actualPage = actualPage;
 	}
 
 	public Integer getTotalPage(){
-	
+
 		return totalPage;
 	}
 
 	public void setTotalPage( Integer totalPage ){
-	
+
 		this.totalPage = totalPage;
 	}
 
 	public Integer getRppPage(){
-	
+
 		return rppPage;
 	}
 
 	public void setRppPage( Integer rppPage ){
-	
+
 		this.rppPage = rppPage;
 	}
 
-	public int getNumBegudes() {
+	public int getNumBegudes(){
+
 		return numBegudes;
 	}
 
-	public void setNumBegudes(int numBegudes) {
+	public void setNumBegudes( int numBegudes ){
+
 		this.numBegudes = numBegudes;
 	}
 
 	public List<Restaurant> getRestaurantList(){
-	
+
 		return restaurantList;
 	}
 
 	public void setRestaurantList( List<Restaurant> restaurantList ){
-	
+
 		this.restaurantList = restaurantList;
 	}
 
 	public List<BegudaComanda> getBegudaComandaList(){
+
 		return begudaComandaList;
 	}
 
-	public void setBegudaComandaList(List<BegudaComanda> begudaComandaList) {
+	public void setBegudaComandaList( List<BegudaComanda> begudaComandaList ){
+
 		this.begudaComandaList = begudaComandaList;
 	}
 
-	public String getDataAvui() {
+	public String getDataAvui(){
+
 		return dataAvui;
 	}
 
-	public void setDataAvui(String dataAvui) {
+	public void setDataAvui( String dataAvui ){
+
 		this.dataAvui = dataAvui;
 	}
-	
 
-	public String getNameUser() {
+	public String getNameUser(){
+
 		return nameUser;
 	}
 
-	public void setNameUser(String nameUser) {
+	public void setNameUser( String nameUser ){
+
 		this.nameUser = nameUser;
 	}
-	
+
 }

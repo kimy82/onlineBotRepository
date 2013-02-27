@@ -5,8 +5,6 @@ import java.util.Date;
 import java.util.ResourceBundle;
 
 import javax.servlet.ServletOutputStream;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -41,9 +39,8 @@ public class FinalComandaAction extends ActionSuportOnline{
 	private String				address;
 	private String				dataActual;
 
-	private String				nameAuth;
 	private ComandaServiceImpl	comandaService;
-	
+
 	public String execute(){
 
 		return SUCCESS;
@@ -58,9 +55,8 @@ public class FinalComandaAction extends ActionSuportOnline{
 
 		try {
 			out = this.response.getOutputStream();
-			Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-			this.nameAuth = auth.getName();
-
+			setAuthenticationUser();
+			
 			if (this.nameAuth.equals("anonymousUser")) {
 				json = Utils.createNotLogedJSON("User not loged. Login before...");
 			} else {
@@ -90,7 +86,7 @@ public class FinalComandaAction extends ActionSuportOnline{
 		} catch (Exception e) {
 			json = Utils.createErrorJSON("error in ajax action");
 		}
-		
+
 		try {
 			out.print(json);
 		} catch (IOException e) {
@@ -98,17 +94,17 @@ public class FinalComandaAction extends ActionSuportOnline{
 		}
 		return null;
 	}
-	
+
 	// private methods
 	private void inizializeAddress() throws WrongParamException{
 
 		this.address = (request.getParameter("address") == null || request.getParameter("address").equals("")) ? null : request
 				.getParameter("address");
-		if (this.address == null && this.aDomicili==null || this.aDomicili.equals("true")) {
+		if (this.address == null && this.aDomicili == null || this.aDomicili.equals("true")) {
 			throw new WrongParamException("null address of comanda");
 		}
 	}
-	
+
 	private void inizilizeComandaId() throws WrongParamException{
 
 		try {
@@ -157,16 +153,6 @@ public class FinalComandaAction extends ActionSuportOnline{
 	public void setComanda( Comandes comanda ){
 
 		this.comanda = comanda;
-	}
-
-	public String getNameAuth(){
-
-		return nameAuth;
-	}
-
-	public void setNameAuth( String nameAuth ){
-
-		this.nameAuth = nameAuth;
 	}
 
 	public Long getIdComanda(){

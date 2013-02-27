@@ -1,39 +1,28 @@
 package com.online.action;
 
-import java.security.NoSuchAlgorithmException;
 import java.util.Date;
 import java.util.List;
-import java.util.Locale;
-import java.util.Map;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
-import org.apache.struts2.interceptor.ServletRequestAware;
-import org.apache.struts2.interceptor.ServletResponseAware;
-import org.apache.struts2.interceptor.SessionAware;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 
 import com.online.bo.RestaurantsBo;
 import com.online.bo.UsersBo;
 import com.online.model.Restaurant;
+import com.online.supplier.extend.ActionSuportOnlineSession;
 import com.online.utils.Utils;
-import com.opensymphony.xwork2.ActionSupport;
 
 @SuppressWarnings("serial")
-public class WelcomeAction extends ActionSupport implements ServletResponseAware, ServletRequestAware, SessionAware{
+public class WelcomeAction extends ActionSuportOnlineSession{
 
-	HttpServletResponse			response;
-	HttpServletRequest			request;
+	
 	private RestaurantsBo		restaurantsBo;
 	private UsersBo				usersBo;
 	private List<Restaurant>	restaurantList;
-	private String				nameAuth;
+	
 	private String				nameUser;
 	private String				dataAvui;
 	private String				localeToChange;
-	Map<String, Object>			session;
 	private String				email;
 	private Integer				actualPage;
 	private Integer				totalPage;
@@ -41,13 +30,11 @@ public class WelcomeAction extends ActionSupport implements ServletResponseAware
 
 	public String execute() {
 
-		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-		this.nameAuth = auth.getName();			
+		setAuthenticationUser();
 		
 		setUserName();
 		
-		if(session.get("WW_TRANS_I18N_LOCALE")==null || session.get("WW_TRANS_I18N_LOCALE").equals(""))
-			session.put("WW_TRANS_I18N_LOCALE", new Locale("ca"));
+		setLocaleIfNull("ca");
 		
 		this.restaurantList = this.restaurantsBo.getAll(true, false, false);
 		
@@ -68,9 +55,9 @@ public class WelcomeAction extends ActionSupport implements ServletResponseAware
 			return ERROR;
 		}
 		if (this.localeToChange.equals("CA")) {
-			session.put("WW_TRANS_I18N_LOCALE", new Locale("ca"));
+			setLocale("ca");
 		} else {
-			session.put("WW_TRANS_I18N_LOCALE", new Locale("es"));
+			setLocale("es");
 		}
 
 		return SUCCESS;
@@ -116,26 +103,6 @@ public class WelcomeAction extends ActionSupport implements ServletResponseAware
 	
 	
 	//GETTERS i SETTERS
-	public HttpServletResponse getServletResponse(){
-
-		return this.response;
-	}
-
-	public void setServletRequest( HttpServletRequest request ){
-
-		this.request = request;
-	}
-
-	public HttpServletRequest getServletRequest(){
-
-		return this.request;
-	}
-
-	public void setServletResponse( HttpServletResponse response ){
-
-		this.response = response;
-	}
-
 	public void setRestaurantsBo( RestaurantsBo restaurantsBo ){
 
 		this.restaurantsBo = restaurantsBo;
@@ -149,16 +116,6 @@ public class WelcomeAction extends ActionSupport implements ServletResponseAware
 	public void setRestaurantList( List<Restaurant> restaurantList ){
 
 		this.restaurantList = restaurantList;
-	}
-
-	public String getNameAuth(){
-
-		return nameAuth;
-	}
-
-	public void setNameAuth( String nameAuth ){
-
-		this.nameAuth = nameAuth;
 	}
 
 	public String getDataAvui(){
@@ -179,11 +136,6 @@ public class WelcomeAction extends ActionSupport implements ServletResponseAware
 	public void setLocaleToChange( String localeToChange ){
 
 		this.localeToChange = localeToChange;
-	}
-
-	public void setSession( Map<String, Object> session ){
-
-		this.session = session;
 	}
 
 	public void setUsersBo( UsersBo usersBo ){
@@ -228,6 +180,4 @@ public class WelcomeAction extends ActionSupport implements ServletResponseAware
 	public void setNameUser(String nameUser) {
 		this.nameUser = nameUser;
 	}		
-	
-
 }

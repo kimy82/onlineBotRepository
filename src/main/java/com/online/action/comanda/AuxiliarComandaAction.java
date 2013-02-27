@@ -4,12 +4,6 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
-
 import com.online.bo.BegudaBo;
 import com.online.bo.RestaurantsBo;
 import com.online.bo.UsersBo;
@@ -27,16 +21,14 @@ public class AuxiliarComandaAction extends ActionSuportOnline{
 	private BegudaBo			begudaBo;
 	private RestaurantsBo		restaurantsBo;
 	private UsersBo				usersBo;
-	
+
 	List<Beguda>				begudaList			= new ArrayList<Beguda>();
 	private List<Restaurant>	restaurantList;
-	
-	private String				nameAuth;
+
 	private String				nameUser;
 	private String				dataAvui;
 
-
-	public String execute(){		
+	public String execute(){
 
 		return SUCCESS;
 
@@ -44,58 +36,46 @@ public class AuxiliarComandaAction extends ActionSuportOnline{
 
 	public String getVins(){
 
-		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-		this.nameAuth = auth.getName();
+		setAuthenticationUser();
 
 		setUserName();
-		
-		this.begudaList = this.begudaBo.getAll("vi",true);
+
+		this.begudaList = this.begudaBo.getAll("vi", true);
 		this.restaurantList = this.restaurantsBo.getAll(true, false, false);
 		this.dataAvui = Utils.formatDate2(new Date());
 
 		return SUCCESS;
 
 	}
-	
+
 	public String getRefrescos(){
 
-		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-		this.nameAuth = auth.getName();
+		setAuthenticationUser();
 
 		setUserName();
-		
-		this.begudaList = this.begudaBo.getAll("refresc",false);
+
+		this.begudaList = this.begudaBo.getAll("refresc", false);
 		this.restaurantList = this.restaurantsBo.getAll(true, false, false);
 		this.dataAvui = Utils.formatDate2(new Date());
 
 		return SUCCESS;
 
 	}
-	
-	//PRIVATES
+
+	// PRIVATES
 	private void setUserName(){
-		
-		try{
-			
+
+		try {
+
 			this.nameUser = Utils.getNameUser(nameAuth, usersBo);
-			
-		}catch(Exception e){
-			this.nameUser="";
+
+		} catch (Exception e) {
+			this.nameUser = "";
 		}
-		
+
 	}
-	
+
 	// SETTERS i GETTERS
-	public String getNameAuth(){
-
-		return nameAuth;
-	}
-
-	public void setNameAuth( String nameAuth ){
-
-		this.nameAuth = nameAuth;
-	}
-
 	public void setBegudaBo( BegudaBo begudaBo ){
 
 		this.begudaBo = begudaBo;
@@ -117,32 +97,38 @@ public class AuxiliarComandaAction extends ActionSuportOnline{
 	}
 
 	public List<Restaurant> getRestaurantList(){
-	
+
 		return restaurantList;
 	}
 
 	public void setRestaurantList( List<Restaurant> restaurantList ){
-	
+
 		this.restaurantList = restaurantList;
 	}
-	public String getDataAvui() {
+
+	public String getDataAvui(){
+
 		return dataAvui;
 	}
 
-	public void setDataAvui(String dataAvui) {
+	public void setDataAvui( String dataAvui ){
+
 		this.dataAvui = dataAvui;
 	}
 
-	public String getNameUser() {
+	public String getNameUser(){
+
 		return nameUser;
 	}
 
-	public void setNameUser(String nameUser) {
+	public void setNameUser( String nameUser ){
+
 		this.nameUser = nameUser;
 	}
 
-	public void setUsersBo(UsersBo usersBo) {
+	public void setUsersBo( UsersBo usersBo ){
+
 		this.usersBo = usersBo;
-	}	
-	
+	}
+
 }
