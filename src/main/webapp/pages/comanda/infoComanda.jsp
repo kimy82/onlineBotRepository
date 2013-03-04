@@ -401,5 +401,6 @@ $("#numplats").text('${requestScope.numPlats}');
 </c:if>
 	<c:import url="/pages/includes/alertOnline.jsp" />
 	<c:import url="/pages/includes/errorAjax.jsp" />
+	<c:import url="/pages/includes/confirmOnline.jsp" />
 </body>
 </html>
