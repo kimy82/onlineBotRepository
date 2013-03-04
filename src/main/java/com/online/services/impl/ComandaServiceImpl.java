@@ -453,6 +453,8 @@ public class ComandaServiceImpl implements ComandaService{
 				for(Moters moter : motersList){
 					int numMotersAvailable = 0;
 					if(moter.getNumeroMoters()==null || moter.getNumeroMoters()==0){
+						numMotersAvailable= 0;  
+					}else{
 						numMotersAvailable= moter.getNumeroMoters()-(moter.getNumeroMotersUsed()==null? 0:moter.getNumeroMotersUsed());  
 					}
 					
@@ -466,9 +468,9 @@ public class ComandaServiceImpl implements ComandaService{
 						horesDTOMoters.set_0830("true");
 					} else if (moter.getHora().equals("0900") &&  horesDTO.get_0900().equals("true")) {
 						horesDTOMoters.set_0900("true");
-					} else if (moter.getHora().equals("0930") && horesDTO.get_0930().equals("true")) {
+					} else if (moter.getHora().equals("0930") &&  horesDTO.get_0930().equals("true")) {
 						horesDTOMoters.set_0930("true");
-					} else if (moter.getHora().equals("1000") && horesDTO.get_1000().equals("true")) {
+					} else if (moter.getHora().equals("1000") &&  horesDTO.get_1000().equals("true")) {
 						horesDTOMoters.set_1000("true");
 					} else if (moter.getHora().equals("1030") &&  horesDTO.get_1030().equals("true")) {
 						horesDTOMoters.set_1030("true");
@@ -476,7 +478,7 @@ public class ComandaServiceImpl implements ComandaService{
 						horesDTOMoters.set_1100("true");
 					} else if (moter.getHora().equals("1130") &&  horesDTO.get_1130().equals("true")) {
 						horesDTOMoters.set_1130("true");
-					} else if (moter.getHora().equals("1200") && horesDTO.get_1200().equals("true")) {
+					} else if (moter.getHora().equals("1200") &&  horesDTO.get_1200().equals("true")) {
 						horesDTOMoters.set_1200("true");
 					} else if (moter.getHora().equals("1230") &&  horesDTO.get_1230().equals("true")) {
 						horesDTOMoters.set_1230("true");
@@ -490,9 +492,9 @@ public class ComandaServiceImpl implements ComandaService{
 						horesDTOMoters.set_1430("true");
 					} else if (moter.getHora().equals("1500") &&  horesDTO.get_1500().equals("true")) {
 						horesDTOMoters.set_1500("true");
-					} else if (moter.getHora().equals("1530") && horesDTO.get_1530().equals("true")) {
+					} else if (moter.getHora().equals("1530") &&  horesDTO.get_1530().equals("true")) {
 						horesDTOMoters.set_1530("true");
-					} else if (moter.getHora().equals("1600") && horesDTO.get_1600().equals("true")) {
+					} else if (moter.getHora().equals("1600") &&  horesDTO.get_1600().equals("true")) {
 						horesDTOMoters.set_1600("true");
 					} else if (moter.getHora().equals("1630") &&  horesDTO.get_1630().equals("true")) {
 						horesDTOMoters.set_1630("true");
@@ -502,7 +504,7 @@ public class ComandaServiceImpl implements ComandaService{
 						horesDTOMoters.set_1730("true");
 					} else if (moter.getHora().equals("1800") &&  horesDTO.get_1800().equals("true")) {
 						horesDTOMoters.set_1800("true");
-					} else if (moter.getHora().equals("1830") && horesDTO.get_1830().equals("true")) {
+					} else if (moter.getHora().equals("1830") &&  horesDTO.get_1830().equals("true")) {
 						horesDTOMoters.set_1830("true");
 					} else if (moter.getHora().equals("1900") &&  horesDTO.get_1900().equals("true")) {
 						horesDTOMoters.set_1900("true");
@@ -528,6 +530,7 @@ public class ComandaServiceImpl implements ComandaService{
 						horesDTOMoters.set_2400("true");
 					}
 				}
+				horesDTO= horesDTOMoters;
 			}
 		}
 

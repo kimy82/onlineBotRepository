@@ -89,7 +89,40 @@ public class HoresDTO implements Serializable{
 	 
 	public HoresDTO() {
 
-		super();
+
+		this._0800="false";
+		this._0830="false";
+		this._0900="false";
+		this._0930="false";
+		this._1000="false";
+		this._1030="false";
+		this._1100="false";
+		this._1130="false";
+		this._1200="false";
+		this._1230="false";
+		this._1300="false";
+		this._1330="false";
+		this._1400="false";
+		this._1430="false";
+		this._1500="false";
+		this._1530="false";
+		this._1600="false";
+		this._1630="false";
+		this._1700="false";
+		this._1730="false";
+		this._1800="false";
+		this._1830="false";
+		this._1900="false";
+		this._1930="false";
+		this._2000="false";
+		this._2030="false";
+		this._2100="false";
+		this._2130="false";
+		this._2200="false";
+		this._2230="false";
+		this._2300="false";
+		this._2330="false";
+		this._2400="false";				
 
 	}
 

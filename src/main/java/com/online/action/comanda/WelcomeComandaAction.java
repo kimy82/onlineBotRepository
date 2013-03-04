@@ -280,9 +280,10 @@ public class WelcomeComandaAction extends ActionSuportOnlineSession{
 						comanda.setPlats(platList);
 					}
 					this.comandaBo.update(comanda);
+					json = this.comandaService.createJSONForShoppingCart(comanda.getPlats(), comanda.getId(), resource);
+				}else{
+					json= Utils.createAlertJSON(resource.getString("txt.alerta.moreRests"));
 				}
-				json = this.comandaService.createJSONForShoppingCart(comanda.getPlats(), comanda.getId(), resource);
-
 			} else {
 				// creem comanda i afegim plat
 				Comandes comanda = new Comandes();
@@ -483,7 +484,11 @@ public class WelcomeComandaAction extends ActionSuportOnlineSession{
 			this.refrescList.add(basic);
 
 		}
-
+		
+		if(this.restaurantList.isEmpty()){
+			this.restaurantList = this.restaurantsBo.getAll(true, false, false);
+		}
+		
 		// this.comandaService.checkComandaPromocions(comanda, resource);
 		this.numPlats = this.comandaService.getNumPlats(this.platComandaList);
 		this.begudaComandaList = comanda.getBegudes();

@@ -1100,7 +1100,7 @@ filter: Alpha(Opacity=30)/*{opacityOverlay}*/;
 .ui-dialog {
 padding: 0.2em;
 position: absolute;
-top:0px!important;
+/*top:0px!important;*/
 }
 .sepa{
 	margin-right: 15px;

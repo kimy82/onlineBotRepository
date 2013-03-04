@@ -177,6 +177,15 @@ public class Utils{
 		return jsonSB.toString();
 	}
 	
+	
+	public static String createAlertJSON( String alert ){
+
+		StringBuffer jsonSB = new StringBuffer("{");
+		jsonSB.append("\"alerta\":\"" + alert + "\"");
+		jsonSB.append("}");
+		return jsonSB.toString();
+	}
+	
 	public static String createErrorJSONForDataTable( String error, String sEcho ){
 
 		StringBuffer jsonSB = new StringBuffer("{");

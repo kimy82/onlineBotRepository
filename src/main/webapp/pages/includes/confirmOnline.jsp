@@ -20,11 +20,13 @@ $("#dialog_confirm").dialog( { autoOpen: false,
 	  height: 170,
 	  width: 300,	
 	  open: function(event, ui) { 		
-		$('#dialog_confirm').css('overflow', 'hidden');		
+		$('#dialog_confirm').css('overflow', 'hidden');	
+		var winWidth = $(window).width();
+		var winHeight = $(window).height();
+		$(".ui-resizable").css("left", ((winWidth / 2) - 150) + "px").css("top", ((winHeight / 2) - 85) + "px");		    
 	 }
-});
+}).siblings('div.ui-dialog-titlebar').remove();
 
- 
 	if(confirmOnline == undefined || confirmOnline =='undefined'){
 		var confirmOnline={};
 	}

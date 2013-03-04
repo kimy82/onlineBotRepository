@@ -15,6 +15,9 @@ $("#dialog_alert").dialog( { autoOpen: false,
 	  width: 400,		
 	  open: function(event, ui) { 		
 		$('#dialog_alert').css('overflow', 'hidden');		
+		var winWidth = $(window).width();
+		var winHeight = $(window).height();
+		$(".ui-resizable").css("left", ((winWidth / 2) - 150) + "px").css("top", ((winHeight / 2) - 85) + "px");	
 	 }
 });
 
