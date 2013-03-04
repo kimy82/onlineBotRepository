@@ -4,6 +4,7 @@
 
 <hibernate-mapping>
 	<class name="com.online.model.VotacioTMP" table="TMP_VT">
+	<cache usage="read-write" />
 		<composite-id>
 			<key-property name="platId" column="PLAT_ID" type="java.lang.Long" ></key-property>
 			<key-property name="userId" column="USER_ID" type="java.lang.Long" ></key-property>

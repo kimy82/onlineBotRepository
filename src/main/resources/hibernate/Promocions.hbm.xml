@@ -4,6 +4,7 @@
 
 <hibernate-mapping>
 	<class name="com.online.model.Promocio" table="promocions" discriminator-value="p" lazy="false" >
+	<cache usage="read-write" />
 		<id name="id" type="integer">
 			<column name="PROMOCIO_ID" />
 			<generator class="increment" />
