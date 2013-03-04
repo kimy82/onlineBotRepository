@@ -4,6 +4,7 @@
 
 <hibernate-mapping>
 	<class name="com.online.model.Image" table="images">
+		<cache usage="read-write" />
 		<id name="id" type="integer">
 			<column name="IMAGE_ID" />
 			<generator class="increment" />

@@ -82,7 +82,7 @@ public class PlatsDaoImpl extends HibernateDaoSupport implements PlatsDao{
 
 		session.beginTransaction();
 		@SuppressWarnings("unchecked")
-		List<Plat> platList = (List<Plat>) session.createQuery("from Plat pl where pl.id=" + id).list();
+		List<Plat> platList = (List<Plat>) session.createQuery("from Plat pl where pl.id=" + id).setCacheable(true).list();
 		if (platList.isEmpty())
 			return null;
 		

@@ -4,6 +4,7 @@
 
 <hibernate-mapping>
 	<class name="com.online.model.Comandes" table="comandes">
+		<cache usage="read-write" />
 		<id name="id" type="java.lang.Long">
 			<column name="COMANDA_ID" />
 			<generator class="increment" />

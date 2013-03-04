@@ -17,7 +17,7 @@ public class ImageDaoImpl extends HibernateDaoSupport implements ImageDao{
 
 		session.beginTransaction();
 		@SuppressWarnings("unchecked")
-		List<Image> images = (List<Image>) session.createQuery("from Image img where img.id=" + id).list();
+		List<Image> images = (List<Image>) session.createQuery("from Image img where img.id=" + id).setCacheable(true).list();
 		if (images.isEmpty())
 			return null;
 		Image image = images.get(0);

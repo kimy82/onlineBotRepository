@@ -4,6 +4,7 @@
 
 <hibernate-mapping>
 	<class name="com.online.model.ConfigRestaurant" table="mt_config_restaurant">
+		<cache usage="read-write" />
 		<id name="id" type="integer">
 			<column name="MT_RESTAURANT_ID" />
 			<generator class="increment" />

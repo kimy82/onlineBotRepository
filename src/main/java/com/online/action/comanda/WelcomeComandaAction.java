@@ -485,7 +485,7 @@ public class WelcomeComandaAction extends ActionSuportOnlineSession{
 
 		}
 		
-		if(this.restaurantList.isEmpty()){
+		if(this.restaurantList==null || this.restaurantList.isEmpty()){
 			this.restaurantList = this.restaurantsBo.getAll(true, false, false);
 		}
 		

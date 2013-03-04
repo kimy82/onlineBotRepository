@@ -81,7 +81,7 @@ public class BegudaDaoImpl extends HibernateDaoSupport implements BegudaDao{
 
 		session.beginTransaction();
 		
-		List<Beguda> begudaList =(List<Beguda>) session.createQuery("from Beguda bg where bg.tipus='"+tipus+"'").list();
+		List<Beguda> begudaList =(List<Beguda>) session.createQuery("from Beguda bg where bg.tipus='"+tipus+"'").setCacheable(true).list();
 		if(initComentsAndVotacions){
 			for(Beguda bg : begudaList){
 				Hibernate.initialize(bg.getComments());				

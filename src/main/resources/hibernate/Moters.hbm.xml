@@ -4,6 +4,7 @@
 
 <hibernate-mapping>
 	<class name="com.online.model.Moters" table="mt_config_moters">
+		<cache usage="read-write" />
 		<id name="id" type="integer">
 			<column name="MT_MOTER_ID" />
 			<generator class="increment" />

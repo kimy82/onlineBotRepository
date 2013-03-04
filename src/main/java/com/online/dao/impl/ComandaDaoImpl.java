@@ -106,7 +106,7 @@ public class ComandaDaoImpl extends HibernateDaoSupport implements ComandaDao{
 		Session session = this.getSessionFactory().openSession();
 		session.beginTransaction();
 
-		Query query = session.createQuery("from Comandes cmd where cmd.user.id=" + id);
+		Query query = session.createQuery("from Comandes cmd where cmd.user.id=" + id).setCacheable(true);
 
 		comandaList = ((List<Comandes>) query.list());
 		

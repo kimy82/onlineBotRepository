@@ -50,7 +50,7 @@ public class RestaurantsDaoImpl extends HibernateDaoSupport implements Restauran
 
 		session.beginTransaction();
 		@SuppressWarnings("unchecked")
-		List<Restaurant> restaurantsList = (List<Restaurant>) session.createQuery("from Restaurant res where res.id=" + id).list();
+		List<Restaurant> restaurantsList = (List<Restaurant>) session.createQuery("from Restaurant res where res.id=" + id).setCacheable(true).list();
 		if (restaurantsList.isEmpty())
 			return null;
 		Restaurant restaurant = restaurantsList.get(0);
@@ -72,7 +72,7 @@ public class RestaurantsDaoImpl extends HibernateDaoSupport implements Restauran
 
 		session.beginTransaction();
 		@SuppressWarnings("unchecked")
-		List<Restaurant> restaurantsList = (List<Restaurant>) session.createQuery("from Restaurant res").list();
+		List<Restaurant> restaurantsList = (List<Restaurant>) session.createQuery("from Restaurant res").setCacheable(true).list();
 		if (restaurantsList.isEmpty())
 			return null;
 		if(!lazyPlatsVotacio){
@@ -108,7 +108,7 @@ public class RestaurantsDaoImpl extends HibernateDaoSupport implements Restauran
 
 		session.beginTransaction();
 		@SuppressWarnings("unchecked")
-		List<Restaurant> restaurantsList = (List<Restaurant>) session.createQuery("from Restaurant res").list();
+		List<Restaurant> restaurantsList = (List<Restaurant>) session.createQuery("from Restaurant res").setCacheable(true).list();
 		if (restaurantsList.isEmpty())
 			return null;
 		for(Restaurant restaurant :restaurantsList){
