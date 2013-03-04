@@ -4,6 +4,7 @@
 
 <hibernate-mapping>
 	<class name="com.online.model.VotacioRestaurant" table="votacio_restaurant">
+	<cache usage="read-write" />
 		<id name="id" type="integer">
 			<column name="RESTAURANT_ID" />
 			<generator class="foreign">
