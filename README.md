@@ -248,4 +248,17 @@ C:\Program Files\Java\jdk1.7.0_02\bin>
                keystoreFile="C:\Users\CrisKim\.keystore"
                keystorePass="changeit" />
 
+ç<Connector port="7070" protocol="HTTP/1.1"
+               maxHttpHeaderSize="8192"
+               minSpareThreads="25"
+               maxSpareThreads="75"
+               enableLookups="false"
+               redirectPort="8443"
+               acceptCount="100"
+               connectionTimeout="20000"
+               disableUploadTimeout="true"
+               compression="on"
+               compressionMinSize="2048"
+               noCompressionUserAgents="gozilla, traviata"
+               compressableMimeType="text/html,text/xml,text/css,text/javascript"/>
 
