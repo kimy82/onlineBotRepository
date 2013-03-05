@@ -6,11 +6,6 @@ import java.util.HashSet;
 import java.util.Set;
 
 import javax.servlet.ServletOutputStream;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
 
 import com.online.bo.BegudaBo;
 import com.online.bo.ForoBo;
@@ -45,7 +40,6 @@ public class ForoAction extends ActionSuportOnline{
 	private Long				idPlat;
 	private Long				idBeguda;
 	private Long				idComment;
-	private String				nameAuth;
 
 	private Users				user;
 	private Plat				plat;

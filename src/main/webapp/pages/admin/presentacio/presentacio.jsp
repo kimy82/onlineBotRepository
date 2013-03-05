@@ -17,7 +17,9 @@
       <c:import url="pestanas.jsp" />
    		 <div id="div_body" align="left">
 			<h2>
-				<s:text name="txt.mant.presentacio.fotos" />
+				<s:text name="txt.mant.presentacio.fotos" />&nbsp;&nbsp;&nbsp;
+			
+				(<s:text name="txt.mant.presentacio.fotos.only.jpg" />)
 			</h2>
 			<br>	
 	  		 <div  style="width:800px; height: 500px;" alig="center">
@@ -81,9 +83,7 @@
 			</div>				
 		</div>
 	</div>
-		<h2>
-				<s:text name="txt.mant.presentacio.fotos.only.jpg" />
-		</h2>
+		
 </div>
 <!-- Scripts --> 
 	<link rel="stylesheet" href="<c:url value='/css/demo_table.css' />" type="text/css"   media="screen" />

@@ -83,6 +83,7 @@ public class UsersDaoImpl extends HibernateDaoSupport implements UsersDao{
 		Session session = this.getSessionFactory().openSession();
 		session.beginTransaction();
 		Criteria criteria = session.createCriteria(Comandes.class);
+		criteria.add(Restrictions.eq("pagada", true));
 		criteria.createAlias("user", "user").add(Restrictions.eq("user.id", idUser));
 		criteria.createAlias("plats", "plats").add(Restrictions.eq("plats.plat.id", idPlat));
 		List<Comandes> comandalist = criteria.list();

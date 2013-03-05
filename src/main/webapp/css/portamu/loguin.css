@@ -11,7 +11,7 @@ a, .boton, .news{ /* Firefox */ -moz-transition-property: all; -moz-transition-d
 	background-color: #F2F2F2;
     border: 1px solid #E2E2E2;
     height: 370px;
-    margin: 90px auto;
+    margin: -380px auto;
     width: 330px;
 }
 #light_int{
@@ -66,7 +66,7 @@ filter: Alpha(Opacity=30)/*{opacityOverlay}*/;
 .ui-dialog {
 padding: 0.2em;
 position: absolute;
-top:0px!important;
+
 }
 .ui-draggable{
 float:none;
