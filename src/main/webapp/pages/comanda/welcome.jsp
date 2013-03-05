@@ -164,6 +164,17 @@
 								</div>
 								<hr class="sep">
 							</div>
+							<div class="coments">
+								<img class="estrelles_rest" src="/${initParam.app}/img/elements/estrelles${beguda.votacio.punctuacio}.jpg">	
+								<br>
+								<span class="coments_titol"><s:text name="txt.coments.valoracions" /></span><br>
+								<p>								
+										<c:set var="comments" value="${beguda.comments}" ></c:set>
+										<c:forEach items="${comments}" var="comt" begin="0" end="2" >																									
+											${fn:substring(comt.comment, 0, 25)}.																																															
+										</c:forEach>									
+								<a href="#" class="more" onclick="goToInfoBeguda(${beguda.id})" ><s:text name="txt.leer.mas" /></a></p>
+							</div>	
 														
 						</div>
 					</s:iterator>

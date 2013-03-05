@@ -104,7 +104,7 @@ public class WelcomeComandaAction extends ActionSuportOnlineSession{
 
 		inizializeComments();
 
-		this.begudaList = this.begudaBo.getAll("vi", false);
+		this.begudaList = this.begudaBo.getAll("vi", true);
 
 		if (begudaList.size() > 5)
 			this.begudaList = this.begudaList.subList(0, 5);
