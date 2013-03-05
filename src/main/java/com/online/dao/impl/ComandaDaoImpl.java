@@ -42,7 +42,7 @@ public class ComandaDaoImpl extends HibernateDaoSupport implements ComandaDao{
 		Session session = this.getSessionFactory().openSession();
 		session.beginTransaction();
 
-		Query query = session.createQuery("from Comandes cmd where cmd.revisio=?").setBoolean(0, true);
+		Query query = session.createQuery("from Comandes cmd where cmd.revisio=?").setBoolean(0, true).setCacheable(true);
 
 		comandaList = ((List<Comandes>) query.list());
 
@@ -95,7 +95,15 @@ public class ComandaDaoImpl extends HibernateDaoSupport implements ComandaDao{
 
 	public List<Comandes> getAll(){
 
-		return getHibernateTemplate().loadAll(Comandes.class);
+		List<Comandes> comandaList = new ArrayList<Comandes>();
+
+		Session session = this.getSessionFactory().openSession();
+		session.beginTransaction();
+
+		Query query = session.createQuery("from Comandes cmd where 1=1").setCacheable(true);
+
+		comandaList = ((List<Comandes>) query.list());
+		return comandaList;
 	}
 
 	@SuppressWarnings("unchecked")
