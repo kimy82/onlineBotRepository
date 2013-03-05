@@ -11,11 +11,6 @@ function InitTableParams(txtlast,txtnext,txtprevious,txtfirst,txtloading,txtborr
 		this.txtenviat = txtenviat;	
 }
 
-function ismaxlength(obj,mlength){
-	if (obj.getAttribute && obj.value.length>mlength)
-		obj.value=obj.value.substring(0,mlength);
-}
-
 function reloadTableComandes(){
 	oTableAllComandes.fnDeleteRow( 0 );
 }
@@ -104,18 +99,3 @@ $(document).ready(function() {
 		$("#errorsajax").hide();
 
 } );
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

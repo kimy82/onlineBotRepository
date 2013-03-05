@@ -11,12 +11,6 @@ function InitTableParams(txtlast,txtnext,txtprevious,txtfirst,txtloading,txtborr
 		this.txtenviat = txtenviat;	
 }
 
-function ismaxlength(obj,mlength){
-	if (obj.getAttribute && obj.value.length>mlength)
-		obj.value=obj.value.substring(0,mlength);
-}
-
-
 function sendTo(id){
 	
 	var data ="idComanda="+id;
@@ -65,9 +59,6 @@ function reloadTableComandes(){
 }
 
 var  oTableComandes=null;
-
-
-
 
 $(document).ready(function() {
 
@@ -148,18 +139,3 @@ $(document).ready(function() {
 		$("#errorsajax").hide();
 
 } );
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

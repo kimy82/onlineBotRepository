@@ -13,34 +13,6 @@ function InitTableParams(txtlast,txtnext,txtprevious,txtfirst,txtloading,txtborr
 		this.txterrornumber=txterrornumber;
 }
 
-//per el formulari
-function onlyDouble(value,id){
-	 var n=value.split(".");
-	  if(n.length==1){
-		  value=value+".00";
-	  }
-	  if(value =='' || /^[0-9]*\.[0-9]*$/.test(value)){
-		$('#'+id).css('border', 'solid 1px rgb(135,155,179)');
-	}else{
-		$('#'+id).css('border', 'solid 1px red');
-		alert(initTableParams.txterrordouble);
-	}
-}  
-
-function onlyEntero(value,id){
-	  if(value =='' || /^[0-9]*$/.test(value)){
-		$('#'+id).css('border', 'solid 1px rgb(135,155,179)');
-	}else{
-		$('#'+id).css('border', 'solid 1px red');
-		alert(initTableParams.txterrornumber);
-	}
-}
-
-function ismaxlength(obj,mlength){
-	if (obj.getAttribute && obj.value.length>mlength)
-		obj.value=obj.value.substring(0,mlength);
-}
-
 
 function opendivNewBeguda(){
 	resetForm();
@@ -185,18 +157,3 @@ $(document).ready(function() {
 		$("#errorsajax").hide();
 
 } );
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

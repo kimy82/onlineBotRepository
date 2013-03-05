@@ -292,7 +292,7 @@ $(document).ready(function() {
 		
 		//taula per els plats un cop escollim restaurant
 		oTablePlats =$("#tbl_plats").dataTable( {
-			"iDisplayLength": 2,
+			"iDisplayLength": 12,
 			 "aoColumns" : [
 			                  { "mDataProp":"nom","bSortable": false },
 			                  { "mDataProp":"descripcio", "bSortable": false },

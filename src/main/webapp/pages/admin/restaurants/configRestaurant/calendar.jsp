@@ -6,10 +6,10 @@
           <div id="div_calendar" class="month" ></div>
        </td>
        <td class="calprev" >       
-          <div id="div_buttons_prev" >PREVIA</div>	     
+          <div id="div_buttons_prev" ></div>	     
        </td>
        <td class="calnext" >       
-          <div id="div_buttons_next" >SEGUENTS</div>
+          <div id="div_buttons_next" ></div>
        </td>  
        
                  

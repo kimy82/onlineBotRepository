@@ -65,6 +65,7 @@
 	<script src="<c:url value='/js/jquery/TableTools.js'/>" type="text/javascript"></script>
 	<script src="<c:url value='/js/jquery/ZeroClipboard.js'/>" type="text/javascript"></script>
 	<script type="text/javascript" src="<c:url value='/pages/admin/comandes/jscomandes.js' />"></script>
+	<script type="text/javascript" src="<c:url value='/js/validations/jsvalidations.js' />"></script>
 
 <script language="javascript">
 	var initTableParams = new InitTableParams(

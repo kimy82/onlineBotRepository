@@ -133,6 +133,7 @@
 	<script type="text/javascript" src="<c:url value='/js/calendari/calendar-idioma.js'/>"></script>		
 	<script type="text/javascript" src="<c:url value='/js/calendari/calendar-setup.js'/>"></script>
 	<script type="text/javascript" src="<c:url value='/pages/admin/restaurants/promocions/jspromocio.js' />"></script>
+	<script type="text/javascript" src="<c:url value='/js/validations/jsvalidations.js' />"></script>
 
 <script language="javascript">			
 //---------------------------------------------------------------------------------------------------------------------

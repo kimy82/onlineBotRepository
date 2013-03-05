@@ -104,3 +104,10 @@ body {
 #saveConfig_idRestaurants{
 	height: 280px;
 }
+.back {
+    background-image: url(../images/calendar/back.png) !important;
+}
+
+.forward {
+    background-image: url(../images/calendar/next.png) !important;
+}
