@@ -306,6 +306,27 @@ $("#infoPlat_dialog").dialog({
 		}
 	});
 
+function goToInfoBeguda(id){
+	
+	$("#infoBeguda_dialog").load("../foro/foroBeguda.action?idBeguda="+id);	
+	$("#infoBeguda_dialog").dialog({ 
+		   autoOpen: false,
+		   height: 500,
+		   width: 750,
+		   modal: true,
+		   close: function(event, ui) { 			   
+			   $("#infoBeguda_dialog").dialog("close"); 			  
+			}
+	});
+    $("#infoBeguda_dialog").dialog("open");   
+    $("#infoBeguda_dialog").siblings('div.ui-dialog-titlebar').remove();  
+    $("#infoBeguda_dialog").removeClass("ui-dialog-content");
+    $("#infoBeguda_dialog").removeClass("ui-widget-content");
+   	$("#infoBeguda_dialog").addClass("ui-helper-clearfix");
+	//(".ui-widget-content").css("background-color", "transparent");
+   //(".ui-widget-content").css("border", "0px");
+}
+
 function addProduct(id){
 	
 	$("#"+id).dblclick();

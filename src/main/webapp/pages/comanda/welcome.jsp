@@ -227,6 +227,8 @@
 </div>
 <div id="infoPlat_dialog" class="filtres filtres-oberts" title="<s:text name='txt.info.title' />">	 		
 </div>  
+<div id="infoBeguda_dialog" class="filtres filtres-oberts">	 		
+</div>  
 <c:import url="/pages/includes/endPage.jsp" />
 <!-- Scripts --> 
 	<!-- CSS portamu --> 
