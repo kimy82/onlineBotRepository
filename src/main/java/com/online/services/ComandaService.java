@@ -35,7 +35,7 @@ public interface ComandaService{
 	
 	public void deleteBegudesPromo(Comandes comanda) throws ComandaException;
 	
-	public HoresDTO  setHoresFeature(HoresDTO horesDTO, String data, Comandes comanda,boolean aDomicili) throws ComandaException;
+	public HoresDTO  setHoresFeature(HoresDTO horesDTO, String data, Comandes comanda,boolean aDomicili,Integer minuteTransport) throws ComandaException;
 	
 	public int getNumPlats(List<PlatComanda> platList) throws ComandaException;
 	
@@ -43,7 +43,7 @@ public interface ComandaService{
 	
 	public Comandes getComandaToRepeat(Comandes comanda) throws ComandaException;
 	
-	public String getHora(Integer idRestaurant, String data)throws ComandaException;
+	public String getHora(Integer idRestaurant, String data, Integer guardaTime)throws ComandaException;
 	
 	public boolean checkMoreThanOneRestaurant (Comandes comanda) throws ComandaException;
 	

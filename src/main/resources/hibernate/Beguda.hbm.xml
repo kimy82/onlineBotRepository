@@ -27,7 +27,7 @@
 		<property name="preu" type="double" lazy="false" >
 			<column name="PREU"  not-null="true" />
 		</property>		
-		<many-to-one name="foto" class="com.online.model.Image" cascade="all" >	
+		<many-to-one name="foto" class="com.online.model.Image" cascade="all" lazy="false" >	
 			<column name="IMAGE_ID"></column>	
 		</many-to-one>	
 		<one-to-one name="votacio" class="com.online.model.VotacioBeguda" cascade="save-update">			

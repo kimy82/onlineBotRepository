@@ -2,7 +2,7 @@
 function onlyDouble(value,id){
 	 var n=value.split(".");
 	  if(n.length==1){
-		  	if(value =='' || /^[0-9]*\$/.test(value)){
+		  	if(value =='' || /^[0-9]*$/.test(value)){
 				$('#'+id).css('border', 'solid 1px rgb(135,155,179)');
 				return;
 			}else{

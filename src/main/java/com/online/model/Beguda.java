@@ -38,9 +38,10 @@ public class Beguda implements Serializable{
 	@Expose
 	protected String			tipus;
 	
+	@Expose
 	protected Image				foto;
 	
-	protected Set<ForoBeguda>			comments			= new HashSet<ForoBeguda>(0);
+	protected Set<ForoBeguda>	comments			= new HashSet<ForoBeguda>(0);
 	
 	protected VotacioBeguda		votacio;
 

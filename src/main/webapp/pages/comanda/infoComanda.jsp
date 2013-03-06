@@ -29,10 +29,10 @@
 				<div id="slider" style=" height:260px; width:1000px; top:140px;"  >
 				    <ul style="height:260px;">
 				    	<s:iterator value="refrescList" var="refresc">
-					    	<li class="draggable" style="height:260px;" id="${refresc.idSub}" title="${refresc.tipus}">
+					    	<li style="height:260px;">
 					    			<div id="iterate_Rec" >
 					    				<div id="img_Rest" >
-					    					<img id="imageRefresc_${refresc.id}" width="200px"  src="/${initParam.app}/comanda/ImageAction.action?imageId=${refresc.id}" title="-> Double Click to Add" />
+					    					<img id="imageRefresc_${refresc.id}" width="200px"  src="/${initParam.app}/comanda/ImageAction.action?imageId=${refresc.id}" title="" />
 					    				</div>
 					    				<div class="titol_Rest">
 					    					
@@ -45,7 +45,7 @@
 		  									</h1>
 										</div>
 										<div class="left_price">
-											<a class="entrar draggable" href="#"><s:text name="txt.plat.afegir" /></a>
+											<a class="entrar draggable" id="${refresc.idSub}" title="${refresc.tipus}" href="#"><s:text name="txt.plat.afegir" /></a>
 										</div>
 										<div class="right_price">
 											<span class="price">${refresc.preu} &euro; </span>
@@ -383,7 +383,7 @@ if(addressToLoad==''){
 initAddress();
 
 </script>
-<c:if test="${nameAuth eq 'anonymousUser' }">
+<c:if test="${nameAuth ne 'anonymousUser' }">
 	<script type="text/javascript" >
 		$("#checkPromocionsDisponibles").show();
 	</script>

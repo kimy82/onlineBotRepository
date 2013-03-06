@@ -82,7 +82,7 @@ public class PromocionsBoImpl implements PromocionsBo{
 	private void checkPromocioWithId( Promocio promocio ) throws BOException{
 
 		if (promocio == null || promocio.getId() == null || promocio.getNom() == null || promocio.getNom().equals("")
-				|| promocio.getDescompteImport() == null || promocio.getTipuDescompte() == null) {
+				||( promocio.getDescompteImport() == null || promocio.getNumBegudes()==null)|| promocio.getTipuDescompte() == null) {
 			throw new BOException("Null promocio to save");
 		}
 	}

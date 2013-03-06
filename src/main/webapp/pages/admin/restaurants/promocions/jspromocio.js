@@ -41,12 +41,14 @@ function resetForm(){
 
 function openDivTipuPromo(id){
 	
+	$("#infopromonew").show('slow');
+	$("#pnc_div").hide();
+	$("#apd_div").hide();
+	
 	if(id=='pnc'){
-		$("#pnc_div").show('slow');
-		$("#apd_div").hide();
+		$("#pnc_div").show('slow');		
 	}else{
-		$("#apd_div").show('slow');
-		$("#pnc_div").hide();
+		$("#apd_div").show('slow');		
 	}
 }
 
@@ -156,7 +158,7 @@ $(document).ready(function() {
 					        "sPrevious": "<img src='/"+context+"/images/icono-paginador-anterior.gif' style='vertical-align:middle'>&nbsp;"+initTableParams.txtprevious
 					      }
 					    },
-					"sScrollY": "500",		    
+					"sScrollY": "1000",		    
 					"sScrollX": "700",	
 				    "bScrollCollapse": true,
 		    		"bProcessing": false,

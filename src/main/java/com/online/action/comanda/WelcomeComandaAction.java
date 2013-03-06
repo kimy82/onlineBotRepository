@@ -395,8 +395,8 @@ public class WelcomeComandaAction extends ActionSuportOnlineSession{
 
 			inizializeRestaurantId();
 			inizializeData();
-
-			String hora = this.comandaService.getHora(this.idRestaurant, this.data);
+			Integer guardatime =Integer.parseInt(this.request.getSession().getServletContext().getInitParameter("guardaTime"));
+			String hora = this.comandaService.getHora(this.idRestaurant, this.data,guardatime);
 
 			json = "{\"hora\":\"" + hora + "\"}";
 
@@ -432,7 +432,8 @@ public class WelcomeComandaAction extends ActionSuportOnlineSession{
 			this.comanda = this.comandaBo.load(this.idComanda);
 			horesDTO = new HoresDTO();
 			horesDTO.setData(data);
-			horesDTO = this.comandaService.setHoresFeature(horesDTO, this.data, this.comanda, this.aDomicili);
+			Integer motertime =Integer.parseInt(this.request.getSession().getServletContext().getInitParameter("moterTime"));
+			horesDTO = this.comandaService.setHoresFeature(horesDTO, this.data, this.comanda, this.aDomicili,motertime);
 
 			Gson gson = new GsonBuilder().setPrettyPrinting().excludeFieldsWithoutExposeAnnotation().create();
 
@@ -463,7 +464,7 @@ public class WelcomeComandaAction extends ActionSuportOnlineSession{
 		this.comanda = this.comandaBo.load(this.idComanda);
 		horesDTO = new HoresDTO();
 		horesDTO.setData(data);
-		horesDTO = this.comandaService.setHoresFeature(horesDTO, this.data, this.comanda, false);
+		horesDTO = this.comandaService.setHoresFeature(horesDTO, this.data, this.comanda, false,0);
 		setAuthenticationUser();
 		if (!this.nameAuth.equals("anonymousUser")) {
 			Users user = this.usersBo.findByUsername(nameAuth);

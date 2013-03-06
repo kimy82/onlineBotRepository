@@ -116,7 +116,7 @@ public class WelcomeUserAction extends ActionSuportOnline{
 
 			horesDTO = new HoresDTO();
 			horesDTO.setData(data);
-			horesDTO = this.comandaService.setHoresFeature(horesDTO, this.data, this.comanda, false);
+			horesDTO = this.comandaService.setHoresFeature(horesDTO, this.data, this.comanda, false,0);
 
 			setAuthenticationUser();
 

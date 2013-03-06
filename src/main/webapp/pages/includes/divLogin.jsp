@@ -40,12 +40,13 @@ function goToLogin(){
 		   autoOpen: false,
 		   height: 94,
 		   width: 330,
+		   position: "center",
 		   modal: true,
 		   close: function(event, ui) { 			   
-			   $("#login_dialog").dialog("close"); 			  
+			   $("#login_dialog").dialog("close"); 			   
 			}
 	});
-    $("#login_dialog").dialog("open"); 
+    $("#login_dialog").dialog("open");
     $("#login_dialog").siblings('div.ui-dialog-titlebar').remove();  
     $("#login_dialog").removeClass("ui-dialog-content");
 	$("#login_dialog").removeClass("ui-widget-content");

@@ -53,7 +53,7 @@ function initAddress(){
 	if(window.addressToLoad!=''){
 		var arrayAddress = window.addressToLoad.split("-");
 		$("#carrer").val(arrayAddress[0]);
-		$("#codi").val(arrayAddress[1]);
+		$("#codi").val(arrayAddress[arrayAddress.length-1]);
 		$("#comandaddress").val(window.addressToLoad);
 		$("#checkAdd").click();
 	}
@@ -492,24 +492,11 @@ var func = $(function(){
 	    			window.promoBeguda.numBegudesAdded = parseInt(n) +1;
 	    			saveBegudaToComanda(id,true,1);
 	    		}else{
-	    			alertOnline.alertes(initParams.txtNoMoreDrinksToAddinPromo);	    			
+	    			saveBegudaToComanda(id,false,1);
+	    			//alertOnline.alertes(initParams.txtNoMoreDrinksToAddinPromo);	    			
 	    		}
 			}
 	}
-			
-	$( ".draggable" ).draggable({
-		 helper:'clone',		
-		 start: function(event,ui){				
-			 $("#slider").css("height","500px");	  	
-	    }
-	});
-	$( "#droppable" ).droppable({
-	    drop: function( event, ui ){
-	    	var item_id = ui.draggable.attr("id"); 
-	    	var  tipus = ui.draggable.attr("title");
-	    	addingBegudaMangaer(item_id,tipus);	    		    		        
-	    }
-	});
 });
 
 function saveBegudaToComanda(idBeguda,promo,amount){
@@ -532,7 +519,12 @@ function saveBegudaToComanda(idBeguda,promo,amount){
        					var preuBegudes = 0.0;
        					var html="";
        					var begudes = json.begudes;
-       					$('#beguda_'+idBeguda).remove();
+       					
+          					$('#beguda_p_'+idBeguda).remove();
+       					
+          					$('#beguda_'+idBeguda).remove();
+       					
+ 
        					var table=document.getElementById("order");
        					$.each(begudes, function(index, value){ 
        					 	           					 	
@@ -559,7 +551,7 @@ function saveBegudaToComanda(idBeguda,promo,amount){
 	       					 		
 	       					 		
 	       					 		$(cell1).addClass("img_order");
-	       					 		cell1.innerHTML="<img width='114px' src='"+context+"/comanda/ImageAction.action?imageId="+idBeguda+"' />";
+	       					 		cell1.innerHTML="<img width='114px' src='"+context+"/comanda/ImageAction.action?imageId="+value.beguda.foto.id+"' />";
 	       					 		
 	       					 		
 	       					 		$(cell2).addClass("descri");
@@ -603,7 +595,7 @@ function saveBegudaToComanda(idBeguda,promo,amount){
 	       					 		
 	       					 		
 	       					 		$(cell1).addClass("img_order");
-	       					 		cell1.innerHTML="<img width='114px' src='"+context+"/comanda/ImageAction.action?imageId="+idBeguda+"' />";
+	       					 		cell1.innerHTML="<img width='114px' src='"+context+"/comanda/ImageAction.action?imageId="+value.beguda.foto.id+"' />";
 	       					 		
 	       					 		
 	       					 		$(cell2).addClass("descri");
@@ -874,7 +866,7 @@ function deletePromoApplied(){
 	}
 	$("#deletePromoApplied").hide();
 	$("#checkPromocionsDisponibles").show();
-	alertOnline.alertes(initParams.txtpromodeleted);
+	//alertOnline.alertes(initParams.txtpromodeleted);
 
 }
 

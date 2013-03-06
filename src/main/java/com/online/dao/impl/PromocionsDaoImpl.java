@@ -74,6 +74,9 @@ public class PromocionsDaoImpl extends HibernateDaoSupport implements Promocions
 		} catch (HibernateObjectRetrievalFailureException e) {
 			PromocioAPartirDe papd = getHibernateTemplate().load(PromocioAPartirDe.class, id);
 			return (E) papd;
+		} catch (java.lang.ClassCastException e){
+			PromocioAPartirDe papd = getHibernateTemplate().load(PromocioAPartirDe.class, id);
+			return (E) papd;
 		}
 
 	}

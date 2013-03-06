@@ -125,7 +125,7 @@ public class ComandaServiceImpl implements ComandaService{
 		return numPlats;
 	}
 
-	public String getHora( Integer idRestaurant, String data ) throws ComandaException{
+	public String getHora( Integer idRestaurant, String data, Integer guardaTime ) throws ComandaException{
 
 		String hora = "";
 		try {
@@ -139,15 +139,15 @@ public class ComandaServiceImpl implements ComandaService{
 				int nextHour = 0;
 				if (data.equals(Utils.formatDate2(dataAvui))) {
 					int hour = Calendar.getInstance().get(Calendar.HOUR_OF_DAY);
-					int minute = Calendar.getInstance().get(Calendar.MINUTE) + 40;
+					int minute = Calendar.getInstance().get(Calendar.MINUTE) + guardaTime;
 					if (minute < 30) {
-						nextHour = Integer.parseInt(String.valueOf(hour + 1) + "00");
+						nextHour = Integer.parseInt(String.valueOf(hour) + "30");
 					} else if (minute > 30 && minute < 60) {
-						nextHour = Integer.parseInt(String.valueOf(hour + 1) + "30");
+						nextHour = Integer.parseInt(String.valueOf(hour + 1) + "00");
 					} else if (minute > 60 && minute < 90) {
-						nextHour = Integer.parseInt(String.valueOf(hour + 2) + "00");
+						nextHour = Integer.parseInt(String.valueOf(hour + 1) + "30");
 					} else if (minute > 90 && minute < 120) {
-						nextHour = Integer.parseInt(String.valueOf(hour + 2) + "30");
+						nextHour = Integer.parseInt(String.valueOf(hour + 2) + "00");
 					}
 				}
 				for (String hor : horesArray) {
@@ -262,7 +262,7 @@ public class ComandaServiceImpl implements ComandaService{
 
 	}
 
-	public HoresDTO setHoresFeature( HoresDTO horesDTO, String data, Comandes comanda, boolean aDomicili ) throws ComandaException{
+	public HoresDTO setHoresFeature( HoresDTO horesDTO, String data, Comandes comanda, boolean aDomicili,Integer minuteTransport ) throws ComandaException{
 
 		Set<Restaurant> restaurantSet = getRestaurants(comanda);
 		Iterator iteraRestaurant = restaurantSet.iterator();
@@ -283,15 +283,21 @@ public class ComandaServiceImpl implements ComandaService{
 				if (data.equals(Utils.formatDate2(dataAvui))) {
 					int tempsPreparacio = calculaTempsPreparacioGlobal(comanda);
 					int hour = Calendar.getInstance().get(Calendar.HOUR_OF_DAY);
+					
 					int minute = Calendar.getInstance().get(Calendar.MINUTE) + tempsPreparacio;
+					
+					if(aDomicili && minuteTransport!=null){
+						minute = minute+minuteTransport;
+					}
+					
 					if (minute < 30) {
-						nextHour = Integer.parseInt(String.valueOf(hour + 1) + "00");
+						nextHour = Integer.parseInt(String.valueOf(hour) + "30");
 					} else if (minute > 30 && minute < 60) {
-						nextHour = Integer.parseInt(String.valueOf(hour + 1) + "30");
+						nextHour = Integer.parseInt(String.valueOf(hour + 1) + "00");
 					} else if (minute > 60 && minute < 90) {
-						nextHour = Integer.parseInt(String.valueOf(hour + 2) + "00");
+						nextHour = Integer.parseInt(String.valueOf(hour + 1) + "30");
 					} else if (minute > 90 && minute < 120) {
-						nextHour = Integer.parseInt(String.valueOf(hour + 2) + "30");
+						nextHour = Integer.parseInt(String.valueOf(hour + 2) + "00");
 					}
 				}
 				if(secondRestaurant==false){
@@ -725,7 +731,7 @@ public class ComandaServiceImpl implements ComandaService{
 					begudaComanda.setNumBegudesPromo(0);
 					begudaComanda.setNumBegudes(1);
 				}
-				begudaComanda.setNumBegudes(1);
+				//begudaComanda.setNumBegudes(1);
 				begudaList.add(begudaComanda);
 			}
 			return begudaList;
