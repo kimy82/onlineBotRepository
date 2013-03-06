@@ -16,9 +16,9 @@ function Map(elementId, geolocation) {
 
 var Address={
 				
-		 addressValidation : function(){
+		 addressValidation : function(addressOK,addressKO){
 			var self =this;
-			self._init();
+			self._init(addressOK,addressKO);
 			
 			var button = document.getElementById("checkAdd");
 			button.onclick=self.checkAdd;
@@ -33,21 +33,31 @@ Address.addressValidation.prototype._poble=null;
 Address.addressValidation.prototype._mapdiv=null;
 Address.addressValidation.prototype._button=null;
 Address.addressValidation.prototype._infoLabel=null;
+Address.addressValidation.prototype._addressOK=null;
+Address.addressValidation.prototype._addressKO=null;
 
-Address.addressValidation.prototype._init= function(){
+Address.addressValidation.prototype._init= function(addressOK,addressKO){
 	this._carrer= document.getElementById("carrer");
 	this._numcarrer = document.getElementById("numcarrer");
 	this._codi= document.getElementById("codi");
 	this._poble= document.getElementById("poble");
 	this._mapdiv= $("#map_canvas");	
 	this._infoLabel= $("#addressOK");
+	Address.addressValidation.prototype._addressOK=addressOK;
+	Address.addressValidation.prototype._addressKO=addressKO;
 }
 
 Address.addressValidation.prototype.checkAdd = function(){
 	var address = $("#carrer").val()+","+$("#codi").val()+", Girona, Spain";
-    var addressToSave = $("#carrer").val()+"-"+$("#codi").val()
-	if($("#carrer").val() == '' || $("#codi").val() == '' ){
-		return false;
+	var codiPostal= $("#codi").val();
+	if(codiPostal!='17001' && codiPostal!='17002' && codiPostal!='17003' && codiPostal!='17004' && codiPostal!='17005' && codiPostal!='17006' && codiPostal!='17007'){
+		 $("#addressOK").text(Address.addressValidation.prototype._addressKO);
+		 return false;
+	}
+    var addressToSave = $("#carrer").val()+"-"+codiPostal;
+	if($("#carrer").val() == '' || codiPostal == '' ){
+		 $("#addressOK").text(Address.addressValidation.prototype._addressKO);
+		 return false;
 	}
 	
 	address = address.replace(/\n/g, "");
@@ -71,10 +81,10 @@ Address.addressValidation.prototype.checkAdd = function(){
 
                  //POsem address al form
                  $("#comandaddress").val(addressToSave);
-                 $("#addressOK").text("OK Address");
+                 $("#addressOK").text(Address.addressValidation.prototype._addressOK);
              }
     	 }else{
-    		 $("#addressOK").text("KO Address");
+    		 $("#addressOK").text(Address.addressValidation.prototype._addressKO);
     	 }
              
     	

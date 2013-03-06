@@ -71,7 +71,7 @@
 	
 
 <script type="text/javascript" >		
-	new Addressbis.addressValidation();
+	new Addressbis.addressValidation("<s:text name='txt.addressOK' />","<s:text name='txt.addressKO' />");
 	initParamsbis = new  InitParamsbis( "<s:text name='txt.user.empty' />","<s:text name='txt.user.wrong' />", "<s:text name='txt.password.empty' />","<s:text name='txt.password.noteq' />","<s:text name='txt.tel.empty' />","<s:text name='txt.address.empty' />");
 </script> 
 </body>

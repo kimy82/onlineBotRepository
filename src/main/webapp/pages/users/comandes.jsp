@@ -133,7 +133,7 @@
 	<script language="javascript">
 
 	
-		new Address.addressValidation();
+		new Address.addressValidation("<s:text name='txt.addressOK' />","<s:text name='txt.addressKO' />");
 		var initParams = new  InitParams( "<s:text name='txt.user.empty' />", "<s:text name='txt.password.empty' />","<s:text name='txt.password.noteq' />",
 										  "<s:text name='txt.tel.empty' />","<s:text name='txt.address.empty' />","<s:text name='error.double' />",
 										  "<s:text name='error.number' />", "<s:text name='txt.welcome.confirmar' />","<s:text name='txt.welcome.productes' />",
@@ -150,8 +150,7 @@
 	<c:if test="${not empty user}" >
 	<script language="javascript">
 		var address = '${user.address}';
-		var addArray = address.split("-");
-		
+		var addArray = address.split("-");		
 		$("#carrer").val(addArray[0]);
 		$("#codi").val(addArray[addArray.length-1]);
 	</script>

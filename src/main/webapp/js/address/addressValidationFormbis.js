@@ -16,9 +16,9 @@ function Mapbis(elementId, geolocation) {
 
 var Addressbis={
 				
-		 addressValidation : function(){
+		 addressValidation : function(addressOK,addressKO){
 			var self =this;
-			self._init();
+			self._init(addressOK,addressKO);
 			
 			var button = document.getElementById("checkAddbis");
 			button.onclick=self.checkAdd;
@@ -33,21 +33,31 @@ Addressbis.addressValidation.prototype._poble=null;
 Addressbis.addressValidation.prototype._mapdiv=null;
 Addressbis.addressValidation.prototype._button=null;
 Addressbis.addressValidation.prototype._infoLabel=null;
+Addressbis.addressValidation.prototype._addressOK=null;
+Addressbis.addressValidation.prototype._addressKO=null;
 
-Addressbis.addressValidation.prototype._init= function(){
+Addressbis.addressValidation.prototype._init= function(addressOK,addressKO){
 	this._carrer= document.getElementById("carrerbis");
 	this._numcarrer = document.getElementById("numcarrerbis");
 	this._codi= document.getElementById("codibis");
 	this._poble= document.getElementById("poblebis");
 	this._mapdiv= $("#map_canvasbis");	
 	this._infoLabel= $("#addressOK");
+	Addressbis.addressValidation.prototype._addressOK=addressOK;
+	Addressbis.addressValidation.prototype._addressKO=addressKO;
 }
 
 Addressbis.addressValidation.prototype.checkAdd = function(){
 	var address = $("#carrerbis").val()+","+$("#codibis").val()+", Girona, Spain";
+	var codiPostal= $("#codibis").val();
+	if(codiPostal!='17001' && codiPostal!='17002' && codiPostal!='17003' && codiPostal!='17004' && codiPostal!='17005' && codiPostal!='17006' && codiPostal!='17007'){
+		 $("#addressOKbis").text(Addressbis.addressValidation.prototype._addressKO);
+		 return false;
+	}
     var addressToSave = $("#carrerbis").val()+"-"+$("#numcarrerbis").val()+"-"+$("#numpis").val()+"-"+$("#porta").val()+"-"+$("#codibis").val()
 	if($("#carrerbis").val() == '' || $("#codibis").val() == '' ){
-		return false;
+		 $("#addressOKbis").text(Addressbis.addressValidation.prototype._addressKO);
+		 return false;
 	}
 	
 	address = address.replace(/\n/g, "");

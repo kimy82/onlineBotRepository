@@ -116,8 +116,10 @@
 						<form class="form" action="#">
 						<s:text name="adreca.carrer" />:<br> <input class="inputs" type="text" name="FirstName" id="carrer" ><br>
 						<s:text name="adreca.codipostal" />:<br> <input class="inputs" type="text" name="LastName" id="codi" ><br>
-						<input class="boton" id="checkAdd" type="button" value="COMPROVA-HO">
+						<input class="boton" id="checkAdd" type="button" value="COMPROVA-HO"><br>
+						<label id="addressOK" style="font-style: italic; color: red;" ></label>
 						<input type="hidden" id="poble" disabled="disabled" value="Girona"  />
+						
 						</form>
 					</div>
 					<div id="map_canvas" style="float: right; height: 200px; width: 200px; display:none;"></div>	
@@ -179,7 +181,7 @@
 	
 	<script src="<c:url value='/jswelcome.js'/>" type="text/javascript"></script>
 <script type="text/javascript" >
-new Address.addressValidation();
+new Address.addressValidation("<s:text name='txt.addressOK' />","<s:text name='txt.addressKO' />");
 var initParams = new InitParams("<s:text name='txt.comanda.existeix.vol.continuar' />","<s:text name='txt.welcome.confirmar' />",
 								"<s:text name='txt.welcome.productes' />","<s:text name='txt.welcome.producte' />",
 								"<s:text name='txt.comment.saved' />","<s:text name='txt.email.wrong' />","<s:text name='txt.avis.restaurant.tancat' />");
