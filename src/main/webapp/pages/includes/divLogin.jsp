@@ -53,17 +53,19 @@ function goToLogin(){
    	$("#move").addClass("ui-dialog-titlebar ui-widget-header ui-corner-all ui-helper-clearfix");
 	$(".ui-widget-content").css("background-color", "transparent");
    	$(".ui-widget-content").css("border", "0px");
+    $(":ui-dialog").dialog('option', 'position', 'center');
 }
 
 function closeLoguin(){
-	$("#login_dialog").dialog("close"); 			  
+	$("#login_dialog").dialog("close");
+	
 }
 function closeRegist(){
 	$("#regist_dialog").dialog("close");
 }
 
 function goToRegist(){
-	
+
 	$("#regist_dialog").load("/"+context+"/preRegisterUser.action?dialog=true");	
 	$("#regist_dialog").dialog({ 
 		   autoOpen: false,
@@ -82,6 +84,7 @@ function goToRegist(){
  	$("#moveRegist").addClass("ui-dialog-titlebar ui-widget-header ui-corner-all ui-helper-clearfix");
    	$(".ui-widget-content").css("background-color", "transparent");
    	$(".ui-widget-content").css("border", "0px");
+    $(":ui-dialog").dialog('option', 'position', 'center');
    	
 }
 </script>

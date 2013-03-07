@@ -640,8 +640,6 @@ background: #F7931E;
 	height: 56px;
 }
 
-img.img_CLOSE { 
-}
 #restaurants .img_Rest_CLOSE{
 	width: 230px;
 	height: 152px;
@@ -650,15 +648,17 @@ img.img_CLOSE {
     box-shadow: 0 3px 8px 2px #E0C0A6;
     border:  1px solid #777;
     text-align: center;
-    filter: grayscale(100%);
-	-webkit-filter: grayscale(100%);
-	-moz-filter: grayscale(100%);
-	-ms-filter: grayscale(100%);
-	-o-filter: grayscale(100%);
-	filter: gray;
+    filter: url(desaturate.svg#grayscale); /* Firefox 3.5+ */
+-webkit-filter: grayscale(100%);
+-moz-filter: grayscale(100%);
+-ms-filter: grayscale(100%);
+-o-filter: grayscale(100%);
+filter: grayscale(100%); /* Para cuando es estándar funcione en todos */
+filter: Gray(); /* IE4-8 and 9 */
 }
 #restaurants .format{
-	height: 290px;
+	height: 140px;
+	float:left;
 }
 .selector{
 	width: 777px;

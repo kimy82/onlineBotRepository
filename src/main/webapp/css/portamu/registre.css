@@ -1,9 +1,9 @@
 /* REGISTRE////////////////////////////////////////////////////////////////////////////////////////////////////////////////// */
-#light_Reg{
+ #light_Reg{
 	background-color: #F2F2F2;
     border: 1px solid #E2E2E2;
     height:808px;
-    margin: -380px auto;
+    margin: auto;
     width: 960px;
 }
 #light_Reg_int{
@@ -87,14 +87,22 @@ background: #333;
 opacity: 0.9;
 filter: Alpha(Opacity=30)/*{opacityOverlay}*/;
 }
-.ui-dialog {
+ #light_Reg .ui-dialog {
 
 padding: 0.2em;
 position: absolute;
 }
-.ui-dialog, .ui-widget, .ui-widget-content, .ui-corner-all, .ui-draggable, .ui-resizable{
+ #light_Reg .ui-dialog,  #light_Reg .ui-widget,  #light_Reg .ui-widget-content,  #light_Reg .ui-corner-all,  #light_Reg .ui-draggable,  #light_Reg .ui-resizable{
 
 padding: 0.2em;
 position: absolute!important;
 height: 20px!important;
+}
+#moveRegist{
+width:930px;
+height:90px!important;
+margin-top:-20px;
+margin-left:-20px;
+float:left;
+position:absolute;
 }
