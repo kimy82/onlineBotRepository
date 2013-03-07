@@ -18,6 +18,12 @@ function onlyDouble(value,id){
 	}
 }  
 
+function changePreu(id){
+	var preu = $("#"+id).val();
+	preu = preu.replace(".",",");
+	$("#"+id).val(preu);
+}
+
 function onlyEntero(value,id){
 	  if(value =='' || /^[0-9]*$/.test(value)){
 		$('#'+id).css('border', 'solid 1px rgb(135,155,179)');

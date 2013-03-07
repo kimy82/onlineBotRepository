@@ -31,6 +31,7 @@
 	  		 		<option value="users" ><s:text name="txt.newsletter.target.1" /></option>
 	  		 		<option value="news" ><s:text name="txt.newsletter.target.2" /></option>
 	  		 	</select> 
+	  		 	<br></br>
 				<textarea cols="100" rows="30" id="mytextbox"></textarea>
 			</div>				
 		</div>
@@ -52,7 +53,7 @@ $(document).ready(function(){
 	var save_tool = {
 			icon:"mail.png",tooltip:"Save",command:function(){send();}
 			};
-	var toolbar_1 =[save_tool,"separator","bold","italic","underline","fontsize","fontfamily","fontcolor","highlight","separator","undo","redo","left","right","center","justify"];	
+	var toolbar_1 =[save_tool,"separator","bold","italic","underline","fontsize","fontfamily","fontcolor","highlight","separator","undo","redo","left","right","center","justify","separator","image"];	
 	$("#mytextbox").htmlbox({
 		skin:"blue",
 		toolbars:[toolbar_1]

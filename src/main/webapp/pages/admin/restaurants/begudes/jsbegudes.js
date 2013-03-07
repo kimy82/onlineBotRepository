@@ -8,7 +8,7 @@ function InitTableParams(txtlast,txtnext,txtprevious,txtfirst,txtloading,txtborr
 		this.txtfirst=txtfirst;
 		this.txtloading=txtloading;
 		this.txtborrat=txtborrat;	
-		this.txtconfirmborrabeguga= txtconfirmborrabeguda;
+		this.txtconfirmborrabeguda= txtconfirmborrabeguda;
 		this.txterrordouble=txterrordouble;
 		this.txterrornumber=txterrornumber;
 }
@@ -108,10 +108,10 @@ $(document).ready(function() {
 	oTablebegudes =$("#tbl_begudes").dataTable( {
 					"iDisplayLength": 12,
 					 "aoColumns" : [
-					                  { "mDataProp":"tipus","bSortable": false, sWidth: '150px' },
-					                  { "mDataProp":"nom", "bSortable": false, sWidth: '350px' },
-					                  { "mDataProp":"preu", "bSortable": false, sWidth: '40px' },
-					                  { "mDataProp":"accio", "bSortable": false, sWidth: '40px' }
+					                  { "mDataProp":"tipus","bSortable": false, sWidth: '200px' },
+					                  { "mDataProp":"nom", "bSortable": false, sWidth: '400px' },
+					                  { "mDataProp":"preu", "bSortable": false, sWidth: '50px' },
+					                  { "mDataProp":"accio", "bSortable": false, sWidth: '50px' }
 					            ],
 					"sPaginationType": "full_numbers",
 					"oLanguage": {
@@ -123,8 +123,8 @@ $(document).ready(function() {
 					        "sPrevious": "<img src='/"+context+"/images/icono-paginador-anterior.gif' style='vertical-align:middle'>&nbsp;"+initTableParams.txtprevious
 					      }
 					    },
-					"sScrollY": "300",		    
-					"sScrollX": "752",	
+					"sScrollY": "330",		    
+					"sScrollX": "902",	
 				    "bScrollCollapse": true,
 		    		"bProcessing": false,
 		    		"bServerSide": true,

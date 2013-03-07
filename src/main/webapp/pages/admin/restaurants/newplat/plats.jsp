@@ -64,7 +64,7 @@
 					<s:select list="tipusPlat" key="plat.tipus" id="tipusplat" listKey="descripcio" listValue="descripcio" headerKey="" headerValue="" ></s:select>											
 					<s:file name="fileUpload" label="Escull una fotografia" size="40" />	
 					<s:hidden key="plat.id" id="idplat" ></s:hidden>				
-					<s:submit></s:submit>
+					<s:submit onclick="changePreu('preuplat')" ></s:submit>
 				</s:form>			
 			</div>
 		</div>

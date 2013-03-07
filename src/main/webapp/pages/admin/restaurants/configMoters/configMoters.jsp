@@ -66,9 +66,9 @@
 							<s:submit></s:submit>
 						</s:form>	
 			    </div>
-				<div  style="width:950px; height: 100%;" alig="center" >
+				<div  style="width:932px;" alig="center" >
 				  <c:import url="calendar.jsp" /> 
-					<table class="selecciom dataTable" id="tbl_moters">
+					<table class="selecciom dataTable" id="tbl_moters" width="932px" >
 						<thead>
 							<tr>
 								<th><s:text name="mant.moters.dia" /></th>

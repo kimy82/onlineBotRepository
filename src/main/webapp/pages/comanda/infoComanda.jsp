@@ -305,7 +305,7 @@
 	<link rel="stylesheet" type="text/css" media="all" href="<c:url value='/css/sudoSlider.css' />"  />	
 	<link type="text/css" rel="stylesheet" href="<c:url value='/css/progress.css' />" />
 	<link type="text/css" rel="stylesheet" href="<c:url value='/css/online.css' />" />
-		<link type="text/css" rel="stylesheet" href="<c:url value='/css/portamu/prova.css' />" />
+	<link type="text/css" rel="stylesheet" href="<c:url value='/css/portamu/prova.css' />" />
 
 	<script src="<c:url value='/js/jquery/jquery.js' />" type="text/javascript"></script>
 	<script src="<c:url value='/js/jquery/jquery.ui.core.js' />" type="text/javascript"></script>

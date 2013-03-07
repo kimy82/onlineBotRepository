@@ -33,8 +33,8 @@
 			</div>
 			<br>
 	
-	  		 <div  style="width:800px;" alig="center">
-				<table class="selecciom dataTable" id="tbl_begudes" width="800px">
+	  		 <div  style="width:932px;" alig="center">
+				<table class="selecciom dataTable" id="tbl_begudes" width="932px">
 					<thead>
 						<tr>							
 							<th><s:text name="mant.begudes.table.tipus" /></th>
@@ -74,7 +74,7 @@
 							<s:textarea key="beguda.descripcioES" id="descripcioBegudaES" onkeyup="return ismaxlength(this,1000)" cols="40" rows="4" ></s:textarea>
 							<s:file name="fileUpload" label="Escull una fotografia" size="40" />																																											
 							<s:hidden key="beguda.id" id="id" ></s:hidden>										
-								<s:submit></s:submit>
+								<s:submit onclick="changePreu('importBeguda')" ></s:submit>
 						</s:form>			
 					</div>															
 				<br>						

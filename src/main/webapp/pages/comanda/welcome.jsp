@@ -58,7 +58,7 @@
 	  							<p>${plat.descripcioES}</p>
 	  						</c:if>
 			  					
-			  				</div>
+			  				</div>			  				
 	  					</div>
 	  					<div id="afegir">
 							<div class="left_price">

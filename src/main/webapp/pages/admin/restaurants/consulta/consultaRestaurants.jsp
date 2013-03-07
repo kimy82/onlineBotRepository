@@ -33,8 +33,8 @@
 				<label style="color: red" id="errorsajaxlabel"></label>
 			</div>
 			<br>	
-	  		 <div  style="width:700px;" alig="center">
-				<table class="selecciom dataTable" id="tbl_restaurants" width="500px">
+	  		 <div  style="width:932px;" alig="center">
+				<table class="selecciom dataTable" id="tbl_restaurants" width="932px">
 					<thead>
 						<tr>
 							<th><s:text name="mant.retaurants.table.rest.nom" /></th>
@@ -113,8 +113,8 @@
 				<br>
 				<b><s:text name="mant.restaurants.llistat.plats" /></b>
 				<br>
-				<div  style="width:700px;" alig="center" >
-					<table class="selecciom dataTable" id="tbl_plats" width="700px">
+				<div  style="width:932px;" alig="center" >
+					<table class="selecciom dataTable" id="tbl_plats" width="932px">
 						<thead>
 							<tr>
 								<th><s:text name="mant.retaurants.table.plats.nom" /></th>
