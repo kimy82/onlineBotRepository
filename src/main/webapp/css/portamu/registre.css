@@ -94,9 +94,7 @@ position: absolute;
 }
  #light_Reg .ui-dialog,  #light_Reg .ui-widget,  #light_Reg .ui-widget-content,  #light_Reg .ui-corner-all,  #light_Reg .ui-draggable,  #light_Reg .ui-resizable{
 
-padding: 0.2em;
-position: absolute!important;
-height: 20px!important;
+
 }
 #moveRegist{
 width:930px;

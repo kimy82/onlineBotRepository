@@ -13,7 +13,6 @@
 	<div id="light_Reg_int">
 		<c:if test="${dialog eq 'true'}">
 			<div id="moveRegist" class="ui-dialog-titlebar ui-widget-header ui-corner-all ui-helper-clearfix addmove">
-				MOVE(image)
 			</div>
 		</c:if>
 		<div class="light_Reg_top">

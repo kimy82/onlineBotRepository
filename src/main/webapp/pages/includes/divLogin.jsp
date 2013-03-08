@@ -85,6 +85,7 @@ function goToRegist(){
    	$(".ui-widget-content").css("background-color", "transparent");
    	$(".ui-widget-content").css("border", "0px");
     $(":ui-dialog").dialog('option', 'position', 'center');
+   
    	
 }
 </script>
