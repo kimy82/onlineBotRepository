@@ -32,8 +32,8 @@
 			</div>
 			<br>
 	
-	  		 <div  style="width:950px; align:center;">
-				<table class="selecciom dataTable" id="tbl_usuaris" width="800px">
+	  		<div  style="width:932px;" alig="center">
+				<table class="selecciom dataTable" id="tbl_usuaris" width="932px">
 					<thead>
 						<tr>
 							<th><s:text name="mant.user.table.username" /></th>
