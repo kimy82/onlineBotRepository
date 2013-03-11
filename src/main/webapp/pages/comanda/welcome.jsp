@@ -191,7 +191,7 @@
 						<div id="droppable"  class="ui-widget-header">
 							<div id="carreta">
 								<div class="car_int">
-									<s:text name="txt.carreta" /><label id="numComanda"></label>
+									<s:text name="txt.carreta" /><input type="hidden" id="numComanda"></input>
 								</div>
 								<hr class="sep3">
 								<div class="car_pro">

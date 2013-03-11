@@ -3,5 +3,6 @@
 
 <script type="text/javascript" >
 var context= "${initParam.app}";
-var confirmTime=parseInt(${initParam.confirmTime})
+var confirmTime=parseInt(${initParam.confirmTime});
+var txterrorAjax= "<s:text name='txt.error.ajax' />";
 </script>

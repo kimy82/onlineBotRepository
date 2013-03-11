@@ -83,7 +83,7 @@ $(function() {
 	       					 	}else{
 	       					 		numBegudes= numBegudes+value.numBegudes;
 	       					 		preuBegudes=  parseFloat(preuBegudes) + (parseFloat(value.beguda.preu)*value.numBegudes);	       					 		
-	       							var li= value.numBegudes+" <span class='plats'>x</span> "+value.beguda.nom+"<br><br>";
+	       							var li= value.numBegudes+" <span class='plats' id='span_b_"+value.beguda.id+"'>x</span> "+value.beguda.nom+"<br><br>";
 	       							lis = lis+li;
 	    							$("#disp_beguda").append(li);
 	       						}	       				
@@ -110,7 +110,7 @@ $(function() {
 	       				}
 	       			}				
 	  		  },
-	  		  error: function(e){  errorOnline.error("Error in AJAX");	
+	  		  error: function(e){  errorOnline.error(txterrorAjax);	
 	  		  					}
 	  		});	
 	}
@@ -156,8 +156,9 @@ $(function() {
 								var plats= json.platsNames;	       					
 		       					$("#disp_plate").html("");
 		       					var lis= "";
-		       					$.each(plats, function(index, value) { 		       					 	
-		       							var li= value.numPlats+" <span class='plats'>x</span> "+value.nomPlat+"<br><br>";
+		       					$.each(plats, function(index, value) { 		 
+		       						
+		       							var li= value.numPlats+" <span class='plats' id='span_p_"+value.idPlat+"'>x</span> "+value.nomPlat+"<br><br>";
 		       							 lis=lis+li;		       					
 		    							$("#disp_plate").append(li);		       						
 		       					});
@@ -168,7 +169,7 @@ $(function() {
 						}
 					},
 					error : function(e) {						
-						errorOnline.error("Error in AJAX");
+						errorOnline.error(txterrorAjax);
 					}
 				});
 	}
@@ -277,6 +278,11 @@ var confirmComanda = function (){
 
 
 function goToComandaPas1() {
+	var plats = window.localStorage.getItem("comanda.numplats");
+	if(plats == 'undefined' || plats == null ||parseInt(plats) <= 0){
+		alertOnline.alertes("No tens plats a la comanda");
+		return;
+	}
 	var data = window.localStorage.getItem("comanda.data");
 	window.location.href = "/"+context+"/comanda/goToPas1Action.action?idComanda="+$("#numComanda").text()+"&data="+data;
 }
@@ -442,7 +448,7 @@ $(document).ready(function() {
    				}
    			}				
 		  },
-		  error: function(e){  errorOnline.error("Error in AJAX");	
+		  error: function(e){  errorOnline.error(txterrorAjax);	
 		  					}
 		});	
 });

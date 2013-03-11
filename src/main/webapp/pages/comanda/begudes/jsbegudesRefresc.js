@@ -89,7 +89,7 @@ function saveBegudaToComanda(idBeguda){
        					 	}else{
        					 		numBegudes= numBegudes+value.numBegudes;
        					 		preuBegudes=  parseFloat(preuBegudes) + (parseFloat(value.beguda.preu)*value.numBegudes);
-       							var li= value.numBegudes+" <span class='plats'>x</span> "+value.beguda.nom+"<br><br>";
+       							var li= value.numBegudes+" <span class='plats' id='span_b_"+value.beguda.id+"'>x</span> "+value.beguda.nom+"<br><br>";
     							$("#disp_beguda").append(li);
        						}	       				
        						
@@ -113,7 +113,7 @@ function saveBegudaToComanda(idBeguda){
        					}
        			}				
   		  },
-  		  error: function(e){  errorOnline.error("Error in AJAX");	
+  		  error: function(e){  errorOnline.error(txterrorAjax);	
   		  					}
   		});	
 }

@@ -111,7 +111,7 @@ function saveEmail(){
   				$("#error").text(initParams.txtguardat);		
   			  }				
   		  },
-  		  error: function(e){   errorOnline.error("Error in AJAX");	
+  		  error: function(e){   errorOnline.error(txterrorAjax);	
   		  					}
   		});	
 }

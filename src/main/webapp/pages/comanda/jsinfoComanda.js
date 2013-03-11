@@ -167,7 +167,7 @@ function reloadHores(){
   				if(json._2400=='true'){setHourCheck('2400');}else{setHourNotCheck('2400'); }
   			  }				
   		  },
-  		  error: function(e){   errorOnline.error("Error in AJAX");	
+  		  error: function(e){   errorOnline.error(txterrorAjax);	
   		  					}
   		});	
 	
@@ -263,6 +263,27 @@ function saveNewPLatAmount(id,value){
 			 initPromoDescompteFromStorage();
 			 //Guardem els plats afegits
 			 savePlatToComanda(id,nPlatsAdded);
+			 var platsAnterior = window.localStorage.getItem("comanda.numplats");	
+			 var platsAra= parseInt(platsAnterior)+parseInt(nPlatsAdded);
+			 window.localStorage.setItem("comanda.numplats",platsAra);       			
+				if(platsAra<=0){
+					alertOnline.alertes("No tens plats a la comanda");
+				}
+				var lis= window.localStorage.getItem("comanda.plats.lis");
+				var lista="";
+				var plats = lis.split("<br><br>");
+					$.each(plats, function(index, value) { 		       					 	
+							 if(value.indexOf("span_p_"+id)==-1){
+								 lista=lista+value+"<br><br>";		       	
+							 }else{
+								 var liEnd= value.split("</span>");
+								 var li= platsAra+" <span class='plats' id='span_p_"+id+"'>x</span> "+liEnd[1]+"<br><br>";
+       							 lista=lista+li;		       					
+							 }
+								 									       						
+					});
+
+					window.localStorage.setItem("comanda.plats.lis",lista);
 		
 	}
 }
@@ -278,6 +299,22 @@ function eliminaPlat(id){
 	 $("#labelpreutotalPromo").text(parseFloat(preuComanda).toFixed(2));
 	 initPromoDescompteFromStorage();
 	 savePlatToComanda(id,-n); 
+	 	var platsAnterior = window.localStorage.getItem("comanda.numplats");	
+		var platsAra= parseInt(platsAnterior)-parseInt(n);
+		window.localStorage.setItem("comanda.numplats",platsAra);       			
+		if(platsAra<=0){
+			alertOnline.alertes("No tens plats a la comanda");
+		}
+	 $('#plat_'+id).remove();	 
+		var lis= window.localStorage.getItem("comanda.plats.lis");
+		var lista="";
+		var plats = lis.split("<br><br>");
+			$.each(plats, function(index, value) { 		       					 	
+					 if(value.indexOf("span_p_"+id)==-1)
+						 lista=lista+value+"<br><br>";		       										       						
+			});
+
+			window.localStorage.setItem("comanda.plats.lis",lista);
 	 
 }
 
@@ -291,6 +328,15 @@ function eliminaBeguda(id){
 	 $("#preu").text(parseFloat(preuComanda).toFixed(2));
 	 $("#labelpreutotalPromo").text(parseFloat(preuComanda).toFixed(2));
 	 saveBegudaToComanda(id,false,-n); 
+		var lis= window.localStorage.getItem("comanda.begudes.lis");
+		var lista="";
+		var begudes = lis.split("<br><br>");
+			$.each(begudes, function(index, value) { 		       					 	
+					 if(value.indexOf("span_b_"+id)==-1)
+						 lista=lista+value+"<br><br>";		       										       						
+			});
+
+			window.localStorage.setItem("comanda.begudes.lis",lista);
 }
 
 function addDomicili(){
@@ -356,7 +402,7 @@ function addRecollir(){
 	       			$("#arecollir_div").show('slow');
 	       		  }				
 	  		  },
-	  		  error: function(e){   errorOnline.error("Error in AJAX");	
+	  		  error: function(e){   errorOnline.error(txterrorAjax);	
 	  		  					}
 	  		});	
 		
@@ -376,15 +422,22 @@ function savePlatToComanda(idPlat,nPlats){
   		  success: function(json){	
   			  if(json!=null && json.error!=null){
   				errorOnline.error("Error in AJAX: "+json.error);	
-       			}				
+       		  }else{
+       			
+       		  }			
   		  },
-  		  error: function(e){   errorOnline.error("Error in AJAX");	
+  		  error: function(e){   errorOnline.error(txterrorAjax);	
   		  					}
   		});	
 }
 
 function checkComandaJS(){
 	var comanda = window.localStorage.getItem("comanda");
+	var plats = window.localStorage.getItem("comanda.numplats");
+	if(plats<=0){
+		alertOnline.alertes("No tens plats a la comanda");
+		return;
+	}
 	if(comanda!= null && comanda != 'undefined'){
 		var hora = $("#comandahora").val();
 		var dia = $("#dia").val();
@@ -449,7 +502,7 @@ function checkComandaJS(){
 	       			}	  			  		  			  		  			  	
 	  			  $("#chargeBar").hide();
 	  		  },
-	  		  error: function(e){   errorOnline.error("Error in AJAX");	
+	  		  error: function(e){   errorOnline.error(txterrorAjax);	
 	  		  					}
 	  		});
 	}
@@ -526,6 +579,7 @@ function saveBegudaToComanda(idBeguda,promo,amount){
        					
  
        					var table=document.getElementById("order");
+       					var lis="";
        					$.each(begudes, function(index, value){ 
        					 	           					 	
        						numBegudesPromo=numBegudesPromo+value.numBegudesPromo;
@@ -572,6 +626,9 @@ function saveBegudaToComanda(idBeguda,promo,amount){
 	       					 		
 	       					 		$(cell6).addClass("elimi");
 	       					 		cell6.innerHTML="<input class='elimin' type='submit' onclick='eliminaBeguda("+value.beguda.id+")'  value='ELIMINAR'>";
+	       					 		
+	       					 		var li= value.numBegudes+" <span class='plats' id='span_b_"+value.beguda.id+"'>x</span> "+value.beguda.nom+"<br><br>";
+	       					 		lis = lis+li;
    					 			}
    					 			if(value.numBegudesPromo!=0){
 	   					 			var row=table.insertRow(1);
@@ -616,10 +673,13 @@ function saveBegudaToComanda(idBeguda,promo,amount){
 	       					 		
 	       					 		$(cell6).addClass("elimi");
 	       					 		cell6.innerHTML="<input class='elimin' type='submit' onclick='deletePromoApplied();'  value='"+initParams.txtbottreurepromo+"'>";
+	       					 		
+	       					 		var li= value.numBegudesPromo+" <span class='plats' id='span_b_"+value.beguda.id+"'>x</span> "+value.beguda.nom+"(PROMO)<br><br>";
+	       					 		lis = lis+li;
    					 			}
        						}       					 	   					 		      					 		           					       						 		       					 	
        					});
-       					
+       					window.localStorage.setItem("comanda.begudes.lis",lis);
        					window.localStorage.setItem("comanda.promo.nBegudes.added",numBegudesPromo);
        					window.localStorage.setItem("comanda.numbegudes",numBegudes);
        					window.localStorage.setItem("comanda.beguda.preu",preuBegudes.toFixed(2));           					           				
@@ -637,7 +697,7 @@ function saveBegudaToComanda(idBeguda,promo,amount){
        			}   
   		  }
   		  },
-  		  error: function(e){  errorOnline.error("Error in AJAX");	
+  		  error: function(e){  errorOnline.error(txterrorAjax);	
   		  					}
   		});	
 }
@@ -698,7 +758,7 @@ function checkPromocionsDisponibles(){
 	       			}	  			  		  			  		  			  	
 	  			  $("#chargeBar").hide();
 	  		  },
-	  		  error: function(e){  errorOnline.error("Error in AJAX");	
+	  		  error: function(e){  errorOnline.error(txterrorAjax);	
 	  		  					}
 	  		});
 	}	
@@ -887,7 +947,7 @@ function deleteAjaxBegudesPromo(){
 	       			}  			  		  			  		  			  	
 	  			 
 	  		  },
-	  		  error: function(e){   errorOnline.error("Error in AJAX"); 		
+	  		  error: function(e){   errorOnline.error(txterrorAjax); 		
 	  		  					}
 	  		});
 	}	
