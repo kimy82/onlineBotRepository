@@ -164,14 +164,19 @@
 								</div>
 								<hr class="sep">
 							</div>
+						
 							<div class="coments">
 								<img class="estrelles_rest" src="/${initParam.app}/img/elements/estrelles${beguda.votacio.punctuacio}.jpg">	
 								<br>
 								<span class="coments_titol"><s:text name="txt.coments.valoracions" /></span><br>
 								<p>								
 										<c:set var="comments" value="${beguda.comments}" ></c:set>
-										<c:forEach items="${comments}" var="comt" begin="0" end="2" >																									
-											${fn:substring(comt.comment, 0, 25)}.																																															
+										<c:set var="commentInsert" value="${0}" ></c:set>
+										<c:forEach items="${comments}" var="comt" >	
+											<c:if test="${not empty comt && commentInsert < 5}">		
+												<c:set var="commentInsert" value="${commentInsert+1}" ></c:set>																								
+												${fn:substring(comt.comment, 0, 35)}... &nbsp;					
+											</c:if>																																										
 										</c:forEach>									
 								<a href="#" class="more" onclick="goToInfoBeguda(${beguda.id})" ><s:text name="txt.leer.mas" /></a></p>
 							</div>	

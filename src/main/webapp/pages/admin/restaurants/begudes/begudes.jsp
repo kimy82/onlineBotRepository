@@ -64,7 +64,7 @@
 		
 					
 					<div id="apd_div">
-						<s:form action="saveBeguda" method="POST" enctype="multipart/form-data" >
+						<s:form id="form_saveBeguda" action="saveBeguda" method="POST" enctype="multipart/form-data" >
 							<s:textfield key="beguda.nom" id="nomBeguda"  ></s:textfield>
 							<s:textfield key="beguda.nomES" id="nomBegudaES"  ></s:textfield>
 							<s:select list="tipusBegudaList" key="beguda.tipus" id="tipusBeguda" listKey="descripcio" listValue="descripcio">					
@@ -74,7 +74,7 @@
 							<s:textarea key="beguda.descripcioES" id="descripcioBegudaES" onkeyup="return ismaxlength(this,1000)" cols="40" rows="4" ></s:textarea>
 							<s:file name="fileUpload" label="Escull una fotografia" size="40" />																																											
 							<s:hidden key="beguda.id" id="id" ></s:hidden>										
-								<s:submit onclick="changePreu('importBeguda')" ></s:submit>
+								<s:submit onclick="submitBeguda()" ></s:submit>
 						</s:form>			
 					</div>															
 				<br>						

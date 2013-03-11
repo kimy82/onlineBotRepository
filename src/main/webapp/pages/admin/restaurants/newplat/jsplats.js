@@ -61,6 +61,67 @@ function reloadTablePlats(){
 	oTablePlats.fnDeleteRow( 0 );
 }
 
+function submitPlat(){
+	
+	if($("#nomplat").val() !=''){
+		$('#nomplat').css('border', 'solid 1px rgb(135,155,179)');
+	}else{
+		$('#nomplat').css('border', 'solid 1px red');
+		return;
+	}
+		
+	if($("#nomplatES").val() !=''){
+		$('#nomplatES').css('border', 'solid 1px rgb(135,155,179)');
+	}else{
+		$('#nomplatES').css('border', 'solid 1px red');
+		return;
+	}
+	
+	if($("#prioritatplat").val() !=''){
+		$('#prioritatplat').css('border', 'solid 1px rgb(135,155,179)');
+	}else{
+		$('#prioritatplat').css('border', 'solid 1px red');
+		return;
+	}
+	
+	if($("#tempsplat").val() !=''){
+		$('#tempsplat').css('border', 'solid 1px rgb(135,155,179)');
+	}else{
+		$('#tempsplat').css('border', 'solid 1px red');
+		return;
+	}
+	
+	if($("#codiplat").val() !=''){
+		$('#codiplat').css('border', 'solid 1px rgb(135,155,179)');
+	}else{
+		$('#codiplat').css('border', 'solid 1px red');
+		return;
+	}
+	
+	if($("#descplat").val() !=''){
+		$('#descplat').css('border', 'solid 1px rgb(135,155,179)');
+	}else{
+		$('#descplat').css('border', 'solid 1px red');
+		return;
+	}
+	
+	if($("#descplatES").val() !=''){
+		$('#descplatES').css('border', 'solid 1px rgb(135,155,179)');
+	}else{
+		$('#descplatES').css('border', 'solid 1px red');
+		return;
+	}
+	
+	if($("#preuplat").val() !=''){
+		$('#preuplat').css('border', 'solid 1px rgb(135,155,179)');
+	}else{
+		$('#preuplat').css('border', 'solid 1px red');
+		return;
+	}
+	changePreu('preuplat');
+	document.getElementById("form_saveNewPlat").submit();
+}
+
 var  oTableRest=null;
 var  oTablePlats=null;
 

@@ -28,10 +28,41 @@ function saveHoraObertura(id){
 	}	
 }
 
-$(document).ready(function() {
+function submitRestaurant(){
+		if($("#nomrestaurant").val() !=''){
+			$('#nomrestaurant').css('border', 'solid 1px rgb(135,155,179)');
+		}else{
+			$('#nomrestaurant').css('border', 'solid 1px red');
+			return;
+		}
+		if($("#codiMaquina").val() !=''){
+			$('#codiMaquina').css('border', 'solid 1px rgb(135,155,179)');
+		}else{
+			$('#codiMaquina').css('border', 'solid 1px red');
+			return;
+		}
+		if($("#descrestaurant").val() !=''){
+			$('#descrestaurant').css('border', 'solid 1px rgb(135,155,179)');
+		}else{
+			$('#descrestaurant').css('border', 'solid 1px red');
+			return;
+		}
+		if($("#descrestaurantES").val() !=''){
+			$('#descrestaurantES').css('border', 'solid 1px rgb(135,155,179)');
+		}else{
+			$('#descrestaurantES').css('border', 'solid 1px red');
+			return;
+		}
+		if($("#addressrestaurant").val() !=''){
+			$('#addressrestaurant').css('border', 'solid 1px rgb(135,155,179)');
+		}else{
+			$('#addressrestaurant').css('border', 'solid 1px red');
+			return;
+		}
+	
+	document.getElementById("form_saveNewRestaurant").submit();
+}
 
-
-} );
 
 
 

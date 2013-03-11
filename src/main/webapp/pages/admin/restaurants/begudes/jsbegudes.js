@@ -30,7 +30,45 @@ function resetForm(){
 		$("#id").val("");		
 }
 
-
+function submitBeguda(){
+	
+	if($("#nomBeguda").val() !=''){
+		$('#nomBeguda').css('border', 'solid 1px rgb(135,155,179)');
+	}else{
+		$('#nomBeguda').css('border', 'solid 1px red');
+		return;
+	}
+		
+	if($("#nomBegudaES").val() !=''){
+		$('#nomBegudaES').css('border', 'solid 1px rgb(135,155,179)');
+	}else{
+		$('#nomBegudaES').css('border', 'solid 1px red');
+		return;
+	}
+	
+	if($("#importBeguda").val() !=''){
+		$('#importBeguda').css('border', 'solid 1px rgb(135,155,179)');
+	}else{
+		$('#importBeguda').css('border', 'solid 1px red');
+		return;
+	}
+	
+	if($("#descripcioBeguda").val() !=''){
+		$('#descripcioBeguda').css('border', 'solid 1px rgb(135,155,179)');
+	}else{
+		$('#descripcioBeguda').css('border', 'solid 1px red');
+		return;
+	}
+	
+	if($("#descripcioBegudaES").val() !=''){
+		$('#descripcioBegudaES').css('border', 'solid 1px rgb(135,155,179)');
+	}else{
+		$('#descripcioBegudaES').css('border', 'solid 1px red');
+		return;
+	}
+	changePreu('importBeguda');
+	document.getElementById("form_saveBeguda").submit();
+}
 
 function reloadTableBegudes(){
 	oTablebegudes.fnDeleteRow( 0 );

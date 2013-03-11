@@ -44,7 +44,7 @@
 			         </tr>
 			    </table>
 			    
-				<s:form action="saveNewPlat" method="POST" enctype="multipart/form-data" >
+				<s:form id="form_saveNewPlat" action="saveNewPlat" method="POST" enctype="multipart/form-data" >
 					<s:select list="restaurantBasicList" key="idRestaurants" id="restaurantsid" listKey="id" listValue="descripcio" headerKey="0" headerValue="Restaurant" >					
 					</s:select>
 					<s:textfield key="plat.nom" id="nomplat" onkeyup="return ismaxlength(this,100)"  ></s:textfield>
@@ -63,8 +63,8 @@
 					<s:textfield key="plat.preu" id="preuplat" onblur="onlyDouble(this.value,this.id)" ></s:textfield>
 					<s:select list="tipusPlat" key="plat.tipus" id="tipusplat" listKey="descripcio" listValue="descripcio" headerKey="" headerValue="" ></s:select>											
 					<s:file name="fileUpload" label="Escull una fotografia" size="40" />	
-					<s:hidden key="plat.id" id="idplat" ></s:hidden>				
-					<s:submit onclick="changePreu('preuplat')" ></s:submit>
+					<s:hidden key="plat.id" id="idplat" ></s:hidden>		
+					<tr><td><input type="button" value="submit" onclick="submitPlat()" ></input></td></tr>							
 				</s:form>			
 			</div>
 		</div>
