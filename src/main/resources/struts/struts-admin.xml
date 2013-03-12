@@ -185,6 +185,9 @@
 		<action name="ajaxTableLetterUsuarisAction"
 			class="com.online.action.admin.MantenimentLetterUsuarisAction" method="ajaxTableLetterUsuarisAction">
 		</action>		
+		
+		
+		
 		<!-- Actions per promocions -->
 		<action name="promocions" class="com.online.action.admin.MantenimentPromocionsAction"
 			method="execute">
@@ -210,6 +213,13 @@
 		</action>
 		<action name="ajaxLoadPromoAction"
 			class="com.online.action.admin.MantenimentPromocionsAction" method="ajaxLoadPromoAction">
+		</action>
+		<action name="promoChart" class="com.online.action.admin.ChartPromocionsAction"
+			method="execute">
+			<result name="success">/pages/admin/restaurants/promocions/grafics/promocioGraph.jsp</result>		
+		</action>
+		<action name="showDates"
+			class="com.online.action.admin.ChartPromocionsAction" method="showDates">
 		</action>
 		
 		<!-- Actions per begudes -->
@@ -238,6 +248,8 @@
 		<action name="ajaxLoadBegudaAction"
 			class="com.online.action.admin.MantenimentBegudaAction" method="ajaxLoadBegudaAction">
 		</action>
+		
+		
 		
 		<!-- Actions per la presentacio -->
 		<action name="presentacio" class="com.online.action.admin.MantenimentPresentacioAction"

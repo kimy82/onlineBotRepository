@@ -70,12 +70,14 @@ public class WorkOutPunctuation implements Job
 						plat.setActiu(true);
 						platsBo.update(plat);
 					}
-					if(nplats==0 || restaurant.getVotacio()==null){
+					if(restaurant.getVotacio()==null){
 						VotacioRestaurant votacio = new VotacioRestaurant();
 						votacio.setRestaurant(restaurant);						
 						votacio.setPunctuacio(3);
 						restaurant.setVotacio(votacio);
 						restaurantsBo.update(restaurant);
+					}else if(nplats==0){
+						restaurant.getVotacio().setPunctuacio(3);
 					}else{
 						int puntuacioRestaurant= votacionsPlatsTotals/nplats;
 						restaurant.getVotacio().setPunctuacio(puntuacioRestaurant);

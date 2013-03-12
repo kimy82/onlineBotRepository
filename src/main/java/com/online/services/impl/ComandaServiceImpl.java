@@ -565,12 +565,34 @@ public class ComandaServiceImpl implements ComandaService{
 
 		try {
 			this.resource = resource;
+			
+			int actualHour = Calendar.getInstance().get(Calendar.HOUR_OF_DAY);
+			Date diaAvui = new Date();
+			
 			List<PromocioNumComandes> promoNumComandesFinalList = new ArrayList<PromocioNumComandes>();
+			List<PromocioAPartirDe> apartirDePromoFinalList = new ArrayList<PromocioAPartirDe>();
 
-			List<PromocioAPartirDe> apartirDePromoFinalList = this.promocionsBo.getPromosAPartirDe(comanda.getPreu(), null);
-
+			List<PromocioAPartirDe> apartirDePromoList = this.promocionsBo.getPromosAPartirDe(comanda.getPreu(), null);			
 			List<PromocioNumComandes> promoNumComandesList = this.promocionsBo.getPromosNumComandes(null, null);
+			
+			for (PromocioAPartirDe promo : apartirDePromoList) {
+				int numUsed = promo.getNumUsed()==null?0:promo.getNumUsed();
+				if(promo.getNumUses()!=null && promo.getNumUses()<=numUsed) continue;
+				
+				if(comanda.getDia()==null) comanda.setDia(diaAvui);
+				if(comanda.getDia()!=null && comanda.getDia().compareTo(diaAvui)==0 && actualHour>16 && promo.getHora()!=null && promo.getHora()==true){
+					continue;					
+				}				
+					apartirDePromoFinalList.add(promo);
+			}
+			
 			for (PromocioNumComandes promo : promoNumComandesList) {
+				int numUsed = promo.getNumUsed()==null?0:promo.getNumUsed();
+				if(promo.getNumUses()!=null && promo.getNumUses()<=numUsed) continue;
+				if(comanda.getDia()==null) comanda.setDia(diaAvui);
+				if(comanda.getDia()!=null && comanda.getDia().compareTo(diaAvui)==0 && actualHour>16 && promo.getHora()!=null && promo.getHora()==true){
+					continue;					
+				}
 				Integer numComandes = promo.getNumComandes();
 				Integer temps = promo.getTemps();
 				if (comanda != null && comanda.getUser() != null) {
@@ -579,7 +601,6 @@ public class ComandaServiceImpl implements ComandaService{
 						promoNumComandesFinalList.add(promo);
 					}
 				}
-
 			}
 
 			Gson gson = new GsonBuilder().setPrettyPrinting().excludeFieldsWithoutExposeAnnotation().create();

@@ -1,10 +1,10 @@
 package com.online.dao.impl;
 
-import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
 import org.hibernate.Criteria;
+import org.hibernate.Hibernate;
 import org.hibernate.Session;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.orm.hibernate3.HibernateObjectRetrievalFailureException;
@@ -25,6 +25,23 @@ public class PromocionsDaoImpl extends HibernateDaoSupport implements Promocions
 	public void update( Promocio promocio ){
 
 		getHibernateTemplate().update(promocio);
+	}
+
+	public void updateNumUsed(Integer promoId,String data){
+		Session session = this.getSessionFactory().openSession();
+		session.beginTransaction();
+		Promocio promo = (Promocio) session.load(Promocio.class, promoId);
+		StringBuffer dates = new StringBuffer("");
+		dates.append(promo.getDates()==null?data: promo.getDates()+" "+data);
+		promo.setDates(dates.toString());
+		if(promo.getNumUsed()==null){
+			promo.setNumUsed(1);			
+		}else{
+			promo.setNumUsed(promo.getNumUsed()+1);
+		}
+		session.update(promo);
+		session.getTransaction().commit();
+		session.close();
 	}
 
 	public List<PromocioAPartirDe> getPromosAPartirDe( Double importAPartirDe, Date dia ){
@@ -80,6 +97,17 @@ public class PromocionsDaoImpl extends HibernateDaoSupport implements Promocions
 		}
 
 	}
+	
+	public Promocio loadWithDates(Integer promoId){
+		Session session = this.getSessionFactory().openSession();
+		session.beginTransaction();
+		Promocio promo = (Promocio) session.load(Promocio.class, promoId);
+		Hibernate.initialize(promo.getDates());
+		session.getTransaction().commit();
+		session.close();
+		return promo;
+	}
+	
 
 	public List<Promocio> getAll(){
 

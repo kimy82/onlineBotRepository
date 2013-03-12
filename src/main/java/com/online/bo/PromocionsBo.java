@@ -13,6 +13,8 @@ public interface PromocionsBo{
 	void save( Promocio promocio ) throws BOException;
 
 	void update( Promocio promocio ) throws BOException;
+	
+	void updateNumUsed( Integer promoId,String data) throws BOException;
 
 	void delete( Promocio promocio ) throws BOException;
 	
@@ -28,4 +30,5 @@ public interface PromocionsBo{
 	
 	List<PromocioNumComandes> getAllNumComandes() throws BOException;
 
+	Promocio loadWithDates(Integer promoId) throws BOException;
 }

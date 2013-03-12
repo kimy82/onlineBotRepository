@@ -10,6 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.online.dao.RestaurantsDao;
 import com.online.model.Plat;
+import com.online.model.Promocio;
 import com.online.model.Restaurant;
 
 public class RestaurantsDaoImpl extends HibernateDaoSupport implements RestaurantsDao{
@@ -26,6 +27,8 @@ public class RestaurantsDaoImpl extends HibernateDaoSupport implements Restauran
 		getHibernateTemplate().saveOrUpdate(restaurant);
 	}
 
+	
+	
 	@Transactional
 	public void update( Restaurant restaurant ){
 

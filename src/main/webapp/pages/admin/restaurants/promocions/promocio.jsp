@@ -33,8 +33,8 @@
 			</div>
 			<br>
 	
-	  		 <div  style="width:800px;" alig="center">
-				<table class="selecciom dataTable" id="tbl_promos" width="800px">
+	  		 <div  style="width:932px;" alig="center">
+				<table class="selecciom dataTable" id="tbl_promos" width="932px">
 					<thead>
 						<tr>
 							<th><s:text name="mant.promo.table.nom" /></th>
@@ -70,6 +70,8 @@
 					
 					<div id="apd_div">
 						<s:form action="savePromocioAPartirDe" method="POST" enctype="multipart/form-data" >
+							<s:checkbox key="promocioAPartirDeDTF.hora" id="adp_hora" ></s:checkbox>
+							<s:textfield key="promocioAPartirDeDTF.numUses"  id="numUses_apd" onblur="onlyEntero(this.value,this.id)" ></s:textfield>	
 							<s:textfield key="promocioAPartirDeDTF.nom" id="nompromo_apd"  ></s:textfield>
 							<s:textfield key="promocioAPartirDeDTF.nomES" id="nompromoES_apd"  ></s:textfield>
 							<s:select list="tipusDescompteList" key="promocioAPartirDeDTF.tipuDescompte" listKey="descripcio" listValue="descripcio">					
@@ -90,6 +92,8 @@
 					</div>					
 					<div id="pnc_div">
 						<s:form action="savePromocioNumComandes" method="POST" enctype="multipart/form-data" >
+							<s:checkbox key="promocioNumComandes.hora" id="pnc_hora" ></s:checkbox>
+							<s:textfield key="promocioNumComandes.numUses"  id="numUses_pnc" onblur="onlyEntero(this.value,this.id)" ></s:textfield>		
 							<s:textfield key="promocioNumComandes.nom" id="nompromo_pnc"  ></s:textfield>
 							<s:textfield key="promocioNumComandes.nomES" id="nompromoES_pnc"  ></s:textfield>
 							<s:select list="tipusDescompteList" key="promocioNumComandes.tipuDescompte" listKey="descripcio" listValue="descripcio">					

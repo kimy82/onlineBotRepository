@@ -11,6 +11,7 @@ public class Promocio implements Serializable{
 	 */
 	private static final long	serialVersionUID	= 1L;
 
+	@Expose
 	private Integer				id;
 	
 	@Expose
@@ -30,6 +31,17 @@ public class Promocio implements Serializable{
 	
 	@Expose
 	private String 				tipusBeguda;
+	
+	@Expose
+	private Integer				numUses;
+	
+	private Integer				numUsed;
+	
+	@Expose
+	private Boolean 			hora;
+	
+	@Expose
+	private String   			dates;
 
 	// CONSTRUCTORS
 	public Promocio() {
@@ -106,6 +118,45 @@ public class Promocio implements Serializable{
 	public void setNomES( String nomES ){
 	
 		this.nomES = nomES;
-	}		
+	}
 
+	public Integer getNumUses(){
+	
+		return numUses;
+	}
+
+	public void setNumUses( Integer numUses ){
+	
+		this.numUses = numUses;
+	}
+
+	public Boolean getHora(){
+	
+		return hora;
+	}
+
+	public void setHora( Boolean hora ){
+	
+		this.hora = hora;
+	}
+
+	public Integer getNumUsed(){
+	
+		return numUsed;
+	}
+
+	public void setNumUsed( Integer numUsed ){
+	
+		this.numUsed = numUsed;
+	}
+
+	public String getDates(){
+	
+		return dates;
+	}
+
+	public void setDates( String dates ){
+	
+		this.dates = dates;
+	}		
 }

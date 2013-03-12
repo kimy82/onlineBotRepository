@@ -12,6 +12,8 @@ public interface PromocionsDao{
 	void save( Promocio promocio );
 
 	void update( Promocio promocio );
+	
+	void updateNumUsed(Integer promoId, String data);
 
 	void delete( Promocio promocio );
 
@@ -26,4 +28,6 @@ public interface PromocionsDao{
 	List<PromocioAPartirDe> getAllAPartirDe();
 	
 	List<PromocioNumComandes> getAllNumComandes();
+	
+	Promocio loadWithDates(Integer promoId);
 }

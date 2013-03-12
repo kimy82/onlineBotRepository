@@ -468,10 +468,10 @@ function checkComandaJS(){
 		}else{
 			targeta=true;
 		}
-		
+		var promoId = window.localStorage.getItem("comanda.promo.id");
 		
 		$("#chargeBar").show();
-		var data ="idComanda="+comanda+"&dia="+dia+"&hora="+hora+"&aDomicili="+adomicili+"&targeta="+targeta+"&address="+address;
+		var data ="idComanda="+comanda+"&dia="+dia+"&hora="+hora+"&aDomicili="+adomicili+"&targeta="+targeta+"&address="+address+"&promoId="+promoId;
 	  	$.ajax({
 	  		  type: "POST",
 	  		  url: '/'+context+'/comanda/checkComanda.action',
@@ -769,14 +769,14 @@ function fillPromos(json){
 	$.each(json, function(index,item){
 		if(item.numBegudes!=null && item.numBegudes!= 'undefined' && json.numBegudes!= "0"){
 			//Promocio de begudes
-			var liToAppend = "<li><a href='#' onclick=\"addPromoBeguda('"+item.numBegudes+"','"+item.tipusBeguda+"')\" >'Te un descompte per escollir "+item.numBegudes +" begudes de tipus "+item.tipusBeguda+"</a>";
+			var liToAppend = "<li><a href='#' onclick=\"addPromoBeguda('"+item.numBegudes+"','"+item.tipusBeguda+"','"+item.id+"')\" >'Te un descompte per escollir "+item.numBegudes +" begudes de tipus "+item.tipusBeguda+"</a>";
 			$("#dialog_promo ul").append(liToAppend);
 			
 		
 		}
 		if(item.descompteImport!=null && item.descompteImport!= 'undefined' && item.descompteImport!="0"){			
 			//promocio descompte de pasta
-			var liToAppend = "<li><a href='#' onclick=\"addPromoImport('"+item.descompteImport+"','"+item.tipuDescompte+"')\" >'Te un descompte de  "+item.descompteImport +" en "+item.tipuDescompte+"</a>";
+			var liToAppend = "<li><a href='#' onclick=\"addPromoImport('"+item.descompteImport+"','"+item.tipuDescompte+"','"+item.id+"')\" >'Te un descompte de  "+item.descompteImport +" en "+item.tipuDescompte+"</a>";
 			$("#dialog_promo ul").append(liToAppend);
 
 		}
@@ -784,8 +784,9 @@ function fillPromos(json){
 	
 }
 
-function addPromoBeguda(nbegudes, tipusBeguda){
+function addPromoBeguda(nbegudes, tipusBeguda,id){
 	//La idea es obrir un div on es pugui arrastrar una beguda
+	window.localStorage.setItem("comanda.promo.id",id);
 	window.localStorage.setItem("comanda.promo.beguda","true");
 	window.localStorage.setItem("comanda.promo.nBegudes.total",nbegudes);
 	window.localStorage.setItem("comanda.promo.beguda.tipus",tipusBeguda);
@@ -837,9 +838,10 @@ function initPromoDescompteFromStorage(){
 	}
 }
 
-function addPromoImport(importDescompte, tipusDescompte){
+function addPromoImport(importDescompte, tipusDescompte,id){
 	
 	//La idea és afegir el descompte al div d'info de la comanda
+	window.localStorage.setItem("comanda.promo.id",id);
 	window.localStorage.setItem("comanda.promo.descompte","true");
 	window.localStorage.setItem("comanda.promo.descompte.import",importDescompte);
 	window.localStorage.setItem("comanda.promo.descompte.tipus",tipusDescompte);
@@ -888,6 +890,7 @@ function deletePromoApplied(){
 		window.localStorage.removeItem("comanda.promo.descompte");
 		window.localStorage.removeItem("comanda.promo.descompte.import");
 		window.localStorage.removeItem("comanda.promo.descompte.tipus");
+		window.localStorage.removeItem("comanda.promo.id");
 		
 		window.promoDescompte=null;
 		
@@ -910,6 +913,7 @@ function deletePromoApplied(){
 		window.localStorage.removeItem("comanda.promo.beguda");
 		window.localStorage.removeItem("comanda.promo.nBegudes.total");
 		window.localStorage.removeItem("comanda.promo.beguda.tipus");
+		window.localStorage.removeItem("comanda.promo.id");
 		
 		var list = window.localStorage.getItem("comanda.promo.begudes.list");
 		if(list!='undefined' && list!=null){

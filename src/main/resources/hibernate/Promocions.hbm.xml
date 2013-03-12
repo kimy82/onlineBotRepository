@@ -28,6 +28,18 @@
 		<property name="tipusBeguda" type="string" lazy="false" >
 			<column name="TIPUS_BEGUDA" length="20" />
 		</property>		
+		<property name="hora" type="boolean" lazy="false" >
+			<column name="HORA" default="false" />
+		</property>	
+		<property name="numUses" type="integer" lazy="false" >
+			<column name="NUM_USES" />
+		</property>
+		<property name="numUsed" type="integer" lazy="false" >
+			<column name="NUM_USED" />
+		</property>		
+		<property name="dates" type="string" lazy="true" >
+			<column name="LIST_DATE_USED" length="10000" />
+		</property>		
 		<subclass name="com.online.model.PromocioAPartirDe" extends="com.online.model.Promocio"
 			discriminator-value="papd" lazy="false" >
 			<property name="importAPartirDe" type="double" column="IMPORT_A_PARTIR_DE" lazy="false" />

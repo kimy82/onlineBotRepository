@@ -37,6 +37,10 @@ function resetForm(){
  		$("#temps").val("");
  		$("#id_apd").val("");
  		$("#id_pnc").val("");
+ 		$("#numUses_apd").val("");
+ 		$("#numUses_pnc").val("");
+ 		$("#adp_hora").attr('checked',false);		
+ 		$("#pnc_hora").attr('checked',false);
 }
 
 function openDivTipuPromo(id){
@@ -76,6 +80,10 @@ function goToPromocio(id){
 					 		$("#tipusBeguda_apd option[value='"+json.tipusBeguda+"']").attr("selected","selected");  					 		
 					 		$("#descompteImport_apd").val(json.descompteImport);
 					 		$("#importAPartirDe").val(json.importAPartirDe);
+					 		$("#numUses_apd").val(json.numUses);
+					 		if(json.hora==true){
+					 			$("#apd_hora").attr('checked','true');
+					 		}
 					 		$("#dia").val(json.diaString);
 					 		$("#infopromonew").show('slow');
 					 		$("#apd").click();
@@ -89,6 +97,10 @@ function goToPromocio(id){
 					 		$("#tipusBeguda_pnc option[value='"+json.tipusBeguda+"']").attr("selected","selected"); 
 					 		$("#numBegudes_pnc").val(json.numBegudes);
 					 		$("#numComandes").val(json.numComandes);
+					 		$("#numUses_pnc").val(json.numUses);
+					 		if(json.hora==true){
+					 			$("#pnc_hora").attr('checked','true');
+					 		}
 					 		$("#temps").val(json.temps);
 					 		$("#infopromonew").show('slow');
 					 		$("#pnc").click();
@@ -158,7 +170,7 @@ $(document).ready(function() {
 					        "sPrevious": "<img src='/"+context+"/images/icono-paginador-anterior.gif' style='vertical-align:middle'>&nbsp;"+initTableParams.txtprevious
 					      }
 					    },
-					"sScrollY": "1000",		    
+					"sScrollY": "900",		    
 					"sScrollX": "700",	
 				    "bScrollCollapse": true,
 		    		"bProcessing": false,

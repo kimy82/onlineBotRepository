@@ -79,7 +79,7 @@ public class MantenimentPromocionsAction extends ActionSuportOnline{
 		String json = "";
 		try {
 			out = this.response.getOutputStream();
-			Gson gson = new GsonBuilder().setPrettyPrinting().create();
+			Gson gson = new GsonBuilder().setPrettyPrinting().serializeNulls().create();
 			inizializeParamIdPromo();
 			E promo = this.promocionsBo.load(this.idPromo);
 			if (promo instanceof PromocioAPartirDe) {

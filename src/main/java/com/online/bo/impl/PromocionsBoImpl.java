@@ -26,6 +26,19 @@ public class PromocionsBoImpl implements PromocionsBo{
 		promocionsDao.update(promocio);
 	}
 
+	public Promocio loadWithDates(Integer promoId) throws BOException{
+		if(promoId!=null){
+			return	promocionsDao.loadWithDates(promoId);
+		}	
+		return null;
+	}
+	
+	public void updateNumUsed( Integer promoId,String data) throws BOException{
+		if(promoId!=null){
+			promocionsDao.updateNumUsed(promoId,data);
+		}		
+	}
+	
 	public void delete( Promocio promocio ) throws BOException{
 
 		checkPromocioId(promocio);
@@ -81,8 +94,7 @@ public class PromocionsBoImpl implements PromocionsBo{
 
 	private void checkPromocioWithId( Promocio promocio ) throws BOException{
 
-		if (promocio == null || promocio.getId() == null || promocio.getNom() == null || promocio.getNom().equals("")
-				||( promocio.getDescompteImport() == null || promocio.getNumBegudes()==null)|| promocio.getTipuDescompte() == null) {
+		if (promocio == null || promocio.getId() == null || promocio.getNom() == null || promocio.getNom().equals("")) {
 			throw new BOException("Null promocio to save");
 		}
 	}

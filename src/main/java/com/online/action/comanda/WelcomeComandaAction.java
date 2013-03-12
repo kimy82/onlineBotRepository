@@ -328,7 +328,7 @@ public class WelcomeComandaAction extends ActionSuportOnlineSession{
 			inizilizeDadesComandaBeguda();
 			inizializeAmount();
 			if (this.idComanda != null) {
-				// recuperem la comanda i afegim plat
+				// recuperem la comanda i afegim beguda
 				Comandes comanda = this.comandaBo.load(this.idComanda);
 				List<BegudaComanda> begudaList = comanda.getBegudes();
 				Beguda begudaToAdd = this.begudaBo.load(this.idBeguda);

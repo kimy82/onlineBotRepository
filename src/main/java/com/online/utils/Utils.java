@@ -88,6 +88,34 @@ public class Utils{
 		
 	}
 	
+	public static Integer getMonth(String data){
+		String[] array = data.split("-");
+		if(array.length==3){
+			String month= array[1];
+			if(month.startsWith("0")){
+				return Integer.parseInt(month.substring(1));
+			}else{
+				return Integer.parseInt(month);
+			}
+		}
+		return 1;
+		
+	}
+	
+	public static Integer getDay(String data){
+		String[] array = data.split("-");
+		if(array.length==3){
+			String day= array[2];
+			if(day.startsWith("0")){
+				return Integer.parseInt(day.substring(1));
+			}else{
+				return Integer.parseInt(day);
+			}
+		}
+		return 1;
+		
+	}
+	
 	public static Date getDate(String date){
 		String[] dateString = date.split("-");
 		if(dateString.length==3){

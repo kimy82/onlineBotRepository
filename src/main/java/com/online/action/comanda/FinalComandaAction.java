@@ -6,10 +6,8 @@ import java.util.ResourceBundle;
 
 import javax.servlet.ServletOutputStream;
 
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
-
 import com.online.bo.ComandaBo;
+import com.online.bo.PromocionsBo;
 import com.online.bo.UsersBo;
 import com.online.exceptions.ComandaException;
 import com.online.exceptions.GeneralException;
@@ -29,6 +27,7 @@ public class FinalComandaAction extends ActionSuportOnline{
 	private ComandaBo			comandaBo;
 
 	private UsersBo				usersBo;
+	private PromocionsBo		promocionsBo;
 	private Comandes			comanda;
 
 	private Long				idComanda			= null;
@@ -38,6 +37,7 @@ public class FinalComandaAction extends ActionSuportOnline{
 	private String				targeta;
 	private String				address;
 	private String				dataActual;
+	private Integer				promoId;
 
 	private ComandaServiceImpl	comandaService;
 
@@ -63,7 +63,8 @@ public class FinalComandaAction extends ActionSuportOnline{
 				inizilizeComandaId();
 				inizilizeComandaDiaHoraADomicili();
 				inizializeAddress();
-
+				updatePromoUses();
+				
 				this.comanda = this.comandaBo.load(this.idComanda);
 
 				this.comanda.setHora(Utils.getHora(this.hora));
@@ -102,6 +103,17 @@ public class FinalComandaAction extends ActionSuportOnline{
 				.getParameter("address");
 		if (this.address == null && this.aDomicili == null || this.aDomicili.equals("true")) {
 			throw new WrongParamException("null address of comanda");
+		}
+	}
+	private void updatePromoUses() throws WrongParamException{
+		try{
+			this.promoId = (request.getParameter("promoId") == null || request.getParameter("promoId").equals("") || request.getParameter("promoId").equals("undefined")) ? null : Integer.parseInt(request
+					.getParameter("promoId"));
+		} catch (NumberFormatException e) {
+			throw new WrongParamException("wrong promo id");
+		}
+		if(this.promoId!=null){
+			this.promocionsBo.updateNumUsed(this.promoId,Utils.formatDate2(new Date()));
 		}
 	}
 
@@ -179,4 +191,10 @@ public class FinalComandaAction extends ActionSuportOnline{
 
 		this.dataActual = dataActual;
 	}
+
+	public void setPromocionsBo( PromocionsBo promocionsBo ){
+	
+		this.promocionsBo = promocionsBo;
+	}
+	
 }
