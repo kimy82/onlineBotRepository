@@ -33,7 +33,7 @@
 				<li><img src="<c:url value='/img/elements/bar2.png' />"></li>
 				<li><a href="/${initParam.app}/comanda/getRefrescos.action"><s:text name="menu.refresc" /></a></li>
 				<li><img src="<c:url value='/img/elements/bar2.png' />"></li>
-				<li><a href="#"><s:text name="menu.fercomanda" /></a></li>
+				<li><a href="/${initParam.app}/comanda/comFerComanda.action"><s:text name="menu.fercomanda" /></a></li>
 				<li><img src="<c:url value='/img/elements/bar2.png' />"></li>
 				<li class="confirm"><a href="#" onclick="confirmComanda()" ><label id="numProduct" ></label> </a></li>
 				</ul>
