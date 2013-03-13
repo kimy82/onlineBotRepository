@@ -286,7 +286,57 @@ function goToComandaPas1() {
 	var data = window.localStorage.getItem("comanda.data");
 	window.location.href = "/"+context+"/comanda/goToPas1Action.action?idComanda="+$("#numComanda").text()+"&data="+data;
 }
+/*
+function goToLogin(){
+	
+	$("#login_dialog").load("/"+context+"/login.action?dialog=true");	
+	$("#login_dialog").dialog({ 
+		   autoOpen: false,
+		   height: 94,
+		   width: 330,
+		   position: "center",
+		   modal: true,
+		   close: function(event, ui) { 			   
+			   $("#login_dialog").dialog("close"); 			   
+			}
+	});
+    $("#login_dialog").dialog("open");
+    $("#login_dialog").siblings('div.ui-dialog-titlebar').remove();  
+    $("#login_dialog").removeClass("ui-dialog-content");
+	$("#login_dialog").removeClass("ui-widget-content");
+   	$("#move").addClass("ui-dialog-titlebar ui-widget-header ui-corner-all ui-helper-clearfix");
+	$(".ui-widget-content").css("background-color", "transparent");
+   	$(".ui-widget-content").css("border", "0px");
+    $(":ui-dialog").dialog('option', 'position', 'center');
+}
 
+/*/
+function goToInfoPlat(id){
+	
+	$("#infoPlat_dialog").load("../foro/foro.action?idPlat="+id);	
+	$("#infoPlat_dialog").dialog({ 
+		   autoOpen: false,
+		   height: 629,
+		   width: 806,
+		   position: "center",
+		   modal: true,
+		   close: function(event, ui) { 			   
+			   $("#infoPlat_dialog").dialog("close"); 			   
+			}
+	});
+    $("#infoPlat_dialog").dialog("open");
+    $("#infoPlat_dialog").siblings('div.ui-dialog-titlebar').remove();  
+    $("#infoPlat_dialog").removeClass("ui-dialog-content");
+	$("#infoPlat_dialog").removeClass("ui-widget-content");
+   	$("#move").addClass("ui-dialog-titlebar ui-widget-header ui-corner-all ui-helper-clearfix");
+	$(".ui-widget-content").css("background-color", "transparent");
+   	$(".ui-widget-content").css("border", "0px");
+    $(":ui-dialog").dialog('option', 'position', 'center');
+}
+
+
+/////////////////
+/*
 function goToInfoPlat(id){
 	
 	$("#infoPlat_dialog").load("../foro/foro.action?idPlat="+id);	
@@ -296,7 +346,7 @@ function goToInfoPlat(id){
 		   width: 750,
 		   modal: true,
 		   close: function(event, ui) { 			   
-			   $("#infoPlat_dialog").dialog("close"); 			  
+			   $("#").dialog("close"); 			  
 			}
 	});
     $("#infoPlat_dialog").dialog("open");    
@@ -312,6 +362,9 @@ $("#infoPlat_dialog").dialog({
 		}
 	});
 
+
+*/
+////////////
 function goToInfoBeguda(id){
 	
 	$("#infoBeguda_dialog").load("../foro/foroBeguda.action?idBeguda="+id);	

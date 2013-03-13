@@ -110,7 +110,7 @@
 									<c:forEach items="${comments}" var="comt" >
 										<c:if test="${not empty comt && commentInsert < 5}">				
 											<c:set var="commentInsert" value="${commentInsert+1}" ></c:set>																				
-											 ${fn:substring(comt.comment, 0, 35)}...&nbsp;
+											 ${fn:substring(comt.comment, 0, 15)}...&nbsp;
 										</c:if>																																																
 									</c:forEach>	
 							

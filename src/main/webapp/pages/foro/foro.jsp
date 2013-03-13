@@ -11,16 +11,42 @@
 	<title><s:text name="txt.welcome.comanda.principal" /></title>	
 </head>
 <body>
+<div id="foro">
+	<div id="foro_int">
+			<div id="move" class="ui-dialog-titlebar ui-widget-header ui-corner-all ui-helper-clearfix addmove">
+			</div>
+			<div class="foro_top">
+			<s:text name="txt.login.title" />
+		</div>
+		<hr class="sep8" />
+		<div class="light_body">
+		
 <c:import url="/pages/includes/headerContext.jsp" />
 <c:if test="${not empty plat }">
 
 <input type="hidden" id="idPlat" value="${plat.id}" />
+<div id="leftvota">
+	<table class="vota">
+		<tr>
+			<td><img class="imgvot" id="imageRestaurant" src="/${initParam.app}/img/elements/estrelles${plat.votacio.punctuacio}.jpg" /></td>
+		</tr>
+		<tr class="imatge">	
+			<td ><img id="imageRestaurant" width="230px"  src="/${initParam.app}/comanda/ImageAction.action?imageId=${plat.foto.id}" /></td>
+		</tr>
+		<tr>
+			<td class="nom">${plat.nom}</td>
+		</tr>
+		<tr class="descripció">
+			<td>${plat.descripcio}</td>
+		</tr>
+	</div>
 
-<c:if test="${nameAuth ne 'anonymousUser' }">
+	</table>
+    <c:if test="${nameAuth ne 'anonymousUser' }">
 	<div id="star_punctuation" >
 		<table id="tbl_stars" >
 			<tr>
-				<td colspan="5" ><s:text name="txt.vota.el.plat" />:</td>
+				<td class="votplat" colspan="5" ><s:text name="txt.vota.el.plat" />:</td>
 			</tr>
 			<tr>
 				<td><a href="#" onclick="starManager(1)" ><img id="star1" width="20px"  src="<c:url value='/images/star0.jpg' />" /></a></td>
@@ -33,58 +59,58 @@
 				<td colspan="5" ><input type="button" id="saveVotButton"  onclick="votaPlatDialog()" value="submit votacio"  /></td>
 			</tr>
 		</table>
-	</div>
+				
+</div>
 </c:if>
-	<table>
-		<tr>
-			<td><img id="imageRestaurant" width="50px"  src="/${initParam.app}/img/elements/estrelles${plat.votacio.punctuacio}.jpg" /></td>
-		</tr>
-		<tr>
-			<td>${plat.nom}</td>
-			<td>${plat.preu}</td>
-			<td>${plat.tipus}</td>
-			<td rowspan="2" ><img id="imageRestaurant" width="200px"  src="/${initParam.app}/comanda/ImageAction.action?imageId=${plat.foto.id}" /></td> 
-		</tr>
-		<tr>
-			<td colspan="3" >${plat.descripcio}</td>
-		</tr>
-	</table>
-    
+
+</div>
+<div id="rightforo">
     <div class="comments_foro" id="plat_${plat.id}" >
+    <div id="tablascroll">
 			<table id="comments_tbl" >
 		
 			    <s:iterator value="plat.comments" var="comt">
 							<tr id="${comt.id}" >
-								<td>${comt.comment}</td>								
+								<td class="comenta">${comt.comment}</td>								
 												
 								<c:if test="${nameAuth eq 'ROLE_ADMIN' }">
 									
-										<td><a href="#" onclick="deleteComment(${comt.id})" ><img src="<c:url value='/images/delete.png' />" /> </a></td>								
+										<td class="delet"><a href="#" onclick="deleteComment(${comt.id})" ><img src="<c:url value='/images/delete.png' />" /> </a></td>								
 									
 								</c:if>	
 							</tr>						
 				</s:iterator>								
 			</table>
-			<table>
+			</div>
+			<div id="degra"><img src="<c:url value='/images/degradat.png' />" /></div>
+			<table class="coment">
 				<c:if test="${nameAuth ne 'anonymousUser' }">
 					<tr>
-						<td><textarea rows="4" cols="60" id="newComment" ></textarea></td>
+						<td><textarea rows="4" cols="44" id="newComment" ></textarea></td>
 					</tr>
 					<tr>
-						<td><input type="button" onclick="saveComment()"  value="Submit" /></td>
+						<td><input class="enviarcom" type="button" onclick="saveComment()"  value="Submit" /></td>
 					</tr>
 				</c:if>
 			</table>
 	</div>
 </c:if>
-
-
-
+</div>
+</div>
+</div>
 </div>
 
 <!-- Scripts --> 
+<<<<<<< .mine
+	
+	<link rel="stylesheet" type="text/css" href="<c:url value='/css/portamu/foro.css' />" />
+	<link rel="stylesheet" type="text/css" href="<c:url value='/css/portamu/reset.css' />" />
+	
+	<!--<link rel="stylesheet" href="<c:url value='/css/coin-slider-styles.css' />" type="text/css" />
+=======
+>>>>>>> .r257
 	<link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/base/jquery-ui.css" rel="stylesheet" type="text/css" />
-	<link type="text/css" rel="stylesheet" href="<c:url value='/css/online.css' />" />
+	<link type="text/css" rel="stylesheet" href="<c:url value='/css/online.css' />" /> --> 
 	<script src="<c:url value='/js/jquery/jquery.js' />" type="text/javascript"></script>
 	<script src="<c:url value='/js/jquery/jquery.ui.core.js' />" type="text/javascript"></script>
 	<script src="<c:url value='/js/jquery/jquery.ui.widget.js'/>" type="text/javascript"></script>

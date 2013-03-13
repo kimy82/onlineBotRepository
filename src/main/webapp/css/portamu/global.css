@@ -1264,4 +1264,9 @@ position: absolute;
      color:#333;
      margin-top:20px;
 }
+#droppable .selector_jq {
+     margin-left: -90px;
+     margin-top: -300px;
+     width: 50px;
+}
 
