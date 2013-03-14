@@ -40,6 +40,30 @@
 		<property name="dates" type="string" lazy="true" >
 			<column name="LIST_DATE_USED" length="10000" />
 		</property>		
+		<property name="fentrada" type="date" lazy="false" >
+			<column name="FENTRADA" />
+		</property>	
+		<property name="dilluns" type="boolean" lazy="false" >
+			<column name="ACTIU_DILLUNS" default="true" />
+		</property>	
+		<property name="dimarts" type="boolean" lazy="false" >
+			<column name="ACTIU_DIMARTS" default="true" />
+		</property>	
+		<property name="dimecres" type="boolean" lazy="false" >
+			<column name="ACTIU_DIMECRES" default="true" />
+		</property>	
+		<property name="dijous" type="boolean" lazy="false" >
+			<column name="ACTIU_DIJOUS" default="true" />
+		</property>	
+		<property name="divendres" type="boolean" lazy="false" >
+			<column name="ACTIU_DIVENDRES" default="true" />
+		</property>	
+		<property name="dissabte" type="boolean" lazy="false" >
+			<column name="ACTIU_DISSABTE" default="true" />
+		</property>	
+		<property name="diumenge" type="boolean" lazy="false" >
+			<column name="ACTIU_DIUMENGE" default="true" />
+		</property>	
 		<subclass name="com.online.model.PromocioAPartirDe" extends="com.online.model.Promocio"
 			discriminator-value="papd" lazy="false" >
 			<property name="importAPartirDe" type="double" column="IMPORT_A_PARTIR_DE" lazy="false" />

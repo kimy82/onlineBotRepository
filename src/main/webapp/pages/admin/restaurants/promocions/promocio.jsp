@@ -38,6 +38,7 @@
 					<thead>
 						<tr>
 							<th><s:text name="mant.promo.table.nom" /></th>
+							<th><s:text name="mant.promo.table.fentrada" /></th>
 							<th><s:text name="mant.promo.table.tipuDescompte" /></th>
 							<th><s:text name="mant.promo.table.descompteImport" /></th>
 							<th><s:text name="mant.promo.table.numBegudes" /></th>
@@ -70,6 +71,16 @@
 					
 					<div id="apd_div">
 						<s:form action="savePromocioAPartirDe" method="POST" enctype="multipart/form-data" >
+							<tr>
+								<td><s:text name="promocioAPartirDeDTF.dilluns" ></s:text>:<s:checkbox key="promocioAPartirDeDTF.dilluns" id="adp_dilluns" theme="simple" ></s:checkbox></td>
+								<td><s:text name="promocioAPartirDeDTF.dimarts" ></s:text>:<s:checkbox key="promocioAPartirDeDTF.dimarts" id="adp_dimarts" theme="simple" ></s:checkbox></td>
+								<td><s:text name="promocioAPartirDeDTF.dimecres" ></s:text>:<s:checkbox key="promocioAPartirDeDTF.dimecres" id="adp_dimecres" theme="simple"  ></s:checkbox></td>
+								<td><s:text name="promocioAPartirDeDTF.dijous" ></s:text>:<s:checkbox key="promocioAPartirDeDTF.dijous" id="adp_dijous" theme="simple" ></s:checkbox></td>
+								<td><s:text name="promocioAPartirDeDTF.divendres" ></s:text>:<s:checkbox key="promocioAPartirDeDTF.divendres" id="adp_divendres" theme="simple" ></s:checkbox></td>
+								<td><s:text name="promocioAPartirDeDTF.dissabte" ></s:text>:<s:checkbox key="promocioAPartirDeDTF.dissabte" id="adp_dissabte" theme="simple" ></s:checkbox></td>
+								<td><s:text name="promocioAPartirDeDTF.diumenge" ></s:text>:<s:checkbox key="promocioAPartirDeDTF.diumenge" id="adp_diumenge" theme="simple" ></s:checkbox></td>
+							</tr>
+							
 							<s:checkbox key="promocioAPartirDeDTF.hora" id="adp_hora" ></s:checkbox>
 							<s:textfield key="promocioAPartirDeDTF.numUses"  id="numUses_apd" onblur="onlyEntero(this.value,this.id)" ></s:textfield>	
 							<s:textfield key="promocioAPartirDeDTF.nom" id="nompromo_apd"  ></s:textfield>
@@ -92,6 +103,17 @@
 					</div>					
 					<div id="pnc_div">
 						<s:form action="savePromocioNumComandes" method="POST" enctype="multipart/form-data" >
+						
+							<tr>
+								<td><s:text name="promocioNumComandes.dilluns" ></s:text>:<s:checkbox key="promocioNumComandes.dilluns" id="pnc_dilluns" theme="simple" ></s:checkbox></td>
+								<td><s:text name="promocioNumComandes.dimarts" ></s:text>:<s:checkbox key="promocioNumComandes.dimarts" id="pnc_dimarts" theme="simple" ></s:checkbox></td>
+								<td><s:text name="promocioNumComandes.dimecres" ></s:text>:<s:checkbox key="promocioNumComandes.dimecres" id="pnc_dimecres" theme="simple" ></s:checkbox></td>
+								<td><s:text name="promocioNumComandes.dijous" ></s:text>:<s:checkbox key="promocioNumComandes.dijous" id="pnc_dijous" theme="simple" ></s:checkbox></td>
+								<td><s:text name="promocioNumComandes.divendres" ></s:text>:<s:checkbox key="promocioNumComandes.divendres" id="pnc_divendres" theme="simple" ></s:checkbox></td>
+								<td><s:text name="promocioNumComandes.dissabte" ></s:text>:<s:checkbox key="promocioNumComandes.dissabte" id="pnc_dissabte" theme="simple" ></s:checkbox></td>
+								<td><s:text name="promocioNumComandes.diumenge" ></s:text>:<s:checkbox key="promocioNumComandes.diumenge" id="pnc_diumenge" theme="simple" ></s:checkbox></td>
+							</tr>
+						
 							<s:checkbox key="promocioNumComandes.hora" id="pnc_hora" ></s:checkbox>
 							<s:textfield key="promocioNumComandes.numUses"  id="numUses_pnc" onblur="onlyEntero(this.value,this.id)" ></s:textfield>		
 							<s:textfield key="promocioNumComandes.nom" id="nompromo_pnc"  ></s:textfield>

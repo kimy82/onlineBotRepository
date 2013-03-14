@@ -41,6 +41,22 @@ function resetForm(){
  		$("#numUses_pnc").val("");
  		$("#adp_hora").attr('checked',false);		
  		$("#pnc_hora").attr('checked',false);
+ 		
+ 		$("#pnc_dilluns").attr('checked',false);
+ 		$("#pnc_dimarts").attr('checked',false);
+ 		$("#pnc_dimecres").attr('checked',false);
+ 		$("#pnc_dijous").attr('checked',false);
+ 		$("#pnc_divendres").attr('checked',false);
+ 		$("#pnc_dissabte").attr('checked',false);
+ 		$("#pnc_diumenge").attr('checked',false);
+ 		
+ 		$("#adp_dilluns").attr('checked',false);
+ 		$("#adp_dimarts").attr('checked',false);
+ 		$("#adp_dimecres").attr('checked',false);
+ 		$("#adp_dijous").attr('checked',false);
+ 		$("#adp_divendres").attr('checked',false);
+ 		$("#adp_dissabte").attr('checked',false);
+ 		$("#adp_diumenge").attr('checked',false);
 }
 
 function openDivTipuPromo(id){
@@ -85,6 +101,29 @@ function goToPromocio(id){
 					 			$("#apd_hora").attr('checked','true');
 					 		}
 					 		$("#dia").val(json.diaString);
+					 		
+					 		if(json.dilluns==true){
+					 			$("#adp_dilluns").attr('checked','true');
+					 		}
+					 		if(json.dimarts==true){
+					 			$("#adp_dimarts").attr('checked','true');
+					 		}
+					 		if(json.dimecres==true){
+					 			$("#adp_dimecres").attr('checked','true');
+					 		}
+					 		if(json.dijous==true){
+					 			$("#adp_dijous").attr('checked','true');
+					 		}
+					 		if(json.divendres==true){
+					 			$("#adp_divendres").attr('checked','true');
+					 		}
+					 		if(json.dissabte==true){
+					 			$("#adp_dissabte").attr('checked','true');
+					 		}
+					 		if(json.diumenge==true){
+					 			$("#adp_diumenge").attr('checked','true');
+					 		}
+					 		
 					 		$("#infopromonew").show('slow');
 					 		$("#apd").click();
 					 	}
@@ -102,6 +141,29 @@ function goToPromocio(id){
 					 			$("#pnc_hora").attr('checked','true');
 					 		}
 					 		$("#temps").val(json.temps);
+					 		
+					 		if(json.dilluns==true){
+					 			$("#pnc_dilluns").attr('checked','true');
+					 		}
+					 		if(json.dimarts==true){
+					 			$("#pnc_dimarts").attr('checked','true');
+					 		}
+					 		if(json.dimecres==true){
+					 			$("#pnc_dimecres").attr('checked','true');
+					 		}
+					 		if(json.dijous==true){
+					 			$("#pnc_dijous").attr('checked','true');
+					 		}
+					 		if(json.divendres==true){
+					 			$("#pnc_divendres").attr('checked','true');
+					 		}
+					 		if(json.dissabte==true){
+					 			$("#pnc_dissabte").attr('checked','true');
+					 		}
+					 		if(json.diumenge==true){
+					 			$("#pnc_diumenge").attr('checked','true');
+					 		}
+					 		
 					 		$("#infopromonew").show('slow');
 					 		$("#pnc").click();
 					 	}					 					 										 					 						 					 						  
@@ -154,6 +216,7 @@ $(document).ready(function() {
 					"iDisplayLength": 12,
 					 "aoColumns" : [
 					                  { "mDataProp":"nom","bSortable": false, sWidth: '150px' },
+					                  { "mDataProp":"fentrada","bSortable": false, sWidth: '50px' },
 					                  { "mDataProp":"tipuDescompte", "bSortable": false, sWidth: '350px' },
 					                  { "mDataProp":"descompteImport", "bSortable": false, sWidth: '40px' },
 					                  { "mDataProp":"numBegudes", "bSortable": false, sWidth: '40px' },

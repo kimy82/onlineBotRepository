@@ -188,6 +188,11 @@
 			<artifactId>wink-client</artifactId>
 			<version>1.2.0-incubating</version>
 		</dependency>
+		<dependency>
+			<groupId>org.apache.wink</groupId>
+			<artifactId>wink-server</artifactId>
+			<version>1.2.0-incubating</version>
+		</dependency>
 		<!-- Spring 3 dependencies -->
 		<dependency>
 			<groupId>org.springframework</groupId>

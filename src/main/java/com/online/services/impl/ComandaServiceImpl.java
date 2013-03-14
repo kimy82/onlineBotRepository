@@ -567,6 +567,7 @@ public class ComandaServiceImpl implements ComandaService{
 			this.resource = resource;
 			
 			int actualHour = Calendar.getInstance().get(Calendar.HOUR_OF_DAY);
+			int dayOfWeek = Calendar.getInstance().get(Calendar.DAY_OF_WEEK);
 			Date diaAvui = new Date();
 			
 			List<PromocioNumComandes> promoNumComandesFinalList = new ArrayList<PromocioNumComandes>();
@@ -582,7 +583,9 @@ public class ComandaServiceImpl implements ComandaService{
 				if(comanda.getDia()==null) comanda.setDia(diaAvui);
 				if(comanda.getDia()!=null && comanda.getDia().compareTo(diaAvui)==0 && actualHour>16 && promo.getHora()!=null && promo.getHora()==true){
 					continue;					
-				}				
+				}			
+				if(!promo.checkDayOfWeekOpen(dayOfWeek)) continue;
+				
 					apartirDePromoFinalList.add(promo);
 			}
 			
@@ -593,6 +596,8 @@ public class ComandaServiceImpl implements ComandaService{
 				if(comanda.getDia()!=null && comanda.getDia().compareTo(diaAvui)==0 && actualHour>16 && promo.getHora()!=null && promo.getHora()==true){
 					continue;					
 				}
+				if(!promo.checkDayOfWeekOpen(dayOfWeek)) continue;
+				
 				Integer numComandes = promo.getNumComandes();
 				Integer temps = promo.getTemps();
 				if (comanda != null && comanda.getUser() != null) {

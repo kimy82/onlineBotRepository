@@ -1,0 +1,43 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="com.online.model.PromocioAssociada" table="promos_associated" lazy="false" >
+	<cache usage="read-write" />
+		<id name="id" type="integer">
+			<column name="PROMOCIO_ASS_ID" />
+			<generator class="increment" />
+		</id>
+		<property name="nom" type="string" lazy="false" >
+			<column name="NOM" length="200" not-null="true" />
+		</property>
+		<property name="nomES" type="string" lazy="false" >
+			<column name="NOM_ES" length="200" not-null="true" />
+		</property>
+		<property name="tipuDescompte" type="string" lazy="false" >
+			<column name="TIPUS_DESCOMPTE" length="20" />
+		</property>
+		<property name="descompteImport" type="double" lazy="false" >
+			<column name="DESCOMPTE" />
+		</property>
+		<property name="numBegudes" type="integer" lazy="false" >
+			<column name="NUM_BEGUDES" />
+		</property>
+		<property name="tipusBeguda" type="string" lazy="false" >
+			<column name="TIPUS_BEGUDA" length="20" />
+		</property>		
+		<property name="hora" type="boolean" lazy="false" >
+			<column name="HORA" default="false" />
+		</property>	
+		<property name="fentrada" type="date" lazy="false" >
+			<column name="FENTRADA" />
+		</property>	
+		<property name="importAPartirDe" type="double" lazy="false">
+			<column name="IMPORT_A_PARTIR_DE" />
+		</property>   
+		<property name="code" type="string" lazy="false" >
+			<column name="CODE" length="10" />
+		</property>		
+	</class>
+</hibernate-mapping>

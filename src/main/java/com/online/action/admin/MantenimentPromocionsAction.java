@@ -2,6 +2,7 @@ package com.online.action.admin;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.servlet.ServletOutputStream;
@@ -157,10 +158,12 @@ public class MantenimentPromocionsAction extends ActionSuportOnline{
 
 			PromocioNumComandes promoNumComandes = new PromocioNumComandes();
 			BeanUtils.copyProperties(this.promocioNumComandes, promoNumComandes);
-			if (this.promocioNumComandes.getId() == null)
+			if (this.promocioNumComandes.getId() == null){
+				promoNumComandes.setFentrada(new Date());
 				this.promocionsBo.save(promoNumComandes);
-			else
+			}else{
 				this.promocionsBo.update(promoNumComandes);
+			}
 
 		} catch (BOException boe) {
 			addActionError(boe.getMessage());
@@ -191,10 +194,12 @@ public class MantenimentPromocionsAction extends ActionSuportOnline{
 			BeanUtils.copyProperties(this.promocioAPartirDeDTF, promApartirDe);
 			promApartirDe = transformStringTODateInPromoDTF(promApartirDe);
 
-			if (promApartirDe.getId() == null)
+			if (promApartirDe.getId() == null){
+				promApartirDe.setFentrada(new Date());
 				this.promocionsBo.save(promApartirDe);
-			else
+			}else{
 				this.promocionsBo.update(promApartirDe);
+			}
 
 			this.tipusDescompteList = Utils.getTipusDescompte();
 		} catch (BOException boe) {
@@ -247,7 +252,7 @@ public class MantenimentPromocionsAction extends ActionSuportOnline{
 			promoTableList.add(promoTable);
 		}
 
-		Gson gson = new GsonBuilder().setPrettyPrinting().excludeFieldsWithoutExposeAnnotation().create();
+		Gson gson = new GsonBuilder().setPrettyPrinting().excludeFieldsWithoutExposeAnnotation().serializeNulls().create();
 		String json = gson.toJson(promoTableList);
 		StringBuffer jsonSB = new StringBuffer("{");
 		jsonSB.append("\"sEcho\": " + sEcho + ", \"iTotalRecords\":\"" + promoList.size() + "\", \"iTotalDisplayRecords\":\""

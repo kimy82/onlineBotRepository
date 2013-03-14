@@ -28,6 +28,7 @@ http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
 				<value>/hibernate/Moters.hbm.xml</value>
 				<value>/hibernate/ConfigRestaurant.hbm.xml</value>
 				<value>/hibernate/Promocions.hbm.xml</value>
+				<value>/hibernate/PromoAssociada.hbm.xml</value>
 				<value>/hibernate/UserRole.hbm.xml</value>
 				<value>/hibernate/Beguda.hbm.xml</value>
 				<value>/hibernate/Comandes.hbm.xml</value>
