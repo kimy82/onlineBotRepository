@@ -56,7 +56,7 @@
             <key>
                 <column name="PLAT_ID" not-null="true" />
             </key>
-            <many-to-many entity-name="com.online.model.Foro">
+            <many-to-many entity-name="com.online.model.Foro" order-by="FORO_ID desc"  >
                 <column name="FORO_ID" not-null="true" />
             </many-to-many>
         </set>

@@ -90,6 +90,7 @@
 					</tr>
 					<tr>
 						<td><input class="enviarcom" type="button" onclick="saveComment()"  value="Submit" /></td>
+						<td><input class="enviarcom" type="button" onclick="closeInfoPlat()"  value="Close" /></td>
 					</tr>
 				</c:if>
 			</table>
@@ -99,16 +100,12 @@
 </div>
 </div>
 </div>
-
-<!-- Scripts --> 
-<<<<<<< .mine
 	
 	<link rel="stylesheet" type="text/css" href="<c:url value='/css/portamu/foro.css' />" />
 	<link rel="stylesheet" type="text/css" href="<c:url value='/css/portamu/reset.css' />" />
 	
 	<!--<link rel="stylesheet" href="<c:url value='/css/coin-slider-styles.css' />" type="text/css" />
-=======
->>>>>>> .r257
+
 	<link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/base/jquery-ui.css" rel="stylesheet" type="text/css" />
 	<link type="text/css" rel="stylesheet" href="<c:url value='/css/online.css' />" /> --> 
 	<script src="<c:url value='/js/jquery/jquery.js' />" type="text/javascript"></script>
@@ -132,7 +129,7 @@
 										"<s:text name='txt.confirm.vot'/>",
 										"<s:text name='txt.vot.guardat'/>",
 										"<s:text name='txt.alert.insult'/>");
-																		
+													
 	</script>
 	<c:import url="/pages/includes/subAlertOnline.jsp" />
 	

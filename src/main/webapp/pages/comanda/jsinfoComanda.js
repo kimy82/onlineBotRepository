@@ -1085,3 +1085,4 @@ $(document).ready(function() {
 		initPromoBegudaFromStorage();
 		initPromoDescompteFromStorage();
 });
+

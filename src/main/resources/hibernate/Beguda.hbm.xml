@@ -36,7 +36,7 @@
             <key>
                 <column name="BEGUDA_ID" not-null="true" />
             </key>
-            <many-to-many entity-name="com.online.model.ForoBeguda">
+            <many-to-many entity-name="com.online.model.ForoBeguda"  order-by="FOROB_ID desc" >
                 <column name="FOROB_ID" not-null="true" />
             </many-to-many>
         </set>	
