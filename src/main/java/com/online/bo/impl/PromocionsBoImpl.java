@@ -8,6 +8,7 @@ import com.online.dao.PromocionsDao;
 import com.online.exceptions.BOException;
 import com.online.model.Promocio;
 import com.online.model.PromocioAPartirDe;
+import com.online.model.PromocioAssociada;
 import com.online.model.PromocioNumComandes;
 
 public class PromocionsBoImpl implements PromocionsBo{
@@ -19,11 +20,23 @@ public class PromocionsBoImpl implements PromocionsBo{
 		checkPromocio(promocio);
 		promocionsDao.save(promocio);
 	}
+	
+	public void saveAssociada( PromocioAssociada promocio ) throws BOException{
+
+		checkPromocioAssociada(promocio);
+		promocionsDao.saveAssociada(promocio);
+	}
 
 	public void update( Promocio promocio ) throws BOException{
 
 		checkPromocioWithId(promocio);
 		promocionsDao.update(promocio);
+	}
+	
+	public void updateAssociada( PromocioAssociada promocio ) throws BOException{
+
+		checkPromocioAssWithId(promocio);
+		promocionsDao.updateAssociada(promocio);
 	}
 
 	public Promocio loadWithDates(Integer promoId) throws BOException{
@@ -44,6 +57,13 @@ public class PromocionsBoImpl implements PromocionsBo{
 		checkPromocioId(promocio);
 		promocionsDao.delete(promocio);
 	}
+	
+	public void deleteAssociada( PromocioAssociada promocio ) throws BOException{
+
+		checkPromocioAssId(promocio);
+		promocionsDao.deleteAssociada(promocio);
+	}
+
 
 	public <E extends Promocio> E load( Integer id ) throws BOException{
 
@@ -53,10 +73,24 @@ public class PromocionsBoImpl implements PromocionsBo{
 		return p;
 
 	}
+	
+	public PromocioAssociada  loadAssociada( Integer id ) throws BOException{
+
+		if (id == null)
+			throw new BOException("NUll id to load");
+		return promocionsDao.loadAssociada(id);
+		
+
+	}
 
 	public List<Promocio> getAll(){
 
 		return this.promocionsDao.getAll();
+	}
+	
+	public List<PromocioAssociada> getAllAssociades(){
+
+		return this.promocionsDao.getAllAssociades();
 	}
 
 	public List<PromocioAPartirDe> getPromosAPartirDe( Double importAPartirDe, Date dia ) throws BOException{
@@ -91,6 +125,13 @@ public class PromocionsBoImpl implements PromocionsBo{
 			throw new BOException("Null promo to save");
 		}
 	}
+	
+	private void checkPromocioAssociada( PromocioAssociada promocio ) throws BOException{
+
+		if (promocio == null || promocio.getNom() == null || promocio.getNom().equals("") ) {
+			throw new BOException("Null promo to save");
+		}
+	}
 
 	private void checkPromocioWithId( Promocio promocio ) throws BOException{
 
@@ -98,8 +139,22 @@ public class PromocionsBoImpl implements PromocionsBo{
 			throw new BOException("Null promocio to save");
 		}
 	}
+	
+	private void checkPromocioAssWithId( PromocioAssociada promocio ) throws BOException{
+
+		if (promocio == null || promocio.getId() == null || promocio.getNom() == null || promocio.getNom().equals("")) {
+			throw new BOException("Null promocio to save");
+		}
+	}
 
 	private void checkPromocioId( Promocio promocio ) throws BOException{
+
+		if (promocio == null || promocio.getId() == null) {
+			throw new BOException("Null promocio to delete");
+		}
+	}
+	
+	private void checkPromocioAssId( PromocioAssociada promocio ) throws BOException{
 
 		if (promocio == null || promocio.getId() == null) {
 			throw new BOException("Null promocio to delete");

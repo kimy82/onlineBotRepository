@@ -1,4 +1,4 @@
-<!-- nou plat --> 
+<!-- promocions --> 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="s" uri="/struts-tags"%>
       <ul class="pestanyes">               
@@ -8,7 +8,7 @@
 			      	<li id="pestanya.mto"><a href="<c:url value='letterUsuaris.action' />" >Newsletter usuaris</a></li>     
 			      	<li id="pestanya.mto"><a href="<c:url value='newsletter.action' />" ><s:text name="txt.pestanya.newsletter" /></a></li>
 		      	</ul></li>  
-		  <li id="pestanya.mto" class="seleccionat"><a href="#" >ALTES</a>
+		  <li id="pestanya.mto"><a href="#" >ALTES</a>
 		      	<ul>
 			      	<li id="pestanya.mto"><a href="<c:url value='plats.action' />" >Nou plat</a></li>    
 			      	<li id="pestanya.mto"><a href="<c:url value='newRestaurant.action' />">Nou restaurant</a></li>
@@ -21,11 +21,11 @@
 		      	</ul></li>
 		  <li id="pestanya.mto"><a href="<c:url value='config.action' />" >Config Hores obertures</a></li>
 		  <li id="pestanya.mto"><a href="<c:url value='configMoters.action' />" >Config Moters</a></li>
-		  <li id="pestanya.mto"><a href="#" >PROMOCIONS</a>
+		    <li id="pestanya.mto"><a href="#" >PROMOCIONS</a>
 		  		<ul>
-		  			<li id="pestanya.mto"><a href="<c:url value='promocions.action' />" >Promos</a></li>
+		  			<li id="pestanya.mto" ><a href="<c:url value='promocions.action' />" >Promos</a></li>
 			      	<li id="pestanya.mto"><a href="<c:url value='promoChart.action' />" >Grafics</a></li>
-			      	<li id="pestanya.mto"><a href="<c:url value='promocionsAssociades.action' />" >Promos Associades</a></li>
+			      	<li id="pestanya.mto" class="seleccionat" ><a href="<c:url value='promocionsAssociades.action' />" >Promos Associades</a></li>
 		      	</ul>
 		  </li>
 		  <li id="pestanya.mto"><a href="<c:url value='presentacio.action' />" >Slider</a></li>

@@ -221,6 +221,23 @@
 		<action name="showDates"
 			class="com.online.action.admin.ChartPromocionsAction" method="showDates">
 		</action>
+		<action name="promocionsAssociades" class="com.online.action.admin.MantenimentPromosAssociadesAction"
+			method="execute">
+			<result name="success">/pages/admin/restaurants/promoAssociades/promocio.jsp</result>		
+		</action>
+			<action name="savePromocioAssociada"
+			class="com.online.action.admin.MantenimentPromosAssociadesAction" method="savePromocioAssociada">
+			<result name="success">/pages/admin/restaurants/promoAssociades/promocio.jsp</result>
+		</action>
+		<action name="ajaxLoadPromoAssAction"
+			class="com.online.action.admin.MantenimentPromosAssociadesAction" method="ajaxLoadPromoAssAction">
+		</action>
+		<action name="ajaxDeletePromocioAss"
+			class="com.online.action.admin.MantenimentPromosAssociadesAction" method="ajaxDeletePromocioAss">
+		</action>
+		<action name="ajaxTablePromosAss"
+			class="com.online.action.admin.MantenimentPromosAssociadesAction" method="ajaxTablePromosAss">
+		</action>
 		
 		<!-- Actions per begudes -->
 		<action name="begudes" class="com.online.action.admin.MantenimentBegudaAction"

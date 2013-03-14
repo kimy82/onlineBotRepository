@@ -13,6 +13,7 @@ import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
 import com.online.dao.PromocionsDao;
 import com.online.model.Promocio;
 import com.online.model.PromocioAPartirDe;
+import com.online.model.PromocioAssociada;
 import com.online.model.PromocioNumComandes;
 
 public class PromocionsDaoImpl extends HibernateDaoSupport implements PromocionsDao{
@@ -27,6 +28,16 @@ public class PromocionsDaoImpl extends HibernateDaoSupport implements Promocions
 		getHibernateTemplate().update(promocio);
 	}
 
+	public void saveAssociada( PromocioAssociada promocio ){
+
+		getHibernateTemplate().save(promocio);
+	}
+
+	public void updateAssociada( PromocioAssociada promocio ){
+
+		getHibernateTemplate().update(promocio);
+	}
+	
 	public void updateNumUsed(Integer promoId,String data){
 		Session session = this.getSessionFactory().openSession();
 		session.beginTransaction();
@@ -81,6 +92,19 @@ public class PromocionsDaoImpl extends HibernateDaoSupport implements Promocions
 		session.close();
 
 	}
+	
+	public void deleteAssociada( PromocioAssociada promocio ){
+
+		Session session = this.getSessionFactory().openSession();
+		session.beginTransaction();
+
+		session.delete(promocio);
+
+		session.getTransaction().commit();
+
+		session.close();
+
+	}
 
 	@SuppressWarnings("unchecked")
 	public <E extends Promocio> E load( Integer id ){
@@ -98,6 +122,11 @@ public class PromocionsDaoImpl extends HibernateDaoSupport implements Promocions
 
 	}
 	
+	public PromocioAssociada loadAssociada( Integer id ){
+		
+			return getHibernateTemplate().load(PromocioAssociada.class, id);
+	}
+	
 	public Promocio loadWithDates(Integer promoId){
 		Session session = this.getSessionFactory().openSession();
 		session.beginTransaction();
@@ -113,6 +142,12 @@ public class PromocionsDaoImpl extends HibernateDaoSupport implements Promocions
 
 		return getHibernateTemplate().loadAll(Promocio.class);
 	}
+	
+	public List<PromocioAssociada> getAllAssociades(){
+
+		return getHibernateTemplate().loadAll(PromocioAssociada.class);
+	}
+	
 	
 	public List<PromocioNumComandes> getAllNumComandes(){
 
