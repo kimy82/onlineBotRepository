@@ -19,6 +19,8 @@ public interface PromocionsDao{
 	void updateAssociada( PromocioAssociada promocio );
 	
 	void updateNumUsed(Integer promoId, String data);
+	
+	void updateNumUsedAssociada(Integer promoId,String data);
 
 	void delete( Promocio promocio );
 	

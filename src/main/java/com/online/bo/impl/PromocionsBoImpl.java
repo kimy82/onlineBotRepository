@@ -52,6 +52,12 @@ public class PromocionsBoImpl implements PromocionsBo{
 		}		
 	}
 	
+	public void updateNumUsedAssociada(Integer promoId,String data) throws BOException{
+		if(promoId!=null){
+			promocionsDao.updateNumUsedAssociada(promoId,data);
+		}	
+	}
+	
 	public void delete( Promocio promocio ) throws BOException{
 
 		checkPromocioId(promocio);

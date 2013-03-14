@@ -20,6 +20,8 @@ public interface PromocionsBo{
 	void updateAssociada( PromocioAssociada promocio ) throws BOException;
 	
 	void updateNumUsed( Integer promoId,String data) throws BOException;
+	
+	void updateNumUsedAssociada(Integer promoId,String data) throws BOException;
 
 	void delete( Promocio promocio ) throws BOException;
 	

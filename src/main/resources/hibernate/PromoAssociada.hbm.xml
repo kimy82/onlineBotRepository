@@ -35,7 +35,13 @@
 		</property>	
 		<property name="importAPartirDe" type="double" lazy="false">
 			<column name="IMPORT_A_PARTIR_DE" />
+		</property>
+		<property name="numUsed" type="integer" lazy="false">
+			<column name="NUM_USED" />
 		</property>   
+		<property name="dates" type="string" lazy="true" >
+			<column name="LIST_DATE_USED" length="10000" />
+		</property>	
 		<property name="code" type="string" lazy="false" >
 			<column name="CODE" length="10" />
 		</property>		

@@ -44,6 +44,11 @@ public class PromocioAssociada implements Serializable{
 
 	@Expose
 	private String				code;
+	
+	private Integer				numUsed;
+	
+	@Expose
+	private String				dates;
 
 	// CONSTRUCTORS
 	public PromocioAssociada() {
@@ -160,5 +165,26 @@ public class PromocioAssociada implements Serializable{
 	public void setCode( String code ){
 	
 		this.code = code;
-	}		
+	}
+
+	public Integer getNumUsed(){
+	
+		return numUsed;
+	}
+
+	public void setNumUsed( Integer numUsed ){
+	
+		this.numUsed = numUsed;
+	}
+
+	public String getDates(){
+	
+		return dates;
+	}
+
+	public void setDates( String dates ){
+	
+		this.dates = dates;
+	}
+	
 }

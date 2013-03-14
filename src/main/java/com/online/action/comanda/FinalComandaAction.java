@@ -38,6 +38,7 @@ public class FinalComandaAction extends ActionSuportOnline{
 	private String				address;
 	private String				dataActual;
 	private Integer				promoId;
+	private String 				tipusPromo;
 
 	private ComandaServiceImpl	comandaService;
 
@@ -63,7 +64,7 @@ public class FinalComandaAction extends ActionSuportOnline{
 				inizilizeComandaId();
 				inizilizeComandaDiaHoraADomicili();
 				inizializeAddress();
-				updatePromoUses();
+				
 				
 				Users user = this.usersBo.findByUsername(this.nameAuth);
 				
@@ -81,7 +82,10 @@ public class FinalComandaAction extends ActionSuportOnline{
 				this.comanda.setPreu(this.comandaService.getPreuOfComanda(comanda));
 				this.comandaBo.update(this.comanda);
 				json = this.comandaService.checkComandaProblems(this.comanda, resource);
-				if(json.equals("") && user!=null){
+				
+				
+				if(json.contains("comandaOK") && user!=null){
+					updatePromoUses();
 					user.setCodePromo("");
 					this.usersBo.update(user);
 				}
@@ -114,11 +118,18 @@ public class FinalComandaAction extends ActionSuportOnline{
 		try{
 			this.promoId = (request.getParameter("promoId") == null || request.getParameter("promoId").equals("") || request.getParameter("promoId").equals("undefined")) ? null : Integer.parseInt(request
 					.getParameter("promoId"));
+			this.tipusPromo = (request.getParameter("tipusPromo") == null || request.getParameter("tipusPromo").equals("") || request.getParameter("tipusPromo").equals("undefined")) ? null : request
+					.getParameter("tipusPromo");
 		} catch (NumberFormatException e) {
 			throw new WrongParamException("wrong promo id");
 		}
-		if(this.promoId!=null){
+		if(this.promoId!=null && this.tipusPromo!=null){
+			
+			if(this.tipusPromo.equals("gen"))
 			this.promocionsBo.updateNumUsed(this.promoId,Utils.formatDate2(new Date()));
+			
+			if(this.tipusPromo.equals("esp"))
+				this.promocionsBo.updateNumUsedAssociada(this.promoId,Utils.formatDate2(new Date()));
 		}
 	}
 

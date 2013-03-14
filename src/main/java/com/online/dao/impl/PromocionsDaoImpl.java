@@ -54,6 +54,23 @@ public class PromocionsDaoImpl extends HibernateDaoSupport implements Promocions
 		session.getTransaction().commit();
 		session.close();
 	}
+	
+	public void updateNumUsedAssociada(Integer promoId,String data){
+		Session session = this.getSessionFactory().openSession();
+		session.beginTransaction();
+		PromocioAssociada promo = (PromocioAssociada) session.load(PromocioAssociada.class, promoId);
+		StringBuffer dates = new StringBuffer("");
+		dates.append(promo.getDates()==null?data: promo.getDates()+" "+data);
+		promo.setDates(dates.toString());
+		if(promo.getNumUsed()==null){
+			promo.setNumUsed(1);			
+		}else{
+			promo.setNumUsed(promo.getNumUsed()+1);
+		}
+		session.update(promo);
+		session.getTransaction().commit();
+		session.close();
+	}
 
 	public List<PromocioAPartirDe> getPromosAPartirDe( Double importAPartirDe, Date dia ){
 
@@ -131,7 +148,7 @@ public class PromocionsDaoImpl extends HibernateDaoSupport implements Promocions
 		
 		Session session = this.getSessionFactory().openSession();
 		session.beginTransaction();
-		List<PromocioAssociada> promo = (List<PromocioAssociada>) session.createQuery("from PromocioAssociada where code=?").setString(1, code).list();
+		List<PromocioAssociada> promo = (List<PromocioAssociada>) session.createQuery("from PromocioAssociada where code=?").setString(0, code).list();
 		
 		
 	

@@ -372,7 +372,17 @@ function submitLog(){
 	    success: function(json) {
 	        if (json.result == "ok") {
 	        	$("#loged").text(initParams.checkok);	
-	        	$("#checkPromocionsDisponibles").show();
+	        	var promo = window.localStorage.getItem("comanda.promo.id");
+	        	if(promo!='undefined' && promo!=null){
+	        		$("#checkPromocionsDisponibles").hide();
+	        		$("#deletePromoApplied").show();	
+	        		
+	        	}else{
+
+	        		$("#checkPromocionsDisponibles").show();
+	        		$("#deletePromoApplied").hide();
+	        	}
+	        	
 	        } else if (json.result == "error") {	        	
 	        	$("#loged").text(initParams.checkko);
 	        }
