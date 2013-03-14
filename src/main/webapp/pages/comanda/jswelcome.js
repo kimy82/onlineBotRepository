@@ -312,17 +312,6 @@ function goToLogin(){
 
 /*/
 
-$("#infoPlat_dialog").dialog({ 
-	   autoOpen: false,
-	   height: 629,
-	   width: 806,
-	   position: "center",
-	   modal: true,
-	   close: function(event, ui) { 			   
-		   $("#infoPlat_dialog").dialog("close"); 			  
-		}
-	});
-
 function goToInfoPlat(id){
 	
 	$("#infoPlat_dialog").load("../foro/foro.action?idPlat="+id);	

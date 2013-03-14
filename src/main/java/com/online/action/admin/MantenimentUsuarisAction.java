@@ -38,20 +38,62 @@ public class MantenimentUsuarisAction extends ActionSuportOnline{
 	private UsersBo				usersBo;
 	private ComandaBo			comandaBo;
 	private PromocionsBo		promocionsBo;
+	private List<Basic>			associadesList		= new ArrayList<Basic>();
 
 	public String execute(){
+
+		List<PromocioAssociada> listAssociades = this.promocionsBo.getAllAssociades();
+		associadesList.add(new Basic(1,""));
+		for (PromocioAssociada promo : listAssociades) {
+			Basic basic = new Basic(promo.getId(), promo.getNom());
+			associadesList.add(basic);
+		}
 
 		return SUCCESS;
 
 	}
+	
+	
+	public String linkAllUserToPromo(){
 
+		ServletOutputStream out = null;
+		String json = "";
+
+		try {
+
+			out = this.response.getOutputStream();
+			initUserAndPromoId();
+			List<Users> listUsers = this.usersBo.getAll();
+			PromocioAssociada promo = this.promocionsBo.loadAssociada(idPromo);
+			
+			for(Users user : listUsers){	
+				user.setCodePromo(promo.getCode());
+				this.usersBo.update(user);
+			}
+
+		} catch (BOException boe) {
+			json = Utils.createErrorJSON("error in ajax action: Error in BO");
+		} catch (NumberFormatException e) {
+			json = Utils.createErrorJSON("error in ajax action: wrong params" + e.getMessage());
+		} catch (Exception e) {
+			json = Utils.createErrorJSON("error in ajax action");
+		}
+
+		try {
+			out.print(json);
+		} catch (IOException e) {
+			throw new GeneralException(e, "possibly ServletOutputStream null");
+		}
+		return null;
+	}
+	
 	public String linkUserToPromo(){
 
 		ServletOutputStream out = null;
 		String json = "";
 
 		try {
-			
+
 			out = this.response.getOutputStream();
 			initUserAndPromoId();
 			Users user = this.usersBo.findByUsername(this.username);
@@ -151,15 +193,15 @@ public class MantenimentUsuarisAction extends ActionSuportOnline{
 	}
 
 	// private methods
-	
+
 	private void initUserAndPromoId(){
-		
+
 		this.idPromo = (request.getParameter("idPromocio") == null || request.getParameter("idPromocio").toString().equals("")) ? null
 				: Integer.parseInt(request.getParameter("idPromocio"));
-		this.username = (request.getParameter("username") == null || request.getParameter("username").toString().equals("")) ? ""
-				: request.getParameter("username");
+		this.username = (request.getParameter("username") == null || request.getParameter("username").toString().equals("")) ? "" : request
+				.getParameter("username");
 	}
-	
+
 	private void inizializeParamTODeleteUser() throws NumberFormatException{
 
 		this.idUser = (request.getParameter("id") == null) ? null : Long.parseLong(request.getParameter("id"));
@@ -247,5 +289,16 @@ public class MantenimentUsuarisAction extends ActionSuportOnline{
 
 		this.promocionsBo = promocionsBo;
 	}
+
+	public List<Basic> getAssociadesList(){
+	
+		return associadesList;
+	}
+
+	public void setAssociadesList( List<Basic> associadesList ){
+	
+		this.associadesList = associadesList;
+	}
+	
 
 }

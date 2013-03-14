@@ -47,7 +47,9 @@
 		<action name="linkUserToPromo"
 			class="com.online.action.admin.MantenimentUsuarisAction" method="linkUserToPromo">
 		</action>
-		
+		<action name="linkAllUserToPromo"
+			class="com.online.action.admin.MantenimentUsuarisAction" method="linkAllUserToPromo">
+		</action>
 		
 		
 		

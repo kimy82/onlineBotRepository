@@ -42,6 +42,28 @@ function deleteUser(id){
 				});
 	  }
 }
+function linkAllUserToPromo(){
+	var promoId = $("#promoAssocAllUsers").val();
+	var data ="idPromocio="+promoId;
+	$.ajax({
+		  type: "POST",
+		  url: '/'+context+'/admin/linkAllUserToPromo.action',
+		  dataType: 'json',
+		  data: data,
+		  success: function(json){	
+			  	if(json!=null && json.error!=null){	       				
+			  		   $("#errorsajaxlabel").text(json.error);
+					   $("#errorsajax").show();
+     			}else{     				
+     						       			
+     			}	  			  		  			  		  			  	
+		  },
+		  error: function(e){  $("#errorsajaxlabel").text(txterrorAjax);
+		   					   $("#errorsajax").show();
+		  					}
+		});
+}
+
 function linkUserToPromo(){
 	var username = $("#useremail").text();
 	var promoId = $("#promosAssociades").val();
@@ -120,7 +142,7 @@ function infoUser(id){
 	   				}
 	   				
 	   				$("#promosAssociades").empty();
-	   				$("#promosAssociades").append("<option value=''>" "</option>");
+	   				$("#promosAssociades").append("<option value=''></option>");
 	   				$.each(json.promos,function(index, value){
 	   					
        					$("#promosAssociades").append("<option value='"+value.id+"'>"+value.descripcio+"</option>");

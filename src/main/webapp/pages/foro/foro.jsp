@@ -90,12 +90,13 @@
 					</tr>
 					<tr>
 						<td><input class="enviarcom" type="button" onclick="saveComment()"  value="Submit" /></td>
-						<td><input class="enviarcom" type="button" onclick="closeInfoPlat()"  value="Close" /></td>
+						
 					</tr>
 				</c:if>
 			</table>
 	</div>
 </c:if>
+<input class="enviarcom" type="button" onclick="closeInfoPlat()"  value="Close" />
 </div>
 </div>
 </div>
@@ -107,7 +108,7 @@
 	<!--<link rel="stylesheet" href="<c:url value='/css/coin-slider-styles.css' />" type="text/css" />
 
 	<link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/base/jquery-ui.css" rel="stylesheet" type="text/css" />
-	<link type="text/css" rel="stylesheet" href="<c:url value='/css/online.css' />" /> --> 
+	<link type="text/css" rel="stylesheet" href="<c:url value='/css/online.css' />" /> 
 	<script src="<c:url value='/js/jquery/jquery.js' />" type="text/javascript"></script>
 	<script src="<c:url value='/js/jquery/jquery.ui.core.js' />" type="text/javascript"></script>
 	<script src="<c:url value='/js/jquery/jquery.ui.widget.js'/>" type="text/javascript"></script>
@@ -119,7 +120,7 @@
 	<script src="<c:url value='/js/jquery/jquery.ui.resizable.js'/>" type="text/javascript"></script>
 	<script src="<c:url value='/js/jquery/jquery.effects.core.js'/>" type="text/javascript"></script>
 	<script src="<c:url value='/js/jquery/jquery.bgiframe-2.1.1.js'/>" type="text/javascript"></script>
-	<script type="text/javascript" src="<c:url value='/js/slider/coin-slider.min.js' />"></script>
+	<script type="text/javascript" src="<c:url value='/js/slider/coin-slider.min.js' />"></script-->
 	<script src="<c:url value='/pages/foro/jsforo.js'/>" type="text/javascript"></script>
 	<script src="<c:url value='/js/comments/insultDetect.js'/>" type="text/javascript"></script>
 	<script>
