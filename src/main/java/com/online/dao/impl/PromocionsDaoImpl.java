@@ -127,6 +127,20 @@ public class PromocionsDaoImpl extends HibernateDaoSupport implements Promocions
 			return getHibernateTemplate().load(PromocioAssociada.class, id);
 	}
 	
+	public List<PromocioAssociada>  loadAssociadaByCode( String code ){
+		
+		Session session = this.getSessionFactory().openSession();
+		session.beginTransaction();
+		List<PromocioAssociada> promo = (List<PromocioAssociada>) session.createQuery("from PromocioAssociada where code=?").setString(1, code).list();
+		
+		
+	
+		session.getTransaction().commit();
+		session.close();
+		return promo;
+		
+	}
+	
 	public Promocio loadWithDates(Integer promoId){
 		Session session = this.getSessionFactory().openSession();
 		session.beginTransaction();

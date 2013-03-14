@@ -64,6 +64,9 @@
 		<action name="getHoraComanda" class="com.online.action.comanda.WelcomeComandaAction"
 			method="getHoraComanda">
 		</action>
+		<action name="checkPromosEspecial" class="com.online.action.comanda.WelcomeComandaAction"
+			method="checkPromosEspecial">
+		</action>
 		<!-- Action que carrega image de la BBDD -->
 		<action name="ImageAction" class="com.online.image.ImageAction">
 			<result name="success" type="imageResult">

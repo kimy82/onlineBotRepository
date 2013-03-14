@@ -14,6 +14,7 @@ import com.google.gson.GsonBuilder;
 import com.online.bo.BegudaBo;
 import com.online.bo.ComandaBo;
 import com.online.bo.PlatsBo;
+import com.online.bo.PromocionsBo;
 import com.online.bo.RestaurantsBo;
 import com.online.bo.UsersBo;
 import com.online.exceptions.ComandaException;
@@ -25,6 +26,7 @@ import com.online.model.Comandes;
 import com.online.model.HoresDTO;
 import com.online.model.Plat;
 import com.online.model.PlatComanda;
+import com.online.model.PromocioAssociada;
 import com.online.model.Restaurant;
 import com.online.model.Users;
 import com.online.pojos.ARecollirDTO;
@@ -45,6 +47,7 @@ public class WelcomeComandaAction extends ActionSuportOnlineSession{
 	private BegudaBo			begudaBo;
 	private RestaurantsBo		restaurantsBo;
 	private UsersBo				usersBo;
+	private PromocionsBo		promocionsBo;
 	private Comandes			comanda;
 	private Restaurant			restaurant;
 
@@ -121,7 +124,38 @@ public class WelcomeComandaAction extends ActionSuportOnlineSession{
 		return SUCCESS;
 
 	}
+	public String checkPromosEspecial(){
+		ServletOutputStream out = null;
+		String json = "";
 
+		try {
+			out = this.response.getOutputStream();
+			setAuthenticationUser();
+
+			if (this.nameAuth.equals("anonymousUser")) {
+				json = Utils.createNotLogedJSON("User not loged. Login before...");
+			} else {
+				Users user = this.usersBo.findByUsername(this.nameAuth);
+				if(user!=null && user.getCodePromo()!=null && !user.getCodePromo().equals("")){
+					List<PromocioAssociada> promo = this.promocionsBo.loadAssociadaByCode(user.getCodePromo());
+					Gson gson = new GsonBuilder().setPrettyPrinting().excludeFieldsWithoutExposeAnnotation().create();
+					json=gson.toJson(promo);
+				}
+			}
+
+		} catch (ComandaException ce) {
+			json = Utils.createErrorJSON("error in comanda service action");
+		} catch (Exception e) {
+			json = Utils.createErrorJSON("error in ajax action");
+		}
+
+		try {
+			out.print(json);
+		} catch (IOException e) {
+			throw new GeneralException(e, "possibly ServletOutputStream null");
+		}
+		return null;
+	}
 	public String checkComandaPromos(){
 
 		ServletOutputStream out = null;
@@ -860,6 +894,10 @@ public class WelcomeComandaAction extends ActionSuportOnlineSession{
 	public void setNameUser( String nameUser ){
 
 		this.nameUser = nameUser;
+	}
+	public void setPromocionsBo( PromocionsBo promocionsBo ){
+	
+		this.promocionsBo = promocionsBo;
 	}
 
 }

@@ -1,7 +1,8 @@
 package com.online.pojos;
 
+import java.util.List;
+
 import com.google.gson.annotations.Expose;
-import com.online.model.Users;
 
 public class UsersDialog {
 
@@ -35,6 +36,9 @@ public class UsersDialog {
 	
 	@Expose
 	private String				nom;
+	
+	@Expose
+	private List<Basic>			promos;
 
 	// CONSTRUCTORS
 
@@ -114,5 +118,17 @@ public class UsersDialog {
 	public void setNom(String nom) {
 		this.nom = nom;
 	}
+
+	public List<Basic> getPromos(){
+	
+		return promos;
+	}
+
+	public void setPromos( List<Basic> promos ){
+	
+		this.promos = promos;
+	}
+	
+	
 	
 }

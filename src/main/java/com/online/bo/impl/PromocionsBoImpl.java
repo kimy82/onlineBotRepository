@@ -82,6 +82,12 @@ public class PromocionsBoImpl implements PromocionsBo{
 		
 
 	}
+	
+	public List<PromocioAssociada>   loadAssociadaByCode( String code ) throws BOException{
+		if (code == null || code.equals(""))
+			throw new BOException("NUll code to load");
+		return promocionsDao.loadAssociadaByCode(code);
+	}
 
 	public List<Promocio> getAll(){
 

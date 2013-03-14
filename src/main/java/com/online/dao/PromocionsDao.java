@@ -26,6 +26,8 @@ public interface PromocionsDao{
 
 	<E extends Promocio> E load( Integer id );
 	
+	List<PromocioAssociada>   loadAssociadaByCode( String code );
+	
 	PromocioAssociada loadAssociada( Integer id );
 	
 	List<Promocio> getAll();

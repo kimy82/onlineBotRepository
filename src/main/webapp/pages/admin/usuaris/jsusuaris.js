@@ -36,17 +36,40 @@ function deleteUser(id){
 							 reloadTableUsers();							
 		   			}				
 				  },
-				  error: function(e){   $("#errorsajaxlabel").text("Error in ajax call");
+				  error: function(e){   $("#errorsajaxlabel").text(txterrorAjax);
 										$("#errorsajax").show();  		
 				  					}
 				});
 	  }
 }
+function linkUserToPromo(){
+	var username = $("#useremail").text();
+	var promoId = $("#promosAssociades").val();
+	var data ="username="+username+"&idPromocio="+promoId;
+	$.ajax({
+		  type: "POST",
+		  url: '/'+context+'/admin/linkUserToPromo.action',
+		  dataType: 'json',
+		  data: data,
+		  success: function(json){	
+			  	if(json!=null && json.error!=null){	       				
+			  		   $("#errorsajaxlabel").text(json.error);
+					   $("#errorsajax").show();
+     			}else{     				
+     						       			
+     			}	  			  		  			  		  			  	
+		  },
+		  error: function(e){  $("#errorsajaxlabel").text(txterrorAjax);
+		   					   $("#errorsajax").show();
+		  					}
+		});
+}
+
 
 $("#user_dialog").dialog({ 
 	   autoOpen: false,
-	   height: 194,
-	   width: 330,
+	   height: 400,
+	   width: 400,
 	   modal: true,
 	   close: function(event, ui) { 			   
 		   $("#user_dialog").dialog("close"); 			  
@@ -96,10 +119,17 @@ function infoUser(id){
 	   					$("#nComandesSenseTargeta").text(json.numComandesSenseTargeta);
 	   				}
 	   				
+	   				$("#promosAssociades").empty();
+	   				$("#promosAssociades").append("<option value=''>" "</option>");
+	   				$.each(json.promos,function(index, value){
+	   					
+       					$("#promosAssociades").append("<option value='"+value.id+"'>"+value.descripcio+"</option>");
+       				});
+	   				
 	   				$("#user_dialog").dialog("open"); 
 	   			}				
 		  },
-		  error: function(e){   $("#errorsajaxlabel").text("Error in ajax call");
+		  error: function(e){   $("#errorsajaxlabel").text(txterrorAjax);
 								$("#errorsajax").show();  		
 		  					}
 		});
@@ -179,7 +209,7 @@ $(document).ready(function() {
 		           			}            	
 		            	},
 		            	"error":function(e){ 
-		            		$("#errorsajaxlabel").text("Error in ajax call");
+		            		$("#errorsajaxlabel").text(txterrorAjax);
 		            		$("#errorsajax").show();            	
 		            	}
 		        	} );

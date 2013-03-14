@@ -11,11 +11,14 @@ import org.springframework.beans.BeanUtils;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.online.bo.ComandaBo;
+import com.online.bo.PromocionsBo;
 import com.online.bo.UsersBo;
 import com.online.exceptions.BOException;
 import com.online.exceptions.GeneralException;
 import com.online.model.Comandes;
+import com.online.model.PromocioAssociada;
 import com.online.model.Users;
+import com.online.pojos.Basic;
 import com.online.pojos.UsersDialog;
 import com.online.pojos.UsersTable;
 import com.online.supplier.extend.ActionSuportOnline;
@@ -29,14 +32,47 @@ public class MantenimentUsuarisAction extends ActionSuportOnline{
 	private static final long	serialVersionUID	= 1L;
 
 	private Long				idUser				= null;
+	private String				username			= "";
+	private Integer				idPromo				= null;
 
 	private UsersBo				usersBo;
 	private ComandaBo			comandaBo;
+	private PromocionsBo		promocionsBo;
 
 	public String execute(){
 
 		return SUCCESS;
 
+	}
+
+	public String linkUserToPromo(){
+
+		ServletOutputStream out = null;
+		String json = "";
+
+		try {
+			
+			out = this.response.getOutputStream();
+			initUserAndPromoId();
+			Users user = this.usersBo.findByUsername(this.username);
+			PromocioAssociada promo = this.promocionsBo.loadAssociada(idPromo);
+			user.setCodePromo(promo.getCode());
+			this.usersBo.update(user);
+
+		} catch (BOException boe) {
+			json = Utils.createErrorJSON("error in ajax action: Error in BO");
+		} catch (NumberFormatException e) {
+			json = Utils.createErrorJSON("error in ajax action: wrong params" + e.getMessage());
+		} catch (Exception e) {
+			json = Utils.createErrorJSON("error in ajax action");
+		}
+
+		try {
+			out.print(json);
+		} catch (IOException e) {
+			throw new GeneralException(e, "possibly ServletOutputStream null");
+		}
+		return null;
 	}
 
 	public String ajaxDeleteUserAction(){
@@ -115,7 +151,15 @@ public class MantenimentUsuarisAction extends ActionSuportOnline{
 	}
 
 	// private methods
-
+	
+	private void initUserAndPromoId(){
+		
+		this.idPromo = (request.getParameter("idPromocio") == null || request.getParameter("idPromocio").toString().equals("")) ? null
+				: Integer.parseInt(request.getParameter("idPromocio"));
+		this.username = (request.getParameter("username") == null || request.getParameter("username").toString().equals("")) ? ""
+				: request.getParameter("username");
+	}
+	
 	private void inizializeParamTODeleteUser() throws NumberFormatException{
 
 		this.idUser = (request.getParameter("id") == null) ? null : Long.parseLong(request.getParameter("id"));
@@ -128,6 +172,7 @@ public class MantenimentUsuarisAction extends ActionSuportOnline{
 
 		Users user = this.usersBo.load(idUser);
 		List<Comandes> comandes = this.comandaBo.getAllByUser(idUser, false);
+		List<Basic> associadesList = new ArrayList<Basic>();
 		int numComandesRealitzades = 0;
 		int numComandesAmbTargeta = 0;
 		int numComandesSenseTargeta = 0;
@@ -143,11 +188,20 @@ public class MantenimentUsuarisAction extends ActionSuportOnline{
 			}
 
 		}
+
+		List<PromocioAssociada> listAssociades = this.promocionsBo.getAllAssociades();
+
+		for (PromocioAssociada promo : listAssociades) {
+			Basic basic = new Basic(promo.getId(), promo.getNom());
+			associadesList.add(basic);
+		}
+
 		UsersDialog userDialog = new UsersDialog();
 		BeanUtils.copyProperties(user, userDialog);
 		userDialog.setNumComandesAmbTargeta(numComandesAmbTargeta);
 		userDialog.setNumComandesRealitzades(numComandesRealitzades);
 		userDialog.setNumComandesSenseTargeta(numComandesSenseTargeta);
+		userDialog.setPromos(associadesList);
 		Gson gson = new GsonBuilder().setPrettyPrinting().create();
 		return gson.toJson(userDialog);
 	}
@@ -178,7 +232,6 @@ public class MantenimentUsuarisAction extends ActionSuportOnline{
 
 	}
 
-
 	// Getters i setters
 	public void setUsersBo( UsersBo usersBo ){
 
@@ -188,6 +241,11 @@ public class MantenimentUsuarisAction extends ActionSuportOnline{
 	public void setComandaBo( ComandaBo comandaBo ){
 
 		this.comandaBo = comandaBo;
+	}
+
+	public void setPromocionsBo( PromocionsBo promocionsBo ){
+
+		this.promocionsBo = promocionsBo;
 	}
 
 }

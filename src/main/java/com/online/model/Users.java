@@ -31,6 +31,8 @@ public class Users implements Serializable{
 	private String				indicacions;
 	
 	private String				nom;
+	
+	private String				codePromo;
 
 	// CONSTRUCTORS
 	public Users( String username ) {
@@ -135,6 +137,18 @@ public class Users implements Serializable{
 	public void setNom( String nom ){
 	
 		this.nom = nom;
+	}
+
+	public String getCodePromo(){
+	
+		return codePromo;
+	}
+
+	public void setCodePromo( String codePromo ){
+	
+		this.codePromo = codePromo;
 	}		
+	
+	
 
 }

@@ -35,7 +35,7 @@ public class MantenimentPromosAssociadesAction extends ActionSuportOnline{
 	private static final long	serialVersionUID	= 1L;
 
 	private PromocionsBo		promocionsBo;
-	private PromocioAssociada	promocio			= new PromocioAssociada();
+	private PromocioAssociada	promocioAssociada			= new PromocioAssociada();
 
 	private List<Basic>			tipusDescompteList	= new ArrayList<Basic>();
 	private List<Basic>			tipusBegudaList		= new ArrayList<Basic>();
@@ -132,17 +132,17 @@ public class MantenimentPromosAssociadesAction extends ActionSuportOnline{
 
 		try {
 
-			if (this.promocio == null) {
+			if (this.promocioAssociada == null) {
 				addActionError("Error saving promocio");
 				return Action.ERROR;
 			}
 
-			if (this.promocio.getId() == null) {
-				promocio.setFentrada(new Date());
-				promocio.setCode("PR_"+Calendar.getInstance().get(Calendar.DAY_OF_MONTH)+Calendar.getInstance().get(Calendar.HOUR_OF_DAY)+Calendar.getInstance().get(Calendar.MINUTE));
-				this.promocionsBo.saveAssociada(promocio);
+			if (this.promocioAssociada.getId() == null) {
+				promocioAssociada.setFentrada(new Date());
+				promocioAssociada.setCode("PR_"+Calendar.getInstance().get(Calendar.DAY_OF_MONTH)+Calendar.getInstance().get(Calendar.HOUR_OF_DAY)+Calendar.getInstance().get(Calendar.MINUTE));
+				this.promocionsBo.saveAssociada(promocioAssociada);
 			} else {
-				this.promocionsBo.updateAssociada(promocio);
+				this.promocionsBo.updateAssociada(promocioAssociada);
 			}
 
 		} catch (BOException boe) {
@@ -225,5 +225,16 @@ public class MantenimentPromosAssociadesAction extends ActionSuportOnline{
 
 		this.tipusBegudaList = tipusBegudaList;
 	}
+
+	public PromocioAssociada getPromocioAssociada(){
+	
+		return promocioAssociada;
+	}
+
+	public void setPromocioAssociada( PromocioAssociada promocioAssociada ){
+	
+		this.promocioAssociada = promocioAssociada;
+	}
+	
 
 }

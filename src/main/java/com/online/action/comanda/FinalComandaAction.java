@@ -65,6 +65,8 @@ public class FinalComandaAction extends ActionSuportOnline{
 				inizializeAddress();
 				updatePromoUses();
 				
+				Users user = this.usersBo.findByUsername(this.nameAuth);
+				
 				this.comanda = this.comandaBo.load(this.idComanda);
 
 				this.comanda.setHora(Utils.getHora(this.hora));
@@ -73,13 +75,16 @@ public class FinalComandaAction extends ActionSuportOnline{
 				this.comanda.setTargeta(Boolean.valueOf(targeta));
 				this.comanda.setAddress(this.address);
 
-				if (this.comanda.getUser() == null) {
-					Users user = this.usersBo.findByUsername(this.nameAuth);
+				if (this.comanda.getUser() == null) {					
 					this.comanda.setUser(user);
 				}
 				this.comanda.setPreu(this.comandaService.getPreuOfComanda(comanda));
 				this.comandaBo.update(this.comanda);
 				json = this.comandaService.checkComandaProblems(this.comanda, resource);
+				if(json.equals("") && user!=null){
+					user.setCodePromo("");
+					this.usersBo.update(user);
+				}
 			}
 
 		} catch (ComandaException ce) {

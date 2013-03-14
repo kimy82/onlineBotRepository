@@ -27,6 +27,8 @@
 			<result name="error">/error.jsp</result>		
 		</action>
 		
+		
+		
 		<!-- Actions usuaris -->
 		<action name="usuaris" class="com.online.action.admin.MantenimentUsuarisAction"
 			method="execute">
@@ -42,6 +44,12 @@
 		<action name="ajaxInfoUserAction"
 			class="com.online.action.admin.MantenimentUsuarisAction" method="ajaxInfoUserAction">
 		</action>
+		<action name="linkUserToPromo"
+			class="com.online.action.admin.MantenimentUsuarisAction" method="linkUserToPromo">
+		</action>
+		
+		
+		
 		
 		<!-- Actions per restaurants -->
 		<action name="restaurants"
@@ -96,11 +104,15 @@
 			class="com.online.action.admin.MantenimentRestaurantsAction" method="ajaxTablePlatsAction">
 		</action>
 		
+		
+		
 		<!-- Action que carrega image de la BBDD -->
 		<action name="ImageAction" class="com.online.image.ImageAction">
 			<result name="success" type="imageResult">
 			</result>
 		</action>
+		
+		
 		
 		<!-- Actions per plats  -->
 		<action name="saveNewPlat"
@@ -148,6 +160,8 @@
 		<action name="loadMotersAndConfig"
 			class="com.online.action.admin.MantenimentConfigAction" method="loadMotersAndConfig">
 		</action>
+		
+		
 		
 			<!-- Actions per config Moters-->
 		<action name="configMoters" class="com.online.action.admin.MantenimentConfigMotersAction"

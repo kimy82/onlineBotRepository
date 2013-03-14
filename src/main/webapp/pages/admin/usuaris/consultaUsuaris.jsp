@@ -60,6 +60,7 @@
 	<h1><s:text name="txt.user.nComandesRealitzades" /></h1><label id="nComandesRealitzades" ></label><br>
 	<h1><s:text name="txt.user.nComandesAmbTargeta" /></h1><label id="nComandesAmbTargeta" ></label><br>
 	<h1><s:text name="txt.user.nComandesSenseTargeta" /></h1><label id="nComandesSenseTargeta" ></label><br>
+	<h1><s:text name="txt.user.AssociaPromo" /></h1><select id="promosAssociades" onchange="linkUserToPromo()" > <option value="" >&nbsp;</option></select>
 </div> 
 <!-- Scripts --> 
 	<link rel="stylesheet" href="<c:url value='/css/admin.css' />" type="text/css"   media="screen" />

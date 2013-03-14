@@ -280,6 +280,12 @@
 				
 					
 				</ul>
+		<h1><s:text name="txt.promo.escull.promo.especial" /><input id="codePromo" type="text" value="" onblur="checkPromoEspecial()" /></h1>
+				<ul id="esp" >
+				
+					
+				</ul>
+		
 </div>  
 	
 	<!-- CSS portamu --> 
