@@ -17,13 +17,14 @@ import com.online.bo.PromocionsBo;
 import com.online.exceptions.ComandaException;
 import com.online.exceptions.GeneralException;
 import com.online.model.Promocio;
+import com.online.model.PromocioAssociada;
 import com.online.pojos.Basic;
 import com.online.pojos.PromocioChart;
 import com.online.pojos.PromocioChartDates;
 import com.online.supplier.extend.ActionSuportOnline;
 import com.online.utils.Utils;
 
-public class ChartPromocionsAction extends ActionSuportOnline{
+public class ChartPromocionsAssociadesAction extends ActionSuportOnline{
 
 	/**
 	 * 
@@ -33,8 +34,8 @@ public class ChartPromocionsAction extends ActionSuportOnline{
 	private PromocionsBo		promocionsBo;
 
 	private Integer				idPromo				= null;
-	
-	private List<Basic>        idsPromocions = new ArrayList<Basic>();
+
+	private List<Basic>			idsPromocions		= new ArrayList<Basic>();
 
 	public String execute(){
 
@@ -77,10 +78,10 @@ public class ChartPromocionsAction extends ActionSuportOnline{
 
 	private String searchInfoANDcreateJSONForPromos(){
 
-		List<Promocio> promoList = this.promocionsBo.getAll();
+		List<PromocioAssociada> promoList = this.promocionsBo.getAllAssociades();
 
 		List<PromocioChart> promoChartList = new ArrayList<PromocioChart>();
-		for (Promocio promo : promoList) {
+		for (PromocioAssociada promo : promoList) {
 			Basic basic = new Basic();
 			basic.setDescripcio(promo.getNom());
 			basic.setId(promo.getId());
@@ -90,40 +91,40 @@ public class ChartPromocionsAction extends ActionSuportOnline{
 			promoChartList.add(promoChart);
 		}
 
-		Gson gson = new GsonBuilder().setPrettyPrinting().serializeNulls().create();
+		Gson gson = new GsonBuilder().setPrettyPrinting().excludeFieldsWithoutExposeAnnotation().serializeNulls().create();
 		String json = gson.toJson(promoChartList);
 		return json;
 
 	}
 
 	private String searchInfoANDcreateJSONForDatesPromo(){
- 
-		Promocio promo = this.promocionsBo.loadWithDates(this.idPromo);
-		int month= Calendar.getInstance().get(Calendar.MONTH)+1;
+
+		PromocioAssociada promo = this.promocionsBo.loadWithDatesAssociades(this.idPromo);
+		int month = Calendar.getInstance().get(Calendar.MONTH) + 1;
 		List<PromocioChartDates> promoChartDatesList = new ArrayList<PromocioChartDates>();
-		String[] listDates = promo.getDates()!=null? promo.getDates().split(" ") : "".split(" ");
-		Map<Integer,Integer> datesHash = new HashMap<Integer,Integer>();
-		for (String  date : listDates) {
+		String[] listDates = promo.getDates() != null ? promo.getDates().split(" ") : "".split(" ");
+		Map<Integer, Integer> datesHash = new HashMap<Integer, Integer>();
+		for (String date : listDates) {
 			Integer monthGet = Utils.getMonth(date);
 			Integer dayGet = Utils.getDay(date);
-			if(monthGet!=month)continue;
-			
-			if(datesHash.containsKey(dayGet)){
+			if (monthGet != month)
+				continue;
+
+			if (datesHash.containsKey(dayGet)) {
 				Integer numUsed = datesHash.get(dayGet);
 				datesHash.remove(dayGet);
-				datesHash.put(dayGet, numUsed+1);
-			}else{
+				datesHash.put(dayGet, numUsed + 1);
+			} else {
 				datesHash.put(dayGet, 1);
 			}
-			
-			
+
 		}
-		Integer numDay=1;
-		for(numDay=1 ;numDay<32; numDay++){
-			Integer numUsed = datesHash.containsKey(numDay)?datesHash.get(numDay):0;
+		Integer numDay = 1;
+		for (numDay = 1; numDay < 32; numDay++) {
+			Integer numUsed = datesHash.containsKey(numDay) ? datesHash.get(numDay) : 0;
 			PromocioChartDates promoChartDates = new PromocioChartDates();
 			promoChartDates.setDate(numDay);
-			promoChartDates.setNumUsed(numUsed);			
+			promoChartDates.setNumUsed(numUsed);
 			promoChartDatesList.add(promoChartDates);
 		}
 
@@ -141,14 +142,13 @@ public class ChartPromocionsAction extends ActionSuportOnline{
 	}
 
 	public List<Basic> getIdsPromocions(){
-	
+
 		return idsPromocions;
 	}
 
 	public void setIdsPromocions( List<Basic> idsPromocions ){
-	
+
 		this.idsPromocions = idsPromocions;
 	}
-	
-	
+
 }

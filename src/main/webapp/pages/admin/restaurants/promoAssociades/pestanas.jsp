@@ -26,6 +26,7 @@
 		  			<li id="pestanya.mto" ><a href="<c:url value='promocions.action' />" >Promos</a></li>
 			      	<li id="pestanya.mto"><a href="<c:url value='promoChart.action' />" >Grafics</a></li>
 			      	<li id="pestanya.mto" class="seleccionat" ><a href="<c:url value='promocionsAssociades.action' />" >Promos Associades</a></li>
+			      	<li id="pestanya.mto"><a href="<c:url value='promocionsAssociadesChart.action' />" >Grafics Associades</a></li>
 		      	</ul>
 		  </li>
 		  <li id="pestanya.mto"><a href="<c:url value='presentacio.action' />" >Slider</a></li>

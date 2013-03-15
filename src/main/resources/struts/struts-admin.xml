@@ -92,6 +92,8 @@
 			<result name="error">/error.jsp</result>					
 		</action>				
 
+		
+		
 		<!-- Consultes AJAX manteniment restaurants -->
 		<action name="ajaxTableRestaurantsAction"
 			class="com.online.action.admin.MantenimentRestaurantsAction" method="ajaxTableRestaurants">
@@ -254,6 +256,16 @@
 		<action name="ajaxTablePromosAss"
 			class="com.online.action.admin.MantenimentPromosAssociadesAction" method="ajaxTablePromosAss">
 		</action>
+		<action name="promocionsAssociadesChart" class="com.online.action.admin.ChartPromocionsAssociadesAction"
+			method="execute">
+			<result name="success">/pages/admin/restaurants/promoAssociades/grafics/promocioGraph.jsp</result>		
+		</action>
+		<action name="showDatesAssociades"
+			class="com.online.action.admin.ChartPromocionsAssociadesAction" method="showDates">
+		</action>
+		
+		
+		
 		
 		<!-- Actions per begudes -->
 		<action name="begudes" class="com.online.action.admin.MantenimentBegudaAction"

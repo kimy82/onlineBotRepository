@@ -46,6 +46,13 @@ public class PromocionsBoImpl implements PromocionsBo{
 		return null;
 	}
 	
+	public PromocioAssociada loadWithDatesAssociades(Integer promoId) throws BOException{
+		if(promoId!=null){
+			return	promocionsDao.loadWithDatesAssociades(promoId);
+		}	
+		return null;
+	}
+	
 	public void updateNumUsed( Integer promoId,String data) throws BOException{
 		if(promoId!=null){
 			promocionsDao.updateNumUsed(promoId,data);

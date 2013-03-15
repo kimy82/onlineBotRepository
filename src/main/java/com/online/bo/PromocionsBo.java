@@ -46,4 +46,6 @@ public interface PromocionsBo{
 	List<PromocioNumComandes> getAllNumComandes() throws BOException;
 
 	Promocio loadWithDates(Integer promoId) throws BOException;
+	
+	PromocioAssociada loadWithDatesAssociades(Integer promoId) throws BOException;
 }

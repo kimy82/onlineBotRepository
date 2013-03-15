@@ -20,7 +20,14 @@
 		      	</ul></li>
 		  <li id="pestanya.mto"><a href="<c:url value='config.action' />" >Config Hores obertures</a></li>
 		  <li id="pestanya.mto"><a href="<c:url value='configMoters.action' />" >Config Moters</a></li>
-		  <li id="pestanya.mto"><a href="<c:url value='promocions.action' />" >Promos</a></li>
+		  <li id="pestanya.mto"><a href="#" >PROMOCIONS</a>
+		  		<ul>
+		  			<li id="pestanya.mto"><a href="<c:url value='promocions.action' />" >Promos</a></li>
+			      	<li id="pestanya.mto"><a href="<c:url value='promoChart.action' />" >Grafics</a></li>
+			      	<li id="pestanya.mto"><a href="<c:url value='promocionsAssociades.action' />" >Promos Associades</a></li>
+			      	<li id="pestanya.mto"><a href="<c:url value='promocionsAssociadesChart.action' />" >Grafics Associades</a></li>
+		      	</ul>
+		  </li>
 		  <li id="pestanya.mto" class="seleccionat"><a href="<c:url value='presentacio.action' />" >Slider</a></li>
 		  <li id="pestanya.mto"><a href="<c:url value='comments.action' />" >Comments</a></li>  	      	   	  
       </ul>

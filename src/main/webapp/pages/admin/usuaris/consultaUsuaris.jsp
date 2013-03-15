@@ -31,7 +31,8 @@
 				<label style="color: red" id="errorsajaxlabel"></label>
 			</div>
 			<br>
-			<h1><s:text name="txt.user.AssociaPromo" /></h1><s:select  onchange="linkAllUserToPromo()"  id="promoAssocAllUsers"  list="associadesList" listKey="id" listValue="descripcio"></s:select>
+			<h1><s:text name="txt.user.AssociaPromo" /></h1><s:select  onchange="linkAllUserToPromo()"  id="promoAssocAllUsers"  headerValue="" headerKey="" list="associadesList" listKey="id" listValue="descripcio">						
+			</s:select>
 			<br>
 	  		<div  style="width:932px;" alig="center">
 				<table class="selecciom dataTable" id="tbl_usuaris" width="932px">

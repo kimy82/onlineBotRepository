@@ -45,4 +45,7 @@ public interface PromocionsDao{
 	List<PromocioNumComandes> getAllNumComandes();
 	
 	Promocio loadWithDates(Integer promoId);
+	
+	PromocioAssociada loadWithDatesAssociades(Integer promoId);
+	
 }

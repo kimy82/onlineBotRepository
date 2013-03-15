@@ -12,7 +12,7 @@ public class PromocioChart{
 	@Expose
 	private String				nom					= "";
 
-	@Expose
+
 	private Integer				numUses				= 0;
 
 	@Expose

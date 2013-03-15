@@ -43,7 +43,6 @@ public class MantenimentUsuarisAction extends ActionSuportOnline{
 	public String execute(){
 
 		List<PromocioAssociada> listAssociades = this.promocionsBo.getAllAssociades();
-		associadesList.add(new Basic(1,""));
 		for (PromocioAssociada promo : listAssociades) {
 			Basic basic = new Basic(promo.getId(), promo.getNom());
 			associadesList.add(basic);
@@ -64,13 +63,19 @@ public class MantenimentUsuarisAction extends ActionSuportOnline{
 			out = this.response.getOutputStream();
 			initUserAndPromoId();
 			List<Users> listUsers = this.usersBo.getAll();
-			PromocioAssociada promo = this.promocionsBo.loadAssociada(idPromo);
+			if(this.idPromo!=null){
 			
-			for(Users user : listUsers){	
-				user.setCodePromo(promo.getCode());
-				this.usersBo.update(user);
+				PromocioAssociada promo = this.promocionsBo.loadAssociada(idPromo);
+				for(Users user : listUsers){	
+					user.setCodePromo(promo.getCode());
+					this.usersBo.update(user);
+				}
+			}else{
+				for(Users user : listUsers){	
+					user.setCodePromo("");
+					this.usersBo.update(user);
+				}
 			}
-
 		} catch (BOException boe) {
 			json = Utils.createErrorJSON("error in ajax action: Error in BO");
 		} catch (NumberFormatException e) {
@@ -96,10 +101,12 @@ public class MantenimentUsuarisAction extends ActionSuportOnline{
 
 			out = this.response.getOutputStream();
 			initUserAndPromoId();
-			Users user = this.usersBo.findByUsername(this.username);
-			PromocioAssociada promo = this.promocionsBo.loadAssociada(idPromo);
-			user.setCodePromo(promo.getCode());
-			this.usersBo.update(user);
+			if(this.idPromo!=null && this.username!=null){
+				Users user = this.usersBo.findByUsername(this.username);
+				PromocioAssociada promo = this.promocionsBo.loadAssociada(idPromo);
+				user.setCodePromo(promo.getCode());
+				this.usersBo.update(user);
+			}
 
 		} catch (BOException boe) {
 			json = Utils.createErrorJSON("error in ajax action: Error in BO");
