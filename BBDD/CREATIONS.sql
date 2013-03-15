@@ -1,13 +1,19 @@
-set global  max_allowed_packet = 73741824;
-
 /* alters init*/
 ALTER TABLE PROMOCIONS ADD COLUMN HORA VARCHAR(20) NULL;
 ALTER TABLE PROMOCIONS ADD COLUMN NUM_USES INT(4) NULL;
 ALTER TABLE PROMOCIONS ADD COLUMN NUM_USED INT(4) NULL;
 ALTER TABLE PROMOCIONS ADD COLUMN LIST_DATE_USED VARCHAR(10000) NULL;
 
+/*per veure info en els grafics de les promos normals. Primer s'han de crear*/
 update promocions set list_date_used="2013-03-01 2013-03-01 2013-03-04 20
-13-03-04 2013-03-20 2013-03-20 2130-03-20 2013-03-29", NUM_USED=8, NUM_USES=50 where 1=1;
+13-03-04 2013-03-20 2013-03-20 2130-03-20 2013-03-29" where 1=1;
+update promocions set NUM_USED=24 where 1=1;
+update promocions set NUM_USES=98 where 1=1;
+
+/*per veure info en els grafics de les promos assignables. Primer s'han de crear*/
+update promos_associated set list_date_used="2013-03-01 2013-03-01 2013-03-04 20
+13-03-04 2013-03-20 2013-03-20 2130-03-20 2013-03-29" where 1=1;
+update promos_associated set NUM_USED=24 where 1=1;
 
 ALTER TABLE PROMOCIONS ADD COLUMN FENTRADA DATE;
 ALTER TABLE PROMOCIONS ADD COLUMN ACTIU_DILLUNS tinyint(1) NOT NULL DEFAULT 1;
@@ -19,7 +25,9 @@ ALTER TABLE PROMOCIONS ADD COLUMN ACTIU_DISSABTE tinyint(1) NOT NULL DEFAULT 1;
 ALTER TABLE PROMOCIONS ADD COLUMN ACTIU_DIUMENGE tinyint(1) NOT NULL DEFAULT 1;
 
 ALTER TABLE users ADD COLUMN PROMO_DISP VARCHAR(10);
-
+	
+/* alters finish*/
+/*nova taula per les promos assignables*/
 CREATE TABLE promos_associated (
 	PROMOCIO_ASS_ID INT(10) UNSIGNED,
 	CODE VARCHAR(10),
@@ -36,8 +44,7 @@ CREATE TABLE promos_associated (
     LIST_DATE_USED VARCHAR(10000) NULL,
 	PRIMARY KEY (PROMOCIO_ASS_ID)  USING BTREE
 )ENGINE=InnoDB DEFAULT CHARSET=utf8;
-	
-/* alters finish*/
+
 CREATE TABLE `users` (
   `USER_ID` INT(10) UNSIGNED NOT NULL,
   `USERNAME` VARCHAR(45) NOT NULL,
