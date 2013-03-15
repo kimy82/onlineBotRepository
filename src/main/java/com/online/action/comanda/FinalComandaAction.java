@@ -86,7 +86,8 @@ public class FinalComandaAction extends ActionSuportOnline{
 				
 				if(json.contains("comandaOK") && user!=null){
 					updatePromoUses();
-					user.setCodePromo("");
+					if(this.promoId!=null)
+						user.setCodePromo("");
 					this.usersBo.update(user);
 				}
 			}
@@ -116,7 +117,7 @@ public class FinalComandaAction extends ActionSuportOnline{
 	}
 	private void updatePromoUses() throws WrongParamException{
 		try{
-			this.promoId = (request.getParameter("promoId") == null || request.getParameter("promoId").equals("") || request.getParameter("promoId").equals("undefined")) ? null : Integer.parseInt(request
+			this.promoId = (request.getParameter("promoId") == null || request.getParameter("promoId").equals("") || request.getParameter("promoId").equals("undefined") || request.getParameter("promoId").equals("null")) ? null : Integer.parseInt(request
 					.getParameter("promoId"));
 			this.tipusPromo = (request.getParameter("tipusPromo") == null || request.getParameter("tipusPromo").equals("") || request.getParameter("tipusPromo").equals("undefined")) ? null : request
 					.getParameter("tipusPromo");
