@@ -5,6 +5,7 @@
 <%@ page import="java.util.Locale"%>
 <html>
 <head>
+	<link rel="shortcut icon" href="<c:url value='/img/elements/logo_portamu16.jpg' />"> 
     <title><s:text name="txt.config.moters.title.gestio" /></title>     	        
 </head>
 <body id="confMot">

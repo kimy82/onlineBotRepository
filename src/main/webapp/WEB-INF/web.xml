@@ -3,8 +3,11 @@
 	xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee 
 	http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd">
 
-	<display-name>Archetype Created Web Application</display-name>
-
+	<display-name>PORTAMU</display-name>
+	<icon>
+	    <large-icon>/img/elements/logo_portamu32.jpg</large-icon>
+	    <small-icon>/img/elements/logo_portamu16.jpg</small-icon>	    
+	</icon>
 	<context-param>
 		<param-name>app</param-name>
 		<param-value>onlineBot</param-value>

@@ -9,6 +9,7 @@
 	<META http-equiv="Content-Style-Type" content="text/css">
 	<meta http-equiv="content-type" content="text/html;charset=utf-8" />
 	<meta name="viewport" content="width=device-width,initial-scale=0.99,maximum-scale=0.99" />
+	<link rel="shortcut icon" href="<c:url value='/img/elements/logo_portamu16.jpg' />"> 
 	<title><s:text name="txt.welcome.principal" /></title>	
 </head>
 <body id="restaurants" >

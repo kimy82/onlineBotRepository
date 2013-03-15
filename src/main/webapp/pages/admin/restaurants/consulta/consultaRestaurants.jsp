@@ -8,6 +8,7 @@
 	pageEncoding="ISO-8859-1"%>
 <META http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <META http-equiv="Content-Style-Type" content="text/css">
+<link rel="shortcut icon" href="<c:url value='/img/elements/logo_portamu16.jpg' />"> 
 <title><s:text name="mant.restaurants.title" /></title>
 <link rel="stylesheet" href="<c:url value='/css/demo_table.css' />" type="text/css"   media="screen" />
 <link rel="stylesheet" href="<c:url value='/css/components.css' />" type="text/css"   media="screen" />  
