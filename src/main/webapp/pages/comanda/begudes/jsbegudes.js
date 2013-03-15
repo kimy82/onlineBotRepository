@@ -271,5 +271,7 @@ $(document).ready(function() {
 		
 });
 
-
+function closeInfoBeguda(){
+	$("#infoBeguda_dialog").dialog("close");
+}	
 

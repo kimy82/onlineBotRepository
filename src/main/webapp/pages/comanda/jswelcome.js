@@ -510,4 +510,8 @@ $(document).ready(function() {
 	
 function closeInfoPlat(){
 	$("#infoPlat_dialog").dialog("close");
-}		
+}	
+function closeInfoBeguda(){
+	$("#infoBeguda_dialog").dialog("close");
+}	
+
