@@ -24,9 +24,6 @@
     <div id="div_pantalla" style="width:950px;" alig="">
       <c:import url="pestanas.jsp" />
    		 <div id="div_body" align="left">
-			<h2>
-				<s:text name="txt.mant.user.title" />
-			</h2>
 	
 			<div id="errorsajax">
 				<label style="color: red" id="errorsajaxlabel"></label>

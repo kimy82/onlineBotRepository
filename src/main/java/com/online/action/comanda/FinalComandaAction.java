@@ -111,7 +111,7 @@ public class FinalComandaAction extends ActionSuportOnline{
 
 		this.address = (request.getParameter("address") == null || request.getParameter("address").equals("")) ? null : request
 				.getParameter("address");
-		if (this.address == null && this.aDomicili == null || this.aDomicili.equals("true")) {
+		if ((this.address == null && this.aDomicili == null) || (this.address == null && this.aDomicili.equals("true"))) {
 			throw new WrongParamException("null address of comanda");
 		}
 	}

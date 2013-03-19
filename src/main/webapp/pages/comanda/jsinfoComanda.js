@@ -405,7 +405,7 @@ function addRecollir(){
 	  		  error: function(e){   errorOnline.error(txterrorAjax);	
 	  		  					}
 	  		});	
-		
+	  		reloadHores();
 		
 	}else{
 		$("#arecollir_div").hide('slow'); 

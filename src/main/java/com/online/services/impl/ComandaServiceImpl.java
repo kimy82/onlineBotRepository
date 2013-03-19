@@ -822,7 +822,7 @@ public class ComandaServiceImpl implements ComandaService{
 				numPlats = numPlats + pl.getNumPlats();
 				String nomPlat=pl.getPlat().getNom();
 				if(!pl.getPlat().isActiu()){
-					nomPlat = nomPlat+" "+this.resource.getString("txt.plat.no.actiu");
+					nomPlat = nomPlat+"<font color=\"red\" >"+this.resource.getString("txt.plat.no.actiu")+"</font>";
 				}
 				PlatComandaCart platComandaCart = new PlatComandaCart(pl.getNumPlats(),pl.getPlat().getId(),nomPlat);
 				platComandaCartList.add(platComandaCart);

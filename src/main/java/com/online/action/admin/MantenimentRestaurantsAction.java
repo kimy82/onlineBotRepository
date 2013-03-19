@@ -243,7 +243,9 @@ public class MantenimentRestaurantsAction extends ActionSuportOnline{
 	private String searchInfoANDcreateJSONForRestaurants(){
 
 		List<Restaurant> restaurantList = restaurantsBo.getAll(true, true, true);
-
+		
+		if(restaurantList==null || restaurantList.isEmpty()) return Utils.createEmptyJSONForDataTable(sEcho);
+		
 		List<Restaurant> subRestaurantList = restaurantList.subList(inici, ((inici + lenght) < restaurantList.size()) ? (inici + lenght)
 				: restaurantList.size());
 

@@ -74,8 +74,8 @@
 							<s:textarea key="beguda.descripcio" id="descripcioBeguda" onkeyup="return ismaxlength(this,1000)" cols="40" rows="4" ></s:textarea>
 							<s:textarea key="beguda.descripcioES" id="descripcioBegudaES" onkeyup="return ismaxlength(this,1000)" cols="40" rows="4" ></s:textarea>
 							<s:file name="fileUpload" label="Escull una fotografia" size="40" />																																											
-							<s:hidden key="beguda.id" id="id" ></s:hidden>										
-								<s:submit onclick="submitBeguda()" ></s:submit>
+							<s:hidden key="beguda.id" id="id" ></s:hidden>			
+							<tr><td><input type="button" value="submit" onclick="submitBeguda()" ></input></td></tr>							
 						</s:form>			
 					</div>															
 				<br>						

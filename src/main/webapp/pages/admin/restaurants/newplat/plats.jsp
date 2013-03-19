@@ -53,10 +53,10 @@
 					<s:textfield key="plat.prioritat" id="prioritatplat" onkeyup="onlyEntero(this.value,this.id)"  ></s:textfield>
 					<s:textfield key="plat.tempsPreparacio" id="tempsplat" onkeyup="onlyEntero(this.value,this.id)"  ></s:textfield>
 					<s:textfield key="plat.codi" id="codiplat" onkeyup="return ismaxlength(this,20)"  ></s:textfield>
-					<c:if test="${plat.actiu == true}">
+					<c:if test="${empty plat or plat.actiu == true or  empty plat.id}" var="actiu" >
 						<s:checkbox  key="plat.actiu" id="actiuplat" value="true" ></s:checkbox>
 					</c:if>
-					<c:if test="${plat.actiu == false}">
+					<c:if test="${actiu== false}">
 						<s:checkbox  key="plat.actiu" id="actiuplat" ></s:checkbox>
 					</c:if>
 					<s:textarea key="plat.descripcio" id="descplat" cols="40" rows="4" onkeyup="return ismaxlength(this,1000)" ></s:textarea>	
