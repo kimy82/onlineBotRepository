@@ -11,6 +11,7 @@ import com.online.bo.UsersBo;
 import com.online.dao.UsersDao;
 import com.online.exceptions.BOException;
 import com.online.exceptions.EmailException;
+import com.online.exceptions.UserExistException;
 import com.online.model.NewsLetter;
 import com.online.model.Users;
 import com.online.services.SendingEmailService;
@@ -45,7 +46,7 @@ public class UsersBoImpl implements UsersBo{
 		return this.usersDao.checkUserBeguda(idUser, idBeguda);
 	}
 
-	public void save( Users user ) throws BOException, Exception{
+	public void save( Users user ) throws BOException, UserExistException, Exception{
 
 		checkUser(user);
 		usersDao.save(user);

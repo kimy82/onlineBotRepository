@@ -9,7 +9,7 @@ import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.online.dao.UsersDao;
-import com.online.exceptions.BOException;
+import com.online.exceptions.UserExistException;
 import com.online.model.Comandes;
 import com.online.model.NewsLetter;
 import com.online.model.UserRole;
@@ -18,15 +18,20 @@ import com.online.model.Users;
 public class UsersDaoImpl extends HibernateDaoSupport implements UsersDao{
 
 	public void save( Users user ){
-
-		getHibernateTemplate().save(user);
-
-		UserRole userRole = new UserRole();
-		userRole.setRole("ROLE_USER");
-		userRole.setIdUser(user.getId());
-		userRole.setId(user.getId());
-
-		getHibernateTemplate().save(userRole);
+		
+		Users userInDB = findByUsername(user.getUsername());
+		if(userInDB==null){
+			getHibernateTemplate().save(user);
+	
+			UserRole userRole = new UserRole();
+			userRole.setRole("ROLE_USER");
+			userRole.setIdUser(user.getId());
+			userRole.setId(user.getId());
+	
+			getHibernateTemplate().save(userRole);
+		}else{
+			throw new UserExistException();
+		}
 
 	}
 

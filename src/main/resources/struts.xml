@@ -32,8 +32,9 @@
 		<action name="registerUser" class="com.online.action.LoginAction" method="registerUser" >
 			<interceptor-ref name="defaultStack" />
 			<result name="success" >/</result>
+			<result name="user_exist" type="redirectAction"  >/Welcome.action</result>
 			<result name="input">/pages/login/register.jsp</result>	
-			<result name="error">/error.jsp</result>		
+			<result name="error">/error.jsp</result>
 		</action>
 		<action name="preRegisterUser" class="com.online.action.LoginAction" method="preRegisterUser" >
 			<result name="success" >/pages/login/register.jsp</result>

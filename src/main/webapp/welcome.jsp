@@ -190,5 +190,11 @@ var initParams = new InitParams("<s:text name='txt.comanda.existeix.vol.continua
 <c:import url="/pages/includes/confirmOnline.jsp" />
 <c:import url="/pages/includes/errorAjax.jsp" />
 <c:import url="/pages/includes/alertOnline.jsp" />
+<script type="text/javascript" >
+	var userExist="${requestScope.userExist}";
+	if(userExist=='true'){
+		alertOnline.alertes("<s:text name='txt.user.exist' />");		
+	}
+</script>
 </body>
 </html>

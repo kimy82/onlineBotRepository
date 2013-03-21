@@ -4,6 +4,7 @@ import java.security.NoSuchAlgorithmException;
 import java.util.List;
 
 import com.online.exceptions.BOException;
+import com.online.exceptions.UserExistException;
 import com.online.model.NewsLetter;
 import com.online.model.Users;
 
@@ -11,7 +12,7 @@ import com.online.model.Users;
 
 public interface UsersBo {
 	
-	void save(Users user) throws BOException,Exception;
+	void save(Users user) throws BOException,UserExistException, Exception;
 	
 	void update(Users user) throws BOException;
 	

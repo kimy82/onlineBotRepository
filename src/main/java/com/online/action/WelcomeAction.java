@@ -3,9 +3,6 @@ package com.online.action;
 import java.util.Date;
 import java.util.List;
 
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
-
 import com.online.bo.RestaurantsBo;
 import com.online.bo.UsersBo;
 import com.online.model.Restaurant;
@@ -35,6 +32,11 @@ public class WelcomeAction extends ActionSuportOnlineSession{
 		setUserName();
 		
 		setLocaleIfNull("ca");
+		
+		if(request.getSession().getAttribute("userExist")!=null){
+			request.getSession().removeAttribute("userExist");
+			request.setAttribute("userExist", "true");
+		}
 		
 		this.restaurantList = this.restaurantsBo.getAll(true, false, false);
 		if(this.restaurantList!=null){
@@ -179,5 +181,6 @@ public class WelcomeAction extends ActionSuportOnlineSession{
 
 	public void setNameUser(String nameUser) {
 		this.nameUser = nameUser;
-	}		
+	}
+	
 }

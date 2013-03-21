@@ -8,6 +8,7 @@ import org.apache.struts2.interceptor.ServletRequestAware;
 
 import com.online.bo.UsersBo;
 import com.online.exceptions.BOException;
+import com.online.exceptions.UserExistException;
 import com.online.model.Users;
 import com.online.utils.Utils;
 import com.opensymphony.xwork2.ActionSupport;
@@ -70,7 +71,10 @@ public class LoginAction extends ActionSupport implements ServletRequestAware{
 		} catch (BOException e) {
 			addActionError("Sorry, it has been an error:" + e.getMessage());
 			return ERROR;
-		} catch (Exception e) {
+		}  catch (UserExistException e) {
+			request.getSession().setAttribute("userExist", "true");
+			return "user_exist";
+		}catch (Exception e) {
 			addActionError("Sorry, it has been an unknown error");
 			return ERROR;
 		}

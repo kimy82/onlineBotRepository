@@ -229,6 +229,7 @@ function goToRestaurantMenu(id){
 	var data = window.localStorage.getItem("comanda.data");
 	
 	var comandaConfirm = window.localStorage.getItem("comanda.confirm");
+	var timeoutdata = window.localStorage.getItem("comanda.timeout.data");
 	
 	if(comandaConfirm !='undefined' && comandaConfirm!=null){
 		var currentDay = new Date();
@@ -236,12 +237,18 @@ function goToRestaurantMenu(id){
 			window.localStorage.removeItem("comanda.confirm");
 		}
 	}
-	
+	if(timeoutdata !='undefined' && timeoutdata!=null){
+		var currentDay = new Date();
+		if((currentDay.getTime()-timeoutdata)>60*24000){
+			window.localStorage.clear();
+		}
+	}
 	comandaConfirm = window.localStorage.getItem("comanda.confirm");
 	
 	if(comanda != 'undefined' && comanda != null && comandaConfirm == null){
 		var day = new Date();
 		window.localStorage.setItem("comanda.confirm",day.getTime());
+		window.localStorage.setItem("comanda.timeout.data",day.getTime());
 		acceptComandaDialog();
 	}else{
 		window.location.href="/"+context+"/comanda/Welcome.action?restaurantId="+id+"&data="+data;
