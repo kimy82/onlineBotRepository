@@ -70,7 +70,7 @@
 	<link rel="stylesheet" href="<c:url value='/css/TableTools.css' />" type="text/css"   media="screen" />
 	<link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/base/jquery-ui.css" rel="stylesheet" type="text/css" />
 
-	<script src="<c:url value='/js/jquery/jquery.js' />" type="text/javascript"></script>
+	<!--  script src="<c:url value='/js/jquery/jquery.js' />" type="text/javascript"></script>
 	<script src="<c:url value='/js/jquery/jquery.ui.core.js' />" type="text/javascript"></script>
 	<script src="<c:url value='/js/jquery/jquery.ui.widget.js'/>" type="text/javascript"></script>
 	<script src="<c:url value='/js/jquery/jquery.ui.mouse.js'/>" type="text/javascript"></script>
@@ -85,7 +85,9 @@
 	<script src="<c:url value='/js/jquery/jquery.dataTables.js'/>" type="text/javascript"></script>
 	<script src="<c:url value='/js/jquery/TableTools.js'/>" type="text/javascript"></script>
 	<script src="<c:url value='/js/jquery/ZeroClipboard.js'/>" type="text/javascript"></script>
-	<script type="text/javascript" src="<c:url value='/pages/admin/usuaris/jsusuaris.js' />"></script>
+	<script type="text/javascript" src="<c:url value='/pages/admin/usuaris/jsusuaris.js' />"></script-->
+	
+	<script type="text/javascript" src="<c:url value='/pages/admin/usuaris/jsusuaris.min.js' />"></script>
 
 <script language="javascript">
 	var initTableParams = new InitTableParams(
