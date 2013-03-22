@@ -149,18 +149,14 @@
 <!-- END container -->
 <c:import url="/pages/includes/endPage.jsp" />
 
-	<!-- CSS portamu --> 
 	<link rel="stylesheet" type="text/css" href="<c:url value='/css/portamu/prova.css' />" />
 	<link rel="stylesheet" type="text/css" href="<c:url value='/css/portamu/global.css' />" />
 	<link rel="stylesheet" type="text/css" href="<c:url value='/css/portamu/reset.css' />" />
-	<!-- FONTS -->
-	<link href='http://fonts.googleapis.com/css?family=Raleway:800,400' rel='stylesheet' type='text/css'>
-	<!-- CSS portamu -->
-	
+	<link href='http://fonts.googleapis.com/css?family=Raleway:800,400' rel='stylesheet' type='text/css'>	
 	<link rel="stylesheet" href="<c:url value='/css/coin-slider-styles.css' />" type="text/css" />
-	<!--  link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/base/jquery-ui.css" rel="stylesheet" type="text/css" /-->
 	<link type="text/css" rel="stylesheet" href="<c:url value='/css/online.css' />" />
-	<script src="<c:url value='/js/jquery/jquery.js' />" type="text/javascript"></script>
+	
+	<!--  script src="<c:url value='/js/jquery/jquery.js' />" type="text/javascript"></script>
 	<script src="<c:url value='/js/jquery/jquery.ui.core.js' />" type="text/javascript"></script>
 	<script src="<c:url value='/js/jquery/jquery.ui.widget.js'/>" type="text/javascript"></script>
 	<script src="<c:url value='/js/jquery/jquery.ui.mouse.js'/>" type="text/javascript"></script>
@@ -173,14 +169,15 @@
 	<script src="<c:url value='/js/jquery/jquery.bgiframe-2.1.1.js'/>" type="text/javascript"></script>
 	<script src="<c:url value='/js/jquery/jquery-ui.js' />" type="text/javascript"></script>
 	<script type="text/javascript" src="<c:url value='/js/slider/coin-slider.js' />"></script>
-	<!-- adress validation -->
 	<script src="<c:url value='/js/address/autocompleteStreet.js'/>" type="text/javascript"></script>
 	<script src="<c:url value='/js/address/autocompleteCodi.js'/>" type="text/javascript"></script>
 	<script src="<c:url value='/js/address/addressValidationForm.js'/>" type="text/javascript"></script>
-		<script src="<c:url value='/js/address/addressValidationFormbis.js'/>" type="text/javascript"></script>
+	<script src="<c:url value='/js/address/addressValidationFormbis.js'/>" type="text/javascript"></script>
 	<script src="http://maps.google.com/maps/api/js?sensor=false" type="text/javascript"></script>
+	<script src="<c:url value='/jswelcome.js'/>" type="text/javascript"></script-->
 	
-	<script src="<c:url value='/jswelcome.js'/>" type="text/javascript"></script>
+	<script src="<c:url value='/jswelcome.min.js'/>" type="text/javascript"></script>
+	
 <script type="text/javascript" >
 new Address.addressValidation("<s:text name='txt.addressOK' />","<s:text name='txt.addressKO' />");
 var initParams = new InitParams("<s:text name='txt.comanda.existeix.vol.continuar' />","<s:text name='txt.welcome.confirmar' />",

@@ -39,7 +39,7 @@
 	<link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/base/jquery-ui.css" rel="stylesheet" type="text/css" />
 	<link type="text/css" rel="stylesheet" href="<c:url value='/css/online.css' />" />
 
-	<script src="<c:url value='/js/jquery/jquery.js' />" type="text/javascript"></script>
+	<!--  script src="<c:url value='/js/jquery/jquery.js' />" type="text/javascript"></script>
 	<script src="<c:url value='/js/jquery/jquery.ui.core.js' />" type="text/javascript"></script>
 	<script src="<c:url value='/js/jquery/jquery.ui.widget.js'/>" type="text/javascript"></script>
 	<script src="<c:url value='/js/jquery/jquery.ui.mouse.js'/>" type="text/javascript"></script>
@@ -51,9 +51,9 @@
 	<script src="<c:url value='/js/jquery/jquery.effects.core.js'/>" type="text/javascript"></script>
 	<script src="<c:url value='/js/jquery/jquery.bgiframe-2.1.1.js'/>" type="text/javascript"></script>
 	<script src="<c:url value='/js/jquery/jquery-ui.js' />" type="text/javascript"></script>
-	<script src="<c:url value='/js/jquery/jquery.dataTables.js' />" type="text/javascript"></script>
+	<script src="<c:url value='/js/jquery/jquery.dataTables.js' />" type="text/javascript"></script-->
 	
-	<script type="text/javascript" src="<c:url value='/pages/users/votacions/jsvota.js' />"></script>
+	<script type="text/javascript" src="<c:url value='/pages/users/votacions/jsvota.min.js' />"></script>
 	<script language="javascript">
 		
 		var initParams = new  InitParams();

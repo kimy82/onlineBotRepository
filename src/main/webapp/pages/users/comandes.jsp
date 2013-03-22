@@ -109,7 +109,7 @@
 	<link href='http://fonts.googleapis.com/css?family=Raleway:800,400' rel='stylesheet' type='text/css'>
 	<!-- CSS portamu -->
 
-	<script src="<c:url value='/js/jquery/jquery.js' />" type="text/javascript"></script>
+	<!--  script src="<c:url value='/js/jquery/jquery.js' />" type="text/javascript"></script>
 	<script src="<c:url value='/js/jquery/jquery.ui.core.js' />" type="text/javascript"></script>
 	<script src="<c:url value='/js/jquery/jquery.ui.widget.js'/>" type="text/javascript"></script>
 	<script src="<c:url value='/js/jquery/jquery.ui.mouse.js'/>" type="text/javascript"></script>
@@ -122,15 +122,14 @@
 	<script src="<c:url value='/js/jquery/jquery.bgiframe-2.1.1.js'/>" type="text/javascript"></script>
 	<script src="<c:url value='/js/jquery/jquery-ui.js' />" type="text/javascript"></script>
 	<script src="<c:url value='/js/jquery/jquery.dataTables.js' />" type="text/javascript"></script>
-	
-		<!-- Per validar l'adreca -->
-		<!-- Per validar l'adreca -->
 	<script src="<c:url value='/js/address/autocompleteStreet.js'/>" type="text/javascript"></script>
 	<script src="<c:url value='/js/address/autocompleteCodi.js'/>" type="text/javascript"></script>
 	<script src="<c:url value='/js/address/addressValidationForm.js'/>" type="text/javascript"></script>
 	<script src="http://maps.google.com/maps/api/js?sensor=false" type="text/javascript"></script>
 	
-	<script type="text/javascript" src="<c:url value='/pages/users/jscomandes.js' />"></script>
+	<script type="text/javascript" src="<c:url value='/pages/users/jscomandes.js' />"></script-->
+	
+	<script type="text/javascript" src="<c:url value='/pages/users/jscomandes.min.js' />"></script>
 	<script language="javascript">
 
 	
