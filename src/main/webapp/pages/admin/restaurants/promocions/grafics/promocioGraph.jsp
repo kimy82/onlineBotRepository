@@ -41,19 +41,22 @@
 <!-- Scripts --> 
 
 	<!-- script src="/ParticipadasIntosWeb/web/js/3rd-party-j.js" type="text/javascript"></script -->
-	<script type="text/javascript" src="<c:url value='/js/ext/ext-base.js' />"></script>
-	<script type="text/javascript" src="<c:url value='/js/ext/ext-all.js' />"></script>
+
 
 	<link rel="stylesheet" href="<c:url value='/css/demo_table.css' />" type="text/css"   media="screen" />
 	<link rel="stylesheet" href="<c:url value='/css/components.css' />" type="text/css"   media="screen" />  
-	<!-- Calendari -->  
 	<link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/base/jquery-ui.css" rel="stylesheet" type="text/css" />
+	
+	<!--  script type="text/javascript" src="<c:url value='/js/ext/ext-base.js' />"></script>
+	<script type="text/javascript" src="<c:url value='/js/ext/ext-all.js' />"></script>
 	<script src="<c:url value='/js/jquery/jquery.js' />" type="text/javascript"></script>
 	<script src="<c:url value='/js/jquery/jquery.ui.core.js' />" type="text/javascript"></script>
 	<script src="<c:url value='/js/jquery/jquery.dataTables.js'/>" type="text/javascript"></script>
 
 	<script type="text/javascript" src="<c:url value='/pages/admin/restaurants/promocions/grafics/jspromocioGraph.js' />"></script>
-	<script type="text/javascript" src="<c:url value='/js/validations/jsvalidations.js' />"></script>
+	<script type="text/javascript" src="<c:url value='/js/validations/jsvalidations.js' />"></script-->
+	
+	<script type="text/javascript" src="<c:url value='/pages/admin/restaurants/promocions/grafics/jspromocioGraph.min.js' />"></script>
 
 <script language="javascript">			
 	var myData = ${requestScope.dataChart};

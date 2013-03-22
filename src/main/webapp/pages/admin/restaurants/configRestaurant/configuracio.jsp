@@ -119,11 +119,13 @@
     <link rel="stylesheet" href="<c:url value='/css/demo_table.css' />" type="text/css"   media="screen" />
 	<link rel="stylesheet" href="<c:url value='/css/components.css' />" type="text/css"   media="screen" />  
     <link rel="stylesheet" type="text/css" href="<c:url value='/css/ext-all.css'/>" />   
-	<script src="<c:url value='/js/jquery/jquery.js'/>" type="text/javascript"></script>
+	<!--  script src="<c:url value='/js/jquery/jquery.js'/>" type="text/javascript"></script>
 	<script src="<c:url value='/js/loadCalendar.js'/>" type="text/javascript" ></script>   
     <script type="text/javascript" src="<c:url value='/js/ext/ext-base.js'/>"></script>
     <script type="text/javascript" src="<c:url value='/js/ext/ext-all-debug.js'/>"></script>  	
-	<script src="<c:url value='/pages/admin/restaurants/configRestaurant/jsconfig.js'/>" type="text/javascript"></script>    	
+	<script src="<c:url value='/pages/admin/restaurants/configRestaurant/jsconfig.js'/>" type="text/javascript"></script-->
+	
+	<script src="<c:url value='/pages/admin/restaurants/configRestaurant/jsconfig.min.js'/>" type="text/javascript"></script>    	
 
 <script language="javascript">
 		var initTableParams = new InitTableParams("<s:text  name='txt.dades.cargades'/>");

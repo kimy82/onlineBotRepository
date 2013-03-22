@@ -80,7 +80,7 @@
 	<link rel="stylesheet" href="<c:url value='/css/coin-slider-styles.css' />" type="text/css" />
 	<link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/base/jquery-ui.css" rel="stylesheet" type="text/css" />
 	<link type="text/css" rel="stylesheet" href="<c:url value='/css/online.css' />" />
-	<script src="<c:url value='/js/jquery/jquery.js' />" type="text/javascript"></script>
+	<!-- script src="<c:url value='/js/jquery/jquery.js' />" type="text/javascript"></script>
 	<script src="<c:url value='/js/jquery/jquery.ui.core.js' />" type="text/javascript"></script>
 	<script src="<c:url value='/js/jquery/jquery.ui.widget.js'/>" type="text/javascript"></script>
 	<script src="<c:url value='/js/jquery/jquery.ui.mouse.js'/>" type="text/javascript"></script>
@@ -91,8 +91,9 @@
 	<script src="<c:url value='/js/jquery/jquery.ui.resizable.js'/>" type="text/javascript"></script>
 	<script src="<c:url value='/js/jquery/jquery.effects.core.js'/>" type="text/javascript"></script>
 	<script src="<c:url value='/js/jquery/jquery.bgiframe-2.1.1.js'/>" type="text/javascript"></script>
-	<script type="text/javascript" src="<c:url value='/js/slider/coin-slider.min.js' />"></script>
-	<script src="<c:url value='/pages/admin/restaurants/comentaris/jscomentaris.js'/>" type="text/javascript"></script>
+	<script src="<c:url value='/pages/admin/restaurants/comentaris/jscomentaris.js'/>" type="text/javascript"></script-->
+	
+	<script src="<c:url value='/pages/admin/restaurants/comentaris/jscomentaris.min.js'/>" type="text/javascript"></script>
 	<script>
 
 		var initParams = new InitParams("<s:text name='txt.comment.deleted'/>");
