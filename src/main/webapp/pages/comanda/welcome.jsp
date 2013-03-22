@@ -234,16 +234,15 @@
 <div id="infoBeguda_dialog" class="filtres filtres-oberts">	 		
 </div>  
 <c:import url="/pages/includes/endPage.jsp" />
-<!-- Scripts --> 
+
 	<!-- CSS portamu --> 
 	<link rel="stylesheet" type="text/css" href="<c:url value='/css/portamu/global.css' />" />
 	<link rel="stylesheet" type="text/css" href="<c:url value='/css/portamu/reset.css' />" />
-	<!-- FONTS -->
-	<link href='http://fonts.googleapis.com/css?family=Raleway:800,400' rel='stylesheet' type='text/css'>
-	<!-- CSS portamu -->	
+	<link href='http://fonts.googleapis.com/css?family=Raleway:800,400' rel='stylesheet' type='text/css'>	
 	<link rel="stylesheet" href="<c:url value='/css/coin-slider-styles.css' />" type="text/css" />
 	<link type="text/css" rel="stylesheet" href="<c:url value='/css/online.css' />" />
-	<script src="<c:url value='/js/jquery/jquery.js' />" type="text/javascript"></script>
+	
+	<!-- script src="<c:url value='/js/jquery/jquery.js' />" type="text/javascript"></script>
 	<script src="<c:url value='/js/jquery/jquery.ui.core.js' />" type="text/javascript"></script>
 	<script src="<c:url value='/js/jquery/jquery.ui.widget.js'/>" type="text/javascript"></script>
 	<script src="<c:url value='/js/jquery/jquery.ui.mouse.js'/>" type="text/javascript"></script>
@@ -253,11 +252,11 @@
 	<script src="<c:url value='/js/jquery/jquery.ui.droppable.js'/>" type="text/javascript"></script>
 	<script src="<c:url value='/js/jquery/jquery.ui.resizable.js'/>" type="text/javascript"></script>
 	<script src="<c:url value='/js/jquery/jquery.effects.core.js'/>" type="text/javascript"></script>
-	<script src="<c:url value='/js/jquery/jquery.bgiframe-2.1.1.js'/>" type="text/javascript"></script>
+	<script src="<c:url value='/js/jquery/jquery.bgiframe-2.1.1.js'/>" type="text/javascript"></script -->
 	
 	
 	
-	
+	<script src="<c:url value='/pages/comanda/jqueryWelcome.min.js'/>" type="text/javascript"></script>
 	<script type="text/javascript" >		
 		//Carrega del cistell de compra 
 			$("#numComanda").text('${requestScope.idComanda}');
@@ -268,7 +267,7 @@
 			var idRestaurant = '${requestScope.restaurant.id}';
 			window.localStorage.setItem("comanda.restaurant",idRestaurant);
 	</script>
-	<script src="<c:url value='/pages/comanda/jswelcome.js'/>" type="text/javascript"></script>
+	<script src="<c:url value='/pages/comanda/jswelcome.min.js'/>" type="text/javascript"></script>
 	
 	<script type="text/javascript" >
 		var initParams = new InitParams("<s:text name='txt.welcome.confirmar' />","<s:text name='txt.welcome.productes' />",

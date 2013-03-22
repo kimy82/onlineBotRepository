@@ -314,7 +314,7 @@
 	<link type="text/css" rel="stylesheet" href="<c:url value='/css/online.css' />" />
 	<link type="text/css" rel="stylesheet" href="<c:url value='/css/portamu/prova.css' />" />
 
-	<script src="<c:url value='/js/jquery/jquery.js' />" type="text/javascript"></script>
+	<!--  script src="<c:url value='/js/jquery/jquery.js' />" type="text/javascript"></script>
 	<script src="<c:url value='/js/jquery/jquery.ui.core.js' />" type="text/javascript"></script>
 	<script src="<c:url value='/js/jquery/jquery.ui.widget.js'/>" type="text/javascript"></script>
 	<script src="<c:url value='/js/jquery/jquery.ui.mouse.js'/>" type="text/javascript"></script>
@@ -326,23 +326,26 @@
 	<script src="<c:url value='/js/jquery/jquery.effects.core.js'/>" type="text/javascript"></script>
 	<script src="<c:url value='/js/jquery/jquery.bgiframe-2.1.1.js'/>" type="text/javascript"></script>
 	<script src="<c:url value='/js/jquery/jquery-ui.js' />" type="text/javascript"></script>
-	<!-- Calendari -->  
+	
 	<script type="text/javascript" src="<c:url value='/js/calendari/calendar.js'/>"></script>
 	<script type="text/javascript" src="<c:url value='/js/calendari/calendar-cat.js'/>"></script>
 	<script type="text/javascript" src="<c:url value='/js/calendari/calendar-es.js'/>"></script>
 	<script type="text/javascript" src="<c:url value='/js/calendari/calendar-idioma.js'/>"></script>		
 	<script type="text/javascript" src="<c:url value='/js/calendari/calendar-setup.js'/>"></script>
-	<!-- Per validar l'adreca -->
+
 	<script src="<c:url value='/js/address/autocompleteStreet.js'/>" type="text/javascript"></script>
 	<script src="<c:url value='/js/address/autocompleteCodi.js'/>" type="text/javascript"></script>
-	
-	<script src="<c:url value='/js/address/addressValidationForm.js'/>" type="text/javascript"></script>
 	<script src="http://maps.google.com/maps/api/js?sensor=false" type="text/javascript"></script>
+	<script src="<c:url value='/js/address/addressValidationForm.js'/>" type="text/javascript"></script>
 	
-	<!-- Sliders de begudes -->
 	<script src="<c:url value='/js/sudoSlider/jquery.sudoSlider.js'/>" type="text/javascript"></script>
 	<script type="text/javascript" src="<c:url value='/js/progressbar/progress.js'/>"></script>
-	<script type="text/javascript" src="<c:url value='/pages/comanda/jsinfoComanda.js'/>"></script>	
+	<script type="text/javascript" src="<c:url value='/pages/comanda/jsinfoComanda.js'/>"></script-->
+	
+	<script type="text/javascript" src="<c:url value='/pages/comanda/jsinfoComanda.min.js'/>"></script-->
+	
+	
+		
 <script type="text/javascript" >
 			  
 var initParams = new InitParams("<s:text name='txt.beguda.no.tipus.promo' />","<s:text name='txt.beguda.no.more.promo' />","<s:text name='txt.add.beguda.to.box' />", 

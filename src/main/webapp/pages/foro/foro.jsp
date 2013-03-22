@@ -98,8 +98,8 @@
 
 	<link rel="stylesheet" type="text/css" href="<c:url value='/css/portamu/foro.css' />" />
 	<link rel="stylesheet" type="text/css" href="<c:url value='/css/portamu/reset.css' />" />
-	<script src="<c:url value='/pages/foro/jsforo.js'/>" type="text/javascript"></script>
-	<script src="<c:url value='/js/comments/insultDetect.js'/>" type="text/javascript"></script>
+	<script src="<c:url value='/pages/foro/jsforo.min.js'/>" type="text/javascript"></script>
+	<!--  script src="<c:url value='/js/comments/insultDetect.js'/>" type="text/javascript"></script-->
 	<script>
 
 		var initParams = new InitParams("<s:text name='txt.comment.saved' />",
