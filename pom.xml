@@ -90,7 +90,7 @@
 		</dependency>
 
 		<!-- Hibernate framework -->
-		<dependency> 
+		<dependency>
 			<groupId>hibernate</groupId>
 			<artifactId>hibernate3</artifactId>
 			<version>3.2.3.ga</version>
@@ -101,7 +101,7 @@
 			<groupId>dom4j</groupId>
 			<artifactId>dom4j</artifactId>
 			<version>1.6.1</version>
-		</dependency> 
+		</dependency>
 
 		<dependency>
 			<groupId>commons-logging</groupId>
@@ -156,7 +156,7 @@
 			<artifactId>tools</artifactId>
 			<version>1.5</version>
 			<scope>system</scope>
-			<systemPath>C:/Program Files (x86)/Java/jdk1.6.0_17/lib/tools.jar</systemPath>
+			<systemPath>C:/Program Files/Java/jdk1.7.0_02/lib/tools.jar</systemPath>
 		</dependency>
 		<dependency>
 			<groupId>javax.mail</groupId>
@@ -234,22 +234,19 @@
 	</dependencies>
 
 	<build>
-		<finalName>onlinep</finalName>
+		<finalName>elteurestaurantacasa</finalName>
 		<plugins>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-war-plugin</artifactId>
 				<version>2.3</version>
 				<configuration>
-					<warName></warName>				
+					<warName>elteurestaurantacasa</warName>				
 				</configuration>
 			</plugin>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-install-plugin</artifactId>
-				<configuration>
-					
-				</configuration>
 				<version>2.4</version>
 				<executions>
 					<execution>
@@ -260,7 +257,7 @@
 						</goals>
 						<configuration>
 							<!-- excludeArtifactIds> <artifactId>struts2-core</artifactId> </excludeArtifactIds -->
-							
+
 						</configuration>
 					</execution>
 				</executions>
@@ -272,8 +269,8 @@
 				<version>6.1.10</version>
 				<configuration>
 
-					<webAppSourceDirectory>${basedir}/target/onlineBot</webAppSourceDirectory>
-
+					<webAppSourceDirectory>${basedir}/target/elteurestaurantacasa</webAppSourceDirectory>
+					
 					<connectors>
 						<connector implementation="org.mortbay.jetty.nio.SelectChannelConnector">
 							<port>9090</port>
