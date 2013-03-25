@@ -5,8 +5,7 @@
 
 	<display-name>PORTAMU</display-name>
 	<icon>
-	    <large-icon>/img/elements/logo_portamu32.jpg</large-icon>
-	    <small-icon>/img/elements/logo_portamu16.jpg</small-icon>	    
+	    <large-icon>/img/elements/logo_portamu32.jpg</large-icon>	    
 	</icon>
 	
 	<context-param>

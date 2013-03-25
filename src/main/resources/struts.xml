@@ -24,14 +24,14 @@
 		</action>		
 		<action name="changeLocale" class="com.online.action.WelcomeAction"
 			method="changeLocale">
-			<result name="success">/</result>
+			<result name="success" type="redirectAction" >/Welcome.action</result>
 		</action>
 		<action name="login" class="login" method="login" >
 			<result name="success" >/pages/login/login.jsp</result>
 		</action>
 		<action name="registerUser" class="com.online.action.LoginAction" method="registerUser" >
 			<interceptor-ref name="defaultStack" />
-			<result name="success" >/</result>
+			<result name="success" type="redirectAction" >/Welcome.action</result>
 			<result name="user_exist" type="redirectAction"  >/Welcome.action</result>
 			<result name="input">/pages/login/register.jsp</result>	
 			<result name="error">/error.jsp</result>
@@ -52,7 +52,7 @@
 		</action>
 		<action name="recoverAccount" class="com.online.action.LoginAction" method="recoverAccount" >
 			<interceptor-ref name="defaultStack" />
-			<result name="success" >/</result>
+			<result name="success" type="redirectAction">/Welcome.action</result>
 			<result name="input">/pages/login/recoverAccount.jsp</result>
 			<result name="error">error.jsp</result>	
 			<result name="notfound">/pages/login/notFound.jsp</result>
