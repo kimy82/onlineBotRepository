@@ -90,7 +90,7 @@
 		</dependency>
 
 		<!-- Hibernate framework -->
-		<dependency>
+		<dependency> 
 			<groupId>hibernate</groupId>
 			<artifactId>hibernate3</artifactId>
 			<version>3.2.3.ga</version>
@@ -101,7 +101,7 @@
 			<groupId>dom4j</groupId>
 			<artifactId>dom4j</artifactId>
 			<version>1.6.1</version>
-		</dependency>
+		</dependency> 
 
 		<dependency>
 			<groupId>commons-logging</groupId>
@@ -156,7 +156,7 @@
 			<artifactId>tools</artifactId>
 			<version>1.5</version>
 			<scope>system</scope>
-			<systemPath>C:/Program Files/Java/jdk1.6.0_27/lib/tools.jar</systemPath>
+			<systemPath>C:/Program Files (x86)/Java/jdk1.6.0_17/lib/tools.jar</systemPath>
 		</dependency>
 		<dependency>
 			<groupId>javax.mail</groupId>
@@ -234,12 +234,22 @@
 	</dependencies>
 
 	<build>
-		<finalName>onlineBot</finalName>
-
+		<finalName>onlinep</finalName>
 		<plugins>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-war-plugin</artifactId>
+				<version>2.3</version>
+				<configuration>
+					<warName></warName>				
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-install-plugin</artifactId>
+				<configuration>
+					
+				</configuration>
 				<version>2.4</version>
 				<executions>
 					<execution>
@@ -250,7 +260,7 @@
 						</goals>
 						<configuration>
 							<!-- excludeArtifactIds> <artifactId>struts2-core</artifactId> </excludeArtifactIds -->
-
+							
 						</configuration>
 					</execution>
 				</executions>
@@ -274,25 +284,9 @@
 					<stopKey>foo</stopKey>
 				</configuration>
 			</plugin>
-			<plugin>
-				<groupId>com.samaxes.maven</groupId>
-				<artifactId>minify-maven-plugin</artifactId>
-				<version>1.5.2</version>
-				<configuration>
-
-
-					<jsSourceDir>pages/admin/restaurants/begudes</jsSourceDir>
-					<jsSourceFiles>
-						<jsSourceFile>jsbegudes.js</jsSourceFile>
-					</jsSourceFiles>
-					<jsFinalFile>jsbegudes.js</jsFinalFile>
-
-
-
-
-				</configuration>
-			</plugin>
-
 		</plugins>
 	</build>
+	<properties>
+    	<m2eclipse.wtp.contextRoot>/</m2eclipse.wtp.contextRoot>
+	</properties>
 </project>

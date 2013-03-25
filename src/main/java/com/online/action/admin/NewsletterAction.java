@@ -41,7 +41,8 @@ public class NewsletterAction extends ActionSuportOnline{
 
 			out = this.response.getOutputStream();
 			String[] emails = getEmailsFromUsers();
-			this.usersBo.sendEmails(this.txtToSend, emails);
+			String app =this.request.getSession().getServletContext().getInitParameter("app");
+			this.usersBo.sendEmails(this.txtToSend, emails,app);
 
 		} catch (Exception e) {
 			json = Utils.createErrorJSON("error in ajax action");

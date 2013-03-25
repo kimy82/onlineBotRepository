@@ -18,6 +18,7 @@ public class MantenimentPresentacioAction extends ActionSuportOnline{
 	 * 
 	 */
 	private static final long	serialVersionUID	= 1L;
+	private String app;
 
 	public String execute(){
 
@@ -28,7 +29,7 @@ public class MantenimentPresentacioAction extends ActionSuportOnline{
 	public String newFotoPresentacio(){
 
 		try {
-
+			this.app =this.request.getSession().getServletContext().getInitParameter("app");
 			String numPhoto = request.getParameter("foto") != null ? request.getParameter("foto") : "1";
 			Image image = getImageFromUpload(numPhoto);
 
@@ -62,7 +63,7 @@ public class MantenimentPresentacioAction extends ActionSuportOnline{
 					File outputfile = new File(whereToSave);
 					ImageIO.write(bi, "jpg", outputfile);
 
-					whereToSave = whereToSave.replace("\\target\\onlineBot", "\\src\\main\\webapp");
+					whereToSave = whereToSave.replace("\\target\\"+app, "\\src\\main\\webapp");
 
 					File outputfileReal = new File(whereToSave.replace("\\target", ""));
 					ImageIO.write(bi, "jpg", outputfileReal);

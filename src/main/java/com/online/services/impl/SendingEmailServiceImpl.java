@@ -27,7 +27,7 @@ public class SendingEmailServiceImpl implements SendingEmailService{
 	}
 
 	
-	public void sendEmail(String textbody, String email) throws EmailException{
+	public void sendEmail(String textbody, String email,String app) throws EmailException{
 
 		final String username = "joaquim.orra@gmail.com";
 		final String password = "linda82linda";
@@ -52,7 +52,7 @@ public class SendingEmailServiceImpl implements SendingEmailService{
 			message.setFrom(new InternetAddress("portamu@gmail.com"));
 			message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(email));
 			message.setSubject("PORTAMU Recover password");
-			message.setContent(textbody+createFooter(), "text/html");
+			message.setContent(textbody+createFooter(app), "text/html");
  
 			Transport.send(message);
 
@@ -63,7 +63,7 @@ public class SendingEmailServiceImpl implements SendingEmailService{
 		}
 	}
 
-	public void sendEmailsTo(String textbody, String[] emails) throws EmailException, AddressException{
+	public void sendEmailsTo(String textbody, String[] emails, String app) throws EmailException, AddressException{
 
 		final String username = "joaquim.orra@gmail.com";
 		final String password = "linda82linda";
@@ -96,7 +96,7 @@ public class SendingEmailServiceImpl implements SendingEmailService{
 			
 			message.setSubject("News from PORTAMU");
 			
-			message.setContent(textbody+createFooter(), "text/html");
+			message.setContent(textbody+createFooter(app), "text/html");
  
 			Transport.send(message);
  
@@ -108,8 +108,8 @@ public class SendingEmailServiceImpl implements SendingEmailService{
 	}
 	
 	//PRIVATE
-	private String createFooter(){
-		String footer="<br><a href=\"http://localhost:9090/onlineBot/admin/newsletter.action\" >Visit PORTAMU</a>";
+	private String createFooter(String app){
+		String footer="<br><a href=\"http://portamu.com/"+app+"/admin/newsletter.action\" >Visit PORTAMU</a>";
 		return footer;
 	}
 }

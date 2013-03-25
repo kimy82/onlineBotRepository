@@ -8,9 +8,10 @@
 	    <large-icon>/img/elements/logo_portamu32.jpg</large-icon>
 	    <small-icon>/img/elements/logo_portamu16.jpg</small-icon>	    
 	</icon>
+	
 	<context-param>
 		<param-name>app</param-name>
-		<param-value>onlineBot</param-value>
+		<param-value>elteurestaurantacasa</param-value>
 	</context-param>
 	<context-param>
 		<description>temps en segons</description>

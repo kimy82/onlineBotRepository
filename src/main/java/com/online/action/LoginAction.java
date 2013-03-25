@@ -96,7 +96,8 @@ public class LoginAction extends ActionSupport implements ServletRequestAware{
 				addActionError("Error hashing password");
 				return ERROR;
 			}
-			this.usersBo.sendEmail("<h1>PORTAMU Recover account</h1><br>your new password is:" + password ,username);
+			String app =this.request.getSession().getServletContext().getInitParameter("app");
+			this.usersBo.sendEmail("<h1>PORTAMU Recover account</h1><br>your new password is:" + password ,username,app);
 		} else {
 			request.setAttribute("userNotFound", "user not found");
 			return "notfound";

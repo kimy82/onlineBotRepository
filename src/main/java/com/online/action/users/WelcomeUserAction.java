@@ -281,9 +281,10 @@ public class WelcomeUserAction extends ActionSuportOnline{
 	private String getLinksVotacions( Comandes comanda ){
 
 		StringBuffer nomPlats = new StringBuffer("");
+		String app =this.request.getSession().getServletContext().getInitParameter("app");
 		for (PlatComanda platComanda : comanda.getPlats()) {
 			nomPlats.append("<a href='#' onclick='goToVotarPlat(" + platComanda.getPlat().getId()
-					+ ")' ><img  src='/onlineBot/images/info.gif' /></a><br>");
+					+ ")' ><img  src='/"+app+"/images/info.gif' /></a><br>");
 		}
 		if (nomPlats.length() != 0)
 			nomPlats.setLength(nomPlats.length() - 4);

@@ -84,8 +84,8 @@ public class MantenimentComandesAction extends ActionSuportOnline{
 
 			inizializeIdComanda();
 			Comandes comanda = this.comandaBo.load(this.idComanda);
-
-			this.usersBo.sendEmail(resource.getString("txt.info.comanda.no.procesada"), comanda.getUser().getUsername());
+			String app =this.request.getSession().getServletContext().getInitParameter("app");
+			this.usersBo.sendEmail(resource.getString("txt.info.comanda.no.procesada"), comanda.getUser().getUsername(),app);
 			this.comandaBo.delete(comanda);
 
 		} catch (NumberFormatException e) {

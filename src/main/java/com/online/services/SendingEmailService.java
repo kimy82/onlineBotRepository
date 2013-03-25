@@ -6,7 +6,7 @@ import com.online.exceptions.EmailException;
 
 
 public interface SendingEmailService{
-	public void sendEmail(String textbody, String email) throws EmailException;
-	public void sendEmailsTo(String textbody, String[] emails) throws EmailException, AddressException;
+	public void sendEmail(String textbody, String email,String app) throws EmailException;
+	public void sendEmailsTo(String textbody, String[] emails,String app) throws EmailException, AddressException;
 
 }
