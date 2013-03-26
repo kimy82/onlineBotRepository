@@ -14,7 +14,7 @@
 
 .prevBtn {
      left: -40px;
-     top: 60px;
+     top: 105px;
 }
 
 #slider {
@@ -25,30 +25,30 @@
 .prevBtn, .nextBtn {
      cursor: pointer;
      display: block;
-     height: 77px;
+     height: 42px;
      position: relative;
      z-index: 1000;
 }
 
 .nextBtn {
      left: 1001px;
-     top: -20px;
+     top: 63px;
 }
 
 .nextBtn {
-     background: #333;
+     background: #3099ef;
      width:40px
 }
 .nextBtn:hover {
-     background: #3FA9F5;
+     background: #333;
      width:40px
 }
 
 .prevBtn {
-    background: #333;
+    background: #3099ef;
     width:40px
 }
 .prevBtn:hover {
-     background: #3FA9F5;
+     background: #333;
      width:40px
 }

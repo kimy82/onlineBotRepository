@@ -104,3 +104,11 @@ margin-left:-20px;
 float:left;
 position:absolute;
 }
+
+.error {
+    color: #C1272D;
+    float: left;
+    font-family: arial;
+    font-size: 12px;
+    margin-top: 10px;
+}

@@ -27,13 +27,13 @@
 			<!-- END language -->
 			<div class="titols_comanda"> <s:text name="txt.add.some.drink" /></div>
 			<div id="recordatori">
-				<div id="slider" style=" height:260px; width:1000px; top:140px;"  >
+				<div id="slider" style=" height:262px; width:1000px; top:140px;"  >
 				    <ul style="height:260px;">
 				    	<s:iterator value="refrescList" var="refresc">
 					    	<li style="height:260px;">
 					    			<div id="iterate_Rec" >
-					    				<div id="img_Rest" >
-					    					<img id="imageRefresc_${refresc.id}" width="200px"  src="/${initParam.app}/comanda/ImageAction.action?imageId=${refresc.id}" title="" />
+					    				<div id="img_Rest" class="draggable" >
+					    					<img id="imageRefresc_${refresc.id}" width="220px"  src="/${initParam.app}/comanda/ImageAction.action?imageId=${refresc.id}" title="" />
 					    				</div>
 					    				<div class="titol_Rest">
 					    					
@@ -46,11 +46,11 @@
 		  									</h1>
 										</div>
 										<div class="left_price">
-											<a class="entrar draggable" id="${refresc.idSub}" title="${refresc.tipus}" href="#"><s:text name="txt.plat.afegir" /></a>
+											<a class="entrar" id="${refresc.idSub}" title="${refresc.tipus}" href="#"><s:text name="txt.plat.afegir" /></a>
 										</div>
 										<div class="right_price">
 											<span class="price">${refresc.preu} &euro; </span>
-											<br>
+										
 										</div>									
 					    			</div>					    			
 					    	</li>				    		
@@ -58,6 +58,8 @@
 				    </ul>
 				</div>
 			</div>
+			<hr class="sep10"></hr>
+			<div class="titols_comanda2"> <s:text name="txt.taula" /></div>
 			<div id="preus" >
 					<table id="order">
 						<thead>
@@ -74,7 +76,7 @@
 							<s:iterator value="platComandaList" var="platComanda">
 								<tr class="selector_pl" id="plat_${platComanda.plat.id}" >
 									<td class="img_order">
-										<img width="103px" src="/${initParam.app}/comanda/ImageAction.action?imageId=${platComanda.plat.foto.id}">
+										<img width="110px" src="/${initParam.app}/comanda/ImageAction.action?imageId=${platComanda.plat.foto.id}">
 									</td>
 									<td class="descri">
 										<span class="tit">
@@ -200,62 +202,91 @@
 					</table>
 			</div>
 	<!-- LOGIN -->
+	<hr class="sep11"></hr>
 	<c:if test="${nameAuth eq 'anonymousUser' }">
-		<div id="login" style="float: left; margin-top: 20px;" >
-		<h1><s:text name="txt.logate" /></h1>
+	<div id="logitop" class="titols_comanda2"><s:text name="txt.logate" /></div>
+		<div id="login" >
+		
 			<form name='f' id="f" action="/${initParam.app}/j_spring_security_check" method="post">
-				<table>
+				<table id="formlo">
 					<tr>
-						<td><s:text name="txt.user.of.login" />:</td>
-						<td><input type='text' name='j_username' value=''>
+						<td class="logg"><s:text name="txt.user.of.login" />:</td>
+						<td><input class="inputs" type='text' name='j_username' value=''>
 						</td>
-						<td><s:text name="txt.pass.of.login" />:</td>
-						<td><input type='password' name='j_password' />
+						<td class="passs"><s:text name="txt.pass.of.login" />:</td>
+						<td><input class="inputs" type='password' name='j_password' />
 						</td>
-						<td colspan='2'><input name="submit" type="button"
-							value="submit" onclick="submitLog()" />
+						<td colspan='2'><input name="submit" type="button" class="boton bot" 
+							value="logat" onclick="submitLog()" />
 						</td>
-					</tr>			
+						<td class="passs"><s:text name="txt.registrate" />:</td>
+						<td><input name="submit" type="button" class="boton bot" 
+							value="registret" onclick="submitLog()" />
+						</td>
+					</tr>
+					<tr>
+					<td><label id="loged" ></label></td>
+					</tr>
 				</table>
-		 		<label id="loged" ></label>
 			</form>
 		</div>
-	</c:if>	
-	<br><br><br><br><br><br><br>
-	<div id="checkPromocionsDisponibles" style="float: left; margin-top: 20px;" ><input type="button"  onclick="openDialogPromos();" value="<s:text name='txt.infocomanda.checkPromos.boton' />" /></div>
-	<div id="deletePromoApplied" style="float: left; margin-top: 20px;" ><input type="button"  onclick="deletePromoApplied();" value="<s:text name='txt.infocomanda.deletePromos.boton' />" /></div>
-	<br><br><br><br><br><br><br>
-	<div style="float: left; margin-top: 100px;" >
+	</c:if>
 	
-		<s:checkbox key="comanda.aDomicili" onclick="addDomicili()"  id="adomicili"   ></s:checkbox>
-		<s:checkbox key="comanda.aRecollir" onclick="addRecollir()"  id="arecollir"   ></s:checkbox>
-		
+	<div id="promstop" class="titols_comanda2"><s:text name="txt.proms" /></div>
+	<div id="proms">
+	<div id="checkPromocionsDisponibles" ><input type="button" class="boton"  onclick="openDialogPromos();" value="<s:text name='txt.infocomanda.checkPromos.boton' />" /></div>
+	<div id="deletePromoApplied" ><input type="button"  class="boton" onclick="deletePromoApplied();" value="<s:text name='txt.infocomanda.deletePromos.boton' />" /></div>
 	</div>
-	<br><br><br><br><br><br>		
-	<div style="float: left; margin-top: 20px;" >
-		<table>
+	<hr class="sep11"></hr>	
+	<div id="domrec" class="titols_comanda2"><s:text name="txt.domrec" /></div>
+	<div id="on">
+	<div id="leftcom">
+	<div class="inter_put">
+	<s:checkbox key="comanda.aDomicili" onclick="addDomicili()"  id="adomicili"   ></s:checkbox>
+	</div>
+	<div class="inter_put2">
+	<s:checkbox key="comanda.aRecollir" onclick="addRecollir()"  id="arecollir"  ></s:checkbox>
+	</div>
+	</br></br>
+	<hr class="sep13"></hr>
+		<table class="days">
 			<tr>
-				<td><s:text name="comanda.dia" ></s:text></td>
-				<td><s:textfield key="comanda.dia"  id="dia" maxlength="10" size="12" onfocus="blur()" theme="simple" onchange="reloadHores()" ></s:textfield>
+				<td class="inde"><s:text name="comanda.dia" ></s:text></td>
+			</tr>	
+			<tr>	
+				<td><s:textfield key="comanda.dia" id="dia" maxlength="10" size="12" onfocus="blur()" theme="simple" onchange="reloadHores()" ></s:textfield>
 				<img  src="<c:url value='/images/calendar/calendar_full.png'/>"  id="llencadorData1" ></td>
 			</tr>
 		</table>
-							
+		
+	<hr class="sep13"></hr>			
 		<c:import url="/pages/includes/horesInfoComanda.jsp" />
-	</div>
-	
-	<div id="arecollir_div" style="float: left;margin-top: 150px; border: 1px; " >
+		
+		</div>
+		<div id="rightcom">
+		<div id="adomicili_div" >
+			<c:import url="/pages/includes/addrescomanda.jsp" />
+		</div>
+		<div id="arecollir_div" style="float: left;margin-top: 150px; border: 1px; " >
 		<s:text name="txt.infocomanda.passala.arecorrir.per" />
 		<h1 id="address_restaurant" ></h1>
 		<input type="button"  onclick="checkComandaJS();" value="<s:text name='txt.infocomanda.paga' />" />
 	</div>
-	
-	<div id="adomicili_div" style="float: left;margin-top: 30px; border: 1px; " >
-		<s:checkbox key="comanda.targeta" id="targeta" onclick="targeta()" ></s:checkbox>
-		<s:checkbox key="comanda.contrarembols" id="contrarembols" onclick="contrarembols()"></s:checkbox>
-		<c:import url="/pages/includes/address.jsp" />
-		<input type="button"  onclick="checkComandaJS();" value="<s:text name='txt.infocomanda.paga' />" />
 	</div>
+	<div id="rightright">
+	
+	<div id="map_canvas" style="float: left; height: 250px; width: 222px;"><img  src="<c:url value='/images/elements/maps.png'/>"  ></div>
+	</div>
+	</div>
+	
+	<div id="domrec" class="titols_comanda2"><s:text name="txt.domrec" /></div>
+	<div id="pagar">
+	<s:checkbox key="comanda.targeta" id="targeta" onclick="targeta()" ></s:checkbox>
+	<s:checkbox key="comanda.contrarembols" id="contrarembols" onclick="contrarembols()"></s:checkbox>
+	<input type="button"  onclick="checkComandaJS();" value="<s:text name='txt.infocomanda.paga' />" />
+	</div>
+	
+	
 		
 <div id="chargeBar"></div>
 			
@@ -314,7 +345,7 @@
 	<link type="text/css" rel="stylesheet" href="<c:url value='/css/online.css' />" />
 	<link type="text/css" rel="stylesheet" href="<c:url value='/css/portamu/prova.css' />" />
 
-	<!--  script src="<c:url value='/js/jquery/jquery.js' />" type="text/javascript"></script>
+	<script src="<c:url value='/js/jquery/jquery.js' />" type="text/javascript"></script>
 	<script src="<c:url value='/js/jquery/jquery.ui.core.js' />" type="text/javascript"></script>
 	<script src="<c:url value='/js/jquery/jquery.ui.widget.js'/>" type="text/javascript"></script>
 	<script src="<c:url value='/js/jquery/jquery.ui.mouse.js'/>" type="text/javascript"></script>
@@ -326,26 +357,23 @@
 	<script src="<c:url value='/js/jquery/jquery.effects.core.js'/>" type="text/javascript"></script>
 	<script src="<c:url value='/js/jquery/jquery.bgiframe-2.1.1.js'/>" type="text/javascript"></script>
 	<script src="<c:url value='/js/jquery/jquery-ui.js' />" type="text/javascript"></script>
-	
+	<!-- Calendari -->  
 	<script type="text/javascript" src="<c:url value='/js/calendari/calendar.js'/>"></script>
 	<script type="text/javascript" src="<c:url value='/js/calendari/calendar-cat.js'/>"></script>
 	<script type="text/javascript" src="<c:url value='/js/calendari/calendar-es.js'/>"></script>
 	<script type="text/javascript" src="<c:url value='/js/calendari/calendar-idioma.js'/>"></script>		
 	<script type="text/javascript" src="<c:url value='/js/calendari/calendar-setup.js'/>"></script>
-
+	<!-- Per validar l'adreca -->
 	<script src="<c:url value='/js/address/autocompleteStreet.js'/>" type="text/javascript"></script>
 	<script src="<c:url value='/js/address/autocompleteCodi.js'/>" type="text/javascript"></script>
-	<script src="http://maps.google.com/maps/api/js?sensor=false" type="text/javascript"></script>
-	<script src="<c:url value='/js/address/addressValidationForm.js'/>" type="text/javascript"></script>
 	
+	<script src="<c:url value='/js/address/addressValidationForm.js'/>" type="text/javascript"></script>
+	<script src="http://maps.google.com/maps/api/js?sensor=false" type="text/javascript"></script>
+	
+	<!-- Sliders de begudes -->
 	<script src="<c:url value='/js/sudoSlider/jquery.sudoSlider.js'/>" type="text/javascript"></script>
 	<script type="text/javascript" src="<c:url value='/js/progressbar/progress.js'/>"></script>
-	<script type="text/javascript" src="<c:url value='/pages/comanda/jsinfoComanda.js'/>"></script-->
-	
-	<script type="text/javascript" src="<c:url value='/pages/comanda/jsinfoComanda.min.js'/>"></script-->
-	
-	
-		
+	<script type="text/javascript" src="<c:url value='/pages/comanda/jsinfoComanda.js'/>"></script>	
 <script type="text/javascript" >
 			  
 var initParams = new InitParams("<s:text name='txt.beguda.no.tipus.promo' />","<s:text name='txt.beguda.no.more.promo' />","<s:text name='txt.add.beguda.to.box' />", 
@@ -358,7 +386,7 @@ var initParams = new InitParams("<s:text name='txt.beguda.no.tipus.promo' />","<
 $("#idcomanda").val('${requestScope.idComanda}');
 $("#numComanda").text('${requestScope.idComanda}');
 $("#dia").val('${requestScope.horesDTO.data}');
-
+$("#promstop").hide();
 
 initNumPlats();
 initNumBegudes();
@@ -366,7 +394,7 @@ initNumBegudes();
 function submitLog(){
 	
 	$.ajax({
-	    url: "<c:url value='/elteurestaurantacasa/j_spring_security_check' />",
+	    url: "<c:url value='/onlineBot/j_spring_security_check' />",
 	    type: "POST",
 	    data: $("#f").serialize(),
 	    dataType: 'json',
@@ -375,16 +403,24 @@ function submitLog(){
 	    },
 	    success: function(json) {
 	        if (json.result == "ok") {
+	        	$("#promstop").show();
+	        	$("#logitop").hide();
+	        	$("#login").hide();
 	        	$("#loged").text(initParams.checkok);	
 	        	var promo = window.localStorage.getItem("comanda.promo.id");
 	        	if(promo!='undefined' && promo!=null){
 	        		$("#checkPromocionsDisponibles").hide();
-	        		$("#deletePromoApplied").show();	
+	        		$("#deletePromoApplied").show();
+	        		$("#loguin").hide();
+	        		
+	        		
+
 	        		
 	        	}else{
 
 	        		$("#checkPromocionsDisponibles").show();
 	        		$("#deletePromoApplied").hide();
+	        		
 	        	}
 	        	
 	        } else if (json.result == "error") {	        	
@@ -406,6 +442,7 @@ initAddress();
 <c:if test="${nameAuth ne 'anonymousUser' }">
 	<script type="text/javascript" >
 		$("#checkPromocionsDisponibles").show();
+		$("#promstop").show();
 	</script>
 </c:if>
 <c:if test="${not empty requestScope.recoveredComanda}">
