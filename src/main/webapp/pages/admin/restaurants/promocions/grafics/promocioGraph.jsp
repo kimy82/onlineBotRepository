@@ -11,7 +11,7 @@
 	<link rel="shortcut icon" href="<c:url value='/img/elements/logo_portamu16.jpg' />"> 
 	<title><s:text name="mant.promo.title.gestio" /></title>	
 	<link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/base/jquery-ui.css" rel="stylesheet" type="text/css" />
-	<link rel="stylesheet" href="<c:url value='pages/admin/restaurants/promocions/grafics/promograph.min.css' />" type="text/css"   media="screen" />
+	<link rel="stylesheet" href="<c:url value='css/min/admin.promograph.min.css' />" type="text/css"   media="screen" />
 </head>
 <body id="promo">
 <c:import url="/pages/includes/headerContext.jsp" />

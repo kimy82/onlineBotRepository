@@ -10,6 +10,8 @@
 	<meta http-equiv="content-type" content="text/html;charset=utf-8" />
 	<meta name="viewport" content="width=device-width,initial-scale=0.99,maximum-scale=0.99" />
 	<title><s:text name="txt.welcome.principal" /></title>	
+	<link rel="stylesheet" href="<c:url value='css/min/begudesRefresc.min.css' />" type="text/css"   media="screen" />
+	<link href='http://fonts.googleapis.com/css?family=Raleway:800,400' rel='stylesheet' type='text/css'>
 </head>
 <body id="refresc" >
 <c:import url="/pages/includes/headerContext.jsp" />
@@ -98,17 +100,13 @@
 </div>
 <div id="infoBeguda_dialog" class="filtres filtres-oberts">	 		
 </div>  
-<c:import url="/pages/includes/endPage.jsp" />
-<!-- Scripts --> 
+<c:import url="/pages/includes/endPage.jsp" /> 
 	<!-- CSS portamu --> 
-	<link rel="stylesheet" type="text/css" href="<c:url value='/css/portamu/global.css' />" />
+	<!--  link rel="stylesheet" type="text/css" href="<c:url value='/css/portamu/global.css' />" />
 	<link rel="stylesheet" type="text/css" href="<c:url value='/css/portamu/reset.css' />" />
-	<!-- FONTS -->
 	<link href='http://fonts.googleapis.com/css?family=Raleway:800,400' rel='stylesheet' type='text/css'>
-	<!-- CSS portamu -->
+	<link type="text/css" rel="stylesheet" href="<c:url value='/css/online.css' />" /-->
 	
-	<!-- link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/base/jquery-ui.css" rel="stylesheet" type="text/css" / -->
-	<link type="text/css" rel="stylesheet" href="<c:url value='/css/online.css' />" />
 	<!--  script src="<c:url value='/js/jquery/jquery.js' />" type="text/javascript"></script>
 	<script src="<c:url value='/js/jquery/jquery.ui.core.js' />" type="text/javascript"></script>
 	<script src="<c:url value='/js/jquery/jquery.ui.widget.js'/>" type="text/javascript"></script>

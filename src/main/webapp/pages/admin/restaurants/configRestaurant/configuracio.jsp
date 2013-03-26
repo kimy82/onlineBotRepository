@@ -7,7 +7,7 @@
 <head>
 	<link rel="shortcut icon" href="<c:url value='/img/elements/logo_portamu16.jpg' />"> 
     <title><s:text name="txt.config.restaurants.title.gestio" /></title>   
-    <link rel="stylesheet" href="<c:url value='pages/admin/restaurants/configRestaurant/config.min.css' />" type="text/css"   media="screen" />	  
+    <link rel="stylesheet" href="<c:url value='css/min/admin.config.min.css' />" type="text/css"   media="screen" />	  
 </head>
 <body id="conf">
 <c:import url="/pages/includes/headerContext.jsp" />

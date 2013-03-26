@@ -11,8 +11,8 @@
 	<meta name="viewport" content="width=device-width,initial-scale=0.99,maximum-scale=0.99" />
 	<link rel="shortcut icon" href="<c:url value='/img/elements/logo_portamu16.jpg' />"> 
 	<title><s:text name="txt.welcome.principal" /></title>	
-	
-	
+	<link rel="stylesheet" href="<c:url value='css/min/comanda.welcome.min.css' />" type="text/css"   media="screen" />
+	<link href='http://fonts.googleapis.com/css?family=Raleway:800,400' rel='stylesheet' type='text/css'>	
 </head>
 <body id="restaurants">
 <c:import url="/pages/includes/headerContext.jsp" />
@@ -236,11 +236,10 @@
 <c:import url="/pages/includes/endPage.jsp" />
 
 	<!-- CSS portamu --> 
-	<link rel="stylesheet" type="text/css" href="<c:url value='/css/portamu/global.css' />" />
+	<!--  link rel="stylesheet" type="text/css" href="<c:url value='/css/portamu/global.css' />" />
 	<link rel="stylesheet" type="text/css" href="<c:url value='/css/portamu/reset.css' />" />
 	<link href='http://fonts.googleapis.com/css?family=Raleway:800,400' rel='stylesheet' type='text/css'>	
-	<link rel="stylesheet" href="<c:url value='/css/coin-slider-styles.css' />" type="text/css" />
-	<link type="text/css" rel="stylesheet" href="<c:url value='/css/online.css' />" />
+	<link type="text/css" rel="stylesheet" href="<c:url value='/css/online.css' />" /-->
 	
 	<!-- script src="<c:url value='/js/jquery/jquery.js' />" type="text/javascript"></script>
 	<script src="<c:url value='/js/jquery/jquery.ui.core.js' />" type="text/javascript"></script>
