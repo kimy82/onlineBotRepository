@@ -6,7 +6,8 @@
 <html>
 <head>
 	<link rel="shortcut icon" href="<c:url value='/img/elements/logo_portamu16.jpg' />"> 
-    <title><s:text name="txt.config.moters.title.gestio" /></title>     	        
+    <title><s:text name="txt.config.moters.title.gestio" /></title>     
+    <link rel="stylesheet" href="<c:url value='pages/admin/restaurants/configMoters/configMoters.min.css' />" type="text/css"   media="screen" />	        
 </head>
 <body id="confMot">
 <c:import url="/pages/includes/headerContext.jsp" />
@@ -122,14 +123,14 @@
 </div>
 </div>
 
-	<link rel="stylesheet" href="<c:url value='/css/admin.css' />" type="text/css"   media="screen" />
+	<!--  link rel="stylesheet" href="<c:url value='/css/admin.css' />" type="text/css"   media="screen" />
 	<link rel="stylesheet" href="<c:url value='/css/portamu/reset.css' />" type="text/css"   media="screen" />
     <link rel="stylesheet" href="<c:url value='/css/loadCalendar.css' />" type="text/css" />
     <link rel="stylesheet" href="<c:url value='/css/participadasCalendar.css'/>" type="text/css" />         
    	<link rel="stylesheet" href="<c:url value='/css/demo_table.css' />" type="text/css"   media="screen" />
 	<link rel="stylesheet" href="<c:url value='/css/components.css' />" type="text/css"   media="screen" />  
 	<link rel="stylesheet" type="text/css" href="<c:url value='/css/ext-all.css'/>" />     
-	<link rel="stylesheet" type="text/css" media="all" href="<c:url value='/css/calendar-blau.css' />" title="win2k-cold-1" />
+	<link rel="stylesheet" type="text/css" media="all" href="<c:url value='/css/calendar-blau.css' />" title="win2k-cold-1" /-->
 
 	<!--  script src="<c:url value='/js/jquery/jquery.js'/>" type="text/javascript"></script>
 	<script src="<c:url value='/js/loadCalendar.js'/>" type="text/javascript" ></script>   	
@@ -146,18 +147,15 @@
 	<script type="text/javascript" src="<c:url value='/js/calendari/calendar-idioma.js'/>"></script>		
 	<script type="text/javascript" src="<c:url value='/js/calendari/calendar-setup.js'/>"></script -->
 	
-	<script type="text/javascript" src="<c:url value='/js/calendari/calendar.min.js'/>"></script>
-	
-<script>			
-
+	<script type="text/javascript" src="<c:url value='/js/calendari/calendar.min.js'/>"></script>	
+<script type="text/javascript" >			
 //---------------------------------------------------------------------------------------------------------------------
     Calendar.setup({
         inputField    	:    "diaIni",      // id del campo de texto
         ifFormat       	:    "%d-%m-%Y",          // formato de la fecha, cuando se escriba en el campo de texto
         button         	:    "llencadorData1",          // el id del botón que lanzará el calendario
         locale 		   	:    "ca_ES"
-    });
-    
+    });    
     Calendar.setup({
         inputField    	:    "diaFi",      // id del campo de texto
         ifFormat       	:    "%d-%m-%Y",          // formato de la fecha, cuando se escriba en el campo de texto
@@ -165,12 +163,8 @@
         locale 		   	:    "ca_ES"
     });
 //---------------------------------------------------------------------------------------------------------------------
-
 var initTableParams = new InitTableParams("<s:text  name='txt.dades.cargades'/>","<s:text  name='datatables.paginate.last'/>","<s:text  name='datatables.paginate.next'/>","<s:text  name='datatables.paginate.previous'/>","<s:text  name='datatables.paginate.first'/>","<s:text  name='datatables.loading'/>","<s:text  name='txt.avis.borrat'/>");
-
-
 Ext.onReady(function(){
-
 	new Ext.Button({
         text: '',
         renderTo:'div_buttons_prev',
@@ -192,10 +186,8 @@ Ext.onReady(function(){
         handler:function(){
         	nextYear('<%=Locale.getDefault().getLanguage()%>');
         }
-	});
-	
+	});	
 });
-
 </script>
 </body>
 </html>

@@ -10,6 +10,8 @@
 	<META http-equiv="Content-Style-Type" content="text/css">
 	<link rel="shortcut icon" href="<c:url value='/img/elements/logo_portamu16.jpg' />"> 
 	<title><s:text name="txt.gestio.comentaris" /></title>	
+	<link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/base/jquery-ui.css" rel="stylesheet" type="text/css" />
+	<link rel="stylesheet" href="<c:url value='pages/admin/restaurants/comentaris/comentaris.min.css' />" type="text/css"   media="screen" />
 </head>
 <body id="coment">
 	<c:import url="/pages/includes/headerContext.jsp" />
@@ -63,23 +65,17 @@
 								<td>${comt.comment}</td>																													
 							    <td><a href="#" onclick="deleteCommentFromAllBeguda(${comt.idBeguda},${comt.idComment})" ><img src="<c:url value='/images/delete.png' />" /> </a></td>																									
 							</tr>
-			    		</c:if>
-												
+			    		</c:if>											
 				</s:iterator>								
 			</table>
 	</div>
-
 </div>
 </div>
 </div>
-	<link rel="stylesheet" href="<c:url value='/css/admin.css' />" type="text/css"   media="screen" />
+	<!--  link rel="stylesheet" href="<c:url value='/css/admin.css' />" type="text/css"   media="screen" />
 	<link rel="stylesheet" href="<c:url value='/css/portamu/reset.css' />" type="text/css"   media="screen" />
 	<link rel="stylesheet" href="<c:url value='/css/components.css' />" type="text/css"   media="screen" />
-<!-- Scripts --> 
-	
-	<link rel="stylesheet" href="<c:url value='/css/coin-slider-styles.css' />" type="text/css" />
-	<link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/base/jquery-ui.css" rel="stylesheet" type="text/css" />
-	<link type="text/css" rel="stylesheet" href="<c:url value='/css/online.css' />" />
+	<link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/base/jquery-ui.css" rel="stylesheet" type="text/css" /-->
 	<!-- script src="<c:url value='/js/jquery/jquery.js' />" type="text/javascript"></script>
 	<script src="<c:url value='/js/jquery/jquery.ui.core.js' />" type="text/javascript"></script>
 	<script src="<c:url value='/js/jquery/jquery.ui.widget.js'/>" type="text/javascript"></script>
@@ -95,9 +91,7 @@
 	
 	<script src="<c:url value='/pages/admin/restaurants/comentaris/jscomentaris.min.js'/>" type="text/javascript"></script>
 	<script>
-
-		var initParams = new InitParams("<s:text name='txt.comment.deleted'/>");
-																		
+		var initParams = new InitParams("<s:text name='txt.comment.deleted'/>");															
 	</script>
 	<c:import url="/pages/includes/subAlertOnline.jsp" />
 	<c:import url="/pages/includes/subErrorAjax.jsp" />

@@ -6,7 +6,8 @@
 <html>
 <head>
 	<link rel="shortcut icon" href="<c:url value='/img/elements/logo_portamu16.jpg' />"> 
-    <title><s:text name="txt.config.restaurants.title.gestio" /></title>     
+    <title><s:text name="txt.config.restaurants.title.gestio" /></title>   
+    <link rel="stylesheet" href="<c:url value='pages/admin/restaurants/configRestaurant/config.min.css' />" type="text/css"   media="screen" />	  
 </head>
 <body id="conf">
 <c:import url="/pages/includes/headerContext.jsp" />
@@ -102,9 +103,8 @@
 </div>
 </div>
 </div>
-	<link rel="stylesheet" href="<c:url value='/css/admin.css' />" type="text/css"   media="screen" />
+	<!--  link rel="stylesheet" href="<c:url value='/css/admin.css' />" type="text/css"   media="screen" />
 	<link rel="stylesheet" href="<c:url value='/css/portamu/reset.css' />" type="text/css"   media="screen" />
-<!-- Scripts --> 
 	<style>
 		.notcheck{
 			background-color: grey;
@@ -112,13 +112,13 @@
 		.check{
 			background-color: green;
 		}
-	</style>
+	</style-->
 
-  	<link rel="stylesheet" href="<c:url value='/css/loadCalendar.css' />" type="text/css" />
+  	<!--  link rel="stylesheet" href="<c:url value='/css/loadCalendar.css' />" type="text/css" />
     <link rel="stylesheet" href="<c:url value='/css/participadasCalendar.css'/>" type="text/css" />         
     <link rel="stylesheet" href="<c:url value='/css/demo_table.css' />" type="text/css"   media="screen" />
 	<link rel="stylesheet" href="<c:url value='/css/components.css' />" type="text/css"   media="screen" />  
-    <link rel="stylesheet" type="text/css" href="<c:url value='/css/ext-all.css'/>" />   
+    <link rel="stylesheet" type="text/css" href="<c:url value='/css/ext-all.css'/>" /-->   
 	<!--  script src="<c:url value='/js/jquery/jquery.js'/>" type="text/javascript"></script>
 	<script src="<c:url value='/js/loadCalendar.js'/>" type="text/javascript" ></script>   
     <script type="text/javascript" src="<c:url value='/js/ext/ext-base.js'/>"></script>

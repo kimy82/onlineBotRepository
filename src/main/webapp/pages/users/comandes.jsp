@@ -107,7 +107,6 @@
 	<link rel="stylesheet" type="text/css" href="<c:url value='/css/portamu/reset.css' />" />
 	<!-- FONTS -->
 	<link href='http://fonts.googleapis.com/css?family=Raleway:800,400' rel='stylesheet' type='text/css'>
-	<!-- CSS portamu -->
 
 	<!--  script src="<c:url value='/js/jquery/jquery.js' />" type="text/javascript"></script>
 	<script src="<c:url value='/js/jquery/jquery.ui.core.js' />" type="text/javascript"></script>
@@ -129,6 +128,7 @@
 	
 	<script type="text/javascript" src="<c:url value='/pages/users/jscomandes.js' />"></script-->
 	
+	<script src="http://maps.google.com/maps/api/js?sensor=false" type="text/javascript"></script>
 	<script type="text/javascript" src="<c:url value='/pages/users/jscomandes.min.js' />"></script>
 	<script language="javascript">
 
