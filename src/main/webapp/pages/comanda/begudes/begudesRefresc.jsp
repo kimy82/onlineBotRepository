@@ -10,7 +10,7 @@
 	<meta http-equiv="content-type" content="text/html;charset=utf-8" />
 	<meta name="viewport" content="width=device-width,initial-scale=0.99,maximum-scale=0.99" />
 	<title><s:text name="txt.welcome.principal" /></title>	
-	<link rel="stylesheet" href="<c:url value='css/min/begudesRefresc.min.css' />" type="text/css"   media="screen" />
+	<link rel="stylesheet" href="<c:url value='/css/min/begudesRefresc.min.css' />" type="text/css"   media="screen" />
 	<link href='http://fonts.googleapis.com/css?family=Raleway:800,400' rel='stylesheet' type='text/css'>
 </head>
 <body id="refresc" >

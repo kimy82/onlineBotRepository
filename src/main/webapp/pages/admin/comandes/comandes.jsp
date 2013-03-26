@@ -12,7 +12,7 @@
 <title><s:text name="admin.title" /></title>
 
 <link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/base/jquery-ui.css" rel="stylesheet" type="text/css" />
-<link rel="stylesheet" href="<c:url value='css/min/admin.comandes.min.css' />" type="text/css"   media="screen" />
+<link rel="stylesheet" href="<c:url value='/css/min/admin.comandes.min.css' />" type="text/css"   media="screen" />
 </head>
 <body id="conrest">
 <c:import url="/pages/includes/headerContext.jsp" />
