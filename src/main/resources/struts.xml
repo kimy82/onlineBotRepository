@@ -50,6 +50,12 @@
 		<action name="preRecoverAcount" >
 			<result>/pages/login/recoverAccount.jsp</result>
 		</action>
+		<action name="politicaPrivacitat" >
+			<result>/pages/politica/politicaPrivacitat.jsp</result>
+		</action>
+		<action name="politicaCompra" >
+			<result>/pages/politica/politicaCompra.jsp</result>
+		</action>
 		<action name="recoverAccount" class="com.online.action.LoginAction" method="recoverAccount" >
 			<interceptor-ref name="defaultStack" />
 			<result name="success" type="redirectAction">/Welcome.action</result>
