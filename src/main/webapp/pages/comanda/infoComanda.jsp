@@ -247,10 +247,10 @@
 	<div id="on">
 	<div id="leftcom">
 	<div class="inter_put">
-	<s:checkbox key="comanda.aDomicili" onclick="addDomicili()"  id="adomicili"   ></s:checkbox>
+		<s:checkbox key="comanda.aDomicili" onclick="addDomicili()"  id="adomicili"   ></s:checkbox>
 	</div>
-	<div class="inter_put2">
-	<s:checkbox key="comanda.aRecollir" onclick="addRecollir()"  id="arecollir"  ></s:checkbox>
+	<div class="inter_put2" id="div_arecollir">
+		<s:checkbox key="comanda.aRecollir" onclick="addRecollir()"  id="arecollir"  ></s:checkbox>
 	</div>
 	</br></br>
 	<hr class="sep13"></hr>
@@ -417,24 +417,18 @@ function submitLog(){
 	        	if(promo!='undefined' && promo!=null){
 	        		$("#checkPromocionsDisponibles").hide();
 	        		$("#deletePromoApplied").show();
-	        		$("#loguin").hide();
-	        		
-	        		
-
-	        		
+	        		$("#loguin").hide();     		
 	        	}else{
 
 	        		$("#checkPromocionsDisponibles").show();
 	        		$("#deletePromoApplied").hide();
-	        	}
-	        	
+	        	}	        	
 	        } else if (json.result == "error") {	        	
 	        	$("#loged").text(initParams.checkko);
 	        }
 	    }
 	});	
 }
-
 
 var addressToLoad ='${requestScope.comanda.address}';
 if(addressToLoad==''){
@@ -448,6 +442,11 @@ initAddress();
 	<script type="text/javascript" >
 		$("#checkPromocionsDisponibles").show();
 		$("#promstop").show();
+	</script>
+</c:if>
+<c:if test="${morethanone eq true }">
+	<script type="text/javascript" >
+		$("#div_arecollir").hide();
 	</script>
 </c:if>
 <c:if test="${not empty requestScope.recoveredComanda}">

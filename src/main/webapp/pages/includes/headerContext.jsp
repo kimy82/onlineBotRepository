@@ -5,4 +5,5 @@
 var context= "${initParam.app}";
 var confirmTime=parseInt(${initParam.confirmTime});
 var txterrorAjax= "<s:text name='txt.error.ajax' />";
+var txtavisdosrestaurants ="<s:text name='txt.avis.dos.restaurants' />";
 </script>

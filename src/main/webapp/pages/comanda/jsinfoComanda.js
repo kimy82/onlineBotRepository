@@ -73,7 +73,10 @@ function goToRestaurantMenu(id){
 	}
 	
 	comandaConfirm = window.localStorage.getItem("comanda.confirm");
-	
+	var restaurantId = window.localStorage.getItem("comanda.restaurant");
+	if(restaurantId != 'undefined' && restaurantId != null && restaurantId!=id){
+		alertOnline.alertes(txtavisdosrestaurants);	
+	}
 	if(comanda != 'undefined' && comanda != null && comandaConfirm == null){
 		var day = new Date();
 		window.localStorage.setItem("comanda.confirm",day.getTime());
@@ -94,8 +97,9 @@ var actionCloseConfirm = function(){
 }
 
 function acceptComandaDialog(){
-	confirmOnline.closeSetFunc(actionCloseConfirm);
-	confirmOnline.confirm(initParams.txtconfirmcontinuar,confirmComanda);
+	//confirmOnline.closeSetFunc(actionCloseConfirm);
+	//confirmOnline.confirm(initParams.txtconfirmcontinuar,confirmComanda);
+	 confirmComanda();
 }
 
 var confirmComanda = function (){
@@ -288,7 +292,7 @@ function saveNewPLatAmount(id,value){
 	}
 }
 function eliminaPlat(id){
-	window.localStorage.setItem("comanda.plat_"+id,"0");
+	 window.localStorage.setItem("comanda.plat_"+id,"0");
 	 var n = $("#labelnum_"+id).text();
 	 $("#labelnum_"+id).text("0");	
 	 var preuTotalPlat = $("#labelpreutotal_"+id).text();
@@ -828,10 +832,158 @@ function fillPromos(json){
 	});		
 	
 }
+function checkBegudaToAddPromo(promo){
+	
+	var data ="idComanda="+$("#idcomanda").val()+"&promo="+promo;
+  	$.ajax({
+  		  type: "POST",
+  		  url: '/'+context+'/comanda/checkBegudaToAddPromo.action',
+  		  dataType: 'json',
+  		  data: data,
+  		  success: function(json){	
+  			  if(json!=null && json.error!=null){           				
+       				errorOnline.error("Error in AJAX: "+json.error);	
+       			}else{
+       				if(json.alerta!=null){
+       					alertOnline.alertes(json.alerta);       					
+       				}else{
+       					var numBegudes=0;
+       					var numBegudesPromo=0;           					
+       					var preuBegudes = 0.0;
+       					var html="";
+       					var begudes = json.begudes;
+       					
+          					$('#beguda_p_'+idBeguda).remove();
+       					
+          					$('#beguda_'+idBeguda).remove();
+       					
+ 
+       					var table=document.getElementById("order");
+       					var lis="";
+       					$.each(begudes, function(index, value){ 
+       					 	           					 	
+       						numBegudesPromo=numBegudesPromo+value.numBegudesPromo;
 
+   					 		numBegudes= numBegudes+value.numBegudes;
+
+   					 		preuBegudes=  parseFloat(preuBegudes) + parseFloat(value.beguda.preu)*value.numBegudes;           					
+   					 		   					 		
+   					 		$('#beguda_p_'+value.beguda.id).remove();
+       					
+   					 		$('#beguda_'+value.beguda.id).remove();   					   					 		
+   					 			
+   					 			if(value.numBegudes!=0){
+	       					 		var row=table.insertRow(1);
+	       					 		
+	       					 		$(row).addClass("selector_pl");
+	       					 		row.id="beguda_"+value.beguda.id;
+	       					 		
+	       					 		var cell1=row.insertCell(0);
+	       					 		var cell2=row.insertCell(1);
+	       					 		var cell3=row.insertCell(2);
+	       					 		var cell4=row.insertCell(3);
+	       					 		var cell5=row.insertCell(4);
+	       					 		var cell6=row.insertCell(5);
+	       					 		
+	       					 		
+	       					 		$(cell1).addClass("img_order");
+	       					 		cell1.innerHTML="<img width='114px' src='"+context+"/comanda/ImageAction.action?imageId="+value.beguda.foto.id+"' />";
+	       					 		
+	       					 		
+	       					 		$(cell2).addClass("descri");
+	       					 		cell2.innerHTML="<span class='tit'>"+value.beguda.nom+"</span><br>"+value.beguda.descripcio+"</td>";
+	       					 		
+	       					 		
+	       					 		$(cell3).addClass("preusun");
+	       					 		cell3.innerHTML="<label id='begudapreu_"+value.beguda.id+"' >"+value.beguda.preu+"</label>&euro;";
+	       					 		
+	       					 		
+	       					 		$(cell4).addClass("canti");
+	       					 		cell4.innerHTML="<input class='mores' type='submit' onclick='saveBegudaToComanda("+value.beguda.id+",false,-1);' value='-'><label id='labelnum_b_"+value.beguda.id+"'>"+value.numBegudes+"</label><input class='mores' type='submit' onclick='saveBegudaToComanda("+value.beguda.id+",false,1);' value='+'>";
+	       					 		
+										
+									$(cell5).addClass("total");
+	       					 		cell5.innerHTML="<label id='labelpreutotal_b_"+value.beguda.id+"'>"+parseFloat(parseFloat(value.beguda.preu)*parseFloat(value.numBegudes)).toFixed(2)+"</label> &euro;";
+	       					 		
+	       					 		
+	       					 		$(cell6).addClass("elimi");
+	       					 		cell6.innerHTML="<input class='elimin' type='submit' onclick='eliminaBeguda("+value.beguda.id+")'  value='ELIMINAR'>";
+	       					 		
+	       					 		var li= value.numBegudes+" <span class='plats' id='span_b_"+value.beguda.id+"'>x</span> "+value.beguda.nom+"<br><br>";
+	       					 		lis = lis+li;
+   					 			}
+   					 			if(value.numBegudesPromo!=0){
+	   					 			var row=table.insertRow(1);
+	       					 		
+	       					 		
+	   					 			$(row).addClass("selector_pl");
+	       					 		row.id="beguda_p_"+value.beguda.id;
+	       					 		var list = window.localStorage.getItem("comanda.promo.begudes.list");
+	       					 		if(list == 'undefined' || list == null){
+	       					 			window.localStorage.setItem("comanda.promo.begudes.list",value.beguda.id);
+	       					 		}else{
+	       					 			window.localStorage.setItem("comanda.promo.begudes.list",list+","+value.beguda.id);
+	       					 		}
+	       					 		
+	       					 		var cell1=row.insertCell(0);
+	       					 		var cell2=row.insertCell(1);
+	       					 		var cell3=row.insertCell(2);
+	       					 		var cell4=row.insertCell(3);
+	       					 		var cell5=row.insertCell(4);
+	       					 		var cell6=row.insertCell(5);
+	       					 		
+	       					 		
+	       					 		$(cell1).addClass("img_order");
+	       					 		cell1.innerHTML="<img width='114px' src='"+context+"/comanda/ImageAction.action?imageId="+value.beguda.foto.id+"' />";
+	       					 		
+	       					 		
+	       					 		$(cell2).addClass("descri");
+	       					 		cell2.innerHTML="<span class='tit'>"+value.beguda.nom+"</span><br>"+value.beguda.descripcio+"</td>";
+	       					 		
+	       					 		
+	       					 		$(cell3).addClass("preusun");
+	       					 		cell3.innerHTML="<label id='begudapreu_p_"+value.beguda.id+"' >"+value.beguda.preu+"</label>&euro;";
+	       					 		
+	       					 		
+	       					 		$(cell4).addClass("canti");
+	       					 		cell4.innerHTML="<label id='labelnum_b_p_"+value.beguda.id+"'>"+value.numBegudesPromo+"</label>";
+	       					 		
+										
+									$(cell5).addClass("total");
+	       					 		cell5.innerHTML="<label id='labelpreutotal_b_p_"+value.beguda.id+"'>0</label> &euro;";
+	       					 		
+	       					 		
+	       					 		$(cell6).addClass("elimi");
+	       					 		cell6.innerHTML="<input class='elimin' type='submit' onclick='deletePromoApplied();'  value='"+initParams.txtbottreurepromo+"'>";
+	       					 		
+	       					 		var li= value.numBegudesPromo+" <span class='plats' id='span_b_"+value.beguda.id+"'>x</span> "+value.beguda.nom+"(PROMO)<br><br>";
+	       					 		lis = lis+li;
+   					 			}       				    					 	   					 		      					 		           					       						 		       					 
+       					});
+       					window.localStorage.setItem("comanda.begudes.lis",lis);
+       					window.localStorage.setItem("comanda.promo.nBegudes.added",numBegudesPromo);
+       					window.localStorage.setItem("comanda.numbegudes",numBegudes);
+       					window.localStorage.setItem("comanda.beguda.preu",preuBegudes.toFixed(2));           					           				
+       					var preuComanda = window.localStorage.getItem("comanda.preu");
+       					
+       					var transport=0;
+       					if($("#adomicili").is(':checked')){
+       						transport=40;
+       					}       					
+       					var preuFinal = parseFloat(preuComanda) + parseFloat(preuBegudes)+ parseFloat(transport);
+       					$("#preu").text(preuFinal.toFixed(2));
+       					$("#labelpreutotalPromo").text(preuFinal.toFixed(2));       					
+       			}   
+  		  }
+  		  },
+  		  error: function(e){  errorOnline.error(txterrorAjax);	
+  		  					}
+  		});	
+}
 function addPromoBeguda(nbegudes, tipusBeguda,id,tipus){
 	
-	//La idea es obrir un div on es pugui arrastrar una beguda
+	var numBegudes = window.localStorage.getItem("comanda.numbegudes");
+	
 	window.localStorage.setItem("comanda.promo.id",id);
 	window.localStorage.setItem("comanda.promo.beguda","true");
 	window.localStorage.setItem("comanda.promo.nBegudes.total",nbegudes);
@@ -846,8 +998,12 @@ function addPromoBeguda(nbegudes, tipusBeguda,id,tipus){
 	$("#checkPromocionsDisponibles").hide();
 	$("#deletePromoApplied").show();
 	closeDialogPromos();
-	alertOnline.alertes(initParams.txtAddDrinkstoBox);	
 	
+	if(numBegudes!='undefined' && numBegudes!=null){		  
+		checkBegudaToAddPromo(promo);				
+	}
+	
+	alertOnline.alertes(initParams.txtAddDrinkstoBox);
 }
 
 //Inicialitzem si tenia una promo de begudes

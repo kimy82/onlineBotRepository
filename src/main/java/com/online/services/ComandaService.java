@@ -10,7 +10,6 @@ import com.online.model.Comandes;
 import com.online.model.HoresDTO;
 import com.online.model.Plat;
 import com.online.model.PlatComanda;
-import com.online.pojos.Basic;
 
 
 public interface ComandaService{
@@ -20,6 +19,10 @@ public interface ComandaService{
 	public List<BegudaComanda> addBegudaInList(List<BegudaComanda> begudaList, Beguda beguda,boolean promo) throws ComandaException;
 	
 	public List<BegudaComanda> removeBegudaInList(List<BegudaComanda> begudaList, Beguda beguda,boolean promo) throws ComandaException;
+	
+	public List<BegudaComanda> removeAllBegudaInList(List<BegudaComanda> begudaList, Beguda beguda) throws ComandaException;
+	
+	public String removeAllBegudaInListGetJson();
 	 
 	public String createJSONForShoppingCart(List<PlatComanda> platList, Long id, ResourceBundle resource) throws ComandaException;
 	

@@ -34,6 +34,15 @@
 		<action name="ajaxLoadNumPlat" class="com.online.action.comanda.WelcomeComandaAction"
 			method="ajaxLoadNumPlat">
 		</action>
+		<action name="deletePlatFromCarrito" class="com.online.action.comanda.AjaxComandaAction"
+			method="deletePlatFromCarrito">
+		</action>
+		<action name="deleteBegudaFromCarrito" class="com.online.action.comanda.AjaxComandaAction"
+			method="deleteBegudaFromCarrito">
+		</action>
+		<action name="checkBegudaToAddPromo" class="com.online.action.comanda.AjaxComandaAction"
+			method="checkBegudaToAddPromo">
+		</action>
 		<action name="ajaxLoadBeguda" class="com.online.action.comanda.WelcomeComandaAction"
 			method="ajaxLoadBeguda">
 		</action>

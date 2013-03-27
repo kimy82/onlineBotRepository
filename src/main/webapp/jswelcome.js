@@ -44,6 +44,10 @@ $( ".selector_jq" ).click(function() {
 });
 
 function goToRestaurantMenu(id){
+	var restaurantId = window.localStorage.getItem("comanda.restaurant");
+	if(restaurantId != 'undefined' && restaurantId != null && restaurantId!=id){
+		alertOnline.alertes(txtavisdosrestaurants);	
+	}
 	document.getElementById(id).click();
 }
 

@@ -42,6 +42,7 @@ public class ComandaServiceImpl implements ComandaService{
 	private PromocionsBo		promocionsBo;
 	private ComandaBo			comandaBo;
 	private PlatsBo				platsBo;
+	private String 				jsonBegudaDeleted;   
 
 	private ResourceBundle		resource;
 
@@ -728,6 +729,36 @@ public class ComandaServiceImpl implements ComandaService{
 		} catch (Exception e) {
 			throw new ComandaException(e, "Error adding beguda in list");
 		}
+	}
+	
+	public List<BegudaComanda> removeAllBegudaInList(List<BegudaComanda> begudaList, Beguda beguda) throws ComandaException{
+		
+		try {
+			List<BegudaComanda> newbegudaList= new ArrayList<BegudaComanda>();
+			if (begudaList.size() > 0) {
+				for (BegudaComanda bg : begudaList) {
+					if (!bg.getBeguda().getId().equals(beguda.getId())) {
+						newbegudaList.add(bg);			
+					}else{
+						Double preuToRest = bg.getNumBegudes()*bg.getBeguda().getPreu();
+						this.jsonBegudaDeleted = "{\"numBegudes\": \""+bg.getNumBegudes()+"\", \"preuToRest\": \""+preuToRest+"\"}";
+						if(bg.getNumBegudesPromo()!=null && bg.getNumBegudesPromo()!=0){
+							bg.setNumBegudes(0);
+							newbegudaList.add(bg);		
+						}
+					}
+				}
+			}
+			
+			return newbegudaList;
+
+		} catch (Exception e) {
+			throw new ComandaException(e, "Error adding beguda in list");
+		}
+	}
+	
+	public String removeAllBegudaInListGetJson(){
+		return this.jsonBegudaDeleted;		
 	}
 	
 	public List<BegudaComanda> addBegudaInList( List<BegudaComanda> begudaList, Beguda beguda, boolean promo ) throws ComandaException{
