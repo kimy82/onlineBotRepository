@@ -89,7 +89,7 @@ function saveBegudaToComanda(idBeguda){
        					 	}else{
        					 		numBegudes= numBegudes+value.numBegudes;
        					 		preuBegudes=  parseFloat(preuBegudes) + (parseFloat(value.beguda.preu)*value.numBegudes);
-       							var li= value.numBegudes+" <span class='plats' id='span_b_"+value.beguda.id+"' >x</span> "+value.beguda.nom+"<br><br>";
+       							var li= value.numBegudes+" <span class='plats' id='span_b_"+value.beguda.id+"' >x</span> "+value.beguda.nom+"&nbsp;<a href='#' onclick='eliminaBeguda("+value.beguda.id+")' ><img src='/"+context+"/images/delete.png'></a><br><br>";
     							$("#disp_beguda").append(li);
        						}	       				
        						
@@ -122,6 +122,93 @@ function goToComandaPas1() {
 	window.location.href = "/"+context+"/comanda/goToPas1Action.action?idComanda="+$("#numComanda").text()+"&data="+data;
 }
 
+function eliminaBeguda(id){
+	var idcomanda= window.localStorage.getItem("comanda");
+	var data ="idBeguda="+id+"&idComanda="+idcomanda;
+  	$.ajax({
+  		  type: "POST",
+  		  url: '/'+context+'/comanda/deleteBegudaFromCarrito.action',
+  		  dataType: 'json',
+  		  data: data,
+  		  success: function(json){	
+  			  if(json!=null && json.error!=null){
+  				errorOnline.error("Error in AJAX: "+json.error);	
+       		  }else{
+       			var begudesAnterior = window.localStorage.getItem("comanda.numbegudes");
+       			var numBegudes= parseInt(begudesAnterior)-parseInt(json.numBegudes);
+       			window.localStorage.setItem("comanda.numbegudes",numBegudes);
+       			$("#numbegudes").text(numBegudes);
+       			var preuBegudaComanda = window.localStorage.getItem("comanda.beguda.preu");
+       			var preuComanda = window.localStorage.getItem("comanda.preu");
+       			var preuBegFinal = parseFloat(parseFloat(preuBegudaComanda) - parseFloat(json.preuToRest)).toFixed(2);
+       			window.localStorage.setItem("comanda.beguda.preu",preuBegFinal);
+       			var preuFinal = parseFloat(parseFloat(preuBegFinal)+ parseFloat(preuComanda)).toFixed(2);
+       			if(isNaN(preuFinal)){
+       				$("#preu").text("0.0");
+       			}else{
+       				$("#preu").text(parseFloat(preuFinal).toFixed(2));
+       			}
+       			
+       			var lis= window.localStorage.getItem("comanda.begudes.lis");
+       			var lista="";
+       			var begudes = lis.split("<br><br>");
+       				$.each(begudes, function(index, value) { 		       					 	
+       						 if(value.indexOf("span_b_"+id)==-1 && value!='')
+       							 lista=lista+value+"<br><br>";		       										       						
+       				});
+
+       				window.localStorage.setItem("comanda.begudes.lis",lista);
+       				$("#disp_beguda").text(lista);
+       		  }			
+  		  },
+  		  error: function(e){   errorOnline.error(txterrorAjax);	
+  		  					}
+  		});	
+	
+}
+function eliminaPlat(id){
+		var idcomanda= window.localStorage.getItem("comanda");
+		var data ="idPlat="+id+"&idComanda="+idcomanda;
+	  	$.ajax({
+	  		  type: "POST",
+	  		  url: '/'+context+'/comanda/deletePlatFromCarrito.action',
+	  		  dataType: 'json',
+	  		  data: data,
+	  		  success: function(json){	
+	  			  if(json!=null && json.error!=null){
+	  				errorOnline.error("Error in AJAX: "+json.error);	
+	       		  }else{
+	       			var platsAnterior = window.localStorage.getItem("comanda.numplats");
+	       			var numPlats = parseInt(platsAnterior)-parseInt(json.numPlats)
+	       			window.localStorage.setItem("comanda.numplats",numPlats);
+	       			$("#numplats").text(numPlats);	       			
+	       			window.localStorage.removeItem("comanda.plat_"+id);
+	       			var preuComanda = window.localStorage.getItem("comanda.preu");
+	       			var preuBegudaComanda = window.localStorage.getItem("comanda.beguda.preu");
+	       			var preuPlatFinal = parseFloat(parseFloat(preuComanda) - parseFloat(json.preuToRest)).toFixed(2);
+	       			window.localStorage.setItem("comanda.preu",preuPlatFinal);
+	       			var preuFinal = parseFloat(parseFloat(preuPlatFinal)+ parseFloat(preuBegudaComanda)).toFixed(2);
+	       			if(isNaN(preuFinal)){
+	       				$("#preu").text("0.0");
+	       			}else{
+	       				$("#preu").text(parseFloat(preuFinal).toFixed(2));
+	       			}
+	       			var lis= window.localStorage.getItem("comanda.plats.lis");
+	       			var lista="";
+	       			var plats = lis.split("<br><br>");
+	       				$.each(plats, function(index, value) { 		       					 	
+	       						 if(value.indexOf("span_p_"+id)==-1 && value!='')
+	       							 lista=lista+value+"<br><br>";		       										       						
+	       				});
+
+	       				window.localStorage.setItem("comanda.plats.lis",lista);
+	       				$("#disp_plate").text(lista);
+	       		  }			
+	  		  },
+	  		  error: function(e){   errorOnline.error(txterrorAjax);	
+	  		  					}
+	  		});	
+}
 
 
 function goToInfoBeguda(id){
@@ -160,6 +247,11 @@ function goToRestaurantMenu(id){
 	}
 	
 	comandaConfirm = window.localStorage.getItem("comanda.confirm");
+	
+	var restaurantId = window.localStorage.getItem("comanda.restaurant");
+	if(restaurantId != 'undefined' && restaurantId != null && restaurantId!=id){
+		alertOnline.alertes(txtavisdosrestaurants);	
+	}
 	
 	if(comanda != 'undefined' && comanda != null && comandaConfirm == null){
 		var day = new Date();

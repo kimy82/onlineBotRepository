@@ -231,10 +231,7 @@
 			</form>
 		</div>
 	</c:if>	
-	<br><br><br><br><br><br><br>
-	<div id="checkPromocionsDisponibles" style="float: left; margin-top: 20px;" ><input type="button"  onclick="openDialogPromos();" value="<s:text name='txt.infocomanda.checkPromos.boton' />" /></div>
-	<div id="deletePromoApplied" style="float: left; margin-top: 20px;" ><input type="button"  onclick="deletePromoApplied();" value="<s:text name='txt.infocomanda.deletePromos.boton' />" /></div>
-	<br><br><br><br><br><br><br>
+	<br></br>
 	<div style="float: left; margin-top: 100px;" >
 	
 	<div id="promstop" class="titols_comanda2"><s:text name="txt.proms" /></div>
@@ -376,7 +373,7 @@
 	<script type="text/javascript" src="<c:url value='/js/progressbar/progress.js'/>"></script>
 	<script type="text/javascript" src="<c:url value='/pages/comanda/jsinfoComanda.js'/>"></script-->
 	
-	<script type="text/javascript" src="<c:url value='/pages/comanda/jsinfoComanda.min.js'/>"></script-->
+	<script type="text/javascript" src="<c:url value='/pages/comanda/jsinfoComanda.min.js'/>"></script>
 	
 	
 		

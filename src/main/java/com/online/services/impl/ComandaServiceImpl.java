@@ -700,7 +700,7 @@ public class ComandaServiceImpl implements ComandaService{
 
 		try {
 
-			Gson gson = new GsonBuilder().setPrettyPrinting().excludeFieldsWithoutExposeAnnotation().create();
+			Gson gson = new GsonBuilder().setPrettyPrinting().excludeFieldsWithoutExposeAnnotation().serializeNulls().create();
 			StringBuffer json = new StringBuffer(gson.toJson(listBeguda));
 			return json.toString();
 

@@ -851,12 +851,7 @@ function checkBegudaToAddPromo(promo){
        					var numBegudesPromo=0;           					
        					var preuBegudes = 0.0;
        					var html="";
-       					var begudes = json.begudes;
-       					
-          					$('#beguda_p_'+idBeguda).remove();
-       					
-          					$('#beguda_'+idBeguda).remove();
-       					
+       					var begudes = json.begudes;       					          				       					
  
        					var table=document.getElementById("order");
        					var lis="";
@@ -1000,7 +995,7 @@ function addPromoBeguda(nbegudes, tipusBeguda,id,tipus){
 	closeDialogPromos();
 	
 	if(numBegudes!='undefined' && numBegudes!=null){		  
-		checkBegudaToAddPromo(promo);				
+		checkBegudaToAddPromo(id);				
 	}
 	
 	alertOnline.alertes(initParams.txtAddDrinkstoBox);
