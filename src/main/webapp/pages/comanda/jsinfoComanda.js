@@ -21,7 +21,6 @@ function InitParams(txtBegudaNoPromocio,txtNoMoreDrinksToAddinPromo,txtAddDrinks
 		this.txtnomesdomocili = txtnomesdomocili;
 		this.txtbottreurepromo = txtbottreurepromo;
 }
-//progress var
 						window.setTimeout(function() {
 						    var chargeBar = new Progress.bar({ id: "progress1", autoRemove: false, backgroundSpeed: 5, type: "charge" });
 						    chargeBar.renderTo(document.getElementById('chargeBar'));
@@ -56,8 +55,7 @@ function initAddress(){
 		$("#codi").val(arrayAddress[arrayAddress.length-1]);
 		$("#comandaddress").val(window.addressToLoad);
 		$("#checkAdd").click();
-	}
-	
+	}	
 }
 
 function goToRestaurantMenu(id){
@@ -97,8 +95,6 @@ var actionCloseConfirm = function(){
 }
 
 function acceptComandaDialog(){
-	//confirmOnline.closeSetFunc(actionCloseConfirm);
-	//confirmOnline.confirm(initParams.txtconfirmcontinuar,confirmComanda);
 	 confirmComanda();
 }
 
@@ -350,16 +346,16 @@ function addDomicili(){
 	if($("#adomicili").is(':checked')){		
 		
 		 $("#arecollir").attr('checked',false);		 
-		 $("#transport_lb").text("40");
-		 $("#preu").text(parseFloat(parseFloat(preu)+parseFloat(40)).toFixed(2));		 
-		 $("#labelpreutotalPromo").text(parseFloat(parseFloat(preuT)+parseFloat(40)).toFixed(2));
+		 $("#transport_lb").text(transportPreu);
+		 $("#preu").text(parseFloat(parseFloat(preu)+parseFloat(transportPreu)).toFixed(2));		 
+		 $("#labelpreutotalPromo").text(parseFloat(parseFloat(preuT)+parseFloat(transportPreu)).toFixed(2));
 		 initPromoDescompteFromStorage();
 		 $("#adomicili_div").show('slow');
 	}else{
 		 $("#adomicili_div").hide('slow');
 		 $("#transport_lb").text("0");
-		 $("#preu").text(parseFloat(parseFloat(preu)-parseFloat(40)).toFixed(2));
-		 $("#labelpreutotalPromo").text(parseFloat(parseFloat(preuT)-parseFloat(40)).toFixed(2));
+		 $("#preu").text(parseFloat(parseFloat(preu)-parseFloat(transportPreu)).toFixed(2));
+		 $("#labelpreutotalPromo").text(parseFloat(parseFloat(preuT)-parseFloat(transportPreu)).toFixed(2));
 		 initPromoDescompteFromStorage();
 	}
 	reloadHores();
@@ -380,13 +376,8 @@ function contrarembols(){
 
 
 function addRecollir(){
-	$("#adomicili_div").hide('slow');
-	
-	
-	
-	if($("#arecollir").is(':checked')){		 		 
-	
-		$("#adomicili").attr('checked',false);
+			
+	if($("#arecollir").is(':checked')){		 		 				
 		var idcomanda= window.localStorage.getItem("comanda");
 		var data ="idComanda="+idcomanda;
 	  	$.ajax({
@@ -399,11 +390,22 @@ function addRecollir(){
 	  				errorOnline.error("Error in AJAX: "+json.error);	
 	       		  }else{
 	       			  if(json.moreThanOne=='true' || json.moreThanOne==true){	       				  
-	       				alertOnline.alertes(initParams.txtnomesdomocili);	 
+	       				alertOnline.alertes(initParams.txtnomesdomocili);		       			
+	       				return;
 	       			  }
-	       			$("#targetaContrarembols").val("targeta");
-	       			$("#address_restaurant").text(json.address);
-	       			$("#arecollir_div").show('slow');
+	       			 if($("#adomicili").is(':checked')){	
+		       			 $("#adomicili").attr('checked',false);
+		       			 $("#adomicili_div").hide('slow');	
+		       			 var preu = $("#preu").text();
+		       			 var preuT = $("#labelpreutotalPromo").text();
+		       			 $("#transport_lb").text("0");
+		       			 $("#preu").text(parseFloat(parseFloat(preu)-parseFloat(transportPreu)).toFixed(2));
+		       			 $("#labelpreutotalPromo").text(parseFloat(parseFloat(preuT)-parseFloat(transportPreu)).toFixed(2));
+		       			 initPromoDescompteFromStorage();
+	  				 }
+	       			 $("#targetaContrarembols").val("targeta");
+	       		     $("#address_restaurant").text(json.address);
+	       			 $("#arecollir_div").show('slow');
 	       		  }				
 	  		  },
 	  		  error: function(e){   errorOnline.error(txterrorAjax);	
@@ -1184,56 +1186,55 @@ $("#dialog_promo").dialog( { autoOpen: false,
 
 	 }
 });
-
 $(document).ready(function() {
 	
-		var comanda = window.localStorage.getItem("comanda");		
+	var comanda = window.localStorage.getItem("comanda");		
+	
+	if(comanda != 'undefined' && comanda != null){
+		$("#numComanda").text(comanda);
 		
-		if(comanda != 'undefined' && comanda != null){
-			$("#numComanda").text(comanda);
-			
-			
-			var preu = window.localStorage.getItem("comanda.preu");
-			if (preu != 'undefined' && preu != null) {
-				var preuBegudes = window.localStorage.getItem("comanda.beguda.preu");
-				if (preuBegudes != 'undefined' && preuBegudes != null) {
-					preu =  parseFloat(preu) + parseFloat(preuBegudes);
-				}
-				$("#preu").text(parseFloat(preu).toFixed(2));			
-				$("#labelpreutotalPromo").text(parseFloat(preu).toFixed(2));
+		
+		var preu = window.localStorage.getItem("comanda.preu");
+		if (preu != 'undefined' && preu != null) {
+			var preuBegudes = window.localStorage.getItem("comanda.beguda.preu");
+			if (preuBegudes != 'undefined' && preuBegudes != null) {
+				preu =  parseFloat(preu) + parseFloat(preuBegudes);
 			}
+			$("#preu").text(parseFloat(preu).toFixed(2));			
+			$("#labelpreutotalPromo").text(parseFloat(preu).toFixed(2));
+		}
 
-			var numplats = window.localStorage.getItem("comanda.numplats");
-			if(numplats == 'undefined' || numplats == null){
-				numplats=0;
-				window.localStorage.setItem("comanda.numplats","0");
-			}
-			
+		var numplats = window.localStorage.getItem("comanda.numplats");
+		if(numplats == 'undefined' || numplats == null){
+			numplats=0;
+			window.localStorage.setItem("comanda.numplats","0");
+		}
+		
 
-			var numbegudes = window.localStorage.getItem("comanda.numbegudes");
-			if(numbegudes == 'undefined' || numbegudes == null){
-				numbegudes=0;
-				window.localStorage.setItem("comanda.numbegudes","0");
-			}
+		var numbegudes = window.localStorage.getItem("comanda.numbegudes");
+		if(numbegudes == 'undefined' || numbegudes == null){
+			numbegudes=0;
+			window.localStorage.setItem("comanda.numbegudes","0");
+		}
+	
+	
+		var nProductes = parseInt(numplats)+parseInt(numbegudes);
+		if(nProductes==1){
+			$("#numProduct").text(initParams.txtconfirm+" "+nProductes+" "+initParams.txtproducte);
+		}else if(nProductes>1){
+			$("#numProduct").text(initParams.txtconfirm+" "+nProductes+" "+initParams.txtproductes);
+		}		
 		
-		
-			var nProductes = parseInt(numplats)+parseInt(numbegudes);
-			if(nProductes==1){
-				$("#numProduct").text(initParams.txtconfirm+" "+nProductes+" "+initParams.txtproducte);
-			}else if(nProductes>1){
-				$("#numProduct").text(initParams.txtconfirm+" "+nProductes+" "+initParams.txtproductes);
-			}		
-			
-			if(isNaN(nProductes)){
-				window.localStorage.clear();
-				$("#numProduct").text(initParams.txtconfirm+" 0 "+initParams.txtproductes);
-			}
-			
-		}else{
+		if(isNaN(nProductes)){
+			window.localStorage.clear();
 			$("#numProduct").text(initParams.txtconfirm+" 0 "+initParams.txtproductes);
 		}
 		
-		initPromoBegudaFromStorage();
-		initPromoDescompteFromStorage();
+	}else{
+		$("#numProduct").text(initParams.txtconfirm+" 0 "+initParams.txtproductes);
+	}
+	
+	initPromoBegudaFromStorage();
+	initPromoDescompteFromStorage();
 });
 
