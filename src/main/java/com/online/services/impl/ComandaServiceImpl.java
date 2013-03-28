@@ -36,7 +36,7 @@ import com.online.utils.Utils;
 
 public class ComandaServiceImpl implements ComandaService{
 
-	private ConfigRestaurantBo	configRestaurantBo;
+	private ConfigRestaurantBo	configRestaurantBo; 
 	private MotersBo			motersBo;
 	private RestaurantsBo		restaurantsBo;
 	private PromocionsBo		promocionsBo;
@@ -103,11 +103,12 @@ public class ComandaServiceImpl implements ComandaService{
 			}
 		}
 		
-		if (restaurants.size() > 2) {
+		if (restaurants.size() >= 2) {
 			return true;
 		}
 		return false;
 	}
+
 	public int getNumBegudes( List<BegudaComanda> listBeguda ) throws ComandaException{
 
 		int numBegudes = 0;

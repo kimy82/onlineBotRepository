@@ -165,10 +165,12 @@ public class AjaxComandaAction extends ActionSuportOnlineSession {
 				int numBegudesAddToPromo=0;
 				for(BegudaComanda bgcom : begudaList){
 					if(bgcom.getNumBegudes()!=null &&bgcom.getNumBegudes()>0 && bgcom.getBeguda().getTipus().equals(promo.getTipusBeguda())){
-						if(numBegudesAddToPromo>=promo.getNumBegudes()) break;
-						bgcom.setNumBegudesPromo(bgcom.getNumBegudesPromo()+1);
-						bgcom.setNumBegudes(bgcom.getNumBegudes()-1);
-						numBegudesAddToPromo++;
+						if(numBegudesAddToPromo>=promo.getNumBegudes()) break;						
+						for(;numBegudesAddToPromo<= promo.getNumBegudes(); numBegudesAddToPromo++){
+							if(bgcom.getNumBegudes()==0)break;
+							bgcom.setNumBegudesPromo(bgcom.getNumBegudesPromo()+1);
+							bgcom.setNumBegudes(bgcom.getNumBegudes()-1);													
+						}											
 					}
 				}
 				
