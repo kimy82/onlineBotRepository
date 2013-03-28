@@ -158,7 +158,7 @@ function eliminaBeguda(id){
        				});
 
        				window.localStorage.setItem("comanda.begudes.lis",lista);
-       				$("#disp_beguda").text(lista);
+       				$("#disp_beguda").html(lista);
        		  }			
   		  },
   		  error: function(e){   errorOnline.error(txterrorAjax);	
@@ -202,7 +202,7 @@ function eliminaPlat(id){
 	       				});
 
 	       				window.localStorage.setItem("comanda.plats.lis",lista);
-	       				$("#disp_plate").text(lista);
+	       				$("#disp_plate").html(lista);
 	       		  }			
 	  		  },
 	  		  error: function(e){   errorOnline.error(txterrorAjax);	
