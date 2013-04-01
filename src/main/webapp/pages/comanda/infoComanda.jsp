@@ -272,7 +272,6 @@
 		<div id="arecollir_div" style="float: left;margin-top: 150px; border: 1px; " >
 		<s:text name="txt.infocomanda.passala.arecorrir.per" />
 		<h1 id="address_restaurant" ></h1>
-		<input type="button"  onclick="checkComandaJS();" value="<s:text name='txt.infocomanda.paga' />" />
 	</div>
 	</div>
 	<div id="rightright">
@@ -373,6 +372,7 @@
 	<script type="text/javascript" src="<c:url value='/js/progressbar/progress.js'/>"></script>
 	<script type="text/javascript" src="<c:url value='/pages/comanda/jsinfoComanda.js'/>"></script-->
 	
+	<script src="http://maps.google.com/maps/api/js?sensor=false" type="text/javascript"></script>
 	<script type="text/javascript" src="<c:url value='/pages/comanda/jsinfoComanda.min.js'/>"></script>
 	
 	
