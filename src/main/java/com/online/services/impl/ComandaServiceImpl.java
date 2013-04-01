@@ -269,6 +269,7 @@ public class ComandaServiceImpl implements ComandaService{
 		Set<Restaurant> restaurantSet = getRestaurants(comanda);
 		Iterator iteraRestaurant = restaurantSet.iterator();
 		boolean secondRestaurant=false;
+		String dataToLoad = horesDTO.getData();
 		HoresDTO horesDTOSecond = new HoresDTO();
 		HoresDTO horesDTOMoters = new HoresDTO();
 		while (iteraRestaurant.hasNext()) {
@@ -541,7 +542,7 @@ public class ComandaServiceImpl implements ComandaService{
 				horesDTO= horesDTOMoters;
 			}
 		}
-
+		horesDTO.setData(dataToLoad);
 		return horesDTO;
 	}
 

@@ -258,6 +258,7 @@
 	<script src="<c:url value='/pages/comanda/jqueryWelcome.min.js'/>" type="text/javascript"></script>
 	<script type="text/javascript" >		
 		//Carrega del cistell de compra 
+			var lastIdRestaurant = window.localStorage.getItem("comanda.restaurant");		
 			$("#numComanda").text('${requestScope.idComanda}');
 			$("#numplats").text('${requestScope.numPlats}');
 			$("#numbegudes").text('${requestScope.numBegudes}');			

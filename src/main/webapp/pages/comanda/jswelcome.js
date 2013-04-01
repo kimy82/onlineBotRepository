@@ -332,14 +332,11 @@ function goToRestaurantMenu(id){
 		}
 	}
 	comandaConfirm = window.localStorage.getItem("comanda.confirm");
-	var restaurantId = window.localStorage.getItem("comanda.restaurant");
-	if(restaurantId != 'undefined' && restaurantId != null && restaurantId!=id){
-		alertOnline.alertes(txtavisdosrestaurants);	
-	}
+	window.localStorage.setItem("comanda.restaurant.new",id);
 	if(comanda != 'undefined' && comanda != null && comandaConfirm == null){
 		var day = new Date();
 		window.localStorage.setItem("comanda.confirm",day.getTime());
-		window.localStorage.setItem("comanda.timeout.data",day.getTime());
+		window.localStorage.setItem("comanda.timeout.data",day.getTime());		
 		acceptComandaDialog();
 	}else{
 		window.location.href="/"+context+"/comanda/Welcome.action?restaurantId="+id+"&data="+data;
@@ -348,7 +345,7 @@ function goToRestaurantMenu(id){
 
 var actionCloseConfirm = function(){
 	var data = window.localStorage.getItem("comanda.data");
-	var idRestaurant = window.localStorage.getItem("comanda.restaurant");
+	var idRestaurant = window.localStorage.getItem("comanda.restaurant.new");
 	if(idRestaurant=='undefined' || idRestaurant==null) return;
 	window.localStorage.clear();	
 	window.localStorage.setItem("comanda.data",data);
@@ -363,7 +360,7 @@ function acceptComandaDialog(){
 
 var confirmComanda = function (){
 									var comanda = window.localStorage.getItem("comanda");
-									var idRestaurant = window.localStorage.getItem("comanda.restaurant");
+									var idRestaurant = window.localStorage.getItem("comanda.restaurant.new");
 									if(idRestaurant=='undefined' || idRestaurant==null) return;
 									if($("#list_rest_"+idRestaurant).hasClass("tancat")){
 										alertOnline.alertes(initParams.txtavisrestauranttancat);	
@@ -384,31 +381,6 @@ function goToComandaPas1() {
 	var data = window.localStorage.getItem("comanda.data");
 	window.location.href = "/"+context+"/comanda/goToPas1Action.action?idComanda="+$("#numComanda").text()+"&data="+data;
 }
-/*
-function goToLogin(){
-	
-	$("#login_dialog").load("/"+context+"/login.action?dialog=true");	
-	$("#login_dialog").dialog({ 
-		   autoOpen: false,
-		   height: 94,
-		   width: 330,
-		   position: "center",
-		   modal: true,
-		   close: function(event, ui) { 			   
-			   $("#login_dialog").dialog("close"); 			   
-			}
-	});
-    $("#login_dialog").dialog("open");
-    $("#login_dialog").siblings('div.ui-dialog-titlebar').remove();  
-    $("#login_dialog").removeClass("ui-dialog-content");
-	$("#login_dialog").removeClass("ui-widget-content");
-   	$("#move").addClass("ui-dialog-titlebar ui-widget-header ui-corner-all ui-helper-clearfix");
-	$(".ui-widget-content").css("background-color", "transparent");
-   	$(".ui-widget-content").css("border", "0px");
-    $(":ui-dialog").dialog('option', 'position', 'center');
-}
-
-/*/
 
 function goToInfoPlat(id){
 	
@@ -433,37 +405,6 @@ function goToInfoPlat(id){
     $(":ui-dialog").dialog('option', 'position', 'center');
 }
 
-
-/////////////////
-/*
-function goToInfoPlat(id){
-	
-	$("#infoPlat_dialog").load("../foro/foro.action?idPlat="+id);	
-	$("#infoPlat_dialog").dialog({ 
-		   autoOpen: false,
-		   height: 500,
-		   width: 750,
-		   modal: true,
-		   close: function(event, ui) { 			   
-			   $("#").dialog("close"); 			  
-			}
-	});
-    $("#infoPlat_dialog").dialog("open");    
-}
-
-$("#infoPlat_dialog").dialog({ 
-	   autoOpen: false,
-	   height: 700,
-	   width: 750,
-	   modal: true,
-	   close: function(event, ui) { 			   
-		   $("#infoPlat_dialog").dialog("close"); 			  
-		}
-	});
-
-
-*/
-////////////
 function goToInfoBeguda(id){
 	
 	$("#infoBeguda_dialog").load("../foro/foroBeguda.action?idBeguda="+id);	
@@ -481,8 +422,6 @@ function goToInfoBeguda(id){
     $("#infoBeguda_dialog").removeClass("ui-dialog-content");
     $("#infoBeguda_dialog").removeClass("ui-widget-content");
    	$("#infoBeguda_dialog").addClass("ui-helper-clearfix");
-	//(".ui-widget-content").css("background-color", "transparent");
-   //(".ui-widget-content").css("border", "0px");
 }
 
 function addProduct(id){
@@ -506,6 +445,11 @@ $(document).ready(function() {
 	
 	var comanda = window.localStorage.getItem("comanda");
 	var filtre = window.localStorage.getItem("plats.order");
+	
+	var numPlatsAdded= window.localStorage.getItem("comanda.numplats");
+	if(lastIdRestaurant != 'undefined' && numPlatsAdded!='0' && lastIdRestaurant != null && numPlatsAdded!=null && lastIdRestaurant!=idRestaurant){
+				alertOnline.alertes(txtavisdosrestaurants);	
+	}
 	
 	if(comanda != 'undefined' && comanda != null){
 		$("#numComanda").text(comanda);
@@ -612,4 +556,6 @@ function closeInfoPlat(){
 function closeInfoBeguda(){
 	$("#infoBeguda_dialog").dialog("close");
 }	
+
+
 

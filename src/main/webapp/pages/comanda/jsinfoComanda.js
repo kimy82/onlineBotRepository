@@ -71,10 +71,7 @@ function goToRestaurantMenu(id){
 	}
 	
 	comandaConfirm = window.localStorage.getItem("comanda.confirm");
-	var restaurantId = window.localStorage.getItem("comanda.restaurant");
-	if(restaurantId != 'undefined' && restaurantId != null && restaurantId!=id){
-		alertOnline.alertes(txtavisdosrestaurants);	
-	}
+	
 	if(comanda != 'undefined' && comanda != null && comandaConfirm == null){
 		var day = new Date();
 		window.localStorage.setItem("comanda.confirm",day.getTime());
