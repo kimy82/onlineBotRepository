@@ -11,6 +11,28 @@
 	<meta http-equiv="content-type" content="text/html;charset=utf-8" />
 	<meta name="viewport" content="width=device-width,initial-scale=0.99,maximum-scale=0.99" />
 	<link rel="shortcut icon" href="<c:url value='/img/elements/logo_portamu16.jpg' />"> 
+	<link href='http://fonts.googleapis.com/css?family=Raleway:800,400' rel='stylesheet' type='text/css'>
+	<link rel="stylesheet" type="text/css" href="<c:url value='/css/min/infocomanda.min.css' />" />
+	<!--  link rel="stylesheet" type="text/css" href="<c:url value='/css/portamu/global.css' />" />
+	<link rel="stylesheet" type="text/css" href="<c:url value='/css/portamu/reset.css' />" />
+	<link href='http://fonts.googleapis.com/css?family=Raleway:800,400' rel='stylesheet' type='text/css'>
+	<style>
+		.notcheck{
+			background-color: grey;
+		}
+		.check{
+			background-color: yellow;
+		}
+		
+		.checked{
+			background-color: green;
+		}
+	</style>	
+	<link rel="stylesheet" type="text/css" media="all" href="<c:url value='/css/calendar-blau.css' />" title="win2k-cold-1" />
+	<link rel="stylesheet" type="text/css" media="all" href="<c:url value='/css/sudoSlider.css' />"  />	
+	<link type="text/css" rel="stylesheet" href="<c:url value='/css/progress.css' />" />
+	<link type="text/css" rel="stylesheet" href="<c:url value='/css/online.css' />" />
+	<link type="text/css" rel="stylesheet" href="<c:url value='/css/portamu/prova.css' />" /-->
 	<title><s:text name="txt.welcome.principal" /></title>	
 </head>
 <body id="carrito">
@@ -318,32 +340,6 @@
 				</ul>
 		
 </div>  
-	
-	<!-- CSS portamu --> 
-	<link rel="stylesheet" type="text/css" href="<c:url value='/css/portamu/global.css' />" />
-	<link rel="stylesheet" type="text/css" href="<c:url value='/css/portamu/reset.css' />" />
-	<!-- FONTS -->
-	<link href='http://fonts.googleapis.com/css?family=Raleway:800,400' rel='stylesheet' type='text/css'>
-	<!-- CSS portamu -->
-	<style>
-		.notcheck{
-			background-color: grey;
-		}
-		.check{
-			background-color: yellow;
-		}
-		
-		.checked{
-			background-color: green;
-		}
-	</style>
-	
-	<link rel="stylesheet" type="text/css" media="all" href="<c:url value='/css/calendar-blau.css' />" title="win2k-cold-1" />
-	<link rel="stylesheet" type="text/css" media="all" href="<c:url value='/css/sudoSlider.css' />"  />	
-	<link type="text/css" rel="stylesheet" href="<c:url value='/css/progress.css' />" />
-	<link type="text/css" rel="stylesheet" href="<c:url value='/css/online.css' />" />
-	<link type="text/css" rel="stylesheet" href="<c:url value='/css/portamu/prova.css' />" />
-
 	<!--  script src="<c:url value='/js/jquery/jquery.js' />" type="text/javascript"></script>
 	<script src="<c:url value='/js/jquery/jquery.ui.core.js' />" type="text/javascript"></script>
 	<script src="<c:url value='/js/jquery/jquery.ui.widget.js'/>" type="text/javascript"></script>
