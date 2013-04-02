@@ -66,9 +66,11 @@
 		
 	
 	<!-- Per validar l'adreca -->
-	<script src="<c:url value='/js/address/autocompleteStreet.js'/>" type="text/javascript"></script>
+	<!--  script src="<c:url value='/js/address/autocompleteStreet.js'/>" type="text/javascript"></script>
 	<script src="<c:url value='/js/address/autocompleteCodi.js'/>" type="text/javascript"></script>
-	<script src="<c:url value='/pages/login/jsregister.js' />" type="text/javascript"></script>
+	<script src="<c:url value='/pages/login/jsregister.js' />" type="text/javascript"></script-->
+	
+	<script src="<c:url value='/pages/login/jsregister.min.js' />" type="text/javascript"></script>
 	
 
 <script type="text/javascript" >		

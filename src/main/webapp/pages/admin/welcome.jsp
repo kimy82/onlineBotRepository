@@ -1,6 +1,9 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="s" uri="/struts-tags" %>
 <html>
+<!-- link rel="stylesheet" href="<c:url value='/css/admin.css' />" type="text/css"   media="screen" />
+<link rel="stylesheet" href="<c:url value='/css/portamu/reset.css' />" type="text/css"   media="screen" / -->
+<link rel="stylesheet" href="<c:url value='/css/min/admin.welcome.min.css' />" type="text/css"   media="screen" />
 <body>
 <div class="content">
 	<div class="container">
@@ -33,16 +36,8 @@
 		<td><a href="<c:url value='presentacio.action' />" >Slider</a></td>
 		<td><a href="<c:url value='comments.action' />" >Comments</a></td>
 		<td><a href="<c:url value='primeresComandes.action' />" >Control comandes</a></td>
-		</tr>
-		
-		
-		
-		
-		
-	
+		</tr>	
 		</table>
-<link rel="stylesheet" href="<c:url value='/css/admin.css' />" type="text/css"   media="screen" />
-<link rel="stylesheet" href="<c:url value='/css/portamu/reset.css' />" type="text/css"   media="screen" />
 	</div>
 </div>
 </body>

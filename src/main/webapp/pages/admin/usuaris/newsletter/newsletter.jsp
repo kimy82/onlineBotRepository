@@ -8,7 +8,11 @@
 		pageEncoding="ISO-8859-1"%>
 	<META http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 	<META http-equiv="Content-Style-Type" content="text/css">
-	<link rel="shortcut icon" href="<c:url value='/img/elements/logo_portamu16.jpg' />"> 
+	<link rel="shortcut icon" href="<c:url value='/img/elements/logo_portamu16.jpg' />">
+	<!--  link rel="stylesheet" href="<c:url value='/css/demo_table.css' />" type="text/css"   media="screen" />
+	<link rel="stylesheet" href="<c:url value='/css/components.css' />" type="text/css"   media="screen" /-->
+	<link rel="stylesheet" href="<c:url value='/css/min/admin.newlet.min.css' />" type="text/css"   media="screen" />  
+	<link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/base/jquery-ui.css" rel="stylesheet" type="text/css" /> 
 	<title><s:text name="txt.newsletter.title" /></title>
 </head>
 <body>
@@ -35,13 +39,7 @@
 			</div>				
 		</div>
 	</div>
-</div>
-<!-- Scripts --> 
-
-	<link rel="stylesheet" href="<c:url value='/css/demo_table.css' />" type="text/css"   media="screen" />
-	<link rel="stylesheet" href="<c:url value='/css/components.css' />" type="text/css"   media="screen" />  
-	<link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/base/jquery-ui.css" rel="stylesheet" type="text/css" />
-	
+</div>	
 	<!--  script src="<c:url value='/js/jquery/jquery.js' />" type="text/javascript"></script>
 	<script src="<c:url value='/js/jquery/jquery.ui.core.js' />" type="text/javascript"></script>
 	<script src="<c:url value='/js/jquery/jquery.dataTables.js'/>" type="text/javascript"></script>
