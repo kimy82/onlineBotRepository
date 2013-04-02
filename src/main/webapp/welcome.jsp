@@ -10,6 +10,17 @@
 	<meta http-equiv="content-type" content="text/html;charset=utf-8" />
 	<meta name="viewport" content="width=device-width,initial-scale=0.99,maximum-scale=0.99" />
 	<link rel="shortcut icon" href="<c:url value='/img/elements/logo_portamu16.jpg' />"> 
+	
+	<!--  link rel="stylesheet" type="text/css" href="<c:url value='/css/portamu/prova.css' />" />
+	<link rel="stylesheet" type="text/css" href="<c:url value='/css/portamu/global.css' />" />
+	<link rel="stylesheet" type="text/css" href="<c:url value='/css/portamu/reset.css' />" />
+	<link href='http://fonts.googleapis.com/css?family=Raleway:800,400' rel='stylesheet' type='text/css'>	
+	<link rel="stylesheet" href="<c:url value='/css/coin-slider-styles.css' />" type="text/css" />
+	<link type="text/css" rel="stylesheet" href="<c:url value='/css/online.css' />" /-->
+	
+	<link href='http://fonts.googleapis.com/css?family=Raleway:800,400' rel='stylesheet' type='text/css'>
+	<link type="text/css" rel="stylesheet" href="<c:url value='/css/min/welcome.min.css' />" />
+	
 	<title> <s:text name="txt.welcome.principal" />	</title>
 	
 </head>
@@ -149,12 +160,7 @@
 <!-- END container -->
 <c:import url="/pages/includes/endPage.jsp" />
 
-	<link rel="stylesheet" type="text/css" href="<c:url value='/css/portamu/prova.css' />" />
-	<link rel="stylesheet" type="text/css" href="<c:url value='/css/portamu/global.css' />" />
-	<link rel="stylesheet" type="text/css" href="<c:url value='/css/portamu/reset.css' />" />
-	<link href='http://fonts.googleapis.com/css?family=Raleway:800,400' rel='stylesheet' type='text/css'>	
-	<link rel="stylesheet" href="<c:url value='/css/coin-slider-styles.css' />" type="text/css" />
-	<link type="text/css" rel="stylesheet" href="<c:url value='/css/online.css' />" />
+	
 	
 	<!--  script src="<c:url value='/js/jquery/jquery.js' />" type="text/javascript"></script>
 	<script src="<c:url value='/js/jquery/jquery.ui.core.js' />" type="text/javascript"></script>
