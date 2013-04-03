@@ -143,25 +143,7 @@
 </div>
 </div>
 </div>
-	<!--  link rel="stylesheet" href="<c:url value='/css/admin.css' />" type="text/css"   media="screen" />
-	<link rel="stylesheet" href="<c:url value='/css/portamu/reset.css' />" type="text/css"   media="screen" />
-	<link rel="stylesheet" href="<c:url value='/css/demo_table.css' />" type="text/css"   media="screen" />
-	<link rel="stylesheet" href="<c:url value='/css/components.css' />" type="text/css"   media="screen" />    
-	<link rel="stylesheet" type="text/css" media="all" href="<c:url value='/css/calendar-blau.css' />" title="win2k-cold-1" />
-	<link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/base/jquery-ui.css" rel="stylesheet" type="text/css" /-->
-	<!--  script src="<c:url value='/js/jquery/jquery.js' />" type="text/javascript"></script>
-	<script src="<c:url value='/js/jquery/jquery.ui.core.js' />" type="text/javascript"></script>
-	<script src="<c:url value='/js/jquery/jquery.dataTables.js'/>" type="text/javascript"></script> 
-	<script type="text/javascript" src="<c:url value='/js/calendari/calendar.js'/>"></script>
-	<script type="text/javascript" src="<c:url value='/js/calendari/calendar-cat.js'/>"></script>
-	<script type="text/javascript" src="<c:url value='/js/calendari/calendar-es.js'/>"></script>
-	<script type="text/javascript" src="<c:url value='/js/calendari/calendar-idioma.js'/>"></script>		
-	<script type="text/javascript" src="<c:url value='/js/calendari/calendar-setup.js'/>"></script>
-	<script type="text/javascript" src="<c:url value='/pages/admin/restaurants/promocions/jspromocio.js' />"></script>
-	<script type="text/javascript" src="<c:url value='/js/validations/jsvalidations.js' />"></script-->
-	
-	<script type="text/javascript" src="<c:url value='/pages/admin/restaurants/promocions/jspromocio.min.js' />"></script>
-
+<script type="text/javascript" src="<c:url value='/js/jspromocio.admin.min.js' />"></script>
 <script language="javascript">			
 //---------------------------------------------------------------------------------------------------------------------
     Calendar.setup({

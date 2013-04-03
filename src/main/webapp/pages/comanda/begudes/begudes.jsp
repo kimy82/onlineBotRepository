@@ -21,15 +21,9 @@
 <div id="container">
 
 	<div id="content">
-			<!-- menu -->
 				<c:import url="/pages/includes/menuHeader.jsp" />
-			<!-- END menu -->
-			<!-- Language -->
 				<c:import url="/pages/includes/divLanguage.jsp" />
-			<!-- END language -->
-			<!-- Content seccio-->
 		<div id="content_seccion">
-			<!-- seccion Restaurants-->
 			<div id="seccion">
 				<div id="rest">
 					<s:text name="txt.begudes.title" />
@@ -70,8 +64,7 @@
 							</div>							
 						</div>
 				</s:iterator>
-			</div>
-			<!-- Dreta-->						
+			</div>					
 				<div id="left">
 					<div id="bar_left">
 						<img src="<c:url value='/img/elements/bar3.png' />">
@@ -102,11 +95,8 @@
 									<s:text name="txt.propera.hora" />: <br><br>
 									<span class="hora_int" id="hora_int" ></span>
 								</div>
-							</div>
-						
-						<!--End RIght-->
-					</div>
-				
+							</div>					
+					</div>				
 				</div>
 			</div>
 		</div>
@@ -115,35 +105,12 @@
 <div id="infoBeguda_dialog" class="filtres filtres-oberts">	 		
 </div>  
 <c:import url="/pages/includes/endPage.jsp" />
-
-	<!-- CSS portamu --> 
-	<!--  link rel="stylesheet" type="text/css" href="<c:url value='/css/portamu/global.css' />" />
-	<link rel="stylesheet" type="text/css" href="<c:url value='/css/portamu/reset.css' />" />
-	<link href='http://fonts.googleapis.com/css?family=Raleway:800,400' rel='stylesheet' type='text/css'>
-	<link type="text/css" rel="stylesheet" href="<c:url value='/css/online.css' />" /-->
-	
-	<!--  script src="<c:url value='/js/jquery/jquery.js' />" type="text/javascript"></script>
-	<script src="<c:url value='/js/jquery/jquery.ui.core.js' />" type="text/javascript"></script>
-	<script src="<c:url value='/js/jquery/jquery.ui.widget.js'/>" type="text/javascript"></script>
-	<script src="<c:url value='/js/jquery/jquery.ui.mouse.js'/>" type="text/javascript"></script>
-	<script src="<c:url value='/js/jquery/jquery.ui.dialog.js' />" type="text/javascript"></script>
-	<script src="<c:url value='/js/jquery/jquery.ui.position.js'/>" type="text/javascript"></script>
-	<script src="<c:url value='/js/jquery/jquery.ui.draggable.js'/>" type="text/javascript"></script>
-	<script src="<c:url value='/js/jquery/jquery.ui.droppable.js'/>" type="text/javascript"></script>
-	<script src="<c:url value='/js/jquery/jquery.ui.resizable.js'/>" type="text/javascript"></script>
-	<script src="<c:url value='/js/jquery/jquery.effects.core.js'/>" type="text/javascript"></script>
-	<script src="<c:url value='/js/jquery/jquery.bgiframe-2.1.1.js'/>" type="text/javascript"></script>
-	<script type="text/javascript" src="<c:url value='/js/slider/coin-slider.min.js' />"></script>	
-	<script src="<c:url value='/pages/comanda/begudes/jsbegudes.js'/>" type="text/javascript"></script-->
-	
-	<script src="<c:url value='/pages/comanda/begudes/jsbegudes.min.js'/>" type="text/javascript"></script>
-	
+<script src="<c:url value='/js/jsbegudes.min.js'/>" type="text/javascript"></script>	
 	<script type="text/javascript" >
 		var initParams = new InitParams("<s:text name='txt.welcome.confirmar' />","<s:text name='txt.welcome.productes' />",
 										"<s:text name='txt.welcome.producte' />","<s:text name='txt.avis.restaurant.tancat' />",
 										"<s:text name='txt.comanda.existeix.vol.continuar' />");
 	</script>
-	
 	<c:import url="/pages/includes/confirmOnline.jsp" />
 	<c:import url="/pages/includes/errorAjax.jsp" />
 	<c:import url="/pages/includes/alertOnline.jsp" />

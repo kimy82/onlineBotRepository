@@ -9,11 +9,6 @@
 	<META http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 	<META http-equiv="Content-Style-Type" content="text/css">
 	<link rel="shortcut icon" href="<c:url value='/img/elements/logo_portamu16.jpg' />"> 
-	<!--  link rel="stylesheet" href="<c:url value='/css/admin.css' />" type="text/css"   media="screen" />
-	<link rel="stylesheet" href="<c:url value='/css/portamu/reset.css' />" type="text/css"   media="screen" />
-	<link rel="stylesheet" href="<c:url value='/css/demo_table.css' />" type="text/css"   media="screen" />
-	<link rel="stylesheet" href="<c:url value='/css/TableTools.css' />" type="text/css"   media="screen" />
-	<link rel="stylesheet" href="<c:url value='/css/components.css' />" type="text/css"   media="screen" /--> 
 	<link rel="stylesheet" href="<c:url value='/css/admin.newlet.usu.min.css' />" type="text/css"   media="screen" /> 
 	<link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/base/jquery-ui.css" rel="stylesheet" type="text/css" />
 	<title><s:text name="mant.user.title" /></title>	
@@ -63,7 +58,7 @@
 	<script src="<c:url value='/js/jquery/ZeroClipboard.js'/>" type="text/javascript"></script>
 	<script type="text/javascript" src="<c:url value='/pages/admin/usuaris/newsletter/usuaris/jsletterUsuaris.js' />"></script-->
 	
-	<script type="text/javascript" src="<c:url value='/pages/admin/usuaris/newsletter/usuaris/jsletterUsuaris.min.js' />"></script>
+	<script type="text/javascript" src="<c:url value='/js/jsletterUsuaris.admin.min.js' />"></script>
 	
 
 <script language="javascript">

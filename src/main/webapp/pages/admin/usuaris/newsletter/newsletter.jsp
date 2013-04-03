@@ -9,8 +9,6 @@
 	<META http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 	<META http-equiv="Content-Style-Type" content="text/css">
 	<link rel="shortcut icon" href="<c:url value='/img/elements/logo_portamu16.jpg' />">
-	<!--  link rel="stylesheet" href="<c:url value='/css/demo_table.css' />" type="text/css"   media="screen" />
-	<link rel="stylesheet" href="<c:url value='/css/components.css' />" type="text/css"   media="screen" /-->
 	<link rel="stylesheet" href="<c:url value='/css/admin.newlet.min.css' />" type="text/css"   media="screen" />  
 	<link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/base/jquery-ui.css" rel="stylesheet" type="text/css" /> 
 	<title><s:text name="txt.newsletter.title" /></title>
@@ -40,15 +38,7 @@
 		</div>
 	</div>
 </div>	
-	<!--  script src="<c:url value='/js/jquery/jquery.js' />" type="text/javascript"></script>
-	<script src="<c:url value='/js/jquery/jquery.ui.core.js' />" type="text/javascript"></script>
-	<script src="<c:url value='/js/jquery/jquery.dataTables.js'/>" type="text/javascript"></script>
-	<script type="text/javascript" src="<c:url value='/pages/admin/usuaris/newsletter/jsnewsletter.js' />"></script>
-	<script src="<c:url value='/js/htmlBox/htmlbox.min.js' />" type="text/javascript"></script-->
-	
-	<script type="text/javascript" src="<c:url value='/pages/admin/usuaris/newsletter/jsnewsletter.min.js' />"></script>
-
-
+<script type="text/javascript" src="<c:url value='/js/jsnewsletter.admin.min.js' />"></script>
 <script type="text/javascript">
 $(document).ready(function(){
 	var save_tool = {
@@ -65,7 +55,5 @@ $(document).ready(function(){
 			"<s:text  name='txt.confirm.sending'/>",
 			"<s:text  name='txt.sent'/>");
 </script>
-
 </body>
 </html>
-

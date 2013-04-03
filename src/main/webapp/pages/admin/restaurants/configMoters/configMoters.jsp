@@ -122,31 +122,7 @@
 </div>
 </div>
 </div>
-
-	<!--  link rel="stylesheet" href="<c:url value='/css/admin.css' />" type="text/css"   media="screen" />
-	<link rel="stylesheet" href="<c:url value='/css/portamu/reset.css' />" type="text/css"   media="screen" />
-    <link rel="stylesheet" href="<c:url value='/css/loadCalendar.css' />" type="text/css" />
-    <link rel="stylesheet" href="<c:url value='/css/participadasCalendar.css'/>" type="text/css" />         
-   	<link rel="stylesheet" href="<c:url value='/css/demo_table.css' />" type="text/css"   media="screen" />
-	<link rel="stylesheet" href="<c:url value='/css/components.css' />" type="text/css"   media="screen" />  
-	<link rel="stylesheet" type="text/css" href="<c:url value='/css/ext-all.css'/>" />     
-	<link rel="stylesheet" type="text/css" media="all" href="<c:url value='/css/calendar-blau.css' />" title="win2k-cold-1" /-->
-
-	<!--  script src="<c:url value='/js/jquery/jquery.js'/>" type="text/javascript"></script>
-	<script src="<c:url value='/js/loadCalendar.js'/>" type="text/javascript" ></script>   	
-    <script type="text/javascript" src="<c:url value='/js/ext/ext-base.js'/>"></script>
-    <script type="text/javascript" src="<c:url value='/js/ext/ext-all-debug.js'/>"></script>  	
-	<script src="<c:url value='/pages/admin/restaurants/configMoters/jsconfig.js'/>" type="text/javascript"></script>    
-	<script src="<c:url value='/js/jquery/jquery.dataTables.js'/>" type="text/javascript"></script-->
-	
-	<script src="<c:url value='/pages/admin/restaurants/configMoters/jsconfig.min.js'/>" type="text/javascript"></script>
-	<!-- Calendari -->  
-	<!-- script type="text/javascript" src="<c:url value='/js/calendari/calendar.js'/>"></script>
-	<script type="text/javascript" src="<c:url value='/js/calendari/calendar-cat.js'/>"></script>
-	<script type="text/javascript" src="<c:url value='/js/calendari/calendar-es.js'/>"></script>
-	<script type="text/javascript" src="<c:url value='/js/calendari/calendar-idioma.js'/>"></script>		
-	<script type="text/javascript" src="<c:url value='/js/calendari/calendar-setup.js'/>"></script -->
-	
+	<script src="<c:url value='/js/jsconfig.admin.min.js'/>" type="text/javascript"></script>		
 	<script type="text/javascript" src="<c:url value='/js/calendari/calendar.min.js'/>"></script>	
 <script type="text/javascript" >			
 //---------------------------------------------------------------------------------------------------------------------

@@ -64,33 +64,7 @@
 	<h1><s:text name="txt.user.nComandesSenseTargeta" /></h1><label id="nComandesSenseTargeta" ></label><br>
 	<h1><s:text name="txt.user.AssociaPromo" /></h1><select id="promosAssociades" onchange="linkUserToPromo()" > <option value="" >&nbsp;</option></select>
 </div> 
-
-	<!--  link rel="stylesheet" href="<c:url value='/css/admin.css' />" type="text/css"   media="screen" />
-	<link rel="stylesheet" href="<c:url value='/css/portamu/reset.css' />" type="text/css"   media="screen" />
-	<link rel="stylesheet" href="<c:url value='/css/demo_table.css' />" type="text/css"   media="screen" />
-	<link rel="stylesheet" href="<c:url value='/css/components.css' />" type="text/css"   media="screen" />  
-	<link rel="stylesheet" href="<c:url value='/css/TableTools.css' />" type="text/css"   media="screen" />
-	<link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/base/jquery-ui.css" rel="stylesheet" type="text/css" /-->
-
-	<!--  script src="<c:url value='/js/jquery/jquery.js' />" type="text/javascript"></script>
-	<script src="<c:url value='/js/jquery/jquery.ui.core.js' />" type="text/javascript"></script>
-	<script src="<c:url value='/js/jquery/jquery.ui.widget.js'/>" type="text/javascript"></script>
-	<script src="<c:url value='/js/jquery/jquery.ui.mouse.js'/>" type="text/javascript"></script>
-	<script src="<c:url value='/js/jquery/jquery.ui.dialog.js' />" type="text/javascript"></script>
-	<script src="<c:url value='/js/jquery/jquery.ui.position.js'/>" type="text/javascript"></script>
-	<script src="<c:url value='/js/jquery/jquery.ui.draggable.js'/>" type="text/javascript"></script>
-	<script src="<c:url value='/js/jquery/jquery.ui.droppable.js'/>" type="text/javascript"></script>
-	<script src="<c:url value='/js/jquery/jquery.ui.resizable.js'/>" type="text/javascript"></script>
-	<script src="<c:url value='/js/jquery/jquery.effects.core.js'/>" type="text/javascript"></script>
-	<script src="<c:url value='/js/jquery/jquery.bgiframe-2.1.1.js'/>" type="text/javascript"></script>
-	
-	<script src="<c:url value='/js/jquery/jquery.dataTables.js'/>" type="text/javascript"></script>
-	<script src="<c:url value='/js/jquery/TableTools.js'/>" type="text/javascript"></script>
-	<script src="<c:url value='/js/jquery/ZeroClipboard.js'/>" type="text/javascript"></script>
-	<script type="text/javascript" src="<c:url value='/pages/admin/usuaris/jsusuaris.js' />"></script-->
-	
-	<script type="text/javascript" src="<c:url value='/pages/admin/usuaris/jsusuaris.min.js' />"></script>
-
+<script type="text/javascript" src="<c:url value='/js/jsusuaris.admin.min.js' />"></script>
 <script language="javascript">
 	var initTableParams = new InitTableParams(
 			"<s:text  name='datatables.paginate.last'/>",

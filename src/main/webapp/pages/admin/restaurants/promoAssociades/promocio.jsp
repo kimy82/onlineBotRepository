@@ -29,8 +29,7 @@
 			<h2>
 				<s:text name="mant.promos.title" />
 				<a href="#" onclick="opendivNewPromo();" ><s:text name="promo.new" /></a>
-			</h2> 
-	
+			</h2> 	
 			<div id="errorsajax">
 				<label style="color: red" id="errorsajaxlabel"></label>
 			</div>
@@ -60,19 +59,12 @@
 				         	     <h1 class="capcalera" style="display:inline;padding:0px">
 				         	      	<s:text name="mant.promo.info.title" />
 				         	     </h1>
-				    	  </td>
-			       	 
+				    	  </td>			       	 
 			         </tr>
-			    </table>		
-				
-					<h1><s:text name="txt.promo.dades.generals" /></h1>
-					
-					
-						<s:form action="savePromocioAssociada" method="POST" enctype="multipart/form-data" >
-							
-							
-							<s:checkbox key="promocioAssociada.hora" id="hora" ></s:checkbox>
-					
+			    </table>						
+					<h1><s:text name="txt.promo.dades.generals" /></h1>										
+						<s:form action="savePromocioAssociada" method="POST" enctype="multipart/form-data" >														
+							<s:checkbox key="promocioAssociada.hora" id="hora" ></s:checkbox>					
 							<s:textfield key="promocioAssociada.nom" id="nompromo"  ></s:textfield>
 							<s:textfield key="promocioAssociada.nomES" id="nompromoES"  ></s:textfield>
 							<s:select list="tipusDescompteList" key="promocioAssociada.tipuDescompte" listKey="descripcio" listValue="descripcio">					
@@ -81,37 +73,20 @@
 							<s:textfield key="promocioAssociada.numBegudes"  id="numBegudes" onblur="onlyEntero(this.value,this.id)" ></s:textfield>																
 							<s:select list="tipusBegudaList" key="promocioAssociada.tipusBeguda" id="tipusBeguda" listKey="descripcio" listValue="descripcio">					
 							</s:select>	
-							<s:textfield key="promocioAssociada.importAPartirDe"  id="importAPartirDe"  onblur="onlyDouble(this.value,this.id)" ></s:textfield>
-							
+							<s:textfield key="promocioAssociada.importAPartirDe"  id="importAPartirDe"  onblur="onlyDouble(this.value,this.id)" ></s:textfield>							
 							<s:hidden key="promocioAssociada.id" id="id_promo" ></s:hidden>																					
 			
 								<s:submit></s:submit>
 						</s:form>		
-					</div>
-					
-					
+					</div>										
 				<br>						
 			</div>
 		</div>
 	</div>
 </div>
 </div>
-</div>
-	<!-- link rel="stylesheet" href="<c:url value='/css/admin.css' />" type="text/css"   media="screen" />
-	<link rel="stylesheet" href="<c:url value='/css/portamu/reset.css' />" type="text/css"   media="screen" />
-	<link rel="stylesheet" href="<c:url value='/css/demo_table.css' />" type="text/css"   media="screen" />
-	<link rel="stylesheet" href="<c:url value='/css/components.css' />" type="text/css"   media="screen" />  
-	<link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/base/jquery-ui.css" rel="stylesheet" type="text/css" /-->
-	
-	<!--  script src="<c:url value='/js/jquery/jquery.js' />" type="text/javascript"></script>
-	<script src="<c:url value='/js/jquery/jquery.ui.core.js' />" type="text/javascript"></script>
-	<script src="<c:url value='/js/jquery/jquery.dataTables.js'/>" type="text/javascript"></script>
-
-	<script type="text/javascript" src="<c:url value='/pages/admin/restaurants/promoAssociades/jspromocio.js' />"></script>
-	<script type="text/javascript" src="<c:url value='/js/validations/jsvalidations.js' />"></script-->
-	
-	<script type="text/javascript" src="<c:url value='/pages/admin/restaurants/promoAssociades/jspromocio.min.js' />"></script>
-
+</div>	
+<script type="text/javascript" src="<c:url value='/js/jspromocio.ass.admin.min.js' />"></script>
 <script language="javascript">			
 	var initTableParams = new InitTableParams(
 			"<s:text  name='datatables.paginate.last'/>",

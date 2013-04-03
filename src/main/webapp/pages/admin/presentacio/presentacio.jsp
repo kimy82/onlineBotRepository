@@ -4,14 +4,14 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <html>
 <head>
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"%>
-<META http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<META http-equiv="Content-Style-Type" content="text/css">
-<link rel="shortcut icon" href="<c:url value='/img/elements/logo_portamu16.jpg' />"> 
-<title><s:text name="txt.presentacio.title.gestio" /></title>	
-<link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/base/jquery-ui.css" rel="stylesheet" type="text/css" />
-<link rel="stylesheet" href="<c:url value='/css/admin.presentacio.min.css' />" type="text/css"   media="screen" />
+	<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+		pageEncoding="ISO-8859-1"%>
+	<META http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+	<META http-equiv="Content-Style-Type" content="text/css">
+	<link rel="shortcut icon" href="<c:url value='/img/elements/logo_portamu16.jpg' />"> 
+	<link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/base/jquery-ui.css" rel="stylesheet" type="text/css" />
+	<link rel="stylesheet" href="<c:url value='/css/admin.presentacio.min.css' />" type="text/css"   media="screen" />
+	<title><s:text name="txt.presentacio.title.gestio" /></title>	
 </head>
 <body>
 <c:import url="/pages/includes/headerContext.jsp" />
@@ -88,14 +88,7 @@
 	</div>
 		
 </div>
-<!-- Scripts --> 
-	<!--  link rel="stylesheet" href="<c:url value='/css/demo_table.css' />" type="text/css"   media="screen" />
-	<link rel="stylesheet" href="<c:url value='/css/components.css' />" type="text/css"   media="screen" />  
-	<link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/base/jquery-ui.css" rel="stylesheet" type="text/css" /-->
-	<!--  script src="<c:url value='/js/jquery/jquery.js' />" type="text/javascript"></script>
-	<script src="<c:url value='/js/jquery/jquery.ui.core.js' />" type="text/javascript"></script>
-	<script src="<c:url value='/js/jquery/jquery.dataTables.js'/>" type="text/javascript"></script-->
-	<script src="<c:url value='/pages/admin/presentacio/jspresentacio.min.js'/>" type="text/javascript"></script>
+	<script src="<c:url value='/js/jspresentacio.min.js'/>" type="text/javascript"></script>
 </body>
 </html>
 

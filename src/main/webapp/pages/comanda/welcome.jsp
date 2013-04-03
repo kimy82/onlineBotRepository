@@ -18,17 +18,10 @@
 <c:import url="/pages/includes/headerContext.jsp" />
 <c:import url="/pages/includes/divLogin.jsp" />
 <div id="container">
-
 	<div id="content">
-			<!-- menu -->
 				<c:import url="/pages/includes/menuHeaderNoConfirm.jsp" />
-			<!-- END menu -->
-			<!-- Language -->
 				<c:import url="/pages/includes/divLanguage.jsp" />
-			<!-- END language -->
-			<!-- Content seccio-->
-		<div id="content_seccion">
-			<!-- seccion Restaurants-->
+		<div id="content_seccion">		
 			<div id="seccion">
 				<div id="rest">
 					${restaurant.nom }
@@ -57,8 +50,7 @@
 	  						</c:if>
 	  						<c:if test="${sessionScope.WW_TRANS_I18N_LOCALE=='es'}">
 	  							<p>${plat.descripcioES}</p>
-	  						</c:if>
-			  					
+	  						</c:if>			  					
 			  				</div>			  				
 	  					</div>
 	  					<div id="afegir">
@@ -70,8 +62,7 @@
 							</div>
 							<hr class="sep">
 						</div>
-					</c:if>
-					
+					</c:if>					
 					<c:if test="${plat.actiu == false }" >
 						<div class="iterate_Rest"  title="Plat no actiu per avui" >
 						<div class="selector_jq ui-widget-content  img_Rest_CLOSE" id="draggable_${plat.id}">
@@ -113,20 +104,15 @@
 											<c:set var="commentInsert" value="${commentInsert+1}" ></c:set>																				
 											 ${fn:substring(comt.comment, 0, 15)}...&nbsp;
 										</c:if>																																																
-									</c:forEach>	
-							
+									</c:forEach>								
 							<a href="#" class="more" onclick="goToInfoPlat(${plat.id})" ><s:text name="txt.leer.mas" /></a></p>
 						</div>
 					</div>				
 				</s:iterator>
 				<c:import url="/pages/includes/paginationPlats.jsp" />
-					<!-- begudes-->
-				
 					<div id="begudes_titol">
 						<s:text name="txt.afegir.vi" />
 					</div>
-					
-					
 						<hr class="sep4">
 						<s:iterator value="begudaList" var="beguda" >
 						<div class="iterate_ref" >
@@ -141,8 +127,7 @@
 	  									</c:if>
 	  									<c:if test="${sessionScope.WW_TRANS_I18N_LOCALE=='es'}">
 	  										${beguda.nomES}
-	  									</c:if>
-					  					
+	  									</c:if>					  					
 					  					</h2>
 					  				</div>
 					  				<div class="cos_Rest">
@@ -164,8 +149,7 @@
 									 <span class="price">${beguda.preu} &euro;</span><br>
 								</div>
 								<hr class="sep">
-							</div>
-						
+							</div>						
 							<div class="coments">
 								<img class="estrelles_rest" src="/${initParam.app}/img/elements/estrelles${beguda.votacio.punctuacio}.jpg">	
 								<br>
@@ -180,15 +164,10 @@
 											</c:if>																																										
 										</c:forEach>									
 								<a href="#" class="more" onclick="goToInfoBeguda(${beguda.id})" ><s:text name="txt.leer.mas" /></a></p>
-							</div>	
-														
+							</div>															
 						</div>
 					</s:iterator>
 				</div>
-			
-			
-			<!-- Dreta-->			
-			
 				<div id="left">
 					<div id="bar_left">
 						<img src="<c:url value='/img/elements/bar3.png' />">
@@ -204,8 +183,7 @@
 									<s:text name="comanda.num.plats" />:<label id="numplats" ></label><br></br>
 									<s:text name="comanda.num.begudes" />:<label id="numbegudes" ></label>
 									<div id="disp_plate">										
-									</div>															
-									
+									</div>																								
 									<div id="disp_beguda">										
 									</div>
 								</div>
@@ -220,44 +198,20 @@
 									<span class="hora_int" id="hora_int" ></span>
 								</div>
 							</div>
-					</div>
-				
+					</div>				
 				</div>
 			</div>
 		</div>
 	</div>
 </div>
-
 </div>
 <div id="infoPlat_dialog" class="filtres filtres-oberts" title="<s:text name='txt.info.title' />">	 		
 </div>  
 <div id="infoBeguda_dialog" class="filtres filtres-oberts">	 		
 </div>  
 <c:import url="/pages/includes/endPage.jsp" />
-
-	<!-- CSS portamu --> 
-	<!--  link rel="stylesheet" type="text/css" href="<c:url value='/css/portamu/global.css' />" />
-	<link rel="stylesheet" type="text/css" href="<c:url value='/css/portamu/reset.css' />" />
-	<link href='http://fonts.googleapis.com/css?family=Raleway:800,400' rel='stylesheet' type='text/css'>	
-	<link type="text/css" rel="stylesheet" href="<c:url value='/css/online.css' />" /-->
-	
-	<!-- script src="<c:url value='/js/jquery/jquery.js' />" type="text/javascript"></script>
-	<script src="<c:url value='/js/jquery/jquery.ui.core.js' />" type="text/javascript"></script>
-	<script src="<c:url value='/js/jquery/jquery.ui.widget.js'/>" type="text/javascript"></script>
-	<script src="<c:url value='/js/jquery/jquery.ui.mouse.js'/>" type="text/javascript"></script>
-	<script src="<c:url value='/js/jquery/jquery.ui.dialog.js' />" type="text/javascript"></script>
-	<script src="<c:url value='/js/jquery/jquery.ui.position.js'/>" type="text/javascript"></script>
-	<script src="<c:url value='/js/jquery/jquery.ui.draggable.js'/>" type="text/javascript"></script>
-	<script src="<c:url value='/js/jquery/jquery.ui.droppable.js'/>" type="text/javascript"></script>
-	<script src="<c:url value='/js/jquery/jquery.ui.resizable.js'/>" type="text/javascript"></script>
-	<script src="<c:url value='/js/jquery/jquery.effects.core.js'/>" type="text/javascript"></script>
-	<script src="<c:url value='/js/jquery/jquery.bgiframe-2.1.1.js'/>" type="text/javascript"></script -->
-	
-	
-	
 	<script src="<c:url value='/pages/comanda/jqueryWelcome.min.js'/>" type="text/javascript"></script>
 	<script type="text/javascript" >		
-		//Carrega del cistell de compra 
 			var lastIdRestaurant = window.localStorage.getItem("comanda.restaurant");		
 			$("#numComanda").text('${requestScope.idComanda}');
 			$("#numplats").text('${requestScope.numPlats}');
@@ -267,8 +221,7 @@
 			var idRestaurant = '${requestScope.restaurant.id}';
 			window.localStorage.setItem("comanda.restaurant",idRestaurant);
 	</script>
-	<script src="<c:url value='/pages/comanda/jswelcome.min.js'/>" type="text/javascript"></script>
-	
+	<script src="<c:url value='/js/jswelcome.comanda.min.js'/>" type="text/javascript"></script>	
 	<script type="text/javascript" >
 		var initParams = new InitParams("<s:text name='txt.welcome.confirmar' />","<s:text name='txt.welcome.productes' />",
 										"<s:text name='txt.welcome.producte' />","<s:text name='txt.comanda.existeix.vol.continuar' />",

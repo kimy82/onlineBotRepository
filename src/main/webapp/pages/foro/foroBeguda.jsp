@@ -24,8 +24,7 @@
 			</div>
 		<hr class="sep8" />
 		<div class="light_body">
-			<c:if test="${not empty beguda }">
-	
+			<c:if test="${not empty beguda }">	
 				<input type="hidden" id="idBeguda" value="${beguda.id}" />
 				<div id="leftvota">
 					<table class="vota">
@@ -70,12 +69,9 @@
 						<table id="comments_tbl" >
 							<s:iterator value="beguda.comments" var="comt">
 										<tr id="${comt.id}" >
-											<td  class="comenta" >${comt.comment}</td>								
-															
-											<c:if test="${nameAuth eq 'ROLE_ADMIN' }">
-												
-													<td class="delet" ><a href="#" onclick="deleteComment(${comt.id})" ><img src="<c:url value='/images/delete.png' />" /> </a></td>								
-												
+											<td  class="comenta" >${comt.comment}</td>																						
+											<c:if test="${nameAuth eq 'ROLE_ADMIN' }">												
+													<td class="delet" ><a href="#" onclick="deleteComment(${comt.id})" ><img src="<c:url value='/images/delete.png' />" /> </a></td>																				
 											</c:if>	
 										</tr>						
 							</s:iterator>									
@@ -88,8 +84,7 @@
 								<td><textarea rows="4" cols="44" id="newComment" ></textarea></td>
 							</tr>
 							<tr>
-								<td><input class="enviarcom" type="button" onclick="saveComment()"  value="Submit" /></td>
-								
+								<td><input class="enviarcom" type="button" onclick="saveComment()"  value="Submit" /></td>								
 							</tr>
 						</c:if>
 					</table>
@@ -98,13 +93,8 @@
 		</div>
 	</div>
 </div>		
-	<!--  script src="<c:url value='/pages/foro/jsforobeguda.js'/>" type="text/javascript"></script>
-	<script src="<c:url value='/js/comments/insultDetect.js'/>" type="text/javascript"></script-->
-	
-	<script src="<c:url value='/pages/foro/jsforobeguda.min.js'/>" type="text/javascript"></script>
-	
+<script src="<c:url value='/js/jsforobeguda.min.js'/>" type="text/javascript"></script>	
 	<script>
-
 		var initParams = new InitParams("<s:text name='txt.comment.saved' />",
 										"<s:text name='txt.comment.deleted'/>",
 										"<s:text name='txt.confirm.vot'/>",
@@ -113,7 +103,6 @@
 																		
 	</script>
 	<c:import url="/pages/includes/subAlertOnline.jsp" />
-	<c:import url="/pages/includes/subErrorAjax.jsp" />
-	
+	<c:import url="/pages/includes/subErrorAjax.jsp" />	
 </body>
 </html>

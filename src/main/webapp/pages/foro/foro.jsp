@@ -9,8 +9,6 @@
 	<META http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 	<META http-equiv="Content-Style-Type" content="text/css">
 	<link rel="stylesheet" type="text/css" href="<c:url value='/css/foro.min.css' />" />
-	<!--  link rel="stylesheet" type="text/css" href="<c:url value='/css/portamu/foro.css' />" />
-	<link rel="stylesheet" type="text/css" href="<c:url value='/css/portamu/reset.css' />" /-->
 	<title><s:text name="txt.welcome.comanda.principal" /></title>	
 </head>
 <body>
@@ -66,16 +64,12 @@
 		<div id="rightforo">
     		<div class="comments_foro" id="plat_${plat.id}" >
    				 <div id="tablascroll">
-					<table id="comments_tbl" >
-				
+					<table id="comments_tbl" >				
 					    <s:iterator value="plat.comments" var="comt">
 									<tr id="${comt.id}" >
-										<td class="comenta">${comt.comment}</td>								
-														
-										<c:if test="${nameAuth eq 'ROLE_ADMIN' }">
-											
-												<td class="delet"><a href="#" onclick="deleteComment(${comt.id})" ><img src="<c:url value='/images/delete.png' />" /> </a></td>								
-											
+										<td class="comenta">${comt.comment}</td>																						
+										<c:if test="${nameAuth eq 'ROLE_ADMIN' }">											
+												<td class="delet"><a href="#" onclick="deleteComment(${comt.id})" ><img src="<c:url value='/images/delete.png' />" /> </a></td>																			
 										</c:if>	
 									</tr>						
 						</s:iterator>								
@@ -88,8 +82,7 @@
 							<td><textarea rows="4" cols="44" id="newComment" ></textarea></td>
 						</tr>
 						<tr>
-							<td><input class="enviarcom" type="button" onclick="saveComment()"  value="Submit" /></td>
-							
+							<td><input class="enviarcom" type="button" onclick="saveComment()"  value="Submit" /></td>							
 						</tr>
 					</c:if>
 				</table>
@@ -98,18 +91,14 @@
 	</div>
 	</div>
 </div>
-	<script src="<c:url value='/pages/foro/jsforo.min.js'/>" type="text/javascript"></script>
-	<!--  script src="<c:url value='/js/comments/insultDetect.js'/>" type="text/javascript"></script-->
+	<script src="<c:url value='/js/jsforo.min.js'/>" type="text/javascript"></script>
 	<script>
-
 		var initParams = new InitParams("<s:text name='txt.comment.saved' />",
 										"<s:text name='txt.comment.deleted'/>",
 										"<s:text name='txt.confirm.vot'/>",
 										"<s:text name='txt.vot.guardat'/>",
-										"<s:text name='txt.alert.insult'/>");
-													
+										"<s:text name='txt.alert.insult'/>");													
 	</script>
-	<c:import url="/pages/includes/subAlertOnline.jsp" />
-	
+	<c:import url="/pages/includes/subAlertOnline.jsp" />	
 </body>
 </html>

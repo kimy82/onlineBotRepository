@@ -13,26 +13,6 @@
 	<link rel="shortcut icon" href="<c:url value='/img/elements/logo_portamu16.jpg' />"> 
 	<link href='http://fonts.googleapis.com/css?family=Raleway:800,400' rel='stylesheet' type='text/css'>
 	<link rel="stylesheet" type="text/css" href="<c:url value='/css/infocomanda.min.css' />" />
-	<!--  link rel="stylesheet" type="text/css" href="<c:url value='/css/portamu/global.css' />" />
-	<link rel="stylesheet" type="text/css" href="<c:url value='/css/portamu/reset.css' />" />
-	<link href='http://fonts.googleapis.com/css?family=Raleway:800,400' rel='stylesheet' type='text/css'>
-	<style>
-		.notcheck{
-			background-color: grey;
-		}
-		.check{
-			background-color: yellow;
-		}
-		
-		.checked{
-			background-color: green;
-		}
-	</style>	
-	<link rel="stylesheet" type="text/css" media="all" href="<c:url value='/css/calendar-blau.css' />" title="win2k-cold-1" />
-	<link rel="stylesheet" type="text/css" media="all" href="<c:url value='/css/sudoSlider.css' />"  />	
-	<link type="text/css" rel="stylesheet" href="<c:url value='/css/progress.css' />" />
-	<link type="text/css" rel="stylesheet" href="<c:url value='/css/online.css' />" />
-	<link type="text/css" rel="stylesheet" href="<c:url value='/css/portamu/prova.css' />" /-->
 	<title><s:text name="txt.welcome.principal" /></title>	
 </head>
 <body id="carrito">
@@ -41,12 +21,8 @@
 <div id="container">
 
 	<div id="content">
-			<!-- menu -->
 				<c:import url="/pages/includes/menuHeaderNoConfirm.jsp" />
-			<!-- END menu -->
-			<!-- Language -->
-				<c:import url="/pages/includes/divLanguage.jsp" />
-			<!-- END language -->
+				<c:import url="/pages/includes/divLanguage.jsp" />			
 			<div class="titols_comanda"> <s:text name="txt.add.some.drink" /></div>
 			<div id="recordatori">
 				<div id="slider" style=" height:262px; width:1000px; top:140px;"  >
@@ -223,12 +199,10 @@
 						</tbody>
 					</table>
 			</div>
-	<!-- LOGIN -->
 	<hr class="sep11"></hr>
 	<c:if test="${nameAuth eq 'anonymousUser' }">
 	<div id="logitop" class="titols_comanda2"><s:text name="txt.logate" /></div>
-		<div id="login" >
-		
+		<div id="login" >		
 			<form name='f' id="f" action="/${initParam.app}/j_spring_security_check" method="post">
 				<table id="formlo">
 					<tr>
@@ -254,8 +228,7 @@
 		</div>
 	</c:if>	
 	<br></br>
-	<div style="float: left; margin-top: 100px;" >
-	
+	<div style="float: left; margin-top: 100px;" >	
 	<div id="promstop" class="titols_comanda2"><s:text name="txt.proms" /></div>
 	<div id="proms">
 	<div id="checkPromocionsDisponibles" ><input type="button" class="boton"  onclick="openDialogPromos();" value="<s:text name='txt.infocomanda.checkPromos.boton' />" /></div>
@@ -281,11 +254,9 @@
 				<td><s:textfield key="comanda.dia" id="dia" maxlength="10" size="12" onfocus="blur()" theme="simple" onchange="reloadHores()" ></s:textfield>
 				<img  src="<c:url value='/images/calendar/calendar_full.png'/>"  id="llencadorData1" ></td>
 			</tr>
-		</table>
-		
+		</table>		
 	<hr class="sep13"></hr>			
-		<c:import url="/pages/includes/horesInfoComanda.jsp" />
-		
+		<c:import url="/pages/includes/horesInfoComanda.jsp" />		
 		</div>
 		<div id="rightcom">
 		<div id="adomicili_div" >
@@ -296,102 +267,48 @@
 		<h1 id="address_restaurant" ></h1>
 	</div>
 	</div>
-	<div id="rightright">
-	
+	<div id="rightright">	
 	<div id="map_canvas" style="float: left; height: 250px; width: 222px;"><img  src="<c:url value='/images/elements/maps.png'/>"  ></div>
 	</div>
-	</div>
-	
+	</div>	
 	<div id="domrec" class="titols_comanda2"><s:text name="txt.domrec" /></div>
 	<div id="pagar">
 	<s:checkbox key="comanda.targeta" id="targeta" onclick="targeta()" ></s:checkbox>
 	<s:checkbox key="comanda.contrarembols" id="contrarembols" onclick="contrarembols()"></s:checkbox>
 	<input type="button"  onclick="checkComandaJS();" value="<s:text name='txt.infocomanda.paga' />" />
-	</div>
-		
-<div id="chargeBar"></div>
-			
+	</div>	
+<div id="chargeBar"></div>			
 <div id="check"></div>
-				
-
 <s:hidden  key="comanda.hora" id="targetaContrarembols" ></s:hidden>					
 <s:hidden  key="comanda.hora" id="comandahora" ></s:hidden>					
 <s:hidden key="comanda.id" id="idcomanda" ></s:hidden>	                   
 <s:hidden key="comanda.address" id="comandaddress"></s:hidden>																				
-
-	
 </div>
 </div>
-<!-- END container -->
 <c:import url="/pages/includes/endPage.jsp" />
-
-<!-- div per al llistat de promocions -->
-<div id="dialog_promo" class="filtres filtres-oberts" title="Promo">
-	 
+<div id="dialog_promo" class="filtres filtres-oberts" title="Promo">	 
 		 <h1><s:text name="txt.promo.escull" /></h1>
 				<ul id="prm" >
-				
-					
 				</ul>
 		<h1><s:text name="txt.promo.escull.promo.especial" /><input id="codePromo" type="text" value="" onblur="checkPromoEspecial()" /></h1>
 				<ul id="esp" >
-				
-					
-				</ul>
-		
+				</ul>		
 </div>  
-	<!--  script src="<c:url value='/js/jquery/jquery.js' />" type="text/javascript"></script>
-	<script src="<c:url value='/js/jquery/jquery.ui.core.js' />" type="text/javascript"></script>
-	<script src="<c:url value='/js/jquery/jquery.ui.widget.js'/>" type="text/javascript"></script>
-	<script src="<c:url value='/js/jquery/jquery.ui.mouse.js'/>" type="text/javascript"></script>
-	<script src="<c:url value='/js/jquery/jquery.ui.dialog.js' />" type="text/javascript"></script>
-	<script src="<c:url value='/js/jquery/jquery.ui.position.js'/>" type="text/javascript"></script>
-	<script src="<c:url value='/js/jquery/jquery.ui.draggable.js'/>" type="text/javascript"></script>
-	<script src="<c:url value='/js/jquery/jquery.ui.droppable.js'/>" type="text/javascript"></script>
-	<script src="<c:url value='/js/jquery/jquery.ui.resizable.js'/>" type="text/javascript"></script>
-	<script src="<c:url value='/js/jquery/jquery.effects.core.js'/>" type="text/javascript"></script>
-	<script src="<c:url value='/js/jquery/jquery.bgiframe-2.1.1.js'/>" type="text/javascript"></script>
-	<script src="<c:url value='/js/jquery/jquery-ui.js' />" type="text/javascript"></script>
-	
-	<script type="text/javascript" src="<c:url value='/js/calendari/calendar.js'/>"></script>
-	<script type="text/javascript" src="<c:url value='/js/calendari/calendar-cat.js'/>"></script>
-	<script type="text/javascript" src="<c:url value='/js/calendari/calendar-es.js'/>"></script>
-	<script type="text/javascript" src="<c:url value='/js/calendari/calendar-idioma.js'/>"></script>		
-	<script type="text/javascript" src="<c:url value='/js/calendari/calendar-setup.js'/>"></script>
-
-	<script src="<c:url value='/js/address/autocompleteStreet.js'/>" type="text/javascript"></script>
-	<script src="<c:url value='/js/address/autocompleteCodi.js'/>" type="text/javascript"></script>
 	<script src="http://maps.google.com/maps/api/js?sensor=false" type="text/javascript"></script>
-	<script src="<c:url value='/js/address/addressValidationForm.js'/>" type="text/javascript"></script>
-	
-	<script src="<c:url value='/js/sudoSlider/jquery.sudoSlider.js'/>" type="text/javascript"></script>
-	<script type="text/javascript" src="<c:url value='/js/progressbar/progress.js'/>"></script>
-	<script type="text/javascript" src="<c:url value='/pages/comanda/jsinfoComanda.js'/>"></script-->
-	
-	<script src="http://maps.google.com/maps/api/js?sensor=false" type="text/javascript"></script>
-	<script type="text/javascript" src="<c:url value='/pages/comanda/jsinfoComanda.min.js'/>"></script>
-	
-	
-		
-<script type="text/javascript" >
-			  
+	<script type="text/javascript" src="<c:url value='/js/jsinfoComanda.min.js'/>"></script>
+<script type="text/javascript" >			  
 var initParams = new InitParams("<s:text name='txt.beguda.no.tipus.promo' />","<s:text name='txt.beguda.no.more.promo' />","<s:text name='txt.add.beguda.to.box' />", 
 								"<s:text name='txt.promo.descompte.aplicat' />","<s:text name='txt.promo.deleted' />","<s:text name='comanda.falta.hora' />",
 								"<s:text name='comanda.check.address' />","<s:text name='comanda.user.check.ok' />","<s:text name='comanda.user.check.ko' />",
 								"<s:text name='txt.welcome.confirmar' />","<s:text name='txt.welcome.productes' />","<s:text name='txt.welcome.producte' />",
-								"<s:text name='txt.infocomanda.arecollir.more.than.one' />","<s:text name='txt.infocomanda.boto.treure.promo' />");
-								
-
+								"<s:text name='txt.infocomanda.arecollir.more.than.one' />","<s:text name='txt.infocomanda.boto.treure.promo' />");							
 $("#idcomanda").val('${requestScope.idComanda}');
 $("#numComanda").text('${requestScope.idComanda}');
 $("#dia").val('${requestScope.horesDTO.data}');
 $("#promstop").hide();
-
 initNumPlats();
 initNumBegudes();
-
 function submitLog(){
-	
 	$.ajax({
 	    url: "<c:url value='/elteurestaurantacasa/j_spring_security_check' />",
 	    type: "POST",
@@ -422,14 +339,11 @@ function submitLog(){
 	    }
 	});	
 }
-
 var addressToLoad ='${requestScope.comanda.address}';
 if(addressToLoad==''){
 	addressToLoad =  '${requestScope.user.address}';	
 }
-
 initAddress();
-
 </script>
 <c:if test="${nameAuth ne 'anonymousUser' }">
 	<script type="text/javascript" >
@@ -447,7 +361,6 @@ initAddress();
 window.localStorage.clear();
 window.localStorage.setItem("comanda.data","${requestScope.horesDTO.data}");
 window.localStorage.setItem("comanda","${requestScope.idComanda}");
-
 window.localStorage.setItem("comanda.preu","${requestScope.comanda.preu}");
 window.localStorage.setItem("comanda.numplats","${requestScope.numPlats}");
 $("#numplats").text('${requestScope.numPlats}');

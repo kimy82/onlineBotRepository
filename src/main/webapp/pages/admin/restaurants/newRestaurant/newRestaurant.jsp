@@ -105,26 +105,6 @@
 </div>
 </div>
 </div>
-	<!--  link rel="stylesheet" href="<c:url value='/css/admin.css' />" type="text/css"   media="screen" />
-	<link rel="stylesheet" href="<c:url value='/css/portamu/reset.css' />" type="text/css"   media="screen" />
-
-	<style>
-		.notcheck{
-			background-color: grey;
-		}
-		.check{
-			background-color: green;
-		}
-	</style>
-	<link rel="stylesheet" href="<c:url value='/css/demo_table.css' />" type="text/css"   media="screen" />
-	<link rel="stylesheet" href="<c:url value='/css/components.css' />" type="text/css"   media="screen" />  
-	<link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/base/jquery-ui.css" rel="stylesheet" type="text/css" /-->
-	
-	<!-- script src="<c:url value='/js/jquery/jquery.js' />" type="text/javascript"></script>
-	<script src="<c:url value='/js/jquery/jquery.ui.core.js' />" type="text/javascript"></script>
-	<script src="<c:url value='/js/jquery/jquery.dataTables.js'/>" type="text/javascript"></script>
-	<script type="text/javascript" src="<c:url value='/pages/admin/restaurants/newRestaurant/jsnewrestaurant.js' />"></script -->
-	
-	<script type="text/javascript" src="<c:url value='/pages/admin/restaurants/newRestaurant/jsnewrestaurant.min.js' />"></script>
+	<script type="text/javascript" src="<c:url value='/js/jsnewrestaurant.admin.min.js' />"></script>
 </body>
 </html>
