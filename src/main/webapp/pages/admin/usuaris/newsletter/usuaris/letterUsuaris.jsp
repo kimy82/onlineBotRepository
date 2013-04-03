@@ -14,7 +14,7 @@
 	<link rel="stylesheet" href="<c:url value='/css/demo_table.css' />" type="text/css"   media="screen" />
 	<link rel="stylesheet" href="<c:url value='/css/TableTools.css' />" type="text/css"   media="screen" />
 	<link rel="stylesheet" href="<c:url value='/css/components.css' />" type="text/css"   media="screen" /--> 
-	<link rel="stylesheet" href="<c:url value='/css/min/admin.newlet.usu.min.css' />" type="text/css"   media="screen" /> 
+	<link rel="stylesheet" href="<c:url value='/css/admin.newlet.usu.min.css' />" type="text/css"   media="screen" /> 
 	<link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/base/jquery-ui.css" rel="stylesheet" type="text/css" />
 	<title><s:text name="mant.user.title" /></title>	
 </head>

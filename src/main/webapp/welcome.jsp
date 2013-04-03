@@ -19,7 +19,7 @@
 	<link type="text/css" rel="stylesheet" href="<c:url value='/css/online.css' />" /-->
 	
 	<link href='http://fonts.googleapis.com/css?family=Raleway:800,400' rel='stylesheet' type='text/css'>
-	<link type="text/css" rel="stylesheet" href="<c:url value='/css/min/welcome.min.css' />" />
+	<link type="text/css" rel="stylesheet" href="<c:url value='/css/welcome.min.css' />" />
 	
 	<title> <s:text name="txt.welcome.principal" />	</title>
 	

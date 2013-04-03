@@ -12,7 +12,7 @@
 	<meta name="viewport" content="width=device-width,initial-scale=0.99,maximum-scale=0.99" />
 	<link rel="shortcut icon" href="<c:url value='/img/elements/logo_portamu16.jpg' />"> 
 	<link href='http://fonts.googleapis.com/css?family=Raleway:800,400' rel='stylesheet' type='text/css'>
-	<link rel="stylesheet" type="text/css" href="<c:url value='/css/min/infocomanda.min.css' />" />
+	<link rel="stylesheet" type="text/css" href="<c:url value='/css/infocomanda.min.css' />" />
 	<!--  link rel="stylesheet" type="text/css" href="<c:url value='/css/portamu/global.css' />" />
 	<link rel="stylesheet" type="text/css" href="<c:url value='/css/portamu/reset.css' />" />
 	<link href='http://fonts.googleapis.com/css?family=Raleway:800,400' rel='stylesheet' type='text/css'>
@@ -393,7 +393,7 @@ initNumBegudes();
 function submitLog(){
 	
 	$.ajax({
-	    url: "<c:url value='/onlineBot/j_spring_security_check' />",
+	    url: "<c:url value='/elteurestaurantacasa/j_spring_security_check' />",
 	    type: "POST",
 	    data: $("#f").serialize(),
 	    dataType: 'json',

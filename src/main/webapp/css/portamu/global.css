@@ -1,6 +1,6 @@
 /* css*/
 body{
-	background: url(../../img/elements/background.jpg) repeat;
+	background: url(../img/elements/background.jpg) repeat;
 }
 /* links*/
 a, .boton, .news{
@@ -38,7 +38,7 @@ h2{
 }
 /* header*/
 #header{
-	background: url(../../img/elements/header_background.png) repeat;
+	background: url(../img/elements/header_background.png) repeat;
 	height: 135px;
 	width: 100%;
 	border-bottom: 1px solid #cda781;
@@ -91,7 +91,7 @@ h2{
 }
 /* container*/
 #container{
-	background: url(../../img/elements/content_background.jpg) no-repeat;
+	background: url(../img/elements/content_background.jpg) no-repeat;
 	height: 780px;
 }
 

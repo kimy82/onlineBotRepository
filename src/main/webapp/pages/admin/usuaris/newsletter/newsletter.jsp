@@ -11,7 +11,7 @@
 	<link rel="shortcut icon" href="<c:url value='/img/elements/logo_portamu16.jpg' />">
 	<!--  link rel="stylesheet" href="<c:url value='/css/demo_table.css' />" type="text/css"   media="screen" />
 	<link rel="stylesheet" href="<c:url value='/css/components.css' />" type="text/css"   media="screen" /-->
-	<link rel="stylesheet" href="<c:url value='/css/min/admin.newlet.min.css' />" type="text/css"   media="screen" />  
+	<link rel="stylesheet" href="<c:url value='/css/admin.newlet.min.css' />" type="text/css"   media="screen" />  
 	<link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/base/jquery-ui.css" rel="stylesheet" type="text/css" /> 
 	<title><s:text name="txt.newsletter.title" /></title>
 </head>
