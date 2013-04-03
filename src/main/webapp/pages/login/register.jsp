@@ -5,7 +5,13 @@
 <html>
 <head>
 	<meta http-equiv="content-type" content="text/html;charset=utf-8" />
+	<!--  link rel="stylesheet" type="text/css" href="<c:url value='/css/portamu/registre.css' />" />
+	<link rel="stylesheet" type="text/css" href="<c:url value='/css/portamu/reset.css' />" />
+	<link rel="stylesheet" type="text/css" href="<c:url value='/css/portamu/prova.css' />" /-->
 	
+	<link rel="stylesheet" type="text/css" href="<c:url value='/css/register.on.min.css' />" />
+	
+	<link href='http://fonts.googleapis.com/css?family=Raleway:800,400' rel='stylesheet' type='text/css'>
 </head>
 <body>
 
@@ -54,14 +60,7 @@
 	</div>
 </div>
 
-<!-- Scripts --> 
-	<!-- CSS -->
-	<link rel="stylesheet" type="text/css" href="<c:url value='/css/portamu/registre.css' />" />
-	<link rel="stylesheet" type="text/css" href="<c:url value='/css/portamu/reset.css' />" />
-	<link rel="stylesheet" type="text/css" href="<c:url value='/css/portamu/prova.css' />" />
-	
-	<!-- FONTS -->
-	<link href='http://fonts.googleapis.com/css?family=Raleway:800,400' rel='stylesheet' type='text/css'>
+
 	<c:import url="/pages/includes/headerContext.jsp" />
 		
 	

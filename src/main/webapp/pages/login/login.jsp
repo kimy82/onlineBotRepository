@@ -7,7 +7,12 @@
 	<META http-equiv="Content-Style-Type" content="text/css">
 	<meta http-equiv="content-type" content="text/html;charset=utf-8" />
 	<meta name="viewport" content="width=device-width,initial-scale=0.99,maximum-scale=0.99" />
-<title><s:text name="txt.welcome.principal" /></title>
+	<!--  link rel="stylesheet" type="text/css" href="<c:url value='/css/portamu/loguin.css' />" />
+	<link rel="stylesheet" type="text/css" href="<c:url value='/css/portamu/reset.css' />" /-->
+	
+	<link rel="stylesheet" type="text/css" href="<c:url value='/css/loguin.on.min.css' />" />	
+	<link href='http://fonts.googleapis.com/css?family=Raleway:800,400' rel='stylesheet' type='text/css'>
+	<title><s:text name="txt.welcome.principal" /></title>
 </head>
 <body onload='document.f.j_username.focus();'>
 
@@ -40,11 +45,6 @@
 		</div>
 	</div>
 </div>
-	<!-- CSS -->
-	<link rel="stylesheet" type="text/css" href="<c:url value='/css/portamu/loguin.css' />" />
-	<link rel="stylesheet" type="text/css" href="<c:url value='/css/portamu/reset.css' />" />
 	
-	<!-- FONTS -->
-	<link href='http://fonts.googleapis.com/css?family=Raleway:800,400' rel='stylesheet' type='text/css'>
 </body>
 </html>

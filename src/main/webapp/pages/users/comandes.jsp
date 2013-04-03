@@ -9,6 +9,19 @@
 	<META http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 	<META http-equiv="Content-Style-Type" content="text/css">
 	<link rel="shortcut icon" href="<c:url value='/img/elements/logo_portamu16.jpg' />"> 
+	
+	<!--  link rel="stylesheet" href="<c:url value='/css/portamu/tables.css' />" type="text/css"   media="screen" />
+	
+	<link type="text/css" rel="stylesheet" href="<c:url value='/css/online.css' />" />
+	
+	
+	<link rel="stylesheet" type="text/css" href="<c:url value='/css/portamu/prova.css' />" />
+	<link rel="stylesheet" type="text/css" href="<c:url value='/css/portamu/global.css' />" />
+	<link rel="stylesheet" type="text/css" href="<c:url value='/css/portamu/reset.css' />" /-->
+	
+	<link rel="stylesheet" type="text/css" href="<c:url value='/css/user.comandes.min.css' />" />
+	<link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/base/jquery-ui.css" rel="stylesheet" type="text/css" />
+	<link href='http://fonts.googleapis.com/css?family=Raleway:800,400' rel='stylesheet' type='text/css'>
 	<title><s:text name="txt.info.comandes.title" /></title>
 </head>
 <body id="personal">
@@ -94,20 +107,6 @@
 					</div>
 <div id="votaPlats_dialog" class="filtres filtres-oberts" title="<s:text name='txt.info.title' />">	 		
 </div>  
-	
-	
-<!-- scripts -->
-<link rel="stylesheet" href="<c:url value='/css/portamu/tables.css' />" type="text/css"   media="screen" />
-	<link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/base/jquery-ui.css" rel="stylesheet" type="text/css" />
-	<link type="text/css" rel="stylesheet" href="<c:url value='/css/online.css' />" />
-	
-	<!-- CSS portamu --> 
-	<link rel="stylesheet" type="text/css" href="<c:url value='/css/portamu/prova.css' />" />
-	<link rel="stylesheet" type="text/css" href="<c:url value='/css/portamu/global.css' />" />
-	<link rel="stylesheet" type="text/css" href="<c:url value='/css/portamu/reset.css' />" />
-	<!-- FONTS -->
-	<link href='http://fonts.googleapis.com/css?family=Raleway:800,400' rel='stylesheet' type='text/css'>
-
 	<!--  script src="<c:url value='/js/jquery/jquery.js' />" type="text/javascript"></script>
 	<script src="<c:url value='/js/jquery/jquery.ui.core.js' />" type="text/javascript"></script>
 	<script src="<c:url value='/js/jquery/jquery.ui.widget.js'/>" type="text/javascript"></script>

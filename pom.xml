@@ -665,7 +665,71 @@
 							<goal>minify</goal>
 						</goals>
 					</execution>
-
+						<execution>
+						<id>register</id>
+						<phase>process-sources</phase>
+						<configuration>
+							<cssSourceDir>css</cssSourceDir>
+							<cssSourceFiles>
+								<cssSourceFile>portamu/registre.css</cssSourceFile>
+								<cssSourceFile>portamu/reset.css</cssSourceFile>
+								<cssSourceFile>portamu/prova.css</cssSourceFile>								
+							</cssSourceFiles>
+							<cssFinalFile>register.on.css</cssFinalFile>
+						</configuration>
+						<goals>
+							<goal>minify</goal>
+						</goals>
+					</execution>
+					<execution>
+						<id>loguin_on</id>
+						<phase>process-sources</phase>
+						<configuration>
+							<cssSourceDir>css</cssSourceDir>
+							<cssSourceFiles>
+								<cssSourceFile>portamu/loguin.css</cssSourceFile>
+								<cssSourceFile>portamu/reset.css</cssSourceFile>															
+							</cssSourceFiles>
+							<cssFinalFile>loguin.on.css</cssFinalFile>
+						</configuration>
+						<goals>
+							<goal>minify</goal>
+						</goals>
+					</execution>
+					<execution>
+						<id>vota</id>
+						<phase>process-sources</phase>
+						<configuration>
+							<cssSourceDir>css</cssSourceDir>
+							<cssSourceFiles>
+								<cssSourceFile>demo_table.css</cssSourceFile>
+								<cssSourceFile>online.css</cssSourceFile>															
+							</cssSourceFiles>
+							<cssFinalFile>vota.on.css</cssFinalFile>
+						</configuration>
+						<goals>
+							<goal>minify</goal>
+						</goals>
+					</execution>
+					<execution>
+						<id>user_comandes</id>
+						<phase>process-sources</phase>
+						<configuration>
+							<cssSourceDir>css</cssSourceDir>
+							<cssSourceFiles>
+								<cssSourceFile>portamu/tables.css</cssSourceFile>
+								<cssSourceFile>online.css</cssSourceFile>		
+								<cssSourceFile>portamu/global.css</cssSourceFile>
+								<cssSourceFile>portamu/reset.css</cssSourceFile>
+								<cssSourceFile>portamu/prova.css</cssSourceFile>												
+							</cssSourceFiles>
+							<cssFinalFile>user.comandes.css</cssFinalFile>
+						</configuration>
+						<goals>
+							<goal>minify</goal>
+						</goals>
+					</execution>
+					
 				</executions>
 
 			</plugin>
