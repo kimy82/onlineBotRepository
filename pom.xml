@@ -779,7 +779,6 @@
 								<cssSourceFile>portamu/global.css</cssSourceFile>
 								<cssSourceFile>portamu/reset.css</cssSourceFile>
 								<cssSourceFile>online.css</cssSourceFile>
-
 							</cssSourceFiles>
 							<cssFinalFile>begudesRefresc.css</cssFinalFile>
 							<jsSourceDir>js</jsSourceDir>
@@ -970,6 +969,13 @@
 								<cssSourceFile>portamu/prova.css</cssSourceFile>
 							</cssSourceFiles>
 							<cssFinalFile>register.on.css</cssFinalFile>
+							<jsSourceDir>js</jsSourceDir>
+							<jsSourceFiles>															
+								<jsSourceFile>address/autocompleteStreet.js</jsSourceFile>	
+								<jsSourceFile>address/autocompleteCodi.js</jsSourceFile>	
+								<jsSourceFile>login/jsregister.js</jsSourceFile>																																														
+							</jsSourceFiles>
+							<jsFinalFile>jsregister.js</jsFinalFile>
 						</configuration>
 						<goals>
 							<goal>minify</goal>
@@ -1000,6 +1006,23 @@
 								<cssSourceFile>online.css</cssSourceFile>
 							</cssSourceFiles>
 							<cssFinalFile>vota.on.css</cssFinalFile>
+							<jsSourceDir>js</jsSourceDir>
+							<jsSourceFiles>															
+								<jsSourceFile>jquery/jquery.js</jsSourceFile>
+								<jsSourceFile>jquery/jquery.ui.core.js</jsSourceFile>
+								<jsSourceFile>jquery/jquery.ui.widget.js</jsSourceFile>
+								<jsSourceFile>jquery/jquery.ui.mouse.js</jsSourceFile>
+								<jsSourceFile>jquery/jquery.ui.dialog.js</jsSourceFile>
+								<jsSourceFile>jquery/jquery.ui.position.js</jsSourceFile>
+								<jsSourceFile>jquery/jquery.ui.draggable.js</jsSourceFile>
+								<jsSourceFile>jquery/jquery.ui.droppable.js</jsSourceFile>
+								<jsSourceFile>jquery/jquery.ui.resizable.js</jsSourceFile>
+								<jsSourceFile>jquery/jquery.effects.core.js</jsSourceFile>
+								<jsSourceFile>jquery/jquery.bgiframe-2.1.1.js</jsSourceFile>
+								<jsSourceFile>jquery/jquery-ui.js</jsSourceFile>		
+								<jsSourceFile>jquery/jquery.dataTables.js</jsSourceFile>																																																				
+							</jsSourceFiles>
+							<jsFinalFile>jsvota.js</jsFinalFile>
 						</configuration>
 						<goals>
 							<goal>minify</goal>
@@ -1018,6 +1041,27 @@
 								<cssSourceFile>portamu/prova.css</cssSourceFile>
 							</cssSourceFiles>
 							<cssFinalFile>user.comandes.css</cssFinalFile>
+							<jsSourceDir>js</jsSourceDir>
+							<jsSourceFiles>															
+								<jsSourceFile>jquery/jquery.js</jsSourceFile>
+								<jsSourceFile>jquery/jquery.ui.core.js</jsSourceFile>
+								<jsSourceFile>jquery/jquery.ui.widget.js</jsSourceFile>
+								<jsSourceFile>jquery/jquery.ui.mouse.js</jsSourceFile>
+								<jsSourceFile>jquery/jquery.ui.dialog.js</jsSourceFile>
+								<jsSourceFile>jquery/jquery.ui.position.js</jsSourceFile>
+								<jsSourceFile>jquery/jquery.ui.draggable.js</jsSourceFile>
+								<jsSourceFile>jquery/jquery.ui.droppable.js</jsSourceFile>
+								<jsSourceFile>jquery/jquery.ui.resizable.js</jsSourceFile>
+								<jsSourceFile>jquery/jquery.effects.core.js</jsSourceFile>
+								<jsSourceFile>jquery/jquery.bgiframe-2.1.1.js</jsSourceFile>
+								<jsSourceFile>jquery/jquery-ui.js</jsSourceFile>		
+								<jsSourceFile>jquery/jquery.dataTables.js</jsSourceFile>
+								<jsSourceFile>address/autocompleteStreet.js</jsSourceFile>	
+								<jsSourceFile>address/autocompleteCodi.js</jsSourceFile>	
+								<jsSourceFile>address/addressValidationForm.js</jsSourceFile>
+								<jsSourceFile>users/jscomandes.js</jsSourceFile>																																																				
+							</jsSourceFiles>
+							<jsFinalFile>jsuser.comandes.js</jsFinalFile>
 						</configuration>
 						<goals>
 							<goal>minify</goal>
