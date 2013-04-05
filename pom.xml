@@ -916,7 +916,7 @@
 								<jsSourceFile>address/addressValidationFormbis.js</jsSourceFile>	
 								<jsSourceFile>jswelcome.js</jsSourceFile>																																														
 							</jsSourceFiles>
-							<jsFinalFile>jswelcome.js</jsFinalFile>
+							<jsFinalFile>jswelcome.ini.js</jsFinalFile>
 						</configuration>
 						<goals>
 							<goal>minify</goal>
