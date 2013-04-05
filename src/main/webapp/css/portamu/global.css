@@ -52,7 +52,7 @@ h2{
 #int_left{
 	width: 300px;
 	float: left;
-	margin-left: 10px;
+	margin-left: 2px;
 }
 #int_right{
 	width: 500px;
@@ -98,6 +98,10 @@ h2{
 #content{
 	width: 1000px;
 	margin: auto;
+}
+#ind #map_canvas{
+	width:192px;
+	float:left;
 }
 /*menu*/
 #topmenu {
@@ -241,12 +245,25 @@ h2{
 #rest{
 	font-family: 'Raleway', sans-serif;
 	font-weight: 800;
-	color: #C69C6D;
+	color: #f4b271;
 	font-size: 18px;
 	float: left;
 	width: 758px;
 	font-size: 21px;
 	height: 30px;
+}
+#addressOK {
+    color: #F7931E;
+    float: left;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: bold;
+    margin-bottom: 10px;
+    margin-top: 10px;
+    text-transform: uppercase;
+}
+.gmnoprint{
+	display:none;
 }
 #left{
 	padding-top: 20px;
@@ -503,6 +520,7 @@ background: #F7931E;
 	margin-top: 4px;
 	margin-bottom: 20px;
 	margin-left: 0px;
+	color:#888888;
 }
 #newsletter{
 	margin-top: 20px;
@@ -649,7 +667,7 @@ background: #F7931E;
     box-shadow: 0 3px 8px 2px #E0C0A6;
     border:  1px solid #777;
     text-align: center;
-    filter: url(desaturate.svg#grayscale); /* Firefox 3.5+ */
+    filter: url(../img/elements/desaturate.svg#grayscale); /* Firefox 3.5+ */
 -webkit-filter: grayscale(100%);
 -moz-filter: grayscale(100%);
 -ms-filter: grayscale(100%);
@@ -1070,11 +1088,17 @@ ul.pagination li {
     text-transform: uppercase;
 }
 #dialog_confirm {
-     background: none repeat scroll 0% 0% white;
-     font-family: raleway;
-     font-weight: bold;
-     padding: 20px;
-     text-transform: uppercase;
+     background-color: white!important;
+    font-family: raleway;
+    font-size: 24px !important;
+    font-weight: bold;
+    height: 123px !important;
+    padding: 40px;
+    text-transform: uppercase;
+    width: 300px !important;
+}
+#confirmOn{
+	font-size: 24px !important;
 }
 
 #dialog_confirm .boton{        
@@ -1574,4 +1598,23 @@ vertical-align:middle;
     width: 960px;
     color:#666666;
     margin-top:-1px;
+    margin-bottom: 40px;
+}
+#alertOn{
+	color: #4D4D4D;
+    font-family: 'Raleway',sans-serif;
+    font-size: 24px;
+    font-weight: 800;
+    margin: auto;
+    padding: 20px;
+    text-align: center;
+    text-transform: uppercase;
+    width: 200px;
+}
+#dialog_alert{
+	background-color: #f2f2f2;
+    padding: 40px;
+    position: fixed;
+    text-align: center;
+	
 }

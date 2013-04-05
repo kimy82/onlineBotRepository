@@ -38,7 +38,7 @@
 				</c:if>
 				</form>
 			</div>
-			<a name="register" type="button" href="<c:url value='/preRecoverAcount.action'/>" ><s:text name="txt.user.forgot.password" /></a>
+			<a class="forgot" name="register" type="button" href="<c:url value='/preRecoverAcount.action'/>" ><s:text name="txt.user.forgot.password" /></a>
 				
 			<br>	
 					

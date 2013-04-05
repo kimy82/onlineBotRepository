@@ -1,5 +1,5 @@
 <html>
 <script type="text/javascript">
-window.location.href="/elteurestaurantacasa/Welcome.action";
+window.location.href="/onlineBot/Welcome.action";
 </script>
 </html>

@@ -2,7 +2,7 @@
 <%@ taglib prefix="s" uri="/struts-tags"%>
 
 <div id="dialog_confirm" class="filtres filtres-oberts" title="<s:text name='txt.confirm.title' />">
-	 <h2><label id="confirmOn" > </label></h2>		
+	 <h2><div id="confirmOn" > </div></h2>		
 	 <table>
 	 	<tr>
 	 		<td><input class="boton" type="button" id="cancel" value="cancel"  onclick="confirmOnline.close();" /> </td>
@@ -26,6 +26,9 @@ $("#dialog_confirm").dialog( { autoOpen: false,
 		$(".ui-resizable").css("left", ((winWidth / 2) - 150) + "px").css("top", ((winHeight / 2) - 85) + "px");		    
 	 }
 }).siblings('div.ui-dialog-titlebar').remove();
+
+
+
 
 	if(confirmOnline == undefined || confirmOnline =='undefined'){
 		var confirmOnline={};
