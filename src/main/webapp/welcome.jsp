@@ -10,38 +10,20 @@
 	<meta http-equiv="content-type" content="text/html;charset=utf-8" />
 	<meta name="viewport" content="width=device-width,initial-scale=0.99,maximum-scale=0.99" />
 	<link rel="shortcut icon" href="<c:url value='/img/elements/logo_portamu16.jpg' />"> 
-	
-	<!--  link rel="stylesheet" type="text/css" href="<c:url value='/css/portamu/prova.css' />" />
-	<link rel="stylesheet" type="text/css" href="<c:url value='/css/portamu/global.css' />" />
-	<link rel="stylesheet" type="text/css" href="<c:url value='/css/portamu/reset.css' />" />
-	<link href='http://fonts.googleapis.com/css?family=Raleway:800,400' rel='stylesheet' type='text/css'>	
-	<link rel="stylesheet" href="<c:url value='/css/coin-slider-styles.css' />" type="text/css" />
-	<link type="text/css" rel="stylesheet" href="<c:url value='/css/online.css' />" /-->
-	
 	<link href='http://fonts.googleapis.com/css?family=Raleway:800,400' rel='stylesheet' type='text/css'>
-	<link type="text/css" rel="stylesheet" href="<c:url value='/css/welcome.min.css' />" />
-	
-	<title> <s:text name="txt.welcome.principal" />	</title>
-	
+	<link type="text/css" rel="stylesheet" href="<c:url value='/css/welcome.min.css' />" />	
+	<title> <s:text name="txt.welcome.principal" />	</title>	
 </head>
 <body>
 <c:import url="/pages/includes/headerContext.jsp" />
 <c:import url="/pages/includes/divLogin.jsp" />
 <div id="container">
-
 	<div id="content">
-		<!-- menu -->
 			<c:import url="/pages/includes/menuHeader.jsp" />
-		<!-- END menu -->
-		<!-- Language -->
 			<c:import url="/pages/includes/divLanguage.jsp" />
-		<!-- END language -->
-		<c:import url="/pages/includes/homeSlider.jsp" />
-		<!-- Content seccio-->
-		<div id="content_seccion">
-			<!-- seccion Restaurants-->
-			<div id="seccion">
-			
+			<c:import url="/pages/includes/homeSlider.jsp" />
+		<div id="content_seccion">			
+			<div id="seccion">			
 				<div id="rest">
 					<s:text name="txt.welcome.title.restaurants" />				
 				</div>
@@ -52,16 +34,9 @@
 						<div class="enter">
 							<c:if test="${not empty restaurant.configRestaurants}">
 								<c:set var="doneLoop" value="false"/>
-								
 								<c:set var="configs" value="${restaurant.configRestaurants}" ></c:set>
-				
-				
 								<c:forEach items="${configs}" var="config" >
-								
-									
-									
-									<c:if test="${config.obert==true && not doneLoop}">
-					
+									<c:if test="${config.obert==true && not doneLoop}">					
 										<c:if test="${config.data eq dataAvui }">
 											<a href="#" id="${restaurant.id}" class="entrar selector_jq" ><s:text name="txt.inicia.comanda" /></a>
 											<input type="hidden" id="dataObert_${restaurant.id}" value="${dataAvui}" />
@@ -82,8 +57,7 @@
 							<br>
 							<img class="estrelles_rest" src="/${initParam.app}/img/elements/estrelles${restaurant.votacio.punctuacio}.jpg">						
 						</div>
-					</div>
-	  			
+					</div>	  			
 	  				<c:if test="${close==true}">
 		  				<div class="titol_Rest_CLOSE">
 		  					<h1>${restaurant.nom}</h2>
@@ -109,81 +83,44 @@
 	  							<p>${restaurant.descripcioES}</p>
 	  						</c:if>
 	  					</div>
-	  				</c:if>
-	  				
+	  				</c:if>	  				
 				</div>
 				</s:iterator>	
-				<c:import url="/pages/includes/pagination.jsp" />	
-								
-		</div>
-		
+				<c:import url="/pages/includes/pagination.jsp" />									
+		</div>		
 		<div id="left">
 				<div id="bar_left">
 					<img src="img/elements/bar3.png">
 				</div>
 				<div id="bar_right">
-					<!--Form-->
 					<div id="form_arribem">
 						<h2><s:text name="txt.welcome.arribem.acasa" /></h2><br>
 						<form class="form" action="#">
 						<s:text name="adreca.carrer" />:<br> <input class="inputs" type="text" name="FirstName" id="carrer" ><br>
 						<s:text name="adreca.codipostal" />:<br> <input class="inputs" type="text" name="LastName" id="codi" ><br>
 						<input class="boton" id="checkAdd" type="button" value="COMPROVA-HO"><br>
-						<label id="addressOK" ></label>
-						<input type="hidden" id="poble" disabled="disabled" value="Girona"  />
-						
+						<label id="addressOK" style="font-style: italic; color: red;" ></label>
+						<input type="hidden" id="poble" disabled="disabled" value="Girona"  />						
 						</form>
 					</div>
-					<div id="map_canvas" style="float: right; height: 192px; width: 192px; display:none;"></div>	
-					<!--End Form-->
+					<div id="map_canvas" style="float: right; height: 200px; width: 200px; display:none;"></div>	
 					<img src="img/elements/bar5.png">
-					<!--Newssletter-->
 					<div id="newsletter">
 						<h2><s:text name="txt.welcome.newsletter.title" /></h2><br>
 						<form class="form" action="#">
 						<s:text name="txt.welcome.newsletter.title2" /><br> <input class="newsin" type="text" value="<s:text name="txt.welcome.newsletter.value" />" id="email" />
 						<input class="news" type="button" onclick="saveEmail()" value="" />
 						<label id="error" style="font-style: italic; color: red;" ></label>
-						
-						
 						</form>
 					</div>
-					<!--End RIght-->
-				</div>
-			
+				</div>			
 			</div>
-		</div>
-		<!-- END Content seccio-->
+		</div>		
 	</div>
-	<!-- END Content-->
 </div>	
-<!-- END container -->
 <c:import url="/pages/includes/endPage.jsp" />
-
-	
-	
-	<!--  script src="<c:url value='/js/jquery/jquery.js' />" type="text/javascript"></script>
-	<script src="<c:url value='/js/jquery/jquery.ui.core.js' />" type="text/javascript"></script>
-	<script src="<c:url value='/js/jquery/jquery.ui.widget.js'/>" type="text/javascript"></script>
-	<script src="<c:url value='/js/jquery/jquery.ui.mouse.js'/>" type="text/javascript"></script>
-	<script src="<c:url value='/js/jquery/jquery.ui.dialog.js' />" type="text/javascript"></script>
-	<script src="<c:url value='/js/jquery/jquery.ui.position.js'/>" type="text/javascript"></script>
-	<script src="<c:url value='/js/jquery/jquery.ui.draggable.js'/>" type="text/javascript"></script>
-	<script src="<c:url value='/js/jquery/jquery.ui.droppable.js'/>" type="text/javascript"></script>
-	<script src="<c:url value='/js/jquery/jquery.ui.resizable.js'/>" type="text/javascript"></script>
-	<script src="<c:url value='/js/jquery/jquery.effects.core.js'/>" type="text/javascript"></script>
-	<script src="<c:url value='/js/jquery/jquery.bgiframe-2.1.1.js'/>" type="text/javascript"></script>
-	<script src="<c:url value='/js/jquery/jquery-ui.js' />" type="text/javascript"></script>
-	<script type="text/javascript" src="<c:url value='/js/slider/coin-slider.js' />"></script>
-	<script src="<c:url value='/js/address/autocompleteStreet.js'/>" type="text/javascript"></script>
-	<script src="<c:url value='/js/address/autocompleteCodi.js'/>" type="text/javascript"></script>
-	<script src="<c:url value='/js/address/addressValidationForm.js'/>" type="text/javascript"></script>
-	<script src="<c:url value='/js/address/addressValidationFormbis.js'/>" type="text/javascript"></script>
-	<script src="<c:url value='/jswelcome.js'/>" type="text/javascript"></script-->
-	
 	<script src="http://maps.google.com/maps/api/js?sensor=false" type="text/javascript"></script>
-	<script src="<c:url value='/jswelcome.min.js'/>" type="text/javascript"></script>
-	
+	<script src="<c:url value='/js/jswelcome.ini.min.js'/>" type="text/javascript"></script>	
 <script type="text/javascript" >
 new Address.addressValidation("<s:text name='txt.addressOK' />","<s:text name='txt.addressKO' />");
 var initParams = new InitParams("<s:text name='txt.comanda.existeix.vol.continuar' />","<s:text name='txt.welcome.confirmar' />",
