@@ -17,7 +17,7 @@ public class WelcomeAction extends ActionSuportOnlineSession{
 	private UsersBo				usersBo;
 	private List<Restaurant>	restaurantList;
 	
-	private String				nameUser;
+	private String				 nameUser;
 	private String				dataAvui;
 	private String				localeToChange;
 	private String				email;
