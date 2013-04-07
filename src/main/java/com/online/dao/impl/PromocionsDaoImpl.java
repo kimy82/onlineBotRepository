@@ -167,8 +167,6 @@ public List<Promocio>  loadByCode( String code ){
 		session.beginTransaction();
 		List<Promocio> promo = (List<Promocio>) session.createQuery("from Promocio where code=?").setString(0, code).list();
 		
-		
-	
 		session.getTransaction().commit();
 		session.close();
 		return promo;
