@@ -36,7 +36,7 @@ public interface PromocionsDao{
 	PromocioAssociada loadAssociada( Integer id );
 	
 	List<Promocio> getAll();
-	
+	 
 	List<PromocioAssociada> getAllAssociades();
 	
 	List<PromocioAPartirDe> getPromosAPartirDe(Double importAPartirDe, Date dia,boolean visibility);
