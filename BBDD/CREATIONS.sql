@@ -10,6 +10,9 @@ update promocions set NUM_USES=98 where 1=1;
 update promos_associated set list_date_used="2013-03-01 2013-03-01 2013-03-04 20
 13-03-04 2013-03-20 2013-03-20 2130-03-20 2013-03-29" where 1=1;
 update promos_associated set NUM_USED=24 where 1=1;
+
+alter table  promocions add column CODE VARCHAR(10);
+alter table  promocions add column VISIBILITY tinyint(1) NOT NULL DEFAULT 1;
 	
 /* alters finish*/
 /*nova taula per les promos assignables*/
@@ -145,6 +148,8 @@ CREATE TABLE promocions (
 	ACTIU_DIUMENGE tinyint(1) NOT NULL DEFAULT 1,
     TIPUS_BEGUDA VARCHAR(20),
     LIST_DATE_USED VARCHAR(10000) NULL,
+    CODE VARCHAR(10),
+    VISIBILITY tinyint(1) NOT NULL DEFAULT 1,
 	DISCRIMINATOR VARCHAR(20) NOT NULL,
 	PRIMARY KEY (PROMOCIO_ID)  USING BTREE
 )ENGINE=InnoDB DEFAULT CHARSET=utf8;

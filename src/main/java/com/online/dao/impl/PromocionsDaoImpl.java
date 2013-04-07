@@ -73,12 +73,13 @@ public class PromocionsDaoImpl extends HibernateDaoSupport implements Promocions
 		session.close();
 	}
 
-	public List<PromocioAPartirDe> getPromosAPartirDe( Double importAPartirDe, Date dia ){
+	public List<PromocioAPartirDe> getPromosAPartirDe( Double importAPartirDe, Date dia,boolean visibility ){
 
 		Session session = this.getSessionFactory().openSession();
 		session.beginTransaction();
 		Criteria criteria = session.createCriteria(PromocioAPartirDe.class);
 		criteria.add(Restrictions.le("importAPartirDe", importAPartirDe));
+		criteria.add(Restrictions.eq("visibility", visibility));
 		//if (dia != null)
 			//criteria.add(Restrictions.eq("dia", dia));
 		//else
@@ -87,13 +88,14 @@ public class PromocionsDaoImpl extends HibernateDaoSupport implements Promocions
 		return criteria.list();
 	}
 
-	public List<PromocioNumComandes> getPromosNumComandes( Integer numComandes, Integer temps ){
+	public List<PromocioNumComandes> getPromosNumComandes( Integer numComandes, Integer temps,boolean visibility ){
 
 		Session session = this.getSessionFactory().openSession();
 		session.beginTransaction();
 		Criteria criteria = session.createCriteria(PromocioNumComandes.class);
 		if(numComandes!=null)
 		criteria.add(Restrictions.ge("numComandes", numComandes));
+		criteria.add(Restrictions.eq("visibility", visibility));
 		return criteria.list();
 
 	}
@@ -150,6 +152,20 @@ public class PromocionsDaoImpl extends HibernateDaoSupport implements Promocions
 		Session session = this.getSessionFactory().openSession();
 		session.beginTransaction();
 		List<PromocioAssociada> promo = (List<PromocioAssociada>) session.createQuery("from PromocioAssociada where code=?").setString(0, code).list();
+		
+		
+	
+		session.getTransaction().commit();
+		session.close();
+		return promo;
+		
+	}
+	
+public List<Promocio>  loadByCode( String code ){
+		
+		Session session = this.getSessionFactory().openSession();
+		session.beginTransaction();
+		List<Promocio> promo = (List<Promocio>) session.createQuery("from Promocio where code=?").setString(0, code).list();
 		
 		
 	

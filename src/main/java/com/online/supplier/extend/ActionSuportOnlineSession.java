@@ -22,7 +22,7 @@ public class ActionSuportOnlineSession extends ActionSuportOnline implements Ses
 
 	protected void setLocale( String locale ) throws NumberFormatException{
 
-		session.put("WW_TRANS_I18N_LOCALE", new Locale("ca"));
+		session.put("WW_TRANS_I18N_LOCALE", new Locale(locale));
 	}
 
 	// SETTERS

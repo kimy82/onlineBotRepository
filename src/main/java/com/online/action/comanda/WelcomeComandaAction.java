@@ -26,6 +26,7 @@ import com.online.model.Comandes;
 import com.online.model.HoresDTO;
 import com.online.model.Plat;
 import com.online.model.PlatComanda;
+import com.online.model.Promocio;
 import com.online.model.PromocioAssociada;
 import com.online.model.Restaurant;
 import com.online.model.Users;
@@ -70,6 +71,7 @@ public class WelcomeComandaAction extends ActionSuportOnlineSession {
 	private int numPlats = 0;
 	private int numBegudes = 0;
 	private Integer amount = 0;
+	private String code = "";
 
 	private String nameUser;
 
@@ -164,7 +166,47 @@ public class WelcomeComandaAction extends ActionSuportOnlineSession {
 		}
 		return null;
 	}
+	
+	public String checkPromosVisibility() {
+		ServletOutputStream out = null;
+		String json = "";
+		
+		try {
+			out = this.response.getOutputStream();
+			setAuthenticationUser();
+			inizializeCode();
+			if (this.nameAuth.equals("anonymousUser")) {
+				json = Utils
+						.createNotLogedJSON("User not loged. Login before...");
+			} else {
+				Users user = this.usersBo.findByUsername(this.nameAuth);
+				if (user != null){
+					List<Promocio> promo = this.promocionsBo.loadByCode(this.code);
+					if(promo!=null && !promo.isEmpty()){
+						Gson gson = new GsonBuilder().setPrettyPrinting()
+								.excludeFieldsWithoutExposeAnnotation().create();
+						json = gson.toJson(promo);
+					}else{
+						ResourceBundle resource = getTexts("MessageResources");
+						String alert = resource.getString("txt.no.promo.for.code");
+						json="{\"alert\":\""+alert+"\"}";
+					}
+				}
+			}
+		} catch (ComandaException ce) {
+			json = Utils.createErrorJSON("error in comanda service action");
+		} catch (Exception e) {
+			json = Utils.createErrorJSON("error in ajax action");
+		}
 
+		try {
+			out.print(json);
+		} catch (IOException e) {
+			throw new GeneralException(e, "possibly ServletOutputStream null");
+		}
+		return null;
+	}
+	
 	public String checkComandaPromos() {
 
 		ServletOutputStream out = null;
@@ -607,7 +649,14 @@ public class WelcomeComandaAction extends ActionSuportOnlineSession {
 			this.nameUser = "";
 		}
 	}
+	
+	private void inizializeCode() {
 
+		this.code = (request.getParameter("code") != null && !request
+				.getParameter("code").equals("")) ? request
+				.getParameter("code") : null;
+	}
+	
 	private void inizializeAmount() {
 
 		this.amount = (request.getParameter("amount") != null && !request

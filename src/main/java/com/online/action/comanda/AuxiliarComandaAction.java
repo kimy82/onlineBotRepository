@@ -55,6 +55,7 @@ public class AuxiliarComandaAction extends ActionSuportOnline{
 		setUserName();
 
 		this.begudaList = this.begudaBo.getAll("refresc", false);
+		this.begudaList.addAll(this.begudaBo.getAll("cava", false));
 		this.restaurantList = this.restaurantsBo.getAll(true, false, false);
 		this.dataAvui = Utils.formatDate2(new Date());
 

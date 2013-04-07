@@ -68,6 +68,12 @@ public class Promocio implements Serializable{
 
 	@Expose
 	private boolean				diumenge;
+	
+	@Expose
+	private String				code;
+	
+	@Expose
+	private boolean				visibility;
 
 	// CONSTRUCTORS
 	public Promocio() {
@@ -264,8 +270,24 @@ public class Promocio implements Serializable{
 	public void setDiumenge( boolean diumenge ){
 
 		this.diumenge = diumenge;
-	}
+	}		
 	
+	public String getCode() {
+		return code;
+	}
+
+	public void setCode(String code) {
+		this.code = code;
+	}
+
+	public boolean getVisibility() {
+		return visibility;
+	}
+
+	public void setVisibility(boolean visibility) {
+		this.visibility = visibility;
+	}
+
 	public boolean checkDayOfWeekOpen(int dayOfWeek){
 		
 		switch(dayOfWeek){

@@ -64,6 +64,12 @@
 		<property name="diumenge" type="boolean" lazy="false" >
 			<column name="ACTIU_DIUMENGE" default="true" />
 		</property>	
+		<property name="visibility" type="boolean" lazy="false" >
+			<column name="VISIBILITY" default="true" />
+		</property>
+		<property name="code" type="string" lazy="false" >
+			<column name="CODE" length="200" not-null="true" />
+		</property>		
 		<subclass name="com.online.model.PromocioAPartirDe" extends="com.online.model.Promocio"
 			discriminator-value="papd" lazy="false" >
 			<property name="importAPartirDe" type="double" column="IMPORT_A_PARTIR_DE" lazy="false" />

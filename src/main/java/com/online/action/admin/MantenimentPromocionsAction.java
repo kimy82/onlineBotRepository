@@ -2,6 +2,7 @@ package com.online.action.admin;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
@@ -150,16 +151,20 @@ public class MantenimentPromocionsAction extends ActionSuportOnline{
 	public String savePromocioNumComandes(){
 
 		try {
-
+			
+			this.tipusDescompteList = Utils.getTipusDescompte();
+			this.tipusBegudaList = Utils.inizializeListTipusBeguda();
+			
 			if (this.promocioNumComandes == null) {
 				addActionError("Error saving promocio");
 				return Action.ERROR;
 			}
-
+			
 			PromocioNumComandes promoNumComandes = new PromocioNumComandes();
 			BeanUtils.copyProperties(this.promocioNumComandes, promoNumComandes);
 			if (this.promocioNumComandes.getId() == null){
 				promoNumComandes.setFentrada(new Date());
+				promoNumComandes.setCode("PR_"+Calendar.getInstance().get(Calendar.DAY_OF_MONTH)+Calendar.getInstance().get(Calendar.HOUR_OF_DAY)+Calendar.getInstance().get(Calendar.MINUTE));
 				this.promocionsBo.save(promoNumComandes);
 			}else{
 				this.promocionsBo.update(promoNumComandes);
@@ -196,6 +201,7 @@ public class MantenimentPromocionsAction extends ActionSuportOnline{
 
 			if (promApartirDe.getId() == null){
 				promApartirDe.setFentrada(new Date());
+				promApartirDe.setCode("PR_"+Calendar.getInstance().get(Calendar.DAY_OF_MONTH)+Calendar.getInstance().get(Calendar.HOUR_OF_DAY)+Calendar.getInstance().get(Calendar.MINUTE));
 				this.promocionsBo.save(promApartirDe);
 			}else{
 				this.promocionsBo.update(promApartirDe);

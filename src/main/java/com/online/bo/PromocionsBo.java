@@ -37,9 +37,11 @@ public interface PromocionsBo{
 	
 	List<PromocioAssociada>  loadAssociadaByCode( String code ) throws BOException;
 	
-	List<PromocioAPartirDe> getPromosAPartirDe(Double importAPartirDe, Date dia)throws BOException;
+	List<Promocio>  loadByCode( String code ) throws BOException;
 	
-	List<PromocioNumComandes> getPromosNumComandes(Integer numComandes, Integer temps)throws BOException;
+	List<PromocioAPartirDe> getPromosAPartirDe(Double importAPartirDe, Date dia,boolean visibility)throws BOException;
+	
+	List<PromocioNumComandes> getPromosNumComandes(Integer numComandes, Integer temps,boolean visibility)throws BOException;
 	
 	List<PromocioAPartirDe> getAllAPartirDe() throws BOException;
 	

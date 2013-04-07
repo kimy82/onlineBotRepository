@@ -3,6 +3,7 @@ package com.online.dao;
 import java.util.Date;
 import java.util.List;
 
+import com.online.exceptions.BOException;
 import com.online.model.Promocio;
 import com.online.model.PromocioAPartirDe;
 import com.online.model.PromocioAssociada;
@@ -30,15 +31,17 @@ public interface PromocionsDao{
 	
 	List<PromocioAssociada>   loadAssociadaByCode( String code );
 	
+	public List<Promocio> loadByCode( String code );
+	
 	PromocioAssociada loadAssociada( Integer id );
 	
 	List<Promocio> getAll();
 	
 	List<PromocioAssociada> getAllAssociades();
 	
-	List<PromocioAPartirDe> getPromosAPartirDe(Double importAPartirDe, Date dia);
+	List<PromocioAPartirDe> getPromosAPartirDe(Double importAPartirDe, Date dia,boolean visibility);
 	
-	List<PromocioNumComandes> getPromosNumComandes(Integer numComandes, Integer temps);
+	List<PromocioNumComandes> getPromosNumComandes(Integer numComandes, Integer temps,boolean visibility);
 	
 	List<PromocioAPartirDe> getAllAPartirDe();
 	

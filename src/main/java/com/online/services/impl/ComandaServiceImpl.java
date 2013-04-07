@@ -576,8 +576,8 @@ public class ComandaServiceImpl implements ComandaService{
 			List<PromocioNumComandes> promoNumComandesFinalList = new ArrayList<PromocioNumComandes>();
 			List<PromocioAPartirDe> apartirDePromoFinalList = new ArrayList<PromocioAPartirDe>();
 
-			List<PromocioAPartirDe> apartirDePromoList = this.promocionsBo.getPromosAPartirDe(comanda.getPreu(), null);			
-			List<PromocioNumComandes> promoNumComandesList = this.promocionsBo.getPromosNumComandes(null, null);
+			List<PromocioAPartirDe> apartirDePromoList = this.promocionsBo.getPromosAPartirDe(comanda.getPreu(), null,true);			
+			List<PromocioNumComandes> promoNumComandesList = this.promocionsBo.getPromosNumComandes(null, null, true);
 			
 			for (PromocioAPartirDe promo : apartirDePromoList) {
 				int numUsed = promo.getNumUsed()==null?0:promo.getNumUsed();
@@ -586,7 +586,7 @@ public class ComandaServiceImpl implements ComandaService{
 				if(comanda.getDia()==null) comanda.setDia(diaAvui);
 				if(comanda.getDia()!=null && comanda.getDia().compareTo(diaAvui)==0 && actualHour>16 && promo.getHora()!=null && promo.getHora()==true){
 					continue;					
-				}			
+				}
 				if(!promo.checkDayOfWeekOpen(dayOfWeek)) continue;
 				
 					apartirDePromoFinalList.add(promo);

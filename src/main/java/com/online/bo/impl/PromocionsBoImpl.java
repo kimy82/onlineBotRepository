@@ -101,6 +101,12 @@ public class PromocionsBoImpl implements PromocionsBo{
 			throw new BOException("NUll code to load");
 		return promocionsDao.loadAssociadaByCode(code);
 	}
+	
+	public List<Promocio> loadByCode( String code ) throws BOException{
+		if (code == null || code.equals(""))
+			throw new BOException("NUll code to load");
+		return promocionsDao.loadByCode(code);
+	}
 
 	public List<Promocio> getAll(){
 
@@ -112,19 +118,18 @@ public class PromocionsBoImpl implements PromocionsBo{
 		return this.promocionsDao.getAllAssociades();
 	}
 
-	public List<PromocioAPartirDe> getPromosAPartirDe( Double importAPartirDe, Date dia ) throws BOException{
+	public List<PromocioAPartirDe> getPromosAPartirDe( Double importAPartirDe, Date dia,boolean visibility ) throws BOException{
 
 		if (importAPartirDe == null)
 			return null;
-		List<PromocioAPartirDe> list = this.promocionsDao.getPromosAPartirDe(importAPartirDe, dia);
+		List<PromocioAPartirDe> list = this.promocionsDao.getPromosAPartirDe(importAPartirDe, dia,visibility);
 		return list;
 	}
 
-	public List<PromocioNumComandes> getPromosNumComandes( Integer numComandes, Integer temps ) throws BOException{
+	public List<PromocioNumComandes> getPromosNumComandes( Integer numComandes, Integer temps,boolean visibility ) throws BOException{
 
-		List<PromocioNumComandes> list = this.promocionsDao.getPromosNumComandes(numComandes, temps);
+		List<PromocioNumComandes> list = this.promocionsDao.getPromosNumComandes(numComandes, temps, visibility);
 		return list;
-
 	}
 	
 	public List<PromocioAPartirDe> getAllAPartirDe() throws BOException{
