@@ -57,6 +57,9 @@ function resetForm(){
  		$("#adp_divendres").attr('checked',false);
  		$("#adp_dissabte").attr('checked',false);
  		$("#adp_diumenge").attr('checked',false);
+ 		
+ 		$("#adp_visibility").attr('checked',true);
+ 		$("#pnc_visibility").attr('checked',true);
 }
 
 function openDivTipuPromo(id){
@@ -123,6 +126,9 @@ function goToPromocio(id){
 					 		if(json.diumenge==true){
 					 			$("#adp_diumenge").attr('checked','true');
 					 		}
+					 		if(json.visibility==true){
+					 			$("#adp_visibility").attr('checked','true');
+					 		}
 					 		
 					 		$("#infopromonew").show('slow');
 					 		$("#apd").click();
@@ -162,6 +168,9 @@ function goToPromocio(id){
 					 		}
 					 		if(json.diumenge==true){
 					 			$("#pnc_diumenge").attr('checked','true');
+					 		}
+					 		if(json.visibility==true){
+					 			$("#pnc_visibility").attr('checked','true');
 					 		}
 					 		
 					 		$("#infopromonew").show('slow');
@@ -221,6 +230,7 @@ $(document).ready(function() {
 					                  { "mDataProp":"descompteImport", "bSortable": false, sWidth: '40px' },
 					                  { "mDataProp":"numBegudes", "bSortable": false, sWidth: '40px' },
 					                  { "mDataProp":"tipusBeguda", "bSortable": false, sWidth: '40px' },
+					                  { "mDataProp":"code", "bSortable": false, sWidth: '40px' },
 					                  { "mDataProp":"accio", "bSortable": false, sWidth: '40px' }
 					            ],
 					"sPaginationType": "full_numbers",
