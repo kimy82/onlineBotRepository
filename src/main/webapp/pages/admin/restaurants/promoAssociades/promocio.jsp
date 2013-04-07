@@ -21,7 +21,7 @@
 		<div id="int_left">
 			<img src="<c:url value='/img/elements/logo_portamu.png' />">
 		</div>
-		</div>
+		</div> 
 <div align="center">
     <div id="div_pantalla" style="width:950px;" alig="">
       <c:import url="pestanas.jsp" />
