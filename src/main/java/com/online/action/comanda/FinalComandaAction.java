@@ -34,7 +34,7 @@ public class FinalComandaAction extends ActionSuportOnline{
 	private String				hora;
 	private Date				dia;
 	private String				aDomicili;
-	private String				targeta;
+	private String				targeta; 
 	private String				address;
 	private String				dataActual;
 	private Integer				promoId;

@@ -49,7 +49,7 @@ public class AuxiliarComandaAction extends ActionSuportOnline{
 	}
 
 	public String getRefrescos(){
-
+ 
 		setAuthenticationUser();
 
 		setUserName();

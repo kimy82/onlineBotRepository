@@ -58,7 +58,7 @@ public class AjaxComandaAction extends ActionSuportOnlineSession {
 
 	public String execute() {		
 
-		return SUCCESS;
+		return SUCCESS; 
 
 	}
 

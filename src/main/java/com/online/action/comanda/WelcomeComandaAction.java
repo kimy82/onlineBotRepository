@@ -190,7 +190,7 @@ public class WelcomeComandaAction extends ActionSuportOnlineSession {
 						ResourceBundle resource = getTexts("MessageResources");
 						String alert = resource.getString("txt.no.promo.for.code");
 						json="{\"alert\":\""+alert+"\"}";
-					}
+					} 
 				}
 			}
 		} catch (ComandaException ce) {
