@@ -45,6 +45,7 @@
 							<th><s:text name="mant.promo.table.descompteImport" /></th>
 							<th><s:text name="mant.promo.table.numBegudes" /></th>
 							<th><s:text name="mant.promo.table.tipusBeguda" /></th>
+							<th><s:text name="mant.promo.table.code" /></th>							
 							<th width="40px"></th>
 						</tr>
 					</thead>
