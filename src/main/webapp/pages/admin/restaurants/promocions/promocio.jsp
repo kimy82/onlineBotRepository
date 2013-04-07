@@ -46,6 +46,7 @@
 							<th><s:text name="mant.promo.table.descompteImport" /></th>
 							<th><s:text name="mant.promo.table.numBegudes" /></th>
 							<th><s:text name="mant.promo.table.tipusBeguda" /></th>
+							<th><s:text name="mant.promo.table.code" /></th>	
 							<th width="40px"></th>
 						</tr>
 					</thead>
@@ -84,6 +85,7 @@
 								<td><s:text name="promocioAPartirDeDTF.diumenge" ></s:text>:<s:checkbox key="promocioAPartirDeDTF.diumenge" id="adp_diumenge" theme="simple" ></s:checkbox></td>
 							</tr>
 							
+							<s:checkbox key="promocioAPartirDeDTF.visibility" id="adp_visibility" ></s:checkbox>
 							<s:checkbox key="promocioAPartirDeDTF.hora" id="adp_hora" ></s:checkbox>
 							<s:textfield key="promocioAPartirDeDTF.numUses"  id="numUses_apd" onblur="onlyEntero(this.value,this.id)" ></s:textfield>	
 							<s:textfield key="promocioAPartirDeDTF.nom" id="nompromo_apd"  ></s:textfield>
@@ -117,6 +119,7 @@
 								<td><s:text name="promocioNumComandes.diumenge" ></s:text>:<s:checkbox key="promocioNumComandes.diumenge" id="pnc_diumenge" theme="simple" ></s:checkbox></td>
 							</tr>
 						
+							<s:checkbox key="promocioNumComandes.visibility" id="pnc_visibility" ></s:checkbox>
 							<s:checkbox key="promocioNumComandes.hora" id="pnc_hora" ></s:checkbox>
 							<s:textfield key="promocioNumComandes.numUses"  id="numUses_pnc" onblur="onlyEntero(this.value,this.id)" ></s:textfield>		
 							<s:textfield key="promocioNumComandes.nom" id="nompromo_pnc"  ></s:textfield>
