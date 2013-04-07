@@ -90,7 +90,7 @@ public class Promocio implements Serializable{
 	public void setId( Integer id ){
 
 		this.id = id;
-	}
+	} 
 
 	public String getNom(){
 
