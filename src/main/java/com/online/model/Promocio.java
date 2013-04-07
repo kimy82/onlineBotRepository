@@ -75,7 +75,7 @@ public class Promocio implements Serializable{
 	@Expose
 	private boolean				visibility;
 
-	// CONSTRUCTORS
+	// CONSTRUCTORS sadsd
 	public Promocio() {
 
 		super();
