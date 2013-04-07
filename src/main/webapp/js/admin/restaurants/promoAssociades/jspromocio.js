@@ -116,6 +116,7 @@ $(document).ready(function() {
 					                  { "mDataProp":"descompteImport", "bSortable": false, sWidth: '40px' },
 					                  { "mDataProp":"numBegudes", "bSortable": false, sWidth: '40px' },
 					                  { "mDataProp":"tipusBeguda", "bSortable": false, sWidth: '40px' },
+					                  { "mDataProp":"code", "bSortable": false, sWidth: '40px' },
 					                  { "mDataProp":"accio", "bSortable": false, sWidth: '40px' }
 					            ],
 					"sPaginationType": "full_numbers",
