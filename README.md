@@ -261,4 +261,36 @@ C:\Program Files\Java\jdk1.7.0_02\bin>
                compressionMinSize="2048"
                noCompressionUserAgents="gozilla, traviata"
                compressableMimeType="text/html,text/xml,text/css,text/javascript"/>
+               
+               ///
+               
+               <script src="http://maps.google.com/maps/api/js?sensor=false" type="text/javascript"></script>
+	
+	<script type="text/javascript" src="<c:url value='/js/jquery/jquery.js'/>"></script>
+	<script type="text/javascript" src="<c:url value='/js/jquery/jquery.ui.core.js'/>"></script>
+	<script type="text/javascript" src="<c:url value='/js/jquery/jquery.ui.widget.js'/>"></script>
+	<script type="text/javascript" src="<c:url value='/js/jquery/jquery.ui.mouse.js'/>"></script>
+	<script type="text/javascript" src="<c:url value='/js/jquery/jquery.ui.dialog.js'/>"></script>
+	<script type="text/javascript" src="<c:url value='/js/jquery/jquery.ui.position.js'/>"></script>
+	<script type="text/javascript" src="<c:url value='/js/jquery/jquery.ui.draggable.js'/>"></script>
+	<script type="text/javascript" src="<c:url value='/js/jquery/jquery.ui.droppable.js'/>"></script>
+	<script type="text/javascript" src="<c:url value='/js/jquery/jquery.ui.resizable.js'/>"></script>
+	<script type="text/javascript" src="<c:url value='/js/jquery/jquery.effects.core.js'/>"></script>
+	<script type="text/javascript" src="<c:url value='/js/jquery/jquery.bgiframe-2.1.1.js'/>"></script>
+	
+	<script type="text/javascript" src="<c:url value='/js/jquery/jquery-ui.js'/>"></script>
+	<script type="text/javascript" src="<c:url value='/js/calendari/calendar.js'/>"></script>
+	<script type="text/javascript" src="<c:url value='/js/calendari/calendar-cat.js'/>"></script>
+	<script type="text/javascript" src="<c:url value='/js/calendari/calendar-es.js'/>"></script>
+	
+	<script type="text/javascript" src="<c:url value='/js/calendari/calendar-idioma.js'/>"></script>
+	<script type="text/javascript" src="<c:url value='/js/calendari/calendar-setup.js'/>"></script>
+	<script type="text/javascript" src="<c:url value='/js/address/autocompleteStreet.js'/>"></script>
+	<script type="text/javascript" src="<c:url value='/js/address/autocompleteCodi.js'/>"></script>
+	<script type="text/javascript" src="<c:url value='/js/address/addressValidationForm.js'/>"></script>
+	<script type="text/javascript" src="<c:url value='/js/sudoSlider/jquery.sudoSlider.js'/>"></script>
+	<script type="text/javascript" src="<c:url value='/js/progressbar/progress.js'/>"></script>
+	
+	
+	<script type="text/javascript" src="<c:url value='/js/comanda/jsinfoComanda.js'/>"></script>
 
