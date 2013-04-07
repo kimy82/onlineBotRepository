@@ -755,8 +755,7 @@ function checkPromocionsDisponibles(){
 	       				}
 	       				if(json.promosAPartirDe !=null ){
 	       					//Hi ha prom del tipus a partir de
-	       					fillPromos(json.promosAPartirDe[0]);
-	       					
+	       					fillPromos(json.promosAPartirDe[0]);	       					
 	       				}
 	       						       			
 	       			}	  			  		  			  		  			  	
@@ -794,6 +793,53 @@ function checkPromoEspecial(){
 		});
 }
 
+function checkPromoVibility(value){
+	var data="code="+value;
+	$.ajax({
+		  type: "POST",
+		  url: '/'+context+'/comanda/checkPromosVisibility.action',
+		  dataType: 'json',
+		  data: data,
+		  success: function(json){	
+			  	if(json!=null && json.error!=null){	       				
+     			 errorOnline.error("Error in AJAX: "+json.error);	
+     			}else{     	
+     				if(json!=null && json.alert!=null ){
+     					$("#dialog_promo ul#visp").html(json.alert);
+     					return;
+     				}
+     				$("#dialog_promo ul#visp").html("");
+     				if(json !=null ){
+     					//Hi ha prom del tipus numero de comanda
+     					fillPromosVisp(json);
+     			
+     				}
+     						       			
+     			}	  			  		  			  		  			  	
+		  },
+		  error: function(e){  errorOnline.error(txterrorAjax);	
+		  					}
+		});
+}
+
+function fillPromosVisp(json){
+	$.each(json, function(index,item){
+		if(item.numBegudes!=null && item.numBegudes!= 'undefined' && json.numBegudes!= "0"){
+			//Promocio de begudes
+			var liToAppend = "<li><a href='#' onclick=\"addPromoBeguda('"+item.numBegudes+"','"+item.tipusBeguda+"','"+item.id+"','gen')\" >'Te un descompte per escollir "+item.numBegudes +" begudes de tipus "+item.tipusBeguda+"</a>";
+			$("#dialog_promo ul#visp").append(liToAppend);
+			
+		
+		}
+		if(item.descompteImport!=null && item.descompteImport!= 'undefined' && item.descompteImport!="0"){			
+			//promocio descompte de pasta
+			var liToAppend = "<li><a href='#' onclick=\"addPromoImport('"+item.descompteImport+"','"+item.tipuDescompte+"','"+item.id+"','gen')\" >'Te un descompte de  "+item.descompteImport +" en "+item.tipuDescompte+"</a>";
+			$("#dialog_promo ul#visp").append(liToAppend);
+
+		}
+	});			
+}
+
 function fillPromosEsp(json){
 	$.each(json, function(index,item){
 		if(item.numBegudes!=null && item.numBegudes!= 'undefined' && json.numBegudes!= "0"){
@@ -809,8 +855,7 @@ function fillPromosEsp(json){
 			$("#dialog_promo ul#esp").append(liToAppend);
 
 		}
-	});		
-	
+	});			
 }
 
 function fillPromos(json){
@@ -1177,7 +1222,7 @@ $("#dialog_promo").dialog( { autoOpen: false,
 	  open: function(event, ui) { 
 		 //carrega la taula del dialog
 		checkPromocionsDisponibles(); 
-		
+		checkPromoEspecial();
 		$('#dialog_promo').css('overflow', 'hidden');
 		
 
