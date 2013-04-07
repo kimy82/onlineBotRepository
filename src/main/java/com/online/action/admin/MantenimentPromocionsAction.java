@@ -47,7 +47,7 @@ public class MantenimentPromocionsAction extends ActionSuportOnline{
 
 		this.tipusDescompteList = Utils.getTipusDescompte();
 		this.tipusBegudaList = Utils.inizializeListTipusBeguda();
-		return SUCCESS;
+		return SUCCESS; 
 
 	}
 
