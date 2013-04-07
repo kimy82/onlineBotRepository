@@ -17,7 +17,7 @@
 <c:import url="/pages/includes/headerContext.jsp" />
 <div class="content">
 	<div class="container">
-		<div class="topadmin">
+		<div class="topadmin"> 
 		<div id="int_left">
 			<img src="<c:url value='/img/elements/logo_portamu.png' />">
 		</div>
