@@ -156,7 +156,7 @@
 			<artifactId>tools</artifactId>
 			<version>1.5</version>
 			<scope>system</scope>
-			<systemPath>C:/Program Files/Java/jdk1.7.0_02/lib/tools.jar</systemPath>
+			<systemPath>C:/Program Files (x86)/Java/jdk1.6.0_17/lib/tools.jar</systemPath>
 		</dependency>
 		<dependency>
 			<groupId>javax.mail</groupId>
@@ -828,6 +828,10 @@
 						<phase>process-sources</phase>
 						<configuration>
 							<linebreak>4000</linebreak>
+							 <nomunge>true</nomunge>
+         					 <verbose>true</verbose>
+          					<preserveAllSemiColons>true</preserveAllSemiColons>
+							<disableOptimizations>true</disableOptimizations>
 							<cssSourceDir>css</cssSourceDir>
 							<cssSourceFiles>
 								<cssSourceFile>portamu/global.css</cssSourceFile>
@@ -852,7 +856,12 @@
 								<jsSourceFile>jquery/jquery.ui.resizable.js</jsSourceFile>
 								<jsSourceFile>jquery/jquery.effects.core.js</jsSourceFile>
 								<jsSourceFile>jquery/jquery.bgiframe-2.1.1.js</jsSourceFile>	
-								<jsSourceFile>jquery/jquery-ui.js</jsSourceFile>																																																			
+								<jsSourceFile>jquery/jquery-ui.js</jsSourceFile>
+								<jsSourceFile>calendari/calendar.js</jsSourceFile>
+								<jsSourceFile>calendari/calendar-cat.js</jsSourceFile>
+								<jsSourceFile>calendari/calendar-es.js</jsSourceFile>
+								<jsSourceFile>calendari/calendar-idioma.js</jsSourceFile>
+								<jsSourceFile>calendari/calendar-setup.js</jsSourceFile>																																																																			
 							</jsSourceFiles>
 							<jsFinalFile>jsinfoComanda.primer.js</jsFinalFile>
 						</configuration>
@@ -865,19 +874,17 @@
 						<phase>process-sources</phase>
 						<configuration>					
 							<linebreak>4000</linebreak>
+							 <nomunge>true</nomunge>
+         					 <verbose>true</verbose>
+          					<preserveAllSemiColons>true</preserveAllSemiColons>
+							<disableOptimizations>true</disableOptimizations>
 							<jsSourceDir>js</jsSourceDir>
-							<jsSourceFiles>															
-								<jsSourceFile>calendari/calendar.js</jsSourceFile>
-								<jsSourceFile>calendari/calendar-cat.js</jsSourceFile>
-								<jsSourceFile>calendari/calendar-es.js</jsSourceFile>
-								<jsSourceFile>calendari/calendar-idioma.js</jsSourceFile>
-								<jsSourceFile>calendari/calendar-setup.js</jsSourceFile>
+							<jsSourceFiles>																						
 								<jsSourceFile>address/autocompleteStreet.js</jsSourceFile>
 								<jsSourceFile>address/autocompleteCodi.js</jsSourceFile>
-								<jsSourceFile>address/addressValidationForm.js</jsSourceFile>
-								<jsSourceFile>sudoSlider/jquery.sudoSlider.js</jsSourceFile>
+								<jsSourceFile>address/addressValidationForm.js</jsSourceFile>	
 								<jsSourceFile>progressbar/progress.js</jsSourceFile>							
-								<jsSourceFile>comanda/jsinfoComanda.js</jsSourceFile>																																														
+								<jsSourceFile>comanda/jsinfoComanda.js</jsSourceFile>																																																			
 							</jsSourceFiles>
 							<jsFinalFile>jsinfoComanda.segon.js</jsFinalFile>
 						</configuration>
