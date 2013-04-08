@@ -39,7 +39,7 @@
 									<td>${plat.descripcio}</td>
 								</tr>
 							</table>
-						</div>
+						
     				<c:if test="${nameAuth ne 'anonymousUser' }">
 						<div id="star_punctuation" >
 							<table id="tbl_stars" >
@@ -54,12 +54,14 @@
 									<td><a href="#" onclick="starManager(5)" ><img id="star5" width="20px"  src="<c:url value='/images/star0.jpg' />" /></a></td>
 								</tr>
 								<tr>
-									<td colspan="5" ><input type="button" id="saveVotButton"  onclick="votaPlatDialog()" value="submit votacio"  /></td>
+									<td colspan="5" ><input class="votat" type="button" id="saveVotButton"  onclick="votaPlatDialog()" value="submit votacio"  /></td>
 								</tr>
 							</table>					
 						</div>
 					</c:if>
-				<input class="enviarcom" type="button" onclick="closeInfoPlat()"  value="Close" />
+					</br>
+				<input class="tancarBot" type="button" onclick="closeInfoPlat()"  value="Tancar" />
+				</div>
 		</div>
 		<div id="rightforo">
     		<div class="comments_foro" id="plat_${plat.id}" >

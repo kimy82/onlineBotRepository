@@ -1,4 +1,32 @@
+a, .boton, .news, .tancarBot, #saveVotButton, .enviarcom{
+/* Firefox */
+    -moz-transition-property: all;
+    -moz-transition-duration: 0.2s;
+    -moz-transition-timing-function: ease;
+    -moz-transition-delay: 0s;
+     
 
+    /* Chrome / Safari */
+    -webkit-transition-property: all;
+    -webkit-transition-duration: 0.2s;
+    -webkit-transition-timing-function: ease;
+    -webkit-transition-delay: 0s;
+ 
+ 
+    /* Opera */
+    -o-transition-property: all;
+    -o-transition-duration: 0.2s;
+    -o-transition-timing-function: ease;
+    -o-transition-delay: 0s;
+ 
+ 
+    /* Default */
+    transition-property: all;
+    transition-duration: 0.2s;
+    transition-timing-function: ease;
+    transition-delay: 0s;
+
+}
 #infoPlat_dialog #foro{
 	background-color: #F2F2F2;
     border: 1px solid #E2E2E2;
@@ -154,8 +182,22 @@ float:left;
      margin-bottom: 5px;
 }
 
-#saveVotButton {
+.votat {
     background-color: #D9E021;
+    border: 1px solid #BDBBBB;
+    border-radius: 3px 3px 3px 3px;
+    color: #333333;
+    cursor: pointer;
+    font-family: 'Raleway',sans-serif;
+    font-size: 12px;
+    font-weight: 800;
+    margin-left: 0;
+    margin-top: 10px;
+    padding: 10px;
+text-transform:uppercase;
+}
+.votat:hover {
+    background-color: #F7931E;
     border: 1px solid #BDBBBB;
     border-radius: 3px 3px 3px 3px;
     color: #333333;
@@ -200,7 +242,82 @@ text-transform:uppercase;
     padding: 10px;
     text-transform: uppercase;
 }
+.enviarcom:hover{
+	background-color: #F7931E;
+    border: 1px solid #BDBBBB;
+    border-radius: 3px 3px 3px 3px;
+    color: #333333;
+    cursor: pointer;
+    font-family: 'Raleway',sans-serif;
+    font-size: 12px;
+    font-weight: 800;
+    margin-left: 0;
+    margin-top: 10px;
+    padding: 10px;
+    text-transform: uppercase;
+}
 #degra{
 	
     margin-top: -30px;
+}
+.tancarBot{
+	background-color: #333;
+    border: 1px solid #BDBBBB;
+    border-radius: 3px 3px 3px 3px;
+    color: #999;
+    cursor: pointer;
+    font-family: 'Raleway',sans-serif;
+    font-size: 12px;
+    font-weight: 800;
+    margin-left: 0;
+    margin-top: 10px;
+    padding: 10px;
+    text-transform: uppercase;
+}
+.tancarBot:hover{
+	background-color: #f3f3f3;
+    border: 1px solid #BDBBBB;
+    border-radius: 3px 3px 3px 3px;
+    color: #999;
+    cursor: pointer;
+    font-family: 'Raleway',sans-serif;
+    font-size: 12px;
+    font-weight: 800;
+    margin-left: 0;
+    margin-top: 10px;
+    padding: 10px;
+    text-transform: uppercase;
+}
+#star_punctuation{
+	float: left;
+    height: 108px;
+    width: 230px;
+}
+.votat_close{
+	 background-color: #999;
+    border: 1px solid #BDBBBB;
+    border-radius: 3px 3px 3px 3px;
+    color: white;
+    cursor: pointer;
+    font-family: 'Raleway',sans-serif;
+    font-size: 12px;
+    font-weight: 800;
+    margin-left: 0;
+    margin-top: 10px;
+    padding: 10px;
+    text-transform:uppercase;
+}
+.votat_close:hover {
+    background-color: #D9E021;
+    border: 1px solid #BDBBBB;
+    border-radius: 3px 3px 3px 3px;
+    color: #333333;
+    cursor: pointer;
+    font-family: 'Raleway',sans-serif;
+    font-size: 12px;
+    font-weight: 800;
+    margin-left: 0;
+    margin-top: 10px;
+    padding: 10px;
+text-transform:uppercase;
 }

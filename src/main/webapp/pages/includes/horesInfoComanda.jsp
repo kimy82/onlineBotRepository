@@ -228,7 +228,7 @@
 							<td><input type="button"  id="2330" value="23:30 - 24:00" class="notcheck" onclick="checKHour(this.id)" /></td>
 						</c:if>
 						<c:if test="${requestScope.horesDTO._2330 eq 'true'}">
-							<td><input type="button"  id="2330" value="23:30 -24:00" class="check" onclick="checKHour(this.id)" /></td>
+							<td><input type="button"  id="2330" value="23:30 - 24:00" class="check" onclick="checKHour(this.id)" /></td>
 						</c:if>
 						
 						<c:if test="${requestScope.horesDTO._2400 ne 'true'}">

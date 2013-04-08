@@ -261,16 +261,23 @@
 	</div>
 	</div>
 	<div id="rightright">	
-	<div id="map_canvas" style="float: left; height: 250px; width: 222px;"><img  src="<c:url value='/images/elements/maps.png'/>"  ></div>
+	<div id="map_canvas" style="float: left; height: 290px; width: 373px;"><img  src="<c:url value='/images/elements/maps.png'/>"  ></div>
 	</div>
 	</div>
 	<hr class="sep11"></hr>
 	<div id="domrec" class="titols_comanda2"><s:text name="txt.domrec" /></div>
 	<div id="pagar">
+	<div id="pagarDom">
 	<s:checkbox key="comanda.targeta" id="targeta" onclick="targeta()" ></s:checkbox>
 	<s:checkbox key="comanda.contrarembols" id="contrarembols" onclick="contrarembols()"></s:checkbox>
+	</div>
+	<div id="pagarRec">
+	<s:checkbox key="comanda.targeta" id="targeta" onclick="targeta()" ></s:checkbox>
+	</div>
 	<input type="button"  onclick="checkComandaJS();" value="<s:text name='txt.infocomanda.paga' />" />
 	</div>
+	
+	
 <div id="chargeBar"></div>
 <div id="check"></div>
 <s:hidden  key="comanda.hora" id="targetaContrarembols" ></s:hidden>					

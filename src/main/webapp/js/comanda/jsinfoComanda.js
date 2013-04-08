@@ -36,6 +36,8 @@ function InitParams(txtBegudaNoPromocio,txtNoMoreDrinksToAddinPromo,txtAddDrinks
 $("#chargeBar").hide();
 $("#arecollir_div").hide();
 $("#adomicili_div").hide();
+$("#pagarDom").hide();
+$("#pagarRec").hide();
 
 function initNumPlats(){
 }
@@ -348,6 +350,10 @@ function addDomicili(){
 		 $("#labelpreutotalPromo").text(parseFloat(parseFloat(preuT)+parseFloat(transportPreu)).toFixed(2));
 		 initPromoDescompteFromStorage();
 		 $("#adomicili_div").show('slow');
+		 $("#pagarDom").show('slow');
+		 $("#pagarRec").hide('slow');
+		 
+		 
 	}else{
 		 $("#adomicili_div").hide('slow');
 		 $("#transport_lb").text("0");
@@ -393,6 +399,8 @@ function addRecollir(){
 	       			 if($("#adomicili").is(':checked')){	
 		       			 $("#adomicili").attr('checked',false);
 		       			 $("#adomicili_div").hide('slow');	
+		       			 $("#pagarDom").hide('slow');
+		       		     $("#pagarRec").show('slow');
 		       			 var preu = $("#preu").text();
 		       			 var preuT = $("#labelpreutotalPromo").text();
 		       			 $("#transport_lb").text("0");

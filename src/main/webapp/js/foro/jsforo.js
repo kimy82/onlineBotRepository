@@ -102,7 +102,9 @@ function votaPlatDialog(){
 						errorOnline.suberror(json.error);
 					} else {							
 						//alertOnline.subalertes(initParams.txtvotguardat);		
-						$("#saveVotButton").attr("disabled","disabled");						
+						$("#saveVotButton").attr("disabled","disabled");
+						$("#saveVotButton").addClass("votat_close");
+						
 					}
 				},
 				error : function(e) {						
