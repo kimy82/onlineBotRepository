@@ -18,7 +18,7 @@ $("#dialog_alert").dialog( { autoOpen: false,
 	  modal: true,
 	  position: 'center',
 	  draggable: true,
-	  height: 200,
+	  height: 250,
 	  width: 400,		
 	  open: function(event, ui) { 		
 		$('#dialog_alert').css('overflow', 'hidden');		
