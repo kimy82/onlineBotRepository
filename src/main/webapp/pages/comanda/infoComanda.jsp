@@ -288,38 +288,11 @@
 		<h1><s:text name="txt.promo.escull.promo.busca" /><input id="codePromo" type="text" value="" onblur="checkPromoVibility(this.value)" /><a href="#">CERCAR</a></h1>
 				<ul id="visp" ></ul>		
 </div>  
-	<script src="<c:url value='/js/jquery/jquery.js' />" type="text/javascript"></script>
-	<script src="<c:url value='/js/jquery/jquery.ui.core.js' />" type="text/javascript"></script>
-	<script src="<c:url value='/js/jquery/jquery.ui.widget.js'/>" type="text/javascript"></script>
-	<script src="<c:url value='/js/jquery/jquery.ui.mouse.js'/>" type="text/javascript"></script>
-	<script src="<c:url value='/js/jquery/jquery.ui.dialog.js' />" type="text/javascript"></script>
-	<script src="<c:url value='/js/jquery/jquery.ui.position.js'/>" type="text/javascript"></script>
-	<script src="<c:url value='/js/jquery/jquery.ui.draggable.js'/>" type="text/javascript"></script>
-	<script src="<c:url value='/js/jquery/jquery.ui.droppable.js'/>" type="text/javascript"></script>
-	<script src="<c:url value='/js/jquery/jquery.ui.resizable.js'/>" type="text/javascript"></script>
-	<script src="<c:url value='/js/jquery/jquery.effects.core.js'/>" type="text/javascript"></script>
-	<script src="<c:url value='/js/jquery/jquery.bgiframe-2.1.1.js'/>" type="text/javascript"></script>
-	<script src="<c:url value='/js/jquery/jquery-ui.js' />" type="text/javascript"></script>
-	
-	<script type="text/javascript" src="<c:url value='/js/calendari/calendar.js'/>"></script>
-	<script type="text/javascript" src="<c:url value='/js/calendari/calendar-cat.js'/>"></script>
-	<script type="text/javascript" src="<c:url value='/js/calendari/calendar-es.js'/>"></script>
-	<script type="text/javascript" src="<c:url value='/js/calendari/calendar-idioma.js'/>"></script>		
-	<script type="text/javascript" src="<c:url value='/js/calendari/calendar-setup.js'/>"></script>
-
-	<script src="<c:url value='/js/address/autocompleteStreet.js'/>" type="text/javascript"></script>
-	<script src="<c:url value='/js/address/autocompleteCodi.js'/>" type="text/javascript"></script>
 	<script src="http://maps.google.com/maps/api/js?sensor=false" type="text/javascript"></script>
-	<script src="<c:url value='/js/address/addressValidationForm.js'/>" type="text/javascript"></script>
-	
-	<script src="<c:url value='/js/sudoSlider/jquery.sudoSlider.js'/>" type="text/javascript"></script>
-	<script type="text/javascript" src="<c:url value='/js/progressbar/progress.js'/>"></script>
-	<script type="text/javascript" src="<c:url value='/pages/comanda/jsinfoComanda.js'/>"></script>
-	
-	<script src="http://maps.google.com/maps/api/js?sensor=false" type="text/javascript"></script>
-	<!--script type="text/javascript" src="<c:url value='/pages/comanda/jsinfoComanda.min.js'/>"></script-->		
-<script type="text/javascript" >
-			  
+	<script type="text/javascript" src="<c:url value='/js/jsinfoComanda.primer.min.js'/>"></script>		
+	<script type="text/javascript" src="<c:url value='/js/sudoSlider/jquery.sudoSlider.min.js'/>"></script>	
+	<script type="text/javascript" src="<c:url value='/js/jsinfoComanda.segon.min.js'/>"></script>		
+<script type="text/javascript" >		  
 var initParams = new InitParams("<s:text name='txt.beguda.no.tipus.promo' />","<s:text name='txt.beguda.no.more.promo' />","<s:text name='txt.add.beguda.to.box' />", 
 								"<s:text name='txt.promo.descompte.aplicat' />","<s:text name='txt.promo.deleted' />","<s:text name='comanda.falta.hora' />",
 								"<s:text name='comanda.check.address' />","<s:text name='comanda.user.check.ok' />","<s:text name='comanda.user.check.ko' />",
