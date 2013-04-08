@@ -66,7 +66,7 @@ function submitBeguda(){
 		$('#descripcioBegudaES').css('border', 'solid 1px red');
 		return;
 	}
-	//changePreu('importBeguda');
+	changePreu('importBeguda');
 	document.getElementById("form_saveBeguda").submit();
 }
 

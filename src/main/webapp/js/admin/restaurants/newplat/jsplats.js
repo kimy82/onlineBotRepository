@@ -118,7 +118,7 @@ function submitPlat(){
 		$('#preuplat').css('border', 'solid 1px red');
 		return;
 	}
-	//changePreu('preuplat');
+	changePreu('preuplat');
 	document.getElementById("form_saveNewPlat").submit();
 }
 
