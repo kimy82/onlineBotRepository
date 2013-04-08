@@ -246,6 +246,10 @@
 						<phase>process-sources</phase>
 						<configuration>
 							<linebreak>4000</linebreak>
+							<nomunge>true</nomunge>
+         					<verbose>true</verbose>
+          					<preserveAllSemiColons>true</preserveAllSemiColons>
+							<disableOptimizations>true</disableOptimizations>
 							<cssSourceDir>css</cssSourceDir>
 							<cssSourceFiles>
 								<cssSourceFile>admin.css</cssSourceFile>
@@ -276,6 +280,10 @@
 						<phase>process-sources</phase>
 						<configuration>
 							<linebreak>4000</linebreak>
+							<nomunge>true</nomunge>
+         					<verbose>true</verbose>
+          					<preserveAllSemiColons>true</preserveAllSemiColons>
+							<disableOptimizations>true</disableOptimizations>
 							<cssSourceDir>css</cssSourceDir>
 							<cssSourceFiles>
 								<cssSourceFile>admin.css</cssSourceFile>
@@ -306,6 +314,10 @@
 						<phase>process-sources</phase>
 						<configuration>
 							<linebreak>4000</linebreak>
+							<nomunge>true</nomunge>
+         					<verbose>true</verbose>
+          					<preserveAllSemiColons>true</preserveAllSemiColons>
+							<disableOptimizations>true</disableOptimizations>
 							<cssSourceDir>css</cssSourceDir>
 							<cssSourceFiles>
 								<cssSourceFile>demo_table.css</cssSourceFile>
@@ -329,6 +341,11 @@
 						<phase>process-sources</phase>
 						<configuration>
 							<linebreak>4000</linebreak>
+							<linebreak>4000</linebreak>
+							<nomunge>true</nomunge>
+         					<verbose>true</verbose>
+          					<preserveAllSemiColons>true</preserveAllSemiColons>
+							<disableOptimizations>true</disableOptimizations>
 							<cssSourceDir>css</cssSourceDir>
 							<cssSourceFiles>
 								<cssSourceFile>admin.css</cssSourceFile>
@@ -356,6 +373,10 @@
 						<phase>process-sources</phase>
 						<configuration>
 							<linebreak>4000</linebreak>
+							<nomunge>true</nomunge>
+         					<verbose>true</verbose>
+          					<preserveAllSemiColons>true</preserveAllSemiColons>
+							<disableOptimizations>true</disableOptimizations>
 							<cssSourceDir>css</cssSourceDir>
 							<cssSourceFiles>
 								<cssSourceFile>admin.css</cssSourceFile>
@@ -389,6 +410,10 @@
 						<phase>process-sources</phase>
 						<configuration>
 							<linebreak>4000</linebreak>
+							<nomunge>true</nomunge>
+         					<verbose>true</verbose>
+          					<preserveAllSemiColons>true</preserveAllSemiColons>
+							<disableOptimizations>true</disableOptimizations>
 							<cssSourceDir>css</cssSourceDir>
 							<cssSourceFiles>
 								<cssSourceFile>admin.css</cssSourceFile>
@@ -421,6 +446,10 @@
 						<phase>process-sources</phase>
 						<configuration>
 							<linebreak>4000</linebreak>
+							<nomunge>true</nomunge>
+         					<verbose>true</verbose>
+          					<preserveAllSemiColons>true</preserveAllSemiColons>
+							<disableOptimizations>true</disableOptimizations>
 							<cssSourceDir>css</cssSourceDir>
 							<cssSourceFiles>
 								<cssSourceFile>admin.css</cssSourceFile>
@@ -452,6 +481,10 @@
 						<phase>process-sources</phase>
 						<configuration>
 							<linebreak>4000</linebreak>
+							<nomunge>true</nomunge>
+         					<verbose>true</verbose>
+          					<preserveAllSemiColons>true</preserveAllSemiColons>
+							<disableOptimizations>true</disableOptimizations>
 							<cssSourceDir>css</cssSourceDir>
 							<cssSourceFiles>
 								<cssSourceFile>admin.css</cssSourceFile>
@@ -478,6 +511,10 @@
 						<phase>process-sources</phase>
 						<configuration>
 							<linebreak>4000</linebreak>
+							<nomunge>true</nomunge>
+         					<verbose>true</verbose>
+          					<preserveAllSemiColons>true</preserveAllSemiColons>
+							<disableOptimizations>true</disableOptimizations>
 							<cssSourceDir>css</cssSourceDir>
 							<cssSourceFiles>
 								<cssSourceFile>admin.css</cssSourceFile>
@@ -505,6 +542,10 @@
 						<phase>process-sources</phase>
 						<configuration>
 							<linebreak>4000</linebreak>
+							<nomunge>true</nomunge>
+         					<verbose>true</verbose>
+          					<preserveAllSemiColons>true</preserveAllSemiColons>
+							<disableOptimizations>true</disableOptimizations>
 							<cssSourceDir>css</cssSourceDir>
 							<cssSourceFiles>
 								<cssSourceFile>admin.css</cssSourceFile>
@@ -532,6 +573,10 @@
 						<phase>process-sources</phase>
 						<configuration>
 							<linebreak>4000</linebreak>
+							<nomunge>true</nomunge>
+         					<verbose>true</verbose>
+          					<preserveAllSemiColons>true</preserveAllSemiColons>
+							<disableOptimizations>true</disableOptimizations>
 							<cssSourceDir>css</cssSourceDir>
 							<cssSourceFiles>
 								<cssSourceFile>admin.css</cssSourceFile>
@@ -561,6 +606,10 @@
 						<phase>process-sources</phase>
 						<configuration>
 							<linebreak>4000</linebreak>
+							<nomunge>true</nomunge>
+         					<verbose>true</verbose>
+          					<preserveAllSemiColons>true</preserveAllSemiColons>
+							<disableOptimizations>true</disableOptimizations>
 							<cssSourceDir>css</cssSourceDir>
 							<cssSourceFiles>
 								<cssSourceFile>admin.css</cssSourceFile>
@@ -588,6 +637,10 @@
 						<phase>process-sources</phase>
 						<configuration>
 							<linebreak>4000</linebreak>
+							<nomunge>true</nomunge>
+         					<verbose>true</verbose>
+          					<preserveAllSemiColons>true</preserveAllSemiColons>
+							<disableOptimizations>true</disableOptimizations>
 							<cssSourceDir>css</cssSourceDir>
 							<cssSourceFiles>
 								<cssSourceFile>admin.css</cssSourceFile>
@@ -617,6 +670,10 @@
 						<phase>process-sources</phase>
 						<configuration>
 							<linebreak>4000</linebreak>
+							<nomunge>true</nomunge>
+         					<verbose>true</verbose>
+          					<preserveAllSemiColons>true</preserveAllSemiColons>
+							<disableOptimizations>true</disableOptimizations>
 							<cssSourceDir>css</cssSourceDir>
 							<cssSourceFiles>
 								<cssSourceFile>admin.css</cssSourceFile>
@@ -650,6 +707,10 @@
 						<phase>process-sources</phase>
 						<configuration>
 							<linebreak>4000</linebreak>
+							<nomunge>true</nomunge>
+         					<verbose>true</verbose>
+          					<preserveAllSemiColons>true</preserveAllSemiColons>
+							<disableOptimizations>true</disableOptimizations>
 							<cssSourceDir>css</cssSourceDir>
 							<cssSourceFiles>
 								<cssSourceFile>admin.css</cssSourceFile>
@@ -679,6 +740,10 @@
 						<phase>process-sources</phase>
 						<configuration>
 							<linebreak>4000</linebreak>
+							<nomunge>true</nomunge>
+         					<verbose>true</verbose>
+          					<preserveAllSemiColons>true</preserveAllSemiColons>
+							<disableOptimizations>true</disableOptimizations>
 							<cssSourceDir>css</cssSourceDir>
 							<cssSourceFiles>
 								<cssSourceFile>admin.css</cssSourceFile>
@@ -706,6 +771,10 @@
 						<phase>process-sources</phase>
 						<configuration>
 							<linebreak>4000</linebreak>
+							<nomunge>true</nomunge>
+         					<verbose>true</verbose>
+          					<preserveAllSemiColons>true</preserveAllSemiColons>
+							<disableOptimizations>true</disableOptimizations>
 							<cssSourceDir>css</cssSourceDir>
 							<cssSourceFiles>
 								<cssSourceFile>admin.css</cssSourceFile>
@@ -744,6 +813,10 @@
 						<phase>process-sources</phase>
 						<configuration>
 							<linebreak>4000</linebreak>
+							<nomunge>true</nomunge>
+         					<verbose>true</verbose>
+          					<preserveAllSemiColons>true</preserveAllSemiColons>
+							<disableOptimizations>true</disableOptimizations>
 							<cssSourceDir>css</cssSourceDir>
 							<cssSourceFiles>
 								<cssSourceFile>admin.css</cssSourceFile>
@@ -760,6 +833,10 @@
 						<phase>process-sources</phase>
 						<configuration>
 							<linebreak>4000</linebreak>
+							<nomunge>true</nomunge>
+         					<verbose>true</verbose>
+          					<preserveAllSemiColons>true</preserveAllSemiColons>
+							<disableOptimizations>true</disableOptimizations>
 							<cssSourceDir>css</cssSourceDir>
 							<cssSourceFiles>
 								<cssSourceFile>portamu/global.css</cssSourceFile>
@@ -794,6 +871,10 @@
 						<phase>process-sources</phase>
 						<configuration>
 							<linebreak>4000</linebreak>
+							<nomunge>true</nomunge>
+         					<verbose>true</verbose>
+          					<preserveAllSemiColons>true</preserveAllSemiColons>
+							<disableOptimizations>true</disableOptimizations>
 							<cssSourceDir>css</cssSourceDir>
 							<cssSourceFiles>
 								<cssSourceFile>portamu/global.css</cssSourceFile>
@@ -828,8 +909,8 @@
 						<phase>process-sources</phase>
 						<configuration>
 							<linebreak>4000</linebreak>
-							 <nomunge>true</nomunge>
-         					 <verbose>true</verbose>
+							<nomunge>true</nomunge>
+         					<verbose>true</verbose>
           					<preserveAllSemiColons>true</preserveAllSemiColons>
 							<disableOptimizations>true</disableOptimizations>
 							<cssSourceDir>css</cssSourceDir>
@@ -897,6 +978,10 @@
 						<phase>process-sources</phase>
 						<configuration>
 							<linebreak>4000</linebreak>
+							<nomunge>true</nomunge>
+         					<verbose>true</verbose>
+          					<preserveAllSemiColons>true</preserveAllSemiColons>
+							<disableOptimizations>true</disableOptimizations>
 							<cssSourceDir>css</cssSourceDir>
 							<cssSourceFiles>
 								<cssSourceFile>portamu/global.css</cssSourceFile>
@@ -930,6 +1015,10 @@
 						<phase>process-sources</phase>
 						<configuration>
 							<linebreak>4000</linebreak>
+							<nomunge>true</nomunge>
+         					<verbose>true</verbose>
+          					<preserveAllSemiColons>true</preserveAllSemiColons>
+							<disableOptimizations>true</disableOptimizations>
 							<cssSourceDir>css</cssSourceDir>							
 							<cssSourceFiles>
 								<cssSourceFile>portamu/global.css</cssSourceFile>
@@ -971,6 +1060,10 @@
 						<phase>process-sources</phase>
 						<configuration>
 							<linebreak>4000</linebreak>
+							<nomunge>true</nomunge>
+         					<verbose>true</verbose>
+          					<preserveAllSemiColons>true</preserveAllSemiColons>
+							<disableOptimizations>true</disableOptimizations>
 							<cssSourceDir>css</cssSourceDir>
 							<cssSourceFiles>
 								<cssSourceFile>portamu/foro.css</cssSourceFile>
@@ -1009,6 +1102,10 @@
 						<phase>process-sources</phase>
 						<configuration>
 							<linebreak>4000</linebreak>
+							<nomunge>true</nomunge>
+         					<verbose>true</verbose>
+          					<preserveAllSemiColons>true</preserveAllSemiColons>
+							<disableOptimizations>true</disableOptimizations>
 							<cssSourceDir>css</cssSourceDir>
 							<cssSourceFiles>
 								<cssSourceFile>portamu/registre.css</cssSourceFile>
@@ -1033,6 +1130,10 @@
 						<phase>process-sources</phase>
 						<configuration>
 							<linebreak>4000</linebreak>
+							<nomunge>true</nomunge>
+         					<verbose>true</verbose>
+          					<preserveAllSemiColons>true</preserveAllSemiColons>
+							<disableOptimizations>true</disableOptimizations>
 							<cssSourceDir>css</cssSourceDir>
 							<cssSourceFiles>
 								<cssSourceFile>portamu/loguin.css</cssSourceFile>
@@ -1049,6 +1150,10 @@
 						<phase>process-sources</phase>
 						<configuration>
 							<linebreak>4000</linebreak>
+							<nomunge>true</nomunge>
+         					<verbose>true</verbose>
+          					<preserveAllSemiColons>true</preserveAllSemiColons>
+							<disableOptimizations>true</disableOptimizations>
 							<cssSourceDir>css</cssSourceDir>
 							<cssSourceFiles>
 								<cssSourceFile>demo_table.css</cssSourceFile>
@@ -1082,6 +1187,10 @@
 						<phase>process-sources</phase>
 						<configuration>
 							<linebreak>4000</linebreak>
+							<nomunge>true</nomunge>
+         					<verbose>true</verbose>
+          					<preserveAllSemiColons>true</preserveAllSemiColons>
+							<disableOptimizations>true</disableOptimizations>
 							<cssSourceDir>css</cssSourceDir>
 							<cssSourceFiles>
 								<cssSourceFile>portamu/tables.css</cssSourceFile>

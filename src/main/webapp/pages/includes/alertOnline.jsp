@@ -47,6 +47,9 @@ $(":ui-dialog").dialog('option', 'position', 'center');
 								 $("#alertOn").text(txt);
 								 $("#dialog_alert").dialog("open");		
 							 };
+	alertOnline.close = function(txt){								
+								 $("#dialog_alert").dialog("close");		
+							 };
 
 
 </script>
