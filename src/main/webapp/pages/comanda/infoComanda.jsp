@@ -12,41 +12,16 @@
 	<meta name="viewport" content="width=device-width,initial-scale=0.99,maximum-scale=0.99" />
 	<link rel="shortcut icon" href="<c:url value='/img/elements/logo_portamu16.jpg' />"> 
 	<link href='http://fonts.googleapis.com/css?family=Raleway:800,400' rel='stylesheet' type='text/css'>
-	<link rel="stylesheet" type="text/css" href="<c:url value='/css/infocomanda.min.css' />" />
-	<!--  link rel="stylesheet" type="text/css" href="<c:url value='/css/portamu/global.css' />" />
-	<link rel="stylesheet" type="text/css" href="<c:url value='/css/portamu/reset.css' />" />
-	<link href='http://fonts.googleapis.com/css?family=Raleway:800,400' rel='stylesheet' type='text/css'>
-	<style>
-		.notcheck{
-			background-color: grey;
-		}
-		.check{
-			background-color: yellow;
-		}
-		
-		.checked{
-			background-color: green;
-		}
-	</style>	
-	<link rel="stylesheet" type="text/css" media="all" href="<c:url value='/css/calendar-blau.css' />" title="win2k-cold-1" />
-	<link rel="stylesheet" type="text/css" media="all" href="<c:url value='/css/sudoSlider.css' />"  />	
-	<link type="text/css" rel="stylesheet" href="<c:url value='/css/progress.css' />" />
-	<link type="text/css" rel="stylesheet" href="<c:url value='/css/online.css' />" />
-	<link type="text/css" rel="stylesheet" href="<c:url value='/css/portamu/prova.css' />" /-->
+	<link rel="stylesheet" type="text/css" href="<c:url value='/css/infocomanda.min.css' />" />	
 	<title><s:text name="txt.welcome.principal" /></title>	
 </head>
 <body id="carrito">
 <c:import url="/pages/includes/headerContext.jsp" />
 <c:import url="/pages/includes/divLogin.jsp" />
 <div id="container">
-
 	<div id="content">
-			<!-- menu -->
 				<c:import url="/pages/includes/menuHeaderNoConfirm.jsp" />
-			<!-- END menu -->
-			<!-- Language -->
 				<c:import url="/pages/includes/divLanguage.jsp" />
-			<!-- END language -->
 			<div class="titols_comanda"> <s:text name="txt.add.some.drink" /></div>
 			<div id="recordatori">
 				<div id="slider" style=" height:262px; width:1000px; top:140px;"  >
@@ -57,8 +32,7 @@
 					    				<div id="img_Rest" >
 					    					<img id="imageRefresc_${refresc.id}" width="220px"  src="/${initParam.app}/comanda/ImageAction.action?imageId=${refresc.id}" title="" />
 					    				</div>
-					    				<div class="titol_Rest">
-					    					
+					    				<div class="titol_Rest">					    					
 											<h1><c:if test="${sessionScope.WW_TRANS_I18N_LOCALE=='ca'}">
 		  											${refresc.descripcio}
 		  										</c:if>
@@ -71,8 +45,7 @@
 											<a class="entrar draggable" id="${refresc.idSub}" title="${refresc.tipus}" href="#"><s:text name="txt.plat.afegir" /></a>
 										</div>
 										<div class="right_price">
-											<span class="price">${refresc.preu} &euro; </span>
-										
+											<span class="price">${refresc.preu} &euro; </span>										
 										</div>									
 					    			</div>					    			
 					    	</li>				    		
@@ -115,8 +88,7 @@
 		  									</c:if>
 		  									<c:if test="${sessionScope.WW_TRANS_I18N_LOCALE=='es'}">
 		  											${platComanda.plat.descripcioES}
-		  									</c:if>	
-										
+		  									</c:if>											
 									</td>
 									<td class="preusun"><label id="platpreu_${platComanda.plat.id}" >${platComanda.plat.preu}</label>&euro; </td>
 									<td class="canti">										
@@ -135,8 +107,7 @@
 									<tr class="selector_bg" id="beguda_${begudaComanda.beguda.id}" >
 									<td class="img_order">
 										<img width="103px" src="/${initParam.app}/comanda/ImageAction.action?imageId=${begudaComanda.beguda.foto.id}">
-									</td>
-									
+									</td>									
 									<td class="descri">
 										<span class="tit">
 											<c:if test="${sessionScope.WW_TRANS_I18N_LOCALE=='ca'}">
@@ -152,8 +123,7 @@
 		  								</c:if>
 		  								<c:if test="${sessionScope.WW_TRANS_I18N_LOCALE=='es'}">
 		  											${begudaComanda.beguda.descripcioES}
-		  								</c:if>	
-										
+		  								</c:if>										
 									</td>
 									<td class="preusun"><label id="begudapreu_${begudaComanda.beguda.id}" >${begudaComanda.beguda.preu}</label>&euro; </td>
 									<td class="canti">										
@@ -223,12 +193,10 @@
 						</tbody>
 					</table>
 			</div>
-	<!-- LOGIN -->
 	<hr class="sep11"></hr>
 	<c:if test="${nameAuth eq 'anonymousUser' }">
 	<div id="logitop" class="titols_comanda2"><s:text name="txt.logate" /></div>
-		<div id="login" >
-		
+		<div id="login" >		
 			<form name='f' id="f" action="/${initParam.app}/j_spring_security_check" method="post">
 				<table id="formlo">
 					<tr>
@@ -279,11 +247,9 @@
 				<td><s:textfield key="comanda.dia" id="dia" maxlength="10" size="12" onfocus="blur()" theme="simple" onchange="reloadHores()" ></s:textfield>
 				<img  src="<c:url value='/images/calendar/calendar_full.png'/>"  id="llencadorData1" ></td>
 			</tr>
-		</table>
-		
+		</table>		
 	<hr class="sep13"></hr>			
-		<c:import url="/pages/includes/horesInfoComanda.jsp" />
-		
+		<c:import url="/pages/includes/horesInfoComanda.jsp" />		
 		</div>
 		<div id="rightcom">
 		<div id="adomicili_div" >
@@ -294,8 +260,7 @@
 		<h1 id="address_restaurant" ></h1>
 	</div>
 	</div>
-	<div id="rightright">
-	
+	<div id="rightright">	
 	<div id="map_canvas" style="float: left; height: 250px; width: 222px;"><img  src="<c:url value='/images/elements/maps.png'/>"  ></div>
 	</div>
 	</div>
@@ -306,37 +271,22 @@
 	<s:checkbox key="comanda.contrarembols" id="contrarembols" onclick="contrarembols()"></s:checkbox>
 	<input type="button"  onclick="checkComandaJS();" value="<s:text name='txt.infocomanda.paga' />" />
 	</div>
-		
 <div id="chargeBar"></div>
-			
 <div id="check"></div>
-				
-
 <s:hidden  key="comanda.hora" id="targetaContrarembols" ></s:hidden>					
 <s:hidden  key="comanda.hora" id="comandahora" ></s:hidden>					
 <s:hidden key="comanda.id" id="idcomanda" ></s:hidden>	                   
 <s:hidden key="comanda.address" id="comandaddress"></s:hidden>																				
-
-	
-
 </div>
-<!-- END container -->
 <c:import url="/pages/includes/endPage.jsp" />
-
-<!-- div per al llistat de promocions -->
 <div id="dialog_promo" class="filtres filtres-oberts" title="Promo">
 	 
 		 <h1><s:text name="txt.promo.escull" /></h1>
-				<ul id="prm" >
-				
-					
-				</ul>
-		<h1><s:text name="txt.promo.escull.promo.especial" /><input id="codePromo" type="text" value="" onblur="checkPromoEspecial()" /></h1>
-				<ul id="esp" >
-				
-					
-				</ul>
-		
+				<ul id="prm" ></ul>
+		<h1><s:text name="txt.promo.escull.promo.especial" /></h1>
+				<ul id="esp" ></ul>				
+		<h1><s:text name="txt.promo.escull.promo.busca" /><input id="codePromo" type="text" value="" onblur="checkPromoVibility(this.value)" /><a href="#">CERCAR</a></h1>
+				<ul id="visp" ></ul>		
 </div>  
 	<script src="<c:url value='/js/jquery/jquery.js' />" type="text/javascript"></script>
 	<script src="<c:url value='/js/jquery/jquery.ui.core.js' />" type="text/javascript"></script>
@@ -367,29 +317,21 @@
 	<script type="text/javascript" src="<c:url value='/pages/comanda/jsinfoComanda.js'/>"></script>
 	
 	<script src="http://maps.google.com/maps/api/js?sensor=false" type="text/javascript"></script>
-	<!--script type="text/javascript" src="<c:url value='/pages/comanda/jsinfoComanda.min.js'/>"></script-->
-	
-	
-		
+	<!--script type="text/javascript" src="<c:url value='/pages/comanda/jsinfoComanda.min.js'/>"></script-->		
 <script type="text/javascript" >
 			  
 var initParams = new InitParams("<s:text name='txt.beguda.no.tipus.promo' />","<s:text name='txt.beguda.no.more.promo' />","<s:text name='txt.add.beguda.to.box' />", 
 								"<s:text name='txt.promo.descompte.aplicat' />","<s:text name='txt.promo.deleted' />","<s:text name='comanda.falta.hora' />",
 								"<s:text name='comanda.check.address' />","<s:text name='comanda.user.check.ok' />","<s:text name='comanda.user.check.ko' />",
 								"<s:text name='txt.welcome.confirmar' />","<s:text name='txt.welcome.productes' />","<s:text name='txt.welcome.producte' />",
-								"<s:text name='txt.infocomanda.arecollir.more.than.one' />","<s:text name='txt.infocomanda.boto.treure.promo' />");
-								
-
+								"<s:text name='txt.infocomanda.arecollir.more.than.one' />","<s:text name='txt.infocomanda.boto.treure.promo' />");								
 $("#idcomanda").val('${requestScope.idComanda}');
 $("#numComanda").text('${requestScope.idComanda}');
 $("#dia").val('${requestScope.horesDTO.data}');
 $("#promstop").hide();
-
 initNumPlats();
 initNumBegudes();
-
 function submitLog(){
-	
 	$.ajax({
 	    url: "<c:url value='/onlineBot/j_spring_security_check' />",
 	    type: "POST",
@@ -410,7 +352,6 @@ function submitLog(){
 	        		$("#deletePromoApplied").show();
 	        		$("#loguin").hide();     		
 	        	}else{
-
 	        		$("#checkPromocionsDisponibles").show();
 	        		$("#deletePromoApplied").hide();
 	        	}	        	
@@ -420,14 +361,11 @@ function submitLog(){
 	    }
 	});	
 }
-
 var addressToLoad ='${requestScope.comanda.address}';
 if(addressToLoad==''){
 	addressToLoad =  '${requestScope.user.address}';	
 }
-
 initAddress();
-
 </script>
 <c:if test="${nameAuth ne 'anonymousUser' }">
 	<script type="text/javascript" >
@@ -445,7 +383,6 @@ initAddress();
 window.localStorage.clear();
 window.localStorage.setItem("comanda.data","${requestScope.horesDTO.data}");
 window.localStorage.setItem("comanda","${requestScope.idComanda}");
-
 window.localStorage.setItem("comanda.preu","${requestScope.comanda.preu}");
 window.localStorage.setItem("comanda.numplats","${requestScope.numPlats}");
 $("#numplats").text('${requestScope.numPlats}');
