@@ -1626,3 +1626,8 @@ vertical-align:middle;
 .dele{
 	float:right;
 }
+
+.big_img{
+	position: relative;
+	top:-20px;
+}
