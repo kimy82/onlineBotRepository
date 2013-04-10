@@ -574,3 +574,8 @@ function closeImage(){
 	$("#imageBig").dialog("close");
 }
 
+$("#imageBig").dialog({ 
+	   autoOpen: false,
+	   height: 500,
+	   width: 650,
+	   modal: true});
