@@ -198,7 +198,7 @@ public class MantenimentConfigMotersAction extends ActionSuportOnline{
 			if (moter == null) {
 				this.motersBo.save(moterTosave);
 			} else {
-				moter.setNumeroMoters(numMoters);
+				moter.setNumeroMoters(this.motersRang.getNumMoters());
 				this.motersBo.update(moter);
 			}
 
