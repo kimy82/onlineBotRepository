@@ -4,7 +4,6 @@ import java.awt.image.BufferedImage;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
-import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 
@@ -52,15 +51,12 @@ public class ImageAction extends ActionSupport implements ServletRequestAware {
 		BufferedImage originalImage;
 		try {
 			Image image = this.imageBo.load(Integer.parseInt(imageId));
-			
-		
+						
 			
 			InputStream in = new ByteArrayInputStream(image.getImage());
-		//	ImageInputStream iis = ImageIO.createImageInputStream(in);
-			originalImage = ImageIO.read(in);
-		//	originalImage = ImageIO.read(new File("C:\\Chrysanthemum.jpg"));
-			// convert BufferedImage to byte array
+			originalImage = ImageIO.read(in);	
 			ByteArrayOutputStream baos = new ByteArrayOutputStream();
+			
 			ImageIO.write(originalImage, "jpg", baos);
 			baos.flush();
 			imageInByte = baos.toByteArray();

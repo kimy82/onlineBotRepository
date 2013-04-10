@@ -39,6 +39,9 @@
 						<div class="iterate_Rest">
 						<div class="selector_jq ui-widget-content img_Rest" id="draggable_${plat.id}" >
 	  						<img height="152" width="230" src="/${initParam.app}/comanda/ImageAction.action?imageId=${plat.foto.id}">
+	  						<div class="big_img">
+	  							<a href="#" onclick="showImagePlat(${plat.foto.id})"><img height="10" src="<c:url value='/img/elements/logo_portamu16.jpg' />"></a>
+	  						</div>
 	  					</div>
 	  					<div class="format">
 			  				<div class="titol_Rest">
@@ -208,6 +211,10 @@
 <div id="infoPlat_dialog" class="filtres filtres-oberts" title="<s:text name='txt.info.title' />">	 		
 </div>  
 <div id="infoBeguda_dialog" class="filtres filtres-oberts">	 		
+</div>  
+<div id="imageBig" class="filtres filtres-oberts" style="background-color: black;">	 
+	<img id="imgBigId"  width="500" src="/${initParam.app}/comanda/ImageAction.action?imageId=${plat.foto.id}">		
+	<a href="#" onclick="closeImage()" >CLOSE</a>
 </div>  
 <c:import url="/pages/includes/endPage.jsp" />
 	<script src="<c:url value='/pages/comanda/jqueryWelcome.min.js'/>" type="text/javascript"></script>

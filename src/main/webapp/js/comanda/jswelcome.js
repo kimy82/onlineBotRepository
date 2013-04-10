@@ -440,6 +440,19 @@ function filterPlats(filter,id){
 	window.location.href = "/"+context+"/comanda/Welcome.action?restaurantId="+idRestaurant+"&data="+data+"&order="+filter;	
 }
 
+function showImagePlat(id){
+	$("#imgBigId").attr("src","/"+context+"/comanda/ImageAction.action?imageId="+id);
+	$("#imageBig").dialog({ 
+		   autoOpen: false,
+		   height: 500,
+		   width: 650,
+		   modal: true});
+ $("#imageBig").dialog("open");   
+ $("#imageBig").siblings('div.ui-dialog-titlebar').remove();  
+ $("#imageBig").removeClass("ui-dialog-content");
+ $("#imageBig").removeClass("ui-widget-content");
+ $("#imageBig").addClass("ui-helper-clearfix");
+}
 
 $(document).ready(function() {
 	
@@ -557,5 +570,7 @@ function closeInfoBeguda(){
 	$("#infoBeguda_dialog").dialog("close");
 }	
 
-
+function closeImage(){
+	$("#imageBig").dialog("close");
+}
 
