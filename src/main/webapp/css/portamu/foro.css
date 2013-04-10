@@ -34,6 +34,13 @@ a, .boton, .news, .tancarBot, #saveVotButton, .enviarcom{
     margin:0px auto;
     width: 806px;
 }
+#infoBeguda_dialog #foro{
+	background-color: #F2F2F2;
+    border: 1px solid #E2E2E2;
+    height: 629px;
+    margin:0px auto;
+    width: 806px;
+}
 #foro_int{
 	padding: 20px;
 	font-weight: 800;

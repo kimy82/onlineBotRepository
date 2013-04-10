@@ -18,7 +18,7 @@ a, .boton, .news{ /* Firefox */ -moz-transition-property: all; -moz-transition-d
 	background-color: #F2F2F2;
     border: 1px solid #111;
     height: 400px;
-    margin: -180px auto;
+    margin: -343px auto;
     width: 330px;
     position: fixed;
     -webkit-box-shadow: 0px 7px 26px 1px rgb(1, 17, 17);
@@ -93,20 +93,53 @@ float:left;
 position:absolute;
 }
 .forgot{
- background-color: #D3D3D3;
+    background-color: #D3D3D3;
     color: #999999 !important;
     float: left;
     font-family: arial;
-    font-weight: normal;
+	font-weight: normal;
     margin-top: 29px;
     padding: 6px;
+    font-size: 13px;
 }
-.forgot a:hover{
+.forgot:hover{
     background-color: #F7931E;
-    color: #999999 !important;
+    color: #333 !important;
     float: left;
     font-family: arial;
     font-weight: normal;
     margin-top: 29px;
     padding: 6px;
+    font-size: 13px;
+}
+#recover{
+	background-color: #F2F2F2;
+    border: 1px solid #c5c5c5;
+    height: 370px;
+    margin:80px auto;
+    width: 330px;
+}
+#recover_int{
+	padding: 20px;
+	font-weight: 800;
+}
+#recover_top{
+	color: #4D4D4D;
+	font-family: 'Raleway', sans-serif;
+	padding: 20px;
+	font-weight: 800;
+	font-size: 24px;
+}
+#recover_body{
+	padding: 20px;
+	margin-top: 20px;
+}
+
+.tdLabel {
+    color: #F7931E;
+    font-family: 'Raleway',sans-serif;
+    font-size: 12px;
+}
+#recovery{
+	background: url(../img/elements/bground.jpg) repeat;
 }

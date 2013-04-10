@@ -9,11 +9,9 @@
 	<META http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 	<META http-equiv="Content-Style-Type" content="text/css">
 		<link rel="stylesheet" type="text/css" href="<c:url value='/css/foro.min.css' />" />
-		<!--  link rel="stylesheet" type="text/css" href="<c:url value='/css/portamu/foro.css' />" />
-		<link rel="stylesheet" type="text/css" href="<c:url value='/css/portamu/reset.css' />" /-->
 	<title><s:text name="txt.welcome.comanda.principal" /></title>	
 </head>
-<body id="foro" >
+<body>
 <c:import url="/pages/includes/headerContext.jsp" />
 <div id="foro">
 	<div id="foro_int">
@@ -41,12 +39,12 @@
 							<td>${beguda.descripcio}</td>
 						</tr>
 					</table>
-				</div>
+				
 				<c:if test="${nameAuth ne 'anonymousUser' }">
 					<div id="star_punctuation" >
 						<table id="tbl_stars" >
 							<tr>
-								<td colspan="5" ><s:text name="txt.vota.la.beguda" />:</td>
+								<td class="votplat" colspan="5" ><s:text name="txt.vota.la.beguda" />:</td>
 							</tr>
 							<tr>
 								<td><a href="#" onclick="starManager(1)" ><img id="star1" width="20px"  src="<c:url value='/images/star0.jpg' />" /></a></td>
@@ -56,12 +54,14 @@
 								<td><a href="#" onclick="starManager(5)" ><img id="star5" width="20px"  src="<c:url value='/images/star0.jpg' />" /></a></td>
 							</tr>
 							<tr>
-								<td colspan="5" ><input type="button" id="saveVotButton"  onclick="votaBegudaDialog()" value="submit votacio"  /></td>
+								<td colspan="5" ><input class="votat" type="button" id="saveVotButton"  onclick="votaBegudaDialog()" value="submit votacio"  /></td>
 							</tr>
 						</table>
 					</div>
 				</c:if>
-				<input class="enviarcom" type="button" onclick="closeInfoBeguda()"  value="Close" />
+				</br>
+				<input class="tancarBot" type="button" onclick="closeInfoBeguda()"  value="Close" />
+				</div>
 			</div>
 			<div id="rightforo">
    				 <div class="comments_foro" id="beguda_${beguda.id}" >

@@ -2,7 +2,7 @@
      background-color: white;
      border: 1px solid #D3D3D3;
      margin-top: 30px;
-     width: 650px;
+     width: 955px;
 }
 
 .odd {
@@ -15,7 +15,7 @@
 }
 
 .dataTables_scrollHead {
-     background-color: #F7931E;
+     background-color: #e6e6e6;
      width: 650px;
 }
 
@@ -65,7 +65,7 @@ TABLE.dataTable TD {
      float: left;
      margin-top: 20px;
      text-align: center;
-     width: 650px;
+     width: 957px;
 }
 
 #tbl_comandes_user_paginate a {
@@ -124,8 +124,11 @@ TABLE.dataTable TD {
 }
 
 #taula {
-     float: left;
-     width: 650px;
+  
+    float: left;
+    margin-left: -20px;
+    margin-top: -20px;
+    width: 957px;
 }
 
 #canvia {
@@ -184,7 +187,7 @@ TABLE.dataTable TD {
 .tabs .opts {
 	position: absolute;
 	z-index: 1000;
-	width: 290px;
+	width: 200px;
 	height: 40px;
 	left: 0px;
 	top: 0px;
@@ -194,10 +197,10 @@ TABLE.dataTable TD {
 	cursor: pointer;
 }
 .tabs input#tab-2{
-	left: 301px;
+	left: 213px;
 }
 .tabs input#tab-3{
-	left: 602px;
+	left: 463px;
 }
 .tabs input#tab-4{
 	left: 360px;
@@ -212,8 +215,7 @@ TABLE.dataTable TD {
 	padding: 0 20px;
     float: left;
 	display: block;
-	width: 260px;
-	color: #385c5b;
+	color: #333;
 	letter-spacing: 1px;
 	text-transform: uppercase;
 	font-weight: bold;

@@ -15,6 +15,13 @@
 </head>
 <body>
 <c:import url="/pages/includes/headerContext.jsp" />
+<div class="content">
+	<div class="container">
+		<div class="topadmin">
+		<div id="int_left">
+			<img src="<c:url value='/img/elements/logo_portamu.png' />">
+		</div>
+		</div>
 <div align="center">
     <div id="div_pantalla" style="width:950px;" alig="">
       <c:import url="pestanas.jsp" />
@@ -25,7 +32,7 @@
 				(<s:text name="txt.mant.presentacio.fotos.only.jpg" />)
 			</h2>
 			<br>	
-	  		 <div  style="width:800px; height: 500px;" alig="center">
+	  		 <div  style="width:800px; height: 1353px;" alig="center">
 				<s:form action="newFotoPresentacio" method="POST" enctype="multipart/form-data" >										
 					<s:file name="fileUpload" label="Escull la 1ra foto en CATALÀ" size="40" />					
 					<s:submit name="foto" value="1_ca" ></s:submit>
@@ -87,6 +94,8 @@
 		</div>
 	</div>
 		
+</div>
+</div>
 </div>
 	<script src="<c:url value='/js/jspresentacio.min.js'/>" type="text/javascript"></script>
 </body>

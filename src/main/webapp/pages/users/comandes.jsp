@@ -27,11 +27,11 @@
 					<div class="container">
 			<section class="tabs">
 	            <input id="tab-1" type="radio" name="radio-set" class="tab-selector-1 opts" checked="checked" />
-		        <label for="tab-1" class="tab-label-1 labe">Dades personals</label>		
+		        <label for="tab-1" class="tab-label-1 labe"><s:text name="txt.comuser.dades" /></label>		
 	            <input id="tab-2" type="radio" name="radio-set" class="tab-selector-2 opts" />
-		        <label for="tab-2" class="tab-label-2 labe">Les meves promocions</label>		
+		        <label for="tab-2" class="tab-label-2 labe"><s:text name="txt.comuser.promos" /></label>		
 	            <input id="tab-3" type="radio" name="radio-set" class="tab-selector-3 opts" />
-		        <label for="tab-3" class="tab-label-3 labe">Historial de comandes</label>		
+		        <label for="tab-3" class="tab-label-3 labe"><s:text name="txt.comuser.user" /></label>		
 			    <div class="clear-shadow"></div>				
 		        <div class="contente">
 			        <div class="contente-1">
@@ -74,8 +74,8 @@
 					</div>                        
                         </div>
 			        <div class="contente-3">
-						 <div id="taula" width="650px" alig="center">
-						<table class="selecciom dataTable" id="tbl_comandes_user" width="650px">
+						 <div id="taula" width="957px" alig="center">
+						<table class="selecciom dataTable" id="tbl_comandes_user" width="955px">
 							<thead>
 								<tr>
 									<th><s:text name="user.comandes.table.dia" /></th>
