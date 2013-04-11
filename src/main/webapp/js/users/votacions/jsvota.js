@@ -1,13 +1,3 @@
-///////////////////////////////////
-//variables per textos en locale
-
-function InitParams(){		
-
-	
-}
-
-
-
 var actualVot=0;
 function starManager(num){
 	

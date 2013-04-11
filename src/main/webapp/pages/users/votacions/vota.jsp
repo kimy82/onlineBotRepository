@@ -34,9 +34,6 @@
 			<br></br>
 		</s:iterator>
 	<script type="text/javascript" src="<c:url value='/js/jsvota.min.js' />"></script>
-	<script language="javascript">	
-		var initParams = new  InitParams();				
-	</script>
 	<c:import url="/pages/includes/subAlertOnline.jsp" />
 </body>
 </html>

@@ -56,6 +56,9 @@
 		<action name="politicaCompra" >
 			<result>/pages/politica/politicaCompra.jsp</result>
 		</action>
+		<action name="comFerComanda" >
+			<result>/pages/general/comFerComanda.jsp</result>
+		</action>
 		<action name="recoverAccount" class="com.online.action.LoginAction" method="recoverAccount" >
 			<interceptor-ref name="defaultStack" />
 			<result name="success" type="redirectAction">/Welcome.action</result>
