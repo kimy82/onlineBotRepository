@@ -126,7 +126,7 @@ TABLE.dataTable TD {
 #taula {
   
     float: left;
-    margin-left: -20px;
+    margin-left: 20px;
     margin-top: -20px;
     width: 957px;
 }

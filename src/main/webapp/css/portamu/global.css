@@ -492,7 +492,7 @@ background: #F7931E;
 	background-color: #333333;
     border-top: 1px solid #000000;
     float: left;
-    height: 235px;
+    height: 350px;
     margin: auto;
     width: 100%;
 }
@@ -551,7 +551,7 @@ background: #F7931E;
 }
 #footer_rigth{
 	width: 300px;
-	height: 200px;
+	height: 300px;
 	float: right;
 }
 /* restaurants////////////////////////////////////////////////////////////////////////////////////////////////////////////////// */

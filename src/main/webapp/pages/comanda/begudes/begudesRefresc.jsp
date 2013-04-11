@@ -29,7 +29,7 @@
 				<s:iterator value="begudaList" var="beguda">
 					<div class="iterate_ref" >
 							<div class="img_Rest ui-widget-content selectorBeg" id="draggable_${beguda.id}" >
-	  							<img height="110" src="/${initParam.app}/comanda/ImageAction.action?imageId=${beguda.foto.id}">
+	  							<img height="115" src="/${initParam.app}/comanda/ImageAction.action?imageId=${beguda.foto.id}">
 	  						</div>
 							<div class="format">
 					  				<div class="titol_Rest">

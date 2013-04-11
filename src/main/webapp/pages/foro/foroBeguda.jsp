@@ -19,6 +19,7 @@
 			</div>
 			<div class="foro_top">
 				<s:text name="txt.login.title" />
+				<input class="tancarBot" type="button" onclick="closeInfoBeguda()"  value="X" />
 			</div>
 		<hr class="sep8" />
 		<div class="light_body">
@@ -60,7 +61,6 @@
 					</div>
 				</c:if>
 				</br>
-				<input class="tancarBot" type="button" onclick="closeInfoBeguda()"  value="Close" />
 				</div>
 			</div>
 			<div id="rightforo">
