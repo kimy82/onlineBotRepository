@@ -285,7 +285,7 @@ TABLE.dataTable TD {
     position: absolute;
 	top: 0;
 	left: 0;
-	padding: 10px 40px;
+	padding: 10px 0px;
 	z-index: 1;
     opacity: 0;
 
@@ -332,7 +332,7 @@ TABLE.dataTable TD {
 .contente .inputs_short{
 	height: 30px;
 	margin-top: 4px;
-	margin-bottom: 20px;
+	margin-bottom: 10px;
 	margin-left: 0px;
 	width: 30px;
 	font-family: arial;
@@ -354,10 +354,49 @@ TABLE.dataTable TD {
     width: 641px;
    
 }
-.useleft{
+
+.useleft {
+    border-right: 1px solid #E3E3E3;
+    color: #333333;
+    float: left;
+    font-family: raleway;
+    font-weight: bold;
+    margin-bottom: 20px;
+    margin-left: 20px;
+    margin-top: 10px;
+    width: 213px;
+}
+.useleft .inputs {
+    color: #888888;
+    font-family: arial;
+    height: 30px;
+    margin-bottom: 10px;
+    margin-left: 0;
+    margin-top: 4px;
+    width: 189px;
+}
+#changepass #username {
+    color: #888888;
+    font-family: arial;
+    height: 30px;
+    margin-bottom: 10px;
+    margin-left: 0;
+    margin-top: 4px;
+    width: 189px;
+}
+#changepass #telNumber{
+    color: #888888;
+    font-family: arial;
+    height: 30px;
+    margin-bottom: 10px;
+    margin-left: 0;
+    margin-top: 4px;
+    width: 189px;
+}
+#usemaps{
 	float:left;
-	width:300px;
 }
 
-
-
+#changepass{
+	float:right;
+}

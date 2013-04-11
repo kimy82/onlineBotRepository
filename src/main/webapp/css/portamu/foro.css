@@ -40,6 +40,7 @@ a, .boton, .news, .tancarBot, #saveVotButton, .enviarcom{
     height: 629px;
     margin:0px auto;
     width: 806px;
+    position:fixed;
 }
 #foro_int{
 	padding: 20px;

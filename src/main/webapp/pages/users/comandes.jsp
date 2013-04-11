@@ -38,6 +38,10 @@
 			        <div class="useleft">
                         <c:import url="/pages/includes/addrescomanda.jsp" />
                     </div>
+                    <div id="usemaps">
+                     	<img  src="<c:url value='/images/elements/maps.png'/>"  >
+                    </div>
+                     <div id="changepass">
                         <s:form  action="saveUserDetails" id="saveUserDetails" method="POST" enctype="multipart/form-data" >
 								<s:textfield key="user.username" id="username" disabled="true" ></s:textfield>
 								<s:textfield key="user.nom" id="nom" onkeyup="return ismaxlength(this,45)"  ></s:textfield>											                   
@@ -46,8 +50,9 @@
 								<s:text name="user.password" /><s:password key="user.password" id="password" onkeyup="return ismaxlength(this,45)" value="" theme="simple" ></s:password>
 								<s:text name="txt.password.retype" />:<input type="password" id="passwordRetyped" onblur="checkPassword()"/>					
 								<s:hidden key="user.address" id="comandaddress" ></s:hidden>
-								<input type="button"  onclick="fillAddress()" value="submit"/>	                    															
-						</s:form>	
+								<input class="boton" type="button"  onclick="fillAddress()" value="submit"/>	                    															
+						</s:form>
+						</div>	
 				    </div>
 			        <div class="contente-2">
 						<div id="promocionsdiv">					
