@@ -26,6 +26,7 @@ import com.online.model.HoresDTO;
 import com.online.model.Plat;
 import com.online.model.PlatComanda;
 import com.online.model.PromocioAPartirDe;
+import com.online.model.PromocioAssociada;
 import com.online.model.PromocioNumComandes;
 import com.online.model.Users;
 import com.online.model.VotacioTMP;
@@ -64,6 +65,7 @@ public class WelcomeUserAction extends ActionSuportOnline{
 	List<Comandes>				ComandaList			= new ArrayList<Comandes>();
 	List<PromocioAPartirDe>		promoListAPartirDe	= new ArrayList<PromocioAPartirDe>();
 	List<PromocioNumComandes>	promocioNumComandes	= new ArrayList<PromocioNumComandes>();
+	PromocioAssociada	    	promocioAssociada	= new PromocioAssociada();
 	private List<BasicSub>		refrescList			= new ArrayList<BasicSub>();
 	List<PlatComanda>			platComandaList		= new ArrayList<PlatComanda>();
 	List<Plat>					platListToVote		= new ArrayList<Plat>();
@@ -79,6 +81,14 @@ public class WelcomeUserAction extends ActionSuportOnline{
 		this.user = getUserFromContext();
 		this.promoListAPartirDe = this.promocionsBo.getAllAPartirDe();
 		this.promocioNumComandes = this.promocionsBo.getAllNumComandes();
+		
+		if(this.user.getCodePromo()!=null && !this.user.getCodePromo().equals("")){
+			try{
+				this.promocioAssociada = this.promocionsBo.loadAssociadaByCode(this.user.getCodePromo()).get(0);
+			}catch(Exception e){
+				this.promocioAssociada = null;
+			}
+		}
 		return SUCCESS;
 
 	}
@@ -86,10 +96,14 @@ public class WelcomeUserAction extends ActionSuportOnline{
 	public String saveUserDetails(){
 
 		try {
-
+			Users userFromDB = this.usersBo.load(this.user.getId());
 			if (this.user.getPassword() != null && !this.user.getPassword().equals(""))
-				this.user.setPassword(Utils.createSHA(this.user.getPassword()));
-			this.usersBo.update(this.user);
+				userFromDB.setPassword(Utils.createSHA(this.user.getPassword()));
+			userFromDB.setAddress(this.user.getAddress());
+			userFromDB.setNom(this.user.getNom());
+			userFromDB.setIndicacions(this.user.getIndicacions());
+			userFromDB.setTelNumber(this.user.getTelNumber());
+			this.usersBo.update(userFromDB);
 
 		} catch (BOException e) {
 			return ERROR;
@@ -481,4 +495,12 @@ public class WelcomeUserAction extends ActionSuportOnline{
 
 		this.votacionsBo = votacionsBo;
 	}
+
+	public PromocioAssociada getPromocioAssociada() {
+		return promocioAssociada;
+	}
+
+	public void setPromocioAssociada(PromocioAssociada promocioAssociada) {
+		this.promocioAssociada = promocioAssociada;
+	}	
 }

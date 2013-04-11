@@ -22,7 +22,7 @@ public class SendingEmailServiceImpl implements SendingEmailService{
 	{
 	    public PasswordAuthentication getPasswordAuthentication()
 	    {
-	        return new PasswordAuthentication("joaquim.orra@gmail.com", "linda82linda");
+	        return new PasswordAuthentication("joaquim.orra@gmail.com", "Hossegor82");
 	    }
 	}
 
@@ -30,7 +30,7 @@ public class SendingEmailServiceImpl implements SendingEmailService{
 	public void sendEmail(String textbody, String email,String app) throws EmailException{
 
 		final String username = "joaquim.orra@gmail.com";
-		final String password = "linda82linda";
+		final String password = "Hossegor82";
 
 		Properties props = new Properties();
 		props.put("mail.smtp.auth", "true");
@@ -66,7 +66,7 @@ public class SendingEmailServiceImpl implements SendingEmailService{
 	public void sendEmailsTo(String textbody, String[] emails, String app) throws EmailException, AddressException{
 
 		final String username = "joaquim.orra@gmail.com";
-		final String password = "linda82linda";
+		final String password = "Hossegor82";
 
 		javax.mail.internet.InternetAddress[] addressTo = new
 				javax.mail.internet.InternetAddress[emails.length];

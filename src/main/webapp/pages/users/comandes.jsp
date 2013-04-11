@@ -39,7 +39,8 @@
                         <c:import url="/pages/includes/addrescomanda.jsp" />
                     </div>
                         <s:form  action="saveUserDetails" id="saveUserDetails" method="POST" enctype="multipart/form-data" >
-								<s:textfield key="user.username" id="username" onkeyup="return ismaxlength(this,45)"  ></s:textfield>											                   
+								<s:textfield key="user.username" id="username" disabled="true" ></s:textfield>
+								<s:textfield key="user.nom" id="nom" onkeyup="return ismaxlength(this,45)"  ></s:textfield>											                   
 								<s:textfield key="user.telNumber" id="telNumber" onkeyup="return ismaxlength(this,9)" ></s:textfield>						                    
 								<s:hidden key="user.id" id="idUser" ></s:hidden>							
 								<s:text name="user.password" /><s:password key="user.password" id="password" onkeyup="return ismaxlength(this,45)" value="" theme="simple" ></s:password>
@@ -71,7 +72,20 @@
 						</s:iterator>
 						</ul>
 						</div>
-					</div>                        
+						<c:if test="${not empty promocioAssociada}">
+							<h2><span class="promocions_peso"><s:text name="txt.info.promos.associada" /></span></h2>
+								<div class="prom_int" style="width:350px;" alig="center" >
+									<ul>												
+										<c:if test="${not empty promocioAssociada.numBegudes}">
+											<li><s:text name="txt.promo.info.begudes.n1" /> ${promocioAssociada.numBegudes } <s:text name="txt.promo.info.n2" /> ${promocioAssociada.tipusBeguda} <s:text name="txt.promo.info.n3" /> ${promocioAssociada.importAPartirDe}</li>
+										</c:if>
+										<c:if test="${not empty promocioAssociada.descompteImport}">
+											<li><s:text name="txt.promo.info.import.n1" />${promocioAssociada.descompteImport }<s:text name="txt.promo.info.en" /> ${promocioAssociada.tipuDescompte} <s:text name="txt.promo.info.n3" /> ${promocioAssociada.importAPartirDe}</li>
+										</c:if>					
+									</ul>
+								</div>							
+						</c:if>
+						</div>                        
                         </div>
 			        <div class="contente-3">
 						 <div id="taula" width="957px" alig="center">
