@@ -302,6 +302,7 @@
 	    <div class="titleCom">
 			 <s:text name="txt.promo.escull" />
 		</div>
+		
 					<ul id="prm" ></ul>
 			<h1><s:text name="txt.promo.escull.promo.especial" /></h1>
 					<ul id="esp" ></ul>				
