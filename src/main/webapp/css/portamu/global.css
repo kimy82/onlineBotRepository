@@ -1092,17 +1092,23 @@ ul.pagination li {
     text-transform: uppercase;
 }
 #dialog_confirm {
-     background-color: white!important;
-    font-family: raleway;
-    font-size: 24px !important;
-    font-weight: bold;
-    height: 123px !important;
-    padding: 40px;
-    text-transform: uppercase;
+    background-color: #F2F2F2!important;
     width: 300px !important;
+    height: 266px!important;
+    top:100px;
+    position:fixed;
+     
 }
-#confirmOn{
-	font-size: 24px !important;
+
+#confirmOn {
+    font-family: raleway;
+    font-size: 16px !important;
+    font-weight: bold;
+    height: 53px !important;
+    padding-left: 40px;
+    padding-top: 41px;
+    text-transform: uppercase;
+    width: 280px;
 }
 
 #dialog_confirm .boton{        
@@ -1604,23 +1610,22 @@ vertical-align:middle;
     margin-top:-1px;
     margin-bottom: 40px;
 }
-#alertOn{
-	color: #4D4D4D;
+#alertOn {
+    color: #4D4D4D;
     font-family: 'Raleway',sans-serif;
     font-size: 16px;
     font-weight: 800;
-    margin: auto;
+    margin: 26px auto auto;
     padding: 20px;
-    text-align: center;
+    text-align: left;
     text-transform: uppercase;
-    width: 200px;
+    width: 230px;
 }
 #dialog_alert{
 	background-color: #f2f2f2;
-    padding: 40px;
     position: fixed;
     text-align: left;
-    margin-top:-293px;
+    top:100px;
 	
 }
 .dele{
@@ -1630,4 +1635,59 @@ vertical-align:middle;
 .big_img{
 	position: relative;
 	top:-20px;
+}
+.tancarBot{
+	background-color: #f3f3f3;
+    border: 1px solid #BDBBBB;
+    border-radius: 3px 3px 3px 3px;
+    color: #999;
+    cursor: pointer;
+    font-family: 'Raleway',sans-serif;
+    font-size: 12px;
+    font-weight: 800;
+    margin-left: 0;
+    margin-top: -7px;
+    padding: 10px;
+    text-transform: uppercase;
+    float:right;
+}
+.tancarBot:hover{
+	background-color: #333;
+    border: 1px solid #BDBBBB;
+    border-radius: 3px 3px 3px 3px;
+    color: #999;
+    cursor: pointer;
+    font-family: 'Raleway',sans-serif;
+    font-size: 12px;
+    font-weight: 800;
+    margin-left: 0;
+    margin-top: -7px;
+    padding: 10px;
+    text-transform: uppercase;
+}
+.al_top {
+    color: #4D4D4D;
+    font-family: 'Raleway',sans-serif;
+    font-size: 24px;
+    font-weight: 800;
+    padding-bottom: 20px;
+    padding-left: 40px;
+    padding-top: 40px;
+    width: 236px;
+}
+.sep19{
+	border-top:  1px solid #D6D6D6;
+	border-bottom: none;
+	border-right: none;
+	border-left: none;; 
+	webkit-box-shadow:0 3px 8px 2px #E0C0A6;
+    box-shadow: 0 3px 8px 2px #E0C0A6;
+    box-shadow: 1px 1px 0 0 #FFFFFF;
+    margin-left: -20px;
+    width: 330px;
+    float: left;
+}
+#tableCons{
+	margin-left: 40px;
+	
 }

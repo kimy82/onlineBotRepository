@@ -42,6 +42,14 @@ a, .boton, .news, .tancarBot, #saveVotButton, .enviarcom{
     width: 806px;
     position:fixed;
 }
+#infoPlat_dialog {
+	top:100px;
+    position:fixed;
+}
+#infoBeguda_dialog {
+	top:100px;
+    position:fixed;
+}
 #foro_int{
 	padding: 20px;
 	font-weight: 800;
@@ -130,7 +138,7 @@ position:absolute;
      border-right: 1px dotted #999999;
     float: left;
     height: 470px;
-    margin-left: 20px;
+    margin-left: 0px;
     margin-top: 20px;
     width: 246px;
 }
@@ -268,35 +276,7 @@ text-transform:uppercase;
 	
     margin-top: -30px;
 }
-.tancarBot{
-	background-color: #f3f3f3;
-    border: 1px solid #BDBBBB;
-    border-radius: 3px 3px 3px 3px;
-    color: #999;
-    cursor: pointer;
-    font-family: 'Raleway',sans-serif;
-    font-size: 12px;
-    font-weight: 800;
-    margin-left: 0;
-    margin-top: -7px;
-    padding: 10px;
-    text-transform: uppercase;
-    float:right;
-}
-.tancarBot:hover{
-	background-color: #333;
-    border: 1px solid #BDBBBB;
-    border-radius: 3px 3px 3px 3px;
-    color: #999;
-    cursor: pointer;
-    font-family: 'Raleway',sans-serif;
-    font-size: 12px;
-    font-weight: 800;
-    margin-left: 0;
-    margin-top: -7px;
-    padding: 10px;
-    text-transform: uppercase;
-}
+
 #star_punctuation{
 	float: left;
     height: 108px;

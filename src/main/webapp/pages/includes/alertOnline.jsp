@@ -2,17 +2,30 @@
 <%@ taglib prefix="s" uri="/struts-tags"%>
 
 <div id="dialog_alert" class="filtres filtres-oberts" title="<s:text name='txt.alert.title' />">
-	 <img src="<c:url value='/img/elements/alert.png' />">
-	 <h1><div id="alertOn" > </div></h1>
-	  <table>
+		
+		<div class="al_top">
+			<s:text name="txt.login.title" />
+			<table>
 	 	<tr>
-	 		<td><input class="boton" type="button" id="cancel" value="cancel"  onclick="alertOnline.close();" /> </td>
+	 		<input class="tancarBot" type="button" id="cancel" value="X"  onclick="alertOnline.close();" />
 	 	</tr>
-	 </table>	
+	 </table>
+		</div>
+		<hr class="sep19">
+	 
+	 <div id="alertOn" > 
+	
+	 
+	 
+	 </div>
 	 	
 </div>  
 
 <script>
+
+
+
+
 
 $("#dialog_alert").dialog( { autoOpen: false,
 	  modal: true,

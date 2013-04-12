@@ -2,13 +2,23 @@
 <%@ taglib prefix="s" uri="/struts-tags"%>
 
 <div id="dialog_confirm" class="filtres filtres-oberts" title="<s:text name='txt.confirm.title' />">
-	 <h2><div id="confirmOn" > </div></h2>		
-	 <table>
+		
+		<div class="al_top">
+			<s:text name="txt.login.title" />
+		</div>
+		<hr class="sep19">
+		<div id="tot_conf">
+	 <div id="confirmOn" >
+	 
+	 
+	 </div>		
+	 <table id="tableCons">
 	 	<tr>
 	 		<td><input class="boton" type="button" id="cancel" value="cancel"  onclick="confirmOnline.close();" /> </td>
 	 		<td><input class="boton" type="button" id="aceptar" value="Aceptar"  /></td>
 	 	</tr>
 	 </table>
+	 </div>
 </div>  
 
 <script>

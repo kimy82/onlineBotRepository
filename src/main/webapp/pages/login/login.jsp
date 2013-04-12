@@ -24,6 +24,9 @@
 		</c:if>
 		<div class="light_top">
 			<s:text name="txt.login.title" />
+			<c:if test="${dialog eq 'true'}">
+					&nbsp;<input class="tancarBot" style="text-align: right;" type="button" onclick="closeLoguin()" value="X" />
+			</c:if>
 		</div>
 		<hr class="sep5">
 		<div class="light_body">
@@ -33,9 +36,7 @@
 				<s:text name="txt.user.password" />*:<br> <input type='password' class="inputs" name='j_password' onclick="focus()" /> <br>
 				
 				<input class="boton" type="submit" value="ENTRAR" />
-				<c:if test="${dialog eq 'true'}">
-					&nbsp;<input class="boton" style="text-align: right;" type="button" onclick="closeLoguin()" value="TANCA" />
-				</c:if>
+				
 				</form>
 			</div>
 			<a class="forgot" name="register" type="button" href="<c:url value='/preRecoverAcount.action'/>" ><s:text name="txt.user.forgot.password" /></a>
