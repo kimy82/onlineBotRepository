@@ -71,7 +71,7 @@ function goToLogin(){
 	$("#login_dialog").load("/"+context+"/login.action?dialog=true");	
 	$("#login_dialog").dialog({ 
 		   autoOpen: false,
-		   height: 94,
+		   height: 400,
 		   width: 330,
 		   position: "center",
 		   modal: true,
@@ -86,7 +86,7 @@ function goToLogin(){
    	$("#move").addClass("ui-dialog-titlebar ui-widget-header ui-corner-all ui-helper-clearfix");
 	$(".ui-widget-content").css("background-color", "transparent");
    	$(".ui-widget-content").css("border", "0px");
-     setTimeout(function(){resizeDiv();},100)
+   //  setTimeout(function(){resizeDiv();},100)
 }
 
 function closeLoguin(){

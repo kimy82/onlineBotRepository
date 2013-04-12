@@ -4,7 +4,6 @@
 <div id="sub_dialog_error" class="filtres filtres-oberts" title="<s:text name='txt.error.title' />">
 	 <table>
 	 	<tr>
-	 		<td><img  src="<c:url value='/images/error/errorAjax.jpg'/>" width="50px" > </td>
 	 		<td><h1><label id="sub_errorOn" > </label></h1></td>
 	 	</tr>
 	 </table>		
