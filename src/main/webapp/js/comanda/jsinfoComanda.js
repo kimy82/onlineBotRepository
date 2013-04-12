@@ -1226,7 +1226,7 @@ $("#dialog_promo").dialog( { autoOpen: false,
 	  position: 'center',
 	  draggable: true,
 	  height: 390,
-	  width: 900,		
+	  width: 600,		
 	  open: function(event, ui) { 
 		 //carrega la taula del dialog
 		checkPromocionsDisponibles(); 

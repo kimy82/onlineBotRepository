@@ -286,15 +286,30 @@
 <s:hidden key="comanda.address" id="comandaddress"></s:hidden>																				
 </div>
 <c:import url="/pages/includes/endPage.jsp" />
+
 <div id="dialog_promo" class="filtres filtres-oberts" title="Promo">
-	 
-		 <h1><s:text name="txt.promo.escull" /></h1>
-				<ul id="prm" ></ul>
-		<h1><s:text name="txt.promo.escull.promo.especial" /></h1>
-				<ul id="esp" ></ul>				
-		<h1><s:text name="txt.promo.escull.promo.busca" /><input id="codePromo" type="text" value="" onblur="checkPromoVibility(this.value)" /><a href="#">CERCAR</a></h1>
-				<ul id="visp" ></ul>		
+
+		<div class="al_com">
+			<s:text name="txt.login.title" />
+			<table>
+	 	<tr>
+	 		<input class="tancarBot" type="button" id="cancel" value="X"  onclick="closeDialogPromos();" />
+	 	</tr>
+	 </table>
+		</div>
+		<hr class="sep20">
+	    <div id="promosCom">
+	    <div class="titleCom">
+			 <s:text name="txt.promo.escull" />
+		</div>
+					<ul id="prm" ></ul>
+			<h1><s:text name="txt.promo.escull.promo.especial" /></h1>
+					<ul id="esp" ></ul>				
+			<h1><s:text name="txt.promo.escull.promo.busca" /><input id="codePromo" type="text" value="" onblur="checkPromoVibility(this.value)" /><a href="#">CERCAR</a></h1>
+					<ul id="visp" ></ul>
+		</div>		
 </div>  
+
 	<script src="http://maps.google.com/maps/api/js?sensor=false" type="text/javascript"></script>
 	<script type="text/javascript" src="<c:url value='/js/jsinfoComanda.primer.min.js'/>"></script>		
 	<script type="text/javascript" src="<c:url value='/js/sudoSlider/jquery.sudoSlider.min.js'/>"></script>	
