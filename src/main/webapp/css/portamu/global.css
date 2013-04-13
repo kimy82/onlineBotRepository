@@ -1108,7 +1108,7 @@ ul.pagination li {
     padding-left: 40px;
     padding-top: 41px;
     text-transform: uppercase;
-    width: 280px;
+    width: 241px;
 }
 
 #dialog_confirm .boton{        
@@ -1720,27 +1720,42 @@ vertical-align:middle;
     top:100px;
 	
 }
-#promosCom{
-	padding:40px;
+
+#promosCom {
+    color: #333333;
+    font-family: raleway;
+    font-size: 11px;
+    font-weight: bold;
+    padding: 40px;
+    text-transform: uppercase;
 }
-.titleCom{
-	font-family: raleway;
-	color: #F7931E;
-	font-size: 16px;
-	text-transform: uppercase;
-	font-weight: bold;
+.titleCom {
+    color: #F7931E;
+    font-family: raleway;
+    font-size: 16px;
+    font-weight: bold;
+    margin-bottom: 15px;
+    text-transform: uppercase;
 }
 
 #prm, #prm a {
-    color: #333 !important;
+    color: #D9E021 !important;
     font-weight: bold;
     text-transform: uppercase;
+    margin-top:15px;
+    font-family: raleway;
+    font-weight: bold;
 }
 #prm li {
     margin-bottom:10px;
-     background-color: #F7931E;
+    
 }
-#prm li:hover {
-    margin-bottom:10px;
-    background-color: #d3d3d3;
+#prm a:hover {
+    color: #F7931E !important;
+    font-weight: bold;
+    text-transform: uppercase;
+    margin-top:15px;
+    font-family: raleway;
+    font-weight: bold;
+    font-weight: 14px;
 }

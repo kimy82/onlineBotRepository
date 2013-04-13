@@ -870,7 +870,7 @@ function fillPromos(json){
 	$.each(json, function(index,item){
 		if(item.numBegudes!=null && item.numBegudes!= 'undefined' && json.numBegudes!= "0"){
 			//Promocio de begudes
-			var liToAppend = "<li><a href='#' onclick=\"addPromoBeguda('"+item.numBegudes+"','"+item.tipusBeguda+"','"+item.id+"','gen')\" >'Te un descompte per escollir "+item.numBegudes +" begudes de tipus "+item.tipusBeguda+"</a>";
+			var liToAppend = "<li><a href='#' onclick=\"addPromoBeguda('"+item.numBegudes+"','"+item.tipusBeguda+"','"+item.id+"','gen')\" >Regal de "+item.numBegudes +"  "+item.tipusBeguda+"</a>";
 			$("#dialog_promo ul#prm").append(liToAppend);
 			
 		

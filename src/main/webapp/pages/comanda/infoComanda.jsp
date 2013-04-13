@@ -303,11 +303,18 @@
 			 <s:text name="txt.promo.escull" />
 		</div>
 		
-					<ul id="prm" ></ul>
-			<h1><s:text name="txt.promo.escull.promo.especial" /></h1>
-					<ul id="esp" ></ul>				
-			<h1><s:text name="txt.promo.escull.promo.busca" /><input id="codePromo" type="text" value="" onblur="checkPromoVibility(this.value)" /><a href="#">CERCAR</a></h1>
-					<ul id="visp" ></ul>
+		<ul id="prm" ></ul>
+		
+		<div class="titleCom">
+		<s:text name="txt.promo.escull.promo.especial" />
+		</div>
+		<ul id="esp" ></ul>	
+					
+		<h1><s:text name="txt.promo.escull.promo.busca" /></br>
+		<input id="codePromo" class="inputs" type="text" value="" onblur="checkPromoVibility(this.value)" /></br>
+		<a href="#">CERCAR</a>
+		
+		<ul id="visp" ></ul>
 		</div>		
 </div>  
 
