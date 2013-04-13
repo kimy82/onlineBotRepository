@@ -185,7 +185,7 @@ float:left;
      width: 230px;
 }
 .votplat {
-     color: #8CC63F;
+     color: #9fc465;
      font-family: raleway;
      font-size: 12px;
      margin-top: 10px;
@@ -199,7 +199,7 @@ float:left;
 }
 
 .votat {
-    background-color: #D9E021;
+    background-color: #9fc465;
     border: 1px solid #BDBBBB;
     border-radius: 3px 3px 3px 3px;
     color: #333333;
@@ -245,7 +245,7 @@ text-transform:uppercase;
     vertical-align: middle;
 }
 .enviarcom{
-	background-color: #D9E021;
+	background-color: #9fc465;
     border: 1px solid #BDBBBB;
     border-radius: 3px 3px 3px 3px;
     color: #333333;
@@ -297,7 +297,7 @@ text-transform:uppercase;
     text-transform:uppercase;
 }
 .votat_close:hover {
-    background-color: #D9E021;
+    background-color: #999999;
     border: 1px solid #BDBBBB;
     border-radius: 3px 3px 3px 3px;
     color: #333333;

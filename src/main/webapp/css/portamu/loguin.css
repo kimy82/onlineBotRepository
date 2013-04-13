@@ -1,7 +1,7 @@
 
-.boton{ padding: 10px; color: white; background-color: #D9E021; border: 1px solid #bdbbbb; margin-left: 0px; font-family: 'Raleway', sans-serif; font-weight: 800; font-size: 12px; cursor: pointer; } {
+.boton{ padding: 10px; color: white; background-color: #9fc465; border: 1px solid #bdbbbb; margin-left: 0px; font-family: 'Raleway', sans-serif; font-weight: 800; font-size: 12px; cursor: pointer; } {
 }
-.boton:hover{ padding: 10px; color: white; background-color: #333; border: 1px solid #bdbbbb; margin-left: 0px; font-family: 'Raleway', sans-serif; font-weight: 800; font-size: 12px; cursor: pointer; } {
+.boton:hover{ padding: 10px; color: white; background-color: #F7931E; border: 1px solid #bdbbbb; margin-left: 0px; font-family: 'Raleway', sans-serif; font-weight: 800; font-size: 12px; cursor: pointer; } {
 }
 .inputs{ height: 30px; margin-top: 4px; margin-bottom: 20px; margin-left: 0px; width: 189px; font-family: arial; color: #888; } {
 }

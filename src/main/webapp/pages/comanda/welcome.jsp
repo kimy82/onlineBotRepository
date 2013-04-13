@@ -103,9 +103,9 @@
 									<c:set var="comments" value="${plat.comments}" ></c:set>
 									<c:set var="commentInsert" value="${0}" ></c:set>
 									<c:forEach items="${comments}" var="comt" >
-										<c:if test="${not empty comt && commentInsert < 2}">				
+										<c:if test="${not empty comt && commentInsert < 1}">				
 											<c:set var="commentInsert" value="${commentInsert+1}" ></c:set>																				
-											 ${fn:substring(comt.comment, 0, 45)}...&nbsp;
+											 ${fn:substring(comt.comment, 0, 100)}...&nbsp;
 										</c:if>																																																
 									</c:forEach>								
 							<a href="#" class="more" onclick="goToInfoPlat(${plat.id})" ><s:text name="txt.leer.mas" /></a></p>

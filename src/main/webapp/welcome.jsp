@@ -14,7 +14,7 @@
 	<link type="text/css" rel="stylesheet" href="<c:url value='/css/welcome.min.css' />" />	
 	<title> <s:text name="txt.welcome.principal" />	</title>	
 </head>
-<body>
+<body id=indexPor>
 <c:import url="/pages/includes/headerContext.jsp" />
 <c:import url="/pages/includes/divLogin.jsp" />
 <div id="container">
@@ -38,7 +38,7 @@
 								<c:forEach items="${configs}" var="config" >
 									<c:if test="${config.obert==true && not doneLoop}">					
 										<c:if test="${config.data eq dataAvui }">
-											<a href="#" id="${restaurant.id}" class="entrar selector_jq" ><s:text name="txt.inicia.comanda" /></a>
+											<a href="#" id="${restaurant.id}" class="entrar_in selector_jq" ><s:text name="txt.inicia.comanda" /></a>
 											<input type="hidden" id="dataObert_${restaurant.id}" value="${dataAvui}" />
 										</c:if>
 										<c:if test="${config.data ne dataAvui }">	
@@ -51,7 +51,7 @@
 								</c:forEach>
 							</c:if>
 							<c:if test="${empty restaurant.configRestaurants}">
-								<a href="#" id="${restaurant.id}" class="entrar selector_jq"><s:text name="txt.inicia.comanda" /></a>
+								<a href="#" id="${restaurant.id}" class="entrar_in selector_jq"><s:text name="txt.inicia.comanda" /></a>
 								<input type="hidden" id="dataObert_${restaurant.id}" value="${dataAvui}" />
 							</c:if>	
 							<br>
@@ -99,7 +99,7 @@
 						<s:text name="adreca.carrer" />:<br> <input class="inputs" type="text" name="FirstName" id="carrer" ><br>
 						<s:text name="adreca.codipostal" />:<br> <input class="inputs" type="text" name="LastName" id="codi" ><br>
 						<input class="boton" id="checkAdd" type="button" value="COMPROVA-HO"><br>
-						<label id="addressOK" style="font-style: italic; color: red;" ></label>
+						<label id="addressOK"></label>
 						<input type="hidden" id="poble" disabled="disabled" value="Girona"  />						
 						</form>
 					</div>
@@ -108,9 +108,9 @@
 					<div id="newsletter">
 						<h2><s:text name="txt.welcome.newsletter.title" /></h2><br>
 						<form class="form" action="#">
-						<s:text name="txt.welcome.newsletter.title2" /><br> <input class="newsin" type="text" value="<s:text name="txt.welcome.newsletter.value" />" id="email" />
+						<s:text name="txt.welcome.newsletter.title2" /><br> <input class="newsin" type="text" id="email" />
 						<input class="news" type="button" onclick="saveEmail()" value="" />
-						<label id="error" style="font-style: italic; color: red;" ></label>
+						<label id="error"></label>
 						</form>
 					</div>
 				</div>			
