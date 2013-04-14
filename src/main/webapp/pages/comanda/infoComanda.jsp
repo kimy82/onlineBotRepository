@@ -336,7 +336,7 @@ initNumPlats();
 initNumBegudes();
 function submitLog(){
 	$.ajax({
-	    url: "<c:url value='/onlineBot/j_spring_security_check' />",
+	    url: "<c:url value='/elteurestaurantacasa/j_spring_security_check' />",
 	    type: "POST",
 	    data: $("#f").serialize(),
 	    dataType: 'json',

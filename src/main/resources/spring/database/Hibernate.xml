@@ -42,6 +42,7 @@ http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
 				<value>/hibernate/VotacioTMP.hbm.xml</value>
 				<value>/hibernate/VotacioTMPBeguda.hbm.xml</value>
 				<value>/hibernate/NewsLetter.hbm.xml</value>
+				<value>/hibernate/Clau.hbm.xml</value>
 			</list>
 		</property>
 

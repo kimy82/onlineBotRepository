@@ -19,7 +19,7 @@ public class LoginAction extends ActionSupport implements ServletRequestAware{
 	private UsersBo		usersBo;
 	private String		username;
 	private String		password;
-	private String 		address;
+	private String 		address; 
 	private String		telefon;
 	private String		altres;
 	private String		email;

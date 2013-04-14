@@ -763,6 +763,26 @@ public class ComandaServiceImpl implements ComandaService{
 		return this.jsonBegudaDeleted;		
 	}
 	
+	public String getListOfPlatsAndDrinks( Comandes comanda){
+		
+		StringBuffer noms = new StringBuffer();
+		List<BegudaComanda> begudaList=comanda.getBegudes();
+		List<PlatComanda> platList = comanda.getPlats();
+		for(PlatComanda plat : platList){
+			
+			noms.append(plat.getPlat().getNom()+"("+plat.getNumPlats()+")  ");
+			
+		}
+		
+		for(BegudaComanda beguda : begudaList ){
+			if(beguda.getNumBegudes()!=null && beguda.getNumBegudes()!=0)
+				noms.append(beguda.getBeguda().getNom()+"("+beguda.getNumBegudes()+")");
+		}
+		
+		return noms.toString();
+		
+	}
+	
 	public List<BegudaComanda> addBegudaInList( List<BegudaComanda> begudaList, Beguda beguda, boolean promo ) throws ComandaException{
 
 		try {

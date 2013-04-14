@@ -16,6 +16,12 @@ alter table  promocions add column VISIBILITY tinyint(1) NOT NULL DEFAULT 1;
 	
 /* alters finish*/
 /*nova taula per les promos assignables*/
+CREATE TABLE claus(
+	ID  INT(10) UNSIGNED,
+	ENTORN VARCHAR(10),
+	CODE VARCHAR(100)
+)ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
 CREATE TABLE promos_associated (
 	PROMOCIO_ASS_ID INT(10) UNSIGNED,
 	CODE VARCHAR(10),

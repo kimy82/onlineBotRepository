@@ -1,5 +1,6 @@
 package com.online.services;
 
+import java.security.NoSuchAlgorithmException;
 import java.util.List;
 
 import com.online.exceptions.PaymentException;
@@ -10,6 +11,7 @@ public interface PaymentService{
 	
 	public List<String> getComandaOrders(Comandes comanda) throws PaymentException;	
 	public void  sendOrder(boolean toAdmins, List<String> orders) throws PaymentException;
+	public String  SHA(String Ds_Merchant_Amount, String Ds_Merchant_Order,String Ds_Merchant_MerchantCode, String DS_Merchant_Currency, String Ds_Merchant_TransactionType,String Ds_Merchant_MerchantURL,String entorn) throws PaymentException, NoSuchAlgorithmException;
 	
 }
  

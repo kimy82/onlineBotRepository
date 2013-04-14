@@ -52,5 +52,7 @@ public interface ComandaService{
 	
 	public String getAddressOfRestaurant (Comandes comanda) throws ComandaException;
 	
+	public String getListOfPlatsAndDrinks( Comandes comanda) throws ComandaException;
+	
 }
  

@@ -21,7 +21,8 @@
  		<property name="promocionsBo" ref="promocionsBo" />
  		<property name="comandaBo" ref="comandaBo" /> 				  		  	
  	</bean>
- 	<bean id="paymentService" class="com.online.services.impl.PaymentServiceImpl"> 	  		
+ 	<bean id="paymentService" class="com.online.services.impl.PaymentServiceImpl">
+ 		<property name="clauBo" ref="clauBo" /> 	 	  		
  	</bean>
 	<import resource="../beans/Users.xml"/>
 	<import resource="../beans/Plats.xml"/>
@@ -34,6 +35,7 @@
 	<import resource="../beans/Comanda.xml"/>
 	<import resource="../beans/Foro.xml"/>
 	<import resource="../beans/Votacions.xml"/>
+	<import resource="../beans/Clau.xml"/>
 	
 	<!-- JOB PER VOTACIONS -->
 	<bean id="job" class="org.springframework.scheduling.quartz.JobDetailBean">

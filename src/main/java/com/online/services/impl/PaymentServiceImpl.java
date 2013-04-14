@@ -1,5 +1,7 @@
 package com.online.services.impl;
 
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -10,8 +12,10 @@ import java.util.Set;
 import org.apache.wink.client.Resource;
 import org.apache.wink.client.RestClient;
 
+import com.online.bo.ClauBo;
 import com.online.exceptions.PaymentException;
 import com.online.model.BegudaComanda;
+import com.online.model.Clau;
 import com.online.model.Comandes;
 import com.online.model.PlatComanda;
 import com.online.services.PaymentService;
@@ -20,6 +24,34 @@ public class PaymentServiceImpl implements PaymentService {
 
 	private Comandes comanda;
 	private final String CODI_MAQUINA_ADMIN="AC001";
+	private ClauBo			clauBo;
+	
+	public String  SHA(String Ds_Merchant_Amount, String Ds_Merchant_Order,String Ds_Merchant_MerchantCode, String DS_Merchant_Currency, String Ds_Merchant_TransactionType,String Ds_Merchant_MerchantURL,String entorn) throws PaymentException, NoSuchAlgorithmException {
+		try{
+		Clau clau = this.clauBo.getClau(entorn);
+		
+		String cadena = Ds_Merchant_Amount+Ds_Merchant_Order+Ds_Merchant_MerchantCode+DS_Merchant_Currency+Ds_Merchant_TransactionType+Ds_Merchant_MerchantURL+clau.getCode();
+		MessageDigest md;
+		byte[] buffer, digest;
+		String hash = "";
+
+		
+		  buffer = cadena.getBytes();
+	        md = MessageDigest.getInstance("SHA1");
+	        md.update(buffer);
+	        digest = md.digest();
+
+	        for(byte aux : digest) {
+	            int b = aux & 0xff;
+	            if (Integer.toHexString(b).length() == 1) hash += "0";
+	            hash += Integer.toHexString(b);
+	        }
+	     return hash;
+		}catch(Exception e){
+			e.printStackTrace();
+			throw new PaymentException(e,"payment");
+		}
+	}
 	
 	public void  sendOrder(boolean toAdmins, List<String> orders) throws PaymentException {
 		
@@ -210,4 +242,8 @@ public class PaymentServiceImpl implements PaymentService {
 		}
 		return toSentTel.toString();
 	}
+
+	public void setClauBo(ClauBo clauBo) {
+		this.clauBo = clauBo;
+	}		
 }

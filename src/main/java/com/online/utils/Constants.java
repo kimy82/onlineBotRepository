@@ -34,5 +34,7 @@ public class Constants{
 	public final static int		ESTAT_HORA_ACTIU		= 1;
 	public final static int		ESTAT_HORA_INACTIU		= 0;
 	
+	public final static String	ENTORN_LOCAL			= "local";	
+	public final static String	ENTORN_PRO				= "produccio";
 
 }

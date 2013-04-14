@@ -20,12 +20,15 @@
 			<result name="TPV">/pages/comanda/payment/tpv.jsp</result>
 			<result name="error">/error.jsp</result>	
 		</action>
-		<action name="paymentTpvDone" class="com.online.action.payment.PaymentAction"
+		<action name="paymentOK" class="com.online.action.payment.PaymentAction"
 			method="paymentTpvDone">
 			<result name="success">/pages/comanda/payment/welcome.jsp</result>
 			<result name="error">/error.jsp</result>	
 		</action>
-		
+		<action name="paymentKO" class="com.online.action.payment.PaymentAction"
+			method="paymentTpvNotDone">
+			<result>/pages/comanda/payment/welcome.jsp</result>		
+		</action>	
 		
 	</package>
 </struts>
