@@ -48,9 +48,23 @@ public class Plat implements Serializable{
 	protected VotacioPlat		votacio;
 	
 	protected int				tempsPreparacio;
+	
+	@Expose
+	private boolean				vegetarians;
+	
+	@Expose
+	private boolean				celiacs;
+	
+	@Expose
+	private boolean				ous;
+	
+	@Expose
+	private boolean				fruitsCecs;
+	
+	@Expose
+	private boolean				lactics;
 
 	// CONSTRUCTORS
-
 	public Plat() {
 
 		super();
@@ -215,6 +229,44 @@ public class Plat implements Serializable{
 	
 		this.nomES = nomES;
 	}
-	
-	
+
+	public boolean isVegetarians() {
+		return vegetarians;
+	}
+
+	public void setVegetarians(boolean vegetarians) {
+		this.vegetarians = vegetarians;
+	}
+
+	public boolean isCeliacs() {
+		return celiacs;
+	}
+
+	public void setCeliacs(boolean celiacs) {
+		this.celiacs = celiacs;
+	}
+
+	public boolean isOus() {
+		return ous;
+	}
+
+	public void setOus(boolean ous) {
+		this.ous = ous;
+	}
+
+	public boolean isFruitsCecs() {
+		return fruitsCecs;
+	}
+
+	public void setFruitsCecs(boolean fruitsCecs) {
+		this.fruitsCecs = fruitsCecs;
+	}
+
+	public boolean isLactics() {
+		return lactics;
+	}
+
+	public void setLactics(boolean lactics) {
+		this.lactics = lactics;
+	}			
 }

@@ -39,6 +39,21 @@
 		<property name="tempsPreparacio" type="integer" lazy="false" >
 			<column name="TEMPS" />
 		</property>	
+		<property name="vegetarians" type="boolean" lazy="false" >
+			<column name="VEGETARIANS"/>
+		</property>
+		<property name="lactics" type="boolean" lazy="false" >
+			<column name="LACTICS"/>
+		</property>		
+		<property name="ous" type="boolean" lazy="false" >
+			<column name="OUS"/>
+		</property>		
+		<property name="fruitsCecs" type="boolean" lazy="false" >
+			<column name="FRUITS_SECS"/>
+		</property>		
+		<property name="celiacs" type="boolean" lazy="false" >
+			<column name="CELIACS"/>
+		</property>				
 		<many-to-one name="foto" class="com.online.model.Image" cascade="all" >	
 			<column name="IMAGE_ID"></column>	
 		</many-to-one>

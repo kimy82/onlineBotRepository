@@ -95,6 +95,26 @@
 							<hr class="sep">
 						</div>
 					</c:if>	
+					<c:if test="${plat.celiacs == false }" >
+					</c:if>	
+					<c:if test="${plat.celiacs == true }" >
+					</c:if>	
+					<c:if test="${plat.vegetarians == false }" >
+					</c:if>	
+					<c:if test="${plat.vegetarians == true }" >
+					</c:if>	
+					<c:if test="${plat.ous == false }" >
+					</c:if>	
+					<c:if test="${plat.ous == true }" >
+					</c:if>	
+					<c:if test="${plat.lactics == false }" >
+					</c:if>	
+					<c:if test="${plat.lactics == true }" >
+					</c:if>	
+					<c:if test="${plat.fruitsCecs == false }" >
+					</c:if>	
+					<c:if test="${plat.fruitsCecs == true }" >
+					</c:if>	
 						<div class="coments">
 							<img class="estrelles_rest" src="/${initParam.app}/img/elements/estrelles${plat.votacio.punctuacio}.jpg">	
 							<br>

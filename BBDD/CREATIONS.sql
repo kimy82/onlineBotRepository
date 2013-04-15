@@ -11,6 +11,12 @@ update promos_associated set list_date_used="2013-03-01 2013-03-01 2013-03-04 20
 13-03-04 2013-03-20 2013-03-20 2130-03-20 2013-03-29" where 1=1;
 update promos_associated set NUM_USED=24 where 1=1;
 
+alter table plats add column CELIACS tinyint(1) NOT NULL DEFAULT 1;
+alter table plats add column OUS tinyint(1) NOT NULL DEFAULT 1;
+alter table plats add column LACTICS tinyint(1) NOT NULL DEFAULT 1;
+alter table plats add column VEGETARIANS tinyint(1) NOT NULL DEFAULT 1;
+alter table plats add column FRUITS_SECS tinyint(1) NOT NULL DEFAULT 1;
+
 alter table  promocions add column CODE VARCHAR(10);
 alter table  promocions add column VISIBILITY tinyint(1) NOT NULL DEFAULT 1;
 	
@@ -85,6 +91,11 @@ CREATE TABLE  plats (
   CODI  VARCHAR(20),
   ACTIU tinyint(1) NOT NULL DEFAULT 1 ,
   TEMPS INT(10) UNSIGNED NULL DEFAULT 30,
+  CELIACS tinyint(1) NOT NULL DEFAULT 1,
+  FRUITS_SECS tinyint(1) NOT NULL DEFAULT 1,
+  LACTICS tinyint(1) NOT NULL DEFAULT 1,
+  VEGETARIANS tinyint(1) NOT NULL DEFAULT 1,
+  OUS tinyint(1) NOT NULL DEFAULT 1,
   IMAGE_ID INT(10) UNSIGNED NULL,
   PRIMARY KEY (`PLAT_ID`) USING BTREE
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;

@@ -64,8 +64,42 @@
 					<s:textarea key="plat.descripcio" id="descplat" cols="40" rows="4" onkeyup="return ismaxlength(this,1000)" ></s:textarea>	
 					<s:textarea key="plat.descripcioES" id="descplatES" cols="40" rows="4" onkeyup="return ismaxlength(this,1000)" ></s:textarea>
 					<s:textfield key="plat.preu" id="preuplat" onblur="onlyDouble(this.value,this.id)" ></s:textfield>
-					<s:select list="tipusPlat" key="plat.tipus" id="tipusplat" listKey="descripcio" listValue="descripcio" headerKey="" headerValue="" ></s:select>											
+					<s:select list="tipusPlat" key="plat.tipus" id="tipusplat" listKey="descripcio" listValue="descripcio" headerKey="" headerValue="" ></s:select>
+					<tr>											
+					<c:if test="${empty plat or plat.celiacs == true or  empty plat.id}" var="celiacs" >
+						<td><s:text name="plat.celiacs" ></s:text></td><td><s:checkbox  key="plat.celiacs" id="celiacsplat" value="true" theme="simple" ></s:checkbox></td>
+					</c:if>
+					<c:if test="${celiacs== false}">
+						<td><s:text name="plat.celiacs" ></s:text></td><td><s:checkbox  key="plat.actiu" id="celiacsplat" theme="simple" ></s:checkbox></td>
+					</c:if>
+					<c:if test="${empty plat or plat.ous == true or  empty plat.id}" var="ous" >
+						<td><s:text name="plat.ous" ></s:text></td><td><s:checkbox  key="plat.ous" id="ousplat" value="true" theme="simple" ></s:checkbox></td>
+					</c:if>
+					<c:if test="${ous== false}">
+						<td><s:text name="plat.ous" ></s:text></td><td><s:checkbox  key="plat.ous" id="ousplat" theme="simple" ></s:checkbox></td>
+					</c:if>
+					<c:if test="${empty plat or plat.lactics == true or  empty plat.id}" var="lactics" >
+						<td><s:text name="plat.lactics" ></s:text></td><td><s:checkbox  key="plat.lactics" id="lacticsplat" value="true" theme="simple" ></s:checkbox></td>
+					</c:if>
+					<c:if test="${lactics== false}">
+						<td><s:text name="plat.lactics" ></s:text></td><td><s:checkbox  key="plat.lactics" id="lacticsplat" theme="simple" ></s:checkbox></td>
+					</c:if>
+					<c:if test="${empty plat or plat.fruitsCecs == true or  empty plat.id}" var="fruitsCecs" >
+						<td><s:text name="plat.fruitsCecs" ></s:text></td><td><s:checkbox  key="plat.fruitsCecs" id="fruitsCecsplat" value="true" theme="simple" ></s:checkbox></td>
+					</c:if>
+					<c:if test="${fruitsCecs== false}">
+						<td><s:text name="plat.fruitsCecs" ></s:text></td><td><s:checkbox  key="plat.fruitsCecs" id="fruitsCecsplat" theme="simple" ></s:checkbox></td>
+					</c:if>
+					<c:if test="${empty plat or plat.vegetarians == true or  empty plat.id}" var="vegetarians" >
+						<td><s:text name="plat.vegetarians" ></s:text></td><td><s:checkbox  key="plat.vegetarians" id="vegetariansplat" value="true" theme="simple" ></s:checkbox></td>
+					</c:if>
+					<c:if test="${vegetarians== false}">
+						<td><s:text name="plat.vegetarians" ></s:text></td><td><s:checkbox  key="plat.vegetarians" id="vegetariansCecsplat" theme="simple" ></s:checkbox></td>
+					</c:if>
+					</tr>
+					
 					<s:file name="fileUpload" label="Escull una fotografia" size="40" />	
+					
 					<s:hidden key="plat.id" id="idplat" ></s:hidden>		
 					<tr><td><input type="button" value="submit" onclick="submitPlat()" ></input></td></tr>							
 				</s:form>			
