@@ -4,17 +4,22 @@ import java.security.NoSuchAlgorithmException;
 
 import javax.servlet.http.HttpServletRequest;
 
-import org.apache.struts2.interceptor.ServletRequestAware;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.User;
+import org.springframework.security.web.authentication.WebAuthenticationDetails;
 
 import com.online.bo.UsersBo;
 import com.online.exceptions.BOException;
 import com.online.exceptions.UserExistException;
 import com.online.model.Users;
+import com.online.supplier.extend.ActionSuportOnlineSession;
 import com.online.utils.Utils;
-import com.opensymphony.xwork2.ActionSupport;
 
 @SuppressWarnings("serial")
-public class LoginAction extends ActionSupport implements ServletRequestAware{
+public class LoginAction extends ActionSuportOnlineSession{
 
 	private UsersBo		usersBo;
 	private String		username;
@@ -23,6 +28,8 @@ public class LoginAction extends ActionSupport implements ServletRequestAware{
 	private String		telefon;
 	private String		altres;
 	private String		email;
+	
+	 protected AuthenticationManager authenticationManager;
 	
 	HttpServletRequest	request;
 
@@ -64,6 +71,8 @@ public class LoginAction extends ActionSupport implements ServletRequestAware{
 			user.setIndicacions(this.altres);
 			
 			this.usersBo.save(user);
+			
+			authenticateUserAndSetSession(user.getUsername(), this.password,this.request);
 
 		} catch (NoSuchAlgorithmException e) {
 			addActionError("Error hashing password");
@@ -81,6 +90,21 @@ public class LoginAction extends ActionSupport implements ServletRequestAware{
 		return SUCCESS;
 
 	}
+	
+	 private void authenticateUserAndSetSession(String userName,String password,
+		        HttpServletRequest request)
+		{
+		    UsernamePasswordAuthenticationToken token = new UsernamePasswordAuthenticationToken(
+		    		userName, password);
+
+		    // generate session if one doesn't exist
+		    request.getSession();
+
+		    token.setDetails(new WebAuthenticationDetails(request));
+		    Authentication authenticatedUser = authenticationManager.authenticate(token);
+
+		    SecurityContextHolder.getContext().setAuthentication(authenticatedUser);
+		}
 
 	public String recoverAccount(){
 
@@ -170,6 +194,12 @@ public class LoginAction extends ActionSupport implements ServletRequestAware{
 	public void setEmail( String email ){
 	
 		this.email = email;
+	}
+
+	public void setAuthenticationManager(AuthenticationManager authenticationManager) {
+		this.authenticationManager = authenticationManager;
 	}		
+	
+	
 
 }
