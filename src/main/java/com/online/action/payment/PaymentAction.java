@@ -59,7 +59,7 @@ public class PaymentAction extends ActionSuportOnline{
 				}else{
 					this.payment.setUrl("https://sis.redsys.es/sis/realizarPago");
 				}
-				this.payment.setDs_Merchant_Amount(formateador.format(this.comanda.getPreu()));
+				this.payment.setDs_Merchant_Amount(formateador.format(this.comandaService.getPreuOfComanda(comanda)*100));
 						
 				String id = this.comanda.getId().toString();
 				if(id.length()<4){				

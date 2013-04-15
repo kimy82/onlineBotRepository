@@ -20,19 +20,19 @@
 		</div>
 		</div>
 		<form target="iframe" method="POST" id="form_p" action="${requestScope.payment.url}">
-			<input name="Ds_Merchant_Order" type="hidden" value="${requestScope.payment.Ds_Merchant_Order}">
-			<input name="Ds_Merchant_Amount" type="hidden" value="${requestScope.payment.Ds_Merchant_Amount}">
-			<input name="Ds_Merchant_Currency" type="hidden" value="${requestScope.payment.Ds_Merchant_Currency}">
-			<input name="Ds_Merchant_ProductDescription" type="hidden" value="${requestScope.payment.Ds_Merchant_ProductDescription}">
-			<input name="Ds_Merchant_Titular" type="hidden" value="${requestScope.payment.Ds_Merchant_Titular}">
-			<input name="Ds_Merchant_MerchantCode" type="hidden" value="${requestScope.payment.Ds_Merchant_MerchantCode}">
-			<input name="Ds_Merchant_UrlOK" type="hidden" value="${requestScope.payment.Ds_Merchant_UrlOK}">
-			<input name="Ds_Merchant_UrlKO" type="hidden" value="${requestScope.payment.Ds_Merchant_UrlKO}">
-			<input name="Ds_Merchant_ConsumerLanguage" type="hidden" value="${requestScope.payment.Ds_Merchant_ConsumerLanguage}">
-			<input name="Ds_Merchant_MerchantName" type="hidden" value="${requestScope.payment.Ds_Merchant_MerchantName}">
-			<input name="Ds_Merchant_Terminal" type="hidden" value="${requestScope.payment.Ds_Merchant_Terminal}">
-			<input name="Ds_Merchant_TransactionType" type="hidden" value="${requestScope.payment.Ds_Merchant_TransactionType}">
-			<input name="Ds_Merchant_MerchantSignature" type="hidden" value="${requestScope.payment.Ds_Merchant_MerchantSignature}">			
+			<input name="Ds_Merchant_Order" type="hidden" value="${requestScope.payment.ds_Merchant_Order}">
+			<input name="Ds_Merchant_Amount" type="hidden" value="${requestScope.payment.ds_Merchant_Amount}">
+			<input name="Ds_Merchant_Currency" type="hidden" value="${requestScope.payment.ds_Merchant_Currency}">
+			<input name="Ds_Merchant_ProductDescription" type="hidden" value="${requestScope.payment.ds_Merchant_ProductDescription}">
+			<input name="Ds_Merchant_Titular" type="hidden" value="${requestScope.payment.ds_Merchant_Titular}">
+			<input name="Ds_Merchant_MerchantCode" type="hidden" value="${requestScope.payment.ds_Merchant_MerchantCode}">
+			<input name="Ds_Merchant_UrlOK" type="hidden" value="${requestScope.payment.ds_Merchant_UrlOK}">
+			<input name="Ds_Merchant_UrlKO" type="hidden" value="${requestScope.payment.ds_Merchant_UrlKO}">
+			<input name="Ds_Merchant_ConsumerLanguage" type="hidden" value="${requestScope.payment.ds_Merchant_ConsumerLanguage}">
+			<input name="Ds_Merchant_MerchantName" type="hidden" value="${requestScope.payment.ds_Merchant_MerchantName}">
+			<input name="Ds_Merchant_Terminal" type="hidden" value="${requestScope.payment.ds_Merchant_Terminal}">
+			<input name="Ds_Merchant_TransactionType" type="hidden" value="${requestScope.payment.ds_Merchant_TransactionType}">
+			<input name="Ds_Merchant_MerchantSignature" type="hidden" value="${requestScope.payment.ds_Merchant_MerchantSignature}">			
 		</form>
 		<iframe name="iframe" src="${requestScope.payment.url}" frameborder="1" width="100%" height="800" ></iframe>
 	</div>
