@@ -63,7 +63,7 @@ public class PaymentAction extends ActionSuportOnline{
 						
 				String id = this.comanda.getId().toString();
 				if(id.length()<4){				
-					for(int numIndex=id.length(); numIndex==4; numIndex++){
+					for(int numIndex=id.length(); numIndex<=4; numIndex++){
 						id=id+"0";
 					}
 				}				

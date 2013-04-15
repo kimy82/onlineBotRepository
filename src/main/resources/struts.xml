@@ -7,6 +7,8 @@
 	<constant name="struts.devMode" value="true" />
 	<constant name="struts.action.extension" value="action" />
 	<constant name="struts.custom.i18n.resources" value="MessageResources" />
+	<constant name="struts.i18n.encoding" value="ISO-8859-1" />
+	 
 	
 	
 	

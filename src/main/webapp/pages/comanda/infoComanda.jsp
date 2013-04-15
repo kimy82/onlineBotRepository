@@ -284,15 +284,7 @@
 <s:hidden key="comanda.address" id="comandaddress"></s:hidden>																				
 </div>
 <c:import url="/pages/includes/endPage.jsp" />
-<<<<<<< .mine
-<div id="dialog_promo" class="filtres filtres-oberts" title="Promo">	 
-		 <h1><s:text name="txt.promo.escull" /></h1>
-				<ul id="prm" ></ul>
-		<h1><s:text name="txt.promo.escull.promo.especial" /></h1>
-				<ul id="esp" ></ul>				
-		<h1><s:text name="txt.promo.escull.promo.busca" /><input id="codePromo" type="text" value="" onblur="checkPromoVibility(this.value)" /><a href="#">CERCAR</a></h1>
-				<ul id="visp" ></ul>		
-=======
+
 
 <div id="dialog_promo" class="filtres filtres-oberts" title="Promo">
 
@@ -323,7 +315,6 @@
 		
 		<ul id="visp" ></ul>
 		</div>		
->>>>>>> .r359
 </div>  
 
 	<script src="http://maps.google.com/maps/api/js?sensor=false" type="text/javascript"></script>
