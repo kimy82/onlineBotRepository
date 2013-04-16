@@ -137,8 +137,10 @@ public class MantenimentRestaurantsAction extends ActionSuportOnline{
 				json = Utils.createErrorJSON("Not restaurant selected");
 			} else {
 				Restaurant restaurant = restaurantsBo.load(idRestaurant, true, false, false);
+				
 				Gson gson = new GsonBuilder().setPrettyPrinting().excludeFieldsWithModifiers(Modifier.PROTECTED).create();
-				json = gson.toJson(restaurant);
+				
+				json =Utils.escapeUTF(gson.toJson(restaurant));
 			}
 		} catch (Exception e) {
 			json = Utils.createErrorJSON("error in ajax action");
@@ -160,7 +162,8 @@ public class MantenimentRestaurantsAction extends ActionSuportOnline{
 		try {
 			out = this.response.getOutputStream();
 			inizializeTableParams();
-			json = searchInfoANDcreateJSONForRestaurants();
+			json = Utils.escapeUTF(searchInfoANDcreateJSONForRestaurants());
+			
 		} catch (NumberFormatException e) {
 			json = Utils.createErrorJSONForDataTable("error in ajax action: wrong params", this.sEcho);
 		} catch (Exception e) {
@@ -185,7 +188,7 @@ public class MantenimentRestaurantsAction extends ActionSuportOnline{
 			inizializeTableParams();
 			this.idRestaurant = (request.getParameter("id") != null && !request.getParameter("id").equals("")) ? Integer.parseInt(request
 					.getParameter("id")) : 1;
-			json = searchInfoANDcreateJSONForPlats();
+			json = Utils.escapeUTF(searchInfoANDcreateJSONForPlats());
 		} catch (NumberFormatException e) {
 			json = Utils.createErrorJSONForDataTable("error in ajax action: wrong params", this.sEcho);
 		} catch (Exception e) {

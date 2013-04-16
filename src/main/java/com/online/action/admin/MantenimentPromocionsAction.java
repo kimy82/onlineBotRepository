@@ -59,7 +59,7 @@ public class MantenimentPromocionsAction extends ActionSuportOnline{
 		try {
 			out = this.response.getOutputStream();
 			inizializeTableParams();
-			json = searchInfoANDcreateJSONForPromos();
+			json = Utils.escapeUTF(searchInfoANDcreateJSONForPromos());
 		} catch (NumberFormatException e) {
 			json = Utils.createErrorJSONForDataTable("error in ajax action: wrong params", this.sEcho);
 		} catch (Exception e) {
@@ -103,7 +103,7 @@ public class MantenimentPromocionsAction extends ActionSuportOnline{
 				jsonSB.append(",\"tipus\" :\"pnc\" }");
 			}
 
-			json = jsonSB.toString();
+			json =Utils.escapeUTF(jsonSB.toString());
 		} catch (BOException boe) {
 			json = Utils.createErrorJSON("error in ajax action: Error in BO");
 		} catch (NumberFormatException e) {

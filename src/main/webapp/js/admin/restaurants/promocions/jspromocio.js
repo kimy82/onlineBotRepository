@@ -92,8 +92,8 @@ function goToPromocio(id){
      			}else{
 					 	if(json.tipus=='apd'){
 					 		$("#id_apd").val(json.id);
-					 		$("#nompromo_apd").val(json.nom);
-					 		$("#nompromoES_apd").val(json.nomES);
+					 		$("#nompromo_apd").html(json.nom);
+					 		$("#nompromoES_apd").html(json.nomES);
 					 		$("#tipuDescompte_apd").val(json.tipuDescompte);
 					 		$("#numBegudes_apd").val(json.numBegudes);					 		
 					 		$("#tipusBeguda_apd option[value='"+json.tipusBeguda+"']").attr("selected","selected");  					 		
@@ -135,8 +135,8 @@ function goToPromocio(id){
 					 	}
 					 	if(json.tipus=='pnc'){
 					 		$("#id_pnc").val("");
-					 		$("#nompromo_pnc").val(json.nom);
-					 		$("#nompromoES_pnc").val(json.nomES);
+					 		$("#nompromo_pnc").html(json.nom);
+					 		$("#nompromoES_pnc").html(json.nomES);
 					 		$("#tipuDescompte_pnc").val(json.tipuDescompte);
 					 		$("#descompteImport_pnc").val(json.descompteImport);
 					 		$("#tipusBeguda_pnc option[value='"+json.tipusBeguda+"']").attr("selected","selected"); 

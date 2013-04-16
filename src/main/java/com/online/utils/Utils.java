@@ -16,7 +16,39 @@ import com.online.model.Users;
 import com.online.pojos.Basic;
 
 public class Utils{
+	
+	public static String escapeUTF(String desc){
+		desc = desc.replaceAll("À", "&#192;");
+		desc = desc.replaceAll("Á", "&#193;");
+		desc = desc.replaceAll("È", "&#200;");
+		desc = desc.replaceAll("É", "&#201;");		
+		desc = desc.replaceAll("Ì", "&#204;");
+		desc = desc.replaceAll("Í", "&#205;");
+		desc = desc.replaceAll("Ñ", "&#209;");
+		desc = desc.replaceAll("Ò", "&#210;");
+		desc = desc.replaceAll("Ó", "&#211;");
+		desc = desc.replaceAll("Ù", "&#217;");
+		desc = desc.replaceAll("Ú", "&#218;");
+		desc = desc.replaceAll("Ü", "&#220;");		
+		desc = desc.replaceAll("à", "&#224;");
+		desc = desc.replaceAll("á", "&#225;");
+		desc = desc.replaceAll("ç", "&#231;");
+		desc = desc.replaceAll("è", "&#232;");
+		desc = desc.replaceAll("é", "&#233;");
+		desc = desc.replaceAll("ì", "&#236;");
+		desc = desc.replaceAll("í", "&#236;");		
+		desc = desc.replaceAll("ñ", "&#241;");
+		desc = desc.replaceAll("ó", "&#243;");
+		desc = desc.replaceAll("ò", "&#242;");
+		desc = desc.replaceAll("ù", "&#249;");
+		desc = desc.replaceAll("ú", "&#250;");
+		desc = desc.replaceAll("ü", "&#252;");
+		desc = desc.replaceAll("í", "&#236;");
+		
+	 	
+		return desc;
 
+	}
 	public static String createSHA( String password ) throws NoSuchAlgorithmException{
 
 		MessageDigest md = MessageDigest.getInstance("SHA-1");

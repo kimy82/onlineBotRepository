@@ -110,7 +110,7 @@ public class MantenimentComandesAction extends ActionSuportOnline{
 		try {
 			out = this.response.getOutputStream();
 			inizializeTableParams();
-			json = searchInfoANDcreateJSONForComandes();
+			json =Utils.escapeUTF(searchInfoANDcreateJSONForComandes());
 		} catch (NumberFormatException e) {
 			json = Utils.createErrorJSONForDataTable("error in ajax action: wrong params", this.sEcho);
 		} catch (Exception e) {
@@ -133,7 +133,7 @@ public class MantenimentComandesAction extends ActionSuportOnline{
 		try {
 			out = this.response.getOutputStream();
 			inizializeTableParams();
-			json = searchInfoANDcreateJSONForAllComandes();
+			json = Utils.escapeUTF(searchInfoANDcreateJSONForAllComandes());
 		} catch (NumberFormatException e) {
 			json = Utils.createErrorJSONForDataTable("error in ajax action: wrong params", this.sEcho);
 		} catch (Exception e) {

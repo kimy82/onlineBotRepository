@@ -51,7 +51,7 @@ public class MantenimentBegudaAction extends ActionSuportOnline{
 			inizializeParamIDBeguda();
 			Beguda beguda = this.begudaBo.load(idBeguda);
 			Gson gson = new GsonBuilder().setPrettyPrinting().excludeFieldsWithoutExposeAnnotation().create();
-			json = gson.toJson(beguda);
+			json = Utils.escapeUTF(gson.toJson(beguda));
 		} catch (Exception e) {
 			json = Utils.createErrorJSON("error in ajax action");
 		}
@@ -72,7 +72,7 @@ public class MantenimentBegudaAction extends ActionSuportOnline{
 		try {
 			out = this.response.getOutputStream();
 			inizializeTableParams();
-			json = searchInfoANDcreateJSONForBegudes();
+			json = Utils.escapeUTF(searchInfoANDcreateJSONForBegudes());
 		} catch (NumberFormatException e) {
 			json = Utils.createErrorJSONForDataTable("error in ajax action: wrong params", this.sEcho);
 		} catch (Exception e) {

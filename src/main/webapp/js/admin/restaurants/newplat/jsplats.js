@@ -25,11 +25,11 @@ function showDivRestaurant(id){
      				$("#errorsajax").show();
      			}else{
 					 	if(json.nom!=null){
-					 		document.getElementById("nomrestaurant").value= json.nom;
+					 		$("#nomrestaurant").html(json.nom);
 					 	}
 					 
 					 	if(json.descripcio!=null){
-					 		document.getElementById("descrestaurant").value= json.descripcio;
+					 		$("#descrestaurant").html(json.descripcio);
 					 	}
 					 	if(json.id!=null){
 					 		document.getElementById("idRestaurant").value= json.id;

@@ -50,8 +50,8 @@ function goToPromocio(id){
      				$("#errorsajax").show();
      			}else{
 					 		$("#id_promo").val(json.id);
-					 		$("#nompromo").val(json.nom);
-					 		$("#nompromoES").val(json.nomES);
+					 		$("#nompromo").html(json.nom);
+					 		$("#nompromoES").html(json.nomES);
 					 		$("#tipuDescompte").val(json.tipuDescompte);
 					 		$("#numBegudes").val(json.numBegudes);					 		
 					 		$("#tipusBeguda option[value='"+json.tipusBeguda+"']").attr("selected","selected");  					 		

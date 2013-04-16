@@ -112,14 +112,14 @@ function infoUser(id){
 	   			}else{
 	
 	   				if(json.nom!=null){
-	   					$("#usernom").text(json.nom);
+	   					$("#usernom").html(json.nom);
 	   				}
 	   				if(json.username!=null){
-	   					$("#useremail").text(json.username);
+	   					$("#useremail").html(json.username);
 	   				}
 	   				
 	   				if(json.address!=null){
-	   					$("#useraddress").text(json.address);
+	   					$("#useraddress").html(json.address);
 	   				}
 	   				
 	   				if(json.telNumber!=null){
@@ -127,7 +127,7 @@ function infoUser(id){
 	   				}
 	   				
 	   				if(json.indicacions!=null){
-	   					$("#userind").text(json.indicacions);
+	   					$("#userind").html(json.indicacions);
 	   				}
 	   				
 	   				if(json.numComandesRealitzades!=null){

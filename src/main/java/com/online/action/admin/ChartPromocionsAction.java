@@ -38,7 +38,7 @@ public class ChartPromocionsAction extends ActionSuportOnline{
 
 	public String execute(){
 
-		String jsonChart = searchInfoANDcreateJSONForPromos();
+		String jsonChart = Utils.escapeUTF(searchInfoANDcreateJSONForPromos());
 		this.request.setAttribute("dataChart", jsonChart);
 		return SUCCESS;
 	}

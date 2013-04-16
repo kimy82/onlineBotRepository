@@ -89,12 +89,12 @@ function showDivBeguda(id){
      			}else{
 					 	
 					 		$("#id").val(json.id);
-					 		$("#nomBeguda").val(json.nom);
-					 		$("#nomBegudaES").val(json.nomES);
+					 		$("#nomBeguda").html(json.nom);
+					 		$("#nomBegudaES").html(json.nomES);
 					 		$("#tipusBeguda").val(json.tipus);					 		
 					 		$("#importBeguda").val(json.preu);
-					 		$("#descripcioBeguda").val(json.descripcio);
-					 		$("#descripcioBegudaES").val(json.descripcioES);
+					 		$("#descripcioBeguda").html(json.descripcio);
+					 		$("#descripcioBegudaES").html(json.descripcioES);
 					 		$("#infobegudanew").show('slow');					 							 			 					 										 					 						 					 						  
      			}				
 		  },

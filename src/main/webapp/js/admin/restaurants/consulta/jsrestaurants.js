@@ -141,13 +141,13 @@ function showDivRestaurant(id){
      			}else{
 					 	if(json.nom!=null){
 					 		document.getElementById("nomrestaurant").value= json.nom;
-					 	}
-					 
+					 		$("#nomrestaurant").html(json.nom);
+					 	}					 
 					 	if(json.descripcio!=null){
-					 		document.getElementById("descrestaurant").value= json.descripcio;
+					 		$("#descrestaurant").html(json.descripcio);					 		
 					 	}
 					 	if(json.descripcioES!=null){
-					 		document.getElementById("descrestaurantES").value= json.descripcioES;
+					 		$("#descrestaurantES").html(json.descripcioES);
 					 	}
 					 	if(json.id!=null){
 					 		document.getElementById("idRestaurant").value= json.id;					 		
@@ -265,8 +265,7 @@ $(document).ready(function() {
 		           				$("#errorsajaxlabel").text(json.error);
 		                		$("#errorsajax").show();
 		           			}else{
-			            		fnCallback(json);
-			            		//("#tbl_restaurants_paginate").hide();
+			            		fnCallback(json);			            		
 		           			}            	
 		            	},
 		            	"error":function(e){ 

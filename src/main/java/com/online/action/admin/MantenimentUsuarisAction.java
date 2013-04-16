@@ -161,7 +161,7 @@ public class MantenimentUsuarisAction extends ActionSuportOnline{
 		try {
 			out = this.response.getOutputStream();
 			inizializeParamTODeleteUser();
-			json = searchInfoANDcreateJSONForInfoUsuaris();
+			json = Utils.escapeUTF(searchInfoANDcreateJSONForInfoUsuaris());
 		} catch (NumberFormatException e) {
 			json = Utils.createErrorJSONForDataTable("error in ajax action: wrong params", this.sEcho);
 		} catch (Exception e) {
@@ -184,7 +184,7 @@ public class MantenimentUsuarisAction extends ActionSuportOnline{
 		try {
 			out = this.response.getOutputStream();
 			inizializeTableParams();
-			json = searchInfoANDcreateJSONForUsuaris();
+			json = Utils.escapeUTF(searchInfoANDcreateJSONForUsuaris());
 		} catch (NumberFormatException e) {
 			json = Utils.createErrorJSONForDataTable("error in ajax action: wrong params", this.sEcho);
 		} catch (Exception e) {
