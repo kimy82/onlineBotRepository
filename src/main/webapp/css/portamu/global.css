@@ -1792,3 +1792,13 @@ vertical-align:middle;
     margin-top: -10px;
     text-transform: uppercase;
 }
+#footer_left{
+	float:left;
+	width:300px;
+	margin-right:56px;
+}
+#footer_mig{
+	float:left;
+	width:300px;
+	margin-right:56px;
+}

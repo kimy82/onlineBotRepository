@@ -5,16 +5,20 @@
 <div id="footer">
 	<div id="footer_int">
 	<div id="footer_left">
-	Disposem d'una selecció de restaurants de Girona que no disposen servei d'entrega a domicili. La nostra voluntat es tenir una oferta àmplia i de qualitat.
+	PORTAMU</br>
+	El teu restaurant a casa a girona</br>
+
+	Disposem d'una selecció de restaurants de Girona que no disposen servei d'entrega a domicili. La nostra voluntat es tenir una oferta àmplia i de qualitat. </br></br>
+
+	PORTAMU ROGASO SL · B55163265 · Carrer nord numero 6 local 4 · Hola@portamu.com
 	</div>
 	<div id="footer_mig">
-	<a class="more" href="/${initParam.app}/politicaPrivacitat.action" >Politica de Privacitat</a></br>
-	<a class="more" href="/${initParam.app}/politicaCompra.action" > · Politica de Compras i devolucions</a>
+	COMPRA SEGURA AMB
 	
 	
 	</div>
 		<div id="footer_rigth">
-		<<a class="twitter-timeline"  href="https://twitter.com/InfoAlexmany"  data-widget-id="322360648115818496">Tweets por @InfoAlexmany</a>
+		<a class="twitter-timeline"  href="https://twitter.com/InfoAlexmany"  data-widget-id="322360648115818496">Tweets por @InfoAlexmany</a>
 <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
 
 		</div>
@@ -22,6 +26,7 @@
 </div>
 <div id="credits">
 	<div id="int_credits">
-		PORTAMU ROGASO SL · B55163265 · Carrer nord numero 6 local 4 · Hola@portamu.com ·  Disseny i programació Alexmany.com.
+		<a class="more" href="/${initParam.app}/politicaPrivacitat.action" >Politica de Privacitat</a> · 
+	<a class="more" href="/${initParam.app}/politicaCompra.action" > · Politica de Compras i devolucions</a>  Disseny i programació Alexmany.com.
 	</div>
 </div>
