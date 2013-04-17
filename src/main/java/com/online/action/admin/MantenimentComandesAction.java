@@ -17,6 +17,7 @@ import com.online.model.Comandes;
 import com.online.model.PlatComanda;
 import com.online.pojos.AllComandesTable;
 import com.online.pojos.ComandesTable;
+import com.online.services.impl.ComandaServiceImpl;
 import com.online.services.impl.PaymentServiceImpl;
 import com.online.supplier.extend.ActionSuportOnline;
 import com.online.utils.Utils;
@@ -32,6 +33,7 @@ public class MantenimentComandesAction extends ActionSuportOnline{
 	private ComandaBo			comandaBo;
 	private UsersBo				usersBo;
 	private PaymentServiceImpl	paymentService;
+	private ComandaServiceImpl	comandaService;
 
 	private Long				idComanda;
 
@@ -57,7 +59,7 @@ public class MantenimentComandesAction extends ActionSuportOnline{
 			out = this.response.getOutputStream();
 			inizializeIdComanda();
 			Comandes comanda = this.comandaBo.load(idComanda);
-			List<String> orders = this.paymentService.getComandaOrders(comanda);
+			List<String> orders = this.paymentService.getComandaOrders(comanda, this.comandaService.checkMoreThanOneRestaurant(comanda));
 			this.paymentService.sendOrder(false, orders);
 
 		} catch (NumberFormatException e) {
@@ -317,5 +319,11 @@ public class MantenimentComandesAction extends ActionSuportOnline{
 
 		this.usersBo = usersBo;
 	}
+
+	public void setComandaService(ComandaServiceImpl comandaService) {
+		this.comandaService = comandaService;
+	}
+	
+	
 
 }

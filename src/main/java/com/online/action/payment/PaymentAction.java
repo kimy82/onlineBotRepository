@@ -1,12 +1,14 @@
 package com.online.action.payment;
 
 import java.io.IOException;
+import java.security.NoSuchAlgorithmException;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 
 import com.online.bo.ComandaBo;
 import com.online.bo.UsersBo;
+import com.online.exceptions.BOException;
 import com.online.exceptions.PaymentException;
 import com.online.exceptions.WrongParamException;
 import com.online.model.Comandes;
@@ -59,7 +61,19 @@ public class PaymentAction extends ActionSuportOnline{
 				}else{
 					this.payment.setUrl("https://sis.redsys.es/sis/realizarPago");
 				}
-				this.payment.setDs_Merchant_Amount(formateador.format(this.comandaService.getPreuOfComanda(comanda)*100));
+				Double preu = this.comandaService.getPreuOfComanda(comanda);
+				if(this.comanda.getaDomicili()!=null && this.comanda.getaDomicili()==true){
+					boolean morethanOne =this.comandaService.checkMoreThanOneRestaurant(comanda);
+					if(morethanOne){
+						Double add = Double.parseDouble(this.request.getSession().getServletContext().getInitParameter("transport_double"));
+						preu= preu+add;
+					}else{
+						Double add = Double.parseDouble(this.request.getSession().getServletContext().getInitParameter("transport"));
+						preu= preu+add;
+					}
+				}
+				
+				this.payment.setDs_Merchant_Amount(formateador.format(preu*100));
 						
 				String id = this.comanda.getId().toString();
 				if(id.length()<4){				
@@ -71,14 +85,14 @@ public class PaymentAction extends ActionSuportOnline{
 				
 				this.payment.setDs_Merchant_ProductDescription(this.comandaService.getListOfPlatsAndDrinks(comanda));
 				this.payment.setDs_Merchant_Titular(this.nameAuth);
-				this.payment.setDs_Merchant_UrlOK("http://www.portamu.com/"+context+"/payment/paymentOK.action");
-				this.payment.setDs_Merchant_UrlKO("http://www.portamu.com/"+context+"/payment/paymentKO.action");
-				this.payment.setDs_Merchant_MerchantSignature(this.paymentService.SHA(formateador.format((this.comandaService.getPreuOfComanda(comanda)*100)), id, "327318309", "978", "0","",entorn));				
+				this.payment.setDs_Merchant_UrlOK("http://www.portamu.com/"+context+"/paymentPOK.action?orderId="+this.comanda.getId()+"&order="+this.paymentService.SHAOrder(String.valueOf(this.comanda.getId()), entorn));
+				this.payment.setDs_Merchant_UrlKO("http://www.portamu.com/"+context+"/paymentPKO.action");
+				this.payment.setDs_Merchant_MerchantSignature(this.paymentService.SHA(formateador.format((preu*100)), id, "327318309", "978", "0","",entorn));				
 				
 				return "TPV";
 			}
 
-			orders = this.paymentService.getComandaOrders(this.comanda);
+			orders = this.paymentService.getComandaOrders(this.comanda,this.comandaService.checkMoreThanOneRestaurant(this.comanda));
 
 		} catch (PaymentException pe) {
 			pe.printStackTrace();
@@ -101,30 +115,71 @@ public class PaymentAction extends ActionSuportOnline{
 
 	}
 	
+	public String paymentOK() throws IOException, PaymentException, NoSuchAlgorithmException, BOException{
+			
+		try{
+			String order = this.request.getParameter("order");
+			String orderId = this.request.getParameter("orderId");
+			String entorn = this.request.getSession().getServletContext().getInitParameter("entorn");
+			this.request.setAttribute("order", order);
+			this.request.setAttribute("orderId", orderId);
+			if(this.paymentService.CheckOrderOK(order, entorn,orderId)){
+				List<String> orders = new ArrayList<String>();
+			
+		
+				this.comanda = this.comandaBo.load(Long.parseLong(orderId));
+				this.comanda.setPagada(true);
+				this.comandaBo.update(comanda);
+				try {
+					orders = this.paymentService.getComandaOrders(this.comanda, this.comandaService.checkMoreThanOneRestaurant(this.comanda));
+		
+				} catch (PaymentException pe) {
+					return ERROR;
+				} catch (Exception e) {
+					return ERROR;
+				}
+		
+				this.paymentService.sendOrder(true, orders);
+				this.paymentService.sendOrder(false, orders);
+			}
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		
+		return SUCCESS;
+	}
+
+	
 	public String paymentTpvNotDone() throws IOException{
 
 		return SUCCESS;
 	}
 
-	public String paymentTpvDone() throws IOException{
-
-		List<String> orders = new ArrayList<String>();
+	public String paymentTpvDone() throws IOException, PaymentException, NoSuchAlgorithmException, BOException{
+		
+		String order = this.request.getParameter("order");
+		String entorn = this.request.getSession().getServletContext().getInitParameter("entorn");
+		setAuthenticationUser();
 		inizilizeComandaId();
-
-		this.comanda = this.comandaBo.load(idComanda);
-		this.comanda.setPagada(true);
-		this.comandaBo.update(comanda);
-		try {
-			orders = this.paymentService.getComandaOrders(this.comanda);
-
-		} catch (PaymentException pe) {
-			return ERROR;
-		} catch (Exception e) {
-			return ERROR;
+		if(this.paymentService.CheckOrderOK(order, entorn,String.valueOf(this.idComanda))){
+			List<String> orders = new ArrayList<String>();
+		
+	
+			this.comanda = this.comandaBo.load(idComanda);
+			this.comanda.setPagada(true);
+			this.comandaBo.update(comanda);
+			try {
+				orders = this.paymentService.getComandaOrders(this.comanda, this.comandaService.checkMoreThanOneRestaurant(this.comanda));
+	
+			} catch (PaymentException pe) {
+				return ERROR;
+			} catch (Exception e) {
+				return ERROR;
+			}
+	
+			this.paymentService.sendOrder(true, orders);
+			this.paymentService.sendOrder(false, orders);
 		}
-
-		this.paymentService.sendOrder(true, orders);
-		this.paymentService.sendOrder(false, orders);
 		return SUCCESS;
 	}
 

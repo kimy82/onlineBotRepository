@@ -344,10 +344,17 @@ function addDomicili(){
 	 $("#arecollir_div").hide('slow'); 
 	if($("#adomicili").is(':checked')){		
 		
-		 $("#arecollir").attr('checked',false);		 
-		 $("#transport_lb").text(transportPreu);
-		 $("#preu").text(parseFloat(parseFloat(preu)+parseFloat(transportPreu)).toFixed(2));		 
-		 $("#labelpreutotalPromo").text(parseFloat(parseFloat(preuT)+parseFloat(transportPreu)).toFixed(2));
+		 $("#arecollir").attr('checked',false);		
+		 if(morethanone=="true"){
+			 $("#transport_lb").text(transportPreuDouble);
+			 $("#preu").text(parseFloat(parseFloat(preu)+parseFloat(transportPreuDouble)).toFixed(2));		 
+			 $("#labelpreutotalPromo").text(parseFloat(parseFloat(preuT)+parseFloat(transportPreuDouble)).toFixed(2));
+			 
+		 }else{
+			 $("#transport_lb").text(transportPreu);
+			 $("#preu").text(parseFloat(parseFloat(preu)+parseFloat(transportPreu)).toFixed(2));		 
+			 $("#labelpreutotalPromo").text(parseFloat(parseFloat(preuT)+parseFloat(transportPreu)).toFixed(2));			 
+		 }
 		 initPromoDescompteFromStorage();
 		 $("#adomicili_div").show('slow');
 		 $("#pagarDom").show('slow');
@@ -357,8 +364,14 @@ function addDomicili(){
 	}else{
 		 $("#adomicili_div").hide('slow');
 		 $("#transport_lb").text("0");
-		 $("#preu").text(parseFloat(parseFloat(preu)-parseFloat(transportPreu)).toFixed(2));
-		 $("#labelpreutotalPromo").text(parseFloat(parseFloat(preuT)-parseFloat(transportPreu)).toFixed(2));
+		 if(morethanone=="true"){
+			 $("#preu").text(parseFloat(parseFloat(preu)-parseFloat(transportPreuDouble)).toFixed(2));
+			 $("#labelpreutotalPromo").text(parseFloat(parseFloat(preuT)-parseFloat(transportPreuDouble)).toFixed(2));
+		 }else{
+			 $("#preu").text(parseFloat(parseFloat(preu)-parseFloat(transportPreu)).toFixed(2));
+			 $("#labelpreutotalPromo").text(parseFloat(parseFloat(preuT)-parseFloat(transportPreu)).toFixed(2));
+		 }
+		 
 		 initPromoDescompteFromStorage();
 	}
 	reloadHores();
@@ -404,8 +417,14 @@ function addRecollir(){
 		       			 var preu = $("#preu").text();
 		       			 var preuT = $("#labelpreutotalPromo").text();
 		       			 $("#transport_lb").text("0");
-		       			 $("#preu").text(parseFloat(parseFloat(preu)-parseFloat(transportPreu)).toFixed(2));
-		       			 $("#labelpreutotalPromo").text(parseFloat(parseFloat(preuT)-parseFloat(transportPreu)).toFixed(2));
+		       			 if(morethanone=="true"){
+		       				$("#preu").text(parseFloat(parseFloat(preu)-parseFloat(transportPreuDouble)).toFixed(2));
+			       			 $("#labelpreutotalPromo").text(parseFloat(parseFloat(preuT)-parseFloat(transportPreuDouble)).toFixed(2));
+		       			 }else{
+		       				$("#preu").text(parseFloat(parseFloat(preu)-parseFloat(transportPreu)).toFixed(2));
+			       			 $("#labelpreutotalPromo").text(parseFloat(parseFloat(preuT)-parseFloat(transportPreu)).toFixed(2));
+		       			 }
+		       			 
 		       			 initPromoDescompteFromStorage();
 	  				 }
 	       			 $("#targetaContrarembols").val("targeta");

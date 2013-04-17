@@ -58,6 +58,13 @@
 		<action name="politicaCompra" >
 			<result>/pages/politica/politicaCompra.jsp</result>
 		</action>
+		
+		<action name="paymentPOK" class="com.online.action.payment.PaymentAction" method="paymentOK">
+			<result name="success" >/pages/payment/paymentOK.jsp</result>				
+		</action>
+		<action name="paymentPKO">
+			<result>/pages/payment/paymentKO.jsp</result>		
+		</action>	
 		<action name="comFerComanda" >
 			<result>/pages/general/comFerComanda.jsp</result>
 		</action>

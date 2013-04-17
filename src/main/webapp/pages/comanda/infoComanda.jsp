@@ -363,6 +363,7 @@ function submitLog(){
 	    }
 	});	
 }
+var morethanone = "${requestScope.morethanone}";
 var addressToLoad ='${requestScope.comanda.address}';
 if(addressToLoad==''){
 	addressToLoad =  '${requestScope.user.address}';	

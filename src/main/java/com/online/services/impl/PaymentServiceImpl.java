@@ -3,6 +3,8 @@ package com.online.services.impl;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -22,15 +24,51 @@ import com.online.services.PaymentService;
 
 public class PaymentServiceImpl implements PaymentService {
 
-	private Comandes comanda;
-	private final String CODI_MAQUINA_ADMIN="AC001";
+	private Comandes 		comanda;
+	private final String	CODI_MAQUINA_ADMIN="AC001";
 	private ClauBo			clauBo;
+	
+	public boolean CheckOrderOK(String order, String entorn,String orderID) throws PaymentException, NoSuchAlgorithmException{
+		boolean check=false;
+		String recoveredOrder = SHAOrder(orderID, entorn);
+		if(order.equals(recoveredOrder)){
+			check=true;
+		}
+		return check;
+	}
 	
 	public String  SHA(String Ds_Merchant_Amount, String Ds_Merchant_Order,String Ds_Merchant_MerchantCode, String DS_Merchant_Currency, String Ds_Merchant_TransactionType,String Ds_Merchant_MerchantURL,String entorn) throws PaymentException, NoSuchAlgorithmException {
 		try{
 		Clau clau = this.clauBo.getClau(entorn);
 		
-		String cadena = Ds_Merchant_Amount+Ds_Merchant_Order+Ds_Merchant_MerchantCode+DS_Merchant_Currency+Ds_Merchant_TransactionType+Ds_Merchant_MerchantURL+clau.getCode();
+		String cadena = Ds_Merchant_Amount+Ds_Merchant_Order+Ds_Merchant_MerchantCode+DS_Merchant_Currency+Ds_Merchant_TransactionType+clau.getCode();
+		MessageDigest md;
+		byte[] buffer, digest;
+		String hash = "";
+
+		
+		  buffer = cadena.getBytes();
+	        md = MessageDigest.getInstance("SHA1");
+	        md.update(buffer);
+	        digest = md.digest();
+
+	        for(byte aux : digest) {
+	            int b = aux & 0xff;
+	            if (Integer.toHexString(b).length() == 1) hash += "0";
+	            hash += Integer.toHexString(b);
+	        }
+	     return hash;
+		}catch(Exception e){
+			e.printStackTrace();
+			throw new PaymentException(e,"payment");
+		}
+	}
+	
+	public String  SHAOrder(String order,String entorn) throws PaymentException, NoSuchAlgorithmException {
+		try{
+		Clau clau = this.clauBo.getClau(entorn);
+		
+		String cadena = order+clau.getCode();
 		MessageDigest md;
 		byte[] buffer, digest;
 		String hash = "";
@@ -57,7 +95,7 @@ public class PaymentServiceImpl implements PaymentService {
 		
 		for(String order : orders){
 			RestClient client = new RestClient();
-			Resource resource = client.resource("http://localhost/ComandaRest/jaxrs/comandes/file");
+			Resource resource = client.resource("http://www.portamu.com/ComandaRest/jaxrs/comandes/file");
 			String[] orderVec = order.split("&");
 			int iterador=0;
 			String begudes="";
@@ -99,7 +137,7 @@ public class PaymentServiceImpl implements PaymentService {
 		
 	}
 	
-	public List<String> getComandaOrders(Comandes comanda)
+	public List<String> getComandaOrders(Comandes comanda, boolean moreThanOneRestaurant)
 			throws PaymentException {
 
 		this.comanda = comanda;
@@ -177,11 +215,20 @@ public class PaymentServiceImpl implements PaymentService {
 				for (String idPlat : platsId) {
 					comandaSB.append(comandes.get(infoRestaurant[0] + "_" + idPlat) + ";");
 				}
-				comandaOrderSB.append("&comanda="+comandaSB.toString());
-
+				int day = Calendar.getInstance().get(Calendar.DAY_OF_MONTH);
+				Calendar cal = Calendar.getInstance();
+				cal.setTime(this.comanda.getDia());
+				int dayComanda = cal.get(Calendar.DAY_OF_MONTH);
+				if(dayComanda>day)			
+					comandaOrderSB.append("&comanda="+comandaSB.toString());
+				else
+					comandaOrderSB.append("&comanda= AL LORO; AL LORO; AL LORO; "+comandaSB.toString());
 				
-				if (this.comanda.getaDomicili()) {
-					comandaOrderSB.append("&deliveryCharge=3.0");
+				if (this.comanda.getaDomicili()) {		
+					if(moreThanOneRestaurant)
+						comandaOrderSB.append("&deliveryCharge=4.5");
+					else
+						comandaOrderSB.append("&deliveryCharge=6.90");
 				} else {
 					comandaOrderSB.append("&deliveryCharge=0.0");
 				}
@@ -204,9 +251,9 @@ public class PaymentServiceImpl implements PaymentService {
 				
 				comandaOrderSB.append("&comandaName=Comanda:"+this.comanda.getId());
 				
-				comandaOrderSB.append("&comandaHora=H.Comanda:"+this.comanda.getFentrada());
+				comandaOrderSB.append("&comandaHora=H.Comanda:"+Calendar.getInstance().get(Calendar.HOUR_OF_DAY)+" "+Calendar.getInstance().get(Calendar.MINUTE));
 				
-				comandaOrderSB.append("&comandaEntrega=H.Entrega:"+this.comanda.getHora());
+				comandaOrderSB.append("&comandaEntrega=H.Entrega:"+rangHora(this.comanda.getHora())+" "+this.comanda.getHora());
 				
 				comandaOrderSB.append("&comandaLimit=H.Limit:"+this.comanda.getHora());
 				
@@ -234,6 +281,27 @@ public class PaymentServiceImpl implements PaymentService {
 	}
 
 	// PRIVATE
+	private String rangHora(String hora){
+		String[] horaVec = hora.split(":");
+		
+		if(horaVec.length==2){
+			String horaP = horaVec[0];
+			String horaF = horaVec[1];
+			if(horaF.equals("00")){
+				if(horaP!=null){
+					int horaPInt = Integer.parseInt(horaP);
+					horaP=String.valueOf(horaPInt-1);
+					horaF="00";
+					hora=horaP+":"+horaF;
+				}
+			}else{
+				horaF="00";
+				hora=horaP+":"+horaF;
+			}
+		}
+		return hora;
+		
+	}
 	private String transformTel(String tel){
 		StringBuffer toSentTel= new StringBuffer("");
 		String[] vecTel= tel.split("");

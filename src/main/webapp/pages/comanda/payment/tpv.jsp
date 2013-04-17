@@ -7,12 +7,15 @@
 	<META http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 	<META http-equiv="Content-Style-Type" content="text/css">
 	<link rel="shortcut icon" href="<c:url value='/img/elements/logo_portamu16.jpg' />"> 
-	<title>Welcome</title>	
-	<link rel="stylesheet" href="<c:url value='/css/admin.css' />" type="text/css"   media="screen" />
+	<title><s:text name="txt.welcome.principal" /></title>	
+	<link rel="stylesheet" href="<c:url value='/css/portamu/global.css' />" type="text/css"   media="screen" />
 	<link rel="stylesheet" href="<c:url value='/css/portamu/reset.css' />" type="text/css"   media="screen" />
+	<link rel="stylesheet" href="<c:url value='/css/online.css' />" type="text/css"   media="screen" />
 </head>
 <body>
+<c:import url="/pages/includes/headerContext.jsp" />
 <div class="content">
+		<c:import url="/pages/includes/menuHeaderTPV.jsp" />
 	<div class="container">
 		<div class="topadmin">
 		<div id="int_left">
@@ -34,7 +37,7 @@
 			<input name="Ds_Merchant_TransactionType" type="hidden" value="${requestScope.payment.ds_Merchant_TransactionType}">
 			<input name="Ds_Merchant_MerchantSignature" type="hidden" value="${requestScope.payment.ds_Merchant_MerchantSignature}">			
 		</form>
-		<iframe name="iframe" src="${requestScope.payment.url}" frameborder="1" width="100%" height="800" ></iframe>
+		<iframe name="iframe" id="iframe" src="${requestScope.payment.url}" frameborder="1" width="100%" height="800" ></iframe>
 	</div>
 </div>
 <script type="text/javascript">
