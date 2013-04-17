@@ -12,6 +12,12 @@
 		<property name="comment" type="string" lazy="false" >
 			<column name="COMMENT" length="400" not-null="true" />
 		</property>		
+		<property name="dia" type="date">
+			<column name="DIA"  />
+		</property>
+		<property name="nomUsu" type="string" lazy="false" >
+			<column name="NOM_USU" length="100" not-null="false" />
+		</property>	
 		<many-to-one name="plat" class="com.online.model.Plat" fetch="select">
             <column name="PLAT_ID" not-null="true" />
         </many-to-one>

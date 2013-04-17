@@ -1,8 +1,7 @@
 package com.online.model;
 
 import java.io.Serializable;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.Date;
 
 public class Foro implements Serializable{
 
@@ -20,6 +19,10 @@ public class Foro implements Serializable{
 	private String				comment;
 	
 	private Plat				plat;
+	
+	private Date 				dia;
+	
+	private String 				nomUsu;
 
 	
 	// CONSTRUCTORS	 
@@ -64,7 +67,21 @@ public class Foro implements Serializable{
 	public void setPlat( Plat plat ){
 	
 		this.plat = plat;
-	}	
-	
-	
+	}
+
+	public Date getDia() {
+		return dia;
+	}
+
+	public void setDia(Date dia) {
+		this.dia = dia;
+	}
+
+	public String getNomUsu() {
+		return nomUsu;
+	}
+
+	public void setNomUsu(String nomUsu) {
+		this.nomUsu = nomUsu;
+	}					
 }

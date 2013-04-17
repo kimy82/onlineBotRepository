@@ -29,7 +29,7 @@
 		
 			    <s:iterator value="plat.comments" var="comt">
 							<tr id="${comt.id}" >
-								<td>${comt.comment}</td>																				
+								<td>${comt.comment} (${comt.nomUsu} &nbsp; ${comt.dia})</td>																				
 									
 							    <td><a href="#" onclick="deleteComment(${plat.id},${comt.id})" ><img src="<c:url value='/images/delete.png' />" /> </a></td>																									
 							</tr>						
@@ -42,7 +42,7 @@
 		
 			    <s:iterator value="beguda.comments" var="comt">
 							<tr id="${comt.id}" >
-								<td>${comt.comment}</td>																				
+								<td>${comt.comment} (${comt.nomUsu} &nbsp; ${comt.dia})</td>																				
 									
 							    <td><a href="#" onclick="deleteCommentBeguda(${comt.id})" ><img src="<c:url value='/images/delete.png' />" /> </a></td>																									
 							</tr>						
@@ -56,13 +56,13 @@
 			    <s:iterator value="listComments" var="comt">
 			    		<c:if test="${not empty comt.idPlat}">
 			    			<tr id="all_pl_${comt.idComment}" >
-								<td>${comt.comment}</td>																													
+								<td>${comt.comment} (${comt.nomUsu} &nbsp; ${comt.dia})</td>																													
 							    <td><a href="#" onclick="deleteCommentFormAll(${comt.idPlat},${comt.idComment})" ><img src="<c:url value='/images/delete.png' />" /> </a></td>																									
 							</tr>
 			    		</c:if>
 			    		<c:if test="${not empty comt.idBeguda}">
 			    			<tr id="all_bg_${comt.idComment}" >
-								<td>${comt.comment}</td>																													
+								<td>${comt.comment} (${comt.nomUsu} &nbsp; ${comt.dia})</td>																													
 							    <td><a href="#" onclick="deleteCommentFromAllBeguda(${comt.idBeguda},${comt.idComment})" ><img src="<c:url value='/images/delete.png' />" /> </a></td>																									
 							</tr>
 			    		</c:if>											

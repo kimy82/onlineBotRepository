@@ -17,6 +17,13 @@ alter table plats add column LACTICS tinyint(1) NOT NULL DEFAULT 1;
 alter table plats add column VEGETARIANS tinyint(1) NOT NULL DEFAULT 1;
 alter table plats add column FRUITS_SECS tinyint(1) NOT NULL DEFAULT 1;
 
+
+alter table foro add column DIA DATE;
+alter table foro add column NOM_USU varchar(100);
+
+alter table foroB add column DIA DATE;
+alter table foroB add column NOM_USU varchar(100);
+
 alter table  promocions add column CODE VARCHAR(10);
 alter table  promocions add column VISIBILITY tinyint(1) NOT NULL DEFAULT 1;
 	
@@ -233,6 +240,8 @@ CREATE TABLE foro(
   FORO_ID INT(10) UNSIGNED NOT NULL AUTO_INCREMENT,
   COMMENT  varchar(400),
   PLAT_ID INT(10) UNSIGNED NOT NULL,
+  DIA DATE,
+  NOM_USU varchar(100)
   PRIMARY KEY (`FORO_ID`) USING BTREE
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
    
@@ -245,6 +254,8 @@ CREATE TABLE foroB(
   FOROB_ID INT(10) UNSIGNED NOT NULL AUTO_INCREMENT,
   COMMENT  varchar(400),
   BEGUDA_ID INT(10) UNSIGNED NOT NULL,
+  DIA DATE,
+  NOM_USU varchar(100)
   PRIMARY KEY (`FOROB_ID`) USING BTREE
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
    

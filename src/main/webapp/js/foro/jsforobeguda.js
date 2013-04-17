@@ -119,7 +119,11 @@ function saveComment() {
 		var comment = $("#newComment").val();
 		if(insult.detectInsult(comment, initParams.txtalertinsult))return;
 		
-		var data = "idBeguda=" + idBeguda + "&comment=" + comment;
+		var html = comment.replace(/[\u00A0-\u00FF]/g, function(c) {
+			return '#'+c.charCodeAt(0)+';';
+		});
+		
+		var data = "idBeguda=" + idBeguda + "&comment=" + html;
 		
 		$.ajax({
 					type : "POST",

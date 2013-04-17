@@ -138,13 +138,18 @@ function votaPlat(){
 			});
 }
 
+
 function saveComment() {
 		var idPlat = $("#idPlat").val();
 		
 		var comment = $("#newComment").val();
 		if(insult.detectInsult(comment, initParams.txtalertinsult))return;
 		
-		var data = "idPlat=" + idPlat + "&comment=" + comment;
+		var html = comment.replace(/[\u00A0-\u00FF]/g, function(c) {
+			return '#'+c.charCodeAt(0)+';';
+		});
+		
+		var data = "idPlat=" + idPlat + "&comment=" +html;
 		
 		$.ajax({
 					type : "POST",

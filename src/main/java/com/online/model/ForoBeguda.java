@@ -1,6 +1,7 @@
 package com.online.model;
 
 import java.io.Serializable;
+import java.util.Date;
 
 public class ForoBeguda implements Serializable{
 
@@ -19,6 +20,9 @@ public class ForoBeguda implements Serializable{
 	
 	private Beguda				beguda;
 
+	private Date 				dia;
+	
+	private String 				nomUsu;
 	
 	// CONSTRUCTORS	 
 	public ForoBeguda() {
@@ -63,4 +67,21 @@ public class ForoBeguda implements Serializable{
 	
 		this.beguda = beguda;
 	}
+
+	public Date getDia() {
+		return dia;
+	}
+
+	public void setDia(Date dia) {
+		this.dia = dia;
+	}
+
+	public String getNomUsu() {
+		return nomUsu;
+	}
+
+	public void setNomUsu(String nomUsu) {
+		this.nomUsu = nomUsu;
+	}
+	
 }

@@ -151,12 +151,12 @@
 			<artifactId>mockito-all</artifactId>
 			<version>1.9.0</version>
 		</dependency>
-		<dependency>
+		<dependency> 
 			<groupId>com.sun</groupId>
 			<artifactId>tools</artifactId>
 			<version>1.5</version>
 			<scope>system</scope>
-			<systemPath>C:/Program Files (x86)/Java/jdk1.6.0_17/lib/tools.jar</systemPath>
+			<systemPath>C:/Program Files/Java/jdk1.7.0_02/lib/tools.jar</systemPath>
 		</dependency>
 		<dependency>
 			<groupId>javax.mail</groupId>
@@ -247,7 +247,7 @@
 						<configuration>
 							<linebreak>4000</linebreak>
 							<nomunge>true</nomunge>
-         					<verbose>true</verbose>
+         					<verbose>false</verbose>
           					<preserveAllSemiColons>true</preserveAllSemiColons>
 							<disableOptimizations>true</disableOptimizations>
 							<cssSourceDir>css</cssSourceDir>
@@ -281,7 +281,7 @@
 						<configuration>
 							<linebreak>4000</linebreak>
 							<nomunge>true</nomunge>
-         					<verbose>true</verbose>
+         					<verbose>false</verbose>
           					<preserveAllSemiColons>true</preserveAllSemiColons>
 							<disableOptimizations>true</disableOptimizations>
 							<cssSourceDir>css</cssSourceDir>
@@ -315,7 +315,7 @@
 						<configuration>
 							<linebreak>4000</linebreak>
 							<nomunge>true</nomunge>
-         					<verbose>true</verbose>
+         					<verbose>false</verbose>
           					<preserveAllSemiColons>true</preserveAllSemiColons>
 							<disableOptimizations>true</disableOptimizations>
 							<cssSourceDir>css</cssSourceDir>
@@ -343,7 +343,7 @@
 							<linebreak>4000</linebreak>
 							<linebreak>4000</linebreak>
 							<nomunge>true</nomunge>
-         					<verbose>true</verbose>
+         					<verbose>false</verbose>
           					<preserveAllSemiColons>true</preserveAllSemiColons>
 							<disableOptimizations>true</disableOptimizations>
 							<cssSourceDir>css</cssSourceDir>
@@ -374,7 +374,7 @@
 						<configuration>
 							<linebreak>4000</linebreak>
 							<nomunge>true</nomunge>
-         					<verbose>true</verbose>
+         					<verbose>false</verbose>
           					<preserveAllSemiColons>true</preserveAllSemiColons>
 							<disableOptimizations>true</disableOptimizations>
 							<cssSourceDir>css</cssSourceDir>
@@ -411,7 +411,7 @@
 						<configuration>
 							<linebreak>4000</linebreak>
 							<nomunge>true</nomunge>
-         					<verbose>true</verbose>
+         					<verbose>false</verbose>
           					<preserveAllSemiColons>true</preserveAllSemiColons>
 							<disableOptimizations>true</disableOptimizations>
 							<cssSourceDir>css</cssSourceDir>
@@ -447,7 +447,7 @@
 						<configuration>
 							<linebreak>4000</linebreak>
 							<nomunge>true</nomunge>
-         					<verbose>true</verbose>
+         					<verbose>false</verbose>
           					<preserveAllSemiColons>true</preserveAllSemiColons>
 							<disableOptimizations>true</disableOptimizations>
 							<cssSourceDir>css</cssSourceDir>
@@ -482,7 +482,7 @@
 						<configuration>
 							<linebreak>4000</linebreak>
 							<nomunge>true</nomunge>
-         					<verbose>true</verbose>
+         					<verbose>false</verbose>
           					<preserveAllSemiColons>true</preserveAllSemiColons>
 							<disableOptimizations>true</disableOptimizations>
 							<cssSourceDir>css</cssSourceDir>
@@ -512,7 +512,7 @@
 						<configuration>
 							<linebreak>4000</linebreak>
 							<nomunge>true</nomunge>
-         					<verbose>true</verbose>
+         					<verbose>false</verbose>
           					<preserveAllSemiColons>true</preserveAllSemiColons>
 							<disableOptimizations>true</disableOptimizations>
 							<cssSourceDir>css</cssSourceDir>
@@ -543,7 +543,7 @@
 						<configuration>
 							<linebreak>4000</linebreak>
 							<nomunge>true</nomunge>
-         					<verbose>true</verbose>
+         					<verbose>false</verbose>
           					<preserveAllSemiColons>true</preserveAllSemiColons>
 							<disableOptimizations>true</disableOptimizations>
 							<cssSourceDir>css</cssSourceDir>
@@ -574,7 +574,7 @@
 						<configuration>
 							<linebreak>4000</linebreak>
 							<nomunge>true</nomunge>
-         					<verbose>true</verbose>
+         					<verbose>false</verbose>
           					<preserveAllSemiColons>true</preserveAllSemiColons>
 							<disableOptimizations>true</disableOptimizations>
 							<cssSourceDir>css</cssSourceDir>
@@ -607,7 +607,7 @@
 						<configuration>
 							<linebreak>4000</linebreak>
 							<nomunge>true</nomunge>
-         					<verbose>true</verbose>
+         					<verbose>false</verbose>
           					<preserveAllSemiColons>true</preserveAllSemiColons>
 							<disableOptimizations>true</disableOptimizations>
 							<cssSourceDir>css</cssSourceDir>
@@ -638,7 +638,7 @@
 						<configuration>
 							<linebreak>4000</linebreak>
 							<nomunge>true</nomunge>
-         					<verbose>true</verbose>
+         					<verbose>false</verbose>
           					<preserveAllSemiColons>true</preserveAllSemiColons>
 							<disableOptimizations>true</disableOptimizations>
 							<cssSourceDir>css</cssSourceDir>
@@ -671,7 +671,7 @@
 						<configuration>
 							<linebreak>4000</linebreak>
 							<nomunge>true</nomunge>
-         					<verbose>true</verbose>
+         					<verbose>false</verbose>
           					<preserveAllSemiColons>true</preserveAllSemiColons>
 							<disableOptimizations>true</disableOptimizations>
 							<cssSourceDir>css</cssSourceDir>
@@ -708,7 +708,7 @@
 						<configuration>
 							<linebreak>4000</linebreak>
 							<nomunge>true</nomunge>
-         					<verbose>true</verbose>
+         					<verbose>false</verbose>
           					<preserveAllSemiColons>true</preserveAllSemiColons>
 							<disableOptimizations>true</disableOptimizations>
 							<cssSourceDir>css</cssSourceDir>
@@ -741,7 +741,7 @@
 						<configuration>
 							<linebreak>4000</linebreak>
 							<nomunge>true</nomunge>
-         					<verbose>true</verbose>
+         					<verbose>false</verbose>
           					<preserveAllSemiColons>true</preserveAllSemiColons>
 							<disableOptimizations>true</disableOptimizations>
 							<cssSourceDir>css</cssSourceDir>
@@ -772,7 +772,7 @@
 						<configuration>
 							<linebreak>4000</linebreak>
 							<nomunge>true</nomunge>
-         					<verbose>true</verbose>
+         					<verbose>false</verbose>
           					<preserveAllSemiColons>true</preserveAllSemiColons>
 							<disableOptimizations>true</disableOptimizations>
 							<cssSourceDir>css</cssSourceDir>
@@ -814,7 +814,7 @@
 						<configuration>
 							<linebreak>4000</linebreak>
 							<nomunge>true</nomunge>
-         					<verbose>true</verbose>
+         					<verbose>false</verbose>
           					<preserveAllSemiColons>true</preserveAllSemiColons>
 							<disableOptimizations>true</disableOptimizations>
 							<cssSourceDir>css</cssSourceDir>
@@ -834,7 +834,7 @@
 						<configuration>
 							<linebreak>4000</linebreak>
 							<nomunge>true</nomunge>
-         					<verbose>true</verbose>
+         					<verbose>false</verbose>
           					<preserveAllSemiColons>true</preserveAllSemiColons>
 							<disableOptimizations>true</disableOptimizations>
 							<cssSourceDir>css</cssSourceDir>
@@ -872,7 +872,7 @@
 						<configuration>
 							<linebreak>4000</linebreak>
 							<nomunge>true</nomunge>
-         					<verbose>true</verbose>
+         					<verbose>false</verbose>
           					<preserveAllSemiColons>true</preserveAllSemiColons>
 							<disableOptimizations>true</disableOptimizations>
 							<cssSourceDir>css</cssSourceDir>
@@ -910,7 +910,7 @@
 						<configuration>
 							<linebreak>4000</linebreak>
 							<nomunge>true</nomunge>
-         					<verbose>true</verbose>
+         					<verbose>false</verbose>
           					<preserveAllSemiColons>true</preserveAllSemiColons>
 							<disableOptimizations>true</disableOptimizations>
 							<cssSourceDir>css</cssSourceDir>
@@ -956,7 +956,7 @@
 						<configuration>					
 							<linebreak>4000</linebreak>
 							 <nomunge>true</nomunge>
-         					 <verbose>true</verbose>
+         					 <verbose>false</verbose>
           					<preserveAllSemiColons>true</preserveAllSemiColons>
 							<disableOptimizations>true</disableOptimizations>
 							<jsSourceDir>js</jsSourceDir>
@@ -979,7 +979,7 @@
 						<configuration>
 							<linebreak>4000</linebreak>
 							<nomunge>true</nomunge>
-         					<verbose>true</verbose>
+         					<verbose>false</verbose>
           					<preserveAllSemiColons>true</preserveAllSemiColons>
 							<disableOptimizations>true</disableOptimizations>
 							<cssSourceDir>css</cssSourceDir>
@@ -1016,7 +1016,7 @@
 						<configuration>
 							<linebreak>4000</linebreak>
 							<nomunge>true</nomunge>
-         					<verbose>true</verbose>
+         					<verbose>false</verbose>
           					<preserveAllSemiColons>true</preserveAllSemiColons>
 							<disableOptimizations>true</disableOptimizations>
 							<cssSourceDir>css</cssSourceDir>							
@@ -1061,7 +1061,7 @@
 						<configuration>
 							<linebreak>4000</linebreak>
 							<nomunge>true</nomunge>
-         					<verbose>true</verbose>
+         					<verbose>false</verbose>
           					<preserveAllSemiColons>true</preserveAllSemiColons>
 							<disableOptimizations>true</disableOptimizations>
 							<cssSourceDir>css</cssSourceDir>
@@ -1103,7 +1103,7 @@
 						<configuration>
 							<linebreak>4000</linebreak>
 							<nomunge>true</nomunge>
-         					<verbose>true</verbose>
+         					<verbose>false</verbose>
           					<preserveAllSemiColons>true</preserveAllSemiColons>
 							<disableOptimizations>true</disableOptimizations>
 							<cssSourceDir>css</cssSourceDir>
@@ -1131,7 +1131,7 @@
 						<configuration>
 							<linebreak>4000</linebreak>
 							<nomunge>true</nomunge>
-         					<verbose>true</verbose>
+         					<verbose>false</verbose>
           					<preserveAllSemiColons>true</preserveAllSemiColons>
 							<disableOptimizations>true</disableOptimizations>
 							<cssSourceDir>css</cssSourceDir>
@@ -1151,7 +1151,7 @@
 						<configuration>
 							<linebreak>4000</linebreak>
 							<nomunge>true</nomunge>
-         					<verbose>true</verbose>
+         					<verbose>false</verbose>
           					<preserveAllSemiColons>true</preserveAllSemiColons>
 							<disableOptimizations>true</disableOptimizations>
 							<cssSourceDir>css</cssSourceDir>
@@ -1188,7 +1188,7 @@
 						<configuration>
 							<linebreak>4000</linebreak>
 							<nomunge>true</nomunge>
-         					<verbose>true</verbose>
+         					<verbose>false</verbose>
           					<preserveAllSemiColons>true</preserveAllSemiColons>
 							<disableOptimizations>true</disableOptimizations>
 							<cssSourceDir>css</cssSourceDir>

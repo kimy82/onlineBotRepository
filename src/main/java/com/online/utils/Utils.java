@@ -49,6 +49,38 @@ public class Utils{
 		return desc;
 
 	}
+	public static String decodeUTF(String desc){
+		
+		desc = desc.replaceAll("#192;", "À");
+		desc = desc.replaceAll("#193;", "Á");
+		desc = desc.replaceAll("#200;", "È");
+		desc = desc.replaceAll("#201;", "É");		
+		desc = desc.replaceAll("#204;", "Ì");
+		desc = desc.replaceAll("#205;", "Í");
+		desc = desc.replaceAll("#209;", "Ñ");
+		desc = desc.replaceAll("#210;", "Ò");
+		desc = desc.replaceAll("#211;", "Ó");
+		desc = desc.replaceAll("#217;", "Ù");
+		desc = desc.replaceAll("#218;", "Ú");
+		desc = desc.replaceAll("#220;", "Ü");
+		desc = desc.replaceAll("#224;", "à");
+		desc = desc.replaceAll("#225;", "á");
+		desc = desc.replaceAll("#231;", "ç");
+		desc = desc.replaceAll("#232;", "è");
+		desc = desc.replaceAll("#233;", "é");
+		desc = desc.replaceAll("#236;", "ì");
+		desc = desc.replaceAll("#236;", "í");
+		desc = desc.replaceAll("#241;", "ñ");
+		desc = desc.replaceAll("#243;", "ó");
+		desc = desc.replaceAll("#242;", "ò");
+		desc = desc.replaceAll("#249;", "ù");
+		desc = desc.replaceAll("#250;", "ú");
+		desc = desc.replaceAll("#252;", "ü");
+		desc = desc.replaceAll("#236;", "í");
+
+		
+		return desc;
+	}
 	public static String createSHA( String password ) throws NoSuchAlgorithmException{
 
 		MessageDigest md = MessageDigest.getInstance("SHA-1");

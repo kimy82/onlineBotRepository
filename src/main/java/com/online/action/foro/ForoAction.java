@@ -121,6 +121,8 @@ public class ForoAction extends ActionSuportOnline{
 				Set<Foro> foroList = this.plat.getComments();
 				Foro foro = new Foro();
 				foro.setComment(comment);
+				foro.setDia(new Date());
+				foro.setNomUsu(this.user.getNom());
 				foro.setPlat(plat);
 				this.foroBo.save(foro);
 				foroList.add(foro);
@@ -203,7 +205,9 @@ public class ForoAction extends ActionSuportOnline{
 			if (this.beguda != null) {
 				Set<ForoBeguda> foroList = this.beguda.getComments();
 				ForoBeguda foro = new ForoBeguda();
-				foro.setComment(comment);
+				foro.setComment(Utils.decodeUTF(comment));
+				foro.setDia(new Date());
+				foro.setNomUsu(this.user.getNom());
 				foro.setBeguda(beguda);
 				this.foroBo.saveBeguda(foro);
 				foroList.add(foro);
@@ -308,7 +312,7 @@ public class ForoAction extends ActionSuportOnline{
 
 	private void inizializeComment() throws WrongParamException{
 
-		this.comment = (request.getParameter("comment") == null) ? null : request.getParameter("comment");
+		this.comment = (request.getParameter("comment") == null) ? null : Utils.decodeUTF(request.getParameter("comment"));
 
 	}
 
