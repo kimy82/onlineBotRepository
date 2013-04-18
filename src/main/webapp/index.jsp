@@ -1,5 +1,5 @@
 <html>
 <script type="text/javascript">
-window.location.href="/elteurestaurantacasa/Welcome.action";
+window.location.href="https://www.portamu.com/elteurestaurantacasa/Welcome.action";
 </script>
 </html>

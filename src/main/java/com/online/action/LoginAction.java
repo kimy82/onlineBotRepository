@@ -106,7 +106,7 @@ public class LoginAction extends ActionSuportOnlineSession{
 		    SecurityContextHolder.getContext().setAuthentication(authenticatedUser);
 		}
 
-	public String recoverAccount(){
+	public String recoverAccount() throws Exception{
 
 		Users userFound = this.usersBo.findByUsername(username);
 		String password = "";
@@ -121,7 +121,12 @@ public class LoginAction extends ActionSuportOnlineSession{
 				return ERROR;
 			}
 			String app =this.request.getSession().getServletContext().getInitParameter("app");
+			try{
 			this.usersBo.sendEmail("<h1>PORTAMU Recover account</h1><br>your new password is:" + password ,username,app);
+			}catch(Exception e){
+				e.printStackTrace();
+				throw e;
+			}
 		} else {
 			request.setAttribute("userNotFound", "user not found");
 			return "notfound";

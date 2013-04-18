@@ -33,39 +33,6 @@
 <div id="regist_dialog" class="filtres filtres-oberts">	 		
 </div> 
 <script type="text/javascript" >
-function alertSize() {
-  var myWidth = 0, myHeight = 0;
-  if( typeof( window.innerWidth ) == 'number' ) {
-    //Non-IE
-    myWidth = window.innerWidth;
-    myHeight = window.innerHeight;
-  } else if( document.documentElement && ( document.documentElement.clientWidth || document.documentElement.clientHeight ) ) {
-    //IE 6+ in 'standards compliant mode'
-    myWidth = document.documentElement.clientWidth;
-    myHeight = document.documentElement.clientHeight;
-  } else if( document.body && ( document.body.clientWidth || document.body.clientHeight ) ) {
-    //IE 4 compatible
-    myWidth = document.body.clientWidth;
-    myHeight = document.body.clientHeight;
-  }
-  //window.alert( 'Width = ' + myWidth );
-  //window.alert( 'Height = ' + myHeight );
-  return myHeight;
-}
- function resizeDiv() {
-     vph = (alertSize());
-	  vphRel= vph/350;
-	  if(vphRel<1){
-		 $('#login_dialog').css({'position': 'relative'});
-		 $('#login_dialog').css({'top':'0px'});
-	  }else if(vphRel>1){
-			vphFinal=(vph/2)-(350/vphRel);
-			$('#login_dialog').css({'position': 'relative'});
-			$('#login_dialog').css({'top': vphFinal + 'px'});
-	  }
-  }
-  
-
 function goToLogin(){
 	
 	$("#login_dialog").load("/"+context+"/login.action?dialog=true");	

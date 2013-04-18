@@ -74,6 +74,16 @@ public class NewsletterAction extends ActionSuportOnline{
 				emails.append(email.getEmail() + ",");
 			}
 		}
+		
+		if(this.target.equals("tots")){
+			for (Users user : users) {
+				emails.append(user.getUsername() + ",");
+			}
+			List<NewsLetter> newsEmails = this.usersBo.getEmailsFromDB();
+			for (NewsLetter email : newsEmails) {
+				emails.append(email.getEmail() + ",");
+			}
+		}
 		emails.setLength(emails.length() - 1);
 		return emails.toString().split(",");
 	}

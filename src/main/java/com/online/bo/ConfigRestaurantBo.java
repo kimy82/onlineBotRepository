@@ -14,5 +14,7 @@ public interface ConfigRestaurantBo{
 	ConfigRestaurant load( Integer id ) throws BOException;
 	
 	ConfigRestaurant load( Date date, Integer idRestaurant ) throws BOException;
+	
+	void delete( ConfigRestaurant configRestaurant ) throws BOException;
 
 }

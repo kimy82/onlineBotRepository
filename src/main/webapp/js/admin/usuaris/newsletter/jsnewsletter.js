@@ -14,7 +14,7 @@ function send(){
 		    return;
 	  }
 	  else {			  				
-			var target = $('#target').val()
+			var target = $('#target').val();
 			data ="txt="+$('#mytextbox').val()+"&target="+target;
 			$.ajax({
 				  type: "POST",

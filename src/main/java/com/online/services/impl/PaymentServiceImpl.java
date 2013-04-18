@@ -137,7 +137,7 @@ public class PaymentServiceImpl implements PaymentService {
 		
 	}
 	
-	public List<String> getComandaOrders(Comandes comanda, boolean moreThanOneRestaurant)
+	public List<String> getComandaOrders(Comandes comanda, boolean moreThanOneRestaurant,String transport, String transportDouble)
 			throws PaymentException {
 
 		this.comanda = comanda;
@@ -215,20 +215,21 @@ public class PaymentServiceImpl implements PaymentService {
 				for (String idPlat : platsId) {
 					comandaSB.append(comandes.get(infoRestaurant[0] + "_" + idPlat) + ";");
 				}
-				int day = Calendar.getInstance().get(Calendar.DAY_OF_MONTH);
+				int dayAvui = Calendar.getInstance().get(Calendar.DAY_OF_MONTH);
 				Calendar cal = Calendar.getInstance();
 				cal.setTime(this.comanda.getDia());
 				int dayComanda = cal.get(Calendar.DAY_OF_MONTH);
-				if(dayComanda>day)			
-					comandaOrderSB.append("&comanda="+comandaSB.toString());
-				else
+				if(dayComanda>dayAvui)			
 					comandaOrderSB.append("&comanda= AL LORO; AL LORO; AL LORO; "+comandaSB.toString());
+				else
+					comandaOrderSB.append("&comanda="+comandaSB.toString());
+					
 				
 				if (this.comanda.getaDomicili()) {		
 					if(moreThanOneRestaurant)
-						comandaOrderSB.append("&deliveryCharge=4.5");
+						comandaOrderSB.append("&deliveryCharge="+transportDouble);
 					else
-						comandaOrderSB.append("&deliveryCharge=6.90");
+						comandaOrderSB.append("&deliveryCharge="+transport);
 				} else {
 					comandaOrderSB.append("&deliveryCharge=0.0");
 				}
@@ -243,19 +244,18 @@ public class PaymentServiceImpl implements PaymentService {
 				comandaOrderSB.append("&address="
 						+ this.comanda.getUser().getAddress());
 
-				comandaOrderSB.append("&diahora=" + this.comanda.getHora()
-						+ " " + this.comanda.getDia());
+				comandaOrderSB.append("&diahora=D.Entrega:" + this.comanda.getDia());
 
 				comandaOrderSB.append("&telnumber="
 						+ this.comanda.getUser().getTelNumber());
 				
 				comandaOrderSB.append("&comandaName=Comanda:"+this.comanda.getId());
 				
-				comandaOrderSB.append("&comandaHora=H.Comanda:"+Calendar.getInstance().get(Calendar.HOUR_OF_DAY)+" "+Calendar.getInstance().get(Calendar.MINUTE));
+				comandaOrderSB.append("&comandaHora=H.Comanda:"+Calendar.getInstance().get(Calendar.HOUR_OF_DAY)+":"+Calendar.getInstance().get(Calendar.MINUTE));
 				
 				comandaOrderSB.append("&comandaEntrega=H.Entrega:"+rangHora(this.comanda.getHora())+" "+this.comanda.getHora());
 				
-				comandaOrderSB.append("&comandaLimit=H.Limit:"+this.comanda.getHora());
+				comandaOrderSB.append("&comandaLimit=H.Limit:"+prepareHoraFormat(this.comanda.getHora()));
 				
 				if(this.comanda.getPagada()!=null && this.comanda.getPagada()==true){
 					comandaOrderSB.append("&pagada=PAGAT");
@@ -281,12 +281,25 @@ public class PaymentServiceImpl implements PaymentService {
 	}
 
 	// PRIVATE
+	
+	private String prepareHoraFormat(String hora){
+		if(hora==null)return "";
+		String[] horaVec = hora.split("");
+		if(horaVec.length==4){
+			String horaP = horaVec[0]+horaVec[1];
+			String horaF = horaVec[2]+horaVec[3];
+			return horaP+":"+horaF;
+		}
+		return hora;
+	}
+	
 	private String rangHora(String hora){
-		String[] horaVec = hora.split(":");
+		if(hora==null)return "";
+		String[] horaVec = hora.split("");
 		
-		if(horaVec.length==2){
-			String horaP = horaVec[0];
-			String horaF = horaVec[1];
+		if(horaVec.length==4){
+			String horaP = horaVec[0]+horaVec[1];
+			String horaF = horaVec[2]+horaVec[3];
 			if(horaF.equals("00")){
 				if(horaP!=null){
 					int horaPInt = Integer.parseInt(horaP);
@@ -303,6 +316,7 @@ public class PaymentServiceImpl implements PaymentService {
 		
 	}
 	private String transformTel(String tel){
+		if(tel==null)return "";
 		StringBuffer toSentTel= new StringBuffer("");
 		String[] vecTel= tel.split("");
 		for(String t : vecTel){

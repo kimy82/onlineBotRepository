@@ -39,6 +39,8 @@ public class PaymentAction extends ActionSuportOnline{
 
 		List<String> orders = new ArrayList<String>();
 		DecimalFormat formateador = new DecimalFormat("####.##");
+		String transport = this.request.getSession().getServletContext().getInitParameter("transport");
+		String transportDouble = this.request.getSession().getServletContext().getInitParameter("transport_double");
 		
 		
 		setAuthenticationUser();
@@ -92,7 +94,7 @@ public class PaymentAction extends ActionSuportOnline{
 				return "TPV";
 			}
 
-			orders = this.paymentService.getComandaOrders(this.comanda,this.comandaService.checkMoreThanOneRestaurant(this.comanda));
+			orders = this.paymentService.getComandaOrders(this.comanda,this.comandaService.checkMoreThanOneRestaurant(this.comanda),transport , transportDouble);
 
 		} catch (PaymentException pe) {
 			pe.printStackTrace();
@@ -121,6 +123,9 @@ public class PaymentAction extends ActionSuportOnline{
 			String order = this.request.getParameter("order");
 			String orderId = this.request.getParameter("orderId");
 			String entorn = this.request.getSession().getServletContext().getInitParameter("entorn");
+			String transport = this.request.getSession().getServletContext().getInitParameter("transport");
+			String transportDouble = this.request.getSession().getServletContext().getInitParameter("transport_double");
+			
 			this.request.setAttribute("order", order);
 			this.request.setAttribute("orderId", orderId);
 			if(this.paymentService.CheckOrderOK(order, entorn,orderId)){
@@ -131,7 +136,7 @@ public class PaymentAction extends ActionSuportOnline{
 				this.comanda.setPagada(true);
 				this.comandaBo.update(comanda);
 				try {
-					orders = this.paymentService.getComandaOrders(this.comanda, this.comandaService.checkMoreThanOneRestaurant(this.comanda));
+					orders = this.paymentService.getComandaOrders(this.comanda, this.comandaService.checkMoreThanOneRestaurant(this.comanda),transport , transportDouble);
 		
 				} catch (PaymentException pe) {
 					return ERROR;
@@ -159,6 +164,9 @@ public class PaymentAction extends ActionSuportOnline{
 		
 		String order = this.request.getParameter("order");
 		String entorn = this.request.getSession().getServletContext().getInitParameter("entorn");
+		String transport = this.request.getSession().getServletContext().getInitParameter("transport");
+		String transportDouble = this.request.getSession().getServletContext().getInitParameter("transport_double");
+		
 		setAuthenticationUser();
 		inizilizeComandaId();
 		if(this.paymentService.CheckOrderOK(order, entorn,String.valueOf(this.idComanda))){
@@ -169,7 +177,7 @@ public class PaymentAction extends ActionSuportOnline{
 			this.comanda.setPagada(true);
 			this.comandaBo.update(comanda);
 			try {
-				orders = this.paymentService.getComandaOrders(this.comanda, this.comandaService.checkMoreThanOneRestaurant(this.comanda));
+				orders = this.paymentService.getComandaOrders(this.comanda, this.comandaService.checkMoreThanOneRestaurant(this.comanda),transport , transportDouble);
 	
 			} catch (PaymentException pe) {
 				return ERROR;

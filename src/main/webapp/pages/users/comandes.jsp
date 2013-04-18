@@ -123,14 +123,8 @@
 		var initParams = new  InitParams( "<s:text name='txt.user.empty' />", "<s:text name='txt.password.empty' />","<s:text name='txt.password.noteq' />",
 										  "<s:text name='txt.tel.empty' />","<s:text name='txt.address.empty' />","<s:text name='error.double' />",
 										  "<s:text name='error.number' />", "<s:text name='txt.welcome.confirmar' />","<s:text name='txt.welcome.productes' />",
-										  "<s:text name='txt.welcome.producte' />");
-		var initTableParams = new InitTableParams(
-					"<s:text  name='datatables.paginate.last'/>",
-					"<s:text  name='datatables.paginate.next'/>",
-					"<s:text  name='datatables.paginate.previous'/>",
-					"<s:text  name='datatables.paginate.first'/>",
-					"<s:text  name='datatables.loading'/>",
-					"<s:text  name='txt.avis.borrat'/>");		
+										  "<s:text name='txt.welcome.producte' />","<s:text  name='txt.comanda.existeix.vol.continuar'/>","<s:text name='txt.avis.restaurant.tancat' />");
+		var initTableParams = new InitTableParams("<s:text  name='datatables.paginate.last'/>","<s:text  name='datatables.paginate.next'/>","<s:text  name='datatables.paginate.previous'/>","<s:text  name='datatables.paginate.first'/>","<s:text  name='datatables.loading'/>","<s:text  name='txt.avis.borrat'/>");		
 	</script>
 	<c:if test="${not empty user}" >
 	<script language="javascript">

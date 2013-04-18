@@ -1217,7 +1217,7 @@
 								<jsSourceFile>jquery/jquery.dataTables.js</jsSourceFile>
 								<jsSourceFile>address/autocompleteStreet.js</jsSourceFile>	
 								<jsSourceFile>address/autocompleteCodi.js</jsSourceFile>	
-								<jsSourceFile>address/addressValidationForm.js</jsSourceFile>
+								<jsSourceFile>address/addressValidationFormUser.js</jsSourceFile>
 								<jsSourceFile>users/jscomandes.js</jsSourceFile>																																																				
 							</jsSourceFiles>
 							<jsFinalFile>jsuser.comandes.js</jsFinalFile>

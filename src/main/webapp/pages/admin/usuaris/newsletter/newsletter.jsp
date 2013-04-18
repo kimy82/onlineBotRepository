@@ -36,8 +36,9 @@
 	  		 <div  style="width:800px;" alig="center">
 	  		 	<label for="target" ><s:text name="txt.newsletter.target" /></label>
 	  		 	<select id="target">
-	  		 		<option value="users" ><s:text name="txt.newsletter.target.1" /></option>
-	  		 		<option value="news" ><s:text name="txt.newsletter.target.2" /></option>
+	  		 		<option value="tots" ><s:text name="txt.newsletter.target.0" /></option>
+	  		 		<option value="news" ><s:text name="txt.newsletter.target.1" /></option>
+	  		 		<option value="users" ><s:text name="txt.newsletter.target.2" /></option>
 	  		 	</select> 
 	  		 	<br></br>
 				<textarea cols="100" rows="30" id="mytextbox"></textarea>

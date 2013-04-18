@@ -13,7 +13,9 @@
 	
 	
  	<!-- Beans Declaration -->
- 	<bean id="sendingEmailService" class="com.online.services.impl.SendingEmailServiceImpl"></bean>
+ 	<bean id="sendingEmailService" class="com.online.services.impl.SendingEmailServiceImpl">
+ 		<property name="clauBo" ref="clauBo" />
+ 	</bean>
  	<bean id="comandaService" class="com.online.services.impl.ComandaServiceImpl">
  		<property name="configRestaurantBo" ref="configRestaurantBo" /> 
  		<property name="motersBo" ref="motersBo" />
@@ -46,7 +48,8 @@
                  <entry key="votacionsBo" value-ref="votacionsBo" />
                  <entry key="platsBo" value-ref="platsBo" />
                   <entry key="begudaBo" value-ref="begudaBo" />
-                 <entry key="restaurantsBo" value-ref="restaurantsBo" />                
+                 <entry key="restaurantsBo" value-ref="restaurantsBo" />   
+                 <entry key="configRestaurantBo" value-ref="configRestaurantBo" />             
             </map>
         </property>
     </bean>

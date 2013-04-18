@@ -7,6 +7,7 @@ import org.hibernate.Session;
 import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
 
 import com.online.dao.ConfigRestaurantDao;
+import com.online.exceptions.BOException;
 import com.online.model.ConfigRestaurant;
 
 public class ConfigRestaurantDaoImpl extends HibernateDaoSupport implements ConfigRestaurantDao{
@@ -16,6 +17,10 @@ public class ConfigRestaurantDaoImpl extends HibernateDaoSupport implements Conf
 		getHibernateTemplate().save(configRestaurant);
 	}
 
+	public void delete( ConfigRestaurant configRestaurant ){
+		getHibernateTemplate().delete(configRestaurant);
+	}
+	
 	public void update( ConfigRestaurant configRestaurant ){
 
 		getHibernateTemplate().update(configRestaurant);

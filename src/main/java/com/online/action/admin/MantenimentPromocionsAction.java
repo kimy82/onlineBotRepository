@@ -189,6 +189,8 @@ public class MantenimentPromocionsAction extends ActionSuportOnline{
 	public String savePromocioAPartirDe(){
 
 		try {
+			this.tipusDescompteList = Utils.getTipusDescompte();
+			this.tipusBegudaList = Utils.inizializeListTipusBeguda();
 
 			if (this.promocioAPartirDeDTF == null) {
 				addActionError("Error saving promocio");

@@ -16,6 +16,12 @@ public class ConfigRestaurantBoImpl implements ConfigRestaurantBo{
 		configRestaurantDao.save(configRestaurant);
 	}
 
+	public void delete( ConfigRestaurant configRestaurant ) throws BOException{
+
+		configRestaurantDao.delete(configRestaurant);
+	}
+
+
 	public void update( ConfigRestaurant configRestaurant ) throws BOException{
 
 		checkConfigRestaurantWithId(configRestaurant);

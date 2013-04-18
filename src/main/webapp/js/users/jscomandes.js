@@ -11,7 +11,7 @@ function InitTableParams(txtlast,txtnext,txtprevious,txtfirst,txtloading,txtborr
 }
 
 var initParams=null ;
-function InitParams(txtusernameempty, txtpasswordempty,txtpasswordnotequal,txttelempty,txtaddressempty,txterrordouble,txterrornumber, txtconfirm, txtproductes,txtproducte){		
+function InitParams(txtusernameempty, txtpasswordempty,txtpasswordnotequal,txttelempty,txtaddressempty,txterrordouble,txterrornumber, txtconfirm, txtproductes,txtproducte,txtconfirmcontinuar,txtavisrestauranttancat){		
 
 	this.txtusernameempty= txtusernameempty;
 	this.txtpasswordempty= txtpasswordempty;
@@ -23,7 +23,8 @@ function InitParams(txtusernameempty, txtpasswordempty,txtpasswordnotequal,txtte
 	this.txtconfirm = txtconfirm;
 	this.txtproductes = txtproductes;
 	this.txtproducte = txtproducte;
-	
+	this.txtconfirmcontinuar=txtconfirmcontinuar;
+	this.txtavisrestauranttancat=txtavisrestauranttancat;
 }
 
 function goToVotarPlat(idPlat){

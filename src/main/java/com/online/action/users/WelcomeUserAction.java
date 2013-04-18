@@ -15,6 +15,7 @@ import com.google.gson.GsonBuilder;
 import com.online.bo.BegudaBo;
 import com.online.bo.ComandaBo;
 import com.online.bo.PromocionsBo;
+import com.online.bo.RestaurantsBo;
 import com.online.bo.UsersBo;
 import com.online.bo.VotacionsBo;
 import com.online.exceptions.BOException;
@@ -28,6 +29,7 @@ import com.online.model.PlatComanda;
 import com.online.model.PromocioAPartirDe;
 import com.online.model.PromocioAssociada;
 import com.online.model.PromocioNumComandes;
+import com.online.model.Restaurant;
 import com.online.model.Users;
 import com.online.model.VotacioTMP;
 import com.online.pojos.Basic;
@@ -49,6 +51,8 @@ public class WelcomeUserAction extends ActionSuportOnline{
 	private PromocionsBo		promocionsBo;
 	private BegudaBo			begudaBo;
 	private VotacionsBo			votacionsBo;
+	private RestaurantsBo		restaurantsBo;
+	private List<Restaurant>	restaurantList;
 	private ComandaServiceImpl	comandaService;
 	private Users				user;
 	private Long				idComanda			= null;
@@ -81,6 +85,7 @@ public class WelcomeUserAction extends ActionSuportOnline{
 		this.user = getUserFromContext();
 		this.promoListAPartirDe = this.promocionsBo.getAllAPartirDe();
 		this.promocioNumComandes = this.promocionsBo.getAllNumComandes();
+		this.restaurantList = this.restaurantsBo.getAll(true, false, false);
 		
 		if(this.user.getCodePromo()!=null && !this.user.getCodePromo().equals("")){
 			try{
@@ -502,5 +507,18 @@ public class WelcomeUserAction extends ActionSuportOnline{
 
 	public void setPromocioAssociada(PromocioAssociada promocioAssociada) {
 		this.promocioAssociada = promocioAssociada;
+	}
+
+	public List<Restaurant> getRestaurantList() {
+		return restaurantList;
+	}
+
+	public void setRestaurantList(List<Restaurant> restaurantList) {
+		this.restaurantList = restaurantList;
+	}
+
+	public void setRestaurantsBo(RestaurantsBo restaurantsBo) {
+		this.restaurantsBo = restaurantsBo;
 	}	
+	
 }

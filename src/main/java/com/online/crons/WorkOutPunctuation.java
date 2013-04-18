@@ -1,5 +1,6 @@
 package com.online.crons;
 
+import java.util.Calendar;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Iterator;
@@ -11,6 +12,7 @@ import org.quartz.JobExecutionContext;
 import org.quartz.JobExecutionException;
 
 import com.online.bo.BegudaBo;
+import com.online.bo.ConfigRestaurantBo;
 import com.online.bo.PlatsBo;
 import com.online.bo.RestaurantsBo;
 import com.online.bo.VotacionsBo;
@@ -31,13 +33,14 @@ public class WorkOutPunctuation implements Job
 		VotacionsBo votacionsBo = (VotacionsBo)context.getJobDetail().getJobDataMap().get("votacionsBo");
 		PlatsBo platsBo = (PlatsBo)context.getJobDetail().getJobDataMap().get("platsBo");
 		BegudaBo begudaBo = (BegudaBo)context.getJobDetail().getJobDataMap().get("begudaBo");
-		RestaurantsBo restaurantsBo = (RestaurantsBo)context.getJobDetail().getJobDataMap().get("restaurantsBo");		
+		RestaurantsBo restaurantsBo = (RestaurantsBo)context.getJobDetail().getJobDataMap().get("restaurantsBo");	
+		ConfigRestaurantBo configRestaurantBo = (ConfigRestaurantBo)context.getJobDetail().getJobDataMap().get("configRestaurantBo");
 		
 		try {
 				List<Restaurant> restaurants = restaurantsBo.getAll(false,false,true);
 				for(Restaurant restaurant: restaurants){
 					
-					netejaConfigObertura(restaurant, restaurantsBo);
+					netejaConfigObertura(restaurant, restaurantsBo, configRestaurantBo);
 					
 					int nplats=0;				
 					int votacionsPlatsTotals=0;
@@ -117,19 +120,31 @@ public class WorkOutPunctuation implements Job
 		
 	}	
 	
-	private void netejaConfigObertura(Restaurant restaurant, RestaurantsBo restaurantsBo){
+	private void netejaConfigObertura(Restaurant restaurant, RestaurantsBo restaurantsBo,ConfigRestaurantBo configRestaurantBo){
 		
 		Set<ConfigRestaurant> confRestaurant =restaurant.getConfigRestaurants();
-		Set<ConfigRestaurant> confRestaurantNew = new HashSet<ConfigRestaurant>(); 
+		Set<ConfigRestaurant> confRestaurantNew = new HashSet<ConfigRestaurant>();
+		Set<ConfigRestaurant> confRestaurantToDelete = new HashSet<ConfigRestaurant>(); 
 		Date diaAvui = new Date();
 		Iterator<ConfigRestaurant> itera = confRestaurant.iterator();
 		while(itera.hasNext()){
 			ConfigRestaurant cr= itera.next();
-			if(!cr.getData().before(diaAvui)){
+			Calendar calConfig = Calendar.getInstance();
+			calConfig.setTime(cr.getData());
+			Calendar calAvui = Calendar.getInstance();
+			calAvui.setTime(diaAvui);
+			int dayConfig = calConfig.get(Calendar.DAY_OF_YEAR);
+			int dayAvui = calAvui.get(Calendar.DAY_OF_YEAR);
+			if(dayConfig>=dayAvui){
 				confRestaurantNew.add(cr);
+			}else{
+				confRestaurantToDelete.add(cr);
 			}
 		}
 		restaurant.setConfigRestaurants(confRestaurantNew);
 		restaurantsBo.update(restaurant);
+		for(ConfigRestaurant config : confRestaurantToDelete){
+			configRestaurantBo.delete(config);
+		}
 	}
 }

@@ -716,9 +716,13 @@ function saveBegudaToComanda(idBeguda,promo,amount){
        					window.localStorage.setItem("comanda.beguda.preu",preuBegudes.toFixed(2));           					           				
        					var preuComanda = window.localStorage.getItem("comanda.preu");
        					
-       					var transport=0;
+       					var transportOnTheFly=0;
        					if($("#adomicili").is(':checked')){
-       						transport=40;
+       						if(morethanone=="true"){       						 
+       							transportOnTheFly=transportPreuDouble;
+       						}else{
+       							transportOnTheFly=transport;
+       						}
        					}
        					
        					var preuFinal = parseFloat(preuComanda) + parseFloat(preuBegudes)+ parseFloat(transport);

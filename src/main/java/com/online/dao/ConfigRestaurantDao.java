@@ -13,4 +13,6 @@ public interface ConfigRestaurantDao{
 	ConfigRestaurant load( Integer id );
 
 	ConfigRestaurant load( Date date, Integer idRestaurant );
+	
+	void delete( ConfigRestaurant configRestaurant );
 }
