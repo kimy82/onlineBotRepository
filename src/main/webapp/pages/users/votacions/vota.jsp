@@ -9,7 +9,7 @@
 	<META http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 	<META http-equiv="Content-Style-Type" content="text/css">
 	<link type="text/css" rel="stylesheet" href="<c:url value='/css/vota.on.min.css' />" />
-	<link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/base/jquery-ui.css" rel="stylesheet" type="text/css" />
+	<link href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/base/jquery-ui.css" rel="stylesheet" type="text/css" />
 	<title><s:text name="txt.info.comandes.title" /></title>
 </head>
 <body>

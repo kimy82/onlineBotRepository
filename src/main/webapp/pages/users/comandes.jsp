@@ -11,7 +11,7 @@
 	<link rel="shortcut icon" href="<c:url value='/img/elements/logo_portamu16.jpg' />"> 
 	<title><s:text name="txt.info.comandes.title" /></title>
 	<link rel="stylesheet" type="text/css" href="<c:url value='/css/user.comandes.css' />" />
-	<link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/base/jquery-ui.css" rel="stylesheet" type="text/css" />
+	<link href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/base/jquery-ui.css" rel="stylesheet" type="text/css" />
 	<script src="<c:url value='/js/modernizer.js' />" type="text/javascript"></script>	
 	<style>
 			.hiddenIn{
@@ -131,7 +131,7 @@
 					</div>
 <div id="votaPlats_dialog" class="filtres filtres-oberts" title="<s:text name='txt.info.title' />">	 		
 </div>  		
-	<script src="http://maps.google.com/maps/api/js?sensor=false" type="text/javascript"></script>
+	<script src="https://maps.google.com/maps/api/js?sensor=false" type="text/javascript"></script>
 	<script type="text/javascript" src="<c:url value='/js/jsuser.comandes.min.js' />"></script>
 	<script language="javascript">	
 		new Address.addressValidation("<s:text name='txt.addressOK' />","<s:text name='txt.addressKO' />");

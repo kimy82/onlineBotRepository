@@ -11,7 +11,7 @@
 <link rel="shortcut icon" href="<c:url value='/img/elements/logo_portamu16.jpg' />"> 
 <title><s:text name="admin.title" /></title>
 
-<link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/base/jquery-ui.css" rel="stylesheet" type="text/css" />
+<link href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/base/jquery-ui.css" rel="stylesheet" type="text/css" />
 <link rel="stylesheet" href="<c:url value='/css/admin.comandes.min.css' />" type="text/css"   media="screen" />
 </head>
 <body id="conrest">

@@ -317,7 +317,7 @@
 		</div>		
 </div>  
 
-	<script src="http://maps.google.com/maps/api/js?sensor=false" type="text/javascript"></script>
+	<script src="https://maps.google.com/maps/api/js?sensor=false" type="text/javascript"></script>
 	<script type="text/javascript" src="<c:url value='/js/jsinfoComanda.primer.min.js'/>"></script>		
 	<script type="text/javascript" src="<c:url value='/js/sudoSlider/jquery.sudoSlider.min.js'/>"></script>	
 	<script type="text/javascript" src="<c:url value='/js/jsinfoComanda.segon.min.js'/>"></script>		
