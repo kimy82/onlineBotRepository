@@ -27,6 +27,14 @@ function InitParams(txtusernameempty, txtpasswordempty,txtpasswordnotequal,txtte
 	this.txtavisrestauranttancat=txtavisrestauranttancat;
 }
 
+function changeClass(id){
+	if($("#"+id).hasClass("hiddenIn")){
+		$("#"+id).removeClass("hiddenIn");
+	}else{
+		$("#"+id).addClass("hiddenIn");
+	}
+}
+
 function goToVotarPlat(idPlat){
 	
 	$("#votaPlats_dialog").load("../foro/foro.action?idPlat="+idPlat);	
@@ -100,17 +108,6 @@ function reloadTableComandes(){
 function fillAddress(){
 	
 	var self = $("#saveUserDetails")[0];
-	
-	 
-	if(self.username.value==''){
-	 	
-		$("#username").css('border', 'solid 1px red');
-		alertOnline.alertes(initParams.txtusernameempty);		
-		return false;
-		
-	}else{
-		$("#username").css('border', 'solid 1px rgb(135,155,179)');	
-	}
 	
 	if(self.password.value==''){
 	 	

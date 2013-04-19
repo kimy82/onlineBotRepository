@@ -12,7 +12,13 @@
 	<title><s:text name="txt.info.comandes.title" /></title>
 	<link rel="stylesheet" type="text/css" href="<c:url value='/css/user.comandes.css' />" />
 	<link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/base/jquery-ui.css" rel="stylesheet" type="text/css" />
-	<script src="<c:url value='/js/modernizer.js' />" type="text/javascript"></script>	 
+	<script src="<c:url value='/js/modernizer.js' />" type="text/javascript"></script>	
+	<style>
+			.hiddenIn{
+				visibility: hidden;
+				display: none;
+			}
+	</style> 
 </head>
 <body id="personal">
 <c:import url="/pages/includes/headerContext.jsp" />
@@ -43,14 +49,23 @@
                     </div>
                      <div id="changepass">
                         <s:form  action="saveUserDetails" id="saveUserDetails" method="POST" enctype="multipart/form-data" >
-								<s:textfield key="user.username" id="username" disabled="true" ></s:textfield>
-								<s:textfield key="user.nom" id="nom" onkeyup="return ismaxlength(this,45)"  ></s:textfield>											                   
-								<s:textfield key="user.telNumber" id="telNumber" onkeyup="return ismaxlength(this,9)" ></s:textfield>						                    
-								<s:hidden key="user.id" id="idUser" ></s:hidden>							
-								<s:text name="user.password" /><s:password key="user.password" id="password" onkeyup="return ismaxlength(this,45)" value="" theme="simple" ></s:password>
-								<s:text name="txt.password.retype" />:<input type="password" id="passwordRetyped" onblur="checkPassword()"/>					
+                        		
+								<tr><td><label>${user.username}</label></td></tr>
+								
+								<tr><td><label>${user.nom}<a href="#" onclick="changeClass('nom')" ><img src="<c:url value='/img/elements/logo_portamu16.jpg' />" ></img></a></label></td>
+								    <td><s:textfield key="user.nom" id="nom" onkeyup="return ismaxlength(this,45)" cssClass="hiddenIn inputs" theme="simple" ></s:textfield></td></tr>											                   
+								
+								<tr><td><label>${user.telNumber}<a href="#" onclick="changeClass('telNumber')" ><img src="<c:url value='/img/elements/logo_portamu16.jpg' />" ></img></a></label></td>
+									<td><s:textfield key="user.telNumber" id="telNumber" onkeyup="return ismaxlength(this,9)" cssClass="hiddenIn inputs" theme="simple" ></s:textfield></td></tr>	
+								
+								<s:hidden key="user.id" id="idUser" ></s:hidden>
+								<tr><td><a href="#" onclick="changeClass('pass');" ><s:text name="userform.changePassword" /></a></td></tr>								
+								
+									<tr class="hiddenIn" id="pass" ><td><s:text name="user.password" /></td><td><s:password key="user.password" id="password" onkeyup="return ismaxlength(this,45)" cssClass="inputs" value="" theme="simple" ></s:password></td>
+									<td><s:text name="txt.password.retype" />:</td><td><input type="password" id="passwordRetyped" onblur="checkPassword()" class="inputs" value="${user.password}"/></td></tr>					
+								
 								<s:hidden key="user.address" id="comandaddress" ></s:hidden>
-								<input class="boton" type="button"  onclick="fillAddress()" value="submit"/>	                    															
+								<tr><td><input class="boton" type="button"  onclick="fillAddress()" value="submit"/></td></tr>	                    															
 						</s:form>
 						</div>	
 				    </div>

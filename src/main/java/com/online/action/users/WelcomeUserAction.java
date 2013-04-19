@@ -102,8 +102,12 @@ public class WelcomeUserAction extends ActionSuportOnline{
 
 		try {
 			Users userFromDB = this.usersBo.load(this.user.getId());
-			if (this.user.getPassword() != null && !this.user.getPassword().equals(""))
-				userFromDB.setPassword(Utils.createSHA(this.user.getPassword()));
+			if (this.user.getPassword() != null && !this.user.getPassword().equals("")){
+				String hashNewPassword = Utils.createSHA(this.user.getPassword());
+				if(!hashNewPassword.equals(userFromDB.getPassword()))
+					userFromDB.setPassword(hashNewPassword);
+			}
+				
 			userFromDB.setAddress(this.user.getAddress());
 			userFromDB.setNom(this.user.getNom());
 			userFromDB.setIndicacions(this.user.getIndicacions());
