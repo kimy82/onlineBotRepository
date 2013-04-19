@@ -109,11 +109,8 @@ function fillAddress(){
 	
 	var self = $("#saveUserDetails")[0];
 	
-	if(self.password.value==''){
-	 	
-		//$("#password").css('border', 'solid 1px red');
-		//alertOnline.alertes(initParams.txtpasswordempty);		
-		//return false;
+	if(self.password.value==''|| self.passwordRetyped.value=='' ){
+		self.password.value="";
 		
 	}else{	
 		if(self.password.value!=self.passwordRetyped.value){
