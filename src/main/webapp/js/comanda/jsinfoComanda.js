@@ -21,6 +21,17 @@ function InitParams(txtBegudaNoPromocio,txtNoMoreDrinksToAddinPromo,txtAddDrinks
 		this.txtnomesdomocili = txtnomesdomocili;
 		this.txtbottreurepromo = txtbottreurepromo;
 }
+
+var initTxtPromos=null ;
+
+function InitTxtPromos(txtnoplats,txtteundescompte,txtbegudesdetipus,txtregalde,txten){		
+		this.txtnoplats=txtnoplats;
+		this.txtteundescompte=txtteundescompte;
+		this.txtbegudesdetipus=txtbegudesdetipus;
+		this.txtregalde=txtregalde;
+		this.txten=txten;
+}
+
 						window.setTimeout(function() {
 						    var chargeBar = new Progress.bar({ id: "progress1", autoRemove: false, backgroundSpeed: 5, type: "charge" });
 						    chargeBar.renderTo(document.getElementById('chargeBar'));
@@ -219,7 +230,6 @@ function checkPromoImport(){
 	if(promo!=null && promo!='undefined'){
 		var importe = window.localStorage.getItem("comanda.promo.descompte.import");
 		var tipus = window.localStorage.getItem("comanda.promo.descompte.tipus");
-		
 		return "&tipuDescomte="+tipus+"&importDescomte="+importe;
 	}
 	return "";
@@ -266,7 +276,7 @@ function saveNewPLatAmount(id,value){
 			 var platsAra= parseInt(platsAnterior)+parseInt(nPlatsAdded);
 			 window.localStorage.setItem("comanda.numplats",platsAra);       			
 				if(platsAra<=0){
-					alertOnline.alertes("No tens plats a la comanda");
+					alertOnline.alertes(initTxtPromos.txtnoplats);
 				}
 				var lis= window.localStorage.getItem("comanda.plats.lis");
 				var lista="";
@@ -302,7 +312,7 @@ function eliminaPlat(id){
 		var platsAra= parseInt(platsAnterior)-parseInt(n);
 		window.localStorage.setItem("comanda.numplats",platsAra);       			
 		if(platsAra<=0){
-			alertOnline.alertes("No tens plats a la comanda");
+			alertOnline.alertes(initTxtPromos.txtnoplats);
 		}
 	 $('#plat_'+id).remove();	 
 		var lis= window.localStorage.getItem("comanda.plats.lis");
@@ -465,7 +475,7 @@ function checkComandaJS(){
 	var comanda = window.localStorage.getItem("comanda");
 	var plats = window.localStorage.getItem("comanda.numplats");
 	if(plats<=0){
-		alertOnline.alertes("No tens plats a la comanda");
+		alertOnline.alertes(initTxtPromos.txtnoplats);
 		return;
 	}
 	if(comanda!= null && comanda != 'undefined'){
@@ -857,14 +867,20 @@ function fillPromosVisp(json){
 	$.each(json, function(index,item){
 		if(item.numBegudes!=null && item.numBegudes!= 'undefined' && json.numBegudes!= "0"){
 			//Promocio de begudes
-			var liToAppend = "<li><a href='#' onclick=\"addPromoBeguda('"+item.numBegudes+"','"+item.tipusBeguda+"','"+item.id+"','gen')\" >'Te un descompte per escollir "+item.numBegudes +" begudes de tipus "+item.tipusBeguda+"</a>";
+			var liToAppend = "<li><a href='#' onclick=\"addPromoBeguda('"+item.numBegudes+"','"+item.tipusBeguda+"','"+item.id+"','gen')\" >"+initTxtPromos.txtteundescompte+" "+item.numBegudes +" "+initTxtPromos.txtbegudesdetipus+" "+item.tipusBeguda+"</a>";
 			$("#dialog_promo ul#visp").append(liToAppend);
 			
 		
 		}
 		if(item.descompteImport!=null && item.descompteImport!= 'undefined' && item.descompteImport!="0"){			
 			//promocio descompte de pasta
-			var liToAppend = "<li><a href='#' onclick=\"addPromoImport('"+item.descompteImport+"','"+item.tipuDescompte+"','"+item.id+"','gen')\" >'Te un descompte de  "+item.descompteImport +" en "+item.tipuDescompte+"</a>";
+			var tipus="";
+			if(item.tipuDescompte=="C1"){
+				tipus="%";
+			}else{
+				tipus="&euro;"
+			}
+			var liToAppend = "<li><a href='#' onclick=\"addPromoImport('"+item.descompteImport+"','"+item.tipuDescompte+"','"+item.id+"','gen')\" >"+initTxtPromos.txtteundescompte+"  "+item.descompteImport +" "+initTxtPromos.txten+" "+tipus+"</a>";
 			$("#dialog_promo ul#visp").append(liToAppend);
 
 		}
@@ -875,14 +891,20 @@ function fillPromosEsp(json){
 	$.each(json, function(index,item){
 		if(item.numBegudes!=null && item.numBegudes!= 'undefined' && json.numBegudes!= "0"){
 			//Promocio de begudes
-			var liToAppend = "<li><a href='#' onclick=\"addPromoBeguda('"+item.numBegudes+"','"+item.tipusBeguda+"','"+item.id+"','esp')\" >'Te un descompte per escollir "+item.numBegudes +" begudes de tipus "+item.tipusBeguda+"</a>";
+			var liToAppend = "<li><a href='#' onclick=\"addPromoBeguda('"+item.numBegudes+"','"+item.tipusBeguda+"','"+item.id+"','esp')\" >"+initTxtPromos.txtteundescompte+" "+item.numBegudes +" "+initTxtPromos.txtbegudesdetipus+" "+item.tipusBeguda+"</a>";
 			$("#dialog_promo ul#esp").append(liToAppend);
 			
 		
 		}
 		if(item.descompteImport!=null && item.descompteImport!= 'undefined' && item.descompteImport!="0"){			
 			//promocio descompte de pasta
-			var liToAppend = "<li><a href='#' onclick=\"addPromoImport('"+item.descompteImport+"','"+item.tipuDescompte+"','"+item.id+"','esp')\" >'Te un descompte de  "+item.descompteImport +" en "+item.tipuDescompte+"</a>";
+			var tipus="";
+			if(item.tipuDescompte=="C1"){
+				tipus="%";
+			}else{
+				tipus="&euro;"
+			}
+			var liToAppend = "<li><a href='#' onclick=\"addPromoImport('"+item.descompteImport+"','"+item.tipuDescompte+"','"+item.id+"','esp')\" >"+initTxtPromos.txtteundescompte+"  "+item.descompteImport +" "+initTxtPromos.txten+" "+tipus+"</a>";
 			$("#dialog_promo ul#esp").append(liToAppend);
 
 		}
@@ -893,14 +915,20 @@ function fillPromos(json){
 	$.each(json, function(index,item){
 		if(item.numBegudes!=null && item.numBegudes!= 'undefined' && json.numBegudes!= "0"){
 			//Promocio de begudes
-			var liToAppend = "<li><a href='#' onclick=\"addPromoBeguda('"+item.numBegudes+"','"+item.tipusBeguda+"','"+item.id+"','gen')\" >Regal de "+item.numBegudes +"  "+item.tipusBeguda+"</a>";
+			var liToAppend = "<li><a href='#' onclick=\"addPromoBeguda('"+item.numBegudes+"','"+item.tipusBeguda+"','"+item.id+"','gen')\" >"+initTxtPromos.txtregalde+" "+item.numBegudes +"  "+item.tipusBeguda+"</a>";
 			$("#dialog_promo ul#prm").append(liToAppend);
 			
 		
 		}
 		if(item.descompteImport!=null && item.descompteImport!= 'undefined' && item.descompteImport!="0"){			
 			//promocio descompte de pasta
-			var liToAppend = "<li><a href='#' onclick=\"addPromoImport('"+item.descompteImport+"','"+item.tipuDescompte+"','"+item.id+"','gen')\" >'Te un descompte de  "+item.descompteImport +" en "+item.tipuDescompte+"</a>";
+			var tipus="";
+			if(item.tipuDescompte=="C1"){
+				tipus="%";
+			}else{
+				tipus="&euro;"
+			}
+			var liToAppend = "<li><a href='#' onclick=\"addPromoImport('"+item.descompteImport+"','"+item.tipuDescompte+"','"+item.id+"','gen')\" >"+initTxtPromos.txtteundescompte+"  "+item.descompteImport +" "+initTxtPromos.txten+" "+tipus+"</a>";
 			$("#dialog_promo ul#prm").append(liToAppend);
 
 		}
@@ -1143,7 +1171,7 @@ function addPromoImport(importDescompte, tipusDescompte,id,tipus){
 	}
 	var preu =  parseFloat(preuPlats)+ parseFloat(preuBegudes)+ parseFloat(transport);
 	
-	if(tipusDescompte=='1' || tipusDescompte=='tant per cent %' ){
+	if(tipusDescompte=='1' || tipusDescompte=='C1' ){
 		var preuF = parseFloat(preu)*((100-parseFloat(importDescompte))/100);
 		$("#promoImp").text("-"+importDescompte+" %");
 		$("#labelpreutotalPromo").text(preu+" (-"+importDescompte+" %) ="+parseFloat(preuF).toFixed(2));

@@ -20,9 +20,11 @@ import com.online.model.Promocio;
 import com.online.model.PromocioAPartirDe;
 import com.online.model.PromocioNumComandes;
 import com.online.pojos.Basic;
+import com.online.pojos.BasicString;
 import com.online.pojos.PromocioAPartirDeDTF;
 import com.online.pojos.PromocioTable;
 import com.online.supplier.extend.ActionSuportOnline;
+import com.online.utils.Constants;
 import com.online.utils.Utils;
 import com.opensymphony.xwork2.Action;
 
@@ -38,7 +40,7 @@ public class MantenimentPromocionsAction extends ActionSuportOnline{
 	private PromocioAPartirDeDTF	promocioAPartirDeDTF	= new PromocioAPartirDeDTF();
 	private PromocioNumComandes		promocioNumComandes		= new PromocioNumComandes();
 
-	private List<Basic>				tipusDescompteList		= new ArrayList<Basic>();
+	private List<BasicString>		tipusDescompteList		= new ArrayList<BasicString>();
 	private List<Basic>				tipusBegudaList			= new ArrayList<Basic>();
 
 	private Integer					idPromo					= null;
@@ -255,6 +257,12 @@ public class MantenimentPromocionsAction extends ActionSuportOnline{
 				promoTable.setTipusBeguda("-");
 			if (promoTable.getDescompteImport() == null)
 				promoTable.setDescompteImport(0.0);
+			if(promo.getTipuDescompte()!=null && promo.getTipuDescompte().equals(Constants.TIPUS_DESCOMPTE_CENT_1)){
+				promoTable.setTipuDescompte("tant per cent");
+			}
+			if(promo.getTipuDescompte()!=null && promo.getTipuDescompte().equals(Constants.TIPUS_DESCOMPTE_AMOUNT_2)){
+				promoTable.setTipuDescompte("en Euros");
+			}
 			promoTable.setNom("<a href=\"#\" onclick=\"goToPromocio(" + promo.getId() + ")\" >" + promo.getNom() + "</a>");
 			promoTable.setAccio("<a href=\"#\" onclick=\"deletePromocio(" + promo.getId() + ")\" ><img src=\"../images/delete.png\"></a>");
 			promoTableList.add(promoTable);
@@ -308,12 +316,12 @@ public class MantenimentPromocionsAction extends ActionSuportOnline{
 		this.promocioNumComandes = promocioNumComandes;
 	}
 
-	public List<Basic> getTipusDescompteList(){
+	public List<BasicString> getTipusDescompteList(){
 
 		return tipusDescompteList;
 	}
 
-	public void setTipusDescompteList( List<Basic> tipusDescompteList ){
+	public void setTipusDescompteList( List<BasicString> tipusDescompteList ){
 
 		this.tipusDescompteList = tipusDescompteList;
 	}

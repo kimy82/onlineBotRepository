@@ -63,7 +63,18 @@ public class PaymentAction extends ActionSuportOnline{
 				}else{
 					this.payment.setUrl("https://sis.redsys.es/sis/realizarPago");
 				}
+				
 				Double preu = this.comandaService.getPreuOfComanda(comanda);
+				if(this.comanda.getImportDescomte()!=null && this.comanda.getTipuDescomte()!=null){
+					if(this.comanda.getTipuDescomte().equals(Constants.TIPUS_DESCOMPTE_CENT_1)){
+						preu = preu-((this.comanda.getImportDescomte()*preu)/100);
+					}else if(this.comanda.getTipuDescomte().equals(Constants.TIPUS_DESCOMPTE_AMOUNT_2)){
+						preu = preu-this.comanda.getImportDescomte();
+					}else{
+						
+					}
+				}
+				
 				if(this.comanda.getaDomicili()!=null && this.comanda.getaDomicili()==true){
 					boolean morethanOne =this.comandaService.checkMoreThanOneRestaurant(comanda);
 					if(morethanOne){

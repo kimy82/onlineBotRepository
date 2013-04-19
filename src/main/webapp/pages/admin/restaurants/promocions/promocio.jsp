@@ -90,7 +90,7 @@
 							<s:textfield key="promocioAPartirDeDTF.numUses"  id="numUses_apd" onblur="onlyEntero(this.value,this.id)" ></s:textfield>	
 							<s:textfield key="promocioAPartirDeDTF.nom" id="nompromo_apd"  ></s:textfield>
 							<s:textfield key="promocioAPartirDeDTF.nomES" id="nompromoES_apd"  ></s:textfield>
-							<s:select list="tipusDescompteList" key="promocioAPartirDeDTF.tipuDescompte" listKey="descripcio" listValue="descripcio">					
+							<s:select list="tipusDescompteList" key="promocioAPartirDeDTF.tipuDescompte" listKey="id" listValue="descripcio">					
 							</s:select>					
 							<s:textfield key="promocioAPartirDeDTF.descompteImport"  id="descompteImport_apd" onblur="onlyDouble(this.value,this.id)" ></s:textfield>		
 							<s:textfield key="promocioAPartirDeDTF.numBegudes"  id="numBegudes_apd" onblur="onlyEntero(this.value,this.id)" ></s:textfield>																
@@ -124,7 +124,7 @@
 							<s:textfield key="promocioNumComandes.numUses"  id="numUses_pnc" onblur="onlyEntero(this.value,this.id)" ></s:textfield>		
 							<s:textfield key="promocioNumComandes.nom" id="nompromo_pnc"  ></s:textfield>
 							<s:textfield key="promocioNumComandes.nomES" id="nompromoES_pnc"  ></s:textfield>
-							<s:select list="tipusDescompteList" key="promocioNumComandes.tipuDescompte" listKey="descripcio" listValue="descripcio">					
+							<s:select list="tipusDescompteList" key="promocioNumComandes.tipuDescompte" listKey="id" listValue="descripcio">					
 							</s:select>										
 							<s:textfield key="promocioNumComandes.descompteImport"  id="descompteImport_pnc"  onblur="onlyDouble(this.value,this.id)" ></s:textfield>
 							<s:textfield key="promocioNumComandes.numBegudes"  id="numBegudes_pnc" onblur="onlyEntero(this.value,this.id)" ></s:textfield>																

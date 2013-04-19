@@ -14,6 +14,7 @@ import com.google.gson.JsonParser;
 import com.online.bo.UsersBo;
 import com.online.model.Users;
 import com.online.pojos.Basic;
+import com.online.pojos.BasicString;
 
 public class Utils{
 	
@@ -124,11 +125,11 @@ public class Utils{
 		   return valid;
 	}
 	
-	public static List<Basic> getTipusDescompte(){
+	public static List<BasicString> getTipusDescompte(){
 		
-		List<Basic> tipusDescompte = new ArrayList<Basic>();
-		tipusDescompte.add(new Basic(1,"tant per cent %"));
-		tipusDescompte.add(new Basic(2,"quantitat en euros"));
+		List<BasicString> tipusDescompte = new ArrayList<BasicString>();
+		tipusDescompte.add(new BasicString(Constants.TIPUS_DESCOMPTE_CENT_1,"tant per cent %"));
+		tipusDescompte.add(new BasicString(Constants.TIPUS_DESCOMPTE_AMOUNT_2,"quantitat en euros"));
 		return tipusDescompte;
 	}
 	

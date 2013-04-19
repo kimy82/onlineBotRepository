@@ -68,7 +68,7 @@
 							<s:checkbox key="promocioAssociada.hora" id="hora" ></s:checkbox>					
 							<s:textfield key="promocioAssociada.nom" id="nompromo"  ></s:textfield>
 							<s:textfield key="promocioAssociada.nomES" id="nompromoES"  ></s:textfield>
-							<s:select list="tipusDescompteList" key="promocioAssociada.tipuDescompte" listKey="descripcio" listValue="descripcio">					
+							<s:select list="tipusDescompteList" key="promocioAssociada.tipuDescompte" listKey="id" listValue="descripcio">					
 							</s:select>					
 							<s:textfield key="promocioAssociada.descompteImport"  id="descompteImport" onblur="onlyDouble(this.value,this.id)" ></s:textfield>		
 							<s:textfield key="promocioAssociada.numBegudes"  id="numBegudes" onblur="onlyEntero(this.value,this.id)" ></s:textfield>																

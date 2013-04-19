@@ -326,7 +326,9 @@ var initParams = new InitParams("<s:text name='txt.beguda.no.tipus.promo' />","<
 								"<s:text name='txt.promo.descompte.aplicat' />","<s:text name='txt.promo.deleted' />","<s:text name='comanda.falta.hora' />",
 								"<s:text name='comanda.check.address' />","<s:text name='comanda.user.check.ok' />","<s:text name='comanda.user.check.ko' />",
 								"<s:text name='txt.welcome.confirmar' />","<s:text name='txt.welcome.productes' />","<s:text name='txt.welcome.producte' />",
-								"<s:text name='txt.infocomanda.arecollir.more.than.one' />","<s:text name='txt.infocomanda.boto.treure.promo' />");								
+								"<s:text name='txt.infocomanda.arecollir.more.than.one' />","<s:text name='txt.infocomanda.boto.treure.promo' />");
+var initTxtPromos = new InitTxtPromos("<s:text name='txt.info.noplats.comanda' />","<s:text name='txt.info.te.descompte' />","<s:text name='txt.info.begudes.de.tipus' />","<s:text name='txt.info.regal' />","<s:text name='txt.info.en' />");
+
 $("#idcomanda").val('${requestScope.idComanda}');
 $("#numComanda").text('${requestScope.idComanda}');
 $("#dia").val('${requestScope.horesDTO.data}');
