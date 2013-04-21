@@ -10,7 +10,7 @@
 	<meta http-equiv="content-type" content="text/html;charset=utf-8" />
 	<meta name="viewport" content="width=device-width,initial-scale=0.99,maximum-scale=0.99" />
 	<link rel="shortcut icon" href="<c:url value='/img/elements/logo_portamu16.jpg' />"> 
-	<link href='http://fonts.googleapis.com/css?family=Raleway:800,400' rel='stylesheet' type='text/css'>
+	<link href='https://fonts.googleapis.com/css?family=Raleway:800,400' rel='stylesheet' type='text/css'>
 	<link type="text/css" rel="stylesheet" href="<c:url value='/css/welcome.min.css' />" />	
 	<title> <s:text name="txt.welcome.principal" />	</title>	
 </head>
