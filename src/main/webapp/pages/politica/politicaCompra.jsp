@@ -894,7 +894,7 @@ DE PRIVACITAT I COOKIES DE Portamu</SPAN></B></FONT></FONT></FONT></P>
 </P>
 <P ALIGN=JUSTIFY STYLE="margin-bottom: 0cm"><FONT COLOR="#000000"><SPAN STYLE="text-decoration: none"><FONT FACE="Cambria"><FONT SIZE=3><SPAN STYLE="font-style: normal"><SPAN STYLE="font-weight: normal"><SPAN STYLE="background: transparent">Estem
 compromesos amb la protecci&oacute; de la privacitat de totes
-aquelles persones que visiten </SPAN></SPAN></SPAN></FONT></FONT></SPAN></FONT><A HREF="http://www.portamu.com/"><FONT COLOR="#0000ff"><SPAN STYLE="text-decoration: none"><FONT FACE="Cambria"><FONT SIZE=3><SPAN STYLE="font-style: normal"><U><SPAN STYLE="font-weight: normal"><SPAN STYLE="background: transparent">www.Portamu.com</SPAN></SPAN></U></SPAN></FONT></FONT></SPAN></FONT></A><FONT COLOR="#000000"><SPAN STYLE="text-decoration: none"><SPAN STYLE="background: transparent">
+aquelles persones que visiten </SPAN></SPAN></SPAN></FONT></FONT></SPAN></FONT><A HREF="https://www.portamu.com/"><FONT COLOR="#0000ff"><SPAN STYLE="text-decoration: none"><FONT FACE="Cambria"><FONT SIZE=3><SPAN STYLE="font-style: normal"><U><SPAN STYLE="font-weight: normal"><SPAN STYLE="background: transparent">www.Portamu.com</SPAN></SPAN></U></SPAN></FONT></FONT></SPAN></FONT></A><FONT COLOR="#000000"><SPAN STYLE="text-decoration: none"><SPAN STYLE="background: transparent">
 </SPAN></SPAN></FONT><FONT COLOR="#000000"><SPAN STYLE="text-decoration: none"><FONT FACE="Cambria"><FONT SIZE=3><SPAN STYLE="font-style: normal"><SPAN STYLE="font-weight: normal"><SPAN STYLE="background: transparent">(Portamu)
 (la p&agrave;gina web). Per favor llegeixi les seg&uuml;ents
 pol&iacute;tiques de privacitat a on s&rsquo;explica com utilitzem i

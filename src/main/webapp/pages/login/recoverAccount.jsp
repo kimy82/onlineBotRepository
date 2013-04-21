@@ -5,7 +5,7 @@
 <link rel="shortcut icon" href="<c:url value='/img/elements/logo_portamu16.jpg' />"> 
 <title><s:text name="txt.recoveruser.page" /></title>
 <link rel="stylesheet" type="text/css" href="<c:url value='/css/loguin.on.min.css' />" />	
-	<link href='http://fonts.googleapis.com/css?family=Raleway:800,400' rel='stylesheet' type='text/css'>
+	<link href='https://fonts.googleapis.com/css?family=Raleway:800,400' rel='stylesheet' type='text/css'>
 </head>
 <body onload='document.f.j_username.focus();' id="recovery">
 <div id="recover">

@@ -11,7 +11,7 @@
 	<link rel="stylesheet" type="text/css" href="<c:url value='/css/portamu/reset.css' />" /-->
 	
 	<link rel="stylesheet" type="text/css" href="<c:url value='/css/loguin.on.min.css' />" />	
-	<link href='http://fonts.googleapis.com/css?family=Raleway:800,400' rel='stylesheet' type='text/css'>
+	<link href='https://fonts.googleapis.com/css?family=Raleway:800,400' rel='stylesheet' type='text/css'>
 	<title><s:text name="txt.welcome.principal" /></title>
 </head>
 <body onload='document.f.j_username.focus();'>
