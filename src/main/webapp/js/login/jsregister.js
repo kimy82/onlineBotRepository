@@ -1,7 +1,7 @@
 ///////////////////////////////////
 //variables per textos en locale
 var initParamsbis=null ;
-function InitParamsbis(txtusernameempty,txtusernamewrong, txtpasswordempty,txtpasswordnotequal,txttelempty,txtaddressempty){		
+function InitParamsbis(txtusernameempty,txtusernamewrong, txtpasswordempty,txtpasswordnotequal,txttelempty,txtaddressempty,txtemailempty){		
 
 	this.txtusernameempty= txtusernameempty;
 	this.txtusernamewrong = txtusernamewrong;
@@ -9,6 +9,7 @@ function InitParamsbis(txtusernameempty,txtusernamewrong, txtpasswordempty,txtpa
 	this.txtpasswordnotequal=txtpasswordnotequal;
 	this.txttelempty = txttelempty;
 	this.txtaddressempty = txtaddressempty;
+	this.txtemailempty=txtemailempty;
 
 }
 
@@ -38,40 +39,6 @@ function validate(){
 		$("#username").css('border', 'solid 1px rgb(135,155,179)');	
 	}
 	
-	if(self.email.value==''){
-	 	
-		$("#email").css('border', 'solid 1px red');
-		$("#errorRegist").text(initParamsbis.txtusernameempty);			
-		return false;
-		
-	}else{
-		$("#email").css('border', 'solid 1px rgb(135,155,179)');	
-	}
-	
-	if(!validateEmail(self.email.value)){
-		
-		$("#email").css('border', 'solid 1px red');
-		$("#errorRegist").text(initParamsbis.txtusernamewrong);			
-		return false;
-	}
-	
-	if(self.password.value==''){
-	 	
-		$("#password").css('border', 'solid 1px red');
-		$("#errorRegist").text(InitParamsbis.txtpasswordempty);			
-		return false;
-		
-	}else{
-		if(self.password.value!=self.confirmPassword.value){
-			$("#confirmPassword").css('border', 'solid 1px red');
-			$("#password").css('border', 'solid 1px red');
-			$("#errorRegist").text(initParamsbis.txtpasswordnotequal);				
-		}else{
-			$("#confirmPassword").css('border', 'solid 1px rgb(135,155,179)');
-			$("#password").css('border', 'solid 1px rgb(135,155,179)');
-		}
-	}
-	
 	if(self.telefon.value==''){
 		
 		$("#telefon").css('border', 'solid 1px red');
@@ -81,6 +48,43 @@ function validate(){
 	}else{
 		$("#telefon").css('border', 'solid 1px rgb(135,155,179)');
 	}
+	
+	if(self.email_usu.value==''){
+	 	
+		$("#email_usu").css('border', 'solid 1px red');
+		$("#errorRegist").text(initParamsbis.txtemailempty);			
+		return false;
+		
+	}else{
+		$("#email_usu").css('border', 'solid 1px rgb(135,155,179)');	
+	}
+	
+	if(!validateEmail(self.email_usu.value)){
+		
+		$("#email").css('border', 'solid 1px red');
+		$("#errorRegist").text(initParamsbis.txtusernamewrong);			
+		return false;
+	}
+	
+	if(self.password.value==''){
+	 	
+		$("#password").css('border', 'solid 1px red');
+		$("#errorRegist").text(initParamsbis.txtpasswordempty);			
+		return false;
+		
+	}else{
+		if(self.password.value!=self.confirmPassword.value){
+			$("#confirmPassword").css('border', 'solid 1px red');
+			$("#password").css('border', 'solid 1px red');
+			$("#errorRegist").text(initParamsbis.txtpasswordnotequal);	
+			return false;
+		}else{
+			$("#confirmPassword").css('border', 'solid 1px rgb(135,155,179)');
+			$("#password").css('border', 'solid 1px rgb(135,155,179)');
+		}
+	}
+	
+
 	
 	if(self.comandaddressbis.value==''){
 		

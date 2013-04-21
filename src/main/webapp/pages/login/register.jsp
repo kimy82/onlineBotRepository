@@ -6,7 +6,7 @@
 <head>
 	<meta http-equiv="content-type" content="text/html;charset=utf-8" />
 	<link rel="stylesheet" type="text/css" href="<c:url value='/css/register.on.min.css' />" />	
-	<link href='http://fonts.googleapis.com/css?family=Raleway:800,400' rel='stylesheet' type='text/css'>
+	<link href='https://fonts.googleapis.com/css?family=Raleway:800,400' rel='stylesheet' type='text/css'>
 </head>
 <body>
 <div id="light_Reg">
@@ -25,9 +25,9 @@
 		<div class="light_Reg_body">
 			<div id="form_Reg">
 				<s:form class="form" action="registerUser" id="registerForm" >					
-				<s:text name="user.username" />*:<br> <s:textfield cssClass="inputs" key="username" id="username" theme="simple" onclick="focus()" onkeyup="return ismaxlength(this,45)" /><br>
+				<s:text name="user.nom" />*:<br> <s:textfield cssClass="inputs" key="username" id="username" theme="simple" onclick="focus()" onkeyup="return ismaxlength(this,45)" /><br>
 				<s:text name="user.telNumber" />*:<br> <s:textfield cssClass="inputs" key="telefon" id="telefon" theme="simple" onclick="focus()" /><br>
-				<s:text name="user.email" />*:<br> <s:textfield cssClass="inputs" key="email" id="email" theme="simple" onclick="focus()" /><br>
+				<s:text name="user.email" />*:<br> <s:textfield cssClass="inputs" key="email" id="email_usu" theme="simple" onclick="focus()" /><br>
 				<s:text name="user.password" />*:<br> <s:password cssClass="inputs" key="password" id="password" theme="simple" onclick="focus()" /><br>
 				<s:text name="user.password.retype" />*:<br> <s:password cssClass="inputs" key="confirmPassword" id="confirmPassword" theme="simple" onclick="focus()" /><br>		
 				<s:hidden key="address" id="comandaddressbis" ></s:hidden>				
@@ -50,7 +50,7 @@
 	<script src="<c:url value='/js/jsregister.min.js' />" type="text/javascript"></script>
 <script type="text/javascript" >		
 	new Addressbis.addressValidation("<s:text name='txt.addressOK' />","<s:text name='txt.addressKO' />");
-	initParamsbis = new  InitParamsbis( "<s:text name='txt.user.empty' />","<s:text name='txt.user.wrong' />", "<s:text name='txt.password.empty' />","<s:text name='txt.password.noteq' />","<s:text name='txt.tel.empty' />","<s:text name='txt.address.empty' />");
+	initParamsbis = new  InitParamsbis( "<s:text name='txt.user.empty' />","<s:text name='txt.user.wrong' />", "<s:text name='txt.password.empty' />","<s:text name='txt.password.noteq' />","<s:text name='txt.tel.empty' />","<s:text name='txt.address.empty' />","<s:text name='txt.user.email.empty' />");
 </script> 
 </body>
 </html>
