@@ -8,11 +8,13 @@ function InitParams(txtComentDeleted){
 }
 
 function loadComments(id){
+	if(id=="")return;
 	window.localStorage.setItem("idPlat",id);
 	window.location.href="/"+context+"/admin/loadComments.action?idPlat="+id;	
 }
 
 function loadCommentsBeguda(id){
+	if(id=="")return;
 	window.localStorage.setItem("idBeguda",id);
 	window.location.href="/"+context+"/admin/loadCommentsBeguda.action?idBeguda="+id;	
 }

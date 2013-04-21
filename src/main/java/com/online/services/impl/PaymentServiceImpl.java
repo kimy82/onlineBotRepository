@@ -253,7 +253,7 @@ public class PaymentServiceImpl implements PaymentService {
 				
 				comandaOrderSB.append("&comandaHora=H.Comanda:"+Calendar.getInstance().get(Calendar.HOUR_OF_DAY)+":"+Calendar.getInstance().get(Calendar.MINUTE));
 				
-				comandaOrderSB.append("&comandaEntrega=H.Entrega:"+rangHora(this.comanda.getHora())+" "+this.comanda.getHora());
+				comandaOrderSB.append("&comandaEntrega=H.Entrega:"+rangHora(this.comanda.getHora())+" "+prepareHoraFormat(this.comanda.getHora()));
 				
 				comandaOrderSB.append("&comandaLimit=H.Limit:"+prepareHoraFormat(this.comanda.getHora()));
 				
@@ -284,7 +284,7 @@ public class PaymentServiceImpl implements PaymentService {
 	
 	private String prepareHoraFormat(String hora){
 		if(hora==null)return "";
-		String[] horaVec = hora.split("");
+		String[] horaVec = hora.split("(?<!^)"); 
 		if(horaVec.length==4){
 			String horaP = horaVec[0]+horaVec[1];
 			String horaF = horaVec[2]+horaVec[3];
@@ -295,7 +295,7 @@ public class PaymentServiceImpl implements PaymentService {
 	
 	private String rangHora(String hora){
 		if(hora==null)return "";
-		String[] horaVec = hora.split("");
+		String[] horaVec = hora.split("(?<!^)");
 		
 		if(horaVec.length==4){
 			String horaP = horaVec[0]+horaVec[1];

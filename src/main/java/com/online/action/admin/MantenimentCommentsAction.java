@@ -70,8 +70,10 @@ public class MantenimentCommentsAction extends ActionSuportOnline{
 				Foro foro = (Foro) foroItera.next();
 				ForoDTO foroDTO = new ForoDTO();
 				foroDTO.setIdPlat(plt.getId());
+				foroDTO.setNomUsu(foro.getNomUsu());
 				foroDTO.setIdComment(foro.getId());
 				foroDTO.setComment(foro.getComment());
+				foroDTO.setDia(Utils.formatDate2(foro.getDia()));
 				this.listComments.add(foroDTO);
 			}
 		}
@@ -86,6 +88,8 @@ public class MantenimentCommentsAction extends ActionSuportOnline{
 				foroDTO.setIdBeguda(bg.getId());
 				foroDTO.setIdComment(foro.getId());
 				foroDTO.setComment(foro.getComment());
+				foroDTO.setNomUsu(foro.getNomUsu());
+				foroDTO.setDia(Utils.formatDate2(foro.getDia()));
 				this.listComments.add(foroDTO);
 			}
 		}

@@ -20,6 +20,12 @@ public class ForoDTO{
 
 	@Expose
 	private String				comment;
+	
+	@Expose
+	private String				nomUsu;
+	
+	@Expose
+	private String				dia;
 
 	// CONSTRUCTORS
 
@@ -79,4 +85,23 @@ public class ForoDTO{
 		this.comment = comment;
 	}
 
+	public String getNomUsu() {
+		return nomUsu;
+	}
+
+	public void setNomUsu(String nomUsu) {
+		this.nomUsu = nomUsu;
+	}
+
+	public String getDia() {
+		return dia;
+	}
+
+	public void setDia(String dia) {
+		this.dia = dia;
+	}
+	
+
+	
+	
 }

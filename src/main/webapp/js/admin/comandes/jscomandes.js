@@ -21,12 +21,12 @@ function sendTo(id){
   		  data: data,
   		  success: function(json){	
   			  if(json!=null && json.error!=null){
-  				errorOnline.error("Error in AJAX: "+json.error);	
+  				alert("Error in AJAX: "+json.error);	
        		  }else{       				       				  
-       				alertOnline.alertes(initParams.txtenviat);	        			       			
+       				alert(initTableParams.txtenviat);	        			       			
        		  }				
   		  },
-  		  error: function(e){   errorOnline.error("Error in AJAX");	
+  		  error: function(e){   r("Error in AJAX");	
   		  					}
   		});	
 	reloadTableComandes();
@@ -43,12 +43,14 @@ function deleteTo(id){
   		  data: data,
   		  success: function(json){	
   			  if(json!=null && json.error!=null){
-  				errorOnline.error("Error in AJAX: "+json.error);	
+  				alert("Error in AJAX: "+json.error);	
        		  }else{       			    				  
-       			alertOnline.alertes(initParams.txtborrat);	        			
+       			alert(initTableParams.txtborrat);	        			
        		  }				
   		  },
-  		  error: function(e){   errorOnline.error("Error in AJAX");	
+  		  error: function(e){  
+  			  $("#errorsajaxlabel").text("Error in ajax call");
+  			  $("#errorsajax").show();       
   		  					}
   		});	
 	reloadTableComandes();

@@ -42,6 +42,7 @@
 							<th><s:text name="tbl.comandes.confirm.nom" /></th>
 							<th><s:text name="tbl.comandes.confirm.tel" /></th>
 							<th><s:text name="tbl.comandes.confirm.direccio" /></th>
+							<th><s:text name="tbl.comandes.confirm.hora" /></th>
 							<th><s:text name="tbl.comandes.confirm.preu" /></th>
 							<th width="40px"></th>
 							<th width="40px"></th>

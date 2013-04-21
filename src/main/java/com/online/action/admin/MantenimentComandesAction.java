@@ -60,9 +60,11 @@ public class MantenimentComandesAction extends ActionSuportOnline{
 
 			out = this.response.getOutputStream();
 			inizializeIdComanda();
-			Comandes comanda = this.comandaBo.load(idComanda);
+			Comandes comanda = this.comandaBo.load(this.idComanda);
 			List<String> orders = this.paymentService.getComandaOrders(comanda, this.comandaService.checkMoreThanOneRestaurant(comanda),transport,transportDouble);
 			this.paymentService.sendOrder(false, orders);
+			comanda.setRevisio(false);
+			this.comandaBo.update(comanda);
 
 		} catch (NumberFormatException e) {
 			json = Utils.createErrorJSON("error in ajax action: wrong params");

@@ -48,9 +48,10 @@
 </div>
 	<c:import url="/pages/includes/headerContext.jsp" />
 	<script src="<c:url value='/js/jsregister.min.js' />" type="text/javascript"></script>
-<script type="text/javascript" >		
+<script type="text/javascript" >
 	new Addressbis.addressValidation("<s:text name='txt.addressOK' />","<s:text name='txt.addressKO' />");
 	initParamsbis = new  InitParamsbis( "<s:text name='txt.user.empty' />","<s:text name='txt.user.wrong' />", "<s:text name='txt.password.empty' />","<s:text name='txt.password.noteq' />","<s:text name='txt.tel.empty' />","<s:text name='txt.address.empty' />","<s:text name='txt.user.email.empty' />");
 </script> 
+
 </body>
 </html>
