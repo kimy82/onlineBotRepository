@@ -731,11 +731,11 @@ function saveBegudaToComanda(idBeguda,promo,amount){
        						if(morethanone=="true"){       						 
        							transportOnTheFly=transportPreuDouble;
        						}else{
-       							transportOnTheFly=transport;
+       							transportOnTheFly=transportPreu;
        						}
        					}
        					
-       					var preuFinal = parseFloat(preuComanda) + parseFloat(preuBegudes)+ parseFloat(transport);
+       					var preuFinal = parseFloat(preuComanda) + parseFloat(preuBegudes)+ parseFloat(transportOnTheFly);
        					$("#preu").text(preuFinal.toFixed(2));
        					$("#labelpreutotalPromo").text(preuFinal.toFixed(2));
        					initPromoDescompteFromStorage();
@@ -1064,11 +1064,15 @@ function checkBegudaToAddPromo(promo){
        					window.localStorage.setItem("comanda.beguda.preu",preuBegudes.toFixed(2));           					           				
        					var preuComanda = window.localStorage.getItem("comanda.preu");
        					
-       					var transport=0;
+       					var transportOnTheFly=0;
        					if($("#adomicili").is(':checked')){
-       						transport=40;
-       					}       					
-       					var preuFinal = parseFloat(preuComanda) + parseFloat(preuBegudes)+ parseFloat(transport);
+       						if(morethanone=="true"){       						 
+       							transportOnTheFly=transportPreuDouble;
+       						}else{
+       							transportOnTheFly=transportPreu;
+       						}
+       					}     					
+       					var preuFinal = parseFloat(preuComanda) + parseFloat(preuBegudes)+ parseFloat(transportOnTheFly);
        					$("#preu").text(preuFinal.toFixed(2));
        					$("#labelpreutotalPromo").text(preuFinal.toFixed(2));       					
        			}   
@@ -1165,11 +1169,15 @@ function addPromoImport(importDescompte, tipusDescompte,id,tipus){
 		preuBegudes=0.0;
 		window.localStorage.setItem("comanda.beguda.preu","0.0");
 	}
-	var transport= 0;
-	if($("#adomicili").is(':checked')){
-		transport=40;
-	}
-	var preu =  parseFloat(preuPlats)+ parseFloat(preuBegudes)+ parseFloat(transport);
+	var transportOnTheFly=0;
+		if($("#adomicili").is(':checked')){
+			if(morethanone=="true"){       						 
+				transportOnTheFly=transportPreuDouble;
+			}else{
+				transportOnTheFly=transportPreu;
+			}
+		} 
+	var preu =  parseFloat(preuPlats)+ parseFloat(preuBegudes)+ parseFloat(transportOnTheFly);
 	
 	if(tipusDescompte=='1' || tipusDescompte=='C1' ){
 		var preuF = parseFloat(preu)*((100-parseFloat(importDescompte))/100);
@@ -1204,12 +1212,16 @@ function deletePromoApplied(){
 		
 		var preuPlats = window.localStorage.getItem("comanda.preu");
 		var preuBegudes = window.localStorage.getItem("comanda.beguda.preu");
-		var transport= 0;
+		var transportOnTheFly=0;
 		if($("#adomicili").is(':checked')){
-			transport=40;
-		}
+			if(morethanone=="true"){       						 
+				transportOnTheFly=transportPreuDouble;
+			}else{
+				transportOnTheFly=transportPreu;
+			}
+		} 
 		
-		var preu =  parseFloat(preuPlats)+ parseFloat(preuBegudes)+ parseFloat(transport);
+		var preu =  parseFloat(preuPlats)+ parseFloat(preuBegudes)+ parseFloat(transportOnTheFly);
 		
 		$("#promoImp").text("");
 		$("#labelpreutotalPromo").text(preu.toFixed());
@@ -1255,7 +1267,17 @@ function deleteAjaxBegudesPromo(){
 	  		  success: function(json){	
 	  			  	if(json!=null && json.error!=null){	       					       				
 	       				errorOnline.error("Error in AJAX: "+json.error); 
-	       			}  			  		  			  		  			  	
+	       			} 
+	  			   var lis= window.localStorage.getItem("comanda.begudes.lis");
+	  			   var lista="";
+	  			   var begudes = lis.split("<br><br>");
+	  				$.each(begudes, function(index, value) { 		       					 	
+	  						 if(value.indexOf("(PROMO)")==-1)
+	  							 lista=lista+value+"<br><br>";		       										       						
+	  				});
+
+	  				window.localStorage.setItem("comanda.begudes.lis",lista);
+	  			 
 	  			 
 	  		  },
 	  		  error: function(e){   errorOnline.error(txterrorAjax); 		
