@@ -162,7 +162,7 @@ public class AjaxComandaAction extends ActionSuportOnlineSession {
 				Comandes comanda = this.comandaBo.load(this.idComanda);				
 				Promocio promo = this.promocionsBo.load(idPromo);				
 				List<BegudaComanda> begudaList = comanda.getBegudes();
-				int numBegudesAddToPromo=0;
+				int numBegudesAddToPromo=1;
 				for(BegudaComanda bgcom : begudaList){
 					if(bgcom.getNumBegudes()!=null &&bgcom.getNumBegudes()>0 && bgcom.getBeguda().getTipus().equals(promo.getTipusBeguda())){
 						if(numBegudesAddToPromo>=promo.getNumBegudes()) break;						
