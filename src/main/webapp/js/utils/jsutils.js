@@ -1,0 +1,29 @@
+function changeHTML(nom){
+	nom = nom.replace(/&#192;/g,'À');
+	nom = nom.replace(/&#193;/g,'Á');		
+	nom = nom.replace(/&#200;/g,'È');
+	nom = nom.replace(/&#201;/g,'É');
+	nom = nom.replace(/&#204;/g,'Ì');			
+	nom = nom.replace(/&#205;/g,'Í');		
+	nom = nom.replace(/&#209;/g,'Ñ');		
+	nom = nom.replace(/&#210;/g,'Ò');		
+	nom = nom.replace(/&#211;/g,'Ó');		
+	nom = nom.replace(/&#217;/g,'Ù');		
+	nom = nom.replace(/&#218;/g,'Ú');		
+	nom = nom.replace(/&#220;/g,'Ü');		
+	nom = nom.replace(/&#224;/g,'à');		
+	nom = nom.replace(/&#225;/g,'á');		
+	nom = nom.replace(/&#231;/g,'ç');		
+	nom = nom.replace(/&#232;/g,'è');		
+	nom = nom.replace(/&#233;/g,'é');		
+	nom = nom.replace(/&#236;/g,'ì');		
+	nom = nom.replace(/&#236;/g,'í');		
+	nom = nom.replace(/&#241;/g,'ñ');		
+	nom = nom.replace(/&#243;/g,'ó');		
+	nom = nom.replace(/&#242;/g,'ò');	
+	nom = nom.replace(/&#249;/g,'ù');		
+	nom = nom.replace(/&#250;/g,'ú');		
+	nom = nom.replace(/&#252;/g,'ü');		
+	nom = nom.replace(/&#236;/g,'í');		
+	return nom;
+}

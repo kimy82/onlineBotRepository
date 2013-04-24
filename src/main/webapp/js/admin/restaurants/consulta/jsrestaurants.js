@@ -141,13 +141,13 @@ function showDivRestaurant(id){
      			}else{
 					 	if(json.nom!=null){
 					 		document.getElementById("nomrestaurant").value= json.nom;
-					 		$("#nomrestaurant").html(json.nom);
+					 		$("#nomrestaurant").val(changeHTML(json.nom));
 					 	}					 
 					 	if(json.descripcio!=null){
-					 		$("#descrestaurant").html(json.descripcio);					 		
+					 		$("#descrestaurant").val(changeHTML(json.descripcio));					 		
 					 	}
 					 	if(json.descripcioES!=null){
-					 		$("#descrestaurantES").html(json.descripcioES);
+					 		$("#descrestaurantES").val(changeHTML(json.descripcioES));
 					 	}
 					 	if(json.id!=null){
 					 		document.getElementById("idRestaurant").value= json.id;					 		

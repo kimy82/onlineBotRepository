@@ -297,6 +297,15 @@
 							<jsSourceFiles>
 								<jsSourceFile>jquery/jquery.js</jsSourceFile>
 								<jsSourceFile>jquery/jquery.ui.core.js</jsSourceFile>
+								<jsSourceFile>jquery/jquery.ui.widget.js</jsSourceFile>
+								<jsSourceFile>jquery/jquery.ui.mouse.js</jsSourceFile>
+								<jsSourceFile>jquery/jquery.ui.dialog.js</jsSourceFile>
+								<jsSourceFile>jquery/jquery.ui.position.js</jsSourceFile>
+								<jsSourceFile>jquery/jquery.ui.draggable.js</jsSourceFile>
+								<jsSourceFile>jquery/jquery.ui.droppable.js</jsSourceFile>
+								<jsSourceFile>jquery/jquery.ui.resizable.js</jsSourceFile>
+								<jsSourceFile>jquery/jquery.effects.core.js</jsSourceFile>
+								<jsSourceFile>jquery/jquery.bgiframe-2.1.1.js</jsSourceFile>									
 								<jsSourceFile>jquery/jquery.dataTables.js</jsSourceFile>
 								<jsSourceFile>jquery/TableTools.js</jsSourceFile>
 								<jsSourceFile>jquery/ZeroClipboard.js</jsSourceFile>
@@ -359,6 +368,7 @@
 								<jsSourceFile>jquery/jquery.js</jsSourceFile>
 								<jsSourceFile>jquery/jquery.ui.core.js</jsSourceFile>								
 								<jsSourceFile>jquery/jquery.dataTables.js</jsSourceFile>	
+								<jsSourceFile>utils/jsutils.js</jsSourceFile>
 								<jsSourceFile>admin/restaurants/begudes/jsbegudes.js</jsSourceFile>	
 								<jsSourceFile>validations/jsvalidations.js</jsSourceFile>						
 							</jsSourceFiles>
@@ -498,6 +508,7 @@
 								<jsSourceFile>jquery/jquery.js</jsSourceFile>
 								<jsSourceFile>jquery/jquery.ui.core.js</jsSourceFile>
 								<jsSourceFile>jquery/jquery.dataTables.js</jsSourceFile>
+								<jsSourceFile>utils/jsutils.js</jsSourceFile>
 								<jsSourceFile>admin/restaurants/consulta/jsrestaurants.js</jsSourceFile>																						
 							</jsSourceFiles>
 							<jsFinalFile>jsrestaurants.consulta.admin.js</jsFinalFile>
@@ -528,6 +539,7 @@
 								<jsSourceFile>jquery/jquery.js</jsSourceFile>
 								<jsSourceFile>jquery/jquery.ui.core.js</jsSourceFile>
 								<jsSourceFile>jquery/jquery.dataTables.js</jsSourceFile>
+								<jsSourceFile>utils/jsutils.js</jsSourceFile>
 								<jsSourceFile>admin/restaurants/newplat/jsplats.js</jsSourceFile>			
 								<jsSourceFile>validations/jsvalidations.js</jsSourceFile>																			
 							</jsSourceFiles>
@@ -559,6 +571,7 @@
 								<jsSourceFile>jquery/jquery.js</jsSourceFile>
 								<jsSourceFile>jquery/jquery.ui.core.js</jsSourceFile>
 								<jsSourceFile>jquery/jquery.dataTables.js</jsSourceFile>
+								<jsSourceFile>utils/jsutils.js</jsSourceFile>
 								<jsSourceFile>admin/restaurants/newRestaurant/jsnewrestaurant.js</jsSourceFile>																											
 							</jsSourceFiles>
 							<jsFinalFile>jsnewrestaurant.admin.js</jsFinalFile>
@@ -623,6 +636,7 @@
 								<jsSourceFile>jquery/jquery.js</jsSourceFile>
 								<jsSourceFile>jquery/jquery.ui.core.js</jsSourceFile>		
 								<jsSourceFile>jquery/jquery.dataTables.js</jsSourceFile>	
+								<jsSourceFile>utils/jsutils.js</jsSourceFile>
 								<jsSourceFile>admin/restaurants/promoAssociades/jspromocio.js</jsSourceFile>	
 								<jsSourceFile>validations/jsvalidations.js</jsSourceFile>																									
 							</jsSourceFiles>
@@ -693,6 +707,7 @@
 								<jsSourceFile>calendari/calendar-es.js</jsSourceFile>
 								<jsSourceFile>calendari/calendar-idioma.js</jsSourceFile>
 								<jsSourceFile>calendari/calendar-setup.js</jsSourceFile>
+								<jsSourceFile>utils/jsutils.js</jsSourceFile>
 								<jsSourceFile>admin/restaurants/promocions/jspromocio.js</jsSourceFile>									
 								<jsSourceFile>validations/jsvalidations.js</jsSourceFile>																									
 							</jsSourceFiles>
