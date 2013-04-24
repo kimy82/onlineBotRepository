@@ -102,7 +102,8 @@
 							<td><s:textfield key="promocioAPartirDeDTF.diaString"  id="dia" maxlength="10" size="12" onfocus="blur()" theme="simple" ></s:textfield>
 							<img  src="<c:url value='/images/calendar/calendar_full.png'/>"  id="llencadorData" ></td>
 							</tr>
-							<s:hidden key="promocioAPartirDeDTF.id" id="id_apd" ></s:hidden>			
+							<s:hidden key="promocioAPartirDeDTF.id" id="id_apd" ></s:hidden>
+							<s:hidden key="promocioAPartirDeDTF.code" id="code_apd" ></s:hidden>			
 								<s:submit></s:submit>
 						</s:form>			
 					</div>					
@@ -134,6 +135,7 @@
 							<s:textfield key="promocioNumComandes.numComandes"  id="numComandes"  onblur="onlyEntero(this.value,this.id)" ></s:textfield>
 							<s:textfield key="promocioNumComandes.temps"  id="temps"  onblur="onlyEntero(this.value,this.id)" ></s:textfield>
 							<s:hidden key="promocioNumComandes.id" id="id_pnc" ></s:hidden>
+							<s:hidden key="promocioNumComandes.code" id="code_pnc" ></s:hidden>
 								<s:submit></s:submit>
 						</s:form>		
 					</div>

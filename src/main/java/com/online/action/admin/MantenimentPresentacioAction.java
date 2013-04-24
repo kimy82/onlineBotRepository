@@ -58,23 +58,25 @@ public class MantenimentPresentacioAction extends ActionSuportOnline{
 				try {
 					// retrieve image
 					BufferedImage bi = ImageIO.read(fileInputStream);
-					String whereToSave = request.getRealPath("/images/presentacio") + "\\image" + numPhoto + ".jpg";
-
+					String whereToSave = request.getRealPath("/images/presentacio") + "/image" + numPhoto + ".jpg";
+					System.out.println("were 1: "+whereToSave);
 					File outputfile = new File(whereToSave);
 					ImageIO.write(bi, "jpg", outputfile);
 
 					whereToSave = whereToSave.replace("\\target\\"+app, "\\src\\main\\webapp");
-
+					System.out.println("were 2: "+whereToSave);
 					File outputfileReal = new File(whereToSave.replace("\\target", ""));
 					ImageIO.write(bi, "jpg", outputfileReal);
 
 				} catch (IOException e) {
+					e.printStackTrace();
 					throw new IOException(e);
 				}
 
 				fileInputStream.read(bFile);
 				fileInputStream.close();
 			} catch (Exception e) {
+				e.printStackTrace();
 				throw new ImageException(e, "error retrieving image in action");
 			}
 			image = new Image();

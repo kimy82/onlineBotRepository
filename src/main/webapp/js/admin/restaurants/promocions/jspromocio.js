@@ -38,6 +38,8 @@ function resetForm(){
  		$("#id_apd").val("");
  		$("#id_pnc").val("");
  		$("#numUses_apd").val("");
+ 		$("#code_apd").val("");
+ 		$("#code_pnc").val("");
  		$("#numUses_pnc").val("");
  		$("#adp_hora").attr('checked',false);		
  		$("#pnc_hora").attr('checked',false);
@@ -94,6 +96,7 @@ function goToPromocio(id){
 					 		$("#id_apd").val(json.id);
 					 		$("#nompromo_apd").html(json.nom);
 					 		$("#nompromoES_apd").html(json.nomES);
+					 		$("#code_apd").val(json.code);
 					 		$("#tipuDescompte_apd").val(json.tipuDescompte);
 					 		$("#numBegudes_apd").val(json.numBegudes);					 		
 					 		$("#tipusBeguda_apd option[value='"+json.tipusBeguda+"']").attr("selected","selected");  					 		
@@ -135,6 +138,7 @@ function goToPromocio(id){
 					 	}
 					 	if(json.tipus=='pnc'){
 					 		$("#id_pnc").val("");
+					 		$("#code_pnc").val(json.code);
 					 		$("#nompromo_pnc").html(json.nom);
 					 		$("#nompromoES_pnc").html(json.nomES);
 					 		$("#tipuDescompte_pnc").val(json.tipuDescompte);
