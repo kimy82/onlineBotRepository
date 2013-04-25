@@ -20,6 +20,7 @@
 }
 
 .cs-buttons a {
+	 background: -webkit-linear-gradient(top, #CCCCCC, #F3F3F3);
      background: -moz-linear-gradient(center top , #CCCCCC, #F3F3F3) repeat scroll 0px 0px transparent;
      border-radius: 50% 50% 50% 50%;
 }
@@ -53,6 +54,7 @@
 }
 
 a.cs-active {
+	 background: -webkit-linear-gradient(top, #FFC892, #F7931E);
      background: -moz-linear-gradient(center top , #FFC892, #F7931E) repeat scroll 0px 0px transparent;
      border-radius: 50% 50% 50% 50%;
      border: 1px solid #F7931E ! important;

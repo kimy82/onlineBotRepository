@@ -269,6 +269,7 @@ h2{
     margin-bottom: 10px;
     margin-top: 10px;
     text-transform: uppercase;
+    width:190px;
 }
 .gmnoprint{
 	display:none;
@@ -1656,8 +1657,14 @@ vertical-align:middle;
 }
 
 .big_img{
-	position: relative;
-	top:-20px;
+    margin-left: 4px;
+    position: relative;
+    top: -146px;
+    width: 20px;;
+}
+#imageBig {
+	top:100px;
+    position:fixed;
 }
 .tancarBot{
 	background-color: #f3f3f3;
@@ -1801,4 +1808,54 @@ vertical-align:middle;
 	float:left;
 	width:300px;
 	margin-right:56px;
+}
+.big_img{
+    margin-left: 4px;
+    position: relative;
+    top: -146px;
+    width: 20px;;
+}
+#imageBig {
+	top:100px;
+    position:fixed;
+	background-color:white!important;
+	height:324px!important;
+}
+#imageBig2 {
+	background-color:white!important;
+	padding:10px;
+}
+.colose{
+font-family:arial;
+color:#888;
+font-weight:bold;
+padding:3px;
+}
+.colose:hover{
+font-family:arial;
+color:#888;
+font-weight:bold;
+padding:3px;
+}
+#circle{
+float:right;
+-webkit-border-radius: 10%;
+-moz-border-radius: 10%;
+border-radius: 10%;
+background-color:white;
+float: right;
+    margin-right: -1px;
+    margin-top: -43px;
+    padding: 10px
+}
+#circle:hover{
+float:right;
+-webkit-border-radius: 10%;
+-moz-border-radius: 10%;
+border-radius: 10%;
+background-color:#333;
+float: right;
+    margin-right: -1px;
+    margin-top: -43px;
+    padding: 10px
 }
