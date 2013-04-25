@@ -12,6 +12,7 @@
 	<link rel="shortcut icon" href="<c:url value='/img/elements/logo_portamu16.jpg' />"> 
 	<link href='https://fonts.googleapis.com/css?family=Raleway:800,400' rel='stylesheet' type='text/css'>
 	<link type="text/css" rel="stylesheet" href="<c:url value='/css/welcome.min.css' />" />	
+	<script src="<c:url value='/js/jswelcome.ini.first.min.js'/>" type="text/javascript"></script>
 	<title> <s:text name="txt.welcome.principal" />	</title>	
 </head>
 <body id=indexPor>
@@ -120,7 +121,7 @@
 </div>	
 <c:import url="/pages/includes/endPage.jsp" />
 	<script src="https://maps.google.com/maps/api/js?sensor=false" type="text/javascript"></script>
-	<script src="<c:url value='/js/jswelcome.ini.js'/>" type="text/javascript"></script>	
+	<script src="<c:url value='/js/jswelcome.ini.second.min.js'/>" type="text/javascript"></script>	
 <script type="text/javascript" >
 new Address.addressValidation("<s:text name='txt.addressOK' />","<s:text name='txt.addressKO' />");
 var initParams = new InitParams("<s:text name='txt.comanda.existeix.vol.continuar' />","<s:text name='txt.welcome.confirmar' />",

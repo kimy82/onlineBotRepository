@@ -32,3 +32,9 @@
 		    </a>
 	</div>
 </div>
+<script type="text/javascript">
+	$('#coin-slider').coinslider({ width: 1000,height: 299});
+</script>
+
+
+

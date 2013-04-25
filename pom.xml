@@ -156,7 +156,7 @@
 			<artifactId>tools</artifactId>
 			<version>1.5</version>
 			<scope>system</scope>
-			<systemPath>C:/Program Files/Java/jdk1.7.0_02/lib/tools.jar</systemPath>
+			<systemPath>C:/Program Files (x86)/Java/jdk1.6.0_17/lib/tools.jar</systemPath>
 		</dependency>
 		<dependency>
 			<groupId>javax.mail</groupId>
@@ -1026,7 +1026,7 @@
 						</goals>
 					</execution>
 					<execution>
-						<id>welcome</id>
+						<id>welcomeinifirst</id>
 						<phase>process-sources</phase>
 						<configuration>
 							<linebreak>4000</linebreak>
@@ -1057,14 +1057,41 @@
 								<jsSourceFile>jquery/jquery.effects.core.js</jsSourceFile>
 								<jsSourceFile>jquery/jquery.bgiframe-2.1.1.js</jsSourceFile>
 								<jsSourceFile>jquery/jquery-ui.js</jsSourceFile>		
-								<jsSourceFile>slider/coin-slider.js</jsSourceFile>	
+								<jsSourceFile>slider/coin-slider.js</jsSourceFile>																																																											
+							</jsSourceFiles>
+							<jsFinalFile>jswelcome.ini.first.js</jsFinalFile>
+						</configuration>
+						<goals>
+							<goal>minify</goal>
+						</goals>
+					</execution>
+					<execution>
+						<id>welcomeinisecond</id>
+						<phase>process-sources</phase>
+						<configuration>
+							<linebreak>4000</linebreak>
+							<nomunge>true</nomunge>
+         					<verbose>false</verbose>
+          					<preserveAllSemiColons>true</preserveAllSemiColons>
+							<disableOptimizations>true</disableOptimizations>
+							<cssSourceDir>css</cssSourceDir>							
+							<cssSourceFiles>
+								<cssSourceFile>portamu/global.css</cssSourceFile>
+								<cssSourceFile>portamu/reset.css</cssSourceFile>
+								<cssSourceFile>portamu/prova.css</cssSourceFile>
+								<cssSourceFile>coin-slider-styles.css</cssSourceFile>
+								<cssSourceFile>online.css</cssSourceFile>
+							</cssSourceFiles>
+							<cssFinalFile>welcome.css</cssFinalFile>
+							<jsSourceDir>js</jsSourceDir>
+							<jsSourceFiles>																
 								<jsSourceFile>address/autocompleteStreet.js</jsSourceFile>	
 								<jsSourceFile>address/autocompleteCodi.js</jsSourceFile>	
 								<jsSourceFile>address/addressValidationForm.js</jsSourceFile>	
 								<jsSourceFile>address/addressValidationFormbis.js</jsSourceFile>	
 								<jsSourceFile>jswelcome.js</jsSourceFile>																																														
 							</jsSourceFiles>
-							<jsFinalFile>jswelcome.ini.js</jsFinalFile>
+							<jsFinalFile>jswelcome.ini.second.js</jsFinalFile>
 						</configuration>
 						<goals>
 							<goal>minify</goal>
