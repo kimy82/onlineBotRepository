@@ -286,7 +286,7 @@
 <c:import url="/pages/includes/endPage.jsp" />
 
 
-<div id="dialog_promo" class="filtres filtres-oberts" title="Promo">
+<div id="dialog_promo" class="filtres filtres-oberts" style="visibility: hidden;" title="Promo">
 
 		<div class="al_com">
 			<s:text name="txt.login.title" />

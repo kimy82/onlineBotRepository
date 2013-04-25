@@ -8,9 +8,17 @@ function Map(elementId, geolocation) {
         position: geolocation,
         title:"Here is your address!"
     });
+	if(42.0013>geolocation.lat() && geolocation.lat()>41.9237 && 2.7290<geolocation.lng()&& geolocation.lng()<2.8965){
+		$("#map_canvas").show();
+		map.setCenter(geolocation);
+		marker.setMap(map); 
 
-    map.setCenter(geolocation);
-    marker.setMap(map);  
+		//POsem address al form
+        $("#comandaddress").val(Address.addressValidation.prototype.addressToSave);
+        $("#addressOK").text(Address.addressValidation.prototype._addressOK);		
+	}else{
+		$("#addressOK").text(Address.addressValidation.prototype._addressKO);
+	}
     
 }
 
@@ -35,6 +43,7 @@ Address.addressValidation.prototype._button=null;
 Address.addressValidation.prototype._infoLabel=null;
 Address.addressValidation.prototype._addressOK=null;
 Address.addressValidation.prototype._addressKO=null;
+Address.addressValidation.prototype.addressToSave=null;
 
 Address.addressValidation.prototype._init= function(addressOK,addressKO){
 	this._carrer= document.getElementById("carrer");
@@ -45,6 +54,7 @@ Address.addressValidation.prototype._init= function(addressOK,addressKO){
 	this._infoLabel= $("#addressOK");
 	Address.addressValidation.prototype._addressOK=addressOK;
 	Address.addressValidation.prototype._addressKO=addressKO;
+	Address.addressValidation.prototype.addressToSave="";
 }
 
 Address.addressValidation.prototype.checkAdd = function(){
@@ -59,7 +69,7 @@ Address.addressValidation.prototype.checkAdd = function(){
 		 $("#addressOK").text(Address.addressValidation.prototype._addressKO);
 		 return false;
 	}
-	
+	Address.addressValidation.prototype.addressToSave=addressToSave;
 	address = address.replace(/\n/g, "");
 	var geocoder = new google.maps.Geocoder();
     geocoder.geocode({ 'address': address }, function (results, status) {
@@ -76,12 +86,10 @@ Address.addressValidation.prototype.checkAdd = function(){
                  // Remove USA from the address (remove this, if this is important to you)
             	 addressGoogle = addressGoogle.replace(/, USA$/, "");
                  
-            	 $("#map_canvas").show();
+            	
                  Map("map_canvas", results[0].geometry.location);
 
-                 //POsem address al form
-                 $("#comandaddress").val(addressToSave);
-                 $("#addressOK").text(Address.addressValidation.prototype._addressOK);
+                 
              }
     	 }else{
     		 $("#addressOK").text(Address.addressValidation.prototype._addressKO);

@@ -8,9 +8,19 @@ function Mapbis(elementId, geolocation) {
         position: geolocation,
         title:"Here is your address!"
     });
+    
+    if(42.0013>geolocation.lat() && geolocation.lat()>41.9237 && 2.7290<geolocation.lng()&& geolocation.lng()<2.8965){
+    	 $("#map_canvasbis").show();
+		map.setCenter(geolocation);
+		marker.setMap(map); 
 
-    map.setCenter(geolocation);
-    marker.setMap(map);  
+		//POsem address al form
+        $("#comandaddressbis").val(Addressbis.addressValidation.prototype.addressToSave);
+        $("#addressOKbis").text(Address.addressValidation.prototype._addressOK);		
+	}else{
+		$("#addressOKbis").text(Address.addressValidation.prototype._addressKO);
+	}
+  
     
 }
 
@@ -35,6 +45,7 @@ Addressbis.addressValidation.prototype._button=null;
 Addressbis.addressValidation.prototype._infoLabel=null;
 Addressbis.addressValidation.prototype._addressOK=null;
 Addressbis.addressValidation.prototype._addressKO=null;
+Addressbis.addressValidation.prototype.addressToSave=null;
 
 Addressbis.addressValidation.prototype._init= function(addressOK,addressKO){
 	this._carrer= document.getElementById("carrerbis");
@@ -45,7 +56,9 @@ Addressbis.addressValidation.prototype._init= function(addressOK,addressKO){
 	this._infoLabel= $("#addressOK");
 	Addressbis.addressValidation.prototype._addressOK=addressOK;
 	Addressbis.addressValidation.prototype._addressKO=addressKO;
+	Addressbis.addressValidation.prototype.addressToSave="";
 }
+
 
 Addressbis.addressValidation.prototype.checkAdd = function(){
 	var address = $("#carrerbis").val()+","+$("#codibis").val()+", Girona, Spain";
@@ -59,7 +72,7 @@ Addressbis.addressValidation.prototype.checkAdd = function(){
 		 $("#addressOKbis").text(Addressbis.addressValidation.prototype._addressKO);
 		 return false;
 	}
-	
+    Addressbis.addressValidation.prototype.addressToSave=addressToSave;
 	address = address.replace(/\n/g, "");
 	var geocoder = new google.maps.Geocoder();
     geocoder.geocode({ 'address': address }, function (results, status) {
@@ -76,12 +89,10 @@ Addressbis.addressValidation.prototype.checkAdd = function(){
                  // Remove USA from the address (remove this, if this is important to you)
             	 addressGoogle = addressGoogle.replace(/, USA$/, "");
                  
-            	 $("#map_canvasbis").show();
+            	
                  Map("map_canvasbis", results[0].geometry.location);
 
-                 //POsem address al form
-                 $("#comandaddressbis").val(addressToSave);
-                 $("#addressOKbis").text("OK Address");
+                
              }
     	 }else{
     		 $("#addressOKbis").text("KO Address");

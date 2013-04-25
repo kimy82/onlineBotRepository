@@ -1306,6 +1306,7 @@ $("#dialog_promo").dialog( { autoOpen: false,
 		 //carrega la taula del dialog
 		checkPromocionsDisponibles(); 
 		checkPromoEspecial();
+		$('#dialog_promo').css('visibility', '');
 		$('#dialog_promo').css('overflow', 'hidden');
 		
 
