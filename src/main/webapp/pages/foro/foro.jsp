@@ -69,7 +69,7 @@
 					<table id="comments_tbl" >				
 					    <s:iterator value="plat.comments" var="comt">
 									<tr id="${comt.id}" >
-										<td class="comenta">${comt.comment} <b>(${comt.nomUsu} &nbsp; ${comt.dia})</b></td>																															
+										<td class="comenta"><span class="name_fo">${comt.nomUsu} &nbsp; ${comt.dia}</span> </br></br>${comt.comment}</td>																														
 										<c:if test="${nameAuth eq 'ROLE_ADMIN' }">											
 												<td class="delet"><a href="#" onclick="deleteComment(${comt.id})" ><img src="<c:url value='/images/delete.png' />" /> </a></td>																			
 										</c:if>	
