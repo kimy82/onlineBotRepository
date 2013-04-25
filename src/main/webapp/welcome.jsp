@@ -104,13 +104,15 @@
 						<input type="hidden" id="poble" disabled="disabled" value="Girona"  />						
 						</form>
 					</div>
-					<div id="map_canvas" style="float: right; height: 200px; width: 200px; display:none;"></div>	
+					<div id="map_canvas" style="float: left; height: 200px; width: 200px; display:none;"></div>	
 					<img src="img/elements/bar5.png">
 					<div id="newsletter">
 						<h2><s:text name="txt.welcome.newsletter.title" /></h2><br>
 						<form class="form" action="#">
-						<s:text name="txt.welcome.newsletter.title2" /><br> <input class="newsin" type="text" id="email" />
-						<input class="news" type="button" onclick="saveEmail()" value="" />
+						<s:text name="txt.welcome.newsletter.title2" /><br> <br>
+						<s:text name="txt.welcome.mail" />:<br>
+						<input class="newsin" type="text" id="email" /><br>
+						<input class="boton" type="button" onclick="saveEmail()" value="<s:text name="txt.welcome.newsletter.ins" />" />
 						<label id="error"></label>
 						</form>
 					</div>

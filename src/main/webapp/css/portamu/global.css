@@ -180,7 +180,6 @@ h2{
 }
 .confirm a  {
     background-color: #9fc465;
-    display: block;
   	margin: -12px -12px 0 0px;
     padding: 15px !important;
     text-shadow: none;
@@ -516,7 +515,7 @@ background: #F7931E;
 	background-color: #333333;
     border-top: 1px solid #000000;
     float: left;
-    height: 350px;
+    height: 510px;
     margin: auto;
     width: 100%;
 }
@@ -573,10 +572,10 @@ background: #F7931E;
 	font-family: arial;
 	font-size: 12px;
 }
-#footer_rigth{
-	width: 300px;
-	height: 300px;
-	float: right;
+#footer_rigth {
+    float: right;
+    margin-top: 90px;
+    width: 400px;
 }
 /* restaurants////////////////////////////////////////////////////////////////////////////////////////////////////////////////// */
 #restaurants .titol_Rest{
@@ -589,7 +588,7 @@ background: #F7931E;
 	border-bottom: 1px solid #C69C6D;
 	border-right:  1px solid #C69C6D;
 	width: 246px;
-	height: 425px;
+	height: 513px;
 	float: left;
 	margin-right: 12px;
 	webkit-box-shadow:0 3px 8px 2px #E0C0A6;
@@ -646,7 +645,7 @@ background: #F7931E;
 	font-size: 12px;
 	color: #A67C52;
 	float: left;
-	margin-top: 14px;
+	margin-top: 1px;
 	width: 234px;
 }
 .coments_titol{
@@ -1796,19 +1795,15 @@ vertical-align:middle;
     font-style: normal;
     font-weight: bold;
     margin-bottom: 10px;
-    margin-top: -10px;
+    margin-top: 20px;
     text-transform: uppercase;
 }
 #footer_left{
 	float:left;
-	width:300px;
-	margin-right:56px;
+	width:580px;
+	margin-right:0px;
 }
-#footer_mig{
-	float:left;
-	width:300px;
-	margin-right:56px;
-}
+
 .big_img{
     margin-left: 4px;
     position: relative;
@@ -1858,4 +1853,31 @@ float: right;
     margin-right: -1px;
     margin-top: -43px;
     padding: 10px
+}
+.alergia{
+	float:left;
+	width:40px;
+	margin-right: 7px;
+}
+.titsep {
+    color: #333333;
+    float: left;
+    font-family: arial;
+    font-size: 13px;
+    font-weight: bold;
+    margin-bottom: 6px;
+    margin-top: 13px;
+    width: 230px;
+}
+.sep23{
+	border-top:  1px solid #C69C6D;
+	border-bottom: none;
+	border-right: none;
+	border-left: none;
+	margin-top:10px; 
+	webkit-box-shadow:0 3px 8px 2px #E0C0A6;
+    box-shadow: 0 3px 8px 2px #E0C0A6;
+    box-shadow: 1px 1px 0 0 #FFFFFF;
+    width: 246px;
+    float: left;
 }

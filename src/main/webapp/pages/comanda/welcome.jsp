@@ -94,27 +94,41 @@
 							</div>
 							<hr class="sep">
 						</div>
-					</c:if>	
+						</c:if>	
+						<div class="titsep">
+						<s:text name="txt.plat.aptes" />
+						</div>
 					<c:if test="${plat.celiacs == false }" >
+					<div class="alergia"><img title="<s:text name="txt.plat.celiacs" />"  src="../img/elements/celiac.png"></div>
 					</c:if>	
 					<c:if test="${plat.celiacs == true }" >
+					
 					</c:if>	
 					<c:if test="${plat.vegetarians == false }" >
+					<div class="alergia"><img title="<s:text name="txt.plat.vegetarians" />" src="../img/elements/vegetaria.png"></div>
 					</c:if>	
 					<c:if test="${plat.vegetarians == true }" >
+					
 					</c:if>	
 					<c:if test="${plat.ous == false }" >
+					<div class="alergia"><img title="<s:text name="txt.plat.ous" />" src="../img/elements/ous.png"></div>
 					</c:if>	
 					<c:if test="${plat.ous == true }" >
+					
 					</c:if>	
 					<c:if test="${plat.lactics == false }" >
+					<div class="alergia"><img title="<s:text name="txt.plat.lactics" />" src="../img/elements/llet.png"></div>
 					</c:if>	
 					<c:if test="${plat.lactics == true }" >
+					
 					</c:if>	
 					<c:if test="${plat.fruitsCecs == false }" >
+					<div class="alergia"><img title="<s:text name="txt.plat.fruits" />" src="../img/elements/fruits.png"></div>
 					</c:if>	
 					<c:if test="${plat.fruitsCecs == true }" >
+					
 					</c:if>	
+					<hr class="sep23"></hr>
 						<div class="coments">
 							<img class="estrelles_rest" src="/${initParam.app}/img/elements/estrelles${plat.votacio.punctuacio}.jpg">	
 							<br>
