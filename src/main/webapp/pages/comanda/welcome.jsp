@@ -40,7 +40,7 @@
 						<div class="selector_jq ui-widget-content img_Rest" id="draggable_${plat.id}" >
 	  						<img height="152" width="230" src="/${initParam.app}/comanda/ImageAction.action?imageId=${plat.foto.id}">
 	  						<div class="big_img">
-	  							<a href="#" onclick="showImagePlat(${plat.foto.id})"><img height="10" src="<c:url value='/img/elements/logo_portamu16.jpg' />"></a>
+	  							<a href="#" onclick="showImagePlat(${plat.foto.id})"><img height="14" src="<c:url value='/img/elements/zoom.png' />"></a>
 	  						</div>
 	  					</div>
 	  					<div class="format">
@@ -232,10 +232,14 @@
 </div>  
 <div id="infoBeguda_dialog" class="filtres filtres-oberts">	 		
 </div>  
-<div id="imageBig" class="filtres filtres-oberts" style="background-color: black;">	 
-	<img id="imgBigId"  width="500" src="/${initParam.app}/comanda/ImageAction.action?imageId=${plat.foto.id}">		
-	<a href="#" onclick="closeImage()" >CLOSE</a>
-</div>  
+<div id="imageBig" class="filtres filtres-oberts" width="600">
+<div id="circle">
+<a href="#" onclick="closeImage()" class="colose" >X</a>
+</div> 
+	<div id="imageBig2" class="filtres filtres-oberts" width="600">		
+		<img id="imgBigId"  width="500" src="/${initParam.app}/comanda/ImageAction.action?imageId=${plat.foto.id}">		
+	</div>
+</div>   
 <c:import url="/pages/includes/endPage.jsp" />
 	<script src="<c:url value='/pages/comanda/jqueryWelcome.min.js'/>" type="text/javascript"></script>
 	<script type="text/javascript" >		
