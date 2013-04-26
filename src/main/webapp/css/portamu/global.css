@@ -1649,8 +1649,7 @@ vertical-align:middle;
     position: fixed;
     text-align: left;
     top:100px;
-	
-}
+	}
 .dele{
 	float:right;
 }
@@ -1880,4 +1879,32 @@ float: right;
     box-shadow: 1px 1px 0 0 #FFFFFF;
     width: 246px;
     float: left;
+}
+.promocions_peso {
+     font-weight: bold;
+     text-transform: uppercase;
+}
+
+#promocionsdiv {
+     margin-left: 20px;
+     margin-top: 20px;
+}
+
+.prom_int {
+     float: left;
+}
+.promosImg{
+
+width:220px;
+float:left;
+  font-family: raleway;
+    font-weight: bold;
+    text-transform: uppercase;
+    text-align:center;
+    margin-left: 15px;
+}
+.reftit {
+    color: #F7931E;
+    font-size: 21px;
+    font-weight: bolder;
 }

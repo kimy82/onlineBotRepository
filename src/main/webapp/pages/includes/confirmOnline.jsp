@@ -4,7 +4,7 @@
 <div id="dialog_confirm" class="filtres filtres-oberts" title="<s:text name='txt.confirm.title' />">
 		
 		<div class="al_top">
-			<s:text name="txt.login.title" />
+			<s:text name="txt.alert" />
 		</div>
 		<hr class="sep19">
 		<div id="tot_conf">

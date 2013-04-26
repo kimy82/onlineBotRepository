@@ -4,7 +4,7 @@
 <div id="dialog_alert" class="filtres filtres-oberts" title="<s:text name='txt.alert.title' />">
 		
 		<div class="al_top">
-			<s:text name="txt.login.title" />
+			<s:text name="txt.alert" />
 			<table>
 	 	<tr>
 	 		<input class="tancarBot" type="button" id="cancel" value="X"  onclick="alertOnline.close();" />

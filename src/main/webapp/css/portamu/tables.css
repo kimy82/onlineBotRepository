@@ -238,13 +238,9 @@ TABLE.dataTable TD {
 	display: block;
 }
 
-.tabs input:hover + label {
-	background: #5ba4a4;
-}
-
 .tabs label:first-of-type {
     z-index: 4;
-    box-shadow: 2px 0 2px rgba(0,0,0,0.1);
+    
 }
 
 .tab-label-2 {
@@ -393,10 +389,13 @@ TABLE.dataTable TD {
     margin-top: 4px;
     width: 189px;
 }
-#usemaps{
-	float:left;
+#usemaps {
+    float: left;
+    margin-left: 20px;
+    margin-top: 24px;
+    width:373px;
+    height: 323px;
 }
-
 #changepass{
 	float:right;
 }
