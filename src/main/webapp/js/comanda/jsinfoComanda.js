@@ -122,10 +122,10 @@ var confirmComanda = function (){
 
 function reloadHores(){
 	var dia = $("#dia").val();
-	var data = window.localStorage.setItem("comanda.data",dia);
+	window.localStorage.setItem("comanda.data",dia);
 	var comanda = window.localStorage.getItem("comanda");
 	
-	var data = "data="+dia+"&idComanda="+comanda;
+	var data ="data="+dia+"&idComanda="+comanda;
 	if($("#adomicili").is(':checked')){
 		data=data+"&aDomicili=true"		
 	}else{		
@@ -402,7 +402,9 @@ function contrarembols(){
 
 function addRecollir(){
 			
-	if($("#arecollir").is(':checked')){		 		 				
+	if($("#arecollir").is(':checked')){	
+		var adomiciliChecked =$("#adomicili").is(':checked');
+		$("#adomicili").attr('checked',false);		
 		var idcomanda= window.localStorage.getItem("comanda");
 		var data ="idComanda="+idcomanda;
 	  	$.ajax({
@@ -418,8 +420,7 @@ function addRecollir(){
 	       				alertOnline.alertes(initParams.txtnomesdomocili);		       			
 	       				return;
 	       			  }
-	       			 if($("#adomicili").is(':checked')){	
-		       			 $("#adomicili").attr('checked',false);
+	       			 if(adomiciliChecked){			       			 
 		       			 $("#adomicili_div").hide('slow');	
 		       			 $("#pagarDom").hide('slow');
 		       		     $("#pagarRec").show('slow');
