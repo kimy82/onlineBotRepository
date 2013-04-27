@@ -11,7 +11,7 @@
 }
 
 #personal td {
-    
+   padding-botom:16px; 
 }
 
 .dataTables_scrollHead {
@@ -396,6 +396,16 @@ TABLE.dataTable TD {
     width:373px;
     height: 323px;
 }
-#changepass{
-	float:right;
+
+
+#changepass {
+    border-right: 1px solid #C3C3C3;
+    color: #888888;
+    float: left;
+    font-family: arial;
+    font-size: 14px;
+    margin-left: 20px;
+    margin-top: 10px;
+    padding-right: 20px;
+    margin-top: 20px;
 }

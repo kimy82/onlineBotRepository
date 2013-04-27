@@ -5,13 +5,13 @@
 <div id="footer">
 	<div id="footer_int">
 	<div id="footer_left">
-	<img src="../img/elements/logogris.png"></br></br></br>
+	<img  src="<c:url value='img/elements/logogris.png'/>"  ></br></br>
 	<s:text name="txt.footer.descripcio" />
 	</br></br>
     <s:text name="txt.footer.dades" /> <a href=mailto:hola@portamu.com>hola@portamu.com</a>
     </br></br></br>
     COMPRA SEGURA AMB</br></br>
-	<img src="../img/elements/bancsabadell.png">
+    <img  src="<c:url value='img/elements/bancsabadell.png'/>"  >
 	</div>
 	
 		<div id="footer_rigth">
