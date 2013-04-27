@@ -12,16 +12,19 @@
 	<link rel="stylesheet" href="<c:url value='/css/portamu/reset.css' />" type="text/css"   media="screen" />
 	<link rel="stylesheet" href="<c:url value='/css/online.css' />" type="text/css"   media="screen" />
 </head>
-<body>
+<body id="tpv">
 <c:import url="/pages/includes/headerContext.jsp" />
-<div class="content">
-		<c:import url="/pages/includes/menuHeaderTPV.jsp" />
-	<div class="container">
-		<div class="topadmin">
+<div class="contenttpv"><div id="headertpv">
+	<div id="int_header">
 		<div id="int_left">
 			<img src="<c:url value='/img/elements/logo_portamu.png' />">
 		</div>
+		<div id="int_right">
+		<c:import url="/pages/includes/menuHeaderTPV.jsp" />
 		</div>
+	</div>
+</div>
+	<div class="containertpv">
 		<form target="iframe" method="POST" id="form_p" action="${requestScope.payment.url}">
 			<input name="Ds_Merchant_Order" type="hidden" value="${requestScope.payment.ds_Merchant_Order}">
 			<input name="Ds_Merchant_Amount" type="hidden" value="${requestScope.payment.ds_Merchant_Amount}">
@@ -37,7 +40,7 @@
 			<input name="Ds_Merchant_TransactionType" type="hidden" value="${requestScope.payment.ds_Merchant_TransactionType}">
 			<input name="Ds_Merchant_MerchantSignature" type="hidden" value="${requestScope.payment.ds_Merchant_MerchantSignature}">			
 		</form>
-		<iframe name="iframe" id="iframe" src="${requestScope.payment.url}" frameborder="1" width="100%" height="800" ></iframe>
+		<iframe name="iframe" id="iframe" src="${requestScope.payment.url}" frameborder="1" width="1000px" height="100%" ></iframe>
 	</div>
 </div>
 <script type="text/javascript">

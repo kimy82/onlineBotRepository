@@ -40,34 +40,37 @@
 		        <label for="tab-3" class="tab-label-3 labe"><s:text name="txt.comuser.user" /></label>		
 			    <div class="clear-shadow"></div>				
 		        <div class="contente">
-			        <div class="contente-1">
+			         <div class="contente-1">
 			        <div class="useleft">
                         <c:import url="/pages/includes/addrescomanda.jsp" />
                     </div>
-                    <div id="usemaps">
-                     	<img  src="<c:url value='/images/elements/maps.png'/>"  >
-                    </div>
-                     <div id="changepass">
+					 <div id="changepass">
                         <s:form  action="saveUserDetails" id="saveUserDetails" method="POST" enctype="multipart/form-data" >
                         		
 								<tr><td><label>${user.username}</label></td></tr>
 								
-								<tr><td><label>${user.nom}<a href="#" onclick="changeClass('nom')" ><img src="<c:url value='/img/elements/logo_portamu16.jpg' />" ></img></a></label></td>
-								    <td><s:textfield key="user.nom" id="nom" onkeyup="return ismaxlength(this,45)" cssClass="hiddenIn inputs" theme="simple" ></s:textfield></td></tr>											                   
+								<tr><td><label>${user.nom}<a href="#" onclick="changeClass('nom')" ><img src="<c:url value='/img/elements/edit.png' />" ></img></a></label></td></tr>
+								<tr><td><s:textfield key="user.nom" id="nom" onkeyup="return ismaxlength(this,45)" cssClass="hiddenIn inputs" theme="simple" ></s:textfield></td></tr>											                   
 								
-								<tr><td><label>${user.telNumber}<a href="#" onclick="changeClass('telNumber')" ><img src="<c:url value='/img/elements/logo_portamu16.jpg' />" ></img></a></label></td>
-									<td><s:textfield key="user.telNumber" id="telNumber" onkeyup="return ismaxlength(this,9)" cssClass="hiddenIn inputs" theme="simple" ></s:textfield></td></tr>	
+								<tr><td><label>${user.telNumber}<a href="#" onclick="changeClass('telNumber')" ><img src="<c:url value='/img/elements/edit.png' />" ></img></a></label></td>
+								<tr><td><s:textfield key="user.telNumber" id="telNumber" onkeyup="return ismaxlength(this,9)" cssClass="hiddenIn inputs" theme="simple" ></s:textfield></td></tr>	
 								
 								<s:hidden key="user.id" id="idUser" ></s:hidden>
 								<tr><td><a href="#" onclick="changeClass('pass');" ><s:text name="userform.changePassword" /></a></td></tr>								
 								
-									<tr class="hiddenIn" id="pass" ><td><s:text name="user.password" /></td><td><s:password key="user.password" id="password" onkeyup="return ismaxlength(this,45)" cssClass="inputs" value="" theme="simple" ></s:password></td>
-									<td><s:text name="txt.password.retype" />:</td><td><input type="password" id="passwordRetyped" onblur="checkPassword()" class="inputs" value="${user.password}"/></td></tr>					
+								<tr class="hiddenIn" id="pass" >
+								<td><s:text name="user.password" /></td>
+								<td><s:password key="user.password" id="password" onkeyup="return ismaxlength(this,45)" cssClass="inputs" value="" theme="simple" ></s:password></td>
+								<td><s:text name="txt.password.retype" />:</td><td><input type="password" id="passwordRetyped" onblur="checkPassword()" class="inputs" value="${user.password}"/></td></tr>					
 								
 								<s:hidden key="user.address" id="comandaddress" ></s:hidden>
 								<tr><td><input class="boton" type="button"  onclick="fillAddress()" value="submit"/></td></tr>	                    															
 						</s:form>
 						</div>	
+                    <div id="usemaps">
+                     	<img  src="<c:url value='/img/elements/maps10.jpg'/>"  >
+                    </div>
+                    
 				    </div>
 			        <div class="contente-2">
 						<div id="promocionsdiv">					
@@ -77,13 +80,13 @@
 						<s:iterator value="promoListAPartirDe" var="promoAPD" >		
 							<c:if test="${not empty promoAPD.numBegudes}">
 							<div class="promosImg">
-							    <img  src="<c:url value='../img/elements/begudesGra.png'/>"  ></br>
+							    <img width="160px" src="<c:url value='../img/elements/begudesGra.png'/>"  ></br>
 								<span class="reftit">${promoAPD.numBegudes }  ${promoAPD.tipusBeguda}</span> </br><s:text name="txt.promo.info.n3" /> ${promoAPD.importAPartirDe}
 							</div>
 							</c:if>
 							<c:if test="${not empty promoAPD.descompteImport}">
 							<div class="promosImg">
-							    <img  src="<c:url value='../img/elements/begudesGra.png'/>"  ></br>
+							    <img width="160px" src="<c:url value='../img/elements/begudesGra.png'/>"  ></br>
 								<span class="reftit"><s:text name="txt.promo.info.import.n1" />  ${promAPD.descompteImport }</span><s:text name="txt.promo.info.en" /> ${promoAPD.tipuDescompte} <s:text name="txt.promo.info.n3" /> ${promoAPD.importAPartirDe}
 							</div>
 							</c:if>					
@@ -92,14 +95,14 @@
 								
 							<c:if test="${not empty promoNC.numBegudes}">
 							<div class="promosImg">
-							    <img  src="<c:url value='../img/elements/begudesGra.png'/>"  ></br>		
-								<s:text name="txt.promo.info.begudes.n1" /> ${promoNC.numBegudes } <s:text name="txt.promo.info.n2" /> ${promoNC.tipusBeguda} <s:text name="txt.promo.info.n3" /> ${promoNC.numComandes} <s:text name="txt.promo.info.en" /> ${promoNC.temps } <s:text name="txt.promo.info.dies" />
+							    <img width="160px" src="<c:url value='../img/elements/begudesGra.png'/>"  ></br>		
+								<span class="reftit"><s:text name="txt.promo.info.begudes.n1" /> ${promoNC.numBegudes } </span><s:text name="txt.promo.info.n2" /> ${promoNC.tipusBeguda} <s:text name="txt.promo.info.n3" /> ${promoNC.numComandes} <s:text name="txt.promo.info.en" /> ${promoNC.temps } <s:text name="txt.promo.info.dies" />
 							</div>
 							</c:if>
 							<c:if test="${not empty promoNC.descompteImport}">
 							<div class="promosImg">
-							    <img  src="<c:url value='../img/elements/begudesGra.png'/>"  ></br>
-								<s:text name="txt.promo.info.import.n1" />  ${promoNC.descompteImport } <s:text name="txt.promo.info.en" /> ${promoNC.tipuDescompte} <s:text name="txt.promo.info.n3" /> ${promoNC.numComandes} <s:text name="txt.promo.info.en" /> ${promoNC.temps } <s:text name="txt.promo.info.dies" />
+							    <img width="160px" src="<c:url value='../img/elements/begudesGra.png'/>"  ></br>
+								<span class="reftit"><s:text name="txt.promo.info.import.n1" />  ${promoNC.descompteImport }</span> <s:text name="txt.promo.info.en" /> ${promoNC.tipuDescompte} <s:text name="txt.promo.info.n3" /> ${promoNC.numComandes} <s:text name="txt.promo.info.en" /> ${promoNC.temps } <s:text name="txt.promo.info.dies" />
 							</div>
 							</c:if>						
 						</s:iterator>
