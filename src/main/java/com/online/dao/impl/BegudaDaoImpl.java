@@ -4,10 +4,12 @@ import java.util.List;
 
 import org.hibernate.Hibernate;
 import org.hibernate.Session;
+import org.hibernate.criterion.Restrictions;
 import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
 
 import com.online.dao.BegudaDao;
 import com.online.model.Beguda;
+import com.online.model.BegudaComanda;
 
 public class BegudaDaoImpl extends HibernateDaoSupport implements BegudaDao{
 	
@@ -47,12 +49,20 @@ public class BegudaDaoImpl extends HibernateDaoSupport implements BegudaDao{
 		
 		Session session = this.getSessionFactory().openSession();
 		session.beginTransaction();
-		
-		session.delete(beguda);		
-		
-		session.getTransaction().commit();
+		Long begudaId = beguda.getId();
+	
+		List<BegudaComanda> begudaComandaList = session.createCriteria(BegudaComanda.class).add(Restrictions.eq("beguda.id", begudaId)).list();
+		for(BegudaComanda bg :begudaComandaList){
+			session.createSQLQuery("delete from comanda_begudes where BEGUDACOMANDA_ID="+bg.getId()).executeUpdate();
+			session.delete(bg);
+		}
+		Beguda begudaToDelete = (Beguda) session.load(Beguda.class, begudaId);
+		session.delete(begudaToDelete);
 	
 		
+		
+		session.getTransaction().commit();
+					
 		session.close();
 						
 	}
@@ -62,7 +72,8 @@ public class BegudaDaoImpl extends HibernateDaoSupport implements BegudaDao{
 		Session session = this.getSessionFactory().openSession();
 		session.beginTransaction();
 		
-		Beguda beguda =(Beguda) session.load(Beguda.class, id);							
+		Beguda beguda =(Beguda) session.load(Beguda.class, id);		
+		
 		
 		session.close();
 		

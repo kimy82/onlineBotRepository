@@ -44,7 +44,13 @@
 	</div>
 </div>
 <script type="text/javascript">
-document.getElementById("form_p").submit();
+document.getElementById("form_p").submit();	
+
+window.onbeforeunload = deleteWindowStorage;
+function deleteWindowStorage()
+{
+	window.localStorage.clear();
+}
 </script>
 </body>
 </html>

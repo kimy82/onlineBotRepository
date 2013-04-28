@@ -5,10 +5,13 @@ import java.util.List;
 import org.hibernate.Hibernate;
 import org.hibernate.SQLQuery;
 import org.hibernate.Session;
+import org.hibernate.criterion.Restrictions;
 import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
 
 import com.online.dao.PlatsDao;
+import com.online.model.BegudaComanda;
 import com.online.model.Plat;
+import com.online.model.PlatComanda;
 
 public class PlatsDaoImpl extends HibernateDaoSupport implements PlatsDao{
 	
@@ -37,9 +40,15 @@ public class PlatsDaoImpl extends HibernateDaoSupport implements PlatsDao{
 		
 		Session session = this.getSessionFactory().openSession();
 		session.beginTransaction();
-		
-		session.delete(plat);
-		SQLQuery sql =session.createSQLQuery("delete from restaurants_plats where plat_id="+plat.getId());
+		Long platId = plat.getId();
+		List<PlatComanda> platComandaList = session.createCriteria(PlatComanda.class).add(Restrictions.eq("plat.id", platId)).list();
+		for(PlatComanda pltc : platComandaList){
+			session.createSQLQuery("delete from comanda_plats where PLATCOMANDA_ID="+pltc.getId()).executeUpdate();
+			session.delete(pltc);
+		}
+		Plat platToDelete = (Plat) session.load(Plat.class, platId);		
+		session.delete(platToDelete);
+		SQLQuery sql =session.createSQLQuery("delete from restaurants_plats where plat_id="+platId);
 		sql.executeUpdate();	
 		
 		session.getTransaction().commit();

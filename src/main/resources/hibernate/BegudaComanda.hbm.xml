@@ -10,10 +10,10 @@
 			<generator class="increment" />
 		</id>
 		<property name="numBegudes" type="integer" lazy="false" >
-			<column name="NUM" not-null="true" />
+			<column name="NUM" not-null="false" />
 		</property>
 		<property name="numBegudesPromo" type="integer" lazy="false" >
-			<column name="NUM_PROMO" not-null="true" />
+			<column name="NUM_PROMO" not-null="false" />
 		</property>
 		<property name="promo" type="boolean" lazy="false" >
 			<column name="PROMO"  />
