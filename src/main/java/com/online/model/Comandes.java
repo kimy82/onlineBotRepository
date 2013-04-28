@@ -51,6 +51,8 @@ public class Comandes implements Serializable{
 	protected Boolean				targeta;
 	
 	protected Boolean				revisio;
+	
+	protected String 				platsBorrats;
 
 	
 
@@ -226,6 +228,14 @@ public class Comandes implements Serializable{
 	public void setRevisio( Boolean revisio ){
 	
 		this.revisio = revisio;
+	}
+
+	public String getPlatsBorrats() {
+		return platsBorrats;
+	}
+
+	public void setPlatsBorrats(String platsBorrats) {
+		this.platsBorrats = platsBorrats;
 	}			
 	
 	

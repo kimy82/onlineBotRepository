@@ -24,6 +24,9 @@
 		<property name="observacions" type="string">
 			<column name="OBSERVACIONS" length="1000" />
 		</property>
+		<property name="platsBorrats" type="string">
+			<column name="PLATS_BORRATS" length="2000" />
+		</property>
 		<property name="tipuDescomte" type="string">
 			<column name="TIPUS_DESCOMPTE" length="10" />
 		</property>

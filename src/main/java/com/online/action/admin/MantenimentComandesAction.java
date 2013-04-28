@@ -267,7 +267,8 @@ public class MantenimentComandesAction extends ActionSuportOnline{
 	}
 
 	private String getMethodPagament( Comandes comanda ){
-
+		
+		
 		if (comanda.getPagada() != null && comanda.getPagada() == true) {
 
 			if (comanda.getTargeta() != null && comanda.getTargeta() == true) {
@@ -277,7 +278,7 @@ public class MantenimentComandesAction extends ActionSuportOnline{
 			}
 
 		} else {
-			return "NO ACABADA";
+			return "SENSE TARGETA";
 		}
 	}
 
@@ -302,9 +303,12 @@ public class MantenimentComandesAction extends ActionSuportOnline{
 		for (PlatComanda platComanda : comanda.getPlats()) {
 			nomPlats.append(platComanda.getPlat().getNom() + "<br>");
 		}
-		if (nomPlats.length() != 0)
-			nomPlats.setLength(nomPlats.length() - 4);
-
+		if(comanda.getPlatsBorrats()!=null){
+			nomPlats.append(comanda.getPlatsBorrats());
+		}else{
+			if (nomPlats.length() != 0)
+				nomPlats.setLength(nomPlats.length() - 4);
+		}
 		return nomPlats.toString();
 	}
 
