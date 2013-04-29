@@ -211,7 +211,7 @@
 						</td>
 						<td class="passs"><s:text name="txt.registrate" />:</td>
 						<td><input name="submit" type="button" class="boton bot" 
-							value="registret" onclick="submitLog()" />
+							value="registret" onclick="goToRegist()" />
 						</td>
 					</tr>
 					<tr>
@@ -371,6 +371,7 @@ if(addressToLoad==''){
 	addressToLoad =  '${requestScope.user.address}';	
 }
 initAddress();
+$("#altres").val('${requestScope.user.indicacions}');
 </script>
 <c:if test="${nameAuth ne 'anonymousUser' }">
 	<script type="text/javascript" >

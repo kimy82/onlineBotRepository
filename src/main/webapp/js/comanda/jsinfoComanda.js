@@ -65,6 +65,13 @@ function initAddress(){
 		var arrayAddress = window.addressToLoad.split("-");
 		$("#carrer").val(arrayAddress[0]);
 		$("#codi").val(arrayAddress[arrayAddress.length-1]);
+		
+		if(arrayAddress.length==5){
+			$("#porta").val(arrayAddress[arrayAddress.length-2]);
+			$("#num").val(arrayAddress[arrayAddress.length-3]);
+			$("#numcarrer").val(arrayAddress[arrayAddress.length-4]);
+		}
+		
 		$("#comandaddress").val(window.addressToLoad);
 		$("#checkAdd").click();
 	}	
@@ -474,6 +481,12 @@ function savePlatToComanda(idPlat,nPlats){
 function checkComandaJS(){
 	var comanda = window.localStorage.getItem("comanda");
 	var plats = window.localStorage.getItem("comanda.numplats");
+	var indicacions =$("#altres").val();
+	
+	indicacions = indicacions.replace(/[\u00A0-\u00FF]/g, function(c) {
+		return '#'+c.charCodeAt(0)+';';
+	});
+	
 	if(plats<=0){
 		alertOnline.alertes(initTxtPromos.txtnoplats);
 		return;
@@ -512,7 +525,7 @@ function checkComandaJS(){
 		var tipusPromo = window.localStorage.getItem("comanda.promo.tipus");
 		
 		$("#chargeBar").show();
-		var data ="idComanda="+comanda+"&dia="+dia+"&hora="+hora+"&aDomicili="+adomicili+"&targeta="+targeta+"&address="+address+"&promoId="+promoId+"&tipusPromo="+tipusPromo;
+		var data ="idComanda="+comanda+"&dia="+dia+"&hora="+hora+"&aDomicili="+adomicili+"&targeta="+targeta+"&address="+address+"&promoId="+promoId+"&tipusPromo="+tipusPromo+"&indicacions="+indicacions;
 	  	$.ajax({
 	  		  type: "POST",
 	  		  url: '/'+context+'/comanda/checkComanda.action',

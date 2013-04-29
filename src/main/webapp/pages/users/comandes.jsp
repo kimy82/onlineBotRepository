@@ -63,6 +63,7 @@
 								<s:password key="user.password" id="password" onkeyup="return ismaxlength(this,45)" cssClass="inputs" value="" theme="simple" ></s:password><br>
 								<s:text name="txt.password.retype" />:<input type="password" id="passwordRetyped" onblur="checkPassword()" class="inputs" value=""/></td></tr>					
 								
+								<s:hidden key="user.indicacions" id="indicacions" ></s:hidden>
 								<s:hidden key="user.address" id="comandaddress" ></s:hidden>
 								<tr><td><input class="boton" type="button"  onclick="fillAddress()" value="submit"/></td></tr>	                    															
 						</s:form>
@@ -174,6 +175,8 @@
 			$("#num").val(addArray[addArray.length-3]);
 			$("#numcarrer").val(addArray[addArray.length-4]);
 		}
+		$("#altres").val('${user.indicacions}');
+		$("#indicacions").val('${user.indicacions}');
 	</script>
 	</c:if>
 	<c:import url="/pages/includes/confirmOnline.jsp" />

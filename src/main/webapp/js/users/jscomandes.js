@@ -143,6 +143,10 @@ function fillAddress(){
 		$("#comandaddress").css('border', 'solid 1px rgb(135,155,179)');
 	}
 	
+	if($("#altres").val()!=''){
+		$("#indicacions").val($("#altres").val());
+	}
+	
 	self.submit();
 	
 	$("#dialog_details").dialog("close");

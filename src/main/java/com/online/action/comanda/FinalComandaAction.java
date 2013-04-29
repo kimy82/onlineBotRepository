@@ -39,6 +39,7 @@ public class FinalComandaAction extends ActionSuportOnline{
 	private String				dataActual;
 	private Integer				promoId;
 	private String 				tipusPromo;
+	private String 				indicacions;
 
 	private ComandaServiceImpl	comandaService;
 
@@ -64,6 +65,7 @@ public class FinalComandaAction extends ActionSuportOnline{
 				inizilizeComandaId();
 				inizilizeComandaDiaHoraADomicili();
 				inizializeAddress();
+				inizilizeIndicacions();
 				
 				
 				Users user = this.usersBo.findByUsername(this.nameAuth);
@@ -75,7 +77,7 @@ public class FinalComandaAction extends ActionSuportOnline{
 				this.comanda.setaDomicili(Boolean.valueOf(aDomicili));
 				this.comanda.setTargeta(Boolean.valueOf(targeta));
 				this.comanda.setAddress(this.address);
-
+				this.comanda.setObservacions(Utils.decodeUTF(this.indicacions));
 				if (this.comanda.getUser() == null) {					
 					this.comanda.setUser(user);
 				}
@@ -107,6 +109,13 @@ public class FinalComandaAction extends ActionSuportOnline{
 	}
 
 	// private methods
+	
+	private void inizilizeIndicacions() throws WrongParamException{
+
+		this.indicacions = (request.getParameter("indicacions") == null || request.getParameter("indicacions").equals("")) ? "" : request
+				.getParameter("indicacions");		
+	}
+
 	private void inizializeAddress() throws WrongParamException{
 
 		this.address = (request.getParameter("address") == null || request.getParameter("address").equals("")) ? null : request

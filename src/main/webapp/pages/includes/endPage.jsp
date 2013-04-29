@@ -5,7 +5,7 @@
 <div id="footer">
 	<div id="footer_int">
 	<div id="footer_left">
-	<img  src="<c:url value='img/elements/logogris.png'/>"  ></br></br>
+	<img  src="<c:url value='/img/elements/logogris.png'/>"  ></br></br>
 	<s:text name="txt.footer.descripcio" />
 	</br></br>
     <s:text name="txt.footer.dades" /> <a href=mailto:hola@portamu.com>hola@portamu.com</a>
