@@ -13,6 +13,15 @@
 	<title><s:text name="txt.welcome.principal" /></title>	
 	<link rel="stylesheet" href="<c:url value='/css/comanda.welcome.min.css' />" type="text/css"   media="screen" />
 	<link href='https://fonts.googleapis.com/css?family=Raleway:800,400' rel='stylesheet' type='text/css'>	
+	<style>
+		.iterate_no_plats{
+		  	float: left;
+    		height: 200px;
+    		margin-bottom: 20px;
+    		margin-right: 12px;
+    		width: 764px;
+		}
+	</style>
 </head>
 <body id="restaurants">
 <c:import url="/pages/includes/headerContext.jsp" />
@@ -34,7 +43,9 @@
 					</ul>
 				</div>
 				<hr class="sep2">
+				<c:set var="existPlats" value="false"/>
 				<s:iterator value="platList" var="plat">
+					<c:set var="existPlats" value="true"/>
 					<c:if test="${plat.actiu == true }" >
 						<div class="iterate_Rest">
 						<div class="selector_jq ui-widget-content img_Rest" id="draggable_${plat.id}" >
@@ -146,7 +157,13 @@
 						</div>
 					</div>				
 				</s:iterator>
+				<c:if test="${existPlats==false}">
+					<div class="iterate_no_plats">
+						<s:text name="txt.noexist.plats" />
+					</div>
+				</c:if>
 				<c:import url="/pages/includes/paginationPlats.jsp" />
+				
 					<div id="begudes_titol">
 						<s:text name="txt.afegir.vi" />
 					</div>
