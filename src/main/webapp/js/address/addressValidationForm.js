@@ -8,7 +8,35 @@ function Map(elementId, geolocation) {
         position: geolocation,
         title:"Here is your address!"
     });
-	if(42.0013>geolocation.lat() && geolocation.lat()>41.9237 && 2.7290<geolocation.lng()&& geolocation.lng()<2.8965){
+    
+    var addressInside=false;
+    
+    if(41.956389>geolocation.lat() && geolocation.lat()>41.946304 && 2.810225<geolocation.lng()&& geolocation.lng()<2.826877){
+    	addressInside=true;
+    }else if(41.973301>geolocation.lat() && geolocation.lat()>41.956836 && 2.805161<geolocation.lng()&& geolocation.lng()<2.834516){
+    	addressInside=true;
+    }else if(41.973557>geolocation.lat() && geolocation.lat()>41.958942 && 2.802415<geolocation.lng()&& geolocation.lng()<2.805591){
+    	addressInside=true;
+    }else if(41.974067>geolocation.lat() && geolocation.lat()>41.960283 && 2.799497<geolocation.lng()&& geolocation.lng()<2.802501){
+    	addressInside=true;
+    }else if(41.979363>geolocation.lat() && geolocation.lat()>41.964559 && 2.778726<geolocation.lng()&& geolocation.lng()<2.799926){
+    	addressInside=true;
+    }else if(41.987875>geolocation.lat() && geolocation.lat()>41.972562 && 2.799883<geolocation.lng()&& geolocation.lng()<2.835417){
+    	addressInside=true;
+    }else if(41.999868>geolocation.lat() && geolocation.lat()>41.988641 && 2.797136<geolocation.lng()&& geolocation.lng()<2.839537){
+    	addressInside=true;
+    }else if(42.014829>geolocation.lat() && geolocation.lat()>41.998247 && 2.809968<geolocation.lng()&& geolocation.lng()<2.828164){
+    	addressInside=true;
+    }else if(42.021142>geolocation.lat() && geolocation.lat()>42.014064 && 2.813487<geolocation.lng()&& geolocation.lng()<2.818294){
+    	addressInside=true;
+    }else if(42.018273>geolocation.lat() && geolocation.lat()>42.014128 && 2.817521<geolocation.lng()&& geolocation.lng()<2.820783){
+    	addressInside=true;
+    }else{
+    	addressInside=false;
+    }
+    	
+    	
+	if(addressInside==true){
 		$("#map_canvas").show();
 		map.setCenter(geolocation);
 		marker.setMap(map); 

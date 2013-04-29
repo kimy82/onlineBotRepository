@@ -59,6 +59,10 @@ function initNumBegudes(){
 	}	
 }
 
+function emptyAddress(){
+	$("#comandaddress").val("");
+}
+
 function initAddress(){
 	
 	if(window.addressToLoad!=''){

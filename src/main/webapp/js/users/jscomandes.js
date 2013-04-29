@@ -27,6 +27,11 @@ function InitParams(txtusernameempty, txtpasswordempty,txtpasswordnotequal,txtte
 	this.txtavisrestauranttancat=txtavisrestauranttancat;
 }
 
+function emptyAddress(){
+	$("#comandaddress").val("");
+}
+
+
 function changeClass(id){
 	if($("#"+id).hasClass("hiddenIn")){
 		$("#"+id).removeClass("hiddenIn");
