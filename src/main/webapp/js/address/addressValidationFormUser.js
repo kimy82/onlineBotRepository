@@ -64,12 +64,12 @@ Address.addressValidation.prototype.checkAdd = function(){
 		 $("#addressOK").text(Address.addressValidation.prototype._addressKO);
 		 return false;
 	}
-    var addressToSave = $("#carrer").val()+"-"+codiPostal;
+    var addressToSave = $("#carrer").val()+"-"+$("#numcarrer").val()+"-"+$("#num").val()+"-"+$("#porta").val()+"-"+codiPostal;
 	if($("#carrer").val() == '' || codiPostal == '' ){
 		 $("#addressOK").text(Address.addressValidation.prototype._addressKO);
 		 return false;
 	}
-	
+	Address.addressValidation.prototype.addressToSave=addressToSave;
 	address = address.replace(/\n/g, "");
 	var geocoder = new google.maps.Geocoder();
     geocoder.geocode({ 'address': address }, function (results, status) {

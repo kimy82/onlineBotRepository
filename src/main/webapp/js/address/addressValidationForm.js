@@ -64,6 +64,8 @@ Address.addressValidation.prototype.checkAdd = function(){
 		 $("#addressOK").text(Address.addressValidation.prototype._addressKO);
 		 return false;
 	}
+	
+	
     var addressToSave = $("#carrer").val()+"-"+codiPostal;
 	if($("#carrer").val() == '' || codiPostal == '' ){
 		 $("#addressOK").text(Address.addressValidation.prototype._addressKO);

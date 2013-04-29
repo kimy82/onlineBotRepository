@@ -75,7 +75,8 @@ var confirmComanda = function (){
 									}
 									if(comanda != 'undefined' && comanda != null){
 										var data = window.localStorage.getItem("comanda.data");
-										window.location.href="/"+context+"/comanda/Welcome.action?restaurantId="+idRestaurant+"&idComanda="+comanda+"&data="+data;
+										window.location.href = "/"+context+"/comanda/goToPas1Action.action?idComanda="+comanda+"&data="+data;
+										//window.location.href="/"+context+"/comanda/Welcome.action?restaurantId="+idRestaurant+"&idComanda="+comanda+"&data="+data;
 									}
 								}
 

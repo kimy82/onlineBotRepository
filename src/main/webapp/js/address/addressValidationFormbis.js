@@ -67,7 +67,7 @@ Addressbis.addressValidation.prototype.checkAdd = function(){
 		 $("#addressOKbis").text(Addressbis.addressValidation.prototype._addressKO);
 		 return false;
 	}
-    var addressToSave = $("#carrerbis").val()+"-"+$("#numcarrerbis").val()+"-"+$("#numpis").val()+"-"+$("#porta").val()+"-"+$("#codibis").val()
+    var addressToSave = $("#carrerbis").val()+"-"+$("#numcarrerbis").val()+"-"+$("#numpis").val()+"-"+$("#porta").val()+"-"+$("#codibis").val();
 	if($("#carrerbis").val() == '' || $("#codibis").val() == '' ){
 		 $("#addressOKbis").text(Addressbis.addressValidation.prototype._addressKO);
 		 return false;
