@@ -11,7 +11,7 @@
     <s:text name="txt.footer.dades" /> <a href=mailto:hola@portamu.com>hola@portamu.com</a>
     </br></br></br>
     COMPRA SEGURA AMB</br></br>
-    <img  src="<c:url value='img/elements/bancsabadell.png'/>"  >
+    <img  src="<c:url value='/img/elements/bancsabadell.png'/>"  >
 	</div>
 	
 		<div id="footer_rigth">
