@@ -59,9 +59,9 @@
 								<tr><td><a href="#" onclick="changeClass('pass');" ><s:text name="userform.changePassword" /></a></td></tr>								
 								
 								<tr class="hiddenIn" id="pass" >
-								<td><s:text name="user.password" /></td>
-								<td><s:password key="user.password" id="password" onkeyup="return ismaxlength(this,45)" cssClass="inputs" value="" theme="simple" ></s:password></td>
-								<td><s:text name="txt.password.retype" />:</td><td><input type="password" id="passwordRetyped" onblur="checkPassword()" class="inputs" value="${user.password}"/></td></tr>					
+								<td><s:text name="user.password" />
+								<s:password key="user.password" id="password" onkeyup="return ismaxlength(this,45)" cssClass="inputs" value="" theme="simple" ></s:password><br>
+								<s:text name="txt.password.retype" />:<input type="password" id="passwordRetyped" onblur="checkPassword()" class="inputs" value=""/></td></tr>					
 								
 								<s:hidden key="user.address" id="comandaddress" ></s:hidden>
 								<tr><td><input class="boton" type="button"  onclick="fillAddress()" value="submit"/></td></tr>	                    															
@@ -154,7 +154,7 @@
 <div id="votaPlats_dialog" class="filtres filtres-oberts" title="<s:text name='txt.info.title' />">	 		
 </div>  		
 	<script src="https://maps.google.com/maps/api/js?sensor=false" type="text/javascript"></script>
-	<script type="text/javascript" src="<c:url value='/js/jsuser.comandes.min.js' />"></script>
+	<script type="text/javascript" src="<c:url value='/js/jsuser.comandes.js' />"></script>
 	<script language="javascript">	
 		new Address.addressValidation("<s:text name='txt.addressOK' />","<s:text name='txt.addressKO' />");
 		var initParams = new  InitParams( "<s:text name='txt.user.empty' />", "<s:text name='txt.password.empty' />","<s:text name='txt.password.noteq' />",
@@ -169,6 +169,11 @@
 		var addArray = address.split("-");		
 		$("#carrer").val(addArray[0]);
 		$("#codi").val(addArray[addArray.length-1]);
+		if(addArray.length==5){
+			$("#porta").val(addArray[addArray.length-2]);
+			$("#num").val(addArray[addArray.length-3]);
+			$("#numcarrer").val(addArray[addArray.length-4]);
+		}
 	</script>
 	</c:if>
 	<c:import url="/pages/includes/confirmOnline.jsp" />
