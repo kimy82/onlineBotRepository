@@ -33,9 +33,9 @@
 				<label style="color: red" id="errorsajaxlabel"></label>
 			</div>
 			<br>	
-	  		 <div  style="width:700px;" alig="center">
+	  		 <div  style="width:932px;" alig="center">
 	  		 	<a href="#" onclick="reloadTableComandes()" ><img src="<c:url value='/images/refresh.png' />" /></a>
-				<table class="selecciom dataTable" id="tbl_all_comandes" width="800px">
+				<table class="selecciom dataTable" id="tbl_all_comandes" width="932px">
 					<thead>
 						<tr>
 							<th><s:text name="tbl.comandes.confirm.nom" /></th>
