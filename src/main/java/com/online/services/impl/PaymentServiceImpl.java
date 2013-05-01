@@ -93,51 +93,212 @@ public class PaymentServiceImpl implements PaymentService {
 	
 	public void  sendOrder(boolean toAdmins, List<String> orders) throws PaymentException {
 		
-		for(String order : orders){
-			RestClient client = new RestClient();
-			Resource resource = client.resource("http://www.portamu.com/ComandaRest/jaxrs/comandes/file");
-			String[] orderVec = order.split("&");
-			int iterador=0;
-			String begudes="";
-			for(String param : orderVec){
-				String[] params = param.split("=");
-				
-				if(toAdmins && iterador==0){
+		if(toAdmins){
+			for(String order : orders){
+				RestClient client = new RestClient();
+				Resource resource = client.resource("http://www.portamu.com/ComandaRest/jaxrs/comandes/file");
+				String[] orderVec = order.split("&");
+				int iterador=0;
+				String begudes="";
+				//Tiquets dels moters a portamu
+				for(String param : orderVec){
+					String[] params = param.split("=");
 					
-					resource.queryParam(params[0],CODI_MAQUINA_ADMIN);
+					if(toAdmins && iterador==0){
+						
+						resource.queryParam(params[0],CODI_MAQUINA_ADMIN);
+						
+					}else if(!toAdmins && params[0].equals("telnumber")){
+						
+						resource.queryParam(params[0],transformTel(params[1]));
+						
+					}else if(toAdmins && params[0].equals("orderNum")){
+						
+						resource.queryParam(params[0],"P_"+params[1]);
+						
+					}else if (toAdmins && params[0].equals("begudes")){
+						
+						begudes = (params.length==1)?"": params[1];
+						
+					}else if (!toAdmins && params[0].equals("begudes")){
+						
+						begudes = "";
+						
+					}else if (toAdmins && params[0].equals("comanda")){
+						resource.queryParam(params[0],params[1]+""+begudes);
+					}else{
+						
+						resource.queryParam(params[0],params[1]);
+					}
+					iterador=iterador+1;
 					
-				}else if(!toAdmins && params[0].equals("telnumber")){
+				}		
+				resource.queryParam("admin",String.valueOf(toAdmins));
+				String response = resource.accept("text/plain").get(String.class);
+			 }
+			//Tiquets dels moters als restaurants
+			for(String order : orders){
+				RestClient client = new RestClient();
+				Resource resource = client.resource("http://www.portamu.com/ComandaRest/jaxrs/comandes/file");
+				String[] orderVec = order.split("&");
+				int iterador=0;
+				String begudes="";
+				for(String param : orderVec){
+					String[] params = param.split("=");
 					
-					resource.queryParam(params[0],transformTel(params[1]));
+					if(!toAdmins && params[0].equals("telnumber")){
+						
+						resource.queryParam(params[0],transformTel(params[1]));
+						
+					}else if(toAdmins && params[0].equals("orderNum")){
+						
+						resource.queryParam(params[0],"MOTER_"+params[1]);
+						
+					}else if (toAdmins && params[0].equals("begudes")){
+						
+						begudes = (params.length==1)?"": params[1];
+						
+					}else if (!toAdmins && params[0].equals("begudes")){
+						
+						begudes = "";
+						
+					}else if (toAdmins && params[0].equals("comanda")){
+						resource.queryParam(params[0],params[1]+""+begudes);
+					}else{
+						
+						resource.queryParam(params[0],params[1]);
+					}
+					iterador=iterador+1;
 					
-				}else if(toAdmins && params[0].equals("orderNum")){
+				}		
+				resource.queryParam("admin",String.valueOf(toAdmins));
+				String response = resource.accept("text/plain").get(String.class);
+			 }
+		}else{
+			//Tiquet del restaurant a portamu
+			for(String order : orders){
+				RestClient client = new RestClient();
+				Resource resource = client.resource("http://www.portamu.com/ComandaRest/jaxrs/comandes/file");
+				String[] orderVec = order.split("&");
+				int iterador=0;
+				String begudes="";
+				for(String param : orderVec){
+					String[] params = param.split("=");
 					
-					resource.queryParam(params[0],"11_"+params[1]);
+					if(iterador==0){
+						
+						resource.queryParam(params[0],CODI_MAQUINA_ADMIN);
+						
+					}else if(!toAdmins && params[0].equals("telnumber")){
+						
+						resource.queryParam(params[0],transformTel(params[1]));
+						
+					}else if(toAdmins && params[0].equals("orderNum")){
+						
+						resource.queryParam(params[0],"P_M_"+params[1]);
+						
+					}else if (toAdmins && params[0].equals("begudes")){
+						
+						begudes = (params.length==1)?"": params[1];
+						
+					}else if (!toAdmins && params[0].equals("begudes")){
+						
+						begudes = "";
+						
+					}else if (toAdmins && params[0].equals("comanda")){
+						resource.queryParam(params[0],params[1]+""+begudes);
+					}else{
+						
+						resource.queryParam(params[0],params[1]);
+					}
+					iterador=iterador+1;
 					
-				}else if (toAdmins && params[0].equals("begudes")){
+				}		
+				resource.queryParam("admin",String.valueOf(toAdmins));
+				String response = resource.accept("text/plain").get(String.class);
+			 }
+			//Tiquet del restaurant al restaurant 1
+			for(String order : orders){
+				RestClient client = new RestClient();
+				Resource resource = client.resource("http://www.portamu.com/ComandaRest/jaxrs/comandes/file");
+				String[] orderVec = order.split("&");
+				int iterador=0;
+				String begudes="";
+				for(String param : orderVec){
+					String[] params = param.split("=");
 					
-					begudes = (params.length==1)?"": params[1];
+					 if(!toAdmins && params[0].equals("telnumber")){
+						
+						resource.queryParam(params[0],transformTel(params[1]));
+						
+					}else if(toAdmins && params[0].equals("orderNum")){
+						
+						resource.queryParam(params[0],"R_1_"+params[1]);
+						
+					}else if (toAdmins && params[0].equals("begudes")){
+						
+						begudes = (params.length==1)?"": params[1];
+						
+					}else if (!toAdmins && params[0].equals("begudes")){
+						
+						begudes = "";
+						
+					}else if (toAdmins && params[0].equals("comanda")){
+						resource.queryParam(params[0],params[1]+""+begudes);
+					}else{
+						
+						resource.queryParam(params[0],params[1]);
+					}
+					iterador=iterador+1;
 					
-				}else if (!toAdmins && params[0].equals("begudes")){
+				}		
+				resource.queryParam("admin",String.valueOf(toAdmins));
+				String response = resource.accept("text/plain").get(String.class);
+			 }
+			
+			//Tiquet del restaurant al restaurant 1
+			for(String order : orders){
+				RestClient client = new RestClient();
+				Resource resource = client.resource("http://www.portamu.com/ComandaRest/jaxrs/comandes/file");
+				String[] orderVec = order.split("&");
+				int iterador=0;
+				String begudes="";
+				for(String param : orderVec){
+					String[] params = param.split("=");
 					
-					begudes = "";
+					 if(!toAdmins && params[0].equals("telnumber")){
+						
+						resource.queryParam(params[0],transformTel(params[1]));
+						
+					}else if(toAdmins && params[0].equals("orderNum")){
+						
+						resource.queryParam(params[0],"R_2_"+params[1]);
+						
+					}else if (toAdmins && params[0].equals("begudes")){
+						
+						begudes = (params.length==1)?"": params[1];
+						
+					}else if (!toAdmins && params[0].equals("begudes")){
+						
+						begudes = "";
+						
+					}else if (toAdmins && params[0].equals("comanda")){
+						resource.queryParam(params[0],params[1]+""+begudes);
+					}else{
+						
+						resource.queryParam(params[0],params[1]);
+					}
+					iterador=iterador+1;
 					
-				}else if (toAdmins && params[0].equals("comanda")){
-					resource.queryParam(params[0],params[1]+";"+begudes);
-				}else{
-					
-					resource.queryParam(params[0],params[1]);
-				}
-				iterador=iterador+1;
-				
-			}		
-			resource.queryParam("admin",String.valueOf(toAdmins));
-			String response = resource.accept("text/plain").get(String.class);
+				}		
+				resource.queryParam("admin",String.valueOf(toAdmins));
+				String response = resource.accept("text/plain").get(String.class);
+			 }
+			
 		}
-		
 	}
 	
-	public List<String> getComandaOrders(Comandes comanda, boolean moreThanOneRestaurant,String transport, String transportDouble)
+	public List<String> getComandaOrders(Comandes comanda, boolean moreThanOneRestaurant,String transport, String transportDouble,String moterTime,int tempsPreparacio)
 			throws PaymentException {
 
 		this.comanda = comanda;
@@ -251,16 +412,23 @@ public class PaymentServiceImpl implements PaymentService {
 				
 				comandaOrderSB.append("&comandaName=Comanda:"+this.comanda.getId());
 				
-				comandaOrderSB.append("&comandaHora=H.Comanda:"+Calendar.getInstance().get(Calendar.HOUR_OF_DAY)+":"+Calendar.getInstance().get(Calendar.MINUTE));
 				
-				comandaOrderSB.append("&comandaEntrega=H.Entrega:"+rangHora(this.comanda.getHora())+" "+prepareHoraFormat(this.comanda.getHora()));
 				
-				comandaOrderSB.append("&comandaLimit=H.Limit:"+prepareHoraFormat(this.comanda.getHora()));
+				comandaOrderSB.append("&comandaHora=H.Comanda:"+calculHorafromMinuts((Calendar.getInstance().get(Calendar.HOUR_OF_DAY)*60)+Calendar.getInstance().get(Calendar.MINUTE)));
+				
+				comandaOrderSB.append("&comandaEntregaRang=H.Entrega:"+prepareHoraFormat(this.comanda.getHora())+" "+rangHora(this.comanda.getHora()));
+				
+				if(dayComanda>dayAvui){
+					comandaOrderSB.append("&comandaEntregaRest=H.Entrega:"+prepareHoraFormat(this.comanda.getHora()));
+				}else{
+					comandaOrderSB.append("&comandaEntregaRest=H.Entrega:"+getHEntregraPlats(this.comanda.getHora(), tempsPreparacio, moterTime));
+				}
+				comandaOrderSB.append("&comandaLimit=H.Limit:"+rangHora(this.comanda.getHora()));
 				
 				if(this.comanda.getPagada()!=null && this.comanda.getPagada()==true){
-					comandaOrderSB.append("&pagada=PAGAT");
+					comandaOrderSB.append("&pagada=AMB TARGETA");
 				}else{
-					comandaOrderSB.append("&pagada=NO PAGAT");
+					comandaOrderSB.append("&pagada=A CONTRAREMBOLS");
 				}
 				
 				if(this.comanda.getObservacions()!=null){
@@ -281,6 +449,70 @@ public class PaymentServiceImpl implements PaymentService {
 	}
 
 	// PRIVATE
+	private  String getHEntregraPlats(String iniRang, int tempsPlat,String tempsMoter){
+		String hEntrega=null;
+		if(iniRang==null || iniRang.equals("")){
+			throw new PaymentException( "No hi ha hora limit");
+		}
+	
+		try{
+			if(tempsMoter==null || tempsMoter.equals("")){
+				tempsMoter="15";
+			}
+			
+			Integer hlimit= calculMinutsHora(iniRang)+30;
+			Integer tmoter =  Integer.parseInt(tempsMoter);					
+			Integer horaComanda =calculMinutsHora(String.valueOf(Calendar.getInstance().get(Calendar.HOUR_OF_DAY))+String.valueOf(Calendar.getInstance().get(Calendar.MINUTE)));
+			
+			if(0<=(hlimit-horaComanda-tempsPlat-tmoter) && (hlimit-tempsPlat-tmoter)<tmoter){
+				hEntrega=calculHorafromMinuts(horaComanda+tempsPlat);
+			}else if(15<=(hlimit-horaComanda-tempsPlat-tmoter)){
+				hEntrega=calculHorafromMinuts(hlimit-30);
+			}
+			return hEntrega;
+		}catch(Exception e){
+			return rangHora(iniRang);
+		}
+	}
+	private String calculHorafromMinuts(int minuts){
+		
+		String hora="";
+		int horaInt=minuts/60;
+		int minutsInt= minuts%60;	
+		String horaS=String.valueOf(horaInt);
+		String minutS=String.valueOf(minutsInt);
+		if(horaS.length()==1){
+			horaS="0"+horaS;
+		}
+		if(minutS.length()==1){
+			minutS="0"+minutS;
+		}
+		hora=horaS+":"+minutS;
+		return hora;
+		
+	}
+	
+	private int calculMinutsHora(String hora){
+		if(hora==null){
+			throw new PaymentException( "No hi ha hora");
+		}
+		String[] horaVec = hora.split("(?<!^)"); 
+		
+		int minuts=0;
+		
+		if(horaVec.length==4){
+			String horaP = (horaVec[0].equals("0")?"":horaVec[0])+horaVec[1];
+			String horaF = (horaVec[2].equals("0")?"":horaVec[2])+horaVec[3];
+			minuts= (Integer.parseInt(horaP)*60)+Integer.parseInt(horaF);
+			
+		}
+		if(minuts==0){
+			throw new PaymentException();
+		}
+		return minuts;
+		
+	}
+	
 	
 	private String prepareHoraFormat(String hora){
 		if(hora==null)return "";
@@ -298,16 +530,16 @@ public class PaymentServiceImpl implements PaymentService {
 		String[] horaVec = hora.split("(?<!^)");
 		
 		if(horaVec.length==4){
-			String horaP = horaVec[0]+horaVec[1];
+			String horaP = (horaVec[0].equals("0")?"":horaVec[0])+horaVec[1];
 			String horaF = horaVec[2]+horaVec[3];
 			if(horaF.equals("00")){
-				if(horaP!=null){
-					int horaPInt = Integer.parseInt(horaP);
-					horaP=String.valueOf(horaPInt-1);
-					horaF="00";
+				if(horaP!=null){					
+					horaF="30";
 					hora=horaP+":"+horaF;
 				}
 			}else{
+				int horaPInt = Integer.parseInt(horaP);
+				horaP=String.valueOf(horaPInt+1);
 				horaF="00";
 				hora=horaP+":"+horaF;
 			}

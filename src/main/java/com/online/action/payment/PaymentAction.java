@@ -41,6 +41,7 @@ public class PaymentAction extends ActionSuportOnline{
 		DecimalFormat formateador = new DecimalFormat("####.##");
 		String transport = this.request.getSession().getServletContext().getInitParameter("transport");
 		String transportDouble = this.request.getSession().getServletContext().getInitParameter("transport_double");
+		String moterTime = this.request.getSession().getServletContext().getInitParameter("moterTime");
 		
 		
 		setAuthenticationUser();
@@ -104,8 +105,8 @@ public class PaymentAction extends ActionSuportOnline{
 				
 				return "TPV";
 			}
-
-			orders = this.paymentService.getComandaOrders(this.comanda,this.comandaService.checkMoreThanOneRestaurant(this.comanda),transport , transportDouble);
+			int tempsPreparacio = this.comandaService.calculaTempsPreparacioGlobal(comanda);
+			orders = this.paymentService.getComandaOrders(this.comanda,this.comandaService.checkMoreThanOneRestaurant(this.comanda),transport , transportDouble,moterTime,tempsPreparacio);
 
 		} catch (PaymentException pe) {
 			pe.printStackTrace();
@@ -136,6 +137,7 @@ public class PaymentAction extends ActionSuportOnline{
 			String entorn = this.request.getSession().getServletContext().getInitParameter("entorn");
 			String transport = this.request.getSession().getServletContext().getInitParameter("transport");
 			String transportDouble = this.request.getSession().getServletContext().getInitParameter("transport_double");
+			String moterTime = this.request.getSession().getServletContext().getInitParameter("moterTime");
 			
 			this.request.setAttribute("order", order);
 			this.request.setAttribute("orderId", orderId);
@@ -147,7 +149,8 @@ public class PaymentAction extends ActionSuportOnline{
 				this.comanda.setPagada(true);
 				this.comandaBo.update(comanda);
 				try {
-					orders = this.paymentService.getComandaOrders(this.comanda, this.comandaService.checkMoreThanOneRestaurant(this.comanda),transport , transportDouble);
+					int tempsPreparacio = this.comandaService.calculaTempsPreparacioGlobal(comanda);
+					orders = this.paymentService.getComandaOrders(this.comanda, this.comandaService.checkMoreThanOneRestaurant(this.comanda),transport , transportDouble,moterTime,tempsPreparacio);
 		
 				} catch (PaymentException pe) {
 					return ERROR;
@@ -177,6 +180,7 @@ public class PaymentAction extends ActionSuportOnline{
 		String entorn = this.request.getSession().getServletContext().getInitParameter("entorn");
 		String transport = this.request.getSession().getServletContext().getInitParameter("transport");
 		String transportDouble = this.request.getSession().getServletContext().getInitParameter("transport_double");
+		String moterTime = this.request.getSession().getServletContext().getInitParameter("moterTime");
 		
 		setAuthenticationUser();
 		inizilizeComandaId();
@@ -188,7 +192,9 @@ public class PaymentAction extends ActionSuportOnline{
 			this.comanda.setPagada(true);
 			this.comandaBo.update(comanda);
 			try {
-				orders = this.paymentService.getComandaOrders(this.comanda, this.comandaService.checkMoreThanOneRestaurant(this.comanda),transport , transportDouble);
+				
+				int tempsPreparacio = this.comandaService.calculaTempsPreparacioGlobal(comanda);
+				orders = this.paymentService.getComandaOrders(this.comanda, this.comandaService.checkMoreThanOneRestaurant(this.comanda),transport , transportDouble, moterTime,tempsPreparacio );
 	
 			} catch (PaymentException pe) {
 				return ERROR;

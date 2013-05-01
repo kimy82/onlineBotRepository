@@ -1078,7 +1078,7 @@ public class ComandaServiceImpl implements ComandaService{
 
 	}
 
-	private int calculaTempsPreparacioGlobal( Comandes comanda ){
+	public int calculaTempsPreparacioGlobal( Comandes comanda ){ 
 
 		int temps = 0;
 		List<PlatComanda> platComandaList = comanda.getPlats();

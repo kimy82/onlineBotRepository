@@ -55,13 +55,15 @@ public class MantenimentComandesAction extends ActionSuportOnline{
 		String json = "";
 		String transport = this.request.getSession().getServletContext().getInitParameter("transport");
 		String transportDouble = this.request.getSession().getServletContext().getInitParameter("transport_double");
+		String moterTime = this.request.getSession().getServletContext().getInitParameter("moterTime");
 		
 		try {
 
 			out = this.response.getOutputStream();
 			inizializeIdComanda();
 			Comandes comanda = this.comandaBo.load(this.idComanda);
-			List<String> orders = this.paymentService.getComandaOrders(comanda, this.comandaService.checkMoreThanOneRestaurant(comanda),transport,transportDouble);
+			int tempsPreparacio = this.comandaService.calculaTempsPreparacioGlobal(comanda);
+			List<String> orders = this.paymentService.getComandaOrders(comanda, this.comandaService.checkMoreThanOneRestaurant(comanda),transport,transportDouble,moterTime, tempsPreparacio);
 			this.paymentService.sendOrder(false, orders);
 			comanda.setRevisio(false);
 			this.comandaBo.update(comanda);

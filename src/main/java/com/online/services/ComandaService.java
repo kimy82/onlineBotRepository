@@ -54,5 +54,6 @@ public interface ComandaService{
 	
 	public String getListOfPlatsAndDrinks( Comandes comanda) throws ComandaException;
 	
+	public int calculaTempsPreparacioGlobal( Comandes comanda ) throws ComandaException;	
 }
  

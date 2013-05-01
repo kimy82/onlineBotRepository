@@ -376,7 +376,7 @@ function addDomicili(){
 			 $("#labelpreutotalPromo").text(parseFloat(parseFloat(preuT)+parseFloat(transportPreu)).toFixed(2));			 
 		 }
 		 initPromoDescompteFromStorage();
-		 $("#adomicili_div").show('slow');
+		 $("#icili_div").show('slow');
 		 $("#pagarDom").show('slow');
 		 $("#pagarRec").hide('slow');
 		 
@@ -1380,5 +1380,9 @@ $(document).ready(function() {
 	
 	initPromoBegudaFromStorage();
 	initPromoDescompteFromStorage();
+	
+	$("#arecollir").attr('checked',false);
+	$("#adomicili").attr('checked',true);
+	addDomicili();
 });
 
