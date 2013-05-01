@@ -376,7 +376,7 @@ function addDomicili(){
 			 $("#labelpreutotalPromo").text(parseFloat(parseFloat(preuT)+parseFloat(transportPreu)).toFixed(2));			 
 		 }
 		 initPromoDescompteFromStorage();
-		 $("#icili_div").show('slow');
+		 $("#adomicili_div").show('slow');
 		 $("#pagarDom").show('slow');
 		 $("#pagarRec").hide('slow');
 		 

@@ -112,7 +112,7 @@ public class PaymentServiceImpl implements PaymentService {
 						
 						resource.queryParam(params[0],transformTel(params[1]));
 						
-					}else if(toAdmins && params[0].equals("orderNum")){
+					}else if(params[0].equals("orderNum")){
 						
 						resource.queryParam(params[0],"P_"+params[1]);
 						
@@ -150,9 +150,9 @@ public class PaymentServiceImpl implements PaymentService {
 						
 						resource.queryParam(params[0],transformTel(params[1]));
 						
-					}else if(toAdmins && params[0].equals("orderNum")){
+					}else if(params[0].equals("orderNum")){
 						
-						resource.queryParam(params[0],"MOTER_"+params[1]);
+						resource.queryParam(params[0],"R_MOTER_"+params[1]);
 						
 					}else if (toAdmins && params[0].equals("begudes")){
 						
@@ -193,7 +193,7 @@ public class PaymentServiceImpl implements PaymentService {
 						
 						resource.queryParam(params[0],transformTel(params[1]));
 						
-					}else if(toAdmins && params[0].equals("orderNum")){
+					}else if( params[0].equals("orderNum")){
 						
 						resource.queryParam(params[0],"P_M_"+params[1]);
 						
@@ -231,7 +231,7 @@ public class PaymentServiceImpl implements PaymentService {
 						
 						resource.queryParam(params[0],transformTel(params[1]));
 						
-					}else if(toAdmins && params[0].equals("orderNum")){
+					}else if(params[0].equals("orderNum")){
 						
 						resource.queryParam(params[0],"R_1_"+params[1]);
 						
@@ -256,7 +256,7 @@ public class PaymentServiceImpl implements PaymentService {
 				String response = resource.accept("text/plain").get(String.class);
 			 }
 			
-			//Tiquet del restaurant al restaurant 1
+			//Tiquet del restaurant al restaurant 2
 			for(String order : orders){
 				RestClient client = new RestClient();
 				Resource resource = client.resource("http://www.portamu.com/ComandaRest/jaxrs/comandes/file");
@@ -270,7 +270,7 @@ public class PaymentServiceImpl implements PaymentService {
 						
 						resource.queryParam(params[0],transformTel(params[1]));
 						
-					}else if(toAdmins && params[0].equals("orderNum")){
+					}else if(params[0].equals("orderNum")){
 						
 						resource.queryParam(params[0],"R_2_"+params[1]);
 						
