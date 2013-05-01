@@ -11,7 +11,6 @@
 	<link rel="shortcut icon" href="<c:url value='/img/elements/logo_portamu16.jpg' />"> 
 	<title><s:text name="txt.info.comandes.title" /></title>
 	<link rel="stylesheet" type="text/css" href="<c:url value='/css/user.comandes.css' />" />
-	<link href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/base/jquery-ui.css" rel="stylesheet" type="text/css" />
 	<script src="<c:url value='/js/modernizer.js' />" type="text/javascript"></script>	
 	<style>
 			.hiddenIn{
@@ -47,16 +46,16 @@
 					 <div id="changepass">
                         <s:form  action="saveUserDetails" id="saveUserDetails" method="POST" enctype="multipart/form-data" >
                         		
-								<tr><td><label>${user.username}</label></td></tr>
+								<tr class="espai"><td><label>${user.username}</label></td></tr>
 								
-								<tr><td><label>${user.nom}<a href="#" onclick="changeClass('nom')" ><img src="<c:url value='/img/elements/edit.png' />" ></img></a></label></td></tr>
-								<tr><td><s:textfield key="user.nom" id="nom" onkeyup="return ismaxlength(this,45)" cssClass="hiddenIn inputs" theme="simple" ></s:textfield></td></tr>											                   
+								<tr class="espai"><td><label>${user.nom}<a href="#" onclick="changeClass('nom')" ><img src="<c:url value='/img/elements/edit.png' />" ></img></a></label></td></tr>
+								<tr class="espai"><td><s:textfield key="user.nom" id="nom" onkeyup="return ismaxlength(this,45)" cssClass="hiddenIn inputs" theme="simple" ></s:textfield></td></tr>											                   
 								
-								<tr><td><label>${user.telNumber}<a href="#" onclick="changeClass('telNumber')" ><img src="<c:url value='/img/elements/edit.png' />" ></img></a></label></td>
-								<tr><td><s:textfield key="user.telNumber" id="telNumber" onkeyup="return ismaxlength(this,9)" cssClass="hiddenIn inputs" theme="simple" ></s:textfield></td></tr>	
+								<tr class="espai"><td><label>${user.telNumber}<a href="#" onclick="changeClass('telNumber')" ><img src="<c:url value='/img/elements/edit.png' />" ></img></a></label></td>
+								<tr class="espai"><td><s:textfield key="user.telNumber" id="telNumber" onkeyup="return ismaxlength(this,9)" cssClass="hiddenIn inputs" theme="simple" ></s:textfield></td></tr>	
 								
 								<s:hidden key="user.id" id="idUser" ></s:hidden>
-								<tr><td><a href="#" onclick="changeClass('pass');" ><s:text name="userform.changePassword" /></a></td></tr>								
+								<tr class="cha"><td><a href="#" onclick="changeClass('pass');" ><s:text name="userform.changePassword" /></a></td></tr>								
 								
 								<tr class="hiddenIn" id="pass" >
 								<td><s:text name="user.password" />
@@ -139,7 +138,7 @@
 									<th><s:text name="user.comandes.table.plats" /></th>
 									<th><s:text name="user.comandes.table.links" /></th>
 									<th><s:text name="user.comandes.table.preu" /></th>
-									<th><s:text name="user.comandes.table.descripcio" /></th>								
+									<th><s:text name="user.comandes.table.repeteix" /></th>								
 								</tr>
 							</thead>
 							<tbody>

@@ -45,25 +45,23 @@ function goToVotarPlat(idPlat){
 	$("#votaPlats_dialog").load("../foro/foro.action?idPlat="+idPlat);	
 	$("#votaPlats_dialog").dialog({ 
 		   autoOpen: false,
-		   height: 500,
-		   width: 750,
+		   height: 629,
+		   width: 806,
 		   modal: true,
 		   close: function(event, ui) { 			   
 			   $("#votaPlats_dialog").dialog("close"); 			  
 			}
 	});
-    $("#votaPlats_dialog").dialog("open");  	
+	$("#votaPlats_dialog").dialog("open");
+	$("#votaPlats_dialog").siblings('div.ui-dialog-titlebar').remove();  
+	$("#votaPlats_dialog").removeClass("ui-dialog-content");
+	$("#votaPlats_dialog").removeClass("ui-widget-content");
+		$("#move").addClass("ui-dialog-titlebar ui-widget-header ui-corner-all ui-helper-clearfix");
+	$(".ui-widget-content").css("background-color", "transparent");
+		$(".ui-widget-content").css("border", "0px");
+	$(":ui-dialog").dialog('option', 'position', 'center');	
 }
 
-$("#votaPlats_dialog").dialog({ 
-	   autoOpen: false,
-	   height: 700,
-	   width: 750,
-	   modal: true,
-	   close: function(event, ui) { 			   
-		   $("#votaPlats_dialog").dialog("close"); 			  
-		}
-	});
 
 $("#dialog_details").dialog( { autoOpen: false,
 	  modal: true,

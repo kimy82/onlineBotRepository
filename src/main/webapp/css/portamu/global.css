@@ -1949,3 +1949,48 @@ float: right;
 	margin: auto;
 	margin-top:90px;
 }
+.final{
+	width:100%;
+	float:left;
+	font-family:raleway;
+	font-size:bolder;
+}
+#restaurants .iterate_Rest_r{
+	border-bottom: 1px solid #C69C6D;
+	border-right:  1px solid #C69C6D;
+	width: 246px;
+	height: 425px;
+	float: left;
+	margin-right: 12px;
+	webkit-box-shadow:0 3px 8px 2px #E0C0A6;
+    box-shadow: 0 3px 8px 2px #E0C0A6;
+    box-shadow: 1px 1px 0 0 #FFFFFF;
+    margin-bottom: 20px;
+}
+#restaurants .comentss{
+	font-family: arial;
+	font-size: 12px;
+	color: #A67C52;
+	float: left;
+	margin-top: 14px;
+}
+.espai  .inputs {
+    color: #888888;
+    font-family: arial;
+    height: 30px;
+    margin-bottom: 0;
+    margin-left: 0;
+    margin-top: 0;
+    width: 189px;
+}
+.espai {
+    float: left;
+    padding-bottom: 10px;
+}
+#pass {
+font-family:raleway;
+font-weight:bold;
+text-transform:uppercase;
+font-size:13px;
+color:#333;
+}
