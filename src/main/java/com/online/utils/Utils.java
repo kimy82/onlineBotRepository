@@ -70,7 +70,7 @@ public class Utils{
 		desc = desc.replaceAll("#232;", "è");
 		desc = desc.replaceAll("#233;", "é");
 		desc = desc.replaceAll("#236;", "ì");
-		desc = desc.replaceAll("#236;", "í");
+		desc = desc.replaceAll("#237;", "í");
 		desc = desc.replaceAll("#241;", "ñ");
 		desc = desc.replaceAll("#243;", "ó");
 		desc = desc.replaceAll("#242;", "ò");

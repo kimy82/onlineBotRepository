@@ -156,6 +156,11 @@ public class MantenimentPlatsAction extends ActionSuportOnline{
 							platToSave.setCodi(this.plat.getCodi());
 							platToSave.setPrioritat(this.plat.getPrioritat());
 							platToSave.setActiu(this.plat.isActiu());
+							platToSave.setCeliacs(this.plat.isCeliacs());
+							platToSave.setFruitsCecs(this.plat.isFruitsCecs());
+							platToSave.setLactics(this.plat.isLactics());
+							platToSave.setOus(this.plat.isOus());
+							platToSave.setVegetarians(this.plat.isVegetarians());
 							Image image = getImageFromUpload();
 							if (image != null && image.getImage() != null)
 								platToSave.setFoto(image);
@@ -172,6 +177,11 @@ public class MantenimentPlatsAction extends ActionSuportOnline{
 							platToSave.setCodi(this.plat.getCodi());
 							platToSave.setPrioritat(this.plat.getPrioritat());
 							platToSave.setActiu(this.plat.isActiu());
+							platToSave.setCeliacs(this.plat.isCeliacs());
+							platToSave.setFruitsCecs(this.plat.isFruitsCecs());
+							platToSave.setLactics(this.plat.isLactics());
+							platToSave.setOus(this.plat.isOus());
+							platToSave.setVegetarians(this.plat.isVegetarians());
 							Image image = getImageFromUpload();
 							platToSave.setFoto(image);
 							this.platsBo.save(platToSave);

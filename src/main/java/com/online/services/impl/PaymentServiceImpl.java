@@ -118,7 +118,7 @@ public class PaymentServiceImpl implements PaymentService {
 						
 					}else if (toAdmins && params[0].equals("begudes")){
 						
-						begudes = (params.length==1)?"": params[1];
+						begudes = (params.length==1)?"": (";"+params[1]);
 						
 					}else if (!toAdmins && params[0].equals("begudes")){
 						
@@ -156,7 +156,7 @@ public class PaymentServiceImpl implements PaymentService {
 						
 					}else if (toAdmins && params[0].equals("begudes")){
 						
-						begudes = (params.length==1)?"": params[1];
+						begudes = (params.length==1)?"": (";"+params[1]);
 						
 					}else if (!toAdmins && params[0].equals("begudes")){
 						
@@ -193,20 +193,16 @@ public class PaymentServiceImpl implements PaymentService {
 						
 						resource.queryParam(params[0],transformTel(params[1]));
 						
-					}else if( params[0].equals("orderNum")){
-						
-						resource.queryParam(params[0],"P_M_"+params[1]);
-						
-					}else if (toAdmins && params[0].equals("begudes")){
-						
-						begudes = (params.length==1)?"": params[1];
-						
-					}else if (!toAdmins && params[0].equals("begudes")){
+					}else if (params[0].equals("begudes")){
 						
 						begudes = "";
 						
+					}else if( params[0].equals("orderNum")){
+						
+						resource.queryParam(params[0],"P_R_"+params[1]);
+						
 					}else if (toAdmins && params[0].equals("comanda")){
-						resource.queryParam(params[0],params[1]+""+begudes);
+						resource.queryParam(params[0],params[1]);
 					}else{
 						
 						resource.queryParam(params[0],params[1]);
@@ -235,16 +231,12 @@ public class PaymentServiceImpl implements PaymentService {
 						
 						resource.queryParam(params[0],"R_1_"+params[1]);
 						
-					}else if (toAdmins && params[0].equals("begudes")){
-						
-						begudes = (params.length==1)?"": params[1];
-						
-					}else if (!toAdmins && params[0].equals("begudes")){
+					}else if (params[0].equals("begudes")){
 						
 						begudes = "";
 						
 					}else if (toAdmins && params[0].equals("comanda")){
-						resource.queryParam(params[0],params[1]+""+begudes);
+						resource.queryParam(params[0],params[1]);
 					}else{
 						
 						resource.queryParam(params[0],params[1]);
@@ -274,16 +266,12 @@ public class PaymentServiceImpl implements PaymentService {
 						
 						resource.queryParam(params[0],"R_2_"+params[1]);
 						
-					}else if (toAdmins && params[0].equals("begudes")){
+					}else if (params[0].equals("begudes")){
 						
-						begudes = (params.length==1)?"": params[1];
-						
-					}else if (!toAdmins && params[0].equals("begudes")){
-						
-						begudes = "";
+						begudes = "";						
 						
 					}else if (toAdmins && params[0].equals("comanda")){
-						resource.queryParam(params[0],params[1]+""+begudes);
+						resource.queryParam(params[0],params[1]);
 					}else{
 						
 						resource.queryParam(params[0],params[1]);
@@ -376,6 +364,8 @@ public class PaymentServiceImpl implements PaymentService {
 				for (String idPlat : platsId) {
 					comandaSB.append(comandes.get(infoRestaurant[0] + "_" + idPlat) + ";");
 				}
+				comandaSB.setLength(comandaSB.length()-1);
+				
 				int dayAvui = Calendar.getInstance().get(Calendar.DAY_OF_MONTH);
 				Calendar cal = Calendar.getInstance();
 				cal.setTime(this.comanda.getDia());
@@ -397,8 +387,8 @@ public class PaymentServiceImpl implements PaymentService {
 
 				comandaOrderSB.append("&orderNum=" + this.comanda.getId());
 
-				comandaOrderSB.append("&total=" + this.comanda.getPreu());
-
+				comandaOrderSB.append("&total=" + this.comanda.getPreu());				
+			
 				comandaOrderSB.append("&nom="
 						+ this.comanda.getUser().getUsername());
 
