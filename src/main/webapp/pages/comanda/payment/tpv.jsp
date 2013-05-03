@@ -40,7 +40,7 @@
 			<input name="Ds_Merchant_TransactionType" type="hidden" value="${requestScope.payment.ds_Merchant_TransactionType}">
 			<input name="Ds_Merchant_MerchantSignature" type="hidden" value="${requestScope.payment.ds_Merchant_MerchantSignature}">			
 		</form>
-		<iframe name="iframe" id="iframe" src="${requestScope.payment.url}" frameborder="1" width="1000px" height="100%" ></iframe>
+		<iframe name="iframe" id="iframe" src="${requestScope.payment.url}" frameborder="1" width="1000px" height="700px" ></iframe>
 	</div>
 </div>
 <script type="text/javascript">

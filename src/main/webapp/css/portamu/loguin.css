@@ -148,3 +148,10 @@ position:absolute;
 #recovery{
 	background: url(../img/elements/bground.jpg) repeat;
 }
+.reco {
+     color: #F7931E;
+     font-family: 'Raleway',sans-serif;
+     font-size: 12px;
+text-transform:uppercase;
+padding-bottom:10px;
+}

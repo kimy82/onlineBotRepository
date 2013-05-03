@@ -2036,20 +2036,28 @@ color:#333;
     box-shadow: 0 3px 8px 2px #4D4D4D;
     box-shadow: 1px 1px 0 0 #4D4D4D;
 }
+
 .poli {
+    background-color: white;
     float: left;
     font-family: arial;
     font-size: 13px;
     line-height: 2;
+    margin-bottom: 110px;
     margin-top: 40px;
+    padding: 30px;
+    border:1px solid #C3C3C3;
 }
+
 .negrete {
+    color: #555555;
+    font-family: raleway;
     font-weight: bold;
     margin-bottom: 20px;
     padding-bottom: 20px;
-    text-transform: uppercase;
-    text-decoration: underline;
     text-align: left;
+    text-decoration: underline;
+    text-transform: uppercase;
 }
 .llesu {
     float: left;
@@ -2114,4 +2122,30 @@ width:300px;
 height:10px;
 float:right;
 color:#BF0808;
+}
+.final1{
+	font-family:raleway;
+	font-weight: bold;
+	text-align:center;
+	padding:20px;
+	text-transform: uppercase;
+	border-bottom: 1px solid #999;
+	
+}
+.final3{
+	font-family:raleway;
+	font-weight: bold;
+	text-align:center;
+	padding:20px;
+	text-transform: uppercase;
+	border-bottom: 1px solid #999;
+	
+}
+.final4{
+	font-family:raleway;
+	font-weight: bold;
+	text-align:center;
+	padding:20px;
+	text-transform: uppercase;
+	border-bottom: 1px solid #999;
 }
