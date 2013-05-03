@@ -20,7 +20,7 @@
  </br>
 	<s:textfield key="username" />
  
-	<s:submit key="submit" name="submit" />
+	<s:submit cssStyle="" key="submit" name="submit" />
  
 </s:form>
 </div>
