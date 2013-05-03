@@ -116,7 +116,7 @@ Addressbis.addressValidation.prototype.checkAdd = function(){
             	 addressGoogle = addressGoogle.replace(/, USA$/, "");
                  
             	
-                 Map("map_canvasbis", results[0].geometry.location);
+            	 Mapbis("map_canvasbis", results[0].geometry.location);
 
                 
              }else{
