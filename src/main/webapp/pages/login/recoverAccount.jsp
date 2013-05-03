@@ -18,9 +18,9 @@
  
 	 <s:form action="recoverAccount.action" namespace="/" >
  </br>
-	<s:textfield key="username" />
+	<tr><td>Email</td><td><s:textfield cssClass="" key="username" theme="simple" /></td></tr>
  
-	<s:submit cssStyle="" key="submit" name="submit" />
+	<s:submit cssClass=""  key="submit" name="submit" />
  
 </s:form>
 </div>
