@@ -204,7 +204,7 @@
 								</div>
 								<hr class="sep">
 							</div>						
-							<div class="coments">
+							<div class="comentss">
 								<img class="estrelles_rest" src="/${initParam.app}/img/elements/estrelles${beguda.votacio.punctuacio}.jpg">	
 								<br>
 								<span class="coments_titol"><s:text name="txt.coments.valoracions" /></span><br>

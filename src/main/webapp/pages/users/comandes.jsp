@@ -81,13 +81,13 @@
 							<c:if test="${not empty promoAPD.numBegudes}">
 							<div class="promosImg">
 							    <img width="160px" src="<c:url value='../img/elements/begudes.png'/>"  ></br>
-								<span class="reftit">${promoAPD.numBegudes } ${promoAPD.tipusBeguda}</span> </br><s:text name="txt.promo.info.n3" /> ${promoAPD.importAPartirDe} euros
+								<span class="reftit">${promoAPD.numBegudes } ${promoAPD.tipusBeguda}</span> </br><s:text name="txt.promo.info.n3" /> ${promoAPD.importAPartirDe} &euro;.
 							</div>
 							</c:if>
 							<c:if test="${not empty promoAPD.descompteImport}">
 							<div class="promosImg">
-							    <img width="160px" src="<c:url value='../img/elements/begudesGra.png'/>"  ></br>
-								<span class="reftit"><s:text name="txt.promo.info.import.n1" /> ${promAPD.descompteImport } </span></br><s:text name="txt.promo.info.en" /> ${promoAPD.tipuDescompte} <s:text name="txt.promo.info.n3" /> ${promoAPD.importAPartirDe}
+							    <img width="160px" src="<c:url value='../img/elements/descompte.png'/>"  ></br>
+								<span class="reftit"><s:text name="txt.promo.info.import.n1" /> ${promAPD.descompteImport } </span></br> <s:text name="txt.promo.info.n3" /> ${promoAPD.importAPartirDe} &euro;.
 							</div>
 							</c:if>					
 						</s:iterator>
@@ -96,13 +96,13 @@
 							<c:if test="${not empty promoNC.numBegudes}">
 							<div class="promosImg">
 							    <img width="160px" src="<c:url value='../img/elements/begudes.png'/>"  ></br>		
-								<span class="reftit">${promoNC.numBegudes } ${promoNC.tipusBeguda}</span></br> <s:text name="txt.promo.info.n3" /> ${promoNC.numComandes} euros. <s:text name="txt.promo.info.caduca" /> <s:text name="txt.promo.info.en" /> ${promoNC.temps } <s:text name="txt.promo.info.dies" />.
+								<span class="reftit">${promoNC.numBegudes } ${promoNC.tipusBeguda}</span></br> <s:text name="txt.promo.info.n3" /> ${promoNC.numComandes} &euro;.
 							</div>
 							</c:if>
 							<c:if test="${not empty promoNC.descompteImport}">
 							<div class="promosImg">
-							    <img width="160px" src="<c:url value='../img/elements/begudesGra.png'/>"  ></br>
-								<span class="reftit"><s:text name="txt.promo.info.import.n1" /> ${promoNC.descompteImport } %</br></span> <s:text name="txt.promo.info.n3" /> ${promoNC.numComandes} <s:text name="txt.euros" />. </br><s:text name="txt.promo.info.caduca" />  ${promoNC.temps } <s:text name="txt.promo.info.dies" />
+							    <img width="160px" src="<c:url value='../img/elements/descopte.png'/>"  ></br>
+								<span class="reftit"><s:text name="txt.promo.info.import.n1" /> ${promoNC.descompteImport } %</br></span> <s:text name="txt.promo.info.n3" /> ${promoNC.numComandes} &euro;.
 							</div>
 							</c:if>						
 						</s:iterator>
@@ -118,14 +118,14 @@
 									<ul>												
 										<c:if test="${not empty promocioAssociada.numBegudes}">
 										<div class="promosImg">
-							    			<img  src="<c:url value='../img/elements/begudesGra.png'/>"  ></br>
-											<s:text name="txt.promo.info.begudes.n1" /> promo 5 ${promocioAssociada.numBegudes } <s:text name="txt.promo.info.n2" /> ${promocioAssociada.tipusBeguda} <s:text name="txt.promo.info.n3" /> ${promocioAssociada.importAPartirDe}
+							    			<img  src="<c:url value='../img/elements/begudes.png'/>"  ></br>
+										<span class="reftit">${promocioAssociada.numBegudes } ${promocioAssociada.tipusBeguda} </br></span><s:text name="txt.promo.info.n3" /> ${promocioAssociada.importAPartirDe} &euro;.
 										</div>
 										</c:if>
 										<c:if test="${not empty promocioAssociada.descompteImport}">
 										<div class="promosImg">
-							    			<img  src="<c:url value='../img/elements/begudesGra.png'/>"  ></br>
-											<s:text name="txt.promo.info.import.n1" /> promo 6${promocioAssociada.descompteImport }<s:text name="txt.promo.info.en" /> ${promocioAssociada.tipuDescompte} <s:text name="txt.promo.info.n3" /> ${promocioAssociada.importAPartirDe}
+							    			<img  src="<c:url value='../img/elements/descompte.png'/>"  ></br>
+											<span class="reftit"><s:text name="txt.promo.info.import.n1" /> ${promocioAssociada.descompteImport } %</br></span><s:text name="txt.promo.info.n3" /> ${promocioAssociada.importAPartirDe}
 										</div>
 										</c:if>					
 									</ul>

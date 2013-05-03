@@ -32,13 +32,16 @@ TABLE.dataTable THEAD TR TH {
 }
 
 TABLE.dataTable TD {
-     font-family: arial;
+     font-family: raleway;
      font-size: 13px;
      padding-bottom: 10px;
      padding-left: 20px;
      padding-top: 10px;
-     text-transform: capitalize;
+     text-transform: uppercase;
      vertical-align: middle;
+     font-weight:bold;
+     color:#F7931E;
+     line-height: 22px;
 }
 
 #personal #taula tr:hover {
@@ -275,6 +278,7 @@ TABLE.dataTable TD {
      font-family: raleway;
     font-size: 12px;
     float:left;
+    margin-bottom: 110px;
 }
 
 .contente .contente-1, .contente .contente-2, .contente .contente-3, .contente .contente-4 {
@@ -316,12 +320,10 @@ TABLE.dataTable TD {
 .contente div p {
 	font-size: 14px;
 	line-height: 22px;
-	font-style: italic;
 	text-align: left;
 	margin: 0;
 	color: #777;
 	padding-left: 15px;
-	font-family: Cambria, Georgia, serif;
 	border-left: 8px solid rgba(63,148,148, 0.1);
 }
 

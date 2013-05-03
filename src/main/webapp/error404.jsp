@@ -1,18 +1,20 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <html>
 <style type="text/css">
-.errors {
-	background-color:#FFCCCC;
-	border:1px solid #CC0000;
-	width:400px;
-	margin-bottom:8px;
-}
+
 .errors li{ 
 	list-style: none; 
 }
+
+.cen {
+    margin: 140px auto auto;
+    width: 620px;
+}
 </style>
 <body>
-<img src="<c:url value='/images/error/pagenotfound.jpg' />" alt="error" width="900px;" />
+<div class="cen">
+<img src="<c:url value='/images/error/pagenotfoundd.png' />" alt="error" width="620px;" align="middle" />
+</div>
 <br>
 <s:if test="hasActionErrors()">
    <div class="errors">

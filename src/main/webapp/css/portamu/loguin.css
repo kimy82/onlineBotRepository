@@ -143,6 +143,7 @@ position:absolute;
     color: #F7931E;
     font-family: 'Raleway',sans-serif;
     font-size: 12px;
+    text-transform:uppercase;
 }
 #recovery{
 	background: url(../img/elements/bground.jpg) repeat;

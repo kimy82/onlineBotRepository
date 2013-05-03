@@ -307,7 +307,7 @@ public class WelcomeUserAction extends ActionSuportOnline{
 		String app =this.request.getSession().getServletContext().getInitParameter("app");
 		for (PlatComanda platComanda : comanda.getPlats()) {
 			nomPlats.append("<a href='#' onclick='goToVotarPlat(" + platComanda.getPlat().getId()
-					+ ")' ><img  src='/"+app+"/images/info.gif' /></a><br>");
+					+ ")' ><img  src='/"+app+"/images/vota.png' /></a><br>");
 		}
 		if (nomPlats.length() != 0)
 			nomPlats.setLength(nomPlats.length() - 4);

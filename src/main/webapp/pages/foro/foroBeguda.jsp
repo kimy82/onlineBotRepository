@@ -18,7 +18,7 @@
 			<div id="move" class="ui-dialog-titlebar ui-widget-header ui-corner-all ui-helper-clearfix addmove">
 			</div>
 			<div class="foro_top">
-				<s:text name="txt.login.title" />
+				<s:text name="txt.foro.votacio" />
 				<input class="tancarBot" type="button" onclick="closeInfoBeguda()"  value="X" />
 			</div>
 		<hr class="sep8" />
