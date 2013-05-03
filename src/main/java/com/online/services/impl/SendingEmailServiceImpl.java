@@ -13,7 +13,6 @@ import javax.mail.internet.MimeMessage;
 
 import com.online.bo.ClauBo;
 import com.online.exceptions.EmailException;
-import com.online.model.Clau;
 import com.online.services.SendingEmailService;
 
 public class SendingEmailServiceImpl implements SendingEmailService{
@@ -106,8 +105,62 @@ public class SendingEmailServiceImpl implements SendingEmailService{
 	
 	//PRIVATE
 	private String createFooter(String app){
-		String footer="<br><a href=\"https://portamu.com/"+app+"/admin/newsletter.action\" >Visit PORTAMU</a>";
-		return footer;
+		
+		StringBuffer footer = new StringBuffer("<table width=\"100%\" height=\"100%\" background=\"http://www.portamu.com/elteurestaurantacasa/img/elements/bground.jpg\">");
+					              	footer.append("<tbody>");
+					                  	footer.append("<tr>");
+					                  			footer.append("<td>");
+					                  				footer.append("<table width=\"700px\" height=\"100%\" align=\"center\" style=\"margin-top:70px;\">");
+					                  					footer.append("<tbody>");
+					                  						footer.append("<tr>");
+					                  							footer.append("<td>");
+					                  								footer.append("<table align=\"center\" bordeer-colapse=\"separated\" cellspacing=\"0\" cellpadding=\"0\" align=\"center\" style=\"width:700px; border-bottom-width:1px;border-top-style:solid;border-right-style:solid;border-bottom-color:#c0c0c0;border-top-width:1px;border-bottom-style:solid;border-top-color:#c0c0c0;border-left-color:#c0c0c0;border-right-color:#c0c0c0;border-left-style:solid;border-right-width:1px;border-left-width:1px\">");
+					                  									footer.append("<tbody>");
+					                  										footer.append("<tr>");
+					                  											footer.append("<td>");
+					                  												footer.append("<img src=\"http://www.alexmany.com/fonspor.png\">");
+					                  											footer.append("</td>");
+					                  										footer.append("</tr>");	
+					                  									footer.append("</tbody>");
+					                  								footer.append("</table>");
+					                  								footer.append("<table cellspacing=\"0\" cellpadding=\"0\" align=\"center\" style=\"margin-top:30px; width:700px; border-bottom-width:1px;border-top-style:solid;border-right-style:solid;border-bottom-color:#c0c0c0;border-top-width:1px;border-bottom-style:solid;border-top-color:#c0c0c0;border-left-color:#c0c0c0;border-right-color:#c0c0c0;border-left-style:solid;border-right-width:1px;border-left-width:1px\">");
+					                  									footer.append("<tbody>");
+					                  										footer.append("<tr>");
+					                  											footer.append("<td style=\"padding:20px; font-family:arial; color:#333; background-color:white; font-size:14px;\">");
+					                  												footer.append("Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book."); 
+					                  											footer.append("</td>");
+																			footer.append("</tr>");
+																		footer.append("</tbody>");
+																	footer.append("</table>");
+																	footer.append("<table cellspacing=\"0\" cellpadding=\"0\" align=\"center\" style=\"margin-top:30px; width:700px; border-bottom-width:1px;border-top-style:solid;border-right-style:solid;border-bottom-color:#c0c0c0;border-top-width:1px;border-bottom-style:solid;border-top-color:#c0c0c0;border-left-color:#c0c0c0;border-right-color:#c0c0c0;border-left-style:solid;border-right-width:1px;border-left-width:1px\">");
+																		footer.append("<tbody>");
+																			footer.append("<tr>");
+																				footer.append("<td style=\"padding:20px; font-family:arial; color:#333; background-color:white; font-size:14px;\">");
+																					footer.append("Disposem d'una selecció de restaurants de Girona que no disposen de servei d'entrega a domicili. La nostra voluntat es tenir una oferta àmplia i de qualitat."); 
+																				footer.append("</td>");
+																			footer.append("</tr>");
+																		footer.append("</tbody>");
+																	footer.append("</table>");
+																	footer.append("<table cellspacing=\"0\" cellpadding=\"0\" align=\"center\">");
+																			footer.append("<tbody>");
+																				footer.append("<tr>");
+																					footer.append("<td style=\"padding:20px; font-family:arial; color:#333; font-size:12px;\">");
+																						footer.append("PORTAMU ROGASO SL · B55163265 · Carrer nord numero 6 local 4 · <a href=\"http://www.twitter.com/portamu\" style=\"text-decoration:none; color:#F79433\" target=\"_blank\">@portamu.com</a>");
+																					footer.append("</td>");
+																				footer.append("</tr>");
+																			footer.append("</tbody>");
+																	footer.append("</table>");
+																footer.append("</td>");
+															footer.append("</tr>");
+														footer.append("</tbody>");
+													footer.append("</table>");
+												footer.append("</td>");
+											footer.append("</tr>");			
+										footer.append("</table>");
+																																																									 footer.append("</tr>");
+																																																											 footer.append("</table>");
+		
+		return footer.toString();
 	}
 
 	public void setClauBo(ClauBo clauBo) {
