@@ -79,13 +79,7 @@ a, .boton, .news, .tancarBot, #saveVotButton, .enviarcom{
 	padding: 20px;
 	font-weight: 800;
 	font-size: 24px;
-}
-.foro_top{
-	color: #4D4D4D;
-	font-family: 'Raleway', sans-serif;
-	padding: 20px;
-	font-weight: 800;
-	font-size: 24px;
+	text-transform: uppercase;
 }
 .sep8{
 	border-top:  1px solid #D6D6D6;
