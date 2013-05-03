@@ -24,7 +24,7 @@
 	<context-param>
 		<description>temps en minuts que tarden els moters</description>
 		<param-name>moterTime</param-name>
-		<param-value>10</param-value>
+		<param-value>15</param-value>
 	</context-param>
 	<context-param>
 		<description>temps en minuts de guarda per calcular el l'hora de la comanda abans d'escollir plats</description>
