@@ -2048,3 +2048,67 @@ color:#333;
     text-decoration: underline;
     text-align: left;
 }
+.llesu {
+    float: left;
+    margin-bottom: 3px;
+    margin-left: 1px;
+    margin-top: 3px;
+    width: 400px;
+}
+.ll1 {
+    background-color: #D3D3D3;
+    float: left;
+    height: 16px;
+    margin-right: 5px;
+    position: relative;
+    width: 16px;
+}
+
+.ll2 {
+    background-color: #F7931E;
+    float: left;
+    height: 16px;
+    margin-right: 5px;
+    position: relative;
+    width: 16px;
+}
+
+.ll3 {
+    background-color: #8CC63F;
+    float: left;
+    height: 16px;
+    margin-right: 5px;
+    position: relative;
+    width: 16px;
+}
+
+.textelles {
+    font-size: 12px;
+    font-weight: normal;
+    padding-top: 3px;
+    text-transform: none;
+}
+.botonPagar {
+    background-color: #9FC465;
+    border: 1px solid #BDBBBB;
+    color: white;
+    cursor: pointer;
+    font-family: 'Raleway',sans-serif;
+    font-size: 12px;
+    font-weight: 800;
+    margin-left: 0;
+    padding: 10px;
+    text-transform: uppercase;
+float:left;
+margin-top:30px;
+}
+.checkboxLabel{
+margin-right:30px;
+
+}
+#loged{
+width:300px;
+height:10px;
+float:right;
+color:#BF0808;
+}

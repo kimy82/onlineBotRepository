@@ -215,7 +215,7 @@
 						</td>
 					</tr>
 					<tr>
-					<td><label id="loged" ></label></td>
+					<td colspan="6"><label id="loged" ></label></td>
 					</tr>
 				</table>
 			</form>
@@ -247,9 +247,24 @@
 				<td><s:textfield key="comanda.dia" id="dia" maxlength="10" size="12" onfocus="blur()" theme="simple" onchange="reloadHores()" ></s:textfield>
 				<img  src="<c:url value='/images/calendar/calendar_full.png'/>"  id="llencadorData1" ></td>
 			</tr>
-		</table>		
+		</table>
+	
 	<hr class="sep13"></hr>			
-		<c:import url="/pages/includes/horesInfoComanda.jsp" />		
+		<c:import url="/pages/includes/horesInfoComanda.jsp" />	
+		<div class="llegenda">
+		<div class="llesu">
+		<div class="ll1"></div><div class="textelles">hora obsoleta</div>
+		</div>
+		<div class="llesu">
+		<div class="ll2"></div><div class="textelles">Hora per triar</div>
+		</div>
+		<div class="llesu">
+		<div class="ll3"></div><div class="textelles">hora triada</div>
+		</div>
+		</div>
+
+
+		
 		</div>
 		<div id="rightcom">
 		<div id="adomicili_div" >
@@ -262,10 +277,11 @@
 	</div>
 	<div id="rightright">	
 	<div id="map_canvas" style="float: left; height: 290px; width: 373px;"><img  src="<c:url value='/images/elements/maps.png'/>"  ></div>
+	<s:text name="txt.maps.user" />
 	</div>
 	</div>
 	<hr class="sep11"></hr>
-	<div id="domrec" class="titols_comanda2"><s:text name="txt.domrec" /></div>
+	<div id="domrec" class="titols_comanda2"><s:text name="txt.Pagar.final" /></div>
 	<div id="pagar">
 	<div id="pagarDom">
 	<s:checkbox key="comanda.targeta" id="targeta" onclick="targeta()" ></s:checkbox>
@@ -274,7 +290,7 @@
 	<div id="pagarRec">
 	<s:checkbox key="comanda.targeta" id="targeta" onclick="targeta()" ></s:checkbox>
 	</div>
-	<input type="button"  onclick="checkComandaJS();" value="<s:text name='txt.infocomanda.paga' />" />
+	<input type="button" class="botonPagar" onclick="checkComandaJS();" value="<s:text name='txt.infocomanda.paga' />" />
 	</div>		
 <div id="chargeBar"></div>
 <div id="check"></div>
@@ -337,7 +353,7 @@ initNumPlats();
 initNumBegudes();
 function submitLog(){
 	$.ajax({
-	    url: "<c:url value='/elteurestaurantacasa/j_spring_security_check' />",
+	    url: "<c:url value='/onlineBot/j_spring_security_check' />",
 	    type: "POST",
 	    data: $("#f").serialize(),
 	    dataType: 'json',
