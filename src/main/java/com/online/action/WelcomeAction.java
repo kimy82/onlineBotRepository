@@ -50,6 +50,72 @@ public class WelcomeAction extends ActionSuportOnlineSession{
 
 	}
 
+	
+	public String politicaPrivacitat() {
+
+		setAuthenticationUser();
+		
+		setUserName();
+		
+		setLocaleIfNull("ca");
+		
+		
+		this.restaurantList = this.restaurantsBo.getAll(true, false, false);
+		if(this.restaurantList!=null){
+			inizializePagin();
+			if(this.restaurantList.size()>this.rppPage)
+				this.restaurantList = this.restaurantList.subList(actualPage*rppPage, (actualPage+1)*rppPage);
+		}
+		this.dataAvui = Utils.formatDate2(new Date());
+
+		return SUCCESS;
+
+	}
+	
+	public String politicaCompra() {
+
+		setAuthenticationUser();
+		
+		setUserName();
+		
+		setLocaleIfNull("ca");
+		
+		
+		this.restaurantList = this.restaurantsBo.getAll(true, false, false);
+		if(this.restaurantList!=null){
+			inizializePagin();
+			if(this.restaurantList.size()>this.rppPage)
+				this.restaurantList = this.restaurantList.subList(actualPage*rppPage, (actualPage+1)*rppPage);
+		}
+		this.dataAvui = Utils.formatDate2(new Date());
+
+		return SUCCESS;
+
+	}
+	
+	public String preguntesFrequents() {
+
+		setAuthenticationUser();
+		
+		setUserName();
+		
+		setLocaleIfNull("ca");
+		
+		
+		this.restaurantList = this.restaurantsBo.getAll(true, false, false);
+		if(this.restaurantList!=null){
+			inizializePagin();
+			if(this.restaurantList.size()>this.rppPage)
+				this.restaurantList = this.restaurantList.subList(actualPage*rppPage, (actualPage+1)*rppPage);
+		}
+		this.dataAvui = Utils.formatDate2(new Date());
+
+		return SUCCESS;
+
+	}
+
+
+	
 	public String changeLocale(){
 		try{
 			initLocale();

@@ -24,7 +24,7 @@
 	<a class="more" href="/${initParam.app}/comFerComanda.action"><s:text name="menu.fercomanda" /></a>
 	</br>
 	<hr class="s2">
-	<a class="more" href="/${initParam.app}/Preguntes freqüents.action"><s:text name="menu.faq" /></a>
+	<a class="more" href="/${initParam.app}/preguntesFrequents.action"><s:text name="menu.faq" /></a>
 	</br>
 	<hr class="s2">
 	</div>

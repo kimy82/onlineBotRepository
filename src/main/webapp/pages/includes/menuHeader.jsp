@@ -35,7 +35,7 @@
 				<li><img src="<c:url value='/img/elements/bar2.png' />"></li>
 				<li><a href="/${initParam.app}/comFerComanda.action"><s:text name="menu.fercomanda" /></a></li>
 				<li><img src="<c:url value='/img/elements/bar2.png' />"></li>
-				<li class="confirm"><a href="#" onclick="confirmComanda()" ><label id="numProduct" ></label> </a></li>
+				<li class="confirm"><a href="#" onclick="confirmComandaBox()" ><label id="numProduct" ></label> </a></li>
 				</ul>
 </div>
 

@@ -476,7 +476,6 @@ Al visitar i/o inscriure’s i/o sol·licitar serveis en aquesta pàgina web, vostè 
 </div>
 <c:import url="/pages/includes/endPage.jsp" />
 </div>
-</body>
-</html>
+<script src="<c:url value='/js/auxiliars/jsauxiliars.js' />" type="text/javascript"></script>
 </body>
 </html>

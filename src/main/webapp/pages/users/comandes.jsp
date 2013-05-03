@@ -158,7 +158,7 @@
 <div id="votaPlats_dialog" class="filtres filtres-oberts" title="<s:text name='txt.info.title' />">	 		
 </div>  		
 	<script src="https://maps.google.com/maps/api/js?sensor=false" type="text/javascript"></script>
-	<script type="text/javascript" src="<c:url value='/js/jsuser.comandes.js' />"></script>
+	<script type="text/javascript" src="<c:url value='/js/jsuser.comandes.min.js' />"></script>
 	<script language="javascript">	
 		new Address.addressValidation("<s:text name='txt.addressOK' />","<s:text name='txt.addressKO' />");
 		var initParams = new  InitParams( "<s:text name='txt.user.empty' />", "<s:text name='txt.password.empty' />","<s:text name='txt.password.noteq' />",

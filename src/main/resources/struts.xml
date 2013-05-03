@@ -52,11 +52,17 @@
 		<action name="preRecoverAcount" >
 			<result>/pages/login/recoverAccount.jsp</result>
 		</action>
-		<action name="politicaPrivacitat" >
+		<action name="politicaPrivacitat"  class="com.online.action.WelcomeAction"
+			method="politicaPrivacitat" >
 			<result>/pages/politica/politicaPrivacitat.jsp</result>
 		</action>
-		<action name="politicaCompra" >
+		<action name="politicaCompra"  class="com.online.action.WelcomeAction"
+			method="politicaCompra"  >
 			<result>/pages/politica/politicaCompra.jsp</result>
+		</action>
+		<action name="preguntesFrequents"  class="com.online.action.WelcomeAction"
+			method="preguntesFrequents"  >
+			<result>/pages/preguntes/preguntesFrequents.jsp</result>
 		</action>
 		
 		<action name="paymentPOK" class="com.online.action.payment.PaymentAction" method="paymentOK">
