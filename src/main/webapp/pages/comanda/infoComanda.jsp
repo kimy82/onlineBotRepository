@@ -290,7 +290,7 @@
 	<div id="pagarRec">
 	<s:checkbox key="comanda.targeta" id="targeta" onclick="targeta()" ></s:checkbox>
 	</div>
-	<input type="button" class="botonPagar" onclick="checkComandaJS();" value="<s:text name='txt.infocomanda.paga' />" />
+	<input type="button" id="botopagarcomanda" disabled="disabled" class="botonPagar" onclick="checkComandaJS();" value="<s:text name='txt.infocomanda.paga' />" />
 	</div>		
 <div id="chargeBar"></div>
 <div id="check"></div>
@@ -353,7 +353,7 @@ initNumPlats();
 initNumBegudes();
 function submitLog(){
 	$.ajax({
-	    url: "<c:url value='/onlineBot/j_spring_security_check' />",
+	    url: "<c:url value='/elteurestaurantacasa/j_spring_security_check' />",
 	    type: "POST",
 	    data: $("#f").serialize(),
 	    dataType: 'json',

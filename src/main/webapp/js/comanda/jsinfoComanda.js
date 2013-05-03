@@ -400,14 +400,17 @@ function addDomicili(){
 function targeta(){
 	
 	$("#targetaContrarembols").val("targeta");
+	$("#targeta").attr('checked',true);
 	$("#contrarembols").attr('checked',false);
+	$("#botopagarcomanda").removeAttr('disabled','disabled');
 	
 }
 
 function contrarembols(){
 	$("#targetaContrarembols").val("contrarembols");
+	$("#contrarembols").attr('checked',true);
 	$("#targeta").attr('checked',false);
-	
+	$("#botopagarcomanda").removeAttr('disabled','disabled');
 }
 
 
