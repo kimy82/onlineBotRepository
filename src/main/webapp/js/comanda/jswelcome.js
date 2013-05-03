@@ -98,11 +98,11 @@ $(function() {
 	       					var preuComanda = window.localStorage.getItem("comanda.preu");
 	       					if(preuComanda!= 'undefined' && preuComanda != null){
 	       						var preuFinal = parseFloat(preuComanda) + parseFloat(preuBegudes);
-	       						$("#preu").text(preuFinal.toFixed(2));
+	       						$("#preu").text(parseFloat(preuFinal).toFixed(2));
 	       					}else{
 	       						window.localStorage.setItem("comanda",json.numComanda);
 	       						window.localStorage.setItem("comanda.preu","0");
-	       						$("#preu").text(preuBegudes.toFixed(2));
+	       						$("#preu").text(parseFloat(preuBegudes).toFixed(2));
 	       					}	       						       				
 	       					
 	       					$("#numComanda").text(json.numComanda);
@@ -147,10 +147,10 @@ $(function() {
 								
 								if(preuBegudes!= 'undefined' && preuBegudes != null){
 									var preuFinal = parseFloat(json.preu) + parseFloat(preuBegudes);
-									$("#preu").text(preuFinal.toFixed(2));
+									$("#preu").text(parseFloat(preuFinal).toFixed(2));
 								}else{
-									var preuFinal = parseFloat(json.preu);
-									$("#preu").text(preuFinal.toFixed(2));
+									var preuFinal = parseFloat(json.preu).toFixed(2);
+									$("#preu").text(preuFinal);
 								}
 								
 								var plats= json.platsNames;	       					
@@ -474,7 +474,7 @@ $(document).ready(function() {
 			if (preuBegudes != 'undefined' && preuBegudes != null) {
 				preu =  parseFloat(preu) + parseFloat(preuBegudes);
 			}
-			$("#preu").text(preu);
+			$("#preu").text(parseFloat(preu).toFixed(2));
 		}
 
 		var numplats = window.localStorage.getItem("comanda.numplats");

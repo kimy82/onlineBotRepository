@@ -17,7 +17,6 @@
 Dear my friend,
 La comanda s'ha realitzat.
 </div>
-
 <!-- Scripts --> 
 
 	<link rel="stylesheet" href="<c:url value='/css/coin-slider-styles.css' />" type="text/css" />

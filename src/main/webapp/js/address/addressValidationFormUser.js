@@ -116,6 +116,8 @@ Address.addressValidation.prototype.checkAdd = function(){
                  Map("usemaps", results[0].geometry.location);
 
                 
+             }else{
+            		$("#addressOK").text(Address.addressValidation.prototype._addressKO);
              }
     	 }else{
     		 $("#addressOK").text(Address.addressValidation.prototype._addressKO);

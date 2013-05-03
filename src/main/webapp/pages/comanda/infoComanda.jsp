@@ -96,7 +96,8 @@
 										<input class="mores" type="submit" onclick="saveNewPLatAmount(${platComanda.plat.id}, -1)" value="-">
 										<input class="mores" type="submit" onclick="saveNewPLatAmount(${platComanda.plat.id}, 1)" value="+">
 									</td>
-									<td class="total"><label id="labelpreutotal_${platComanda.plat.id}">${platComanda.plat.preu*platComanda.numPlats}</label> &euro; </td>
+									
+									<td class="total"><label id="labelpreutotal_${platComanda.plat.id}"><fmt:formatNumber value="${platComanda.plat.preu*platComanda.numPlats}" type="number" maxFractionDigits="2"/></label> &euro; </td>
 									<td class="elimi">
 										<input class="elimin" type="submit" onclick="eliminaPlat(${platComanda.plat.id})"  value="ELIMINAR">
 									</td>								

@@ -120,6 +120,8 @@ Address.addressValidation.prototype.checkAdd = function(){
                  Map("map_canvas", results[0].geometry.location);
 
                  
+             }else{
+            		$("#addressOK").text(Address.addressValidation.prototype._addressKO);
              }
     	 }else{
     		 $("#addressOK").text(Address.addressValidation.prototype._addressKO);
