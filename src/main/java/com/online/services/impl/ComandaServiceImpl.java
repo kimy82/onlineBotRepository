@@ -873,7 +873,7 @@ public class ComandaServiceImpl implements ComandaService{
 				
 				preuComanda = preuComanda + (pl.getPlat().getPreu() * pl.getNumPlats());
 				numPlats = numPlats + pl.getNumPlats();
-				String nomPlat=pl.getPlat().getNom();
+				String nomPlat=Utils.escapeUTF(pl.getPlat().getNom());
 				if(!pl.getPlat().isActiu()){
 					nomPlat = nomPlat+"<font color=\"red\" >"+this.resource.getString("txt.plat.no.actiu")+"</font>";
 				}

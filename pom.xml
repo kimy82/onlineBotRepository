@@ -257,6 +257,7 @@
 								<cssSourceFile>demo_table.css</cssSourceFile>
 								<cssSourceFile>TableTools.css</cssSourceFile>
 								<cssSourceFile>components.css</cssSourceFile>
+								<cssSourceFile>portamu/foro.css</cssSourceFile>
 							</cssSourceFiles>
 							<cssFinalFile>admin.comandes.all.css</cssFinalFile>
 							<jsSourceDir>js</jsSourceDir>
@@ -979,7 +980,8 @@
 								<jsSourceFile>address/autocompleteStreet.js</jsSourceFile>
 								<jsSourceFile>address/autocompleteCodi.js</jsSourceFile>
 								<jsSourceFile>address/addressValidationForm.js</jsSourceFile>	
-								<jsSourceFile>progressbar/progress.js</jsSourceFile>							
+								<jsSourceFile>progressbar/progress.js</jsSourceFile>				
+								<jsSourceFile>utils/jsutils.js</jsSourceFile>			
 								<jsSourceFile>comanda/jsinfoComanda.js</jsSourceFile>																																																			
 							</jsSourceFiles>
 							<jsFinalFile>jsinfoComanda.segon.js</jsFinalFile>
@@ -1016,7 +1018,8 @@
 								<jsSourceFile>jquery/jquery.ui.droppable.js</jsSourceFile>
 								<jsSourceFile>jquery/jquery.ui.resizable.js</jsSourceFile>
 								<jsSourceFile>jquery/jquery.effects.core.js</jsSourceFile>
-								<jsSourceFile>jquery/jquery.bgiframe-2.1.1.js</jsSourceFile>							
+								<jsSourceFile>jquery/jquery.bgiframe-2.1.1.js</jsSourceFile>
+								<jsSourceFile>utils/jsutils.js</jsSourceFile>							
 								<jsSourceFile>comanda/jswelcome.js</jsSourceFile>																																														
 							</jsSourceFiles>
 							<jsFinalFile>jswelcome.comanda.js</jsFinalFile>

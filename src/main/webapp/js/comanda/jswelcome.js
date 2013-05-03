@@ -83,7 +83,7 @@ $(function() {
 	       					 	}else{
 	       					 		numBegudes= numBegudes+value.numBegudes;
 	       					 		preuBegudes=  parseFloat(preuBegudes) + (parseFloat(value.beguda.preu)*value.numBegudes);	       					 		
-	       							var li= value.numBegudes+" <span class='plats' id='span_b_"+value.beguda.id+"'>x</span> "+value.beguda.nom+"&nbsp;<a href='#' onclick='eliminaBeguda("+value.beguda.id+")' ><img class='dele' src='/"+context+"/images/delete2.png'></a><br><br>";
+	       							var li= value.numBegudes+" <span class='plats' id='span_b_"+value.beguda.id+"'>x</span> "+changeHTML(value.beguda.nom)+"&nbsp;<a href='#' onclick='eliminaBeguda("+value.beguda.id+")' ><img class='dele' src='/"+context+"/images/delete2.png'></a><br><br>";
 	       							lis = lis+li;
 	    							$("#disp_beguda").append(li);
 	       						}	       				
@@ -158,7 +158,7 @@ $(function() {
 		       					var lis= "";
 		       					$.each(plats, function(index, value) { 		 
 		       						
-		       							var li= value.numPlats+" <span class='plats' id='span_p_"+value.idPlat+"'>x</span> "+value.nomPlat+"&nbsp;<a href='#' onclick='eliminaPlat("+value.idPlat+")' ><img class='dele' src='/"+context+"/images/delete2.png'></a><br><br>";
+		       							var li= value.numPlats+" <span class='plats' id='span_p_"+value.idPlat+"'>x</span> "+changeHTML(value.nomPlat)+"&nbsp;<a href='#' onclick='eliminaPlat("+value.idPlat+")' ><img class='dele' src='/"+context+"/images/delete2.png'></a><br><br>";
 		       							 lis=lis+li;		       					
 		    							$("#disp_plate").append(li);		       						
 		       					});

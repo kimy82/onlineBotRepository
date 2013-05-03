@@ -59,7 +59,7 @@
 						<s:checkbox  key="plat.actiu" id="actiuplat" value="true" ></s:checkbox>
 					</c:if>
 					<c:if test="${actiu== false}">
-						<s:checkbox  key="plat.actiu" id="actiuplat" ></s:checkbox>
+						<s:checkbox  key="plat.actiu" id="actiuplat"></s:checkbox>
 					</c:if>
 					<s:textarea key="plat.descripcio" id="descplat" cols="40" rows="4" onkeyup="return ismaxlength(this,1000)" ></s:textarea>	
 					<s:textarea key="plat.descripcioES" id="descplatES" cols="40" rows="4" onkeyup="return ismaxlength(this,1000)" ></s:textarea>
@@ -70,7 +70,7 @@
 						<td><s:text name="plat.celiacs" ></s:text></td><td><s:checkbox  key="plat.celiacs" id="celiacsplat" value="true" theme="simple" ></s:checkbox></td>
 					</c:if>
 					<c:if test="${celiacs== false}">
-						<td><s:text name="plat.celiacs" ></s:text></td><td><s:checkbox  key="plat.actiu" id="celiacsplat" theme="simple" ></s:checkbox></td>
+						<td><s:text name="plat.celiacs" ></s:text></td><td><s:checkbox  key="plat.celiacs" id="celiacsplat" theme="simple" ></s:checkbox></td>
 					</c:if>
 					<c:if test="${empty plat or plat.ous == true or  empty plat.id}" var="ous" >
 						<td><s:text name="plat.ous" ></s:text></td><td><s:checkbox  key="plat.ous" id="ousplat" value="true" theme="simple" ></s:checkbox></td>

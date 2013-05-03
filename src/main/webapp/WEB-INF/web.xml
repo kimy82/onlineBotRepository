@@ -34,12 +34,12 @@
 	<context-param>
 		<description>preu per transport 1 restaurant</description>
 		<param-name>transport</param-name>
-		<param-value>4.5</param-value>
+		<param-value>4.90</param-value>
 	</context-param>
 	<context-param>
 		<description>preu per transport 2 restaurant</description>
 		<param-name>transport_double</param-name>
-		<param-value>6.90</param-value>
+		<param-value>7.35</param-value>
 	</context-param>
 	<filter>
 		<filter-name>springSecurityFilterChain</filter-name>

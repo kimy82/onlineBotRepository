@@ -114,7 +114,7 @@ public class PaymentServiceImpl implements PaymentService {
 						
 					}else if(params[0].equals("orderNum")){
 						
-						resource.queryParam(params[0],"P_"+params[1]);
+						resource.queryParam(params[0],"M_"+params[1]);
 						
 					}else if (toAdmins && params[0].equals("begudes")){
 						
@@ -152,7 +152,7 @@ public class PaymentServiceImpl implements PaymentService {
 						
 					}else if(params[0].equals("orderNum")){
 						
-						resource.queryParam(params[0],"R_MOTER_"+params[1]);
+						resource.queryParam(params[0],"R_M_"+params[1]);
 						
 					}else if (toAdmins && params[0].equals("begudes")){
 						
@@ -199,7 +199,7 @@ public class PaymentServiceImpl implements PaymentService {
 						
 					}else if( params[0].equals("orderNum")){
 						
-						resource.queryParam(params[0],"P_R_"+params[1]);
+						resource.queryParam(params[0],"M_R_"+params[1]);
 						
 					}else if (toAdmins && params[0].equals("comanda")){
 						resource.queryParam(params[0],params[1]);

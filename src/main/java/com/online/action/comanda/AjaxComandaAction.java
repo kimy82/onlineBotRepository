@@ -178,7 +178,7 @@ public class AjaxComandaAction extends ActionSuportOnlineSession {
 
 				this.comandaBo.update(comanda);
 
-				json = this.comandaService.createJSONForBegudaList(begudaList);
+				json = Utils.escapeUTF(this.comandaService.createJSONForBegudaList(begudaList));
 				StringBuffer jsonSB = new StringBuffer("{ \"begudes\": " + json);
 				jsonSB.append(", \"numComanda\" : \"" + comanda.getId()
 						+ "\" }");

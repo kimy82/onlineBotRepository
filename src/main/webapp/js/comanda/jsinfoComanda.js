@@ -187,7 +187,7 @@ function reloadHores(){
   				if(json._2400=='true'){setHourCheck('2400');}else{setHourNotCheck('2400'); }
   			  }				
   		  },
-  		  error: function(e){   errorOnline.error(txterrorAjax);	
+  		  error: function(e){  	window.location.href="https://www.portamu.com/elteurestaurantacasa/Welcome.action";
   		  					}
   		});	
 	
@@ -453,7 +453,7 @@ function addRecollir(){
 	       			 $("#arecollir_div").show('slow');
 	       		  }				
 	  		  },
-	  		  error: function(e){   errorOnline.error(txterrorAjax);	
+	  		  error: function(e){ window.location.href="https://www.portamu.com/elteurestaurantacasa/Welcome.action";	
 	  		  					}
 	  		});	
 	  		reloadHores();
@@ -477,7 +477,7 @@ function savePlatToComanda(idPlat,nPlats){
        			
        		  }			
   		  },
-  		  error: function(e){   errorOnline.error(txterrorAjax);	
+  		  error: function(e){  window.location.href="https://www.portamu.com/elteurestaurantacasa/Welcome.action";	
   		  					}
   		});	
 }
@@ -560,7 +560,7 @@ function checkComandaJS(){
 	       			}	  			  		  			  		  			  	
 	  			  $("#chargeBar").hide();
 	  		  },
-	  		  error: function(e){   errorOnline.error(txterrorAjax);	
+	  		  error: function(e){   window.location.href="https://www.portamu.com/elteurestaurantacasa/Welcome.action";	
 	  		  					}
 	  		});
 	}
@@ -669,7 +669,7 @@ function saveBegudaToComanda(idBeguda,promo,amount){
 										
 										
 										$(cell2).addClass("descri");
-										cell2.innerHTML="<span class='tit'>"+value.beguda.nom+"</span><br>"+value.beguda.descripcio+"</td>";
+										cell2.innerHTML="<span class='tit'>"+value.beguda.nom+"</span><br>"+changeHTML(value.beguda.descripcio)+"</td>";
 										
 										
 										$(cell3).addClass("preusun");
@@ -687,7 +687,7 @@ function saveBegudaToComanda(idBeguda,promo,amount){
 										$(cell6).addClass("elimi");
 										cell6.innerHTML="<input class='elimin' type='submit' onclick='eliminaBeguda("+value.beguda.id+")'  value='ELIMINAR'>";
 	       					 		}
-	       					 		var li= value.numBegudes+" <span class='plats' id='span_b_"+value.beguda.id+"'>x</span> "+value.beguda.nom+"<br><br>";
+	       					 		var li= value.numBegudes+" <span class='plats' id='span_b_"+value.beguda.id+"'>x</span> "+changeHTML(value.beguda.nom)+"<br><br>";
 	       					 		lis = lis+li;
    					 			}
    					 			if(value.numBegudesPromo!=0){
@@ -717,7 +717,7 @@ function saveBegudaToComanda(idBeguda,promo,amount){
 										
 										
 										$(cell2).addClass("descri");
-										cell2.innerHTML="<span class='tit'>"+value.beguda.nom+"</span><br>"+value.beguda.descripcio+"</td>";
+										cell2.innerHTML="<span class='tit'>"+value.beguda.nom+"</span><br>"+changeHTML(value.beguda.descripcio)+"</td>";
 										
 										
 										$(cell3).addClass("preusun");
@@ -735,7 +735,7 @@ function saveBegudaToComanda(idBeguda,promo,amount){
 										$(cell6).addClass("elimi");
 										cell6.innerHTML="<input class='elimin' type='submit' onclick='deletePromoApplied();'  value='"+initParams.txtbottreurepromo+"'>";
 	       					 		}
-	       					 		var li= value.numBegudesPromo+" <span class='plats' id='span_b_"+value.beguda.id+"'>x</span> "+value.beguda.nom+"(PROMO)<br><br>";
+	       					 		var li= value.numBegudesPromo+" <span class='plats' id='span_b_"+value.beguda.id+"'>x</span> "+changeHTML(value.beguda.nom)+"(PROMO)<br><br>";
 	       					 		lis = lis+li;
    					 			
        						}       					 	   					 		      					 		           					       						 		       					 	
@@ -762,7 +762,7 @@ function saveBegudaToComanda(idBeguda,promo,amount){
        			}   
   		  }
   		  },
-  		  error: function(e){  errorOnline.error(txterrorAjax);	
+  		  error: function(e){ window.location.href="https://www.portamu.com/elteurestaurantacasa/Welcome.action";	
   		  					}
   		});	
 }
@@ -849,7 +849,7 @@ function checkPromoEspecial(){
      						       			
      			}	  			  		  			  		  			  	
 		  },
-		  error: function(e){  errorOnline.error(txterrorAjax);	
+		  error: function(e){ window.location.href="https://www.portamu.com/elteurestaurantacasa/Welcome.action";	
 		  					}
 		});
 }
@@ -878,7 +878,7 @@ function checkPromoVibility(value){
      						       			
      			}	  			  		  			  		  			  	
 		  },
-		  error: function(e){  errorOnline.error(txterrorAjax);	
+		  error: function(e){ window.location.href="https://www.portamu.com/elteurestaurantacasa/Welcome.action";	
 		  					}
 		});
 }
@@ -1009,7 +1009,7 @@ function checkBegudaToAddPromo(promo){
 	       					 		
 	       					 		
 	       					 		$(cell2).addClass("descri");
-	       					 		cell2.innerHTML="<span class='tit'>"+value.beguda.nom+"</span><br>"+value.beguda.descripcio+"</td>";
+	       					 		cell2.innerHTML="<span class='tit'>"+value.beguda.nom+"</span><br>"+changeHTML(value.beguda.descripcio)+"</td>";
 	       					 		
 	       					 		
 	       					 		$(cell3).addClass("preusun");
@@ -1027,7 +1027,7 @@ function checkBegudaToAddPromo(promo){
 	       					 		$(cell6).addClass("elimi");
 	       					 		cell6.innerHTML="<input class='elimin' type='submit' onclick='eliminaBeguda("+value.beguda.id+")'  value='ELIMINAR'>";
 	       					 		
-	       					 		var li= value.numBegudes+" <span class='plats' id='span_b_"+value.beguda.id+"'>x</span> "+value.beguda.nom+"<br><br>";
+	       					 		var li= value.numBegudes+" <span class='plats' id='span_b_"+value.beguda.id+"'>x</span> "+changeHTML(value.beguda.nom)+"<br><br>";
 	       					 		lis = lis+li;
    					 			}
    					 			if(value.numBegudesPromo!=0){
@@ -1056,7 +1056,7 @@ function checkBegudaToAddPromo(promo){
 	       					 		
 	       					 		
 	       					 		$(cell2).addClass("descri");
-	       					 		cell2.innerHTML="<span class='tit'>"+value.beguda.nom+"</span><br>"+value.beguda.descripcio+"</td>";
+	       					 		cell2.innerHTML="<span class='tit'>"+value.beguda.nom+"</span><br>"+changeHTML(value.beguda.descripcio)+"</td>";
 	       					 		
 	       					 		
 	       					 		$(cell3).addClass("preusun");
@@ -1074,7 +1074,7 @@ function checkBegudaToAddPromo(promo){
 	       					 		$(cell6).addClass("elimi");
 	       					 		cell6.innerHTML="<input class='elimin' type='submit' onclick='deletePromoApplied();'  value='"+initParams.txtbottreurepromo+"'>";
 	       					 		
-	       					 		var li= value.numBegudesPromo+" <span class='plats' id='span_b_"+value.beguda.id+"'>x</span> "+value.beguda.nom+"(PROMO)<br><br>";
+	       					 		var li= value.numBegudesPromo+" <span class='plats' id='span_b_"+value.beguda.id+"'>x</span> "+changeHTML(value.beguda.nom)+"(PROMO)<br><br>";
 	       					 		lis = lis+li;
    					 			}       				    					 	   					 		      					 		           					       						 		       					 
        					});
@@ -1098,7 +1098,7 @@ function checkBegudaToAddPromo(promo){
        			}   
   		  }
   		  },
-  		  error: function(e){  errorOnline.error(txterrorAjax);	
+  		  error: function(e){  window.location.href="https://www.portamu.com/elteurestaurantacasa/Welcome.action";	
   		  					}
   		});	
 }
@@ -1300,7 +1300,7 @@ function deleteAjaxBegudesPromo(){
 	  			 
 	  			 
 	  		  },
-	  		  error: function(e){   errorOnline.error(txterrorAjax); 		
+	  		  error: function(e){  window.location.href="https://www.portamu.com/elteurestaurantacasa/Welcome.action"; 		
 	  		  					}
 	  		});
 	}	
