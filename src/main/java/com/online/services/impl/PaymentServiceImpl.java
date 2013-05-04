@@ -365,9 +365,7 @@ public class PaymentServiceImpl implements PaymentService {
 				comandaOrderSB.append("&telnumber="
 						+ this.comanda.getUser().getTelNumber());
 				
-				comandaOrderSB.append("&comandaName=Comanda:"+this.comanda.getId());
-				
-				
+				comandaOrderSB.append("&comandaName=Comanda:"+this.comanda.getId());								
 				
 				comandaOrderSB.append("&comandaHora=H.Comanda:"+calculHorafromMinuts((Calendar.getInstance().get(Calendar.HOUR_OF_DAY)*60)+Calendar.getInstance().get(Calendar.MINUTE)));
 				

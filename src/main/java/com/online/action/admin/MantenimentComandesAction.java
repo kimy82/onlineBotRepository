@@ -269,20 +269,18 @@ public class MantenimentComandesAction extends ActionSuportOnline{
 	}
 
 	private String getMethodPagament( Comandes comanda ){
-		
-		
-		if (comanda.getPagada() != null && comanda.getPagada() == true) {
-
-			if (comanda.getTargeta() != null && comanda.getTargeta() == true) {
+			
+		if (comanda.getTargeta() != null && comanda.getTargeta() == true) {
+			if (comanda.getPagada() != null && comanda.getPagada() == true) {
 				return "TARGETA";
-			} else {
-				return "SENSE TARGETA";
+			}else{
+				return "TARG. NO ACABAT";
 			}
-
-		} else {
-			return "SENSE TARGETA";
+		}else{
+			return "CONTRAREEMBOLS";
 		}
-	}
+		
+}
 
 	private String getNomRestaurant( Comandes comanda ){
 

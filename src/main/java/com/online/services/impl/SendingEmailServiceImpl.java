@@ -92,7 +92,7 @@ public class SendingEmailServiceImpl implements SendingEmailService{
 			
 			message.setSubject("News from PORTAMU");
 			
-			message.setContent(textbody+createFooter(app), "text/html");
+			message.setContent(createFooter(app,textbody), "text/html");
  
 			Transport.send(message);
  
@@ -104,7 +104,7 @@ public class SendingEmailServiceImpl implements SendingEmailService{
 	}
 	
 	//PRIVATE
-	private String createFooter(String app){
+	private String createFooter(String app, String body){
 		
 		StringBuffer footer = new StringBuffer("<table width=\"100%\" height=\"100%\" background=\"http://www.portamu.com/elteurestaurantacasa/img/elements/bground.jpg\">");
 					              	footer.append("<tbody>");
@@ -127,7 +127,7 @@ public class SendingEmailServiceImpl implements SendingEmailService{
 					                  									footer.append("<tbody>");
 					                  										footer.append("<tr>");
 					                  											footer.append("<td style=\"padding:20px; font-family:arial; color:#333; background-color:white; font-size:14px;\">");
-					                  												footer.append("Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book."); 
+					                  												footer.append(body); 
 					                  											footer.append("</td>");
 																			footer.append("</tr>");
 																		footer.append("</tbody>");
