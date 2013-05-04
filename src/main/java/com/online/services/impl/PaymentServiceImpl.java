@@ -152,7 +152,7 @@ public class PaymentServiceImpl implements PaymentService {
 						
 					}else if(params[0].equals("orderNum")){
 						
-						resource.queryParam(params[0],"R_M_"+params[1]);
+						resource.queryParam(params[0],"M_TO_R"+params[1]);
 						
 					}else if (toAdmins && params[0].equals("begudes")){
 						
@@ -199,7 +199,7 @@ public class PaymentServiceImpl implements PaymentService {
 						
 					}else if( params[0].equals("orderNum")){
 						
-						resource.queryParam(params[0],"M_R_"+params[1]);
+						resource.queryParam(params[0],"R_TO_M"+params[1]);
 						
 					}else if (toAdmins && params[0].equals("comanda")){
 						resource.queryParam(params[0],params[1]);
@@ -229,7 +229,7 @@ public class PaymentServiceImpl implements PaymentService {
 						
 					}else if(params[0].equals("orderNum")){
 						
-						resource.queryParam(params[0],"R_1_"+params[1]);
+						resource.queryParam(params[0],"R_"+params[1]);
 						
 					}else if (params[0].equals("begudes")){
 						
@@ -246,43 +246,7 @@ public class PaymentServiceImpl implements PaymentService {
 				}		
 				resource.queryParam("admin",String.valueOf(toAdmins));
 				String response = resource.accept("text/plain").get(String.class);
-			 }
-			
-			//Tiquet del restaurant al restaurant 2
-			for(String order : orders){
-				RestClient client = new RestClient();
-				Resource resource = client.resource("http://www.portamu.com/ComandaRest/jaxrs/comandes/file");
-				String[] orderVec = order.split("&");
-				int iterador=0;
-				String begudes="";
-				for(String param : orderVec){
-					String[] params = param.split("=");
-					
-					 if(!toAdmins && params[0].equals("telnumber")){
-						
-						resource.queryParam(params[0],transformTel(params[1]));
-						
-					}else if(params[0].equals("orderNum")){
-						
-						resource.queryParam(params[0],"R_2_"+params[1]);
-						
-					}else if (params[0].equals("begudes")){
-						
-						begudes = "";						
-						
-					}else if (toAdmins && params[0].equals("comanda")){
-						resource.queryParam(params[0],params[1]);
-					}else{
-						
-						resource.queryParam(params[0],params[1]);
-					}
-					iterador=iterador+1;
-					
-				}		
-				resource.queryParam("admin",String.valueOf(toAdmins));
-				String response = resource.accept("text/plain").get(String.class);
-			 }
-			
+			 }			
 		}
 	}
 	
@@ -352,6 +316,7 @@ public class PaymentServiceImpl implements PaymentService {
 				comandes.put(codi + "_" + platComanda.getPlat().getId(),
 						comandaSinglePlat);
 			}
+			int numRest=1;
 			for (String cod : restaurants) {
 				// creem order per cada restaurant
 				String[] infoRestaurant = cod.split("_");
@@ -385,7 +350,7 @@ public class PaymentServiceImpl implements PaymentService {
 					comandaOrderSB.append("&deliveryCharge=0.0");
 				}
 
-				comandaOrderSB.append("&orderNum=" + this.comanda.getId());
+				comandaOrderSB.append("&orderNum=" + this.comanda.getId()+numRest);
 
 				comandaOrderSB.append("&total=" + this.comanda.getPreu());				
 			
@@ -431,6 +396,8 @@ public class PaymentServiceImpl implements PaymentService {
 				
 				
 				orders.add(comandaOrderSB.toString());
+				
+				numRest++;
 			}
 		} catch (Exception e) {
 			throw new PaymentException(e, "Error creating orders");

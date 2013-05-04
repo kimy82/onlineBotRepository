@@ -383,12 +383,12 @@ function submitLog(){
 	});	
 }
 var morethanone = "${requestScope.morethanone}";
-var addressToLoad ='${requestScope.comanda.address}';
+var addressToLoad ="${requestScope.comanda.address}";
 if(addressToLoad==''){
-	addressToLoad =  '${requestScope.user.address}';	
+	addressToLoad =  "${requestScope.user.address}";	
 }
 initAddress();
-$("#altres").val('${requestScope.user.indicacions}');
+$("#altres").val("${requestScope.user.indicacions}");
 </script>
 <c:if test="${nameAuth ne 'anonymousUser' }">
 	<script type="text/javascript" >

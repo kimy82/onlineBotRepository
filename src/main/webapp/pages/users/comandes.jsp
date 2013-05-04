@@ -168,8 +168,8 @@
 		var initTableParams = new InitTableParams("<s:text  name='datatables.paginate.last'/>","<s:text  name='datatables.paginate.next'/>","<s:text  name='datatables.paginate.previous'/>","<s:text  name='datatables.paginate.first'/>","<s:text  name='datatables.loading'/>","<s:text  name='txt.avis.borrat'/>");		
 	</script>
 	<c:if test="${not empty user}" >
-	<script language="javascript">
-		var address = '${user.address}';
+	<script type="text/javascript">
+		var address = "${user.address}";
 		var addArray = address.split("-");		
 		$("#carrer").val(addArray[0]);
 		$("#codi").val(addArray[addArray.length-1]);
@@ -178,8 +178,8 @@
 			$("#num").val(addArray[addArray.length-3]);
 			$("#numcarrer").val(addArray[addArray.length-4]);
 		}
-		$("#altres").val('${user.indicacions}');
-		$("#indicacions").val('${user.indicacions}');
+		$("#altres").val("${user.indicacions}");
+		$("#indicacions").val("${user.indicacions}");
 	</script>
 	</c:if>
 	<c:import url="/pages/includes/confirmOnline.jsp" />
