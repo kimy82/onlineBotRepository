@@ -46,7 +46,7 @@ public class SendingEmailServiceImpl implements SendingEmailService{
 			message.setFrom(new InternetAddress("hola@portamu.com"));
 			message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(email));
 			message.setSubject("PORTAMU Recover password");
-			message.setContent(textbody+createFooter(app), "text/html");
+			message.setContent(createFooter(app,textbody), "text/html");
  
 			Transport.send(message);
 
