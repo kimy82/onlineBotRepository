@@ -87,8 +87,14 @@ Addressbis.addressValidation.prototype._init= function(addressOK,addressKO){
 
 
 Addressbis.addressValidation.prototype.checkAdd = function(){
-	var address = $("#carrerbis").val()+","+$("#codibis").val()+", Girona, Spain";
+	
 	var codiPostal= $("#codibis").val();
+	var poble="Girona";
+	if(codiPostal=="17190"){
+		poble="Salt";
+	}
+	var address = $("#carrerbis").val()+","+$("#codibis").val()+", "+poble+", Spain";
+	
 	if(codiPostal!='17001' && codiPostal!='17002' && codiPostal!='17003' && codiPostal!='17004' && codiPostal!='17005' && codiPostal!='17006' && codiPostal!='17007'){
 		 $("#addressOKbis").text(Addressbis.addressValidation.prototype._addressKO);
 		 return false;

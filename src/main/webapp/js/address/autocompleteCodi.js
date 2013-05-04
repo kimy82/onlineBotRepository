@@ -7,6 +7,7 @@ $(function() {
         "17003",
         "17002",
         "17001",
+        "17190",
     ];
     $( "#codi" ).autocomplete({
         source: availableCodis

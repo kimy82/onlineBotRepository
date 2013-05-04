@@ -68,7 +68,14 @@ function initAddress(){
 	if(window.addressToLoad!=''){
 		var arrayAddress = window.addressToLoad.split("-");
 		$("#carrer").val(arrayAddress[0]);
+		var codi =arrayAddress[arrayAddress.length-1];
 		$("#codi").val(arrayAddress[arrayAddress.length-1]);
+		
+		if(codi=='17190'){
+			$('#poble option[value="Salt"]').attr("selected", "selected");
+		}else{
+			$('#poble option[value="Girona"]').attr("selected", "selected");
+		}
 		
 		if(arrayAddress.length==5){
 			$("#porta").val(arrayAddress[arrayAddress.length-2]);

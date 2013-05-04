@@ -43,7 +43,10 @@
 						  </tr>
 						   <tr>
 		                      <td>
-		                      <input type="text" id="poble" disabled="disabled" value="Girona" class="inputs sepa" />                            						                    													    										                
+			                      <select id="poble" class="inputs sepa" >
+										<option value="Girona" >Girona</option>
+										<option value="Salt" >Salt</option>
+								  </select>           						                    													    										                
 							  </td>
 						   </tr>
 						  <tr>

@@ -159,7 +159,7 @@
 </div>  		
 	<script src="https://maps.google.com/maps/api/js?sensor=false" type="text/javascript"></script>
 	<script type="text/javascript" src="<c:url value='/js/jsuser.comandes.min.js' />"></script>
-	<script language="javascript">	
+	<script type="text/javascript">	
 		new Address.addressValidation("<s:text name='txt.addressOK' />","<s:text name='txt.addressKO' />");
 		var initParams = new  InitParams( "<s:text name='txt.user.empty' />", "<s:text name='txt.password.empty' />","<s:text name='txt.password.noteq' />",
 										  "<s:text name='txt.tel.empty' />","<s:text name='txt.address.empty' />","<s:text name='error.double' />",
@@ -172,7 +172,13 @@
 		var address = "${user.address}";
 		var addArray = address.split("-");		
 		$("#carrer").val(addArray[0]);
+		var codi = addArray[addArray.length-1];
 		$("#codi").val(addArray[addArray.length-1]);
+		if(codi=='17190'){
+			$('#poble option[value="Salt"]').attr("selected", "selected");
+		}else{
+			$('#poble option[value="Girona"]').attr("selected", "selected");
+		}
 		if(addArray.length==5){
 			$("#porta").val(addArray[addArray.length-2]);
 			$("#num").val(addArray[addArray.length-3]);

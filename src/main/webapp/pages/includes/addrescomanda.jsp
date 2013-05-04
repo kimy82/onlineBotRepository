@@ -22,8 +22,10 @@
 						<div class="inline2">
 						<s:text name="user.altres" />*:<br> <s:textfield cssClass="inputs" key="altres" id="altres" theme="simple" onblur="emptyAddress()"  onclick="focus()" /><br>
 						</div>
-						<input type="text" id="poble" disabled="disabled" value="Girona" class="inputs sepa" />    
-						
+						<select id="poble" class="inputs sepa" >
+							<option value="Girona" >Girona</option>
+							<option value="Salt" >Salt</option>
+						</select>												
 						<input id="checkAdd" class="boton" value="<s:text name="txt.button.address.ok" />" type="button" />
 						<label id="addressOK" ></label>						                	
 				</form>

@@ -86,9 +86,9 @@ Address.addressValidation.prototype._init= function(addressOK,addressKO){
 }
 
 Address.addressValidation.prototype.checkAdd = function(){
-	var address = $("#carrer").val()+","+$("#codi").val()+", Girona, Spain";
+	var address = $("#carrer").val()+","+$("#codi").val()+", "+$("#poble option:selected").val()+", Spain";
 	var codiPostal= $("#codi").val();
-	if(codiPostal!='17001' && codiPostal!='17002' && codiPostal!='17003' && codiPostal!='17004' && codiPostal!='17005' && codiPostal!='17006' && codiPostal!='17007'){
+	if(codiPostal!='17001' && codiPostal!='17002' && codiPostal!='17003' && codiPostal!='17004' && codiPostal!='17005' && codiPostal!='17006' && codiPostal!='17007'&& codiPostal!='17190'){
 		 $("#addressOK").text(Address.addressValidation.prototype._addressKO);
 		 return false;
 	}
