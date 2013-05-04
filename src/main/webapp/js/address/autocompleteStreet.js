@@ -826,6 +826,300 @@ $(function() {
 								"Xavier montsalvatge",
 								"Zamora",
 								"Zaragoza"
+								"Avinguda la Pau",
+								"Avinguda la Pau",
+								"Doctor Ferran",
+								"Llarg",
+								"Alfonso Moré",
+								"Amnistía Internacional",
+								"Ángel Guimerá",
+								"Anselmo Clavé",
+								"Ausiás March",
+								"Bescanó",
+								"Esteban Vila",
+								"Esteve Vila",
+								"Fidel Aguilar",
+								"Francisco Maciá",
+								"Jaime Vicens Vives",
+								"Javier Montsalvatge",
+								"Joaquín Ravetllat",
+								"Joaquín Ruyra",
+								"José Placita",
+								"Juan la Cierva",
+								"la Diputación",
+								"la Industria",
+								"la Moreneta",
+								"la Procesión",
+								"la Unicef",
+								"la Unión",
+								"las Comadronas",
+								"las Gabarras",
+								"las Guillerías",
+								"las Hiladoras",
+								"las Tejedoras",
+								"Lingen",
+								"Lope Vega",
+								"Luis Moreno",
+								"Manuel Falla",
+								"Mercedes Rodoreda",
+								"Miguel Cervantes",
+								"Miguel Palol",
+								"Miguel Martí Pol",
+								"Mollera",
+								"Pablo Casals",
+								"Pablo Masó",
+								"Pacheco",
+								"Pedro Coll Guitó",
+								"Pedro Gallostra",
+								"Pepe Ventura",
+								"Pompeu Fabra",
+								"Prat la Riba",
+								"Prudencio Bertrana",
+								"Rafael Masó",
+								"Ramón Sambola",
+								"Rosa Leveroni";
+								"San Antonio";
+								"San Grado";
+								"San Román";
+								"San Roque";
+								"Santiago Ramón y Cajal";
+								"Torres Bages";
+								"Tramontana";
+								"Vilablareix";
+								"Doctor Castany";
+								"Doctor Ferran";
+								"Lebeche";
+								"Llano Salt";
+								"Montenegro";
+								"Montseny";
+								"Mosén Sebastián Puig";
+								"Pintor Fortuny";
+								"Presidente José Irla";
+								"Tres Marzo";
+								"Calle Mayor";
+								"Camí les Guixeres";
+								"Camí del Mas Pi";
+								"Camí dels Carlins";
+								"Cami Guixeres";
+								"las Yeserías";
+								"Abad Oliva";
+								"Abat Oliba";
+								"Àngel Guimerà";
+								"Curt";
+								"d'Agustí Cabruja";
+								"d'Alfons Moré";
+								"d'Amnistia Internacional";
+								"d'Àngel Guimerà";
+								"d'Anselm Clavé";
+								"d'Ausiàs March";
+								"d'En Curta";
+								"d'Enric Granados";
+								"d'Isaac Albéniz";
+								"Bescanó";
+								"Fidel Aguilar";
+								"Filadores";
+								"Francesc Macià";
+								"Francesc Macià, 65, 17190 Salt, España";
+								"Francesco Macià";
+								"Isaac Rabin";
+								"Jacinto Benavente";
+								"Jaume Vicenç Vivens";
+								"Joan la Cierva";
+								"Joan Maragall";
+								"Joaquim Ravetllat";
+								"Joaquim Ruyra";
+								"Josep Aguilera";
+								"Josep María Segarra";
+								"Josep Plà";
+								"Josep Ramis";
+								"Josep Trueta";
+								"l'Abat Oliva";
+								"l'Erol";
+								"la Creu Roja";
+								"la Indústria";
+								"la Maçana";
+								"la Mare Teresa Calcuta";
+								"la Moreneta";
+								"la Processó";
+								"la Unicef";
+								"la Unió";
+								"les Gavarres";
+								"les Guilleries";
+								"les Teixidores";
+								"Lluís Millet";
+								"Lluís Moreno";
+								"Manuel Falla";
+								"María dels Àngels Anglada";
+								"María Mercè Marçal";
+								"Martin Luther King";
+								"Mercè Rodoreda";
+								"Miguel Cervantes";
+								"Miquel Palol";
+								"Miquel Martí i Pol";
+								"Mollera";
+								"Montfalgàs";
+								"Montfullà";
+								"Montserrat Roig";
+								"Nelson Mandela";
+								"Pacheco";
+								"Pau Masó";
+								"Pedraforca";
+								"Pep Ventura";
+								"Pere Bosch i Gimpera";
+								"Pere Coll i Guitó";
+								"Pere Gallostra";
+								"Picasso";
+								"Pius XII";
+								"Pompeu Fabra";
+								"Prat la Riba";
+								"Prudenci Bertrana";
+								"Rafael Masó";
+								"Ramón Sambola";
+								"Rigoberta Menchú";
+								"Roca Delpech";
+								"Rocacorba";
+								"Rosa Leveroni";
+								"Salvat-Papasseit";
+								"Sant Antoni";
+								"Sant Dionís";
+								"Sant Grau";
+								"Sant Jaume";
+								"Sant Joan";
+								"Sant Romà";
+								"Santa Afra";
+								"Santa Eugènia";
+								"Santiago Rusiñol";
+								"Torres i Bages";
+								"Tramuntana";
+								"Vilablareix";
+								"Willy Brandt";
+								"Xavier Montsalvatge";
+								"del Cardenal Vidal i Barraquer";
+								"del Dalai Lama";
+								"del Doctor Castany";
+								"del Doctor Ferran";
+								"del Doctor Ferran, 10, 17190 Salt, España";
+								"del Doctor Fleming";
+								"del Far";
+								"del Garbí";
+								"del Greco";
+								"del Montnegre";
+								"del Montseny";
+								"del Mossèn Sebastià Puig";
+								"del Pintor Fortuny";
+								"del Pla Salt";
+								"del Pou";
+								"del President Francesc Macià";
+								"del President Josep Irla";
+								"del Rec";
+								"del Tres Març";
+								"Doctor Castany";
+								"Doctor Ferran";
+								"Enric Granados";
+								"Esteve Vila";
+								"Garbí";
+								"Gavarres";
+								"Isaac Albéniz";
+								"Jacinto Benavente";
+								"Jaume Vicens Vives";
+								"Joan Maragall";
+								"Josep Pla";
+								"Juan la Cierva";
+								"Llarg";
+								"Llevadores";
+								"Major";
+								"Manuel Falla";
+								"Maria Àngels Anglada";
+								"MatilAlis i Clopes";
+								"Mercè Rodoreda";
+								"Miguel Cervantes";
+								"Miquel Palol";
+								"Miquel Martín i Pol";
+								"Montseny";
+								"Moreneta";
+								"Mossèn Sebastià Puig";
+								"Pacheco";
+								"Pau Casals";
+								"Pep Ventura";
+								"Pere Bosch i Gimpera";
+								"Pla Salt";
+								"Pompeu Fabra";
+								"Prat la Riba";
+								"Processó";
+								"Ramon Sambola";
+								"Roca Delpech";
+								"Salvat Papasseit";
+								"Sant Antoni";
+								"Sant Grau";
+								"Sant Roc";
+								"Santiago Ramon y Cajal";
+								"Segarra José M";
+								"Teixidores";
+								"Torras i Bages";
+								"Tramuntana";
+								"Vilablareix";
+								"Xavier Montsalvatge";
+								"Grup Sant Jaume";
+								"Passeig José Maria Folch Torres";
+								"Passeig José Tarradellas";
+								"Passeig los Países Catalanes";
+								"Passeig Verdaguer";
+								"Passeig del Marqués Camps";
+								"Passatge d'Elisenda Montcada";
+								"Passatge la Sagrada Família";
+								"Passatge Roger Llúria";
+								"Passatge Elisenda Montcada";
+								"Passeig Josep Maria Folch i Torres";
+								"Passeig Josep Tarradellas";
+								"Passeig la Ciutat Girona";
+								"Passeig Verdaguer";
+								"Passeig del Marquès Camps";
+								"Passeig dels Països Catalans";
+								"Passeig Josep Maria Folch i Torres";
+								"Passeig Josep Tarradellas";
+								"Passeig Verdaguer";
+								"Pje Elisenda Montcada";
+								"Pla Salt";
+								"Plaça d'Antoni Gaudí";
+								"Plaça Can Patrac";
+								"Plaça Catalunya";
+								"Plaça Guifré 'el Pelós'";
+								"Plaça l'Onze Setembre";
+								"Plaça la Ciutat d'Olot";
+								"Plaça la Llibertat";
+								"Plaça la Vila";
+								"Plaça Lluís Companys";
+								"Plaça Pau Casals";
+								"Plaça Sant Jaume";
+								"Plaça Surroca";
+								"Plaça Verdaguer";
+								"Plaça del Canigó";
+								"Plaça del Veïnat";
+								"Plaça Massana II";
+								"Plaça Onze Setembre";
+								"PLAÇA PAU CASALS";
+								"Plaça President Lluís Companys";
+								"Plaça Sant Cugat";
+								"Plaça Veïnat";
+								"Plaça Verdaguer";
+								"Plaça Vila";
+								"Placeta Juli Garreta";
+								"Plaza Antonio Gaudí";
+								"Plaza Cataluña";
+								"Plaza la Ciudad Olot";
+								"Plaza Luis Companys";
+								"Plaza Pablo Casals";
+								"Plaza San Jaime";
+								"Plaza Sant Cugat";
+								"Plaza Verdaguer";
+								"Plaza del Canigó";
+								"Plaza del Vecindario";
+								"Salt";
+								"Travesía Santa Eugenia";
+								"Travessera Santa Eugènia";
+								"Travessera del Coll";
+								"Travessia Rigau";
+								"Travessia Rigau";
                             ];
     $( "#carrer" ).autocomplete({
         source: availableStreets
