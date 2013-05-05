@@ -288,7 +288,7 @@ $(document).ready(function() {
 		           			}            	
 		            	},
 		            	"error":function(e){ 
-		            		 errorOnline.error("Error in AJAX");	         	
+		            		 errorOnline.error("LA SESSIÓ HA CADUCAT!!!");	         	
 		            	}
 		        	} );
 		    	}

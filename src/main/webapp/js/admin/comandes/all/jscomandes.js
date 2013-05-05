@@ -88,7 +88,7 @@ $(document).ready(function() {
 		           			}            	
 		            	},
 		            	"error":function(e){ 
-		            		$("#errorsajaxlabel").text("Error in ajax call");
+		            		$("#errorsajaxlabel").text("La sessió pot haver caducat!!");
 		            		$("#errorsajax").show();            	
 		            	}
 		        	} );

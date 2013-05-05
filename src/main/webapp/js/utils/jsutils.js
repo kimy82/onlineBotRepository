@@ -24,6 +24,9 @@ function changeHTML(nom){
 	nom = nom.replace(/&#249;/g,'ù');		
 	nom = nom.replace(/&#250;/g,'ú');		
 	nom = nom.replace(/&#252;/g,'ü');		
-	nom = nom.replace(/&#236;/g,'í');		
+	nom = nom.replace(/&#236;/g,'í');
+	nom = nom.replace(/&#183;/g,'·');
+	nom = nom.replace(/&#239;/g,'ï');
+	nom = nom.replace(/&#207;/g,'Ï');	
 	return nom;
 }

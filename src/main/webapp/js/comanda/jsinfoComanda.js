@@ -156,7 +156,7 @@ function reloadHores(){
   		  data: data,
   		  success: function(json){	
   			  if(json!=null && json.error!=null){
-  				errorOnline.error("Error in AJAX: "+json.error);	
+  				errorOnline.error("HO SENTIM, HI HA HAGUT UN ERROR:"+json.error);	
   			  }else{
   				  $("#comandahora").val("");
   				if(json._0800=='true'){setHourCheck('0800');}else{setHourNotCheck('0800'); }  
@@ -435,7 +435,7 @@ function addRecollir(){
 	  		  data: data,
 	  		  success: function(json){	
 	  			  if(json!=null && json.error!=null){
-	  				errorOnline.error("Error in AJAX: "+json.error);	
+	  				errorOnline.error("HO SENTIM, HI HA HAGUT UN ERROR:"+json.error);	
 	       		  }else{
 	       			  if(json.moreThanOne=='true' || json.moreThanOne==true){	       				  
 	       				alertOnline.alertes(initParams.txtnomesdomocili);		       			
@@ -482,7 +482,7 @@ function savePlatToComanda(idPlat,nPlats){
   		  data: data,
   		  success: function(json){	
   			  if(json!=null && json.error!=null){
-  				errorOnline.error("Error in AJAX: "+json.error);	
+  				errorOnline.error("HO SENTIM, HI HA HAGUT UN ERROR:"+json.error);	
        		  }else{
        			
        		  }			
@@ -630,7 +630,7 @@ function saveBegudaToComanda(idBeguda,promo,amount){
   		  data: data,
   		  success: function(json){	
   			  if(json!=null && json.error!=null){           				
-       				errorOnline.error("Error in AJAX: "+json.error);	
+       				errorOnline.error("HO SENTIM, HI HA HAGUT UN ERROR:"+json.error);	
        			}else{
        				if(json.alerta!=null){
        					alertOnline.alertes(json.alerta);       					
@@ -811,7 +811,7 @@ function checkPromocionsDisponibles(){
 	  		  data: data,
 	  		  success: function(json){	
 	  			  	if(json!=null && json.error!=null){	       				
-	       			 errorOnline.error("Error in AJAX: "+json.error);	
+	       			 errorOnline.error("HO SENTIM, HI HA HAGUT UN ERROR:"+json.error);	
 	       			}else{
 	       				if(json.alertLoged!=null){
 	       					alertOnline.alertes(json.alertLoged);	       					
@@ -847,7 +847,7 @@ function checkPromoEspecial(){
 		  data: data,
 		  success: function(json){	
 			  	if(json!=null && json.error!=null){	       				
-     			 errorOnline.error("Error in AJAX: "+json.error);	
+     			 errorOnline.error("HO SENTIM, HI HA HAGUT UN ERROR:"+json.error);	
      			}else{
      				
      				$("#dialog_promo ul#esp").html("");
@@ -873,7 +873,7 @@ function checkPromoVibility(value){
 		  data: data,
 		  success: function(json){	
 			  	if(json!=null && json.error!=null){	       				
-     			 errorOnline.error("Error in AJAX: "+json.error);	
+     			 errorOnline.error("HO SENTIM, HI HA HAGUT UN ERROR:"+json.error);	
      			}else{     	
      				if(json!=null && json.alert!=null ){
      					$("#dialog_promo ul#visp").html(json.alert);
@@ -975,7 +975,7 @@ function checkBegudaToAddPromo(promo){
   		  data: data,
   		  success: function(json){	
   			  if(json!=null && json.error!=null){           				
-       				errorOnline.error("Error in AJAX: "+json.error);	
+       				errorOnline.error("HO SENTIM, HI HA HAGUT UN ERROR:"+json.error);	
        			}else{
        				if(json.alerta!=null){
        					alertOnline.alertes(json.alerta);       					
@@ -1296,7 +1296,7 @@ function deleteAjaxBegudesPromo(){
 	  		  data: data,
 	  		  success: function(json){	
 	  			  	if(json!=null && json.error!=null){	       					       				
-	       				errorOnline.error("Error in AJAX: "+json.error); 
+	       				errorOnline.error("HO SENTIM, HI HA HAGUT UN ERROR:"+json.error); 
 	       			} 
 	  			   var lis= window.localStorage.getItem("comanda.begudes.lis");
 	  			   var lista="";

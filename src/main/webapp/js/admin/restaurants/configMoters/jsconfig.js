@@ -30,7 +30,7 @@ function saveMoters(id){
 					alert("Saved");
 	   			}				
 			  },
-			  error: function(e){   $("#errorsajaxlabel").text("Error in ajax call");
+			  error: function(e){   $("#errorsajaxlabel").text("La sessió pot haver caducat!!");
 									$("#errorsajax").show();  		
 			  					}
 			});
@@ -126,7 +126,7 @@ $(document).ready(function() {
 	           			}            	
 	            	},
 	            	"error":function(e){ 
-	            		$("#errorsajaxlabel").text("Error in ajax call");
+	            		$("#errorsajaxlabel").text("La sessió pot haver caducat!!");
 	            		$("#errorsajax").show();            	
 	            	}
 	        	} );
@@ -179,7 +179,7 @@ function fnClickAddRow(ddmmyyyy) {
 	   				
 	   			}				
 			  },
-			  error: function(e){   $("#errorsajaxlabel").text("Error in ajax call");
+			  error: function(e){   $("#errorsajaxlabel").text("La sessió pot haver caducat!!");
 									$("#errorsajax").show();  		
 			  					}
 			});

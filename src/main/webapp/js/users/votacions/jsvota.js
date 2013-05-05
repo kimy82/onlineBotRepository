@@ -94,7 +94,7 @@ function votaPlatDialog(idPlat){
 					}
 				},
 				error : function(e) {						
-					errorOnline.suberror("Error in AJAX");
+					errorOnline.suberror("LA SESSIÓ HA CADUCAT!!!");
 				}
 			});
 }

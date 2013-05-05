@@ -744,9 +744,11 @@ public class ComandaServiceImpl implements ComandaService{
 					}else{
 						Double preuToRest = bg.getNumBegudes()*bg.getBeguda().getPreu();
 						this.jsonBegudaDeleted = "{\"numBegudes\": \""+bg.getNumBegudes()+"\", \"preuToRest\": \""+preuToRest+"\"}";
+						if(bg.getNumBegudes()!=null && bg.getNumBegudes()!=0){							
+							bg.setNumBegudes(0);									
+						}
 						if(bg.getNumBegudesPromo()!=null && bg.getNumBegudesPromo()!=0){
-							bg.setNumBegudes(0);
-							newbegudaList.add(bg);		
+							newbegudaList.add(bg);
 						}
 					}
 				}

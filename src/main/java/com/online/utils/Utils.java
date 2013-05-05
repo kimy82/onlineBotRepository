@@ -45,6 +45,9 @@ public class Utils{
 		desc = desc.replaceAll("ú", "&#250;");
 		desc = desc.replaceAll("ü", "&#252;");
 		desc = desc.replaceAll("í", "&#236;");
+		desc = desc.replaceAll("·", "&#183;");
+		desc = desc.replaceAll("ï", "&#239;");
+		desc = desc.replaceAll("Ï", "&#207;");
 		
 	 	
 		return desc;
@@ -78,7 +81,9 @@ public class Utils{
 		desc = desc.replaceAll("#250;", "ú");
 		desc = desc.replaceAll("#252;", "ü");
 		desc = desc.replaceAll("#236;", "í");
-
+		desc = desc.replaceAll("#183;", ".");
+		desc = desc.replaceAll("#239;", "ï");
+		desc = desc.replaceAll("#207;", "Ï");
 		
 		return desc;
 	}

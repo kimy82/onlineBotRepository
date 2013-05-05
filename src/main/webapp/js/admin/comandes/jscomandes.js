@@ -26,7 +26,7 @@ function sendTo(id){
        				alert(initTableParams.txtenviat);	        			       			
        		  }				
   		  },
-  		  error: function(e){   r("Error in AJAX");	
+  		  error: function(e){   alert("La sessió pot haver caducat!!");	
   		  					}
   		});	
 	reloadTableComandes();
@@ -49,7 +49,7 @@ function deleteTo(id){
        		  }				
   		  },
   		  error: function(e){  
-  			  $("#errorsajaxlabel").text("Error in ajax call");
+  			  $("#errorsajaxlabel").text("La sessió pot haver caducat!!");
   			  $("#errorsajax").show();       
   		  					}
   		});	
@@ -130,7 +130,7 @@ $(document).ready(function() {
 		           			}            	
 		            	},
 		            	"error":function(e){ 
-		            		$("#errorsajaxlabel").text("Error in ajax call");
+		            		$("#errorsajaxlabel").text("La sessió pot haver caducat!!");
 		            		$("#errorsajax").show();            	
 		            	}
 		        	} );

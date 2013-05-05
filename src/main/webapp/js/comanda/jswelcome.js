@@ -62,7 +62,7 @@ $(function() {
 	  		  data: data,
 	  		  success: function(json){	
 	  			  if(json!=null && json.error!=null){           				
-	       				errorOnline.error("Error in AJAX: "+json.error);	
+	       				errorOnline.error("HO SENTIM, HI HA HAGUT UN ERROR:"+json.error);	
 	       			}else{
 	       				if(json!=null && json.alerta!=null){
 	       					alertOnline.alertes(json.alerta);
@@ -233,7 +233,7 @@ function eliminaBeguda(id){
   		  data: data,
   		  success: function(json){	
   			  if(json!=null && json.error!=null){
-  				errorOnline.error("Error in AJAX: "+json.error);	
+  				errorOnline.error("HO SENTIM, HI HA HAGUT UN ERROR:"+json.error);	
        		  }else{
        			var begudesAnterior = window.localStorage.getItem("comanda.numbegudes");
        			var numBegudes= parseInt(begudesAnterior)-parseInt(json.numBegudes);
@@ -277,7 +277,7 @@ function eliminaPlat(id){
 	  		  data: data,
 	  		  success: function(json){	
 	  			  if(json!=null && json.error!=null){
-	  				errorOnline.error("Error in AJAX: "+json.error);	
+	  				errorOnline.error("HO SENTIM, HI HA HAGUT UN ERROR:"+json.error);	
 	       		  }else{
 	       			var platsAnterior = window.localStorage.getItem("comanda.numplats");
 	       			var numPlats = parseInt(platsAnterior)-parseInt(json.numPlats)
@@ -550,7 +550,7 @@ $(document).ready(function() {
 		  data: data,
 		  success: function(json){	
 			  if(json!=null && json.error!=null){           				
-   				errorOnline.error("Error in AJAX: "+json.error);	
+   				errorOnline.error("HO SENTIM, HI HA HAGUT UN ERROR:"+json.error);	
    			}else{
    				if(json!=null){   					
    					$("#hora_int").text(json.hora+ "H");   				

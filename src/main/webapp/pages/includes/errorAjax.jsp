@@ -4,7 +4,7 @@
 <div id="dialog_error" class="filtres filtres-oberts" title="<s:text name='txt.error.title' />">
 	 <table>
 	 	<tr>
-	 		<td><img  src="<c:url value='/images/error/errorAjax.jpg'/>" width="50px" > </td>
+	 		<td><img  src="<c:url value='/images/error/errorAjax.jpg'/>" width="200px" > </td>
 	 		<td><h1><label id="errorOn" > </label></h1></td>
 	 	</tr>
 	 </table>		
@@ -16,7 +16,7 @@ $("#dialog_error").dialog( { autoOpen: false,
 	  modal: true,
 	  position: 'center',
 	  draggable: true,
-	  height: 200,
+	  height: 400,
 	  width: 400,		
 	  open: function(event, ui) { 		
 		$('#dialog_error').css('overflow', 'hidden');		

@@ -2,40 +2,25 @@ package com.online.action.comanda;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Date;
-import java.util.LinkedList;
 import java.util.List;
-import java.util.ResourceBundle;
 
 import javax.servlet.ServletOutputStream;
 
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
 import com.online.bo.BegudaBo;
 import com.online.bo.ComandaBo;
 import com.online.bo.PlatsBo;
 import com.online.bo.PromocionsBo;
-import com.online.bo.RestaurantsBo;
-import com.online.bo.UsersBo;
 import com.online.exceptions.ComandaException;
 import com.online.exceptions.GeneralException;
 import com.online.exceptions.WrongParamException;
 import com.online.model.Beguda;
 import com.online.model.BegudaComanda;
 import com.online.model.Comandes;
-import com.online.model.HoresDTO;
 import com.online.model.Plat;
 import com.online.model.PlatComanda;
 import com.online.model.Promocio;
-import com.online.model.PromocioAPartirDe;
-import com.online.model.PromocioAssociada;
-import com.online.model.Restaurant;
-import com.online.model.Users;
-import com.online.pojos.ARecollirDTO;
-import com.online.pojos.BasicSub;
 import com.online.services.impl.ComandaServiceImpl;
 import com.online.supplier.extend.ActionSuportOnlineSession;
-import com.online.utils.Constants;
 import com.online.utils.Utils;
 
 public class AjaxComandaAction extends ActionSuportOnlineSession {
@@ -125,7 +110,7 @@ public class AjaxComandaAction extends ActionSuportOnlineSession {
 				List<BegudaComanda> begudaList = comanda.getBegudes();				
 				Beguda begudaToDelete = this.begudaBo.load(this.idBeguda);
 
-				begudaList = comandaService.removeAllBegudaInList(begudaList, begudaToDelete);
+				comanda.setBegudes(comandaService.removeAllBegudaInList(begudaList, begudaToDelete));
 				json.append(this.comandaService.removeAllBegudaInListGetJson());
 				
 				this.comandaBo.update(comanda);

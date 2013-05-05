@@ -106,7 +106,7 @@ function votaBegudaDialog(){
 					}
 				},
 				error : function(e) {						
-					errorOnline.suberror("Error in AJAX");
+					errorOnline.suberror("LA SESSIÓ HA CADUCAT!!!");
 				}
 			});
 }
@@ -139,7 +139,7 @@ function saveComment() {
 						}
 					},
 					error : function(e) {						
-						errorOnline.suberror("Error in AJAX");
+						errorOnline.suberror("LA SESSIÓ HA CADUCAT!!!");
 					}
 				});
 	}
@@ -162,7 +162,7 @@ function deleteComment(id) {
 					}
 				},
 				error : function(e) {						
-					errorOnline.suberror("Error in AJAX");
+					errorOnline.suberror("LA SESSIÓ HA CADUCAT!!!");
 				}
 			});
 }

@@ -70,7 +70,7 @@ function deleteRestaurant(id){
 							 reloadTableRestaurants();							
 		   			}				
 				  },
-				  error: function(e){   $("#errorsajaxlabel").text("Error in ajax call");
+				  error: function(e){   $("#errorsajaxlabel").text("La sessió pot haver caducat!!");
 										$("#errorsajax").show();  		
 				  					}
 				});
@@ -104,7 +104,7 @@ function deletePlat(id){
 							 reloadTablePlats();							
 		   			}				
 				  },
-				  error: function(e){   $("#errorsajaxlabel").text("Error in ajax call");
+				  error: function(e){   $("#errorsajaxlabel").text("La sessió pot haver caducat!!");
 										$("#errorsajax").show();  		
 				  					}
 				});
@@ -178,7 +178,7 @@ function showDivRestaurant(id){
 					 	reloadTablePlats();					 						  
      			}				
 		  },
-		  error: function(e){   $("#errorsajaxlabel").text("Error in ajax call");
+		  error: function(e){   $("#errorsajaxlabel").text("La sessió pot haver caducat!!");
   								$("#errorsajax").show();  		
 		  					}
 		});	
@@ -214,7 +214,7 @@ function changePrioritat(idPlat){
 					 alert(initTableParams.txtguardat);							
    			}				
 		  },
-		  error: function(e){   $("#errorsajaxlabel").text("Error in ajax call");
+		  error: function(e){   $("#errorsajaxlabel").text("La sessió pot haver caducat!!");
 								$("#errorsajax").show();  		
 		  					}
 		});
@@ -269,7 +269,7 @@ $(document).ready(function() {
 		           			}            	
 		            	},
 		            	"error":function(e){ 
-		            		$("#errorsajaxlabel").text("Error in ajax call");
+		            		$("#errorsajaxlabel").text("La sessió pot haver caducat!!");
 		            		$("#errorsajax").show();            	
 		            	}
 		        	} );
@@ -335,7 +335,7 @@ $(document).ready(function() {
 		       			}            	
 		        	},
 		        	"error":function(e){ 
-		        		$("#errorsajaxlabel").text("Error in ajax call");
+		        		$("#errorsajaxlabel").text("La sessió pot haver caducat!!");
 		        		$("#errorsajax").show();            	
 		        	}
 		    	} );

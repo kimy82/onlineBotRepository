@@ -182,7 +182,7 @@ function goToPromocio(id){
 					 	}					 					 										 					 						 					 						  
      			}				
 		  },
-		  error: function(e){   $("#errorsajaxlabel").text("Error in ajax call");
+		  error: function(e){   $("#errorsajaxlabel").text("La sessió pot haver caducat!!");
   								$("#errorsajax").show();  		
 		  					}
 		});	
@@ -210,7 +210,7 @@ function deletePromocio(id){
 							 reloadTablePromos();							
 		   			}				
 				  },
-				  error: function(e){   $("#errorsajaxlabel").text("Error in ajax call");
+				  error: function(e){   $("#errorsajaxlabel").text("La sessió pot haver caducat!!");
 										$("#errorsajax").show();  		
 				  					}
 				});
@@ -269,7 +269,7 @@ $(document).ready(function() {
 		           			}            	
 		            	},
 		            	"error":function(e){ 
-		            		$("#errorsajaxlabel").text("Error in ajax call");
+		            		$("#errorsajaxlabel").text("La sessió pot haver caducat!!");
 		            		$("#errorsajax").show();            	
 		            	}
 		        	} );

@@ -40,7 +40,7 @@ function deleteComment(id) {
 					}
 				},
 				error : function(e) {						
-					errorOnline.suberror("Error in AJAX");
+					errorOnline.suberror("La sessió pot haver caducat!!");
 				}
 			});
 }
@@ -62,7 +62,7 @@ function deleteCommentFormAll(idPlat, idCommnet) {
 					}
 				},
 				error : function(e) {						
-					errorOnline.suberror("Error in AJAX");
+					errorOnline.suberror("La sessió pot haver caducat!!");
 				}
 			});
 }
@@ -84,7 +84,7 @@ function deleteCommentFromAllBeguda(idBeguda,idComment) {
 					}
 				},
 				error : function(e) {						
-					errorOnline.suberror("Error in AJAX");
+					errorOnline.suberror("La sessió pot haver caducat!!");
 				}
 			});
 }
@@ -106,7 +106,7 @@ function deleteCommentBeguda(id) {
 					}
 				},
 				error : function(e) {						
-					errorOnline.suberror("Error in AJAX");
+					errorOnline.suberror("La sessió pot haver caducat!!");
 				}
 			});
 }

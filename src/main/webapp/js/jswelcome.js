@@ -120,7 +120,7 @@ function saveEmail(){
   		  data: data,
   		  success: function(json){	
   			  if(json!=null && json.error!=null){
-  				errorOnline.error("Error in AJAX: "+json.error);	
+  				errorOnline.error("HO SENTIM, HI HA HAGUT UN ERROR:"+json.error);	
   			  }else{
   				$("#error").text(initParams.txtguardat);		
   			  }				

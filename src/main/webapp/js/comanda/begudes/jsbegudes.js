@@ -69,7 +69,7 @@ function saveBegudaToComanda(idBeguda){
   		  data: data,
   		  success: function(json){	
   			  if(json!=null && json.error!=null){           				
-       				errorOnline.error("Error in AJAX: "+json.error);	
+       				errorOnline.error("HO SENTIM, HI HA HAGUT UN ERROR: "+json.error);	
        			}else{
        				if(json.alerta!=null){
        					alertOnline.alertes(json.alerta);
@@ -79,7 +79,8 @@ function saveBegudaToComanda(idBeguda){
        					var numBegudesPromo=0;           					
        					var preuBegudes = 0.0;
        					var html="";
-       					var begudes= json.begudes;	       					
+       					var begudes= json.begudes;	   
+       					var lis="";
        					$("#disp_beguda").html("");
        					$.each(begudes, function(index, value) { 
        					 	
@@ -90,11 +91,12 @@ function saveBegudaToComanda(idBeguda){
        					 		numBegudes= numBegudes+value.numBegudes;
        					 		preuBegudes=  parseFloat(preuBegudes) + (parseFloat(value.beguda.preu)*value.numBegudes);
        							var li= value.numBegudes+" <span class='plats' id='span_b_"+value.beguda.id+"' >x</span> "+value.beguda.nom+"&nbsp;<a href='#' onclick='eliminaBeguda("+value.beguda.id+")' ><img src='/"+context+"/images/delete.png'></a><br><br>";
+       							lis=lis+li;
     							$("#disp_beguda").append(li);
        						}	       				
        						
        					});
-       				
+       					window.localStorage.setItem("comanda.begudes.lis",lis);
        					window.localStorage.setItem("comanda.promo.nBegudes.added",numBegudesPromo);
        					window.localStorage.setItem("comanda.numbegudes",numBegudes);
        					window.localStorage.setItem("comanda.beguda.preu",preuBegudes.toFixed(2));	       					
@@ -132,7 +134,7 @@ function eliminaBeguda(id){
   		  data: data,
   		  success: function(json){	
   			  if(json!=null && json.error!=null){
-  				errorOnline.error("Error in AJAX: "+json.error);	
+  				errorOnline.error("HO SENTIM, HI HA HAGUT UN ERROR: "+json.error);	
        		  }else{
        			var begudesAnterior = window.localStorage.getItem("comanda.numbegudes");
        			var numBegudes= parseInt(begudesAnterior)-parseInt(json.numBegudes);
@@ -176,7 +178,7 @@ function eliminaPlat(id){
 	  		  data: data,
 	  		  success: function(json){	
 	  			  if(json!=null && json.error!=null){
-	  				errorOnline.error("Error in AJAX: "+json.error);	
+	  				errorOnline.error("HO SENTIM, HI HA HAGUT UN ERROR: "+json.error);	
 	       		  }else{
 	       			var platsAnterior = window.localStorage.getItem("comanda.numplats");
 	       			var numPlats = parseInt(platsAnterior)-parseInt(json.numPlats)
@@ -195,12 +197,16 @@ function eliminaPlat(id){
 	       			}
 	       			var lis= window.localStorage.getItem("comanda.plats.lis");
 	       			var lista="";
-	       			var plats = lis.split("<br><br>");
+	       			if(lis!=null){
+	       				var plats = lis.split("<br><br>");
 	       				$.each(plats, function(index, value) { 		       					 	
 	       						 if(value.indexOf("span_p_"+id)==-1 && value!='')
 	       							 lista=lista+value+"<br><br>";		       										       						
 	       				});
 
+	       			}
+	       		
+	       			
 	       				window.localStorage.setItem("comanda.plats.lis",lista);
 	       				$("#disp_plate").html(lista);
 	       		  }			

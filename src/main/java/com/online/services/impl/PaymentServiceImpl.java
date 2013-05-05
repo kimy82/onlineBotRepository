@@ -355,7 +355,7 @@ public class PaymentServiceImpl implements PaymentService {
 				comandaOrderSB.append("&total=" + this.comanda.getPreu());				
 			
 				comandaOrderSB.append("&nom="
-						+ this.comanda.getUser().getUsername());
+						+ this.comanda.getUser().getNom());
 
 				comandaOrderSB.append("&address="
 						+ this.comanda.getUser().getAddress());

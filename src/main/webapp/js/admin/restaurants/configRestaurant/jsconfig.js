@@ -107,7 +107,7 @@ function loadMotersAndConfig(idRestaurant){
 					alert(initTableParams.txtdadesCargades);
 	   			}				
 			  },
-			  error: function(e){   $("#errorsajaxlabel").text("Error in ajax call");
+			  error: function(e){   $("#errorsajaxlabel").text("La sessió pot haver caducat!!");
 									$("#errorsajax").show();  		
 			  					}
 			});

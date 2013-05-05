@@ -465,7 +465,7 @@ public class WelcomeComandaAction extends ActionSuportOnlineSession {
 				this.comandaBo.save(comanda);
 
 				json = this.comandaService.createJSONForBegudaList(begudes);
-				StringBuffer jsonSB = new StringBuffer("{ \"begudes\": " + json);
+				StringBuffer jsonSB = new StringBuffer("{ \"begudes\": " + Utils.escapeUTF(json));
 				jsonSB.append(", \"numComanda\" : \"" + comanda.getId()
 						+ "\" }");
 				json = jsonSB.toString();
