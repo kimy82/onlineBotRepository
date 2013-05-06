@@ -71,7 +71,7 @@
 		<action name="paymentPKO">
 			<result>/pages/payment/paymentKO.jsp</result>		
 		</action>	
-		<action name="comFerComanda" >
+		<action name="comFerComanda" class="com.online.action.WelcomeAction" method="preguntesFrequents" >
 			<result>/pages/general/comFerComanda.jsp</result>
 		</action>
 		<action name="recoverAccount" class="com.online.action.LoginAction" method="recoverAccount" >

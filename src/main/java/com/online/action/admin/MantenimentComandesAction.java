@@ -143,8 +143,10 @@ public class MantenimentComandesAction extends ActionSuportOnline{
 			inizializeTableParams();
 			json = Utils.escapeUTF(searchInfoANDcreateJSONForAllComandes());
 		} catch (NumberFormatException e) {
+			e.printStackTrace();
 			json = Utils.createErrorJSONForDataTable("error in ajax action: wrong params", this.sEcho);
 		} catch (Exception e) {
+			e.printStackTrace();
 			json = Utils.createErrorJSONForDataTable("error in ajax action", this.sEcho);
 		}
 
@@ -306,7 +308,7 @@ public class MantenimentComandesAction extends ActionSuportOnline{
 		if(comanda.getPlatsBorrats()!=null){
 			nomPlats.append(comanda.getPlatsBorrats());
 		}else{
-			if (nomPlats.length() != 0)
+			if (nomPlats.length() > 4)
 				nomPlats.setLength(nomPlats.length() - 4);
 		}
 		return nomPlats.toString();
