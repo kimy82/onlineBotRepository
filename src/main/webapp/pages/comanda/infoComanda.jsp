@@ -337,7 +337,7 @@
 	<script src="https://maps.google.com/maps/api/js?sensor=false" type="text/javascript"></script>
 	<script type="text/javascript" src="<c:url value='/js/jsinfoComanda.primer.min.js'/>"></script>		
 	<script type="text/javascript" src="<c:url value='/js/sudoSlider/jquery.sudoSlider.min.js'/>"></script>	
-	<script type="text/javascript" src="<c:url value='/js/jsinfoComanda.segon.min.js'/>"></script>		
+	<script type="text/javascript" src="<c:url value='/js/jsinfoComanda.segon.js'/>"></script>		
 <script type="text/javascript" >		  
 var initParams = new InitParams("<s:text name='txt.beguda.no.tipus.promo' />","<s:text name='txt.beguda.no.more.promo' />","<s:text name='txt.add.beguda.to.box' />", 
 								"<s:text name='txt.promo.descompte.aplicat' />","<s:text name='txt.promo.deleted' />","<s:text name='comanda.falta.hora' />",
