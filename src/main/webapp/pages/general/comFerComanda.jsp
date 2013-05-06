@@ -107,10 +107,12 @@ Com puc contactar amb Portamu si tinc dubtes sobre la meva comanda o si hi ha un
 
 Per qualsevol suggerència o comentari per millorar el nostre servei pots enviar un mail a <a class="more"href="mailto:hola@portamu.com">hola@portamu.com</a></br> 
 
-</div>
+
 </div>
 <c:import url="/pages/includes/endPage.jsp" />
 </div>
+<script src="<c:url value='/js/jsdivlogin.min.js' />" type="text/javascript"></script>
 <script src="<c:url value='/js/auxiliars/jsauxiliars.js' />" type="text/javascript"></script>
+
 </body>
 </html>
