@@ -156,7 +156,7 @@
 			<artifactId>tools</artifactId>
 			<version>1.5</version>
 			<scope>system</scope>
-			<systemPath>C:/Program Files (x86)/Java/jdk1.6.0_17/lib/tools.jar</systemPath>
+			<systemPath>C:/Program Files/Java/jdk1.7.0_02/lib/tools.jar</systemPath>
 		</dependency>
 		<dependency>
 			<groupId>javax.mail</groupId>
@@ -1034,6 +1034,40 @@
 						</goals>
 					</execution>
 					<execution>
+						<id>divlogin</id>
+						<phase>process-sources</phase>
+						<configuration>
+							<linebreak>4000</linebreak>
+							<nomunge>true</nomunge>
+         					<verbose>false</verbose>
+          					<preserveAllSemiColons>true</preserveAllSemiColons>
+							<disableOptimizations>true</disableOptimizations>							
+							<jsSourceDir>js</jsSourceDir>
+							<jsSourceFiles>							
+								<jsSourceFile>jquery/jquery.js</jsSourceFile>
+								<jsSourceFile>jquery/jquery.ui.core.js</jsSourceFile>
+								<jsSourceFile>jquery/jquery.ui.widget.js</jsSourceFile>
+								<jsSourceFile>jquery/jquery.ui.mouse.js</jsSourceFile>
+								<jsSourceFile>jquery/jquery.ui.dialog.js</jsSourceFile>
+								<jsSourceFile>jquery/jquery.ui.position.js</jsSourceFile>
+								<jsSourceFile>jquery/jquery.ui.draggable.js</jsSourceFile>
+								<jsSourceFile>jquery/jquery.ui.droppable.js</jsSourceFile>
+								<jsSourceFile>jquery/jquery.ui.resizable.js</jsSourceFile>
+								<jsSourceFile>jquery/jquery.effects.core.js</jsSourceFile>
+								<jsSourceFile>jquery/jquery.bgiframe-2.1.1.js</jsSourceFile>
+								<jsSourceFile>jquery/jquery-ui.js</jsSourceFile>
+								<jsSourceFile>utils/jsutils.js</jsSourceFile>	
+								<jsSourceFile>address/autocompleteStreet.js</jsSourceFile>	
+								<jsSourceFile>address/autocompleteCodi.js</jsSourceFile>									
+								<jsSourceFile>address/addressValidationFormbis.js</jsSourceFile>																																																											
+							</jsSourceFiles>
+							<jsFinalFile>jsdivlogin.js</jsFinalFile>
+						</configuration>
+						<goals>
+							<goal>minify</goal>
+						</goals>
+					</execution>
+					<execution>
 						<id>welcomeinifirst</id>
 						<phase>process-sources</phase>
 						<configuration>
@@ -1276,7 +1310,27 @@
 							<goal>minify</goal>
 						</goals>
 					</execution>
-
+					<execution>
+						<id>tpv</id>
+						<phase>process-sources</phase>
+						<configuration>
+							<linebreak>4000</linebreak>
+							<nomunge>true</nomunge>
+         					<verbose>false</verbose>
+          					<preserveAllSemiColons>true</preserveAllSemiColons>
+							<disableOptimizations>true</disableOptimizations>
+							<cssSourceDir>css</cssSourceDir>
+							<cssSourceFiles>							
+								<cssSourceFile>online.css</cssSourceFile>
+								<cssSourceFile>portamu/global.css</cssSourceFile>
+								<cssSourceFile>portamu/reset.css</cssSourceFile>								
+							</cssSourceFiles>
+							<cssFinalFile>tpvUser.css</cssFinalFile>							
+						</configuration>
+						<goals>
+							<goal>minify</goal>
+						</goals>
+					</execution>
 				</executions>
 
 			</plugin>

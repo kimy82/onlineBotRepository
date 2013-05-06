@@ -8,9 +8,7 @@
 	<META http-equiv="Content-Style-Type" content="text/css">
 	<link rel="shortcut icon" href="<c:url value='/img/elements/logo_portamu16.jpg' />"> 
 	<title><s:text name="txt.welcome.principal" /></title>	
-	<link rel="stylesheet" href="<c:url value='/css/portamu/global.css' />" type="text/css"   media="screen" />
-	<link rel="stylesheet" href="<c:url value='/css/portamu/reset.css' />" type="text/css"   media="screen" />
-	<link rel="stylesheet" href="<c:url value='/css/online.css' />" type="text/css"   media="screen" />
+	<link rel="stylesheet" href="<c:url value='/css/tpvUser.css' />" type="text/css"   media="screen" />	
 </head>
 <body id="tpv">
 <c:import url="/pages/includes/headerContext.jsp" />
