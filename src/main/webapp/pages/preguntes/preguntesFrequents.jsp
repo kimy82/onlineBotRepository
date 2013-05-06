@@ -111,6 +111,7 @@ Per qualsevol suggerència o comentari per millorar el nostre servei pots enviar 
 </div>
 <c:import url="/pages/includes/endPage.jsp" />
 </div>
+<script src="<c:url value='/js/jsdivlogin.min.js' />" type="text/javascript"></script>
 <script src="<c:url value='/js/auxiliars/jsauxiliars.js' />" type="text/javascript"></script>
 </body>
 </html>

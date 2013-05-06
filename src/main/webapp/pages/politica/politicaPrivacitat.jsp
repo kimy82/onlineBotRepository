@@ -163,6 +163,8 @@ Tots els comentaris, consultes i sol·licituds relatives a la nostra utilització 
 </div>
 <c:import url="/pages/includes/endPage.jsp" />
 </div>
+
+<script src="<c:url value='/js/jsdivlogin.min.js' />" type="text/javascript"></script>
 <script src="<c:url value='/js/auxiliars/jsauxiliars.js' />" type="text/javascript"></script>
 </body>
 </html>
