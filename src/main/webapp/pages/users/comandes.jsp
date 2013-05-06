@@ -101,7 +101,7 @@
 							</c:if>
 							<c:if test="${not empty promoNC.descompteImport}">
 							<div class="promosImg">
-							    <img width="160px" src="<c:url value='../img/elements/descopte.png'/>"  ></br>
+							    <img width="160px" src="<c:url value='../img/elements/descompte.png'/>"  ></br>
 								<span class="reftit"><s:text name="txt.promo.info.import.n1" /> ${promoNC.descompteImport } %</br></span> <s:text name="txt.promo.info.n3" /> ${promoNC.numComandes} &euro;.
 							</div>
 							</c:if>						
