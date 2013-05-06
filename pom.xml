@@ -979,7 +979,8 @@
 							<jsSourceFiles>																						
 								<jsSourceFile>address/autocompleteStreet.js</jsSourceFile>
 								<jsSourceFile>address/autocompleteCodi.js</jsSourceFile>
-								<jsSourceFile>address/addressValidationForm.js</jsSourceFile>	
+								<jsSourceFile>address/addressValidationForm.js</jsSourceFile>
+								<jsSourceFile>address/addressValidationFormbis.js</jsSourceFile>		
 								<jsSourceFile>progressbar/progress.js</jsSourceFile>				
 								<jsSourceFile>utils/jsutils.js</jsSourceFile>			
 								<jsSourceFile>comanda/jsinfoComanda.js</jsSourceFile>																																																			
