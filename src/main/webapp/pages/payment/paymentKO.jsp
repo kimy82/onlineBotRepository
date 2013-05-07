@@ -7,7 +7,6 @@
 <div class="final">
 <div class="final1">
 <s:text name="tpv.exitKO" /></br>
-<li><a href="<c:url value='/Welcome.action"' />?final=ok"><s:text name="menu.tornar" /></a></li>
 </div>
 </div>
 </html>
