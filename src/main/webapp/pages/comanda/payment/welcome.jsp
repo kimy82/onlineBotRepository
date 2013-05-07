@@ -9,17 +9,33 @@
 	<META http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 	<META http-equiv="Content-Style-Type" content="text/css">
 	<link rel="shortcut icon" href="<c:url value='/img/elements/logo_portamu16.jpg' />"> 
+	<link rel="stylesheet" type="text/css" href="<c:url value='/css/loguin.on.min.css' />" />
 	<title>Welcome</title>	
+	
+	<style>
+		.comOk{
+		
+    		widht:100%;
+    		heigth:100%
+    		
+		}
+		.comin{
+			width:1000px;
+			margin:auto;
+		}
+	</style>
 </head>
 <body>
 <c:import url="/pages/includes/headerContext.jsp" />
-<div align="left">
-
+<div class="comOk">
+<div class="comin">
+<img align="center" src="<c:url value='/img/elements/comandaOK.jpg' />">
+<a href="<c:url value='/Welcome.action"' />?final=ok"><s:text name="menu.tornar" /></a>
+</div>
 </div>
 <!-- Scripts --> 
 
-	<link rel="stylesheet" href="<c:url value='/css/coin-slider-styles.css' />" type="text/css" />
-	<link type="text/css" rel="stylesheet" href="<c:url value='/css/online.css' />" />
+
 	<script src="<c:url value='/js/jquery/jquery.js' />" type="text/javascript"></script>
 	<script src="<c:url value='/js/jquery/jquery.ui.core.js' />" type="text/javascript"></script>
 	<script src="<c:url value='/js/jquery/jquery.ui.widget.js'/>" type="text/javascript"></script>
