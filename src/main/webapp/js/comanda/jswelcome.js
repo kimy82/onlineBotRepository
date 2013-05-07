@@ -452,6 +452,7 @@ function showImagePlat(id){
  $("#imageBig").removeClass("ui-dialog-content");
  $("#imageBig").removeClass("ui-widget-content");
  $("#imageBig").addClass("ui-helper-clearfix");
+ $('#imageBig').css('visibility', '');
 }
 
 $(document).ready(function() {

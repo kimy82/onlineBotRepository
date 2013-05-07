@@ -263,11 +263,11 @@
 </div>  
 <div id="infoBeguda_dialog" class="filtres filtres-oberts">	 		
 </div>  
-<div id="imageBig" class="filtres filtres-oberts" width="600">
+<div id="imageBig" class="filtres filtres-oberts" style="visibility: hidden;" width="600">
 <div id="circle">
 <a href="#" onclick="closeImage()" class="colose" >X</a>
 </div> 
-	<div id="imageBig2" class="filtres filtres-oberts" width="600">		
+	<div id="imageBig2" class="filtres filtres-oberts"  width="600">		
 		<img id="imgBigId"  width="500" src="/${initParam.app}/comanda/ImageAction.action?imageId=${plat.foto.id}">		
 	</div>
 </div>   
