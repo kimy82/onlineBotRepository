@@ -243,7 +243,7 @@ var confirmComandaBox = function (){
 }
 
 function closeInfoPlat(){
-	$("#infoPlat_dialog").dialog("close");
+	$("#votaPlats_dialog").dialog("close");
 }
 
 var  oTablecomandes=null;

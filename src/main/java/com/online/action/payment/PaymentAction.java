@@ -90,7 +90,7 @@ public class PaymentAction extends ActionSuportOnline{
 				this.payment.setDs_Merchant_Amount(formateador.format(preu*100));
 						
 				String id = this.comanda.getId().toString();
-				id = "2"+id+"34";
+				id = "2"+id+"340";
 				if(id.length()<4){				
 					for(int numIndex=id.length(); numIndex<=4; numIndex++){
 						id=id+"0";
@@ -100,8 +100,8 @@ public class PaymentAction extends ActionSuportOnline{
 				
 				this.payment.setDs_Merchant_ProductDescription(this.comandaService.getListOfPlatsAndDrinks(comanda));
 				this.payment.setDs_Merchant_Titular(this.nameAuth);
-				this.payment.setDs_Merchant_UrlOK("http://www.portamu.com/"+context+"/paymentPOK.action?orderId="+this.comanda.getId()+"&order="+this.paymentService.SHAOrder(String.valueOf(this.comanda.getId()), entorn));
-				this.payment.setDs_Merchant_UrlKO("http://www.portamu.com/"+context+"/paymentPKO.action");
+				this.payment.setDs_Merchant_UrlOK("https://www.portamu.com/"+context+"/paymentPOK.action?orderId="+this.comanda.getId()+"&order="+this.paymentService.SHAOrder(String.valueOf(this.comanda.getId()), entorn));
+				this.payment.setDs_Merchant_UrlKO("https://www.portamu.com/"+context+"/paymentPKO.action");
 				this.payment.setDs_Merchant_MerchantSignature(this.paymentService.SHA(formateador.format((preu*100)), id, "327318309", "978", "0","",entorn));				
 				
 				return "TPV";

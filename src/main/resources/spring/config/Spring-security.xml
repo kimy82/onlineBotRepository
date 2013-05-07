@@ -13,7 +13,7 @@
 		<intercept-url pattern="/payment/**" access="hasAnyRole('ROLE_USER','ROLE_ADMIN')"></intercept-url>		
 		<intercept-url pattern="/admin/**" access="hasAnyRole('ROLE_ADMIN')" ></intercept-url>
 		<!-- hhtps -->
-		<!--  intercept-url pattern="/j_spring_security_check" requires-channel="https"/-->
+		<intercept-url pattern="/j_spring_security_check" requires-channel="https"/>
 		<logout logout-success-url="/Welcome.action" />
 		
 	</http>

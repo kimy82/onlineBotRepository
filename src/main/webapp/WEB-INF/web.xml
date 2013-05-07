@@ -14,7 +14,7 @@
 	</context-param>
 	<context-param>
 		<param-name>entorn</param-name>
-		<param-value>local</param-value>
+		<param-value>produccio</param-value>
 	</context-param>
 	<context-param>
 		<description>temps en segons</description>
@@ -49,8 +49,6 @@
 		<filter-name>springSecurityFilterChain</filter-name>
 		<url-pattern>/*</url-pattern>
 	</filter-mapping>
-
-
 	<filter>
 		<filter-name>struts2</filter-name>
 		<filter-class>
