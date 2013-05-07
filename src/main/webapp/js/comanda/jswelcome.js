@@ -476,6 +476,8 @@ $(document).ready(function() {
 				preu =  parseFloat(preu) + parseFloat(preuBegudes);
 			}
 			$("#preu").text(parseFloat(preu).toFixed(2));
+		}else{
+			$("#preu").text("0.0");
 		}
 
 		var numplats = window.localStorage.getItem("comanda.numplats");

@@ -302,9 +302,11 @@ function saveNewPLatAmount(id,value){
 							 if(value.indexOf("span_p_"+id)==-1){
 								 lista=lista+value+"<br><br>";		       	
 							 }else{
-								 var liEnd= value.split("</span>");
-								 var li= platsAra+" <span class='plats' id='span_p_"+id+"'>x</span> "+liEnd[1]+"<br><br>";
-       							 lista=lista+li;		       					
+								 if(platsAra!=0){
+									 var liEnd= value.split("</span>");								 
+									 var li= platsAra+" <span class='plats' id='span_p_"+id+"'>x</span> "+liEnd[1]+"<br><br>";
+	       							 lista=lista+li;
+								 }
 							 }
 								 									       						
 					});
@@ -321,6 +323,10 @@ function eliminaPlat(id){
 	 $("#labelpreutotal_"+id).text("0");
 	 var preu =  $("#preu").text();
 	 var preuComanda = parseFloat(preu)-parseFloat(preuTotalPlat);
+	 var preuInStorage = window.localStorage.getItem("comanda.preu");
+	 if(preuInStorage!=null){
+		window.localStorage.setItem("comanda.preu",parseFloat(parseFloat(preuInStorage)- parseFloat(preuTotalPlat)).toFixed(2))
+	 }
 	 $("#preu").text(parseFloat(preuComanda).toFixed(2));
 	 $("#labelpreutotalPromo").text(parseFloat(preuComanda).toFixed(2));
 	 initPromoDescompteFromStorage();

@@ -8,6 +8,15 @@
 		<c:if test="${actualPage==0}">
 			
 		</c:if>
+		<c:if test="${(actualPage-3)>0}">
+			<li><a href="#" onclick="pagin(${actualPage-4})" >${actualPage-4}</a></li>			
+		</c:if>
+		<c:if test="${(actualPage-2)>0}">
+			<li><a href="#" onclick="pagin(${actualPage-3})" >${actualPage-3}</a></li>			
+		</c:if>
+		<c:if test="${(actualPage-1)>0}">
+			<li><a href="#" onclick="pagin(${actualPage-2})" >${actualPage-2}</a></li>			
+		</c:if>
 		<c:if test="${actualPage>0}">
 			<li><a href="#" onclick="pagin(${actualPage-1})" >${actualPage-1}</a></li>			
 		</c:if>
@@ -19,6 +28,15 @@
 		</c:if>
 		<c:if test="${actualPage<totalPage}">
 			<li><a href="#" onclick="pagin(${actualPage+1})">${actualPage+1}</a></li>
+		</c:if>
+		<c:if test="${(actualPage+1)<totalPage}">
+			<li><a href="#" onclick="pagin(${actualPage+2})">${actualPage+2}</a></li>
+		</c:if>		
+		<c:if test="${(actualPage+2)<totalPage}">
+			<li><a href="#" onclick="pagin(${actualPage+3})">${actualPage+3}</a></li>
+		</c:if>
+		<c:if test="${(actualPage+3)<totalPage}">
+			<li><a href="#" onclick="pagin(${actualPage+4})">${actualPage+4}</a></li>
 		</c:if>
 		
 		<li id="next"><a href="#" onclick="pagin(${totalPage})" ><img src="<c:url value='/images/icono-paginador-fin.gif' />" style='vertical-align:middle'></a></li>

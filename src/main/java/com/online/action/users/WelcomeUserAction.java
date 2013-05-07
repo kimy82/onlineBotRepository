@@ -271,7 +271,7 @@ public class WelcomeUserAction extends ActionSuportOnline{
 			BeanUtils.copyProperties(comanda, cmdUserTable);
 			if (cmdUserTable.getObservacions() == null)
 				cmdUserTable.setObservacions("");
-			cmdUserTable.setPlatsString(getNomPLats(comanda));
+			cmdUserTable.setPlatsString(Utils.escapeUTF(getNomPLats(comanda)));
 			cmdUserTable.setLinks(getLinksVotacions(comanda));
 			cmdUserTable.setAccio("<a href=\"#\" onclick=\"repeatComanda(" + comanda.getId()
 					+ ")\" ><img src=\"../images/shopping_cart.png\"></a>");
@@ -295,7 +295,7 @@ public class WelcomeUserAction extends ActionSuportOnline{
 		for (PlatComanda platComanda : comanda.getPlats()) {
 			nomPlats.append(platComanda.getPlat().getNom() + "<br>");
 		}
-		if (nomPlats.length() != 0)
+		if (nomPlats.length() > 4)
 			nomPlats.setLength(nomPlats.length() - 4);
 
 		return nomPlats.toString();

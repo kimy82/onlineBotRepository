@@ -90,6 +90,7 @@ public class PaymentAction extends ActionSuportOnline{
 				this.payment.setDs_Merchant_Amount(formateador.format(preu*100));
 						
 				String id = this.comanda.getId().toString();
+				id = "2"+id+"34";
 				if(id.length()<4){				
 					for(int numIndex=id.length(); numIndex<=4; numIndex++){
 						id=id+"0";

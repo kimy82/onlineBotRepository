@@ -75,7 +75,7 @@ public class AjaxComandaAction extends ActionSuportOnlineSession {
 						}
 					}
 					comanda.setPlats(newplatList);
-				}
+				}				
 				this.comandaBo.update(comanda);
 			}
 		} catch (ComandaException ce) {

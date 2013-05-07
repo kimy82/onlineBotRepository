@@ -2,7 +2,6 @@ package com.online.action.comanda;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
@@ -320,6 +319,7 @@ public class WelcomeComandaAction extends ActionSuportOnlineSession {
 			if (this.idComanda != null) {
 				// recuperem la comanda i afegim nplat
 				Comandes comanda = this.comandaBo.load(this.idComanda);
+				List<PlatComanda> newPlatList = new ArrayList<PlatComanda>();
 				List<PlatComanda> platList = comanda.getPlats();
 				Plat platToAdd = this.platsBo.load(this.idPlat, false);
 
@@ -328,10 +328,18 @@ public class WelcomeComandaAction extends ActionSuportOnlineSession {
 						if (plt.getPlat().getId().toString()
 								.equals(platToAdd.getId().toString())) {
 							plt.setNumPlats(plt.getNumPlats() + this.nplats);
+							if(plt.getNumPlats()==0){
+								
+							}else{
+								newPlatList.add(plt);
+							}
+						}else{
+							newPlatList.add(plt);
 						}
 					}
-					comanda.setPlats(platList);
+					comanda.setPlats(newPlatList);
 				}
+				
 				this.comandaBo.update(comanda);
 
 				json = null;
