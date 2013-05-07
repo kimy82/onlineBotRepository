@@ -1,11 +1,15 @@
 package com.online.model;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Set;
 
 import com.google.gson.annotations.Expose;
+import com.online.utils.ComparatorPlats;
 import com.online.utils.Constants;
 
 public class Restaurant implements Serializable{
@@ -171,9 +175,15 @@ public class Restaurant implements Serializable{
 		return false;
 	}
 
-	public Set<Plat> getPlats(String tipus){
+	public List<Plat> getPlats(String tipus){
 		
-		if(tipus.equals(Constants.TIPUS_PLAT_ANY)) return this.plats;
+		List<Plat> plats = new ArrayList<Plat>();
+		
+		if(tipus.equals(Constants.TIPUS_PLAT_ANY)) {
+			 plats.addAll(this.plats);
+			 Collections.sort(plats, new ComparatorPlats());
+			 return plats;
+		}
 		
 		Iterator<Plat> itera = this.plats.iterator();
 		Set<Plat> platList = new HashSet<Plat>();
@@ -183,7 +193,10 @@ public class Restaurant implements Serializable{
 				platList.add(plat);
 			}
 		}
-		return platList;
+		
+		plats.addAll(platList);
+		Collections.sort(plats, new ComparatorPlats());
+		return plats; 
 	}
 
 }

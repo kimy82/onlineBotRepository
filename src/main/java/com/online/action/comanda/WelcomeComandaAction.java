@@ -2,6 +2,7 @@ package com.online.action.comanda;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
@@ -89,7 +90,7 @@ public class WelcomeComandaAction extends ActionSuportOnlineSession {
 	private boolean morethanone = false;
 
 	public String execute() {
-
+		try{
 		setAuthenticationUser();
 		setUserName();
 
@@ -104,11 +105,24 @@ public class WelcomeComandaAction extends ActionSuportOnlineSession {
 				false, false);
 
 		inizializePagin();
-
+		
 		this.platList.addAll(this.restaurant.getPlats(this.order));
-		if (this.platList.size() > this.rppPage)
+		
+		inizializeTotalPagin();
+		
+
+		
+		if (this.platList.size() > this.rppPage){
+			int toindex=9;
+			if((actualPage + 1) * rppPage>this.platList.size()){
+				toindex=this.platList.size();
+			}else{
+				toindex=(actualPage + 1) * rppPage;
+			}
+			
 			this.platList = this.platList.subList(actualPage * rppPage,
-					(actualPage + 1) * rppPage);
+					toindex);
+		}
 
 		inizializeComments();
 
@@ -125,7 +139,9 @@ public class WelcomeComandaAction extends ActionSuportOnlineSession {
 		if (this.idComanda != null) {
 			goToPas1Action();
 		}
-
+		}catch(Exception e){
+			e.printStackTrace();
+		}
 		return SUCCESS;
 
 	}
@@ -672,7 +688,10 @@ public class WelcomeComandaAction extends ActionSuportOnlineSession {
 				.parseInt(request.getParameter("actualPage")) : 0;
 		this.order = (request.getParameter("order") != null && !request
 				.getParameter("order").equals("")) ? request
-				.getParameter("order") : Constants.TIPUS_PLAT_ANY;
+				.getParameter("order") : Constants.TIPUS_PLAT_PRIMER;
+	}
+	private void inizializeTotalPagin() {
+
 		this.totalPage = this.platList.size() / this.rppPage;
 	}
 
