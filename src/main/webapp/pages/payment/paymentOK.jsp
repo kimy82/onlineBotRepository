@@ -21,8 +21,12 @@
 <div class="final4">
 <s:text name="tpv.facebook" />
 	I un facebook!</br></br>
-	<iframe src="//www.facebook.com/plugins/like.php?href=https%3A%2F%2Fwww.portamu.com&amp;send=false&amp;layout=standard&amp;width=200&amp;show_faces=false&amp;font=arial&amp;colorscheme=light&amp;action=like&amp;height=35" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:440px; height:35px;" allowTransparency="true"></iframe>
+	<iframe src="//www.facebook.com/plugins/like.php?href=http%3A%2F%2Fwww.portamu.com&amp;send=false&amp;layout=standard&amp;width=450&amp;show_faces=false&amp;font&amp;colorscheme=light&amp;action=like&amp;height=35" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:450px; height:35px;" allowTransparency="true"></iframe>
 	</div>
 
+
+<div class="final4">
+<a href="<c:url value='/Welcome.action"' />?final=ok"><s:text name="menu.tornar" /></a>
+</div>
 </div>
 </html>

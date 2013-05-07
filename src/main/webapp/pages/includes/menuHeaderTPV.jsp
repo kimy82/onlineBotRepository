@@ -3,7 +3,7 @@
 
 <div id="topmenutpv">
 				<ul id="menu">
-				<li><a href="<c:url value='/Welcome.action"' />?final=ok"><s:text name="menu.tornar" /></a></li>								
+												
 				</ul>
 </div>
 

@@ -254,13 +254,13 @@
 		<c:import url="/pages/includes/horesInfoComanda.jsp" />	
 		<div class="llegenda">
 		<div class="llesu">
-		<div class="ll1"></div><div class="textelles">hora obsoleta</div>
+		<div class="ll1"></div><div class="textelles"><s:text name="txt.nodisponible" /></div>
 		</div>
 		<div class="llesu">
-		<div class="ll2"></div><div class="textelles">Hora per triar</div>
+		<div class="ll2"></div><div class="textelles"><s:text name="txt.disponible" /></div>
 		</div>
 		<div class="llesu">
-		<div class="ll3"></div><div class="textelles">hora triada</div>
+		<div class="ll3"></div><div class="textelles"><s:text name="txt.triada" /></div>
 		</div>
 		</div>
 

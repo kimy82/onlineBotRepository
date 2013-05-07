@@ -13,6 +13,15 @@
 	<link href='https://fonts.googleapis.com/css?family=Raleway:800,400' rel='stylesheet' type='text/css'>
 	<link type="text/css" rel="stylesheet" href="<c:url value='/css/welcome.min.css' />" />	
 	<title> <s:text name="txt.welcome.principal" />	</title>	
+	<style>
+	.imgfaq{
+		vertical-align:middle;
+	}
+	
+	.petit{
+		font-size:11px;
+	}
+	</style>
 </head>
 <body id=indexPor>
 <c:import url="/pages/includes/headerContext.jsp" />
@@ -87,15 +96,26 @@ Com es fan servir els codis de promoció/oferta?</span></br>
 <span class="negrete">
 Què signifiquen els símbols que hi ha sota cada plat?</span></br>
 
+<img class="imgfaq" src="<c:url value='/img/elements/vegetaria.png' />">
 -Logo vegetarià: plat apte per vegetarians.</br></br>
 
+<img class="imgfaq" src="<c:url value='/img/elements/celiac.png' />">
 -Logo celíacs: plat apte per celíacs.</br></br>
 
+<img class="imgfaq" src="<c:url value='/img/elements/llet.png' />">
 -Logo llet: plat apte per al·lèrgics a la llet.</br></br>
 
+<img class="imgfaq" src="<c:url value='/img/elements/ous.png' />">
 -Logo ou: plat apte per al·lèrgics a l’'ou.</br></br>
 
+<img class="imgfaq" src="<c:url value='/img/elements/fruits.png' />">
 -Logo fruits secs: plat apte per al·lèrgics als fruits secs.</br></br>
+
+Degut a la logística dels restaurants, no es pot garantitzar la ausencia de traces d'algun dels ingredients alergens.</br></br>
+
+<span class="petit">
+(*) los ingredientes mencionados en cada uno de los platos han sido proporcionados a PORTAMU por cada uno de los restaurantes por lo que PORTAMU no se hace responsable de la posible variación sin prèvio aviso de alguno de los ingredientes por parte de los restaurantes.</span></br></br>
+
 <span class="negrete">
 Puc fer modificacions dels plats?</span></br>
 

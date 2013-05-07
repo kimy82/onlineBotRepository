@@ -23,7 +23,7 @@
 			</div>
 		</c:if>
 		<div class="light_top">
-			<s:text name="txt.login.mailo" />
+			<s:text name="txt.logate" />
 			<c:if test="${dialog eq 'true'}">
 					&nbsp;<input class="tancarBot" style="text-align: right;" type="button" onclick="closeLoguin()" value="X" />
 			</c:if>
