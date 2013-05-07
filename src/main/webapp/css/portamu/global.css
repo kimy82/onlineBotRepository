@@ -2016,6 +2016,7 @@ float: right;
 .espai {
     float: left;
     padding-bottom: 10px;
+    width:250px;
 }
 #pass {
 font-family:raleway;
