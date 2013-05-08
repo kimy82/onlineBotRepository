@@ -96,7 +96,7 @@ public class PaymentServiceImpl implements PaymentService {
 		if(toAdmins){
 			for(String order : orders){
 				RestClient client = new RestClient();
-				Resource resource = client.resource("http://www.portamu.com/ComandaRest/jaxrs/comandes/file");
+				Resource resource = client.resource("http://localhost/ComandaRest/jaxrs/comandes/file");
 				String[] orderVec = order.split("&");
 				int iterador=0;
 				String begudes="";
@@ -127,8 +127,11 @@ public class PaymentServiceImpl implements PaymentService {
 					}else if (toAdmins && params[0].equals("comanda")){
 						resource.queryParam(params[0],params[1]+""+begudes);
 					}else{
-						
+						if(params.length==1){
+							resource.queryParam(params[0],"sense comentaris");
+						}else{
 						resource.queryParam(params[0],params[1]);
+						}
 					}
 					iterador=iterador+1;
 					
@@ -139,7 +142,7 @@ public class PaymentServiceImpl implements PaymentService {
 			//Tiquets dels moters als restaurants
 			for(String order : orders){
 				RestClient client = new RestClient();
-				Resource resource = client.resource("http://www.portamu.com/ComandaRest/jaxrs/comandes/file");
+				Resource resource = client.resource("http://localhost/ComandaRest/jaxrs/comandes/file");
 				String[] orderVec = order.split("&");
 				int iterador=0;
 				String begudes="";
@@ -166,7 +169,11 @@ public class PaymentServiceImpl implements PaymentService {
 						resource.queryParam(params[0],params[1]+""+begudes);
 					}else{
 						
+						if(params.length==1){
+							resource.queryParam(params[0],"sense comentaris");
+						}else{
 						resource.queryParam(params[0],params[1]);
+						}
 					}
 					iterador=iterador+1;
 					
@@ -178,7 +185,7 @@ public class PaymentServiceImpl implements PaymentService {
 			//Tiquet del restaurant a portamu
 			for(String order : orders){
 				RestClient client = new RestClient();
-				Resource resource = client.resource("http://www.portamu.com/ComandaRest/jaxrs/comandes/file");
+				Resource resource = client.resource("http://localhost/ComandaRest/jaxrs/comandes/file");
 				String[] orderVec = order.split("&");
 				int iterador=0;
 				String begudes="";
@@ -205,7 +212,11 @@ public class PaymentServiceImpl implements PaymentService {
 						resource.queryParam(params[0],params[1]);
 					}else{
 						
+						if(params.length==1){
+							resource.queryParam(params[0],"sense comentaris");
+						}else{
 						resource.queryParam(params[0],params[1]);
+						}
 					}
 					iterador=iterador+1;
 					
@@ -216,7 +227,7 @@ public class PaymentServiceImpl implements PaymentService {
 			//Tiquet del restaurant al restaurant 1
 			for(String order : orders){
 				RestClient client = new RestClient();
-				Resource resource = client.resource("http://www.portamu.com/ComandaRest/jaxrs/comandes/file");
+				Resource resource = client.resource("http://localhost/ComandaRest/jaxrs/comandes/file");
 				String[] orderVec = order.split("&");
 				int iterador=0;
 				String begudes="";
@@ -239,7 +250,11 @@ public class PaymentServiceImpl implements PaymentService {
 						resource.queryParam(params[0],params[1]);
 					}else{
 						
+						if(params.length==1){
+							resource.queryParam(params[0],"sense comentaris");
+						}else{
 						resource.queryParam(params[0],params[1]);
+						}
 					}
 					iterador=iterador+1;
 					
@@ -356,9 +371,12 @@ public class PaymentServiceImpl implements PaymentService {
 			
 				comandaOrderSB.append("&nom="
 						+ this.comanda.getUser().getNom());
-
-				comandaOrderSB.append("&address="
-						+ this.comanda.getUser().getAddress());
+				
+				if(this.comanda.getAddress()!=null && !this.comanda.getAddress().equals("") ){
+					comandaOrderSB.append("&address="+ this.comanda.getAddress());
+				}else{
+					comandaOrderSB.append("&address="+ this.comanda.getUser().getAddress());
+				}
 
 				comandaOrderSB.append("&diahora=D.Entrega:" + this.comanda.getDia());
 
@@ -384,7 +402,7 @@ public class PaymentServiceImpl implements PaymentService {
 					comandaOrderSB.append("&pagada=A CONTRAREMBOLS");
 				}
 				
-				if(this.comanda.getObservacions()!=null){
+				if(this.comanda.getObservacions()!=null && !this.comanda.getObservacions().equals("")){
 					comandaOrderSB.append("&comment="+this.comanda.getObservacions());
 				}else{
 					comandaOrderSB.append("&comment=Sense comentaris");
