@@ -473,7 +473,7 @@
 		height: 290, // height of slider panel
 		spw: 1, // squares per width
 		sph: 1, // squares per height
-		delay: 3000, // delay between images in ms
+		delay: 6000, // delay between images in ms
 		sDelay: 30, // delay beetwen squares in ms
 		opacity: 0.7, // opacity of title and navigation
 		titleSpeed: 500, // speed of title appereance in ms

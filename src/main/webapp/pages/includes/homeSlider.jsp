@@ -3,19 +3,19 @@
 
 <div id="slider">				
 	<div id='coin-slider'  >
-		    <a href="<c:url value='/images/presentacio/image1_${sessionScope.WW_TRANS_I18N_LOCALE}.jpg' />" target="_blank">
+		    <a href="#">
 		        <img src='<c:url value='/images/presentacio/image1_${sessionScope.WW_TRANS_I18N_LOCALE}.jpg' />' >
 		 
 		    </a>
-		    <a href="<c:url value='/images/presentacio/image2_${sessionScope.WW_TRANS_I18N_LOCALE}.jpg' />">
+		     <a href="#">
 		        <img src='<c:url value='/images/presentacio/image2_${sessionScope.WW_TRANS_I18N_LOCALE}.jpg' />' >
 		     
 		    </a>
-		     <a href="<c:url value='/images/presentacio/image3_${sessionScope.WW_TRANS_I18N_LOCALE}.jpg' />">
+		      <a href="#">
 		        <img src='<c:url value='/images/presentacio/image3_${sessionScope.WW_TRANS_I18N_LOCALE}.jpg' />' >
 		  
 		    </a>
-		     <a href="<c:url value='/images/presentacio/image4_${sessionScope.WW_TRANS_I18N_LOCALE}.jpg' />">
+		      <!--a href="#">
 		        <img src='<c:url value='/images/presentacio/image4_${sessionScope.WW_TRANS_I18N_LOCALE}.jpg' />' >
 		       
 		    </a>
@@ -29,7 +29,7 @@
 		    </a>
 		    <a href="<c:url value='/images/presentacio/image7_${sessionScope.WW_TRANS_I18N_LOCALE}.jpg' />">
 		        <img src='<c:url value='/images/presentacio/image7_${sessionScope.WW_TRANS_I18N_LOCALE}.jpg' />' >	      
-		    </a>
+		    </a-->
 	</div>
 </div>
 <script type="text/javascript">
