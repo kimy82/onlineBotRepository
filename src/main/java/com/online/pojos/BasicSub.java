@@ -7,6 +7,7 @@ public class BasicSub extends Basic{
 	private Long	idSub;
 	private String  tipus;
 	private Double  preu;
+	private String  descripcioES;
 
 	
 
@@ -44,6 +45,15 @@ public class BasicSub extends Basic{
 	public void setPreu(Double preu) {
 		this.preu = preu;
 	}
+
+	public String getDescripcioES() {
+		return descripcioES;
+	}
+
+	public void setDescripcioES(String descripcioES) {
+		this.descripcioES = descripcioES;
+	}
+	
 
 	
 }

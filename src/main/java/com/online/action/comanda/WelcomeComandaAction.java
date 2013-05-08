@@ -614,6 +614,7 @@ public class WelcomeComandaAction extends ActionSuportOnlineSession {
 
 			BasicSub basic = new BasicSub((beguda.getFoto() == null ? 0
 					: beguda.getFoto().getId()), beguda.getNom());
+			basic.setDescripcioES(beguda.getNomES());
 			basic.setIdSub(beguda.getId());
 			basic.setTipus(beguda.getTipus());
 			basic.setPreu(beguda.getPreu());
