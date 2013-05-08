@@ -66,7 +66,14 @@
 	  					</div>
 	  					<div class="format">
 			  				<div class="titol_Rest">
-			  					<h1 id="p_desc_${plat.id}" >${plat.nom}</h2>
+			  					<h1 id="p_desc_${plat.id}" >
+			  					<c:if test="${sessionScope.WW_TRANS_I18N_LOCALE=='ca'}">
+			  						${plat.nom}
+			  					</c:if>
+			  					<c:if test="${sessionScope.WW_TRANS_I18N_LOCALE=='es'}">
+			  						${plat.nomES}
+			  					</c:if>	
+			  					</h2>
 			  				</div>
 			  				<div class="cos_Rest">
 			  				<c:if test="${sessionScope.WW_TRANS_I18N_LOCALE=='ca'}">
