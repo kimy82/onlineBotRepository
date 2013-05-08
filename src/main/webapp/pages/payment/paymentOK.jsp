@@ -27,7 +27,7 @@
 
 <div class="final4">
 
-<a href="<c:url value='/Welcome.action' />?final=ok"><s:text name="menu.tornar" /></a>
+
 </div>
 </div>
 </html>
