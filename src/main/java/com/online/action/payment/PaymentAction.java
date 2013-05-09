@@ -131,6 +131,7 @@ public class PaymentAction extends ActionSuportOnline{
 		}
 		
 		if (numComandes > 1) {
+
 			this.comanda.setRevisio(false);
 			this.comandaBo.update(comanda);
 			this.paymentService.sendOrder(true,true, orders);
@@ -223,13 +224,12 @@ public class PaymentAction extends ActionSuportOnline{
 			} catch (Exception e) {
 				return ERROR;
 			}
-			
+
 			if(this.comanda.getHora()!=null && this.comanda.getDia()!=null && this.comanda.getaDomicili()!=null && this.getComanda().getaDomicili()==true){
 				Moters moters = this.motersBo.load(this.comanda.getHora(), this.comanda.getDia());
 				moters.setNumeroMotersUsed(moters.getNumeroMotersUsed()==null?1:(moters.getNumeroMotersUsed()+1));
 				this.motersBo.update(moters);
-			}
-			
+			}			
 			this.paymentService.sendOrder(true,true, orders);
 			this.paymentService.sendOrder(false,false, orders);
 		}
