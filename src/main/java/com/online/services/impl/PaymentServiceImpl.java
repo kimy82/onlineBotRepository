@@ -91,8 +91,10 @@ public class PaymentServiceImpl implements PaymentService {
 		}
 	}
 	
-	public void  sendOrder(boolean toAdmins, boolean torestaurants, List<String> orders) throws PaymentException {
-		if(torestaurants && toAdmins){
+
+	public void  sendOrder(boolean toAdmins,boolean toAdminRestaurant, List<String> orders) throws PaymentException {
+		
+		if(toAdminRestaurant){
 			//Tiquets dels moters als restaurants
 			for(String order : orders){
 				RestClient client = new RestClient();
@@ -192,7 +194,8 @@ public class PaymentServiceImpl implements PaymentService {
 				String response = resource.accept("text/plain").get(String.class);
 			 }
 			
-		}else{
+		}else if(!toAdmins){
+
 			//Tiquet del restaurant a portamu
 			for(String order : orders){
 				RestClient client = new RestClient();
