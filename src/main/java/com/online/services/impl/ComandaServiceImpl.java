@@ -467,7 +467,7 @@ public class ComandaServiceImpl implements ComandaService{
 						numMotersAvailable= moter.getNumeroMoters()-(moter.getNumeroMotersUsed()==null? 0:moter.getNumeroMotersUsed());  
 					}
 					
-					if(numMotersAvailable==0)continue;
+					if(numMotersAvailable<=0)continue;
 					
 					if (moter.getHora().equals("")) {
 						
