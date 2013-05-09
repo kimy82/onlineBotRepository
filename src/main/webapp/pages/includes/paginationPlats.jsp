@@ -21,7 +21,7 @@
 			<li><a href="#" onclick="pagin(${actualPage-1})" >${actualPage-1}</a></li>			
 		</c:if>
 				
-				<li><a href="#" class="paginaactiva">${actualPage}</a></li>			
+				<li><a href="#" class="pagactiva">${actualPage}</a></li>			
 				
 		<c:if test="${actualPage==totalPage}">
 			
