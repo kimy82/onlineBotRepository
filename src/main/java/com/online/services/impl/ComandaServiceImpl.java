@@ -155,103 +155,103 @@ public class ComandaServiceImpl implements ComandaService{
 				for (String hor : horesArray) {
 					if (hor.equals("")) {
 
-					} else if (hor.equals("0800") && nextHour <= 800) {
+					} else if (hor.equals("0800") && nextHour <= 830) {
 						hora = "08:00";
 						break;
-					} else if (hor.equals("0830") && nextHour <= 830) {
+					} else if (hor.equals("0830") && nextHour <= 900) {
 						hora = "08:30";
 						break;
-					} else if (hor.equals("0900") && nextHour <= 900) {
+					} else if (hor.equals("0900") && nextHour <= 930) {
 						hora = "09:00";
 						break;
-					} else if (hor.equals("0930") && nextHour <= 930) {
+					} else if (hor.equals("0930") && nextHour <= 1000) {
 						hora = "09:30";
 						break;
-					} else if (hor.equals("1000") && nextHour <= 1000) {
+					} else if (hor.equals("1000") && nextHour <= 1030) {
 						hora = "10:00";
 						break;
-					} else if (hor.equals("1030") && nextHour <= 1030) {
+					} else if (hor.equals("1030") && nextHour <= 1100) {
 						hora = "10:30";
 						break;
-					} else if (hor.equals("1100") && nextHour <= 1100) {
+					} else if (hor.equals("1100") && nextHour <= 1130) {
 						hora = "11:00";
 						break;
-					} else if (hor.equals("1130") && nextHour <= 1130) {
+					} else if (hor.equals("1130") && nextHour <= 1200) {
 						hora = "11:30";
 						break;
-					} else if (hor.equals("1200") && nextHour <= 1200) {
-						hora = "12:00";
+					} else if (hor.equals("1200") && nextHour <= 1230) {
+						hora = "12:00"; 
 						break;
-					} else if (hor.equals("1230") && nextHour <= 1230) {
+					} else if (hor.equals("1230") && nextHour <= 1300) {
 						hora = "12:30";
 						break;
-					} else if (hor.equals("1300") && nextHour <= 1300) {
+					} else if (hor.equals("1300") && nextHour <= 1330) {
 						hora = "13:00";
 						break;
-					} else if (hor.equals("1330") && nextHour <= 1330) {
+					} else if (hor.equals("1330") && nextHour <= 1400) {
 						hora = "13:30";
 						break;
-					} else if (hor.equals("1400") && nextHour <= 1400) {
+					} else if (hor.equals("1400") && nextHour <= 1430) {
 						hora = "14:00";
 						break;
-					} else if (hor.equals("1430") && nextHour <= 1430) {
+					} else if (hor.equals("1430") && nextHour <= 1500) {
 						hora = "14:30";
 						break;
-					} else if (hor.equals("1500") && nextHour <= 1500) {
+					} else if (hor.equals("1500") && nextHour <= 1530) {
 						hora = "15:00";
 						break;
-					} else if (hor.equals("1530") && nextHour <= 1530) {
+					} else if (hor.equals("1530") && nextHour <= 1600) {
 						hora = "15:30";
 						break;
-					} else if (hor.equals("1600") && nextHour <= 1600) {
+					} else if (hor.equals("1600") && nextHour <= 1630) {
 						hora = "16:00";
 						break;
-					} else if (hor.equals("1630") && nextHour <= 1630) {
+					} else if (hor.equals("1630") && nextHour <= 1700) {
 						hora = "16:30";
 						break;
-					} else if (hor.equals("1700") && nextHour <= 1700) {
+					} else if (hor.equals("1700") && nextHour <= 1730) {
 						hora = "17:00";
 						break;
-					} else if (hor.equals("1730") && nextHour <= 1730) {
+					} else if (hor.equals("1730") && nextHour <= 1800) {
 						hora = "17:30";
 						break;
-					} else if (hor.equals("1800") && nextHour <= 1800) {
+					} else if (hor.equals("1800") && nextHour <= 1830) {
 						hora = "18:00";
 						break;
-					} else if (hor.equals("1830") && nextHour <= 1830) {
+					} else if (hor.equals("1830") && nextHour <= 1900) {
 						hora = "18:30";
 						break;
-					} else if (hor.equals("1900") && nextHour <= 1900) {
+					} else if (hor.equals("1900") && nextHour <= 1930) {
 						hora = "19:00";
 						break;
-					} else if (hor.equals("1930") && nextHour <= 1930) {
+					} else if (hor.equals("1930") && nextHour <= 2000) {
 						hora = "19:30";
 						break;
-					} else if (hor.equals("2000") && nextHour <= 2000) {
+					} else if (hor.equals("2000") && nextHour <= 2030) {
 						hora = "20:00";
 						break;
-					} else if (hor.equals("2030") && nextHour <= 2030) {
+					} else if (hor.equals("2030") && nextHour <= 2100) {
 						hora = "20:30";
 						break;
-					} else if (hor.equals("2100") && nextHour <= 2100) {
+					} else if (hor.equals("2100") && nextHour <= 2130) {
 						hora = "21:00";
 						break;
-					} else if (hor.equals("2130") && nextHour <= 2130) {
+					} else if (hor.equals("2130") && nextHour <= 2200) {
 						hora = "21:30";
 						break;
-					} else if (hor.equals("2200") && nextHour <= 2200) {
+					} else if (hor.equals("2200") && nextHour <= 2230) {
 						hora = "22:00";
 						break;
-					} else if (hor.equals("2230") && nextHour <= 2230) {
+					} else if (hor.equals("2230") && nextHour <= 2300) {
 						hora = "22:30";
 						break;
-					} else if (hor.equals("2300") && nextHour <= 2300) {
+					} else if (hor.equals("2300") && nextHour <= 2330) {
 						hora = "23:00";
 						break;
-					} else if (hor.equals("2330") && nextHour <= 2330) {
+					} else if (hor.equals("2330") && nextHour <= 2400) {
 						hora = "23:30";
 						break;
-					} else if (hor.equals("2400") && nextHour <= 2400) {
+					} else if (hor.equals("2400") && nextHour <= 2430) {
 						hora = "24:00";
 						break;
 					}
@@ -307,71 +307,71 @@ public class ComandaServiceImpl implements ComandaService{
 					for (String hora : horesArray) {
 						if (hora.equals("")) {
 	
-						} else if (hora.equals("0800") && nextHour <= 800) {
+						} else if (hora.equals("0800") && nextHour <= 830) {
 							horesDTO.set_0800("true");
-						} else if (hora.equals("0830") && nextHour <= 830) {
+						} else if (hora.equals("0830") && nextHour <= 900) {
 							horesDTO.set_0830("true");
-						} else if (hora.equals("0900") && nextHour <= 900) {
+						} else if (hora.equals("0900") && nextHour <= 930) {
 							horesDTO.set_0900("true");
-						} else if (hora.equals("0930") && nextHour <= 930) {
+						} else if (hora.equals("0930") && nextHour <= 100) {
 							horesDTO.set_0930("true");
-						} else if (hora.equals("1000") && nextHour <= 1000) {
+						} else if (hora.equals("1000") && nextHour <= 1030) {
 							horesDTO.set_1000("true");
-						} else if (hora.equals("1030") && nextHour <= 1030) {
+						} else if (hora.equals("1030") && nextHour <= 1100) {
 							horesDTO.set_1030("true");
-						} else if (hora.equals("1100") && nextHour <= 1100) {
+						} else if (hora.equals("1100") && nextHour <= 1130) {
 							horesDTO.set_1100("true");
-						} else if (hora.equals("1130") && nextHour <= 1130) {
+						} else if (hora.equals("1130") && nextHour <= 1200) {
 							horesDTO.set_1130("true");
-						} else if (hora.equals("1200") && nextHour <= 1200) {
+						} else if (hora.equals("1200") && nextHour <= 1230) {
 							horesDTO.set_1200("true");
-						} else if (hora.equals("1230") && nextHour <= 1230) {
+						} else if (hora.equals("1230") && nextHour <= 1300) {
 							horesDTO.set_1230("true");
-						} else if (hora.equals("1300") && nextHour <= 1300) {
+						} else if (hora.equals("1300") && nextHour <= 1330) {
 							horesDTO.set_1300("true");
-						} else if (hora.equals("1330") && nextHour <= 1330) {
+						} else if (hora.equals("1330") && nextHour <= 1400) {
 							horesDTO.set_1330("true");
-						} else if (hora.equals("1400") && nextHour <= 1400) {
+						} else if (hora.equals("1400") && nextHour <= 1430) {
 							horesDTO.set_1400("true");
-						} else if (hora.equals("1430") && nextHour <= 1430) {
+						} else if (hora.equals("1430") && nextHour <= 1500) {
 							horesDTO.set_1430("true");
-						} else if (hora.equals("1500") && nextHour <= 1500) {
+						} else if (hora.equals("1500") && nextHour <= 1530) {
 							horesDTO.set_1500("true");
-						} else if (hora.equals("1530") && nextHour <= 1530) {
+						} else if (hora.equals("1530") && nextHour <= 1600) {
 							horesDTO.set_1530("true");
-						} else if (hora.equals("1600") && nextHour <= 1600) {
+						} else if (hora.equals("1600") && nextHour <= 1630) {
 							horesDTO.set_1600("true");
-						} else if (hora.equals("1630") && nextHour <= 1630) {
+						} else if (hora.equals("1630") && nextHour <= 1700) {
 							horesDTO.set_1630("true");
-						} else if (hora.equals("1700") && nextHour <= 1700) {
+						} else if (hora.equals("1700") && nextHour <= 1730) {
 							horesDTO.set_1700("true");
-						} else if (hora.equals("1730") && nextHour <= 1730) {
+						} else if (hora.equals("1730") && nextHour <= 1800) {
 							horesDTO.set_1730("true");
-						} else if (hora.equals("1800") && nextHour <= 1800) {
+						} else if (hora.equals("1800") && nextHour <= 1830) {
 							horesDTO.set_1800("true");
-						} else if (hora.equals("1830") && nextHour <= 1830) {
+						} else if (hora.equals("1830") && nextHour <= 1900) {
 							horesDTO.set_1830("true");
-						} else if (hora.equals("1900") && nextHour <= 1900) {
+						} else if (hora.equals("1900") && nextHour <= 1930) {
 							horesDTO.set_1900("true");
-						} else if (hora.equals("1930") && nextHour <= 1930) {
+						} else if (hora.equals("1930") && nextHour <= 2000) {
 							horesDTO.set_1930("true");
-						} else if (hora.equals("2000") && nextHour <= 2000) {
+						} else if (hora.equals("2000") && nextHour <= 2030) {
 							horesDTO.set_2000("true");
-						} else if (hora.equals("2030") && nextHour <= 2030) {
+						} else if (hora.equals("2030") && nextHour <= 2100) {
 							horesDTO.set_2030("true");
-						} else if (hora.equals("2100") && nextHour <= 2100) {
+						} else if (hora.equals("2100") && nextHour <= 2130) {
 							horesDTO.set_2100("true");
-						} else if (hora.equals("2130") && nextHour <= 2130) {
+						} else if (hora.equals("2130") && nextHour <= 2200) {
 							horesDTO.set_2130("true");
-						} else if (hora.equals("2200") && nextHour <= 2200) {
+						} else if (hora.equals("2200") && nextHour <= 2230) {
 							horesDTO.set_2200("true");
-						} else if (hora.equals("2230") && nextHour <= 2230) {
+						} else if (hora.equals("2230") && nextHour <= 2300) {
 							horesDTO.set_2230("true");
-						} else if (hora.equals("2300") && nextHour <= 2300) {
+						} else if (hora.equals("2300") && nextHour <= 2330) {
 							horesDTO.set_2300("true");
-						} else if (hora.equals("2330") && nextHour <= 2330) {
+						} else if (hora.equals("2330") && nextHour <= 2400) {
 							horesDTO.set_2330("true");
-						} else if (hora.equals("2400") && nextHour <= 2400) {
+						} else if (hora.equals("2400") && nextHour <= 2430) {
 							horesDTO.set_2400("true");
 						}
 					}

@@ -7,11 +7,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.online.bo.ComandaBo;
+import com.online.bo.MotersBo;
 import com.online.bo.UsersBo;
 import com.online.exceptions.BOException;
 import com.online.exceptions.PaymentException;
 import com.online.exceptions.WrongParamException;
 import com.online.model.Comandes;
+import com.online.model.Moters;
 import com.online.model.Users;
 import com.online.pojos.Payment;
 import com.online.services.impl.ComandaServiceImpl;
@@ -31,6 +33,7 @@ public class PaymentAction extends ActionSuportOnline{
 
 	private Long				idComanda	= null;
 	private Comandes			comanda;
+	private MotersBo			motersBo;
 	
 	private Payment  payment = new Payment();
 	
@@ -105,20 +108,31 @@ public class PaymentAction extends ActionSuportOnline{
 				this.payment.setDs_Merchant_UrlKO("https://www.portamu.com/"+context+"/paymentPKO.action");
 				this.payment.setDs_Merchant_MerchantSignature(this.paymentService.SHA(formateador.format((preu*100)), id, "327318309", "978", "0","",entorn));				
 				
+				this.comanda.setRevisio(false);
+				this.comandaBo.update(comanda);
+				
 				return "TPV";
 			}
 			int tempsPreparacio = this.comandaService.calculaTempsPreparacioGlobal(comanda);
 			orders = this.paymentService.getComandaOrders(this.comanda,this.comandaService.checkMoreThanOneRestaurant(this.comanda),transport , transportDouble,moterTime,tempsPreparacio);
 
 		} catch (PaymentException pe) {
-			pe.printStackTrace();
+			pe.printStackTrace(); 
 			return ERROR;
 		} catch (Exception e) {
 			e.printStackTrace();
 			return ERROR;
 		}
-
+		
+		if(this.comanda.getHora()!=null && this.comanda.getDia()!=null && this.comanda.getaDomicili()!=null && this.getComanda().getaDomicili()==true){
+			Moters moters = this.motersBo.load(this.comanda.getHora(), this.comanda.getDia());
+			moters.setNumeroMotersUsed(moters.getNumeroMotersUsed()==null?1:(moters.getNumeroMotersUsed()+1));
+			this.motersBo.update(moters);
+		}
+		
 		if (numComandes > 1) {
+			this.comanda.setRevisio(false);
+			this.comandaBo.update(comanda);
 			this.paymentService.sendOrder(true,true, orders);
 			this.paymentService.sendOrder(false,false, orders);
 		} else {
@@ -158,6 +172,12 @@ public class PaymentAction extends ActionSuportOnline{
 					return ERROR;
 				} catch (Exception e) {
 					return ERROR;
+				}
+				
+				if(this.comanda.getHora()!=null && this.comanda.getDia()!=null && this.comanda.getaDomicili()!=null && this.getComanda().getaDomicili()==true){
+					Moters moters = this.motersBo.load(this.comanda.getHora(), this.comanda.getDia());
+					moters.setNumeroMotersUsed(moters.getNumeroMotersUsed()==null?1:(moters.getNumeroMotersUsed()+1));
+					this.motersBo.update(moters);
 				}
 		
 				this.paymentService.sendOrder(true,true, orders);
@@ -203,7 +223,13 @@ public class PaymentAction extends ActionSuportOnline{
 			} catch (Exception e) {
 				return ERROR;
 			}
-	
+			
+			if(this.comanda.getHora()!=null && this.comanda.getDia()!=null && this.comanda.getaDomicili()!=null && this.getComanda().getaDomicili()==true){
+				Moters moters = this.motersBo.load(this.comanda.getHora(), this.comanda.getDia());
+				moters.setNumeroMotersUsed(moters.getNumeroMotersUsed()==null?1:(moters.getNumeroMotersUsed()+1));
+				this.motersBo.update(moters);
+			}
+			
 			this.paymentService.sendOrder(true,true, orders);
 			this.paymentService.sendOrder(false,false, orders);
 		}
@@ -290,5 +316,10 @@ public class PaymentAction extends ActionSuportOnline{
 
 	public void setPayment(Payment payment) {
 		this.payment = payment;
+	}
+
+	public void setMotersBo(MotersBo motersBo) {
+		this.motersBo = motersBo;
 	}			
+	
 }
