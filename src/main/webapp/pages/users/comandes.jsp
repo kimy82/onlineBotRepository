@@ -36,7 +36,6 @@
 <div id="content">
 			<c:import url="/pages/includes/menuHeader.jsp" />
 			<c:import url="/pages/includes/divLanguage.jsp" />
-<c:import url="/pages/includes/headerContext.jsp" />
 					<div id="content_per">
 					<div id="content_left">				
 					<div class="container">

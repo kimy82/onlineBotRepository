@@ -114,7 +114,7 @@ public class ComandaDaoImpl extends HibernateDaoSupport implements ComandaDao{
 		Session session = this.getSessionFactory().openSession();
 		session.beginTransaction();
 
-		Query query = session.createQuery("from Comandes cmd where cmd.user.id=" + id).setCacheable(true);
+		Query query = session.createQuery("from Comandes cmd where (cmd.revisio IS NOT NULL or (cmd.revisio IS NULL and cmd.pagada=true)) and cmd.user.id=" + id+" order by cmd.id desc ");
 
 		comandaList = ((List<Comandes>) query.list());
 		
