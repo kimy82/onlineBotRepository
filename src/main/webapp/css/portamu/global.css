@@ -920,6 +920,12 @@ filter: Gray(); /* IE4-8 and 9 */
     float: left;
     width: 764px;
 }
+.pagactiva {
+	color: #333!important;
+    border: 1px solid #333!important;
+    border-radius: 2px 2px 2px 2px!important;
+    padding: 4px 12px!important;
+}
 #pagination a{
     font-family: arial;
     color: #888;

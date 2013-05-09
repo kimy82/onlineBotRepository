@@ -310,7 +310,7 @@ $(document).ready(function() {
 			        "sPrevious": "<img src='/"+context+"/images/icono-paginador-anterior.gif' style='vertical-align:middle'>&nbsp;"+initTableParams.txtprevious
 			      }
 			    },
-			"sScrollY": "200",		    
+			"sScrollY": "900",		    
 			"sScrollX": "452",	
 		    "bScrollCollapse": true,
 			"bProcessing": false,

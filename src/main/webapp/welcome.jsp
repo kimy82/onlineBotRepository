@@ -109,7 +109,7 @@
 						<form class="form" action="#">
 						<s:text name="adreca.carrer" />:<br> <input class="inputs" type="text" name="FirstName" id="carrer" ><br>
 						<s:text name="adreca.codipostal" />:<br> <input class="inputs" type="text" name="LastName" id="codi" ><br>
-						<input class="boton" id="checkAdd" type="button" value="COMPROVA-HO"><br>
+						<input class="boton" id="checkAdd" type="button" value="<s:text name="txt.comprobaho.in" />"><br>
 						<label id="addressOK"></label>
 						<input type="hidden" id="poble" disabled="disabled" value="Girona"  />						
 						</form>

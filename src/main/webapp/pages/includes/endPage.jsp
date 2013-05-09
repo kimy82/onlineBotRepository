@@ -38,7 +38,7 @@
 <div id="credits">
 	<div id="int_credits">
 		
-	PORTAMU ROGASO SL. Tots els drets reservats ·2013· Disseny i programació<a class="more "href="http://www.alexmany.com"> Alexmany.com</a>
+	<s:text name="txt.footer.crestiss" /><a class="more "href="http://www.alexmany.com"> Alexmany.com</a>
 	</div>
 </div>
 
