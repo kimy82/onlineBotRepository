@@ -222,7 +222,7 @@ public class MantenimentComandesAction extends ActionSuportOnline{
 				String plats = getNomPLats(comandaInitialized);
 				String tel = (comanda.getUser() == null || comanda.getUser().getTelNumber() == null) ? "-" : comanda.getUser()
 						.getTelNumber();
-				AllComandesTable allComandesTable = new AllComandesTable(username, tel, comanda.getAddress() == null ? ""
+				AllComandesTable allComandesTable = new AllComandesTable(comanda.getId(), username, tel, comanda.getAddress() == null ? ""
 						: comanda.getAddress(), (comanda.getDia() == null ? "-" : Utils.formatDate2(comanda.getDia())) + " "
 						+ (comanda.getHora() == null ? "-" : comanda.getHora()), (comanda.getPreu() == null ? "-" : String.valueOf(comanda
 						.getPreu())), nomRestaurant, metodePagament, plats);
@@ -248,21 +248,24 @@ public class MantenimentComandesAction extends ActionSuportOnline{
 	private void order( List<AllComandesTable> comandesTableList ){
 
 		if (this.columna == 0)
+			Collections.sort(comandesTableList, AllComandesTable.idComparator);
+		
+		if (this.columna == 1)
 			Collections.sort(comandesTableList, AllComandesTable.nameComparator);
 
-		if (this.columna == 1)
+		if (this.columna == 2)
 			Collections.sort(comandesTableList, AllComandesTable.telComparator);
 
-		if (this.columna == 3)
+		if (this.columna == 4)
 			Collections.sort(comandesTableList, AllComandesTable.horaComparator);
 
-		if (this.columna == 4)
+		if (this.columna == 5)
 			Collections.sort(comandesTableList, AllComandesTable.preuComparator);
 
-		if (this.columna == 5)
+		if (this.columna == 6)
 			Collections.sort(comandesTableList, AllComandesTable.restaurantComparator);
 
-		if (this.columna == 7)
+		if (this.columna == 8)
 			Collections.sort(comandesTableList, AllComandesTable.metodeComparator);
 
 		if (this.sortDireccio != null && this.sortDireccio.equals("desc")) {

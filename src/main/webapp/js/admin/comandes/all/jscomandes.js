@@ -28,6 +28,7 @@ $(document).ready(function() {
 	oTableAllComandes =$("#tbl_all_comandes").dataTable( {
 					"iDisplayLength": 12,
 					 "aoColumns" : [
+					                  { "mDataProp":"id", sWidth: '150px' },
 					                  { "mDataProp":"nom", sWidth: '150px' },
 					                  { "mDataProp":"telefon",  sWidth: '350px' },
 					                  { "mDataProp":"address", "bSortable": false, sWidth: '40px' },

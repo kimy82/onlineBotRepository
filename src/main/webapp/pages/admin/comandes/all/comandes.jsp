@@ -38,6 +38,7 @@
 				<table class="selecciom dataTable" id="tbl_all_comandes" width="932px">
 					<thead>
 						<tr>
+							<th>ID</th>
 							<th><s:text name="tbl.comandes.confirm.nom" /></th>
 							<th><s:text name="tbl.comandes.confirm.tel" /></th>
 							<th><s:text name="tbl.comandes.confirm.direccio" /></th>

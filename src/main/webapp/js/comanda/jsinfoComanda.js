@@ -1397,6 +1397,8 @@ $(document).ready(function() {
 	initPromoBegudaFromStorage();
 	initPromoDescompteFromStorage();
 	
+	window.localStorage.removeItem("plats.order");
+	
 	$("#arecollir").attr('checked',false);
 	$("#adomicili").attr('checked',true);
 	addDomicili();

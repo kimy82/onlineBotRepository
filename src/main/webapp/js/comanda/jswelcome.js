@@ -314,6 +314,7 @@ function eliminaPlat(id){
 function goToRestaurantMenu(id){
 	var comanda = window.localStorage.getItem("comanda");
 	var data = window.localStorage.getItem("comanda.data");
+	window.localStorage.removeItem("plats.order");
 	
 	var comandaConfirm = window.localStorage.getItem("comanda.confirm");
 	var timeoutdata = window.localStorage.getItem("comanda.timeout.data");

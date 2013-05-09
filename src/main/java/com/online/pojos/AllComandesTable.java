@@ -13,6 +13,9 @@ public class AllComandesTable{
 	private static final long	serialVersionUID	= 1L;
 
 	@Expose
+	private Long id;
+	
+	@Expose
 	private String nom;
 	
 	@Expose
@@ -41,8 +44,9 @@ public class AllComandesTable{
 	public AllComandesTable() {	
 	}
 	
-	public AllComandesTable( String nom, String telefon, String address, String hora, String preu, String restaurant, String metodePagament, String plats) {
-
+	public AllComandesTable( Long id, String nom, String telefon, String address, String hora, String preu, String restaurant, String metodePagament, String plats) {
+		
+		this.id=id;
 		this.nom = nom;
 		this.telefon = telefon;
 		this.address = address;
@@ -123,9 +127,35 @@ public class AllComandesTable{
 	public void setPlats( String plats ){
 	
 		this.plats = plats;
+	}		
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
 	}
 
 
+
+
+	public static Comparator<AllComandesTable> idComparator  = new Comparator<AllComandesTable>() {
+
+		public int compare(AllComandesTable cmd1, AllComandesTable cmd2) {
+			
+			
+			Long name1 = cmd1.getId();
+			Long name2 = cmd2.getId();
+			
+			//ascending order
+			return name1.compareTo(name2);
+			
+			//descending order
+			//return fruitName2.compareTo(fruitName1);
+		}
+
+	};
 
 	public static Comparator<AllComandesTable> nameComparator  = new Comparator<AllComandesTable>() {
 
