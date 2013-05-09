@@ -91,12 +91,60 @@ public class PaymentServiceImpl implements PaymentService {
 		}
 	}
 	
-	public void  sendOrder(boolean toAdmins, List<String> orders) throws PaymentException {
-		
+	public void  sendOrder(boolean toAdmins, boolean torestaurants, List<String> orders) throws PaymentException {
+		if(torestaurants && toAdmins){
+			//Tiquets dels moters als restaurants
+			for(String order : orders){
+				RestClient client = new RestClient();
+				Resource resource = client.resource("http://www.portamu.com/ComandaRest/jaxrs/comandes/file");
+				String[] orderVec = order.split("&");
+				int iterador=0;
+				String begudes="";
+				for(String param : orderVec){
+					String[] params = param.split("=");
+					
+					if(!toAdmins && params[0].equals("telnumber")){
+						
+						resource.queryParam(params[0],transformTel(params[1]));
+						
+					}else if(params[0].equals("orderNum")){
+						
+						resource.queryParam(params[0],"M_TO_R"+params[1]);
+						
+					}else if (toAdmins && params[0].equals("begudes")){
+						
+						begudes = (params.length==1)?"": (";"+params[1]);
+						
+					}else if (!toAdmins && params[0].equals("begudes")){
+						
+						begudes = "";
+						
+					}else if (toAdmins && params[0].equals("comanda")){
+						if(params.length==1){
+							resource.queryParam(params[0],begudes);
+						}else{
+							resource.queryParam(params[0],params[1]+""+begudes);
+						}
+						
+					}else{
+						
+						if(params.length==1){
+							resource.queryParam(params[0],"sense comentaris");
+						}else{
+						resource.queryParam(params[0],params[1]);
+						}
+					}
+					iterador=iterador+1;
+					
+				}		
+				resource.queryParam("admin",String.valueOf(toAdmins));
+				String response = resource.accept("text/plain").get(String.class);
+			 }
+		}
 		if(toAdmins){
 			for(String order : orders){
 				RestClient client = new RestClient();
-				Resource resource = client.resource("http://localhost/ComandaRest/jaxrs/comandes/file");
+				Resource resource = client.resource("http://www.portamu.com/ComandaRest/jaxrs/comandes/file");
 				String[] orderVec = order.split("&");
 				int iterador=0;
 				String begudes="";
@@ -125,12 +173,16 @@ public class PaymentServiceImpl implements PaymentService {
 						begudes = "";
 						
 					}else if (toAdmins && params[0].equals("comanda")){
-						resource.queryParam(params[0],params[1]+""+begudes);
+						if(params.length==1){
+							resource.queryParam(params[0],begudes);
+						}else{						
+							resource.queryParam(params[0],params[1]+""+begudes);
+						}
 					}else{
 						if(params.length==1){
 							resource.queryParam(params[0],"sense comentaris");
 						}else{
-						resource.queryParam(params[0],params[1]);
+						    resource.queryParam(params[0],params[1]);
 						}
 					}
 					iterador=iterador+1;
@@ -139,53 +191,12 @@ public class PaymentServiceImpl implements PaymentService {
 				resource.queryParam("admin",String.valueOf(toAdmins));
 				String response = resource.accept("text/plain").get(String.class);
 			 }
-			//Tiquets dels moters als restaurants
-			for(String order : orders){
-				RestClient client = new RestClient();
-				Resource resource = client.resource("http://localhost/ComandaRest/jaxrs/comandes/file");
-				String[] orderVec = order.split("&");
-				int iterador=0;
-				String begudes="";
-				for(String param : orderVec){
-					String[] params = param.split("=");
-					
-					if(!toAdmins && params[0].equals("telnumber")){
-						
-						resource.queryParam(params[0],transformTel(params[1]));
-						
-					}else if(params[0].equals("orderNum")){
-						
-						resource.queryParam(params[0],"M_TO_R"+params[1]);
-						
-					}else if (toAdmins && params[0].equals("begudes")){
-						
-						begudes = (params.length==1)?"": (";"+params[1]);
-						
-					}else if (!toAdmins && params[0].equals("begudes")){
-						
-						begudes = "";
-						
-					}else if (toAdmins && params[0].equals("comanda")){
-						resource.queryParam(params[0],params[1]+""+begudes);
-					}else{
-						
-						if(params.length==1){
-							resource.queryParam(params[0],"sense comentaris");
-						}else{
-						resource.queryParam(params[0],params[1]);
-						}
-					}
-					iterador=iterador+1;
-					
-				}		
-				resource.queryParam("admin",String.valueOf(toAdmins));
-				String response = resource.accept("text/plain").get(String.class);
-			 }
+			
 		}else{
 			//Tiquet del restaurant a portamu
 			for(String order : orders){
 				RestClient client = new RestClient();
-				Resource resource = client.resource("http://localhost/ComandaRest/jaxrs/comandes/file");
+				Resource resource = client.resource("http://www.portamu.com/ComandaRest/jaxrs/comandes/file");
 				String[] orderVec = order.split("&");
 				int iterador=0;
 				String begudes="";
@@ -209,13 +220,17 @@ public class PaymentServiceImpl implements PaymentService {
 						resource.queryParam(params[0],"R_TO_M"+params[1]);
 						
 					}else if (toAdmins && params[0].equals("comanda")){
-						resource.queryParam(params[0],params[1]);
+						if(params.length==1){
+							resource.queryParam(params[0],"no ID");
+						}else{
+							resource.queryParam(params[0],params[1]);
+						}
 					}else{
 						
 						if(params.length==1){
 							resource.queryParam(params[0],"sense comentaris");
 						}else{
-						resource.queryParam(params[0],params[1]);
+							resource.queryParam(params[0],params[1]);
 						}
 					}
 					iterador=iterador+1;
@@ -227,7 +242,7 @@ public class PaymentServiceImpl implements PaymentService {
 			//Tiquet del restaurant al restaurant 1
 			for(String order : orders){
 				RestClient client = new RestClient();
-				Resource resource = client.resource("http://localhost/ComandaRest/jaxrs/comandes/file");
+				Resource resource = client.resource("http://www.portamu.com/ComandaRest/jaxrs/comandes/file");
 				String[] orderVec = order.split("&");
 				int iterador=0;
 				String begudes="";
@@ -247,13 +262,17 @@ public class PaymentServiceImpl implements PaymentService {
 						begudes = "";
 						
 					}else if (toAdmins && params[0].equals("comanda")){
-						resource.queryParam(params[0],params[1]);
+						if(params.length==1){
+							resource.queryParam(params[0],"no ID ");
+						}else{
+							resource.queryParam(params[0],params[1]);
+						}
 					}else{
 						
 						if(params.length==1){
 							resource.queryParam(params[0],"sense comentaris");
 						}else{
-						resource.queryParam(params[0],params[1]);
+							resource.queryParam(params[0],params[1]);
 						}
 					}
 					iterador=iterador+1;
@@ -521,7 +540,7 @@ public class PaymentServiceImpl implements PaymentService {
 		
 	}
 	private String transformTel(String tel){
-		if(tel==null)return "";
+		if(tel==null)return "no Tel";
 		StringBuffer toSentTel= new StringBuffer("");
 		String[] vecTel= tel.split("");
 		for(String t : vecTel){

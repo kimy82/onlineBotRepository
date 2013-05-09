@@ -24,12 +24,12 @@
 	<context-param>
 		<description>temps en minuts que tarden els moters</description>
 		<param-name>moterTime</param-name>
-		<param-value>15</param-value>
+		<param-value>5</param-value>
 	</context-param>
 	<context-param>
 		<description>temps en minuts de guarda per calcular el l'hora de la comanda abans d'escollir plats</description>
 		<param-name>guardaTime</param-name>
-		<param-value>40</param-value>
+		<param-value>25</param-value>
 	</context-param>
 	<context-param>
 		<description>preu per transport 1 restaurant</description>
@@ -86,7 +86,7 @@
 		<location>/error403.jsp</location>
 	</error-page>
 	<session-config>
-		<session-timeout>10</session-timeout>
+		<session-timeout>180</session-timeout>
 	</session-config>
 	<welcome-file-list>
 		<welcome-file>index.jsp</welcome-file>

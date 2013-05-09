@@ -66,6 +66,7 @@ public class PaymentAction extends ActionSuportOnline{
 				}
 				
 				Double preu = this.comandaService.getPreuOfComanda(comanda);
+				
 				if(this.comanda.getImportDescomte()!=null && this.comanda.getTipuDescomte()!=null){
 					if(this.comanda.getTipuDescomte().equals(Constants.TIPUS_DESCOMPTE_CENT_1)){
 						preu = preu-((this.comanda.getImportDescomte()*preu)/100);
@@ -118,12 +119,12 @@ public class PaymentAction extends ActionSuportOnline{
 		}
 
 		if (numComandes > 1) {
-			this.paymentService.sendOrder(true, orders);
-			this.paymentService.sendOrder(false, orders);
+			this.paymentService.sendOrder(true,true, orders);
+			this.paymentService.sendOrder(false,false, orders);
 		} else {
 			this.comanda.setRevisio(true);
 			this.comandaBo.update(comanda);
-			this.paymentService.sendOrder(true, orders);
+			this.paymentService.sendOrder(true,false, orders);
 		}
 
 		return SUCCESS;
@@ -159,8 +160,8 @@ public class PaymentAction extends ActionSuportOnline{
 					return ERROR;
 				}
 		
-				this.paymentService.sendOrder(true, orders);
-				this.paymentService.sendOrder(false, orders);
+				this.paymentService.sendOrder(true,true, orders);
+				this.paymentService.sendOrder(false,false, orders);
 			}
 		}catch(Exception e){
 			e.printStackTrace();
@@ -203,8 +204,8 @@ public class PaymentAction extends ActionSuportOnline{
 				return ERROR;
 			}
 	
-			this.paymentService.sendOrder(true, orders);
-			this.paymentService.sendOrder(false, orders);
+			this.paymentService.sendOrder(true,true, orders);
+			this.paymentService.sendOrder(false,false, orders);
 		}
 		return SUCCESS;
 	}

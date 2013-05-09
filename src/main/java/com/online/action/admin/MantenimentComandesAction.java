@@ -37,7 +37,7 @@ public class MantenimentComandesAction extends ActionSuportOnline{
 
 	private Long				idComanda;
 
-	public String execute(){
+	public String execute(){ 
 
 		return Action.SUCCESS;
 
@@ -64,7 +64,7 @@ public class MantenimentComandesAction extends ActionSuportOnline{
 			Comandes comanda = this.comandaBo.load(this.idComanda);
 			int tempsPreparacio = this.comandaService.calculaTempsPreparacioGlobal(comanda);
 			List<String> orders = this.paymentService.getComandaOrders(comanda, this.comandaService.checkMoreThanOneRestaurant(comanda),transport,transportDouble,moterTime, tempsPreparacio);
-			this.paymentService.sendOrder(false, orders);
+			this.paymentService.sendOrder(false,false, orders);
 			comanda.setRevisio(false);
 			this.comandaBo.update(comanda);
 
@@ -279,7 +279,17 @@ public class MantenimentComandesAction extends ActionSuportOnline{
 				return "TARG. NO ACABAT";
 			}
 		}else{
-			return "CONTRAREEMBOLS";
+			if(comanda.getRevisio()==null){
+				return "NO ACABADA";
+			}else{
+				if(comanda.getRevisio()==false){
+					return "CONTRAREEMBOLS";
+				}else{
+					return "CONTRAREEMBOLS EN REVISIO";
+				}
+				
+			}
+			
 		}
 		
 }
