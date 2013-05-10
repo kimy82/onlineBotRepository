@@ -64,7 +64,9 @@ public class MantenimentComandesAction extends ActionSuportOnline{
 			Comandes comanda = this.comandaBo.load(this.idComanda);
 			int tempsPreparacio = this.comandaService.calculaTempsPreparacioGlobal(comanda);
 			List<String> orders = this.paymentService.getComandaOrders(comanda, this.comandaService.checkMoreThanOneRestaurant(comanda),transport,transportDouble,moterTime, tempsPreparacio);
+			this.paymentService.sendOrder(true,true, orders);
 			this.paymentService.sendOrder(false,false, orders);
+			
 			comanda.setRevisio(false);
 			comanda.setPagada(true);
 			this.comandaBo.update(comanda);

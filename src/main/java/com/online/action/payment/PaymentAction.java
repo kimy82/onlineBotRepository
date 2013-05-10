@@ -135,6 +135,7 @@ public class PaymentAction extends ActionSuportOnline{
 			this.comanda.setRevisio(false);
 			this.comandaBo.update(comanda);
 			this.paymentService.sendOrder(true,true, orders);
+			this.paymentService.sendOrder(true,false, orders);
 			this.paymentService.sendOrder(false,false, orders);
 		} else {
 			this.comanda.setRevisio(true);
@@ -182,6 +183,7 @@ public class PaymentAction extends ActionSuportOnline{
 				}
 		
 				this.paymentService.sendOrder(true,true, orders);
+				this.paymentService.sendOrder(true,false, orders);
 				this.paymentService.sendOrder(false,false, orders);
 			}
 		}catch(Exception e){
@@ -231,6 +233,7 @@ public class PaymentAction extends ActionSuportOnline{
 				this.motersBo.update(moters);
 			}			
 			this.paymentService.sendOrder(true,true, orders);
+			this.paymentService.sendOrder(true,false, orders);
 			this.paymentService.sendOrder(false,false, orders);
 		}
 		return SUCCESS;
