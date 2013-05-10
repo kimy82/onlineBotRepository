@@ -187,7 +187,7 @@
 						<hr class="sep4">
 						<s:iterator value="begudaList" var="beguda" >
 						<div class="iterate_ref" >
-							<div class="img_Rest ui-widget-content selectorBeg" id="draggable_${beguda.id}" >
+							<div class="img_Rest ui-widget-content selectorBeg" id="draggableb_${beguda.id}" >
 	  							<img height="152" width="230" src="/${initParam.app}/comanda/ImageAction.action?imageId=${beguda.foto.id}">
 	  						</div>
 							<div class="format">
@@ -214,7 +214,7 @@
 	  						</div>
 							<div id="afegir">
 								<div class="left_price">
-									<a href="#" class="entrar" onclick="addProduct('draggable_${beguda.id}')" ><s:text name="txt.plat.afegir" /></a>
+									<a href="#" class="entrar" onclick="addProduct('draggableb_${beguda.id}')" ><s:text name="txt.plat.afegir" /></a>
 								</div>
 								<div class="right_price">
 									 <span class="price">${beguda.preu} &euro;</span><br>
