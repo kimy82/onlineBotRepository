@@ -263,59 +263,82 @@ function onlyEntero(value,id){
 	}
 }
 
-function saveNewPLatAmount(id,value){
-	
-		 var preuPlat = $("#platpreu_"+id).text();
-		 var preu = $("#preu").text();
-		 var numPlatsAnt = window.localStorage.getItem("comanda.plat_"+id);
-		 if(numPlatsAnt != 'undefined' && numPlatsAnt != null){
-			 
-			 var nPlatsAdded = parseInt(value);
-			 $("#labelnum_"+id).text(parseInt(numPlatsAnt)+parseInt(value));
-			 window.localStorage.setItem("comanda.plat_"+id,parseInt(numPlatsAnt)+parseInt(value));
-			 
-			 var preuToAdd = parseFloat(preuPlat)*nPlatsAdded;
-			 var preuActual = $("#labelpreutotal_"+id).text();
-			 var newPreu = preuToAdd+parseFloat(preuActual);
-			 $("#labelpreutotal_"+id).text(parseFloat(newPreu).toFixed(2));
-			 
-			 var preuCom = parseFloat(preu)+preuToAdd;
-			 $("#preu").text(parseFloat(preuCom).toFixed(2));
-			 $("#labelpreutotalPromo").text(parseFloat(preuCom).toFixed(2));
-			 
-			 var preuPlats =  window.localStorage.getItem("comanda.preu");
-			 window.localStorage.setItem("comanda.preu",parseFloat(parseFloat(preuPlats)+ parseFloat(preuToAdd)).toFixed(2));
-			 
-			 initPromoDescompteFromStorage();
-			 //Guardem els plats afegits
-			 savePlatToComanda(id,nPlatsAdded);
-			 var platsAnterior = window.localStorage.getItem("comanda.numplats");	
-			 var platsAra= parseInt(platsAnterior)+parseInt(nPlatsAdded);
-			 window.localStorage.setItem("comanda.numplats",platsAra);       			
-				if(platsAra<=0){
-					alertOnline.alertes(initTxtPromos.txtnoplats);
-				}
-				var lis= window.localStorage.getItem("comanda.plats.lis");
-				var lista="";
-				var plats = lis.split("<br><br>");
-					$.each(plats, function(index, value) { 		       					 	
-							 if(value.indexOf("span_p_"+id)==-1){
-								 if(value!=''){
-									 lista=lista+value+"<br><br>";	 
-								 }
-								 		       	
-								 }else{
-									 if(platsAra!=0 && window.localStorage.getItem("comanda.plat_"+id)!=null){
-										 var liEnd= value.split("</span>");								 
-										 var li= window.localStorage.getItem("comanda.plat_"+id)+" <span class='plats' id='span_p_"+id+"'>x</span> "+liEnd[1]+"<br><br>";
-		       							 lista=lista+li;
-									 }
-								 }							 													 									       					
-					});
+//Comtrola asyncon de treure i posar plats
+function savePlatToComandaMesMenys(self,idPlat,nPlats){
+	var idcomanda= window.localStorage.getItem("comanda");
+	var data ="idPlat="+idPlat+"&idComanda="+idcomanda+"&nplats="+nPlats;
+  	$.ajax({
+  		  type: "POST",
+  		  url: '/'+context+'/comanda/ajaxLoadNumPlat.action',
+  		  dataType: 'json',
+  		  data: data,
+  		  success: function(json){	
+  			  if(json!=null && json.error!=null){
+  				errorOnline.error("HO SENTIM, HI HA HAGUT UN ERROR:"+json.error);	
+       		  }else{				
+       			$(self).removeAttr("disabled");
+       		  }			
+  		  },
+  		  error: function(e){  window.location.href="https://www.portamu.com/elteurestaurantacasa/Welcome.action";	
+  		  					}
+  		});	
+}
 
-					window.localStorage.setItem("comanda.plats.lis",lista);
-		
-	}
+//Comtrola asyncon de treure i posar plats
+function saveNewPLatAmount(self,id,value){
+	
+	 $(self).attr("disabled","disabled");
+	 var preuPlat = $("#platpreu_"+id).text();
+	 var preu = $("#preu").text();
+	 var numPlatsAnt = window.localStorage.getItem("comanda.plat_"+id);
+	 if(numPlatsAnt != 'undefined' && numPlatsAnt != null){
+		 
+		 var nPlatsAdded = parseInt(value);
+		 $("#labelnum_"+id).text(parseInt(numPlatsAnt)+parseInt(value));
+		 window.localStorage.setItem("comanda.plat_"+id,parseInt(numPlatsAnt)+parseInt(value));
+		 
+		 var preuToAdd = parseFloat(preuPlat)*nPlatsAdded;
+		 var preuActual = $("#labelpreutotal_"+id).text();
+		 var newPreu = preuToAdd+parseFloat(preuActual);
+		 $("#labelpreutotal_"+id).text(parseFloat(newPreu).toFixed(2));
+		 
+		 var preuCom = parseFloat(preu)+preuToAdd;
+		 $("#preu").text(parseFloat(preuCom).toFixed(2));
+		 $("#labelpreutotalPromo").text(parseFloat(preuCom).toFixed(2));
+		 
+		 var preuPlats =  window.localStorage.getItem("comanda.preu");
+		 window.localStorage.setItem("comanda.preu",parseFloat(parseFloat(preuPlats)+ parseFloat(preuToAdd)).toFixed(2));
+		 
+		 initPromoDescompteFromStorage();
+		 //Guardem els plats afegits
+		 savePlatToComandaMesMenys(self,id,nPlatsAdded);
+		 var platsAnterior = window.localStorage.getItem("comanda.numplats");	
+		 var platsAra= parseInt(platsAnterior)+parseInt(nPlatsAdded);
+		 window.localStorage.setItem("comanda.numplats",platsAra);       			
+			if(platsAra<=0){
+				alertOnline.alertes(initTxtPromos.txtnoplats);
+			}
+			var lis= window.localStorage.getItem("comanda.plats.lis");
+			var lista="";
+			var plats = lis.split("<br><br>");
+				$.each(plats, function(index, value) { 		       					 	
+						 if(value.indexOf("span_p_"+id)==-1){
+							 if(value!=''){
+								 lista=lista+value+"<br><br>";	 
+							 }								 		       
+							 }else{
+								 if(platsAra!=0 && window.localStorage.getItem("comanda.plat_"+id)!=null){
+									 var liEnd= value.split("</span>");									 
+									 var li= window.localStorage.getItem("comanda.plat_"+id)+" <span class='plats' id='span_p_"+id+"'>x</span> "+liEnd[1]+"<br><br>";
+	       							 lista=lista+li;
+								 }
+							 }
+							 									       						
+				});
+				
+				window.localStorage.setItem("comanda.plats.lis",lista);
+	
+}
 }
 function eliminaPlat(id){
 	 window.localStorage.setItem("comanda.plat_"+id,"0");
@@ -630,6 +653,7 @@ var func = $(function(){
 
 function saveBegudaToComanda(idBeguda,promo,amount){
 	
+	$(".mores").attr("disabled","disabled");
 	var data ="idBeguda="+idBeguda+"&idComanda="+$("#idcomanda").val()+"&amount="+amount+"&promo="+promo;
   	$.ajax({
   		  type: "POST",
@@ -779,6 +803,7 @@ function saveBegudaToComanda(idBeguda,promo,amount){
        					$("#preu").text(preuFinal.toFixed(2));
        					$("#labelpreutotalPromo").text(preuFinal.toFixed(2));
        					initPromoDescompteFromStorage();
+       					$(".mores").removeAttr("disabled");
        			}   
   		  }
   		  },

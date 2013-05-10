@@ -103,8 +103,8 @@
 									<td class="preusun"><label id="platpreu_${platComanda.plat.id}" >${platComanda.plat.preu}</label>&euro; </td>
 									<td class="canti">										
 										<label id="labelnum_${platComanda.plat.id}">${platComanda.numPlats}</label>
-										<input class="mores" type="submit" onclick="saveNewPLatAmount(${platComanda.plat.id}, -1)" value="-">
-										<input class="mores" type="submit" onclick="saveNewPLatAmount(${platComanda.plat.id}, 1)" value="+">
+										<input class="mores" type="submit"   onclick="saveNewPLatAmount(this,${platComanda.plat.id}, -1)" value="-">
+										<input class="mores" type="submit" onclick="saveNewPLatAmount(this,${platComanda.plat.id}, 1)" value="+">
 									</td>
 									
 									<td class="total"><label id="labelpreutotal_${platComanda.plat.id}"><fmt:formatNumber value="${platComanda.plat.preu*platComanda.numPlats}" type="number" maxFractionDigits="2"/></label> &euro; </td>
@@ -138,9 +138,9 @@
 									</td>
 									<td class="preusun"><label id="begudapreu_${begudaComanda.beguda.id}" >${begudaComanda.beguda.preu}</label>&euro; </td>
 									<td class="canti">										
-										<input class="mores" type="submit" onclick="saveBegudaToComanda(${begudaComanda.beguda.id},false,-1);" value="-">
+										<input class="mores" type="submit" onclick="saveBegudaToComanda(this,${begudaComanda.beguda.id},false,-1);" value="-">
 										<label id="labelnum_b_${begudaComanda.beguda.id}">${begudaComanda.numBegudes}</label>
-										<input class="mores" type="submit" onclick="saveBegudaToComanda(${begudaComanda.beguda.id},false,1)" value="+">
+										<input class="mores" type="submit" onclick="saveBegudaToComanda(this,${begudaComanda.beguda.id},false,1)" value="+">
 									</td>
 									<td class="total"><label id="labelpreutotal_b_${begudaComanda.beguda.id}"><fmt:formatNumber maxFractionDigits="2" type="number" value="${begudaComanda.beguda.preu*begudaComanda.numBegudes}" ></fmt:formatNumber> </label> &euro; </td>
 									<td class="elimi">
