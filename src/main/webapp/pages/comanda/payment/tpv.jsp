@@ -23,7 +23,7 @@
 	</div>
 </div>
 	<div class="containertpv">
-		<form target="iframe" method="POST" id="form_p" action="${requestScope.payment.url}">
+		<form  method="POST" id="form_p" action="${requestScope.payment.url}">
 			<input name="Ds_Merchant_Order" type="hidden" value="${requestScope.payment.ds_Merchant_Order}">
 			<input name="Ds_Merchant_Amount" type="hidden" value="${requestScope.payment.ds_Merchant_Amount}">
 			<input name="Ds_Merchant_Currency" type="hidden" value="${requestScope.payment.ds_Merchant_Currency}">
@@ -37,20 +37,12 @@
 			<input name="Ds_Merchant_Terminal" type="hidden" value="${requestScope.payment.ds_Merchant_Terminal}">
 			<input name="Ds_Merchant_TransactionType" type="hidden" value="${requestScope.payment.ds_Merchant_TransactionType}">
 			<input name="Ds_Merchant_MerchantSignature" type="hidden" value="${requestScope.payment.ds_Merchant_MerchantSignature}">			
-		</form>
-		<iframe name="iframe" id="iframe" src="${requestScope.payment.url}" frameborder="1" width="1000px" height="700px" ></iframe>
+		</form>		
 	</div>
 </div>
 <script type="text/javascript">
+window.localStorage.clear();
 document.getElementById("form_p").submit();	
-
-
-function deleteWindowStorage()
-{
-	window.localStorage.clear();
-}
-
-window.onbeforeunload = deleteWindowStorage;
 </script>
 </body>
 </html>
