@@ -156,103 +156,103 @@ public class ComandaServiceImpl implements ComandaService{
 					if (hor.equals("")) {
 
 					} else if (hor.equals("0800") && nextHour <= 830) {
-						hora = "08:00";
+						hora = "08:00-08:30";
 						break;
 					} else if (hor.equals("0830") && nextHour <= 900) {
-						hora = "08:30";
+						hora = "08:30-09:00";
 						break;
 					} else if (hor.equals("0900") && nextHour <= 930) {
-						hora = "09:00";
+						hora = "09:00-09:30";
 						break;
 					} else if (hor.equals("0930") && nextHour <= 1000) {
-						hora = "09:30";
+						hora = "09:30-10:00";
 						break;
 					} else if (hor.equals("1000") && nextHour <= 1030) {
-						hora = "10:00";
+						hora = "10:00-10:30";
 						break;
 					} else if (hor.equals("1030") && nextHour <= 1100) {
-						hora = "10:30";
+						hora = "10:30-11:00";
 						break;
 					} else if (hor.equals("1100") && nextHour <= 1130) {
-						hora = "11:00";
+						hora = "11:00-11:30";
 						break;
 					} else if (hor.equals("1130") && nextHour <= 1200) {
-						hora = "11:30";
+						hora = "11:30-12:00";
 						break;
 					} else if (hor.equals("1200") && nextHour <= 1230) {
-						hora = "12:00"; 
+						hora = "12:00-12:30"; 
 						break;
 					} else if (hor.equals("1230") && nextHour <= 1300) {
-						hora = "12:30";
+						hora = "12:30-13:00";
 						break;
 					} else if (hor.equals("1300") && nextHour <= 1330) {
-						hora = "13:00";
+						hora = "13:00-13:30";
 						break;
 					} else if (hor.equals("1330") && nextHour <= 1400) {
-						hora = "13:30";
+						hora = "13:30-14:00";
 						break;
 					} else if (hor.equals("1400") && nextHour <= 1430) {
-						hora = "14:00";
+						hora = "14:00-14:30";
 						break;
 					} else if (hor.equals("1430") && nextHour <= 1500) {
-						hora = "14:30";
+						hora = "14:30-15:00";
 						break;
 					} else if (hor.equals("1500") && nextHour <= 1530) {
-						hora = "15:00";
+						hora = "15:00-15:30";
 						break;
 					} else if (hor.equals("1530") && nextHour <= 1600) {
-						hora = "15:30";
+						hora = "15:30-16:00";
 						break;
 					} else if (hor.equals("1600") && nextHour <= 1630) {
-						hora = "16:00";
+						hora = "16:00-16:30";
 						break;
 					} else if (hor.equals("1630") && nextHour <= 1700) {
-						hora = "16:30";
+						hora = "16:30-17:00";
 						break;
 					} else if (hor.equals("1700") && nextHour <= 1730) {
-						hora = "17:00";
+						hora = "17:00-17:30";
 						break;
 					} else if (hor.equals("1730") && nextHour <= 1800) {
-						hora = "17:30";
+						hora = "17:30-18:00";
 						break;
 					} else if (hor.equals("1800") && nextHour <= 1830) {
-						hora = "18:00";
+						hora = "18:00-18:30";
 						break;
 					} else if (hor.equals("1830") && nextHour <= 1900) {
-						hora = "18:30";
+						hora = "18:30-19:00";
 						break;
 					} else if (hor.equals("1900") && nextHour <= 1930) {
-						hora = "19:00";
+						hora = "19:00-19:30";
 						break;
 					} else if (hor.equals("1930") && nextHour <= 2000) {
-						hora = "19:30";
+						hora = "19:30-20:00";
 						break;
 					} else if (hor.equals("2000") && nextHour <= 2030) {
-						hora = "20:00";
+						hora = "20:00-20:30";
 						break;
 					} else if (hor.equals("2030") && nextHour <= 2100) {
-						hora = "20:30";
+						hora = "20:30-21:00";
 						break;
 					} else if (hor.equals("2100") && nextHour <= 2130) {
-						hora = "21:00";
+						hora = "21:00-21:30";
 						break;
 					} else if (hor.equals("2130") && nextHour <= 2200) {
-						hora = "21:30";
+						hora = "21:30-22:00";
 						break;
 					} else if (hor.equals("2200") && nextHour <= 2230) {
-						hora = "22:00";
+						hora = "22:00-22:30";
 						break;
 					} else if (hor.equals("2230") && nextHour <= 2300) {
-						hora = "22:30";
+						hora = "22:30-23:00";
 						break;
 					} else if (hor.equals("2300") && nextHour <= 2330) {
-						hora = "23:00";
+						hora = "23:00-23:30";
 						break;
 					} else if (hor.equals("2330") && nextHour <= 2400) {
-						hora = "23:30";
+						hora = "23:30-24:00";
 						break;
 					} else if (hor.equals("2400") && nextHour <= 2430) {
-						hora = "24:00";
+						hora = "24:00-24:30";
 						break;
 					}
 				}

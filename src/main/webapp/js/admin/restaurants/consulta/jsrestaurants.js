@@ -35,7 +35,7 @@ function saveHoraObertura(id){
 		var newhores = "";
 		$.each(array, function (i,item){
 			if(item!=id){
-				newhores=item+"|";
+				newhores=newhores+item+"|";
 			}
 		});
 		$("#horesRestaurant").val(newhores);

@@ -43,7 +43,14 @@
 	  						</div>
 							<div class="format">
 					  				<div class="titol_Rest">
-					  					<h1 id="p_desc_beg_${beguda.id}" >${beguda.nom}</h2>
+					  					<h1 id="p_desc_beg_${beguda.id}" >
+					  						<c:if test="${sessionScope.WW_TRANS_I18N_LOCALE=='ca'}">
+			  									${beguda.nom}
+			  								</c:if>
+			  								<c:if test="${sessionScope.WW_TRANS_I18N_LOCALE=='es'}">
+			  									${beguda.nom}
+			  								</c:if>
+					  					</h2>
 					  				</div>
 	  						</div>
 							<div id="afegir">

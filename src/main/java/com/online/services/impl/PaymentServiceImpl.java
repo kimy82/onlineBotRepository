@@ -98,7 +98,7 @@ public class PaymentServiceImpl implements PaymentService {
 			//Tiquets dels moters als restaurants
 			for(String order : orders){
 				RestClient client = new RestClient();
-				Resource resource = client.resource("http://www.portamu.com/ComandaRest/jaxrs/comandes/file");
+				Resource resource = client.resource("http://localhost/ComandaRest/jaxrs/comandes/file");
 				String[] orderVec = order.split("&");
 				int iterador=0;
 				String begudes="";
@@ -146,7 +146,7 @@ public class PaymentServiceImpl implements PaymentService {
 		if(toAdmins){
 			for(String order : orders){
 				RestClient client = new RestClient();
-				Resource resource = client.resource("http://www.portamu.com/ComandaRest/jaxrs/comandes/file");
+				Resource resource = client.resource("http://localhost/ComandaRest/jaxrs/comandes/file");
 				String[] orderVec = order.split("&");
 				int iterador=0;
 				String begudes="";
@@ -199,7 +199,7 @@ public class PaymentServiceImpl implements PaymentService {
 			//Tiquet del restaurant a portamu
 			for(String order : orders){
 				RestClient client = new RestClient();
-				Resource resource = client.resource("http://www.portamu.com/ComandaRest/jaxrs/comandes/file");
+				Resource resource = client.resource("http://localhost/ComandaRest/jaxrs/comandes/file");
 				String[] orderVec = order.split("&");
 				int iterador=0;
 				String begudes="";
@@ -245,7 +245,7 @@ public class PaymentServiceImpl implements PaymentService {
 			//Tiquet del restaurant al restaurant 1
 			for(String order : orders){
 				RestClient client = new RestClient();
-				Resource resource = client.resource("http://www.portamu.com/ComandaRest/jaxrs/comandes/file");
+				Resource resource = client.resource("http://localhost/ComandaRest/jaxrs/comandes/file");
 				String[] orderVec = order.split("&");
 				int iterador=0;
 				String begudes="";
