@@ -291,9 +291,14 @@ function saveNewPLatAmount(self,id,value){
 	 var preuPlat = $("#platpreu_"+id).text();
 	 var preu = $("#preu").text();
 	 var numPlatsAnt = window.localStorage.getItem("comanda.plat_"+id);
+ 
 	 if(numPlatsAnt != 'undefined' && numPlatsAnt != null){
 		 
 		 var nPlatsAdded = parseInt(value);
+		 var platsTotalPlat = parseInt(numPlatsAnt)+parseInt(value);
+		 if(platsTotalPlat==0){
+			$("#plat_"+id).remove();
+		 }		
 		 $("#labelnum_"+id).text(parseInt(numPlatsAnt)+parseInt(value));
 		 window.localStorage.setItem("comanda.plat_"+id,parseInt(numPlatsAnt)+parseInt(value));
 		 
@@ -327,7 +332,7 @@ function saveNewPLatAmount(self,id,value){
 								 lista=lista+value+"<br><br>";	 
 							 }								 		       
 							 }else{
-								 if(platsAra!=0 && window.localStorage.getItem("comanda.plat_"+id)!=null){
+								 if(platsAra!=0 && parseInt(platsTotalPlat)>0){
 									 var liEnd= value.split("</span>");									 
 									 var li= window.localStorage.getItem("comanda.plat_"+id)+" <span class='plats' id='span_p_"+id+"'>x</span> "+liEnd[1]+"<br><br>";
 	       							 lista=lista+li;
@@ -339,6 +344,7 @@ function saveNewPLatAmount(self,id,value){
 				window.localStorage.setItem("comanda.plats.lis",lista);
 	
 }
+
 }
 function eliminaPlat(id){
 	 window.localStorage.setItem("comanda.plat_"+id,"0");
@@ -631,6 +637,12 @@ var func = $(function(){
 	});
 	
 	function addingBegudaMangaer(id,tipus){
+			
+		if(plats=='undefined' || plats==null || plats==0){
+			window.location.href="https://www.portamu.com/elteurestaurantacasa/Welcome.action";	
+			return;
+		}
+		
 			if(window.promoBeguda == null || window.promoBeguda.promo!="true" ){	
 				saveBegudaToComanda(id,false,1);
 			}else{
@@ -867,7 +879,7 @@ function checkPromocionsDisponibles(){
 	       			}	  			  		  			  		  			  	
 	  			  $("#chargeBar").hide();
 	  		  },
-	  		  error: function(e){  errorOnline.error(txterrorAjax);	
+	  		  error: function(e){  window.location.href="https://www.portamu.com/elteurestaurantacasa/Welcome.action";	
 	  		  					}
 	  		});
 	}	
