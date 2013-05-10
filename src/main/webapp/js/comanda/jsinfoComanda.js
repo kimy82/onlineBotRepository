@@ -545,6 +545,7 @@ function checkComandaJS(){
 	if(comanda!= null && comanda != 'undefined'){
 		var hora = $("#comandahora").val();
 		var dia = $("#dia").val();
+		window.localStorage.setItem("comanda.hora",hora);
 		if(hora==''){
 			alertOnline.alertes(initParams.txtfaltahora);
 			return;
@@ -560,6 +561,7 @@ function checkComandaJS(){
 				return;
 			}
 			address =  address.replace(/\n/g, "");
+			window.localStorage.setItem("comanda.address",address);
 		}
 		
 		var targeta =false;
