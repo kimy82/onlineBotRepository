@@ -25,7 +25,7 @@ import com.online.services.PaymentService;
 public class PaymentServiceImpl implements PaymentService {
 
 	private Comandes 		comanda;
-	private final String	CODI_MAQUINA_ADMIN="AC014";
+	private final String	CODI_MAQUINA_ADMIN="AC001";
 	private ClauBo			clauBo;
 	
 	public boolean CheckOrderOK(String order, String entorn,String orderID) throws PaymentException, NoSuchAlgorithmException{

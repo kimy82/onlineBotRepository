@@ -87,33 +87,86 @@
 						<div class="prom_int" style="width:950px;" alig="center" >
 						<ul>
 						<s:iterator value="promoListAPartirDe" var="promoAPD" >		
-							<c:if test="${not empty promoAPD.numBegudes}">
+							<c:if test="${not empty promoAPD.numBegudes && not empty promoAPD.tipusBeguda && not empty promoAPD.importAPartirDe &&(empty promoAPD.hora or promoAPD.hora eq false )}">
 							<div class="promosImg">
 							    <img width="160px" src="<c:url value='../img/elements/begudes.png'/>"  ></br>
 								<span class="reftit">${promoAPD.numBegudes } ${promoAPD.tipusBeguda}</span> </br><s:text name="txt.promo.info.n3" /> ${promoAPD.importAPartirDe} &euro;.
 							</div>
 							</c:if>
-							<c:if test="${not empty promoAPD.descompteImport}">
+							<c:if test="${not empty promoAPD.descompteImport && not empty promoAPD.importAPartirDe && not empty promoAPD.tipuDescompte  &&(empty promoAPD.hora or promoAPD.hora eq false )}">
 							<div class="promosImg">
 							    <img width="160px" src="<c:url value='../img/elements/descompte.png'/>"  ></br>
-								<span class="reftit"><s:text name="txt.promo.info.import.n1" /> ${promAPD.descompteImport } </span></br> <s:text name="txt.promo.info.n3" /> ${promoAPD.importAPartirDe} &euro;.
+								<span class="reftit"><s:text name="txt.promo.info.import.n1" /> ${promoAPD.descompteImport}
+									<c:if test="${not empty promoAPD.tipuDescompte && promoAPD.tipuDescompte eq 'C1'}">
+										 %.
+									</c:if>
+									<c:if test="${not empty promoAPD.tipuDescompte && promoAPD.tipuDescompte eq 'A2'}">
+										 &euro; 
+									</c:if>
+								</span></br> <s:text name="txt.promo.info.n3" /> ${promoAPD.importAPartirDe} &euro;.
 							</div>
-							</c:if>					
+							</c:if>
+							<c:if test="${not empty promoAPD.numBegudes && not empty promoAPD.tipusBeguda && not empty promoAPD.importAPartirDe  &&(not empty promoAPD.hora or promoAPD.hora eq true )}">
+							<div class="promosImg">
+							    <img width="160px" src="<c:url value='../img/elements/begudes.png'/>"  ></br>
+								<span class="reftit">${promoAPD.numBegudes } ${promoAPD.tipusBeguda}</span> </br><s:text name="txt.promo.info.n3.abans4" /> 								
+										${promoAPD.importAPartirDe} &euro; .								
+							</div>
+							</c:if>
+							<c:if test="${not empty promoAPD.descompteImport && not empty promoAPD.importAPartirDe && not empty promoAPD.tipuDescompte &&(not empty promoAPD.hora or promoAPD.hora eq true)}">
+							<div class="promosImg">
+							    <img width="160px" src="<c:url value='../img/elements/descompte.png'/>"  ></br>
+								<span class="reftit"><s:text name="txt.promo.info.import.n1" /> ${promoAPD.descompteImport} 
+								<c:if test="${not empty promoAPD.tipuDescompte && promoAPD.tipuDescompte eq 'C1' }">
+									 %
+								</c:if>
+								<c:if test="${not empty promoAPD.tipuDescompte && promoAPD.tipuDescompte eq 'A2' }">
+									 &euro;	
+								</c:if>
+								</span></br> <s:text name="txt.promo.info.n3.abans4" />${promoAPD.importAPartirDe} &euro; .
+							</div>
+							</c:if>										
 						</s:iterator>
 						<s:iterator value="promocioNumComandes" var="promoNC" >		
 								
-							<c:if test="${not empty promoNC.numBegudes}">
+							<c:if test="${not empty promoNC.numBegudes && not empty promoNC.tipusBeguda && not empty promoNC.numComandes &&(empty promoNC.hora or promoNC.hora eq false)}">
 							<div class="promosImg">
 							    <img width="160px" src="<c:url value='../img/elements/begudes.png'/>"  ></br>		
 								<span class="reftit">${promoNC.numBegudes } ${promoNC.tipusBeguda}</span></br> <s:text name="txt.promo.info.n3" /> ${promoNC.numComandes} &euro;.
 							</div>
 							</c:if>
-							<c:if test="${not empty promoNC.descompteImport}">
+							<c:if test="${not empty promoNC.descompteImport && not empty promoNC.numComandes  && not empty promoNC.tipuDescompte &&(empty promoNC.hora or promoNC.hora eq false)}">
 							<div class="promosImg">
 							    <img width="160px" src="<c:url value='../img/elements/descompte.png'/>"  ></br>
-								<span class="reftit"><s:text name="txt.promo.info.import.n1" /> ${promoNC.descompteImport } %</br></span> <s:text name="txt.promo.info.n3" /> ${promoNC.numComandes} &euro;.
+								<span class="reftit"><s:text name="txt.promo.info.import.n1" /> ${promoNC.descompteImport } 
+								 	<c:if test="${not empty promoNC.tipuDescompte && promoNC.tipuDescompte eq 'C1' }">
+									 %
+								</c:if>
+								<c:if test="${not empty promoNC.tipuDescompte && promoNC.tipuDescompte eq 'A2' }">
+									 &euro;	
+								</c:if>   
+							   </br></span> <s:text name="txt.promo.info.n3" /> ${promoNC.numComandes} &euro;.
 							</div>
 							</c:if>						
+							<c:if test="${not empty promoNC.numBegudes && not empty promoNC.tipusBeguda && not empty promoNC.numComandes &&(not empty promoNC.hora and promoNC.hora eq true)}">
+							<div class="promosImg">
+							    <img width="160px" src="<c:url value='../img/elements/begudes.png'/>"  ></br>		
+								<span class="reftit">${promoNC.numBegudes } ${promoNC.tipusBeguda}</span></br> <s:text name="txt.promo.info.n3.abans4" /> ${promoNC.numComandes} &euro;.
+							</div>
+							</c:if>
+							<c:if test="${not empty promoNC.descompteImport && not empty promoNC.numComandes  && not empty promoNC.tipuDescompte &&(not empty promoNC.hora and promoNC.hora eq true)}">
+							<div class="promosImg">
+							    <img width="160px" src="<c:url value='../img/elements/descompte.png'/>"  ></br>
+								<span class="reftit"><s:text name="txt.promo.info.import.n1" /> ${promoNC.descompteImport } 
+								 	<c:if test="${not empty promoNC.tipuDescompte && promoNC.tipuDescompte eq 'C1' }">
+									 %
+								</c:if>
+								<c:if test="${not empty promoNC.tipuDescompte && promoNC.tipuDescompte eq 'A2' }">
+									 &euro;	
+								</c:if>   
+							   </br></span> <s:text name="txt.promo.info.n3.abans4" /> ${promoNC.numComandes} &euro;.
+							</div>
+							</c:if>		
 						</s:iterator>
 						</ul>
 						</div>

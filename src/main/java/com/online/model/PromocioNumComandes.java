@@ -1,5 +1,7 @@
 package com.online.model;
 
+import com.google.gson.annotations.Expose;
+
 
 public class PromocioNumComandes extends Promocio{
 
@@ -8,7 +10,9 @@ public class PromocioNumComandes extends Promocio{
 	 */
 	private static final long	serialVersionUID	= 1L;
 
+	@Expose
 	private Integer				numComandes;
+	
 	private Integer				temps;
 	
 	// CONSTRUCTORS

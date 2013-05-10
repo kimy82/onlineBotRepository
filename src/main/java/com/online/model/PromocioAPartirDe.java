@@ -2,6 +2,8 @@ package com.online.model;
 
 import java.util.Date;
 
+import com.google.gson.annotations.Expose;
+
 public class PromocioAPartirDe extends Promocio {
 
 	/**
@@ -9,7 +11,9 @@ public class PromocioAPartirDe extends Promocio {
 	 */
 	private static final long serialVersionUID = 1L;
 
+	@Expose
 	private Double importAPartirDe;
+	
 	private Date dia;
 
 	// CONSTRUCTORS
