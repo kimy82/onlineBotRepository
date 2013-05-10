@@ -100,7 +100,7 @@ public class ComandaDaoImpl extends HibernateDaoSupport implements ComandaDao{
 		Session session = this.getSessionFactory().openSession();
 		session.beginTransaction();
 
-		Query query = session.createQuery("from Comandes cmd where cmd.revisio IS NOT NULL or (cmd.revisio IS NULL and cmd.targeta=true) order by cmd.id desc").setCacheable(true);
+		Query query = session.createQuery("from Comandes cmd where ((cmd.revisio IS NOT NULL and cmd.targeta=false and and cmd.pagada=true) or (cmd.targeta=true and cmd.pagada=true)) order by cmd.id desc").setCacheable(true);
 
 		comandaList = ((List<Comandes>) query.list());
 		return comandaList; 
@@ -114,7 +114,7 @@ public class ComandaDaoImpl extends HibernateDaoSupport implements ComandaDao{
 		Session session = this.getSessionFactory().openSession();
 		session.beginTransaction();
 
-		Query query = session.createQuery("from Comandes cmd where (cmd.revisio IS NOT NULL or (cmd.revisio IS NULL and cmd.pagada=true)) and cmd.user.id=" + id+" order by cmd.id desc ");
+		Query query = session.createQuery("from Comandes cmd where ((cmd.revisio IS NOT NULL and cmd.targeta=false and cmd.pagada=true) or (cmd.targeta=true and cmd.pagada=true)) and cmd.user.id=" + id+" order by cmd.id desc ");
 
 		comandaList = ((List<Comandes>) query.list());
 		

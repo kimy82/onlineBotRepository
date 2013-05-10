@@ -66,6 +66,7 @@ public class MantenimentComandesAction extends ActionSuportOnline{
 			List<String> orders = this.paymentService.getComandaOrders(comanda, this.comandaService.checkMoreThanOneRestaurant(comanda),transport,transportDouble,moterTime, tempsPreparacio);
 			this.paymentService.sendOrder(false,false, orders);
 			comanda.setRevisio(false);
+			comanda.setPagada(true);
 			this.comandaBo.update(comanda);
 
 		} catch (NumberFormatException e) {
