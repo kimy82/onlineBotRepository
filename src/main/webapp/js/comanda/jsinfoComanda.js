@@ -300,15 +300,17 @@ function saveNewPLatAmount(id,value){
 				var plats = lis.split("<br><br>");
 					$.each(plats, function(index, value) { 		       					 	
 							 if(value.indexOf("span_p_"+id)==-1){
-								 lista=lista+value+"<br><br>";		       	
-							 }else{
-								 if(platsAra!=0){
-									 var liEnd= value.split("</span>");								 
-									 var li= platsAra+" <span class='plats' id='span_p_"+id+"'>x</span> "+liEnd[1]+"<br><br>";
-	       							 lista=lista+li;
+								 if(value!=''){
+									 lista=lista+value+"<br><br>";	 
 								 }
-							 }
-								 									       						
+								 		       	
+								 }else{
+									 if(platsAra!=0 && window.localStorage.getItem("comanda.plat_"+id)!=null){
+										 var liEnd= value.split("</span>");								 
+										 var li= window.localStorage.getItem("comanda.plat_"+id)+" <span class='plats' id='span_p_"+id+"'>x</span> "+liEnd[1]+"<br><br>";
+		       							 lista=lista+li;
+									 }
+								 }							 													 									       					
 					});
 
 					window.localStorage.setItem("comanda.plats.lis",lista);
@@ -696,6 +698,8 @@ function saveBegudaToComanda(idBeguda,promo,amount){
 										cell4.innerHTML="<input class='mores' type='submit' onclick='saveBegudaToComanda("+value.beguda.id+",false,-1);' value='-'><label id='labelnum_b_"+value.beguda.id+"'>"+value.numBegudes+"</label><input class='mores' type='submit' onclick='saveBegudaToComanda("+value.beguda.id+",false,1);' value='+'>";
 										
 											
+											
+										
 										$(cell5).addClass("total");
 										cell5.innerHTML="<label id='labelpreutotal_b_"+value.beguda.id+"'>"+parseFloat(parseFloat(value.beguda.preu)*parseFloat(value.numBegudes)).toFixed(2)+"</label> &euro;";
 										
@@ -1260,7 +1264,7 @@ function deletePromoApplied(){
 		var preu =  parseFloat(preuPlats)+ parseFloat(preuBegudes)+ parseFloat(transportOnTheFly);
 		
 		$("#promoImp").text("");
-		$("#labelpreutotalPromo").text(preu.toFixed());
+		$("#labelpreutotalPromo").text(preu.toFixed(2));
 		
 	}
 	if(isPromoBeguda!='undefined' && isPromoBeguda!=null){

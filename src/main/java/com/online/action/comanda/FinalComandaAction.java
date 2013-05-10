@@ -13,6 +13,7 @@ import com.online.exceptions.ComandaException;
 import com.online.exceptions.GeneralException;
 import com.online.exceptions.WrongParamException;
 import com.online.model.Comandes;
+import com.online.model.Promocio;
 import com.online.model.Users;
 import com.online.services.impl.ComandaServiceImpl;
 import com.online.supplier.extend.ActionSuportOnline;
@@ -83,12 +84,19 @@ public class FinalComandaAction extends ActionSuportOnline{
 					this.comanda.setUser(user);
 				}
 				this.comanda.setPreu(this.comandaService.getPreuOfComanda(comanda));
+				updatePromoUses();
+				Promocio promo = this.promocionsBo.load(this.promoId);
+				if(promo!=null){
+					this.comanda.setImportDescomte(promo.getDescompteImport());
+					this.comanda.setTipuDescomte(promo.getTipuDescompte());
+				}
 				this.comandaBo.update(this.comanda);
 				json = this.comandaService.checkComandaProblems(this.comanda, resource);
 				
 				
+				
 				if(json.contains("comandaOK") && user!=null){
-					updatePromoUses();
+					
 					if(this.promoId!=null)
 						user.setCodePromo("");
 					this.usersBo.update(user);

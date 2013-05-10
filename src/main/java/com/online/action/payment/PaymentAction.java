@@ -133,12 +133,14 @@ public class PaymentAction extends ActionSuportOnline{
 		if (numComandes > 1) {
 
 			this.comanda.setRevisio(false);
+			this.comanda.setPagada(true);
 			this.comandaBo.update(comanda);
 			this.paymentService.sendOrder(true,true, orders);
 			this.paymentService.sendOrder(true,false, orders);
 			this.paymentService.sendOrder(false,false, orders);
 		} else {
 			this.comanda.setRevisio(true);
+			this.comanda.setPagada(false);
 			this.comandaBo.update(comanda);
 			this.paymentService.sendOrder(true,false, orders);
 		}

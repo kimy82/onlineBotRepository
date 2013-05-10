@@ -4,7 +4,6 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -15,12 +14,14 @@ import org.apache.wink.client.Resource;
 import org.apache.wink.client.RestClient;
 
 import com.online.bo.ClauBo;
+import com.online.exceptions.ComandaException;
 import com.online.exceptions.PaymentException;
 import com.online.model.BegudaComanda;
 import com.online.model.Clau;
 import com.online.model.Comandes;
 import com.online.model.PlatComanda;
 import com.online.services.PaymentService;
+import com.online.utils.Constants;
 
 public class PaymentServiceImpl implements PaymentService {
 
@@ -291,6 +292,19 @@ public class PaymentServiceImpl implements PaymentService {
 			throws PaymentException {
 
 		this.comanda = comanda;
+		
+		Double preuTotalComanda = getPreuOfComanda(comanda);
+		
+		if(this.comanda.getImportDescomte()!=null && this.comanda.getTipuDescomte()!=null){
+			if(this.comanda.getTipuDescomte().equals(Constants.TIPUS_DESCOMPTE_CENT_1)){
+				preuTotalComanda = preuTotalComanda-((this.comanda.getImportDescomte()*preuTotalComanda)/100);
+			}else if(this.comanda.getTipuDescomte().equals(Constants.TIPUS_DESCOMPTE_AMOUNT_2)){
+				preuTotalComanda = preuTotalComanda-this.comanda.getImportDescomte();
+			}else{
+				
+			}
+		}
+		
 		List<String> orders = new ArrayList<String>();
 
 		try {
@@ -389,7 +403,7 @@ public class PaymentServiceImpl implements PaymentService {
 
 				comandaOrderSB.append("&orderNum=" + this.comanda.getId()+numRest);
 
-				comandaOrderSB.append("&total=" + this.comanda.getPreu());				
+				comandaOrderSB.append("&total=" + preuTotalComanda);				
 			
 				comandaOrderSB.append("&nom="
 						+ this.comanda.getUser().getNom());
@@ -444,6 +458,34 @@ public class PaymentServiceImpl implements PaymentService {
 	}
 
 	// PRIVATE
+	private Double getPreuOfComanda( Comandes comanda ) throws ComandaException{
+
+		try {
+			if (comanda == null)
+				return 0.0;
+
+			Double preuComanda = 0.0;
+			List<BegudaComanda> listBeguda = comanda.getBegudes();
+			List<PlatComanda> platList = comanda.getPlats();
+			if (!listBeguda.isEmpty()) {
+				for (BegudaComanda begudaComanda : listBeguda) {
+					preuComanda = preuComanda + (begudaComanda.getNumBegudes() * begudaComanda.getBeguda().getPreu());
+				}
+			}
+
+			if (!platList.isEmpty()) {
+				for (PlatComanda platComanda : platList) {
+
+					preuComanda = preuComanda + (platComanda.getNumPlats() * platComanda.getPlat().getPreu());
+				}
+			}
+
+			return preuComanda;
+		} catch (Exception e) {
+			throw new ComandaException(e, "Error getting preu");
+		}
+	}
+	
 	private  String getHEntregraPlats(String iniRang, int tempsPlat,String tempsMoter){
 		String hEntrega=null;
 		if(iniRang==null || iniRang.equals("")){
