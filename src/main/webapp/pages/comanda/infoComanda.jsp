@@ -230,7 +230,7 @@
 					</tr>
 				</table>
 			</form>
-		</div>
+		</div> 
 	</c:if>	
 	<br></br>
 	<div id="promstop" class="titols_comanda2"><s:text name="txt.proms" /></div>

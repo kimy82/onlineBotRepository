@@ -33,7 +33,9 @@
 			<c:import url="/pages/includes/menuHeader.jsp" />
 			<c:import url="/pages/includes/divLanguage.jsp" />
 			<c:import url="/pages/includes/homeSlider.jsp" />
+			
 		<div id="content_seccion">			
+		
 			<div id="seccion">			
 				<div id="rest">
 					<s:text name="txt.welcome.title.restaurants" />				

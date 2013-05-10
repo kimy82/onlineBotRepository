@@ -41,7 +41,6 @@
 	</div>
 </div>
 <script type="text/javascript">
-window.localStorage.clear();
 document.getElementById("form_p").submit();	
 </script>
 </body>

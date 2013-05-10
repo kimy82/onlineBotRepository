@@ -238,6 +238,11 @@ function payComanda(){
 				$("#chargeBar").show();
 				var subdata = checkPromoImport();
 				var data ="idComanda="+comanda + subdata;
+				var addres = window.localStorage.getItem("comanda.address");
+				var hora = window.localStorage.getItem("comanda.hora");
+				window.localStorage.clear();
+				window.localStorage.setItem("comanda.address",addres);
+				window.localStorage.setItem("comanda.hora",hora);
 				window.location.href="/"+context+"/payment/paymentEntry.action?"+data;
 		}		
 }	
@@ -562,6 +567,8 @@ function checkComandaJS(){
 			}
 			address =  address.replace(/\n/g, "");
 			window.localStorage.setItem("comanda.address",address);
+		}else{
+			window.localStorage.removeItem("comanda.address");
 		}
 		
 		var targeta =false;
@@ -639,7 +646,9 @@ var func = $(function(){
 	});
 	
 	function addingBegudaMangaer(id,tipus){
-			
+	
+		var plats = window.localStorage.getItem("comanda.numplats");
+		
 		if(plats=='undefined' || plats==null || plats==0){
 			window.location.href="https://www.portamu.com/elteurestaurantacasa/Welcome.action";	
 			return;

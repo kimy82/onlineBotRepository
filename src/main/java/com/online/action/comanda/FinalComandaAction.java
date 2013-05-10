@@ -85,10 +85,12 @@ public class FinalComandaAction extends ActionSuportOnline{
 				}
 				this.comanda.setPreu(this.comandaService.getPreuOfComanda(comanda));
 				updatePromoUses();
+				if(this.promoId!=null){
 				Promocio promo = this.promocionsBo.load(this.promoId);
-				if(promo!=null){
-					this.comanda.setImportDescomte(promo.getDescompteImport());
-					this.comanda.setTipuDescomte(promo.getTipuDescompte());
+					if(promo!=null){
+						this.comanda.setImportDescomte(promo.getDescompteImport());
+						this.comanda.setTipuDescomte(promo.getTipuDescompte());
+					}
 				}
 				this.comandaBo.update(this.comanda);
 				json = this.comandaService.checkComandaProblems(this.comanda, resource);
