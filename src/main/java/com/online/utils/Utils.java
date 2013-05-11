@@ -37,7 +37,7 @@ public class Utils{
 		desc = desc.replaceAll("è", "&#232;");
 		desc = desc.replaceAll("é", "&#233;");
 		desc = desc.replaceAll("ì", "&#236;");
-		desc = desc.replaceAll("í", "&#236;");		
+		desc = desc.replaceAll("í", "&#237;");		
 		desc = desc.replaceAll("ñ", "&#241;");
 		desc = desc.replaceAll("ó", "&#243;");
 		desc = desc.replaceAll("ò", "&#242;");

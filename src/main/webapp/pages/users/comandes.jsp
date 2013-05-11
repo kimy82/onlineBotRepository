@@ -106,14 +106,14 @@
 								</span></br> <s:text name="txt.promo.info.n3" /> ${promoAPD.importAPartirDe} &euro;.
 							</div>
 							</c:if>
-							<c:if test="${not empty promoAPD.numBegudes && not empty promoAPD.tipusBeguda && not empty promoAPD.importAPartirDe  &&(not empty promoAPD.hora or promoAPD.hora eq true )}">
+							<c:if test="${not empty promoAPD.numBegudes && not empty promoAPD.tipusBeguda && not empty promoAPD.importAPartirDe  &&(not empty promoAPD.hora and promoAPD.hora eq true )}">
 							<div class="promosImg">
 							    <img width="160px" src="<c:url value='../img/elements/begudes.png'/>"  ></br>
 								<span class="reftit">${promoAPD.numBegudes } ${promoAPD.tipusBeguda}</span> </br><s:text name="txt.promo.info.n3.abans4" /> 								
 										${promoAPD.importAPartirDe} &euro; .								
 							</div>
 							</c:if>
-							<c:if test="${not empty promoAPD.descompteImport && not empty promoAPD.importAPartirDe && not empty promoAPD.tipuDescompte &&(not empty promoAPD.hora or promoAPD.hora eq true)}">
+							<c:if test="${not empty promoAPD.descompteImport && not empty promoAPD.importAPartirDe && not empty promoAPD.tipuDescompte &&(not empty promoAPD.hora and promoAPD.hora eq true)}">
 							<div class="promosImg">
 							    <img width="160px" src="<c:url value='../img/elements/descompte.png'/>"  ></br>
 								<span class="reftit"><s:text name="txt.promo.info.import.n1" /> ${promoAPD.descompteImport} 

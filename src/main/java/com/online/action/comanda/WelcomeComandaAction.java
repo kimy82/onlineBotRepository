@@ -2,6 +2,7 @@ package com.online.action.comanda;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
@@ -607,7 +608,7 @@ public class WelcomeComandaAction extends ActionSuportOnlineSession {
 
 		Double preu = this.comandaService.getPreuOfComanda(this.comanda);
 		this.comanda.setPreu(preu);
-
+		this.comanda.setDia(Utils.getDate2(this.data));
 		this.comandaBo.update(comanda);
 		List<Beguda> begudaList = this.begudaBo.getAll();
 		for (Beguda beguda : begudaList) {
@@ -752,7 +753,7 @@ public class WelcomeComandaAction extends ActionSuportOnlineSession {
 				.getParameter("aDomicili").equals("")) ? false : Boolean
 				.parseBoolean(request.getParameter("aDomicili"));
 		if (this.data == null) {
-			throw new WrongParamException("null data of comanda");
+			this.data=Calendar.getInstance().get(Calendar.YEAR)+"-"+(Calendar.getInstance().get(Calendar.MONTH)+1)+"-"+Calendar.getInstance().get(Calendar.DAY_OF_MONTH);			
 		}
 	}
 

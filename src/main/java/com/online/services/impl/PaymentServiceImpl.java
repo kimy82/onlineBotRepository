@@ -93,13 +93,15 @@ public class PaymentServiceImpl implements PaymentService {
 	}
 	
 
-	public void  sendOrder(boolean toAdmins,boolean toAdminRestaurant, List<String> orders) throws PaymentException {
+	public void  sendOrder(boolean toAdmins,boolean toAdminRestaurant, List<String> orders, String entorncomandarest) throws PaymentException {
+		
+		String resourceComanda =getResourceComanda(entorncomandarest);
 		
 		if(toAdminRestaurant && toAdmins){
 			//Tiquets dels moters als restaurants
 			for(String order : orders){
 				RestClient client = new RestClient();
-				Resource resource = client.resource("http://www.portamu.com/ComandaRest/jaxrs/comandes/file");
+				Resource resource = client.resource(resourceComanda);
 				String[] orderVec = order.split("&");
 				int iterador=0;
 				String begudes="";
@@ -147,7 +149,7 @@ public class PaymentServiceImpl implements PaymentService {
 		if(toAdmins && !toAdminRestaurant){
 			for(String order : orders){
 				RestClient client = new RestClient();
-				Resource resource = client.resource("http://www.portamu.com/ComandaRest/jaxrs/comandes/file");
+				Resource resource = client.resource(resourceComanda);
 				String[] orderVec = order.split("&");
 				int iterador=0;
 				String begudes="";
@@ -200,7 +202,7 @@ public class PaymentServiceImpl implements PaymentService {
 			//Tiquet del restaurant a portamu
 			for(String order : orders){
 				RestClient client = new RestClient();
-				Resource resource = client.resource("http://www.portamu.com/ComandaRest/jaxrs/comandes/file");
+				Resource resource = client.resource(resourceComanda);
 				String[] orderVec = order.split("&");
 				int iterador=0;
 				String begudes="";
@@ -246,7 +248,7 @@ public class PaymentServiceImpl implements PaymentService {
 			//Tiquet del restaurant al restaurant 1
 			for(String order : orders){
 				RestClient client = new RestClient();
-				Resource resource = client.resource("http://www.portamu.com/ComandaRest/jaxrs/comandes/file");
+				Resource resource = client.resource(resourceComanda);
 				String[] orderVec = order.split("&");
 				int iterador=0;
 				String begudes="";
@@ -458,6 +460,13 @@ public class PaymentServiceImpl implements PaymentService {
 	}
 
 	// PRIVATE
+	private String getResourceComanda(String entorncomandarest){
+		String resourceComanda ="http://www.portamu.com/ComandaRest/jaxrs/comandes/file";
+		if(entorncomandarest!=null && entorncomandarest.equals(Constants.ENTORN_LOCAL)){
+			resourceComanda="http://localhost/ComandaRest/jaxrs/comandes/file";
+		}
+		return resourceComanda;
+	}
 	private Double getPreuOfComanda( Comandes comanda ) throws ComandaException{
 
 		try {

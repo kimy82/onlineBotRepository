@@ -81,6 +81,7 @@ public class ChartPromocionsAssociadesAction extends ActionSuportOnline{
 		List<PromocioAssociada> promoList = this.promocionsBo.getAllAssociades();
 
 		List<PromocioChart> promoChartList = new ArrayList<PromocioChart>();
+		this.idsPromocions.add(new Basic(null,"Escull promocio"));
 		for (PromocioAssociada promo : promoList) {
 			Basic basic = new Basic();
 			basic.setDescripcio(promo.getNom());

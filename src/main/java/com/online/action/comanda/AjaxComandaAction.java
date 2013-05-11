@@ -150,7 +150,7 @@ public class AjaxComandaAction extends ActionSuportOnlineSession {
 				int numBegudesAddToPromo=1;
 				for(BegudaComanda bgcom : begudaList){
 					if(bgcom.getNumBegudes()!=null &&bgcom.getNumBegudes()>0 && bgcom.getBeguda().getTipus().equals(promo.getTipusBeguda())){
-						if(numBegudesAddToPromo>=promo.getNumBegudes()) break;						
+						if(numBegudesAddToPromo>promo.getNumBegudes()) break;						
 						for(;numBegudesAddToPromo<= promo.getNumBegudes(); numBegudesAddToPromo++){
 							if(bgcom.getNumBegudes()==0)break;
 							bgcom.setNumBegudesPromo(bgcom.getNumBegudesPromo()+1);

@@ -11,9 +11,11 @@ import javax.servlet.ServletOutputStream;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.online.bo.ComandaBo;
+import com.online.bo.MotersBo;
 import com.online.bo.UsersBo;
 import com.online.exceptions.GeneralException;
 import com.online.model.Comandes;
+import com.online.model.Moters;
 import com.online.model.PlatComanda;
 import com.online.pojos.AllComandesTable;
 import com.online.pojos.ComandesTable;
@@ -31,6 +33,7 @@ public class MantenimentComandesAction extends ActionSuportOnline{
 	private static final long	serialVersionUID	= 1L;
 
 	private ComandaBo			comandaBo;
+	private MotersBo			motersBo;
 	private UsersBo				usersBo;
 	private PaymentServiceImpl	paymentService;
 	private ComandaServiceImpl	comandaService;
@@ -56,16 +59,24 @@ public class MantenimentComandesAction extends ActionSuportOnline{
 		String transport = this.request.getSession().getServletContext().getInitParameter("transport");
 		String transportDouble = this.request.getSession().getServletContext().getInitParameter("transport_double");
 		String moterTime = this.request.getSession().getServletContext().getInitParameter("moterTime");
+		String comandarest = this.request.getSession().getServletContext().getInitParameter("comandarest");
 		
 		try {
 
 			out = this.response.getOutputStream();
 			inizializeIdComanda();
 			Comandes comanda = this.comandaBo.load(this.idComanda);
+			
+			if(comanda.getHora()!=null && comanda.getDia()!=null && comanda.getaDomicili()!=null && comanda.getaDomicili()==true){
+				Moters moters = this.motersBo.load(comanda.getHora(), comanda.getDia());
+				moters.setNumeroMotersUsed(moters.getNumeroMotersUsed()==null?1:(moters.getNumeroMotersUsed()+1));
+				this.motersBo.update(moters);
+			}
+			
 			int tempsPreparacio = this.comandaService.calculaTempsPreparacioGlobal(comanda);
 			List<String> orders = this.paymentService.getComandaOrders(comanda, this.comandaService.checkMoreThanOneRestaurant(comanda),transport,transportDouble,moterTime, tempsPreparacio);
-			this.paymentService.sendOrder(true,true, orders);
-			this.paymentService.sendOrder(false,false, orders);
+			this.paymentService.sendOrder(true,true, orders,comandarest);
+			this.paymentService.sendOrder(false,false, orders,comandarest);
 			
 			comanda.setRevisio(false);
 			comanda.setPagada(true);
@@ -349,6 +360,11 @@ public class MantenimentComandesAction extends ActionSuportOnline{
 	public void setComandaService(ComandaServiceImpl comandaService) {
 		this.comandaService = comandaService;
 	}
+
+	public void setMotersBo(MotersBo motersBo) {
+		this.motersBo = motersBo;
+	}
+	
 	
 	
 

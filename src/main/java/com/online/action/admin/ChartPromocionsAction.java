@@ -78,7 +78,7 @@ public class ChartPromocionsAction extends ActionSuportOnline{
 	private String searchInfoANDcreateJSONForPromos(){
 
 		List<Promocio> promoList = this.promocionsBo.getAll();
-
+		this.idsPromocions.add(new Basic(null,"Escull promocio"));
 		List<PromocioChart> promoChartList = new ArrayList<PromocioChart>();
 		for (Promocio promo : promoList) {
 			Basic basic = new Basic();

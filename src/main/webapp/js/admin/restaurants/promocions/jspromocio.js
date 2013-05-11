@@ -104,7 +104,7 @@ function goToPromocio(id){
 					 		$("#importAPartirDe").val(json.importAPartirDe);
 					 		$("#numUses_apd").val(json.numUses);
 					 		if(json.hora==true){
-					 			$("#apd_hora").attr('checked','true');
+					 			$("#adp_hora").attr('checked','true');
 					 		}
 					 		$("#dia").val(json.diaString);
 					 		

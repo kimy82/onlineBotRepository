@@ -218,11 +218,11 @@
 						<td><input class="inputs" type='password' name='j_password' />
 						</td>
 						<td colspan='2'><input name="submit" type="button" class="boton bot" 
-							value="logat" onclick="submitLog()" />
+							value="<s:text name="txt.logatPortam" />" onclick="submitLog()" />
 						</td>
 						<td class="passs"><s:text name="txt.registrate" />:</td>
 						<td><input name="submit" type="button" class="boton bot" 
-							value="registret" onclick="goToRegist()" />
+							value="<s:text name="txt.registratPortam" />" onclick="goToRegist()" />
 						</td>
 					</tr>
 					<tr>

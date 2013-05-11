@@ -17,7 +17,7 @@ function changeHTML(nom){
 	nom = nom.replace(/&#232;/g,'è');		
 	nom = nom.replace(/&#233;/g,'é');		
 	nom = nom.replace(/&#236;/g,'ì');		
-	nom = nom.replace(/&#236;/g,'í');		
+	nom = nom.replace(/&#237;/g,'í');		
 	nom = nom.replace(/&#241;/g,'ñ');		
 	nom = nom.replace(/&#243;/g,'ó');		
 	nom = nom.replace(/&#242;/g,'ò');	

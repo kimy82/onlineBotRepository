@@ -41,10 +41,11 @@ public class PaymentAction extends ActionSuportOnline{
 	public String execute() throws IOException{
 
 		List<String> orders = new ArrayList<String>();
-		DecimalFormat formateador = new DecimalFormat("####.##");
+		DecimalFormat formateador = new DecimalFormat("####");
 		String transport = this.request.getSession().getServletContext().getInitParameter("transport");
 		String transportDouble = this.request.getSession().getServletContext().getInitParameter("transport_double");
 		String moterTime = this.request.getSession().getServletContext().getInitParameter("moterTime");
+		String comandarest = this.request.getSession().getServletContext().getInitParameter("comandarest");
 		
 		
 		setAuthenticationUser();
@@ -124,25 +125,28 @@ public class PaymentAction extends ActionSuportOnline{
 			return ERROR;
 		}
 		
-		if(this.comanda.getHora()!=null && this.comanda.getDia()!=null && this.comanda.getaDomicili()!=null && this.getComanda().getaDomicili()==true){
-			Moters moters = this.motersBo.load(this.comanda.getHora(), this.comanda.getDia());
-			moters.setNumeroMotersUsed(moters.getNumeroMotersUsed()==null?1:(moters.getNumeroMotersUsed()+1));
-			this.motersBo.update(moters);
-		}
+		
 		
 		if (numComandes > 1) {
 
+			if(this.comanda.getHora()!=null && this.comanda.getDia()!=null && this.comanda.getaDomicili()!=null && this.comanda.getaDomicili()==true){
+				Moters moters = this.motersBo.load(this.comanda.getHora(), this.comanda.getDia());
+				moters.setNumeroMotersUsed(moters.getNumeroMotersUsed()==null?1:(moters.getNumeroMotersUsed()+1));
+				this.motersBo.update(moters);
+			}
+			
+			
 			this.comanda.setRevisio(false);
 			this.comanda.setPagada(true);
 			this.comandaBo.update(comanda);
-			this.paymentService.sendOrder(true,true, orders);
-			this.paymentService.sendOrder(true,false, orders);
-			this.paymentService.sendOrder(false,false, orders);
+			this.paymentService.sendOrder(true,true, orders,comandarest);
+			this.paymentService.sendOrder(true,false, orders,comandarest);
+			this.paymentService.sendOrder(false,false, orders,comandarest);
 		} else {
 			this.comanda.setRevisio(true);
 			this.comanda.setPagada(false);
 			this.comandaBo.update(comanda);
-			this.paymentService.sendOrder(true,false, orders);
+			this.paymentService.sendOrder(true,false, orders,comandarest);
 		}
 
 		return SUCCESS;
@@ -158,6 +162,7 @@ public class PaymentAction extends ActionSuportOnline{
 			String transport = this.request.getSession().getServletContext().getInitParameter("transport");
 			String transportDouble = this.request.getSession().getServletContext().getInitParameter("transport_double");
 			String moterTime = this.request.getSession().getServletContext().getInitParameter("moterTime");
+			String comandarest = this.request.getSession().getServletContext().getInitParameter("comandarest");
 			
 			this.request.setAttribute("order", order);
 			this.request.setAttribute("orderId", orderId);
@@ -184,9 +189,9 @@ public class PaymentAction extends ActionSuportOnline{
 					this.motersBo.update(moters);
 				}
 		
-				this.paymentService.sendOrder(true,true, orders);
-				this.paymentService.sendOrder(true,false, orders);
-				this.paymentService.sendOrder(false,false, orders);
+				this.paymentService.sendOrder(true,true, orders,comandarest);
+				this.paymentService.sendOrder(true,false, orders,comandarest);
+				this.paymentService.sendOrder(false,false, orders,comandarest);
 			}
 		}catch(Exception e){
 			e.printStackTrace();
@@ -208,6 +213,7 @@ public class PaymentAction extends ActionSuportOnline{
 		String transport = this.request.getSession().getServletContext().getInitParameter("transport");
 		String transportDouble = this.request.getSession().getServletContext().getInitParameter("transport_double");
 		String moterTime = this.request.getSession().getServletContext().getInitParameter("moterTime");
+		String comandarest = this.request.getSession().getServletContext().getInitParameter("comandarest");
 		
 		setAuthenticationUser();
 		inizilizeComandaId();
@@ -234,9 +240,9 @@ public class PaymentAction extends ActionSuportOnline{
 				moters.setNumeroMotersUsed(moters.getNumeroMotersUsed()==null?1:(moters.getNumeroMotersUsed()+1));
 				this.motersBo.update(moters);
 			}			
-			this.paymentService.sendOrder(true,true, orders);
-			this.paymentService.sendOrder(true,false, orders);
-			this.paymentService.sendOrder(false,false, orders);
+			this.paymentService.sendOrder(true,true, orders, comandarest);
+			this.paymentService.sendOrder(true,false, orders, comandarest);
+			this.paymentService.sendOrder(false,false, orders, comandarest);
 		}
 		return SUCCESS;
 	}
