@@ -230,9 +230,9 @@ public class MantenimentUsuarisAction extends ActionSuportOnline{
 			if (cmd.getPagada() != null && cmd.getPagada() == true) {
 				numComandesRealitzades++;
 			}
-			if (cmd.getTargeta() != null && cmd.getTargeta() == true) {
+			if (cmd.getTargeta() != null &&cmd.getPagada() != null && cmd.getTargeta() == true && cmd.getPagada() == true) {
 				numComandesAmbTargeta++;
-			} else {
+			} else if(cmd.getTargeta() != null && cmd.getPagada() != null && cmd.getTargeta() == false && cmd.getPagada() == true) {
 				numComandesSenseTargeta++;
 			}
 

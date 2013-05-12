@@ -58,6 +58,7 @@ public class WelcomeUserAction extends ActionSuportOnline{
 	private Long				idComanda			= null;
 	private Comandes			comanda				= null;
 	private HoresDTO			horesDTO;
+	private String				nameUser;
 
 	private int					numComandes			= 0;
 	private String				data;
@@ -75,14 +76,20 @@ public class WelcomeUserAction extends ActionSuportOnline{
 	List<Plat>					platListToVote		= new ArrayList<Plat>();
 
 	public String execute(){
-
+		
+		setAuthenticationUser();
+		
+		setUserName();
+		
 		return SUCCESS;
 
 	}
 
 	public String comandesPasades(){
-
-		this.user = getUserFromContext();
+		
+		
+		this.user = getUserFromContext();		
+		setUserName();
 		this.promoListAPartirDe = this.promocionsBo.getAllAPartirDe();
 		this.promocioNumComandes = this.promocionsBo.getAllNumComandes();
 		this.restaurantList = this.restaurantsBo.getAll(true, false, false);
@@ -230,6 +237,17 @@ public class WelcomeUserAction extends ActionSuportOnline{
 	}
 
 	// private methods
+	private void setUserName(){
+		
+		try{
+			
+			this.nameUser = Utils.getNameUser(nameAuth, usersBo);
+			
+		}catch(Exception e){
+			this.nameUser="";
+		}
+		
+	}
 	private void getUserAllInfoFromContext(){
 
 		setAuthenticationUser();
@@ -523,6 +541,14 @@ public class WelcomeUserAction extends ActionSuportOnline{
 
 	public void setRestaurantsBo(RestaurantsBo restaurantsBo) {
 		this.restaurantsBo = restaurantsBo;
-	}	
+	}
+
+	public String getNameUser() {
+		return nameUser;
+	}
+
+	public void setNameUser(String nameUser) {
+		this.nameUser = nameUser;
+	}		
 	
 }

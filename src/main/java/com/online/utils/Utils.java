@@ -259,6 +259,32 @@ public class Utils{
 		return hora;
 	}
 	
+	public static String getHoraDosPunts(String hora){
+		String[] horaArray = hora.split("(?!^)");
+		
+		if(horaArray.length==4){
+			return horaArray[0]+horaArray[1]+":"+horaArray[2]+horaArray[3];
+		}
+		return hora;
+	}
+	
+	
+	public static String getNextHora(String hora){
+		String[] horaArray = hora.split("(?!^)");
+		
+		if(horaArray.length==4){
+			if(horaArray[3].equals("0") && horaArray[2].equals("0")){
+				return horaArray[0]+horaArray[1]+":30";
+			}else{
+				String num = horaArray[0]+horaArray[1];
+				Integer numero = Integer.parseInt(num);
+				return (numero+1)+":00";
+			}
+			
+		}
+		return hora;
+	}
+	
 	public static String createErrorJSON( String error ){
 
 		StringBuffer jsonSB = new StringBuffer("{");

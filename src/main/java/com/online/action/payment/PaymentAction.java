@@ -20,6 +20,7 @@ import com.online.services.impl.ComandaServiceImpl;
 import com.online.services.impl.PaymentServiceImpl;
 import com.online.supplier.extend.ActionSuportOnline;
 import com.online.utils.Constants;
+import com.online.utils.Utils;
 
 @SuppressWarnings("serial")
 public class PaymentAction extends ActionSuportOnline{
@@ -150,6 +151,45 @@ public class PaymentAction extends ActionSuportOnline{
 			this.paymentService.sendOrder(true,true, orders,comandarest);
 			this.paymentService.sendOrder(true,false, orders,comandarest);
 			this.paymentService.sendOrder(false,false, orders,comandarest);
+			
+			if(this.nameAuth!=null){
+				
+				DecimalFormat formateadorDecimals = new DecimalFormat("####.##");
+				
+				Double preu = this.comandaService.getPreuOfComanda(comanda);
+				
+				if(this.comanda.getImportDescomte()!=null && this.comanda.getTipuDescomte()!=null){
+					if(this.comanda.getTipuDescomte().equals(Constants.TIPUS_DESCOMPTE_CENT_1)){
+						preu = preu-((this.comanda.getImportDescomte()*preu)/100);
+					}else if(this.comanda.getTipuDescomte().equals(Constants.TIPUS_DESCOMPTE_AMOUNT_2)){
+						preu = preu-this.comanda.getImportDescomte();
+					}else{
+						
+					}
+				}
+				
+				if(this.comanda.getaDomicili()!=null && this.comanda.getaDomicili()==true){
+					boolean morethanOne =this.comandaService.checkMoreThanOneRestaurant(comanda);
+					if(morethanOne){
+						Double add = Double.parseDouble(this.request.getSession().getServletContext().getInitParameter("transport_double"));
+						preu= preu+add;
+					}else{
+						Double add = Double.parseDouble(this.request.getSession().getServletContext().getInitParameter("transport"));
+						preu= preu+add;
+					}
+				}
+				
+				String app =this.request.getSession().getServletContext().getInitParameter("app");
+				if(this.comanda.getaDomicili()!=null && this.comanda.getaDomicili()==true){
+					this.usersBo.sendEmail("<h1>Gràcies per fer una comanda a PORTAMU</h1><br>El preu total és de:"+formateadorDecimals.format(preu)+"&euro;. <br>La comanda estarà a punt el dia "+this.comanda.getDia()+" cap a les "+Utils.getHoraDosPunts(comanda.getHora())+"-"+Utils.getNextHora(comanda.getHora())+".<br> La direcció d'entrega és:"+this.comanda.getAddress(),this.nameAuth,app,"PORTAMU");
+				}else if(this.comanda.getaDomicili()!=null && this.comanda.getaDomicili()==false){										
+					this.usersBo.sendEmail("<h1>Gràcies per fer una comanda a PORTAMU</h1><br>El preu total és de:"+formateadorDecimals.format(preu)+"&euro;. <br>La comanda estarà a punt en el restaurant el dia "+this.comanda.getDia()+" cap a les "+Utils.getHoraDosPunts(comanda.getHora())+"-"+Utils.getNextHora(comanda.getHora()),this.nameAuth,app,"PORTAMU");
+				}
+
+				
+			}
+				
+			
 		} else {
 			this.comanda.setRevisio(true);
 			this.comanda.setPagada(false);
@@ -205,6 +245,39 @@ public class PaymentAction extends ActionSuportOnline{
 				this.paymentService.sendOrder(true,true, orders,comandarest);
 				this.paymentService.sendOrder(true,false, orders,comandarest);
 				this.paymentService.sendOrder(false,false, orders,comandarest);
+				
+				DecimalFormat formateadorDecimals = new DecimalFormat("####.##");
+
+				Double preu = this.comandaService.getPreuOfComanda(comanda);
+				
+				if(comanda.getImportDescomte()!=null && comanda.getTipuDescomte()!=null){
+					if(comanda.getTipuDescomte().equals(Constants.TIPUS_DESCOMPTE_CENT_1)){
+						preu = preu-((comanda.getImportDescomte()*preu)/100);
+					}else if(comanda.getTipuDescomte().equals(Constants.TIPUS_DESCOMPTE_AMOUNT_2)){
+						preu = preu-comanda.getImportDescomte();
+					}else{
+						
+					}
+				}
+				
+				if(comanda.getaDomicili()!=null && comanda.getaDomicili()==true){
+					boolean morethanOne =this.comandaService.checkMoreThanOneRestaurant(comanda);
+					if(morethanOne){
+						Double add = Double.parseDouble(this.request.getSession().getServletContext().getInitParameter("transport_double"));
+						preu= preu+add;
+					}else{
+						Double add = Double.parseDouble(this.request.getSession().getServletContext().getInitParameter("transport"));
+						preu= preu+add;
+					}
+				}
+				
+				String app =this.request.getSession().getServletContext().getInitParameter("app");
+				if(this.comanda.getaDomicili()!=null && this.comanda.getaDomicili()==true){
+					this.usersBo.sendEmail("<h1>Gràcies per fer una comanda a PORTAMU</h1><br>El preu total és de:"+formateadorDecimals.format(preu)+"&euro;. <br>La comanda estarà a punt el dia "+this.comanda.getDia()+" cap a les "+Utils.getHoraDosPunts(comanda.getHora())+"-"+Utils.getNextHora(comanda.getHora())+".<br> La direcció d'entrega és:"+this.comanda.getAddress(),comanda.getUser().getUsername(),app,"PORTAMU");
+				}else if(this.comanda.getaDomicili()!=null && this.comanda.getaDomicili()==false){									
+					this.usersBo.sendEmail("<h1>Gràcies per fer una comanda a PORTAMU</h1><br>El preu total és de:"+formateadorDecimals.format(preu)+"&euro;. <br>La comanda estarà a punt en el restaurant el dia "+this.comanda.getDia()+" cap a les "+Utils.getHoraDosPunts(comanda.getHora())+"-"+Utils.getNextHora(comanda.getHora()),comanda.getUser().getUsername(),app,"PORTAMU");
+				}
+		
 			}
 		}catch(Exception e){
 			e.printStackTrace();

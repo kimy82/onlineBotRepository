@@ -1,6 +1,7 @@
 package com.online.action.admin;
 
 import java.io.IOException;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -22,6 +23,7 @@ import com.online.pojos.ComandesTable;
 import com.online.services.impl.ComandaServiceImpl;
 import com.online.services.impl.PaymentServiceImpl;
 import com.online.supplier.extend.ActionSuportOnline;
+import com.online.utils.Constants;
 import com.online.utils.Utils;
 import com.opensymphony.xwork2.Action;
 
@@ -60,6 +62,7 @@ public class MantenimentComandesAction extends ActionSuportOnline{
 		String transportDouble = this.request.getSession().getServletContext().getInitParameter("transport_double");
 		String moterTime = this.request.getSession().getServletContext().getInitParameter("moterTime");
 		String comandarest = this.request.getSession().getServletContext().getInitParameter("comandarest");
+		DecimalFormat formateador = new DecimalFormat("####.##");
 		
 		try {
 
@@ -81,6 +84,37 @@ public class MantenimentComandesAction extends ActionSuportOnline{
 			comanda.setRevisio(false);
 			comanda.setPagada(true);
 			this.comandaBo.update(comanda);
+			
+			
+			Double preu = this.comandaService.getPreuOfComanda(comanda);
+			
+			if(comanda.getImportDescomte()!=null && comanda.getTipuDescomte()!=null){
+				if(comanda.getTipuDescomte().equals(Constants.TIPUS_DESCOMPTE_CENT_1)){
+					preu = preu-((comanda.getImportDescomte()*preu)/100);
+				}else if(comanda.getTipuDescomte().equals(Constants.TIPUS_DESCOMPTE_AMOUNT_2)){
+					preu = preu-comanda.getImportDescomte();
+				}else{
+					
+				}
+			}
+			
+			if(comanda.getaDomicili()!=null && comanda.getaDomicili()==true){
+				boolean morethanOne =this.comandaService.checkMoreThanOneRestaurant(comanda);
+				if(morethanOne){
+					Double add = Double.parseDouble(this.request.getSession().getServletContext().getInitParameter("transport_double"));
+					preu= preu+add;
+				}else{
+					Double add = Double.parseDouble(this.request.getSession().getServletContext().getInitParameter("transport"));
+					preu= preu+add;
+				}
+			}
+			
+			String app =this.request.getSession().getServletContext().getInitParameter("app");
+			if(comanda.getaDomicili()!=null && comanda.getaDomicili()==true){
+				this.usersBo.sendEmail("<h1>Gràcies per fer una comanda a PORTAMU</h1><br>El preu total és de:"+formateador.format(preu)+"&euro;. <br>La comanda estarà a punt el dia "+comanda.getDia()+" cap a les "+Utils.getHoraDosPunts(comanda.getHora())+"-"+Utils.getNextHora(comanda.getHora())+".<br> La direcció d'entrega és:"+comanda.getAddress(),comanda.getUser().getUsername(),app,"PORTAMU");
+			}else if(comanda.getaDomicili()!=null && comanda.getaDomicili()==false){									
+				this.usersBo.sendEmail("<h1>Gràcies per fer una comanda a PORTAMU</h1><br>El preu total és de:"+formateador.format(preu)+"&euro;. <br>La comanda estarà a punt en el restaurant el dia "+comanda.getDia()+" cap a les "+Utils.getHoraDosPunts(comanda.getHora())+"-"+Utils.getNextHora(comanda.getHora()),comanda.getUser().getUsername(),app,"PORTAMU");
+			}			
 
 		} catch (NumberFormatException e) {
 			json = Utils.createErrorJSON("error in ajax action: wrong params");
@@ -107,7 +141,7 @@ public class MantenimentComandesAction extends ActionSuportOnline{
 			inizializeIdComanda();
 			Comandes comanda = this.comandaBo.load(this.idComanda);
 			String app =this.request.getSession().getServletContext().getInitParameter("app");
-			this.usersBo.sendEmail(resource.getString("txt.info.comanda.no.procesada"), comanda.getUser().getUsername(),app);
+			this.usersBo.sendEmail(resource.getString("txt.info.comanda.no.procesada"), comanda.getUser().getUsername(),app,"PORTAMU");
 			this.comandaBo.delete(comanda);
 
 		} catch (NumberFormatException e) {

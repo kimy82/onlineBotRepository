@@ -18,7 +18,7 @@ public interface UsersBo {
 	
 	void delete(Users user) throws BOException;
 	
-	void sendEmail(String txt, String email,String app) throws BOException; 
+	void sendEmail(String txt, String email,String app,String subject) throws BOException; 
 	
 	void sendEmails(String txt, String[] emails,String app) throws BOException;
 	

@@ -592,8 +592,8 @@ public class WelcomeComandaAction extends ActionSuportOnlineSession {
 
 		inizilizeComandaId();
 		inizializeData();
-		getUserAllInfoFromContext();
-
+		getUserAllInfoFromContext();		
+		setUserName();
 		this.comanda = this.comandaBo.load(this.idComanda);
 		
 		horesDTO = new HoresDTO();
@@ -623,9 +623,8 @@ public class WelcomeComandaAction extends ActionSuportOnlineSession {
 
 		}
 
-		if (this.restaurantList == null || this.restaurantList.isEmpty()) {
-			this.restaurantList = this.restaurantsBo.getAll(true, false, false);
-		}
+		
+		this.restaurantList = this.restaurantsBo.getAll(true, false, false);
 
 		this.morethanone = this.comandaService.checkMoreThanOneRestaurant(comanda);
 		this.numPlats = this.comandaService.getNumPlats(this.platComandaList);

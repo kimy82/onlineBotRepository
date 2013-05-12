@@ -59,7 +59,7 @@ public class LoginAction extends ActionSuportOnlineSession{
 	public String registerUser(){
 
 		Users user = new Users();
-
+		String app =this.request.getSession().getServletContext().getInitParameter("app");
 		try {
 
 			user.setPassword(Utils.createSHA(this.password));
@@ -70,6 +70,8 @@ public class LoginAction extends ActionSuportOnlineSession{
 			user.setIndicacions(this.altres);
 			
 			this.usersBo.save(user);
+			
+			this.usersBo.sendEmail("<h1>Gràcies per registrar-te a PORTAMU</h1><br> Ja pots fer les teves comandes.",email,app,"PORTAMU");
 			
 			authenticateUserAndSetSession(user.getUsername(), this.password,this.request);
 
@@ -121,7 +123,7 @@ public class LoginAction extends ActionSuportOnlineSession{
 			}
 			String app =this.request.getSession().getServletContext().getInitParameter("app");
 			try{
-			this.usersBo.sendEmail("<h1>PORTAMU Recover account</h1><br>your new password is:" + password ,username,app);
+			this.usersBo.sendEmail("<h1>PORTAMU Recover account</h1><br>your new password is:" + password ,username,app,"PORTAMU recuperar password");
 			}catch(Exception e){
 				e.printStackTrace();
 				throw e;

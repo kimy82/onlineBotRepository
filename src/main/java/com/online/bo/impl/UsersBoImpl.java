@@ -94,10 +94,10 @@ public class UsersBoImpl implements UsersBo{
 		this.usersDao.deleteEmailToDB(id);
 	}
 
-	public void sendEmail( String txt, String email,String app) throws BOException{
+	public void sendEmail( String txt, String email,String app,String subject) throws BOException{
 
 		try {
-			this.sendingEmailService.sendEmail(txt, email, app);
+			this.sendingEmailService.sendEmail(txt, email, app, subject);
 		} catch (EmailException e) {
 			throw new BOException(e, "error en el Servei de mail");
 		}

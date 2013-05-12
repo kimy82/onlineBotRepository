@@ -19,7 +19,7 @@ public class SendingEmailServiceImpl implements SendingEmailService{
 	
 	private ClauBo				clauBo;
 	
-	public void sendEmail(String textbody, String email,String app) throws EmailException{
+	public void sendEmail(String textbody, String email,String app,String subject) throws EmailException{
 
 		final String username = "hola@portamu.com";
 		final String password = clauBo.getClau("email").getCode();
@@ -45,7 +45,7 @@ public class SendingEmailServiceImpl implements SendingEmailService{
 			Message message = new MimeMessage(session);
 			message.setFrom(new InternetAddress("hola@portamu.com"));
 			message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(email));
-			message.setSubject("PORTAMU Recover password");
+			message.setSubject(subject);
 			message.setContent(createFooter(app,textbody), "text/html");
  
 			Transport.send(message);

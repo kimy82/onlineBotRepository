@@ -931,7 +931,7 @@ function checkPromoVibility(value){
 		  data: data,
 		  success: function(json){	
 			  	if(json!=null && json.error!=null){	       				
-     			 errorOnline.error("HO SENTIM, HI HA HAGUT UN ERROR:"+json.error);	
+     			 
      			}else{     	
      				if(json!=null && json.alert!=null ){
      					$("#dialog_promo ul#visp").html(json.alert);
@@ -1270,11 +1270,11 @@ function addPromoImport(importDescompte, tipusDescompte,id,tipus){
 	if(tipusDescompte=='1' || tipusDescompte=='C1' ){
 		var preuF = parseFloat(preu)*((100-parseFloat(importDescompte))/100);
 		$("#promoImp").text("-"+importDescompte+" %");
-		$("#labelpreutotalPromo").text(preu+" (-"+importDescompte+" %) ="+parseFloat(preuF).toFixed(2));
+		$("#labelpreutotalPromo").text(parseFloat(preuF).toFixed(2));
 	}else{
 		var preuF = parseFloat(preu)-parseFloat(importDescompte);
 		$("#promoImp").text("-"+importDescompte+" Euros");
-		$("#labelpreutotalPromo").text(preu+" (-"+importDescompte+" Euros) ="+parseFloat(preuF).toFixed(2));
+		$("#labelpreutotalPromo").text(parseFloat(preuF).toFixed(2));
 	}
 	
 	$("#checkPromocionsDisponibles").hide();
