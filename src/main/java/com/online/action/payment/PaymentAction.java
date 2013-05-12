@@ -133,7 +133,7 @@ public class PaymentAction extends ActionSuportOnline{
 			return ERROR;
 		}
 		
-		
+	try{	
 		
 		if (numComandes > 1) {
 
@@ -156,7 +156,12 @@ public class PaymentAction extends ActionSuportOnline{
 			this.comandaBo.update(comanda);
 			this.paymentService.sendOrder(true,false, orders,comandarest);
 		}
-
+		
+	} catch (Exception e) {
+		e.printStackTrace();
+		return ERROR;
+	}
+	
 		return SUCCESS;
 
 	}
