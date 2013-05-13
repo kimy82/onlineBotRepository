@@ -38,7 +38,7 @@ public class ChartPromocionsAction extends ActionSuportOnline{
 
 	public String execute(){
 
-		String jsonChart = Utils.escapeUTF(searchInfoANDcreateJSONForPromos());
+		String jsonChart = searchInfoANDcreateJSONForPromos();
 		this.request.setAttribute("dataChart", jsonChart);
 		return SUCCESS;
 	}
@@ -82,7 +82,7 @@ public class ChartPromocionsAction extends ActionSuportOnline{
 		List<PromocioChart> promoChartList = new ArrayList<PromocioChart>();
 		for (Promocio promo : promoList) {
 			Basic basic = new Basic();
-			basic.setDescripcio(promo.getNom());
+			basic.setDescripcio(Utils.escapeUTF(promo.getNom()));
 			basic.setId(promo.getId());
 			this.idsPromocions.add(basic);
 			PromocioChart promoChart = new PromocioChart();

@@ -48,11 +48,88 @@ public class Utils{
 		desc = desc.replaceAll("·", "&#183;");
 		desc = desc.replaceAll("ï", "&#239;");
 		desc = desc.replaceAll("Ï", "&#207;");
+	
 		
 	 	
 		return desc;
 
 	}
+	
+	public static String escapeUTFOnlyWords(String desc){
+		desc = desc.replaceAll("À", "&#192;");
+		desc = desc.replaceAll("Á", "&#193;");
+		desc = desc.replaceAll("È", "&#200;");
+		desc = desc.replaceAll("É", "&#201;");		
+		desc = desc.replaceAll("Ì", "&#204;");
+		desc = desc.replaceAll("Í", "&#205;");
+		desc = desc.replaceAll("Ñ", "&#209;");
+		desc = desc.replaceAll("Ò", "&#210;");
+		desc = desc.replaceAll("Ó", "&#211;");
+		desc = desc.replaceAll("Ù", "&#217;");
+		desc = desc.replaceAll("Ú", "&#218;");
+		desc = desc.replaceAll("Ü", "&#220;");		
+		desc = desc.replaceAll("à", "&#224;");
+		desc = desc.replaceAll("á", "&#225;");
+		desc = desc.replaceAll("ç", "&#231;");
+		desc = desc.replaceAll("è", "&#232;");
+		desc = desc.replaceAll("é", "&#233;");
+		desc = desc.replaceAll("ì", "&#236;");
+		desc = desc.replaceAll("í", "&#237;");		
+		desc = desc.replaceAll("ñ", "&#241;");
+		desc = desc.replaceAll("ó", "&#243;");
+		desc = desc.replaceAll("ò", "&#242;");
+		desc = desc.replaceAll("ù", "&#249;");
+		desc = desc.replaceAll("ú", "&#250;");
+		desc = desc.replaceAll("ü", "&#252;");
+		desc = desc.replaceAll("í", "&#236;");
+		desc = desc.replaceAll("·", "&#183;");
+		desc = desc.replaceAll("ï", "&#239;");
+		desc = desc.replaceAll("Ï", "&#207;");
+		desc = desc.replaceAll("\"", "&#34;");
+		desc = desc.replaceAll("&", "&#38;");
+		
+	 	
+		return desc;
+
+	}
+	
+	public static String decodeUTFONlyWords(String desc){
+		
+		desc = desc.replaceAll("#192;", "À");
+		desc = desc.replaceAll("#193;", "Á");
+		desc = desc.replaceAll("#200;", "È");
+		desc = desc.replaceAll("#201;", "É");		
+		desc = desc.replaceAll("#204;", "Ì");
+		desc = desc.replaceAll("#205;", "Í");
+		desc = desc.replaceAll("#209;", "Ñ");
+		desc = desc.replaceAll("#210;", "Ò");
+		desc = desc.replaceAll("#211;", "Ó");
+		desc = desc.replaceAll("#217;", "Ù");
+		desc = desc.replaceAll("#218;", "Ú");
+		desc = desc.replaceAll("#220;", "Ü");
+		desc = desc.replaceAll("#224;", "à");
+		desc = desc.replaceAll("#225;", "á");
+		desc = desc.replaceAll("#231;", "ç");
+		desc = desc.replaceAll("#232;", "è");
+		desc = desc.replaceAll("#233;", "é");
+		desc = desc.replaceAll("#236;", "ì");
+		desc = desc.replaceAll("#237;", "í");
+		desc = desc.replaceAll("#241;", "ñ");
+		desc = desc.replaceAll("#243;", "ó");
+		desc = desc.replaceAll("#242;", "ò");
+		desc = desc.replaceAll("#249;", "ù");
+		desc = desc.replaceAll("#250;", "ú");
+		desc = desc.replaceAll("#252;", "ü");
+		desc = desc.replaceAll("#236;", "í");
+		desc = desc.replaceAll("#183;", ".");
+		desc = desc.replaceAll("#239;", "ï");
+		desc = desc.replaceAll("#207;", "Ï");
+		desc = desc.replaceAll("#34;", "\"");
+		desc = desc.replaceAll("#38;", "&");
+		
+		return desc;
+	}
+	
 	public static String decodeUTF(String desc){
 		
 		desc = desc.replaceAll("#192;", "À");

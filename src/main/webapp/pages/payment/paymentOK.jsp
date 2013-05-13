@@ -169,11 +169,10 @@ margin-top:-90px;
 <c:import url="/pages/includes/endPage.jsp" />
 <script type="text/javascript">
 var hora = window.localStorage.getItem("comanda.hora");
-document.getElementById("hora").innerHTML=hora;
+document.getElementById("hora").innerHTML=" "+getHoraDosPunts(hora)+"-"+getNextHora(hora)+" ";
 var adre = window.localStorage.getItem("comanda.address")
-document.getElementById("adre").innerHTML=adre;
+document.getElementById("adre").innerHTML=" "+getAddressFormat(adre)+" ";
 </script>
-
 <script src="<c:url value='/js/jsdivlogin.min.js' />" type="text/javascript"></script>
 <script src="<c:url value='/js/auxiliars/jsauxiliars.js' />" type="text/javascript"></script>
 </body>

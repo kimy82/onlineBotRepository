@@ -161,7 +161,7 @@ public class MantenimentUsuarisAction extends ActionSuportOnline{
 		try {
 			out = this.response.getOutputStream();
 			inizializeParamTODeleteUser();
-			json = Utils.escapeUTF(searchInfoANDcreateJSONForInfoUsuaris());
+			json = searchInfoANDcreateJSONForInfoUsuaris();
 		} catch (NumberFormatException e) {
 			json = Utils.createErrorJSONForDataTable("error in ajax action: wrong params", this.sEcho);
 		} catch (Exception e) {
@@ -184,7 +184,7 @@ public class MantenimentUsuarisAction extends ActionSuportOnline{
 		try {
 			out = this.response.getOutputStream();
 			inizializeTableParams();
-			json = Utils.escapeUTF(searchInfoANDcreateJSONForUsuaris());
+			json = searchInfoANDcreateJSONForUsuaris();
 		} catch (NumberFormatException e) {
 			json = Utils.createErrorJSONForDataTable("error in ajax action: wrong params", this.sEcho);
 		} catch (Exception e) {
@@ -266,7 +266,7 @@ public class MantenimentUsuarisAction extends ActionSuportOnline{
 
 			UsersTable usersTable = new UsersTable();
 			BeanUtils.copyProperties(users, usersTable);
-			usersTable.setUsername("<a href=\"#\" onclick=\"infoUser(" + users.getId() + ")\" >" + users.getUsername() + "</a>");
+			usersTable.setUsername("<a href=\"#\" onclick=\"infoUser(" + users.getId() + ")\" >" + Utils.escapeUTF(users.getUsername()) + "</a>");
 			usersTable.setAccio("<a href=\"#\" onclick=\"deleteUser(" + users.getId() + ")\" ><img src=\"../images/delete.png\"></a>");
 			subusersTableList.add(usersTable);
 		}

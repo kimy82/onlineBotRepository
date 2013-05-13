@@ -623,7 +623,7 @@ public class WelcomeComandaAction extends ActionSuportOnlineSession {
 
 		}
 
-		
+		this.dataAvui = Utils.formatDate2(new Date());
 		this.restaurantList = this.restaurantsBo.getAll(true, false, false);
 
 		this.morethanone = this.comandaService.checkMoreThanOneRestaurant(comanda);

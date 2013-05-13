@@ -79,7 +79,7 @@ public class FinalComandaAction extends ActionSuportOnline{
 				this.comanda.setTargeta(Boolean.valueOf(targeta));
 				this.comanda.setPagada(false);
 				this.comanda.setAddress(this.address);
-				this.comanda.setObservacions(Utils.decodeUTF(this.indicacions));
+				this.comanda.setObservacions(Utils.decodeUTFONlyWords(this.indicacions));
 				if (this.comanda.getUser() == null) {					
 					this.comanda.setUser(user);
 				}

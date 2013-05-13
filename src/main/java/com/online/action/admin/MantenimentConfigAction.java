@@ -140,24 +140,31 @@ public class MantenimentConfigAction extends ActionSuportOnline{
 		if (setconfig.isEmpty())
 			return;
 
-		boolean oneObert = false;
+
+		Date lastClosed=null;
 		StringBuffer datasClosedSB = new StringBuffer("");
 		for (ConfigRestaurant cnf : setconfig) {
-			if (cnf.isObert())
-				oneObert = true;
-			if (!cnf.isObert())
+			if (!cnf.isObert()){
 				datasClosedSB.append(Utils.formatDate2(cnf.getData()));
+				lastClosed=cnf.getData();
+			}
+				
+				
 		}
 
 		String datasClosed = datasClosedSB.toString();
-		if (!oneObert) {
+		if(datasClosed.equals(""))
+			return;
+		
 			Calendar calendar = Calendar.getInstance();
 			boolean continueLoop = true;
 			int i = 0;
+			int day = calendar.get(Calendar.DAY_OF_YEAR);
+			
 			while (continueLoop) {
-
-				calendar.add(Calendar.DAY_OF_YEAR, i);
-				Date dataToCheck = calendar.getTime();
+				Calendar calendarToCheck = Calendar.getInstance();
+				calendarToCheck.set(Calendar.DAY_OF_YEAR, day+i);
+				Date dataToCheck = calendarToCheck.getTime();
 				i++;
 				if (!datasClosed.contains(Utils.formatDate2(dataToCheck))) {
 
@@ -167,12 +174,31 @@ public class MantenimentConfigAction extends ActionSuportOnline{
 					configRestToSave.setHores(this.configRestaurant.getHores());
 					configRestToSave.setIdRestaurant(restaurantBis.getId());
 
-					saveConfig(restaurantBis, dataToCheck, configRestToSave);
+					saveConfig(restaurantBis, dataToCheck, configRestToSave);									
+				}
+				if(lastClosed==null){
+					continueLoop = false;
+				}
+				
+				if(Utils.formatDate2(dataToCheck).equals(Utils.formatDate2(lastClosed))){
+					Calendar lastObert = Calendar.getInstance();
+					lastObert.setTime(lastClosed);
+					int dayOfYear = lastObert.get(Calendar.DAY_OF_YEAR);
+					lastObert.set(Calendar.DAY_OF_YEAR, dayOfYear+1);
+					
+					ConfigRestaurant configRestToSave = new ConfigRestaurant();
+					configRestToSave.setData(lastObert.getTime());
+					configRestToSave.setObert(true);
+					configRestToSave.setHores(this.configRestaurant.getHores());
+					configRestToSave.setIdRestaurant(restaurantBis.getId());
+
+					saveConfig(restaurantBis, lastObert.getTime(), configRestToSave);	
+					
 					continueLoop = false;
 				}
 			}
 
-		}
+		
 	}
 
 	private void saveConfig( Restaurant restaurant, Date date, ConfigRestaurant configRestToSave ){

@@ -543,6 +543,14 @@ function checkComandaJS(){
 		return '#'+c.charCodeAt(0)+';';
 	});
 	
+	indicacions = indicacions.replace(/"/g, function(c) {
+		return '#34;';
+	});
+
+	indicacions = indicacions.replace(/&/g, function(c) {
+		return '#38;';
+	});
+	
 	if(plats<=0){
 		alertOnline.alertes(initTxtPromos.txtnoplats);
 		return;

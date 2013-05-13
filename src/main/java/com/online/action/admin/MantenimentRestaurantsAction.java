@@ -162,7 +162,7 @@ public class MantenimentRestaurantsAction extends ActionSuportOnline{
 		try {
 			out = this.response.getOutputStream();
 			inizializeTableParams();
-			json = Utils.escapeUTF(searchInfoANDcreateJSONForRestaurants());
+			json = searchInfoANDcreateJSONForRestaurants();
 			
 		} catch (NumberFormatException e) {
 			json = Utils.createErrorJSONForDataTable("error in ajax action: wrong params", this.sEcho);
@@ -188,7 +188,7 @@ public class MantenimentRestaurantsAction extends ActionSuportOnline{
 			inizializeTableParams();
 			this.idRestaurant = (request.getParameter("id") != null && !request.getParameter("id").equals("")) ? Integer.parseInt(request
 					.getParameter("id")) : 1;
-			json = Utils.escapeUTF(searchInfoANDcreateJSONForPlats());
+			json = searchInfoANDcreateJSONForPlats();
 		} catch (NumberFormatException e) {
 			json = Utils.createErrorJSONForDataTable("error in ajax action: wrong params", this.sEcho);
 		} catch (Exception e) {
@@ -254,7 +254,7 @@ public class MantenimentRestaurantsAction extends ActionSuportOnline{
 
 		List<RestaurantTable> subrestaurantTableList = new ArrayList<RestaurantTable>();
 		for (Restaurant restaurant : subRestaurantList) {
-			restaurant.setNom("<a href='#' onclick='showDivRestaurant(this.id)' id='" + restaurant.getId() + "' >" + restaurant.getNom()
+			restaurant.setNom("<a href='#' onclick='showDivRestaurant(this.id)' id='" + restaurant.getId() + "' >" + Utils.escapeUTF(restaurant.getNom())
 					+ "</a>");
 			RestaurantTable restaurantTable = new RestaurantTable();
 			BeanUtils.copyProperties(restaurant, restaurantTable);
@@ -281,7 +281,7 @@ public class MantenimentRestaurantsAction extends ActionSuportOnline{
 			List<Plat> subPlatList = platList.subList(inici, ((inici + lenght) < platList.size()) ? (inici + lenght) : platList.size());
 			List<PlatTable> subPlatTableList = new ArrayList<PlatTable>();
 			for (Plat plat : subPlatList) {
-				plat.setNom("<a href='#' onclick='goToPlatInfo(this.id)' id='" + plat.getId() + "' >" + plat.getNom() + "</a>");
+				plat.setNom("<a href='#' onclick='goToPlatInfo(this.id)' id='" + plat.getId() + "' >" +Utils.escapeUTF( plat.getNom()) + "</a>");
 				PlatTable platTable = new PlatTable();
 				BeanUtils.copyProperties(plat, platTable);
 				platTable.setAccio("<a href=\"#\" onclick=\"deletePlat(" + plat.getId() + ")\" ><img src=\"../images/delete.png\"></a>");
