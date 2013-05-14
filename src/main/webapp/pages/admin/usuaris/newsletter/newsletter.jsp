@@ -13,7 +13,7 @@
 	<link href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/base/jquery-ui.css" rel="stylesheet" type="text/css" /> 
 	<title><s:text name="txt.newsletter.title" /></title>
 </head>
-<body>
+<body onload="inicio()" >
 <c:import url="/pages/includes/headerContext.jsp" />
 <div class="content">
 	<div class="container">
@@ -44,10 +44,12 @@
 				<textarea cols="100" rows="30" id="mytextbox"></textarea>
 			</div>				
 		</div>
+		
 	</div>
 </div>
 </div>
 </div>	
+<c:import url="/pages/includes/waiting.jsp"/>
 <script type="text/javascript" src="<c:url value='/js/jsnewsletter.admin.min.js' />"></script>
 <script type="text/javascript">
 $(document).ready(function(){

@@ -183,7 +183,7 @@ public class PaymentAction extends ActionSuportOnline{
 				if(this.comanda.getaDomicili()!=null && this.comanda.getaDomicili()==true){
 					this.usersBo.sendEmail("<h1>Gràcies per fer una comanda a PORTAMU</h1><br>El preu total és de:"+formateadorDecimals.format(preu)+"&euro;. <br>La comanda estarà a punt el dia "+this.comanda.getDia()+" cap a les "+Utils.getHoraDosPunts(comanda.getHora())+"-"+Utils.getNextHora(comanda.getHora())+".<br> La direcció d'entrega és:"+this.comanda.getAddress(),this.nameAuth,app,"PORTAMU");
 				}else if(this.comanda.getaDomicili()!=null && this.comanda.getaDomicili()==false){										
-					this.usersBo.sendEmail("<h1>Gràcies per fer una comanda a PORTAMU</h1><br>El preu total és de:"+formateadorDecimals.format(preu)+"&euro;. <br>La comanda estarà a punt en el restaurant el dia "+this.comanda.getDia()+" cap a les "+Utils.getHoraDosPunts(comanda.getHora())+"-"+Utils.getNextHora(comanda.getHora()),this.nameAuth,app,"PORTAMU");
+					this.usersBo.sendEmail("<h1>Gràcies per fer una comanda a PORTAMU</h1><br>El preu total és de:"+formateadorDecimals.format(preu)+"&euro;. <br>La comanda estarà a punt en el restaurant el dia "+this.comanda.getDia()+" cap a les "+Utils.getHoraDosPunts(comanda.getHora())+"-"+Utils.getNextHora(comanda.getHora())+".<br> La direcció del restaurant  és:"+this.comanda.getAddress(),this.nameAuth,app,"PORTAMU");
 				}
 
 				

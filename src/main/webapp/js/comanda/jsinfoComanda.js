@@ -239,10 +239,12 @@ function payComanda(){
 				var subdata = checkPromoImport();
 				var data ="idComanda="+comanda + subdata;
 				var addres = window.localStorage.getItem("comanda.address");
+				var addresRestaurant = window.localStorage.getItem("restaurant.address");
 				var hora = window.localStorage.getItem("comanda.hora");
 				window.localStorage.clear();
 				window.localStorage.setItem("comanda.address",addres);
 				window.localStorage.setItem("comanda.hora",hora);
+				window.localStorage.setItem("restaurant.address",addresRestaurant);
 				window.location.href="/"+context+"/payment/paymentEntry.action?"+data;
 		}		
 }	
@@ -502,6 +504,7 @@ function addRecollir(){
 	  				 }
 	       			 $("#targetaContrarembols").val("targeta");
 	       		     $("#address_restaurant").text(json.address);
+	       		     window.localStorage.setItem("restaurant.address",json.address);
 	       			 $("#arecollir_div").show('slow');
 	       		  }				
 	  		  },
@@ -578,6 +581,7 @@ function checkComandaJS(){
 			address =  address.replace(/\n/g, "");
 			window.localStorage.setItem("comanda.address",address);
 		}else{
+			address=  window.localStorage.getItem("restaurant.address");
 			window.localStorage.removeItem("comanda.address");
 		}
 		

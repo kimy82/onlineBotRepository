@@ -6,6 +6,15 @@ function InitTableParams(txtconfirmsending, txtsent){
 	this.txtsent=txtsent;
 }
 
+function inicio(){
+	$("#divCargando").hide();
+	$("#divCargandoImg").hide();
+}
+function wait(){
+	$("#divCargando").show();
+	$("#divCargandoImg").show();
+}
+
 function send(){
 	
 	 var where_to= confirm(initTableParams.txtconfirmsending);
@@ -14,7 +23,7 @@ function send(){
 		    return;
 	  }
 	  else {			  				
-		  
+		  	wait();
 			var target = $('#target').val();
 			var txt = $('#mytextbox').val();
 			
@@ -38,6 +47,7 @@ function send(){
 				  dataType: 'json',
 				  data: data,
 				  success: function(json){	
+					  inicio();
 					  if(json!=null && json.error!=null){
 		   				$("#errorsajaxlabel").text(json.error);
 		   				$("#errorsajax").show();
