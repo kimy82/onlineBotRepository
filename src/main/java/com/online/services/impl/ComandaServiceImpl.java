@@ -1,6 +1,7 @@
 package com.online.services.impl;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.HashSet;
@@ -152,6 +153,9 @@ public class ComandaServiceImpl implements ComandaService{
 						nextHour = Integer.parseInt(String.valueOf(hour + 2) + "00");
 					}
 				}
+				
+				Arrays.sort(horesArray);
+				
 				for (String hor : horesArray) {
 					if (hor.equals("")) {
 

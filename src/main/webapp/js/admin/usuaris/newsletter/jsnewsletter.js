@@ -14,8 +14,24 @@ function send(){
 		    return;
 	  }
 	  else {			  				
+		  
 			var target = $('#target').val();
-			data ="txt="+$('#mytextbox').val()+"&target="+target;
+			var txt = $('#mytextbox').val();
+			
+			txt = txt.replace(/[\u00A0-\u00FF]/g, function(c) {
+				return '#'+c.charCodeAt(0)+';';
+			});
+			
+			txt = txt.replace(/"/g, function(c) {
+				return '#34;';
+			});
+
+			txt = txt.replace(/&/g, function(c) {
+				return '#38;';
+			});
+			
+			
+			data ="txt="+txt+"&target="+target;
 			$.ajax({
 				  type: "POST",
 				  url: '/'+context+'/admin/ajaxSendLetterAction.action',

@@ -85,18 +85,20 @@ public class SendingEmailServiceImpl implements SendingEmailService{
 						  });
 
 		try {
-
-			Message message = new MimeMessage(session);
-			message.setFrom(new InternetAddress("hola@portamu.com"));
-			message.setRecipients(Message.RecipientType.BCC,addressTo);
 			
-			message.setSubject("News from PORTAMU");
-			
-			message.setContent(createFooter(app,textbody), "text/html");
- 
-			Transport.send(message);
- 
-			System.out.println("Done");
+			for(String email : emails){
+				
+				Message message = new MimeMessage(session);
+				message.setFrom(new InternetAddress("hola@portamu.com"));
+				message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(email));
+				//message.setRecipients(Message.RecipientType.BCC,addressTo);
+				
+				message.setSubject("News from PORTAMU");
+				
+				message.setContent(createFooter(app,textbody), "text/html");
+	 
+				Transport.send(message);
+			}
 
 		} catch (MessagingException e) {
 			throw new EmailException(e,e.getMessage());

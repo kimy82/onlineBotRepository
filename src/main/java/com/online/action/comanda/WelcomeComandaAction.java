@@ -751,7 +751,7 @@ public class WelcomeComandaAction extends ActionSuportOnlineSession {
 		this.aDomicili = (request.getParameter("aDomicili") == null || request
 				.getParameter("aDomicili").equals("")) ? false : Boolean
 				.parseBoolean(request.getParameter("aDomicili"));
-		if (this.data == null) {
+		if (this.data == null || this.data.equals("null") || this.data.equals("")) {
 			this.data=Calendar.getInstance().get(Calendar.YEAR)+"-"+(Calendar.getInstance().get(Calendar.MONTH)+1)+"-"+Calendar.getInstance().get(Calendar.DAY_OF_MONTH);			
 		}
 	}

@@ -46,7 +46,7 @@ function getAddressFormat(address){
 	var addressFormated = address;
 	if(addressArray.length==5){
 		
-		addressFormated = addressArray[0]+", Num."+addressArray[1]+", P. "+addressArray[2]+", Pis. "+addressArray[3]+", C.P. "+addressArray[4];
+		addressFormated = addressArray[0]+", Num."+addressArray[1]+", Pis. "+addressArray[2]+", P. "+addressArray[3]+", C.P. "+addressArray[4];
 		
 	}
 	return addressFormated;
