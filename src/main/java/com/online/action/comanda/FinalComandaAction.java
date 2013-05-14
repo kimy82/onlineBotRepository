@@ -78,7 +78,12 @@ public class FinalComandaAction extends ActionSuportOnline{
 				this.comanda.setaDomicili(Boolean.valueOf(aDomicili));
 				this.comanda.setTargeta(Boolean.valueOf(targeta));
 				this.comanda.setPagada(false);
-				this.comanda.setAddress(this.address);
+				if(this.address!=null){
+					this.comanda.setAddress(Utils.decodeUTFONlyWords(this.address));
+				}else{
+					this.comanda.setAddress(this.address);
+				}
+				
 				this.comanda.setObservacions(Utils.decodeUTFONlyWords(this.indicacions));
 				if (this.comanda.getUser() == null) {					
 					this.comanda.setUser(user);

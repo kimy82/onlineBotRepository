@@ -565,6 +565,8 @@ function checkComandaJS(){
 		}
 		var adomicili =false;
 		var address = $("#comandaddress").val();
+		
+		
 		if($("#adomicili").is(':checked')){
 			
 			adomicili=true;			
@@ -591,6 +593,11 @@ function checkComandaJS(){
 		}
 		var promoId = window.localStorage.getItem("comanda.promo.id");
 		var tipusPromo = window.localStorage.getItem("comanda.promo.tipus");
+		if(address!=''){
+			address = address.replace(/[\u00A0-\u00FF]/g, function(c) {
+				return '#'+c.charCodeAt(0)+';';
+			});	
+		}		
 		
 		$("#chargeBar").show();
 		var data ="idComanda="+comanda+"&dia="+dia+"&hora="+hora+"&aDomicili="+adomicili+"&targeta="+targeta+"&address="+address+"&promoId="+promoId+"&tipusPromo="+tipusPromo+"&indicacions="+indicacions;
