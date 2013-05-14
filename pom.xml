@@ -156,7 +156,7 @@
 			<artifactId>tools</artifactId>
 			<version>1.5</version>
 			<scope>system</scope>
-			<systemPath>C:/Program Files/Java/jdk1.7.0_02/lib/tools.jar</systemPath>
+			<systemPath>C:/Program Files (x86)/Java/jdk1.6.0_17/lib/tools.jar</systemPath>
 		</dependency>
 		<dependency>
 			<groupId>javax.mail</groupId>
@@ -770,6 +770,7 @@
 							<cssFinalFile>admin.newlet.css</cssFinalFile>
 							<jsSourceDir>js</jsSourceDir>
 							<jsSourceFiles>							
+								<jsSourceFile>utils/jsutils.js</jsSourceFile>
 								<jsSourceFile>jquery/jquery.js</jsSourceFile>
 								<jsSourceFile>jquery/jquery.ui.core.js</jsSourceFile>		
 								<jsSourceFile>jquery/jquery.dataTables.js</jsSourceFile>
@@ -1204,7 +1205,7 @@
 							<cssFinalFile>register.on.css</cssFinalFile>
 							<jsSourceDir>js</jsSourceDir>
 							<jsSourceFiles>															
-								<jsSourceFile>address/autocompleteStreet.js</jsSourceFile>	
+								<jsSourceFile>address/autocompleteStreetUTF8.js</jsSourceFile>	
 								<jsSourceFile>address/autocompleteCodi.js</jsSourceFile>	
 								<jsSourceFile>login/jsregister.js</jsSourceFile>																																														
 							</jsSourceFiles>
