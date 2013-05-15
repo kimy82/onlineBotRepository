@@ -257,9 +257,7 @@ $(document).ready(function() {
 					 "aoColumns" : [
 					                  { "mDataProp":"dia","bSortable": false, sWidth: '90px' },
 					                  { "mDataProp":"platsString", "bSortable": false, sWidth: '430px' },
-					                  { "mDataProp":"links", "bSortable": false, sWidth: '108px' },
-					                  { "mDataProp":"preu", "bSortable": false, sWidth: '61px' },
-					          
+					                  { "mDataProp":"links", "bSortable": false, sWidth: '108px' },					                 					          
 					                  { "mDataProp":"accio", "bSortable": false, sWidth: '117px' }
 					            ],
 					"sPaginationType": "full_numbers",

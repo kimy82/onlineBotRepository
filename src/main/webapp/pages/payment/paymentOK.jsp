@@ -150,8 +150,6 @@ margin-top:-90px;
 <hr class="yep3">
 <div class="cotui">
 <iframe src="//www.facebook.com/plugins/like.php?href=http%3A%2F%2Fwww.portamu.com&amp;send=false&amp;layout=standard&amp;width=450&amp;show_faces=false&amp;font&amp;colorscheme=light&amp;action=like&amp;height=35" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:200px; height:65px;" allowTransparency="true"></iframe>
-	
-
 </div>
 </div>
 </div>
@@ -159,7 +157,6 @@ margin-top:-90px;
 <div class="poli sotapoli">
 <div class="grax">
 <s:text name="txt.pagasi.grax" />
-
 </br></br><s:text name="txt.pagasi.veuret" />
 </br></br></br>
 <a class="tornara" href="<c:url value='/Welcome.action' />?final=ok"><s:text name="menu.tornar" /></a>
@@ -167,6 +164,9 @@ margin-top:-90px;
 </div>
 </div>
 <c:import url="/pages/includes/endPage.jsp" />
+
+<script src="<c:url value='/js/jsdivlogin.min.js' />" type="text/javascript"></script>
+<script src="<c:url value='/js/auxiliars/jsauxiliars.js' />" type="text/javascript"></script>
 <script type="text/javascript">
 var hora = window.localStorage.getItem("comanda.hora");
 document.getElementById("hora").innerHTML=" "+getHoraDosPunts(hora)+"-"+getNextHora(hora)+" ";
@@ -180,7 +180,5 @@ if(adre!=null){
 }
 
 </script>
-<script src="<c:url value='/js/jsdivlogin.min.js' />" type="text/javascript"></script>
-<script src="<c:url value='/js/auxiliars/jsauxiliars.js' />" type="text/javascript"></script>
 </body>
 </html>

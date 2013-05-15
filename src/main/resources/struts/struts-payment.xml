@@ -16,7 +16,7 @@
         
 		<action name="paymentEntry" class="com.online.action.payment.PaymentAction"
 			method="execute">
-			<result name="success">/pages/comanda/payment/welcome.jsp</result>
+			<result name="success">/pages/payment/paymentOK.jsp</result>
 			<result name="TPV">/pages/comanda/payment/tpv.jsp</result>
 			<result name="error">/error.jsp</result>	
 		</action>

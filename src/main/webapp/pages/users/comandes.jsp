@@ -203,7 +203,6 @@
 									<th><s:text name="user.comandes.table.dia" /></th>
 									<th><s:text name="user.comandes.table.plats" /></th>
 									<th><s:text name="user.comandes.table.links" /></th>
-									<th><s:text name="user.comandes.table.preu" /></th>
 									<th><s:text name="user.comandes.table.repeteix" /></th>								
 								</tr>
 							</thead>

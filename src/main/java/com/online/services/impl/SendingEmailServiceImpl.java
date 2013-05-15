@@ -85,7 +85,9 @@ public class SendingEmailServiceImpl implements SendingEmailService{
 						  });
 
 		try {
+
 			
+
 			for(String email : emails){
 				
 				Message message = new MimeMessage(session);
@@ -99,6 +101,7 @@ public class SendingEmailServiceImpl implements SendingEmailService{
 	 
 				Transport.send(message);
 			}
+
 
 		} catch (MessagingException e) {
 			throw new EmailException(e,e.getMessage());

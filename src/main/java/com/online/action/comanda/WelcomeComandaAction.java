@@ -596,6 +596,34 @@ public class WelcomeComandaAction extends ActionSuportOnlineSession {
 		setUserName();
 		this.comanda = this.comandaBo.load(this.idComanda);
 		
+		if(this.data==null){
+			this.data=Utils.formatDate2(new Date());
+		}else{
+			String[] dia = this.data.split("-");
+			if(dia.length==3){
+				Calendar cal = Calendar.getInstance();
+				int year = cal.get(Calendar.YEAR);
+				int month = cal.get(Calendar.MONTH)+1;
+				int day = cal.get(Calendar.DAY_OF_MONTH);
+				int yearC = Integer.parseInt(dia[0]);
+				int monthC = Integer.parseInt(dia[1]);
+				int diaC = Integer.parseInt(dia[2]);
+				if(yearC==year){
+					if(monthC>=month){
+						if(diaC>= day){
+							
+						}else{
+							this.data=Utils.formatDate2(new Date());
+						}
+					}else{
+						this.data=Utils.formatDate2(new Date());
+					}
+				}else{
+					this.data=Utils.formatDate2(new Date());
+				}
+			}
+			
+		}
 		horesDTO = new HoresDTO();
 		horesDTO.setData(data);
 		horesDTO = this.comandaService.setHoresFeature(horesDTO, this.data,
@@ -751,6 +779,7 @@ public class WelcomeComandaAction extends ActionSuportOnlineSession {
 		this.aDomicili = (request.getParameter("aDomicili") == null || request
 				.getParameter("aDomicili").equals("")) ? false : Boolean
 				.parseBoolean(request.getParameter("aDomicili"));
+
 		if (this.data == null || this.data.equals("null") || this.data.equals("")) {
 			this.data=Calendar.getInstance().get(Calendar.YEAR)+"-"+(Calendar.getInstance().get(Calendar.MONTH)+1)+"-"+Calendar.getInstance().get(Calendar.DAY_OF_MONTH);			
 		}

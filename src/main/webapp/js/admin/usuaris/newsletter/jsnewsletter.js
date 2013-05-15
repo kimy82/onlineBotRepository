@@ -24,7 +24,9 @@ function send(){
 	  }
 	  else {			  				
 		  	wait();
+
 			var target = $('#target').val();
+
 			var txt = $('#mytextbox').val();
 			
 			txt = txt.replace(/[\u00A0-\u00FF]/g, function(c) {
@@ -41,6 +43,7 @@ function send(){
 			
 			
 			data ="txt="+txt+"&target="+target;
+
 			$.ajax({
 				  type: "POST",
 				  url: '/'+context+'/admin/ajaxSendLetterAction.action',
@@ -55,7 +58,7 @@ function send(){
 							 alert(initTableParams.txtsent);													
 		   			}				
 				  },
-				  error: function(e){   $("#errorsajaxlabel").text("La sessió pot haver caducat!!");
+				  error: function(e){   $("#errorsajaxlabel").text("La sessiï¿½ pot haver caducat!!");
 										$("#errorsajax").show();  		
 				  					}
 				});

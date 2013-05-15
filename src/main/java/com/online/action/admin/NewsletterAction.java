@@ -33,6 +33,7 @@ public class NewsletterAction extends ActionSuportOnline{
 	public String ajaxSendLetterAction(){
 
 		ServletOutputStream out = null;
+
 		this.txtToSend = Utils.decodeUTFONlyWords(request.getParameter("txt"));
 		
 		this.target = request.getParameter("target");

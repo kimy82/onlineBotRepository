@@ -48,6 +48,7 @@ public class Utils{
 		desc = desc.replaceAll("·", "&#183;");
 		desc = desc.replaceAll("ï", "&#239;");
 		desc = desc.replaceAll("Ï", "&#207;");
+		desc = desc.replaceAll("¿", "&#191;");
 	
 		
 	 	
@@ -126,6 +127,7 @@ public class Utils{
 		desc = desc.replaceAll("#207;", "Ï");
 		desc = desc.replaceAll("#34;", "\"");
 		desc = desc.replaceAll("#38;", "&");
+		desc = desc.replaceAll("#191;", "¿");
 		
 		return desc;
 	}
@@ -161,6 +163,7 @@ public class Utils{
 		desc = desc.replaceAll("#183;", ".");
 		desc = desc.replaceAll("#239;", "ï");
 		desc = desc.replaceAll("#207;", "Ï");
+		desc = desc.replaceAll("#191;", "¿");
 		
 		return desc;
 	}
@@ -289,6 +292,7 @@ public class Utils{
 			cal.set(Calendar.DAY_OF_MONTH,Integer.parseInt(dia));
 			cal.set(Calendar.MONTH, Integer.parseInt(mes)-1);
 			cal.set(Calendar.YEAR, Integer.parseInt(any));
+			cal.set(Calendar.HOUR_OF_DAY, 1);
 			return cal.getTime();
 		}
 		return null;
