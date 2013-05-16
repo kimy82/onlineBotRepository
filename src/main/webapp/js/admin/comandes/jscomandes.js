@@ -11,8 +11,8 @@ function InitTableParams(txtlast,txtnext,txtprevious,txtfirst,txtloading,txtborr
 		this.txtenviat = txtenviat;	
 }
 
-function sendTo(id){
-	
+function sendTo(self,id){
+	$(self).removeAttr('onclick');
 	var data ="idComanda="+id;
   	$.ajax({
   		  type: "POST",
@@ -22,14 +22,16 @@ function sendTo(id){
   		  success: function(json){	
   			  if(json!=null && json.error!=null){
   				alert("Error in AJAX: "+json.error);	
-       		  }else{       				       				  
-       				alert(initTableParams.txtenviat);	        			       			
+       		  }else{
+       			  	reloadTableComandes();
+       				alert(initTableParams.txtenviat);	
+       				
        		  }				
   		  },
   		  error: function(e){   alert("La sessió pot haver caducat!!");	
   		  					}
   		});	
-	reloadTableComandes();
+	
 }
 
 function deleteTo(id){
@@ -45,7 +47,8 @@ function deleteTo(id){
   			  if(json!=null && json.error!=null){
   				alert("Error in AJAX: "+json.error);	
        		  }else{       			    				  
-       			alert(initTableParams.txtborrat);	        			
+       			alert(initTableParams.txtborrat);	
+       			reloadTableComandes();
        		  }				
   		  },
   		  error: function(e){  
@@ -53,7 +56,7 @@ function deleteTo(id){
   			  $("#errorsajax").show();       
   		  					}
   		});	
-	reloadTableComandes();
+	
 }
 
 function reloadTableComandes(){

@@ -233,7 +233,7 @@ public class MantenimentComandesAction extends ActionSuportOnline{
 						.getUser().getTelNumber(), comanda.getAddress(), Utils.formatDate2(comanda.getDia()) + " " + comanda.getHora(),
 						comanda.getPreu().toString(), "", "");
 				comandaTable
-						.setAccioSend("<a href=\"#\" onclick=\"sendTo(" + comanda.getId() + ")\" ><img src=\"../images/mail.png\"></a>");
+						.setAccioSend("<a href=\"#\" onclick=\"sendTo(this," + comanda.getId() + ")\" ><img src=\"../images/mail.png\"></a>");
 				comandaTable.setAccioBorrar("<a href=\"#\" onclick=\"deleteTo(" + comanda.getId()
 						+ ")\" ><img src=\"../images/delete.png\"></a>");
 				comandesTableList.add(comandaTable);
