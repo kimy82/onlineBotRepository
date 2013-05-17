@@ -873,9 +873,9 @@
 								<jsSourceFile>jquery/jquery.ui.droppable.js</jsSourceFile>
 								<jsSourceFile>jquery/jquery.ui.resizable.js</jsSourceFile>
 								<jsSourceFile>jquery/jquery.effects.core.js</jsSourceFile>
-								<jsSourceFile>jquery/jquery.bgiframe-2.1.1.js</jsSourceFile>		
-								<jsSourceFile>slider/coin-slider.min.js</jsSourceFile>		
-								<jsSourceFile>utils/jshttpsredirect.js</jsSourceFile>														
+								<jsSourceFile>jquery/jquery.bgiframe-2.1.1.js</jsSourceFile>			
+								<jsSourceFile>utils/jshttpsredirect.js</jsSourceFile>
+								<jsSourceFile>utils/jsutils.js</jsSourceFile>															
 								<jsSourceFile>comanda/begudes/jsbegudes.js</jsSourceFile>																																														
 							</jsSourceFiles>
 							<jsFinalFile>jsbegudes.js</jsFinalFile>
@@ -912,9 +912,9 @@
 								<jsSourceFile>jquery/jquery.ui.droppable.js</jsSourceFile>
 								<jsSourceFile>jquery/jquery.ui.resizable.js</jsSourceFile>
 								<jsSourceFile>jquery/jquery.effects.core.js</jsSourceFile>
-								<jsSourceFile>jquery/jquery.bgiframe-2.1.1.js</jsSourceFile>		
-								<jsSourceFile>slider/coin-slider.min.js</jsSourceFile>		
-								<jsSourceFile>utils/jshttpsredirect.js</jsSourceFile>						
+								<jsSourceFile>jquery/jquery.bgiframe-2.1.1.js</jsSourceFile>			
+								<jsSourceFile>utils/jshttpsredirect.js</jsSourceFile>	
+								<jsSourceFile>utils/jsutils.js</jsSourceFile>												
 								<jsSourceFile>comanda/begudes/jsbegudesRefresc.js</jsSourceFile>																																														
 							</jsSourceFiles>
 							<jsFinalFile>jsbegudesRefresc.js</jsFinalFile>

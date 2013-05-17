@@ -507,12 +507,12 @@ menuRestaurantAction ={
 }
 
 
-var welcome ={
+var welcomeAction ={
 }
-welcome._self=null;
+welcomeAction._self=null;
 
 
-welcome ={
+welcomeAction ={
 	
 	_init: function (){
 		this._self =this;
@@ -529,22 +529,22 @@ welcome ={
 				
 				$("#numComanda").text(comanda);				
 				
-				_self._setPreu();
+				welcomeAction._setPreu();
 
-				var numplats= _self._setNumPlats();
+				var numplats= welcomeAction._setNumPlats();
 
-				var numbegudes = _self._setNumBegudes();
+				var numbegudes = welcomeAction._setNumBegudes();
 			
 				var nProductes = parseInt(numplats)+parseInt(numbegudes);
-				_self._setNumProducts(nProductes);
+				welcomeAction._setNumProducts(nProductes);
 				
 			}else{
 				$("#numProduct").text(initParams.txtconfirm+" 0 "+initParams.txtproductes);
 			}
 						
 			
-			_self._setFilter();
-			_self._getHora();
+			welcomeAction._setFilter();
+			welcomeAction._getHora();
 			
 		});
 	},
@@ -608,7 +608,7 @@ welcome ={
 		if(isNaN(nProducts)){console.log("numproducts not a number")}
 		if(nProducts==1){
 			$("#numProduct").text(initParams.txtconfirm+" "+nProducts+" "+initParams.txtproducte);
-		}else if(nProductes>1){
+		}else if(nProducts>1){
 			$("#numProduct").text(initParams.txtconfirm+" "+nProducts+" "+initParams.txtproductes);
 		}		
 		
@@ -668,4 +668,4 @@ $("#imageBig").dialog({
 begudaOBJ._init(); 
 platOBJ._init(); 
 menuRestaurantAction._init();
-welcome._init();
+welcomeAction._init();

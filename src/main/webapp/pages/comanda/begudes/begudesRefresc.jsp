@@ -55,7 +55,7 @@
 	  						</div>
 							<div id="afegir">
 								<div class="left_price">
-									<a href="#" class="entrar" onclick="addProduct('draggable_${beguda.id}')" ><s:text name="txt.plat.afegir" /></a>
+									<a href="#" class="entrar" onclick="welcomeAction.addProduct('draggable_${beguda.id}')" ><s:text name="txt.plat.afegir" /></a>
 								</div>
 								<div class="right_price">
 									 <span class="price">${beguda.preu} &euro;</span><br>
@@ -87,7 +87,7 @@
 								<div class="car_sub">
 									<s:text name="txt.subtotal" /> <br>
 									<label id="preu" ></label> &euro; <br><br>
-									<a href="#" class="btn_conf" onclick="goToComandaPas1();"  ><s:text name="txt.comanda.comfirmar" /></a>
+									<a href="#" class="btn_conf" onclick="menuRestaurantAction.goToComandaPas1();"  ><s:text name="txt.comanda.comfirmar" /></a>
 								</div>
 								<div class="hora">
 									<s:text name="txt.propera.hora" />: <br><br>

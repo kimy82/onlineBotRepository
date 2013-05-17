@@ -27,7 +27,7 @@ $(function() {
 		}, 1800, function() {
 			var item_id = $(this).attr("id");
 			var rawBeguda = item_id.split("_");
-			saveBegudaToComanda(rawBeguda[1]);
+			begudaOBJ.saveBegudaToComanda(rawBeguda[1]);
 			$(dragBeguda).css("visiblity", "hidden");
 			$(dragBeguda).css("display", "none");
 		});
@@ -48,7 +48,7 @@ $(function() {
 
 			var item_id = ui.draggable.attr("id");
 			var rawBeguda = item_id.split("_");		
-			saveBegudaToComanda(rawBeguda[1]);
+			begudaOBJ.saveBegudaToComanda(rawBeguda[1]);
 
 		}
 	});
@@ -74,14 +74,14 @@ welcomeAction ={
 						
 						$("#numComanda").text(comanda);
 					
-						_self._setPreu();
+						welcomeAction._setPreu();
 					
-						var numplats = _self._setNumPlats();
+						var numplats = welcomeAction._setNumPlats();
 					
-						var numbegudes = _self._setNumBegudes();
+						var numbegudes = welcomeAction._setNumBegudes();
 						
 						var nProductes = parseInt(numplats)+parseInt(numbegudes);
-						_self._setNumProducts(nProductes);
+						welcomeAction._setNumProducts(nProductes);
 								
 					}else{
 						window.localStorage.clear();
@@ -150,7 +150,7 @@ welcomeAction ={
 		if(isNaN(nProducts)){console.log("numproducts not a number")}
 		if(nProducts==1){
 			$("#numProduct").text(initParams.txtconfirm+" "+nProducts+" "+initParams.txtproducte);
-		}else if(nProductes>1){
+		}else if(nProducts>1){
 			$("#numProduct").text(initParams.txtconfirm+" "+nProducts+" "+initParams.txtproductes);
 		}		
 		
@@ -285,7 +285,7 @@ menuRestaurantAction ={
 		 window.localStorage.removeItem("comanda.confirm");
 		 return '';
 	},
-	goToComandaPas1(){
+	goToComandaPas1: function(){
 		var plats = window.localStorage.getItem("comanda.numplats");
 		if(isNaN(plats) || plats == null ||parseInt(plats) <= 0){
 			alertOnline.alertes("No tens plats a la comanda");
@@ -337,7 +337,7 @@ begudaOBJ ={
 			       					 	}else{
 			       					 		numBegudes= numBegudes+value.numBegudes;
 			       					 		preuBegudes=  parseFloat(preuBegudes) + (parseFloat(value.beguda.preu)*value.numBegudes);	       					 		
-			       							var li= value.numBegudes+" <span class='plats' id='span_b_"+value.beguda.id+"'>x</span> "+changeHTML(value.beguda.nom)+"&nbsp;<a href='#' onclick='eliminaBeguda("+value.beguda.id+")' ><img class='dele' src='/"+context+"/images/delete2.png'></a><br><br>";
+			       							var li= value.numBegudes+" <span class='plats' id='span_b_"+value.beguda.id+"'>x</span> "+changeHTML(value.beguda.nom)+"&nbsp;<a href='#' onclick='begudaOBJ.eliminaBeguda("+value.beguda.id+")' ><img class='dele' src='/"+context+"/images/delete2.png'></a><br><br>";
 			       							lis = lis+li;
 			    							$("#disp_beguda").append(li);
 			       						}	       				
@@ -503,7 +503,10 @@ platOBJ ={
 
 }
 
-
+begudaOBJ._init(); 
+platOBJ._init(); 
+menuRestaurantAction._init();
+welcomeAction._init();
 
 
 
