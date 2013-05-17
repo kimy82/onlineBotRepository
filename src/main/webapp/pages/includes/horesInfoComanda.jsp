@@ -174,68 +174,68 @@
 						</c:if>
 						-->
 						<c:if test="${requestScope.horesDTO._2000 ne 'true'}">
-							<td><input type="button"  id="2000" value="20:00 - 20:30" class="notcheck" onclick="checKHour(this.id)" /></td>
+							<td><input type="button"  id="2000" value="20:00 - 20:30" class="notcheck" onclick="horesManagerObj.checKHour(this.id)" /></td>
 						</c:if>
 						<c:if test="${requestScope.horesDTO._2000 eq 'true'}">
-							<td><input type="button"  id="2000" value="20:00 - 20:30" class="check" onclick="checKHour(this.id)" /></td>
+							<td><input type="button"  id="2000" value="20:00 - 20:30" class="check" onclick="horesManagerObj.checKHour(this.id)" /></td>
 						</c:if>
 						
 						<c:if test="${requestScope.horesDTO._2030 ne 'true'}">
-							<td><input type="button"  id="2030" value="20:30 - 21:00" class="notcheck" onclick="checKHour(this.id)"  /></td>
+							<td><input type="button"  id="2030" value="20:30 - 21:00" class="notcheck" onclick="horesManagerObj.checKHour(this.id)"  /></td>
 						</c:if>
 						<c:if test="${requestScope.horesDTO._2030 eq 'true'}">
-							<td><input type="button"  id="2030" value="20:30 - 21:00" class="check" onclick="checKHour(this.id)" /></td>
+							<td><input type="button"  id="2030" value="20:30 - 21:00" class="check" onclick="horesManagerObj.checKHour(this.id)" /></td>
 						</c:if>
 				
 						<c:if test="${requestScope.horesDTO._2100 ne 'true'}">
-							<td><input type="button"  id="2100" value="21:00 - 21:30" class="notcheck" onclick="checKHour(this.id)" /></td>
+							<td><input type="button"  id="2100" value="21:00 - 21:30" class="notcheck" onclick="horesManagerObj.checKHour(this.id)" /></td>
 						</c:if>
 						<c:if test="${requestScope.horesDTO._2100 eq 'true'}">
-							<td><input type="button"  id="2100" value="21:00 - 21:30" class="check" onclick="checKHour(this.id)" /></td>
+							<td><input type="button"  id="2100" value="21:00 - 21:30" class="check" onclick="horesManagerObj.checKHour(this.id)" /></td>
 						</c:if>
 						</tr>
 						<tr>
 						<c:if test="${requestScope.horesDTO._2130 ne 'true'}">
-							<td><input type="button"  id="2130" value="21:30 - 22:00" class="notcheck"  onclick="checKHour(this.id)" /></td>
+							<td><input type="button"  id="2130" value="21:30 - 22:00" class="notcheck"  onclick="horesManagerObj.checKHour(this.id)" /></td>
 						</c:if>
 						<c:if test="${requestScope.horesDTO._2130 eq 'true'}">
-							<td><input type="button"  id="2130" value="21:30 - 22:00" class="check" onclick="checKHour(this.id)" /></td>
+							<td><input type="button"  id="2130" value="21:30 - 22:00" class="check" onclick="horesManagerObj.checKHour(this.id)" /></td>
 						</c:if>
 						
 						<c:if test="${requestScope.horesDTO._2200 ne 'true'}">
-							<td><input type="button"  id="2200" value="22:00 - 22:30" class="notcheck" onclick="checKHour(this.id)" /></td>
+							<td><input type="button"  id="2200" value="22:00 - 22:30" class="notcheck" onclick="horesManagerObj.checKHour(this.id)" /></td>
 						</c:if>
 						<c:if test="${requestScope.horesDTO._2200 eq 'true'}">
-							<td><input type="button"  id="2200" value="22:00 - 22:30" class="check" onclick="checKHour(this.id)" /></td>
+							<td><input type="button"  id="2200" value="22:00 - 22:30" class="check" onclick="horesManagerObj.checKHour(this.id)" /></td>
 						</c:if>
 						
 						<c:if test="${requestScope.horesDTO._2230 ne 'true'}">
-							<td><input type="button"  id="2230" value="22:30 - 23:00" class="notcheck" onclick="checKHour(this.id)" /></td>
+							<td><input type="button"  id="2230" value="22:30 - 23:00" class="notcheck" onclick="horesManagerObj.checKHour(this.id)" /></td>
 						</c:if>
 						<c:if test="${requestScope.horesDTO._2230 eq 'true'}">
-							<td><input type="button"  id="2230" value="22:30 - 23:00" class="check" onclick="checKHour(this.id)" /></td>
+							<td><input type="button"  id="2230" value="22:30 - 23:00" class="check" onclick="horesManagerObj.checKHour(this.id)" /></td>
 						</c:if>
 						</tr>
 						<tr>
 						<c:if test="${requestScope.horesDTO._2300 ne 'true'}">
-							<td><input type="button"  id="2300" value="23:00 - 23:30" class="notcheck" onclick="checKHour(this.id)"/></td>
+							<td><input type="button"  id="2300" value="23:00 - 23:30" class="notcheck" onclick="horesManagerObj.checKHour(this.id)"/></td>
 						</c:if>
 						<c:if test="${requestScope.horesDTO._2300 eq 'true'}">
-							<td><input type="button"  id="2300" value="23:00 - 23:30" class="check" onclick="checKHour(this.id)" /></td>
+							<td><input type="button"  id="2300" value="23:00 - 23:30" class="check" onclick="horesManagerObj.checKHour(this.id)" /></td>
 						</c:if>
 						
 						<c:if test="${requestScope.horesDTO._2330 ne 'true'}">
-							<td><input type="button"  id="2330" value="23:30 - 24:00" class="notcheck" onclick="checKHour(this.id)" /></td>
+							<td><input type="button"  id="2330" value="23:30 - 24:00" class="notcheck" onclick="horesManagerObj.checKHour(this.id)" /></td>
 						</c:if>
 						<c:if test="${requestScope.horesDTO._2330 eq 'true'}">
-							<td><input type="button"  id="2330" value="23:30 - 24:00" class="check" onclick="checKHour(this.id)" /></td>
+							<td><input type="button"  id="2330" value="23:30 - 24:00" class="check" onclick="horesManagerObj.checKHour(this.id)" /></td>
 						</c:if>
 						
 						<c:if test="${requestScope.horesDTO._2400 ne 'true'}">
-							<td><input type="button"  id="2400" value="24:00 - 24:30" class="notcheck" onclick="checKHour(this.id)"  /></td>
+							<td><input type="button"  id="2400" value="24:00 - 24:30" class="notcheck" onclick="horesManagerObj.checKHour(this.id)"  /></td>
 						</c:if>
 						<c:if test="${requestScope.horesDTO._2400 eq 'true'}">
-							<td><input type="button"  id="2400" value="24:00 - 24:30" class="check" onclick="checKHour(this.id)" /></td>
+							<td><input type="button"  id="2400" value="24:00 - 24:30" class="check" onclick="horesManagerObj.checKHour(this.id)" /></td>
 						</c:if>						
 					</tr>	
 	</table>

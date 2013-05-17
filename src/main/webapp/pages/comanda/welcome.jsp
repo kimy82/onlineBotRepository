@@ -47,9 +47,9 @@
 				</div>
 				<div class="selector">
 					<ul>
-					<li><a class="selec" id="plat_select_1" href="#" onclick="filterPlats('primer', this.id)" ><s:text name="txt.plat.primer" /></a></li>
-					<li><a href="#" id="plat_select_2" onclick="filterPlats('segon', this.id)" ><s:text name="txt.plat.segon" /></a></li>
-					<li><a href="#" id="plat_select_3" onclick="filterPlats('postre', this.id)" ><s:text name="txt.plat.postre" /></a></li>
+					<li><a class="selec" id="plat_select_1" href="#" onclick="platOBJ.filterPlats('primer', this.id)" ><s:text name="txt.plat.primer" /></a></li>
+					<li><a href="#" id="plat_select_2" onclick="platOBJ.filterPlats('segon', this.id)" ><s:text name="txt.plat.segon" /></a></li>
+					<li><a href="#" id="plat_select_3" onclick="platOBJ.filterPlats('postre', this.id)" ><s:text name="txt.plat.postre" /></a></li>
 					</ul>
 				</div>
 				<hr class="sep2">
@@ -61,7 +61,7 @@
 						<div class="selector_jq ui-widget-content img_Rest" id="draggable_${plat.id}" >
 	  						<img height="152" width="230" src="/${initParam.app}/comanda/ImageAction.action?imageId=${plat.foto.id}">
 	  						<div class="big_img">
-	  							<a href="#" onclick="showImagePlat(${plat.foto.id})"><img height="14" src="<c:url value='/img/elements/zoom.png' />"></a>
+	  							<a href="#" onclick="platOBJ.showImagePlat(${plat.foto.id})"><img height="14" src="<c:url value='/img/elements/zoom.png' />"></a>
 	  						</div>
 	  					</div>
 	  					<div class="format">
@@ -86,7 +86,7 @@
 	  					</div>
 	  					<div id="afegir">
 							<div class="left_price">
-								<a href="#" class="entrar" onclick="addProduct('draggable_${plat.id}')" ><s:text name="txt.plat.afegir" /></a>
+								<a href="#" class="entrar" onclick="welcome.addProduct('draggable_${plat.id}')" ><s:text name="txt.plat.afegir" /></a>
 							</div>
 							<div class="right_price">
 								 <span class="price">${plat.preu} &euro; </span><br>
@@ -115,7 +115,7 @@
 		  				</div>
 		  				<div id="afegir">
 							<div class="left_price">
-								<a href="#" onclick="addProduct('draggable_${plat.id}')" class="entrar_CLOSE"><s:text name="txt.plat.afegir" /></a>
+								<a href="#" onclick="welcome.addProduct('draggable_${plat.id}')" class="entrar_CLOSE"><s:text name="txt.plat.afegir" /></a>
 							</div>
 							<div class="right_price">
 								 <span class="price">${plat.preu} &euro;</span><br>
@@ -170,7 +170,7 @@
 											 ${fn:substring(comt.comment, 0, 100)}...&nbsp;
 										</c:if>																																																
 									</c:forEach>								
-							<a href="#" class="more" onclick="goToInfoPlat(${plat.id})" ><s:text name="txt.leer.mas" /></a></p>
+							<a href="#" class="more" onclick="platOBJ.goToInfoPlat(${plat.id})" ><s:text name="txt.leer.mas" /></a></p>
 						</div>
 					</div>				
 				</s:iterator>
@@ -214,7 +214,7 @@
 	  						</div>
 							<div id="afegir">
 								<div class="left_price">
-									<a href="#" class="entrar" onclick="addProduct('draggableb_${beguda.id}')" ><s:text name="txt.plat.afegir" /></a>
+									<a href="#" class="entrar" onclick="welcome.addProduct('draggableb_${beguda.id}')" ><s:text name="txt.plat.afegir" /></a>
 								</div>
 								<div class="right_price">
 									 <span class="price">${beguda.preu} &euro;</span><br>
@@ -234,7 +234,7 @@
 												${fn:substring(comt.comment, 0, 35)}... &nbsp;					
 											</c:if>																																										
 										</c:forEach>									
-								<a href="#" class="more" onclick="goToInfoBeguda(${beguda.id})" ><s:text name="txt.leer.mas" /></a></p>
+								<a href="#" class="more" onclick="begudaOBJ.goToInfoBeguda(${beguda.id})" ><s:text name="txt.leer.mas" /></a></p>
 							</div>															
 						</div>
 					</s:iterator>
@@ -262,7 +262,7 @@
 								<div class="car_sub">
 									<s:text name="txt.subtotal" /> <br>
 									<label id="preu" ></label> &euro; <br><br>
-									<a href="#" class="btn_conf" onclick="goToComandaPas1();"  ><s:text name="txt.comanda.comfirmar" /></a>
+									<a href="#" class="btn_conf" onclick="menuRestaurantAction.goToComandaPas1();"  ><s:text name="txt.comanda.comfirmar" /></a>
 								</div>
 								<div class="hora">
 									<s:text name="txt.propera.hora" />: <br><br>

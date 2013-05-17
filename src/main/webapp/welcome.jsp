@@ -124,7 +124,7 @@
 						<s:text name="txt.welcome.newsletter.title2" /><br> <br>
 						<s:text name="txt.welcome.mail" />:<br>
 						<input class="newsin" type="text" id="email" /><br>
-						<input class="boton" type="button" onclick="saveEmail()" value="<s:text name="txt.welcome.newsletter.ins" />" />
+						<input class="boton" type="button" onclick="welcomeAction.saveEmail(this)" value="<s:text name="txt.welcome.newsletter.ins" />" />
 						<label id="error"></label>
 						</form>
 					</div>

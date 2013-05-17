@@ -12,19 +12,19 @@
 								<c:set var="configs" value="${rest.configRestaurants}" ></c:set>
 								<c:set var="doneLoopList" value="false"/>
 									<c:forEach items="${configs}" var="config" >
-										<c:if test="${config.data eq dataAvui }">
+										<c:if test="${config.data eq dataAvui }" var="dataeq" >
 											<c:if test="${config.obert==true && doneLoopList==false }">
-												<li id="list_rest_${rest.id}" ><a href="#" onclick="goToRestaurantMenu(${rest.id})">${rest.nom}</a></li>
+												<li id="list_rest_${rest.id}" ><a href="#" onclick="menuRestaurantAction.goToRestaurantMenu(${rest.id})">${rest.nom}</a></li>
 											</c:if>
 										 	<c:if test="${config.obert==false && doneLoopList==false }">
-												<li class="tancat" id="list_rest_${rest.id}" ><a href="#" onclick="goToRestaurantMenu(${rest.id})">${rest.nom}</a></li>
+												<li class="tancat" id="list_rest_${rest.id}" ><a href="#" onclick="menuRestaurantAction.goToRestaurantMenu(${rest.id})">${rest.nom}</a></li>
 											</c:if>
 											<c:set var="doneLoopList" value="true"/>
-										</c:if>
+										</c:if>																			
 									</c:forEach>
-							</c:if>
+							</c:if>							
 							<c:if test="${empty rest.configRestaurants}">								
-									<li id="list_rest_${rest.id}" ><a href="#" onclick="goToRestaurantMenu(${rest.id})">${rest.nom}</a></li>								
+									<li id="list_rest_${rest.id}" ><a href="#" onclick="menuRestaurantAction.goToRestaurantMenu(${rest.id})">${rest.nom}</a></li>								
 							</c:if>
 						</s:iterator>				        
         			</ul></li> 

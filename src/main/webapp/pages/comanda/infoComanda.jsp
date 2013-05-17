@@ -103,13 +103,13 @@
 									<td class="preusun"><label id="platpreu_${platComanda.plat.id}" >${platComanda.plat.preu}</label>&euro; </td>
 									<td class="canti">										
 										<label id="labelnum_${platComanda.plat.id}">${platComanda.numPlats}</label>
-										<input class="mores" type="submit"   onclick="saveNewPLatAmount(this,${platComanda.plat.id}, -1)" value="-">
-										<input class="mores" type="submit" onclick="saveNewPLatAmount(this,${platComanda.plat.id}, 1)" value="+">
+										<input class="mores" type="submit"   onclick="platsOBJ.saveNewPLatAmount(this,${platComanda.plat.id}, -1)" value="-">
+										<input class="mores" type="submit" onclick="platsOBJ.saveNewPLatAmount(this,${platComanda.plat.id}, 1)" value="+">
 									</td>
 									
 									<td class="total"><label id="labelpreutotal_${platComanda.plat.id}"><fmt:formatNumber value="${platComanda.plat.preu*platComanda.numPlats}" type="number" maxFractionDigits="2"/></label> &euro; </td>
 									<td class="elimi">
-										<input class="elimin" type="submit" onclick="eliminaPlat(${platComanda.plat.id})"  value="ELIMINAR">
+										<input class="elimin" type="submit" onclick="platsOBJ.eliminaPlat(${platComanda.plat.id})"  value="ELIMINAR">
 									</td>								
 								</tr>
 							</s:iterator>
@@ -138,13 +138,13 @@
 									</td>
 									<td class="preusun"><label id="begudapreu_${begudaComanda.beguda.id}" >${begudaComanda.beguda.preu}</label>&euro; </td>
 									<td class="canti">										
-										<input class="mores" type="submit" onclick="saveBegudaToComanda(this,${begudaComanda.beguda.id},false,-1);" value="-">
+										<input class="mores" type="submit" onclick="begudaOBJ.saveBegudaToComanda(this,${begudaComanda.beguda.id},false,-1);" value="-">
 										<label id="labelnum_b_${begudaComanda.beguda.id}">${begudaComanda.numBegudes}</label>
-										<input class="mores" type="submit" onclick="saveBegudaToComanda(this,${begudaComanda.beguda.id},false,1)" value="+">
+										<input class="mores" type="submit" onclick="begudaOBJ.saveBegudaToComanda(this,${begudaComanda.beguda.id},false,1)" value="+">
 									</td>
 									<td class="total"><label id="labelpreutotal_b_${begudaComanda.beguda.id}"><fmt:formatNumber maxFractionDigits="2" type="number" value="${begudaComanda.beguda.preu*begudaComanda.numBegudes}" ></fmt:formatNumber> </label> &euro; </td>
 									<td class="elimi">
-										<input class="elimin" type="submit" onclick="eliminaBeguda(${begudaComanda.beguda.id})"  value="ELIMINAR">
+										<input class="elimin" type="submit" onclick="begudaOBJ.eliminaBeguda(${begudaComanda.beguda.id})"  value="ELIMINAR">
 									</td>								
 									</tr>								
 								</c:if>
@@ -176,7 +176,7 @@
 									</td>
 									<td class="total"><label id="labelpreutotal_b_p_${begudaComanda.beguda.id}">0</label> &euro; </td>
 									<td class="elimi">
-										<input class='elimin' type='submit' onclick='deletePromoApplied();'  value="<s:text name='txt.infocomanda.treure.promo' />">
+										<input class='elimin' type='submit' onclick='promosManagerObj.deletePromoApplied();'  value="<s:text name='txt.infocomanda.treure.promo' />">
 									</td>								
 									</tr>
 								</c:if>
@@ -235,18 +235,18 @@
 	<br></br>
 	<div id="promstop" class="titols_comanda2"><s:text name="txt.proms" /></div>
 	<div id="proms">
-	<div id="checkPromocionsDisponibles" ><input type="button" class="boton"  onclick="openDialogPromos();" value="<s:text name='txt.infocomanda.checkPromos.boton' />" /></div>
-	<div id="deletePromoApplied" ><input type="button"  class="boton" onclick="deletePromoApplied();" value="<s:text name='txt.infocomanda.deletePromos.boton' />" /></div>
+	<div id="checkPromocionsDisponibles" ><input type="button" class="boton"  onclick="promosManagerObj.openDialogPromos();" value="<s:text name='txt.infocomanda.checkPromos.boton' />" /></div>
+	<div id="deletePromoApplied" ><input type="button"  class="boton" onclick="promosManagerObj.deletePromoApplied();" value="<s:text name='txt.infocomanda.deletePromos.boton' />" /></div>
 	</div>
 	<hr class="sep11"></hr>	
 	<div id="domrec" class="titols_comanda2"><s:text name="txt.domrec" /></div>
 	<div id="on">
 	<div id="leftcom">
 	<div class="inter_put">
-		<s:checkbox key="comanda.aDomicili" onclick="addDomicili()"  id="adomicili"   ></s:checkbox>
+		<s:checkbox key="comanda.aDomicili" onclick="generalManagerObj.addDomicili()"  id="adomicili"   ></s:checkbox>
 	</div>
 	<div class="inter_put2" id="div_arecollir">
-		<s:checkbox key="comanda.aRecollir" onclick="addRecollir()"  id="arecollir"  ></s:checkbox>
+		<s:checkbox key="comanda.aRecollir" onclick="generalManagerObj.addRecollir()"  id="arecollir"  ></s:checkbox>
 	</div>
 	</br></br>
 	<hr class="sep13"></hr>
@@ -255,7 +255,7 @@
 				<td class="inde"><s:text name="comanda.dia" ></s:text></td>
 			</tr>	
 			<tr>	
-				<td><s:textfield key="comanda.dia" id="dia" maxlength="10" size="12" onfocus="blur()" theme="simple" onchange="reloadHores()" ></s:textfield>
+				<td><s:textfield key="comanda.dia" id="dia" maxlength="10" size="12" onfocus="blur()" theme="simple" onchange="horesManagerObj.reloadHores()" ></s:textfield>
 				<img  src="<c:url value='/images/calendar/calendar_full.png'/>"  id="llencadorData1" ></td>
 			</tr>
 		</table>
@@ -295,13 +295,13 @@
 	<div id="domrec" class="titols_comanda2"><s:text name="txt.Pagar.final" /></div>
 	<div id="pagar">
 	<div id="pagarDom">
-	<s:checkbox key="comanda.targeta" id="targeta" onclick="targeta()" ></s:checkbox>
-	<s:checkbox key="comanda.contrarembols" id="contrarembols" onclick="contrarembols()"></s:checkbox>
+	<s:checkbox key="comanda.targeta" id="targeta" onclick="generalManagerObj.targeta()" ></s:checkbox>
+	<s:checkbox key="comanda.contrarembols" id="contrarembols" onclick="generalManagerObj.contrarembols()"></s:checkbox>
 	</div>
 	<div id="pagarRec">
-	<s:checkbox key="comanda.targeta" id="targeta" onclick="targeta()" ></s:checkbox>
+	<s:checkbox key="comanda.targeta" id="targeta" onclick="generalManagerObj.targeta()" ></s:checkbox>
 	</div>
-	<input type="button" id="botopagarcomanda" disabled="disabled" class="botonPagar" onclick="checkComandaJS();" value="<s:text name='txt.infocomanda.paga' />" />
+	<input type="button" id="botopagarcomanda" disabled="disabled" class="botonPagar" onclick="comandaOBJ.checkComandaJS();" value="<s:text name='txt.infocomanda.paga' />" />
 	</div>		
 <div id="chargeBar"></div>
 <div id="check"></div>
@@ -319,7 +319,7 @@
 			<s:text name="txt.login.title" />
 			<table>
 	 	<tr>
-	 		<input class="tancarBot" type="button" id="cancel" value="X"  onclick="closeDialogPromos();" />
+	 		<input class="tancarBot" type="button" id="cancel" value="X"  onclick="promosManagerObj.closeDialogPromos();" />
 	 	</tr>
 	 </table>
 		</div>
@@ -337,7 +337,7 @@
 		<ul id="esp" ></ul>	
 					
 		<h1><s:text name="txt.promo.escull.promo.busca" /></br>
-		<input id="codePromo" class="inputs" type="text" value="" onblur="checkPromoVibility(this.value)" /></br>
+		<input id="codePromo" class="inputs" type="text" value="" onblur="promosManagerObj.checkPromoVibility(this.value)" /></br>
 		<a href="#">CERCAR</a>
 		
 		<ul id="visp" ></ul>
@@ -359,9 +359,8 @@ var initTxtPromos = new InitTxtPromos("<s:text name='txt.info.noplats.comanda' /
 $("#idcomanda").val('${requestScope.idComanda}');
 $("#numComanda").text('${requestScope.idComanda}');
 $("#dia").val('${requestScope.horesDTO.data}');
-$("#promstop").hide();
-initNumPlats();
-initNumBegudes();
+
+comandaOBJ.initNumBegudes();
 function submitLog(){
 	$.ajax({
 	    url: "<c:url value='/elteurestaurantacasa/j_spring_security_check' />",
@@ -397,7 +396,7 @@ var addressToLoad ="${requestScope.comanda.address}";
 if(addressToLoad==''){
 	addressToLoad =  "${requestScope.user.address}";	
 }
-initAddress();
+addressManagerObj.initAddress(addressToLoad);
 $("#altres").val("${requestScope.user.indicacions}");
 </script>
 <c:if test="${nameAuth ne 'anonymousUser' }">
