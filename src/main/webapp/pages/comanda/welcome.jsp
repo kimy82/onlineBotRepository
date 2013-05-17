@@ -86,7 +86,7 @@
 	  					</div>
 	  					<div id="afegir">
 							<div class="left_price">
-								<a href="#" class="entrar" onclick="welcome.addProduct('draggable_${plat.id}')" ><s:text name="txt.plat.afegir" /></a>
+								<a href="#" class="entrar" onclick="welcomeAction.addProduct('draggable_${plat.id}')" ><s:text name="txt.plat.afegir" /></a>
 							</div>
 							<div class="right_price">
 								 <span class="price">${plat.preu} &euro; </span><br>
@@ -115,7 +115,7 @@
 		  				</div>
 		  				<div id="afegir">
 							<div class="left_price">
-								<a href="#" onclick="welcome.addProduct('draggable_${plat.id}')" class="entrar_CLOSE"><s:text name="txt.plat.afegir" /></a>
+								<a href="#" onclick="welcomeAction.addProduct('draggable_${plat.id}')" class="entrar_CLOSE"><s:text name="txt.plat.afegir" /></a>
 							</div>
 							<div class="right_price">
 								 <span class="price">${plat.preu} &euro;</span><br>
@@ -214,7 +214,7 @@
 	  						</div>
 							<div id="afegir">
 								<div class="left_price">
-									<a href="#" class="entrar" onclick="welcome.addProduct('draggableb_${beguda.id}')" ><s:text name="txt.plat.afegir" /></a>
+									<a href="#" class="entrar" onclick="welcomeAction.addProduct('draggableb_${beguda.id}')" ><s:text name="txt.plat.afegir" /></a>
 								</div>
 								<div class="right_price">
 									 <span class="price">${beguda.preu} &euro;</span><br>

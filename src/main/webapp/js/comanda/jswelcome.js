@@ -275,7 +275,7 @@ $(function() {
 												json.preu);
 										window.localStorage.setItem("comanda.numplats",
 												json.numPlats);
-										saveLocalStorageNplatsOfsinglePlat(idPlat);
+										platOBJ.saveLocalStorageNplatsOfsinglePlat(idPlat);
 	
 										$("#numComanda").text(json.numComanda);
 										$("#numplats").text(json.numPlats);
