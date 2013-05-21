@@ -108,9 +108,11 @@ public class PaymentAction extends ActionSuportOnline{
 				this.payment.setDs_Merchant_Titular(this.nameAuth);
 				
 				if(comandarest!=null && comandarest.equals(Constants.ENTORN_LOCAL)){
+					this.payment.setDs_Merchant_Url("https://localhost/"+context+"/paymentTpvDone.action?orderId="+this.comanda.getId()+"&order="+this.paymentService.SHAOrder(String.valueOf(this.comanda.getId()), entorn));
 					this.payment.setDs_Merchant_UrlOK("https://localhost/"+context+"/paymentPOK.action?orderId="+this.comanda.getId()+"&order="+this.paymentService.SHAOrder(String.valueOf(this.comanda.getId()), entorn));
 					this.payment.setDs_Merchant_UrlKO("https://localhost/"+context+"/paymentPKO.action");
 				}else if (comandarest!=null && comandarest.equals(Constants.ENTORN_PRO)){
+					this.payment.setDs_Merchant_Url("https://www.portamu.com/"+context+"/paymentTpvDone.action?orderId="+this.comanda.getId()+"&order="+this.paymentService.SHAOrder(String.valueOf(this.comanda.getId()), entorn));
 					this.payment.setDs_Merchant_UrlOK("https://www.portamu.com/"+context+"/paymentPOK.action?orderId="+this.comanda.getId()+"&order="+this.paymentService.SHAOrder(String.valueOf(this.comanda.getId()), entorn));
 					this.payment.setDs_Merchant_UrlKO("https://www.portamu.com/"+context+"/paymentPKO.action");
 				}
@@ -207,7 +209,18 @@ public class PaymentAction extends ActionSuportOnline{
 	}
 	
 	public String paymentOK() throws IOException, PaymentException, NoSuchAlgorithmException, BOException{
-			
+		return SUCCESS;
+		
+	}
+
+	
+	public String paymentTpvNotDone() throws IOException{
+
+		return SUCCESS;
+	}
+
+	public String paymentTpvDone() throws IOException, PaymentException, NoSuchAlgorithmException, BOException{
+		
 		try{
 			String order = this.request.getParameter("order");
 			String orderId = this.request.getParameter("orderId");
@@ -283,53 +296,6 @@ public class PaymentAction extends ActionSuportOnline{
 			e.printStackTrace();
 		}
 		
-		return SUCCESS;
-	}
-
-	
-	public String paymentTpvNotDone() throws IOException{
-
-		return SUCCESS;
-	}
-
-	public String paymentTpvDone() throws IOException, PaymentException, NoSuchAlgorithmException, BOException{
-		
-		String order = this.request.getParameter("order");
-		String entorn = this.request.getSession().getServletContext().getInitParameter("entorn");
-		String transport = this.request.getSession().getServletContext().getInitParameter("transport");
-		String transportDouble = this.request.getSession().getServletContext().getInitParameter("transport_double");
-		String moterTime = this.request.getSession().getServletContext().getInitParameter("moterTime");
-		String comandarest = this.request.getSession().getServletContext().getInitParameter("comandarest");
-		
-		setAuthenticationUser();
-		inizilizeComandaId();
-		if(this.paymentService.CheckOrderOK(order, entorn,String.valueOf(this.idComanda))){
-			List<String> orders = new ArrayList<String>();
-		
-	
-			this.comanda = this.comandaBo.load(idComanda);
-			this.comanda.setPagada(true);
-			this.comandaBo.update(comanda);
-			try {
-				
-				int tempsPreparacio = this.comandaService.calculaTempsPreparacioGlobal(comanda);
-				orders = this.paymentService.getComandaOrders(this.comanda, this.comandaService.checkMoreThanOneRestaurant(this.comanda),transport , transportDouble, moterTime,tempsPreparacio );
-	
-			} catch (PaymentException pe) {
-				return ERROR;
-			} catch (Exception e) {
-				return ERROR;
-			}
-
-			if(this.comanda.getHora()!=null && this.comanda.getDia()!=null && this.comanda.getaDomicili()!=null && this.getComanda().getaDomicili()==true){
-				Moters moters = this.motersBo.load(this.comanda.getHora(), this.comanda.getDia());
-				moters.setNumeroMotersUsed(moters.getNumeroMotersUsed()==null?1:(moters.getNumeroMotersUsed()+1));
-				this.motersBo.update(moters);
-			}			
-			this.paymentService.sendOrder(true,true, orders, comandarest);
-			this.paymentService.sendOrder(true,false, orders, comandarest);
-			this.paymentService.sendOrder(false,false, orders, comandarest);
-		}
 		return SUCCESS;
 	}
 

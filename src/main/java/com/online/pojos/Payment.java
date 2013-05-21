@@ -17,6 +17,7 @@ public class Payment implements Serializable{
 	private String ds_Merchant_MerchantCode="327318309";
 	private String ds_Merchant_UrlOK;
 	private String ds_Merchant_UrlKO;
+	private String ds_Merchant_Url;
 	private String ds_Merchant_ConsumerLanguage="0";
 	private String ds_Merchant_MerchantName="PORTAMU";
 	private String ds_Merchant_Terminal="1";
@@ -145,6 +146,16 @@ public class Payment implements Serializable{
 	public void setUrl(String url) {
 		this.url = url;
 	}
+
+	public String getDs_Merchant_Url(){
 	
+		return ds_Merchant_Url;
+	}
+
+	public void setDs_Merchant_Url( String ds_Merchant_Url ){
+	
+		this.ds_Merchant_Url = ds_Merchant_Url;
+	}
+
 	
 }
