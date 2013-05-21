@@ -141,6 +141,15 @@ public class PromocionsBoImpl implements PromocionsBo{
 		return this.promocionsDao.getAllNumComandes();
 	}
 	
+	public List<PromocioAPartirDe> getAllAPartirDe(boolean visibility) throws BOException{
+		return this.promocionsDao.getAllAPartirDe(visibility);
+	}
+	
+	public List<PromocioNumComandes> getAllNumComandes(boolean visibility) throws BOException{
+		
+		return this.promocionsDao.getAllNumComandes(visibility);
+	}
+	
 
 	// PRIVATE METHODS
 	private void checkPromocio( Promocio promocio ) throws BOException{

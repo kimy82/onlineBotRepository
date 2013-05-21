@@ -46,6 +46,10 @@ public interface PromocionsBo{
 	List<PromocioAPartirDe> getAllAPartirDe() throws BOException;
 	
 	List<PromocioNumComandes> getAllNumComandes() throws BOException;
+	
+	List<PromocioAPartirDe> getAllAPartirDe(boolean visibility) throws BOException;
+	
+	List<PromocioNumComandes> getAllNumComandes(boolean visibility) throws BOException;
 
 	Promocio loadWithDates(Integer promoId) throws BOException;
 	

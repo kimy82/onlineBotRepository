@@ -90,8 +90,8 @@ public class WelcomeUserAction extends ActionSuportOnline{
 		
 		this.user = getUserFromContext();		
 		setUserName();
-		this.promoListAPartirDe = this.promocionsBo.getAllAPartirDe();
-		this.promocioNumComandes = this.promocionsBo.getAllNumComandes();
+		this.promoListAPartirDe = this.promocionsBo.getAllAPartirDe(false);
+		this.promocioNumComandes = this.promocionsBo.getAllNumComandes(false);
 		this.restaurantList = this.restaurantsBo.getAll(true, false, false);
 		
 		if(this.user.getCodePromo()!=null && !this.user.getCodePromo().equals("")){

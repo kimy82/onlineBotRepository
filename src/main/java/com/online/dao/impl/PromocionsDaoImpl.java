@@ -214,5 +214,24 @@ public List<Promocio>  loadByCode( String code ){
 
 		return getHibernateTemplate().loadAll(PromocioAPartirDe.class);
 	}
+	
+	public List<PromocioNumComandes> getAllNumComandes(boolean visibility){
+
+		Session session = this.getSessionFactory().openSession();
+		session.beginTransaction();
+		Criteria criteria = session.createCriteria(PromocioNumComandes.class);
+		criteria.add(Restrictions.eq("visibility", visibility));
+		return criteria.list();
+	}
+	
+	public List<PromocioAPartirDe> getAllAPartirDe(boolean visibility){
+
+		Session session = this.getSessionFactory().openSession();
+		session.beginTransaction();
+		Criteria criteria = session.createCriteria(PromocioAPartirDe.class);
+		criteria.add(Restrictions.eq("visibility", visibility));
+		return criteria.list();
+		
+	}
 
 }
