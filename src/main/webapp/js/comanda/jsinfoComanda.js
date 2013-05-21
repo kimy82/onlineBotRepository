@@ -74,9 +74,9 @@ addressManagerObj ={
 				}
 				
 				$("#comandaddress").val(addressToLoad);					
-				_self.validate();			
+				addressManagerObj.validate();			
 			}catch(error){
-				_self.emptyAddress();
+				addressManagerObj.emptyAddress();
 			}
 		}	
     },
@@ -129,12 +129,12 @@ promosManagerObj ={
 							$("#dialog_promo ul#prm").html("");
 							if(json.promosNumComanda !=null ){
 								//Hi ha prom del tipus numero de comanda
-								_self.fillPromos(json.promosNumComanda[0]);
+								promosManagerObj.fillPromos(json.promosNumComanda[0]);
 						
 							}
 							if(json.promosAPartirDe !=null ){
 								//Hi ha prom del tipus a partir de
-								_self.fillPromos(json.promosAPartirDe[0]);	       					
+								promosManagerObj.fillPromos(json.promosAPartirDe[0]);	       					
 							}
 													
 						}	  			  		  			  		  			  					
@@ -159,7 +159,7 @@ promosManagerObj ={
 						$("#dialog_promo ul#esp").html("");
 						if(json !=null ){
 							//Hi ha prom del tipus numero de comanda
-							_self.fillPromosEsp(json);					
+							promosManagerObj.fillPromosEsp(json);					
 						}												
 					}	  			  		  			  		  			  	
 			  },
@@ -186,7 +186,7 @@ promosManagerObj ={
 						$("#dialog_promo ul#visp").html("");
 						if(json !=null ){
 							//Hi ha prom del tipus numero de comanda
-							_self.fillPromosVisp(json);					
+							promosManagerObj.fillPromosVisp(json);					
 						}											
 					}	  			  		  			  		  			  	
 			  },
@@ -204,7 +204,7 @@ promosManagerObj ={
 				}
 				if(item.descompteImport!=null && item.descompteImport!="0"){			
 					//promocio descompte de pasta
-					var tipus=_self.getTipoDesCompte(item.tipuDescompte);
+					var tipus=promosManagerObj.getTipoDesCompte(item.tipuDescompte);
 					var liToAppend = "<li><a href='#' onclick=\"promosManagerObj.addPromoImport('"+item.descompteImport+"','"+item.tipuDescompte+"','"+item.id+"','gen')\" >"+initTxtPromos.txtteundescompte+"  "+item.descompteImport +" "+initTxtPromos.txten+" "+tipus+"</a>";
 					$("#dialog_promo ul#visp").append(liToAppend);
 
@@ -224,7 +224,7 @@ promosManagerObj ={
 				}
 				if(item.descompteImport!=null && item.descompteImport!= 'undefined' && item.descompteImport!="0"){			
 					//promocio descompte de pasta
-					var tipus=_self.getTipoDesCompte(item.tipuDescompte);
+					var tipus=promosManagerObj.getTipoDesCompte(item.tipuDescompte);
 					var liToAppend = "<li><a href='#' onclick=\"promosManagerObj.addPromoImport('"+item.descompteImport+"','"+item.tipuDescompte+"','"+item.id+"','esp')\" >"+initTxtPromos.txtteundescompte+"  "+item.descompteImport +" "+initTxtPromos.txten+" "+tipus+"</a>";
 					$("#dialog_promo ul#esp").append(liToAppend);
 				}
@@ -243,7 +243,7 @@ promosManagerObj ={
 				}
 				if(item.descompteImport!=null && item.descompteImport!="0"){			
 					//promocio descompte de pasta
-					var tipus=_self.getTipoDesCompte(item.tipuDescompte);
+					var tipus=promosManagerObj.getTipoDesCompte(item.tipuDescompte);
 					var liToAppend = "<li><a href='#' onclick=\"promosManagerObj.addPromoImport('"+item.descompteImport+"','"+item.tipuDescompte+"','"+item.id+"','gen')\" >"+initTxtPromos.txtteundescompte+"  "+item.descompteImport +" "+initTxtPromos.txten+" "+tipus+"</a>";
 					$("#dialog_promo ul#prm").append(liToAppend);
 				}
@@ -320,7 +320,7 @@ promosManagerObj ={
 												
 												
 												$(cell4).addClass("canti");
-												cell4.innerHTML="<input class='mores' type='submit' onclick='begudaOBJ.saveBegudaToComanda("+value.beguda.id+",false,-1);' value='-'><label id='labelnum_b_"+value.beguda.id+"'>"+value.numBegudes+"</label><input class='mores' type='submit' onclick='begudaOBJ.saveBegudaToComanda("+value.beguda.id+",false,1);' value='+'>";
+												cell4.innerHTML="<input class='mores' type='submit' onclick='begudaOBJ.saveBegudaToComanda(this,"+value.beguda.id+",false,-1);' value='-'><label id='labelnum_b_"+value.beguda.id+"'>"+value.numBegudes+"</label><input class='mores' type='submit' onclick='begudaOBJ.saveBegudaToComanda(this,"+value.beguda.id+",false,1);' value='+'>";
 												
 													
 												$(cell5).addClass("total");
@@ -328,7 +328,7 @@ promosManagerObj ={
 												
 												
 												$(cell6).addClass("elimi");
-												cell6.innerHTML="<input class='elimin' type='submit' onclick='begudaOBJ.eliminaBeguda("+value.beguda.id+")'  value='ELIMINAR'>";
+												cell6.innerHTML="<input class='elimin' type='submit' onclick='begudaOBJ.eliminaBeguda(this,"+value.beguda.id+")'  value='ELIMINAR'>";
 												
 												var li= value.numBegudes+" <span class='plats' id='span_b_"+value.beguda.id+"'>x</span> "+changeHTML(value.beguda.nom)+"<br><br>";
 												lis = lis+li;
@@ -422,10 +422,10 @@ promosManagerObj ={
 		
 		$("#checkPromocionsDisponibles").hide();
 		$("#deletePromoApplied").show();
-		_self.closeDialogPromos();
+		promosManagerObj.closeDialogPromos();
 		
 		if(numBegudes!=null){		  
-			_self.checkBegudaToAddPromo(id);				
+			promosManagerObj.checkBegudaToAddPromo(id);				
 		}
 		
 		alertOnline.alertes(initParams.txtAddDrinkstoBox);
@@ -441,7 +441,7 @@ promosManagerObj ={
 			var id = window.localStorage.getItem("comanda.promo.id");
 			var tipus = window.localStorage.getItem("comanda.promo.tipus");
 			if(nbegudes!=null &&  tipoBeguda != null  && id != null && tipus != null){
-				_self.addPromoBeguda(nbegudes, tipoBeguda,id,tipus);
+				promosManagerObj.addPromoBeguda(nbegudes, tipoBeguda,id,tipus);
 				var nbegudesAdded = window.localStorage.getItem("comanda.promo.nBegudes.added");
 				window.promoBeguda.numBegudesAdded = nbegudesAdded;
 				$("#numbegudespromo").text(nbegudesAdded);
@@ -460,7 +460,7 @@ promosManagerObj ={
 			var id = window.localStorage.getItem("comanda.promo.id");
 			var tipus = window.localStorage.getItem("comanda.promo.tipus");
 			if( importe!=null && tipoDescompte != null){
-				_self.addPromoImport(importe, tipoDescompte,id, tipus);		
+				promosManagerObj.addPromoImport(importe, tipoDescompte,id, tipus);		
 			}			
 		}
 	}, 
@@ -498,7 +498,7 @@ promosManagerObj ={
 		
 		$("#checkPromocionsDisponibles").hide();
 		$("#deletePromoApplied").show();
-		_self.closeDialogPromos();
+		promosManagerObj.closeDialogPromos();
 	}, 
 	deletePromoApplied: function(){
 		try{
@@ -542,7 +542,7 @@ promosManagerObj ={
 				
 				$("#numbegudespromo").text("0");
 				
-				_self.deleteAjaxBegudesPromo();
+				promosManagerObj.deleteAjaxBegudesPromo();
 			}
 			$("#deletePromoApplied").hide();
 			$("#checkPromocionsDisponibles").show();
@@ -860,12 +860,12 @@ menuRestaurantAction ={
 		if(isNaN(id)){window.location.href="https://www.portamu.com/elteurestaurantacasa/Welcome.action";	}
 		var comanda = window.localStorage.getItem("comanda");
 		var data = window.localStorage.getItem("comanda.data");
-		var comandaConfirm = _self.getConfirm();
+		var comandaConfirm = menuRestaurantAction.getConfirm();
 		
 		if( comanda != null && comandaConfirm == null){
 			var day = new Date();
 			window.localStorage.setItem("comanda.confirm",day.getTime());
-			_self.acceptComandaDialog();
+			menuRestaurantAction.acceptComandaDialog();
 		}else{
 			window.location.href="/"+context+"/comanda/Welcome.action?restaurantId="+id+"&data="+data;
 		}
@@ -891,7 +891,7 @@ menuRestaurantAction ={
 		window.location.href="/"+context+"/comanda/Welcome.action?restaurantId="+idRestaurant+"&data="+data;
 	},
 	acceptComandaDialog: function(){
-		_self.confirmComanda();
+		menuRestaurantAction.confirmComanda();
 	},
 	confirmComanda: function(){
 		var comanda = window.localStorage.getItem("comanda");
@@ -974,7 +974,7 @@ platsOBJ ={
 				 promosManagerObj.initPromoDescompteFromStorage();
 				 
 				 //Guardem els plats afegits
-				 _self.savePlatToComandaMesMenys(self,id,nPlatsAdded);
+				 platsOBJ.savePlatToComandaMesMenys(self,id,nPlatsAdded);
 				 var platsAnterior = window.localStorage.getItem("comanda.numplats");	
 				 var platsAra= parseInt(platsAnterior)+parseInt(nPlatsAdded);
 				 window.localStorage.setItem("comanda.numplats",platsAra);       			
@@ -1021,7 +1021,7 @@ platsOBJ ={
 			 $("#preu").text(parseFloat(preuComanda).toFixed(2));
 			 $("#labelpreutotalPromo").text(parseFloat(preuComanda).toFixed(2));
 			 promosManagerObj.initPromoDescompteFromStorage();
-			 _self.savePlatToComanda(id,-n); 
+			 platsOBJ.savePlatToComanda(id,-n); 
 			var platsAnterior = window.localStorage.getItem("comanda.numplats");	
 			var platsAra= parseInt(platsAnterior)-parseInt(n);
 			window.localStorage.setItem("comanda.numplats",platsAra);       			
@@ -1157,7 +1157,7 @@ comandaOBJ ={
 					return;
 				}				
 				window.localStorage.setItem("comanda.hora",hora);
-				var adomicili =_self.getAdomicili();
+				var adomicili =comandaOBJ.getAdomicili();
 				var address = $("#comandaddress").val();				
 				
 				if(adomicili){										
@@ -1173,13 +1173,13 @@ comandaOBJ ={
 					window.localStorage.removeItem("comanda.address");
 				}
 				var dia = $("#dia").val();
-				var targeta =_self.getTargeta();
+				var targeta =comandaOBJ.getTargeta();
 				var promoId = window.localStorage.getItem("comanda.promo.id");
 				var tipusPromo = window.localStorage.getItem("comanda.promo.tipus");				
 				
-				address = _self.encode(address,false);
+				address = comandaOBJ.encode(address,false);
 				var indicacions =$("#altres").val();			
-				indicacions = _self.encode(indicacions,true);
+				indicacions = comandaOBJ.encode(indicacions,true);
 				var data ="idComanda="+comanda+"&dia="+dia+"&hora="+hora+"&aDomicili="+adomicili+"&targeta="+targeta+"&address="+address+"&promoId="+promoId+"&tipusPromo="+tipusPromo+"&indicacions="+indicacions;
 				$.ajax({
 					  type: "POST",
@@ -1203,7 +1203,7 @@ comandaOBJ ={
 								if(json.comandaOK !=null ){
 									alertOnline.alertes(json.comandaOK);	       					
 									$("#checkPromocionsDisponibles").show();
-									_self.payComanda();
+									comandaOBJ.payComanda();
 									return;
 								}	       						       		
 							}	  			  		  			  		  			  	
@@ -1278,7 +1278,7 @@ begudaOBJ ={
 	_init: function (){
 		this._self =this;
 	},
-	eliminaBeguda: function(id){
+	eliminaBeguda: function(self,id){
 		try{
 			var n = $("#labelnum_b_"+id).text();
 			$("#labelnum_b_"+id).text("0");	
@@ -1288,7 +1288,7 @@ begudaOBJ ={
 			var preuComanda = parseFloat(preu)-parseFloat(preuTotalBeguda);
 			$("#preu").text(parseFloat(preuComanda).toFixed(2));
 			$("#labelpreutotalPromo").text(parseFloat(preuComanda).toFixed(2));
-			_self.saveBegudaToComanda(id,false,-n); 
+			begudaOBJ.saveBegudaToComanda(self,id,false,-n); 
 			var lis= window.localStorage.getItem("comanda.begudes.lis");
 			var lista="";
 			var begudes = lis.split("<br><br>");
@@ -1302,11 +1302,11 @@ begudaOBJ ={
 			console.log(error);
 		}	
 	},
-	saveBegudaToComanda: function (idBeguda,promo,amount){
+	saveBegudaToComanda: function (self,idBeguda,promo,amount){
 		try{
 				if(typeof idBeguda === "undefined" || idBeguda=='' || idBeguda==null ) return;
-				if(typeof amount === "undefined" || amount=='' || amount==null) amount=1;
-				$(".mores").attr("disabled","disabled");		
+				if(isNaN(amount)) amount=1;
+				$(self).attr("disabled","disabled");		
 				var data ="idBeguda="+idBeguda+"&idComanda="+$("#idcomanda").val()+"&amount="+amount+"&promo="+promo;
 				$.ajax({
 					  type: "POST",
@@ -1372,7 +1372,7 @@ begudaOBJ ={
 													
 													
 													$(cell4).addClass("canti");
-													cell4.innerHTML="<input class='mores' type='submit' onclick='begudaOBJ.saveBegudaToComanda("+value.beguda.id+",false,-1);' value='-'><label id='labelnum_b_"+value.beguda.id+"'>"+value.numBegudes+"</label><input class='mores' type='submit' onclick='begudaOBJ.saveBegudaToComanda("+value.beguda.id+",false,1);' value='+'>";
+													cell4.innerHTML="<input class='mores' type='submit' onclick='begudaOBJ.saveBegudaToComanda(this,"+value.beguda.id+",false,-1);' value='-'><label id='labelnum_b_"+value.beguda.id+"'>"+value.numBegudes+"</label><input class='mores' type='submit' onclick='begudaOBJ.saveBegudaToComanda(this,"+value.beguda.id+",false,1);' value='+'>";
 													
 														
 														
@@ -1382,7 +1382,7 @@ begudaOBJ ={
 													
 													
 													$(cell6).addClass("elimi");
-													cell6.innerHTML="<input class='elimin' type='submit' onclick='begudaOBJ.eliminaBeguda("+value.beguda.id+")'  value='ELIMINAR'>";
+													cell6.innerHTML="<input class='elimin' type='submit' onclick='begudaOBJ.eliminaBeguda(this,"+value.beguda.id+")'  value='ELIMINAR'>";
 												}
 												var li= value.numBegudes+" <span class='plats' id='span_b_"+value.beguda.id+"'>x</span> "+changeHTML(value.beguda.nom)+"<br><br>";
 												lis = lis+li;
@@ -1480,14 +1480,14 @@ var func = $(function(){
 	  						}, 1800,function() {
 	  								var id = $(this).attr("id");
 	  								var tipus = $(this).attr("title");
-	  								addingBegudaMangaer(id,tipus);
+	  								addingBegudaMangaer(this,id,tipus);
 	      							$(this).css("visiblity","hidden");
 	      							$(this).css("display","none");
 	    					});
 	  	
 	});
 	
-	function addingBegudaMangaer(id,tipus){
+	function addingBegudaMangaer(self,id,tipus){
 	
 		var plats = window.localStorage.getItem("comanda.numplats");
 		//if no dishes go to inici
@@ -1497,7 +1497,7 @@ var func = $(function(){
 		}
 		
 			if(window.promoBeguda == null || window.promoBeguda.promo!="true" ){	
-				begudaOBJ.saveBegudaToComanda(id,false,1);
+				begudaOBJ.saveBegudaToComanda(self,id,false,1);
 			}else{
 				var n = window.localStorage.getItem("comanda.promo.nBegudes.added");
 				if(parseInt(n) < window.promoBeguda.numBegudes){
@@ -1507,9 +1507,9 @@ var func = $(function(){
 	    			}
 	    			//Afegim beguda al contador
 	    			window.localStorage.setItem("comanda.promo.nBegudes.added", parseInt(n) +1);
-	    			begudaOBJ.saveBegudaToComanda(id,true,1);
+	    			begudaOBJ.saveBegudaToComanda(self,id,true,1);
 	    		}else{
-	    			begudaOBJ.saveBegudaToComanda(id,false,1);
+	    			begudaOBJ.saveBegudaToComanda(self,id,false,1);
 	    		}
 			}
 	}

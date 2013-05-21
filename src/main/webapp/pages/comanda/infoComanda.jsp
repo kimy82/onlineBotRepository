@@ -144,7 +144,7 @@
 									</td>
 									<td class="total"><label id="labelpreutotal_b_${begudaComanda.beguda.id}"><fmt:formatNumber maxFractionDigits="2" type="number" value="${begudaComanda.beguda.preu*begudaComanda.numBegudes}" ></fmt:formatNumber> </label> &euro; </td>
 									<td class="elimi">
-										<input class="elimin" type="submit" onclick="begudaOBJ.eliminaBeguda(${begudaComanda.beguda.id})"  value="ELIMINAR">
+										<input class="elimin" type="submit" onclick="begudaOBJ.eliminaBeguda(this,${begudaComanda.beguda.id})"  value="ELIMINAR">
 									</td>								
 									</tr>								
 								</c:if>

@@ -42,7 +42,7 @@ public class PaymentServiceImpl implements PaymentService {
 		try{
 		Clau clau = this.clauBo.getClau(entorn);
 		
-		String cadena = Ds_Merchant_Amount+Ds_Merchant_Order+Ds_Merchant_MerchantCode+DS_Merchant_Currency+Ds_Merchant_TransactionType+clau.getCode();
+		String cadena = Ds_Merchant_Amount+Ds_Merchant_Order+Ds_Merchant_MerchantCode+DS_Merchant_Currency+Ds_Merchant_TransactionType+Ds_Merchant_MerchantURL+clau.getCode();
 		MessageDigest md;
 		byte[] buffer, digest;
 		String hash = "";

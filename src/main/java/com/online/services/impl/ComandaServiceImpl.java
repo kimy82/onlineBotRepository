@@ -588,7 +588,7 @@ public class ComandaServiceImpl implements ComandaService{
 				if(promo.getNumUses()!=null && promo.getNumUses()<=numUsed) continue;
 				
 				if(comanda.getDia()==null) comanda.setDia(diaAvui);
-				if(comanda.getDia()!=null && comanda.getDia().compareTo(diaAvui)==0 && actualHour>16 && promo.getHora()!=null && promo.getHora()==true){
+				if(comanda.getDia()!=null && Utils.formatDate2(comanda.getDia()).equals(Utils.formatDate2(diaAvui)) && actualHour>16 && promo.getHora()!=null && promo.getHora()==true){
 					continue;					
 				}
 				if(!promo.checkDayOfWeekOpen(dayOfWeek)) continue;
@@ -600,7 +600,7 @@ public class ComandaServiceImpl implements ComandaService{
 				int numUsed = promo.getNumUsed()==null?0:promo.getNumUsed();
 				if(promo.getNumUses()!=null && promo.getNumUses()<=numUsed) continue;
 				if(comanda.getDia()==null) comanda.setDia(diaAvui);
-				if(comanda.getDia()!=null && comanda.getDia().compareTo(diaAvui)==0 && actualHour>16 && promo.getHora()!=null && promo.getHora()==true){
+				if(comanda.getDia()!=null && Utils.formatDate2(comanda.getDia()).equals(Utils.formatDate2(diaAvui)) && actualHour>16 && promo.getHora()!=null && promo.getHora()==true){
 					continue;					
 				}
 				if(!promo.checkDayOfWeekOpen(dayOfWeek)) continue;

@@ -104,33 +104,37 @@ function goToPromocio(id){
 					 		$("#importAPartirDe").val(json.importAPartirDe);
 					 		$("#numUses_apd").val(json.numUses);
 					 		if(json.hora==true){
-					 			$("#adp_hora").attr('checked','true');
+					 			$("#adp_hora").attr('checked',true);
+					 		}else{
+					 			$("#adp_hora").attr('checked',false);
 					 		}
 					 		$("#dia").val(json.diaString);
 					 		
 					 		if(json.dilluns==true){
-					 			$("#adp_dilluns").attr('checked','true');
+					 			$("#adp_dilluns").attr('checked',true);
 					 		}
 					 		if(json.dimarts==true){
-					 			$("#adp_dimarts").attr('checked','true');
+					 			$("#adp_dimarts").attr('checked',true);
 					 		}
 					 		if(json.dimecres==true){
-					 			$("#adp_dimecres").attr('checked','true');
+					 			$("#adp_dimecres").attr('checked',true);
 					 		}
 					 		if(json.dijous==true){
-					 			$("#adp_dijous").attr('checked','true');
+					 			$("#adp_dijous").attr('checked',true);
 					 		}
 					 		if(json.divendres==true){
-					 			$("#adp_divendres").attr('checked','true');
+					 			$("#adp_divendres").attr('checked',true);
 					 		}
 					 		if(json.dissabte==true){
-					 			$("#adp_dissabte").attr('checked','true');
+					 			$("#adp_dissabte").attr('checked',true);
 					 		}
 					 		if(json.diumenge==true){
-					 			$("#adp_diumenge").attr('checked','true');
+					 			$("#adp_diumenge").attr('checked',true);
 					 		}
 					 		if(json.visibility==true){
-					 			$("#adp_visibility").attr('checked','true');
+					 			$("#adp_visibility").attr('checked',true);
+					 		}else{
+					 			$("#adp_visibility").attr('checked',false);
 					 		}
 					 		
 					 		$("#infopromonew").show('slow');
@@ -148,35 +152,38 @@ function goToPromocio(id){
 					 		$("#numComandes").val(json.numComandes);
 					 		$("#numUses_pnc").val(json.numUses);
 					 		if(json.hora==true){
-					 			$("#pnc_hora").attr('checked','true');
+					 			$("#pnc_hora").attr('checked',true);
+					 		}else{
+					 			$("#pnc_hora").attr('checked',false);
 					 		}
 					 		$("#temps").val(json.temps);
 					 		
 					 		if(json.dilluns==true){
-					 			$("#pnc_dilluns").attr('checked','true');
+					 			$("#pnc_dilluns").attr('checked',true);
 					 		}
 					 		if(json.dimarts==true){
-					 			$("#pnc_dimarts").attr('checked','true');
+					 			$("#pnc_dimarts").attr('checked',true);
 					 		}
 					 		if(json.dimecres==true){
-					 			$("#pnc_dimecres").attr('checked','true');
+					 			$("#pnc_dimecres").attr('checked',true);
 					 		}
 					 		if(json.dijous==true){
-					 			$("#pnc_dijous").attr('checked','true');
+					 			$("#pnc_dijous").attr('checked',true);
 					 		}
 					 		if(json.divendres==true){
-					 			$("#pnc_divendres").attr('checked','true');
+					 			$("#pnc_divendres").attr('checked',true);
 					 		}
 					 		if(json.dissabte==true){
-					 			$("#pnc_dissabte").attr('checked','true');
+					 			$("#pnc_dissabte").attr('checked',true);
 					 		}
 					 		if(json.diumenge==true){
-					 			$("#pnc_diumenge").attr('checked','true');
+					 			$("#pnc_diumenge").attr('checked',true);
 					 		}
 					 		if(json.visibility==true){
-					 			$("#pnc_visibility").attr('checked','true');
-					 		}
-					 		
+					 			$("#pnc_visibility").attr('checked',true);
+					 		}else{
+					 			$("#pnc_visibility").attr('checked',false);
+					 		}					 		
 					 		$("#infopromonew").show('slow');
 					 		$("#pnc").click();
 					 	}					 					 										 					 						 					 						  

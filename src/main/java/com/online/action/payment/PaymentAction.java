@@ -107,8 +107,8 @@ public class PaymentAction extends ActionSuportOnline{
 				this.payment.setDs_Merchant_ProductDescription(this.comandaService.getListOfPlatsAndDrinks(comanda));
 				this.payment.setDs_Merchant_Titular(this.nameAuth);
 				
-				if(comandarest!=null && comandarest.equals(Constants.ENTORN_LOCAL)){
-					this.payment.setDs_Merchant_Url("https://localhost/"+context+"/paymentTpvDone.action?orderId="+this.comanda.getId()+"&order="+this.paymentService.SHAOrder(String.valueOf(this.comanda.getId()), entorn));
+				if(comandarest!=null && comandarest.equals(Constants.ENTORN_LOCAL)){ //?orderId="+this.comanda.getId()+"&order="+this.paymentService.SHAOrder(String.valueOf(this.comanda.getId()), entorn)
+					this.payment.setDs_Merchant_Url("https://localhost/"+context+"/paymentTpvDone.action");
 					this.payment.setDs_Merchant_UrlOK("https://localhost/"+context+"/paymentPOK.action?orderId="+this.comanda.getId()+"&order="+this.paymentService.SHAOrder(String.valueOf(this.comanda.getId()), entorn));
 					this.payment.setDs_Merchant_UrlKO("https://localhost/"+context+"/paymentPKO.action");
 				}else if (comandarest!=null && comandarest.equals(Constants.ENTORN_PRO)){
@@ -118,7 +118,7 @@ public class PaymentAction extends ActionSuportOnline{
 				}
 				
 				
-				this.payment.setDs_Merchant_MerchantSignature(this.paymentService.SHA(formateador.format((preu*100)), id, "327318309", "978", "0","",entorn));				
+				this.payment.setDs_Merchant_MerchantSignature(this.paymentService.SHA(formateador.format((preu*100)), id, "327318309", "978", "0",payment.getDs_Merchant_Url(),entorn));				
 				
 				this.comanda.setRevisio(false);
 				this.comandaBo.update(comanda);
