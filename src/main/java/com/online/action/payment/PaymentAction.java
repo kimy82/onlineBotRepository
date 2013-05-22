@@ -107,8 +107,8 @@ public class PaymentAction extends ActionSuportOnline{
 				this.payment.setDs_Merchant_ProductDescription(this.comandaService.getListOfPlatsAndDrinks(comanda));
 				this.payment.setDs_Merchant_Titular(this.nameAuth);
 				
-				if(comandarest!=null && comandarest.equals(Constants.ENTORN_LOCAL)){ //?orderId="+this.comanda.getId()+"&order="+this.paymentService.SHAOrder(String.valueOf(this.comanda.getId()), entorn)
-					this.payment.setDs_Merchant_Url("https://localhost/"+context+"/paymentTpvDone.action");
+				if(comandarest!=null && comandarest.equals(Constants.ENTORN_LOCAL)){ 
+					this.payment.setDs_Merchant_Url("https://localhost/"+context+"/paymentTpvDone.action?orderId="+this.comanda.getId()+"&order="+this.paymentService.SHAOrder(String.valueOf(this.comanda.getId()), entorn));
 					this.payment.setDs_Merchant_UrlOK("https://localhost/"+context+"/paymentPOK.action?orderId="+this.comanda.getId()+"&order="+this.paymentService.SHAOrder(String.valueOf(this.comanda.getId()), entorn));
 					this.payment.setDs_Merchant_UrlKO("https://localhost/"+context+"/paymentPKO.action");
 				}else if (comandarest!=null && comandarest.equals(Constants.ENTORN_PRO)){
