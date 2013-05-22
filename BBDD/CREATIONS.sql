@@ -1,3 +1,34 @@
+/*DROPS*/
+drop table claus;
+drop table promos_associated;
+drop table users;
+drop table user_roles;
+drop table images;
+drop table plats;
+drop table restaurants;
+drop table restaurants_plats;
+drop table newsletters;
+drop table votacio_beguda; 
+drop table votacio_plat; 
+drop table votacio_restaurant; 
+drop table TMP_VT_B; 
+drop table TMP_VT; 
+drop table beguda_foro; 
+drop table foro;
+drop table plats_foro; 
+drop table foroB;
+drop table begudaComanda; 
+drop table comanda_begudes; 
+drop table platComanda; 
+drop table comanda_plats; 
+drop table begudes;
+drop table promocions;  
+drop table mt_config_moters;  
+drop table mt_config_restaurant; 
+drop table restaurants_obertura;
+drop table comandes;
+
+
 /* alters init*/
  set global  max_allowed_packet = 1073741824;
 /*per veure info en els grafics de les promos normals. Primer s'han de crear*/
@@ -148,6 +179,7 @@ CREATE TABLE  restaurants_obertura (
 	MT_RESTAURANT_ID INT(10) UNSIGNED
    )ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+
 CREATE TABLE promocions (
 	PROMOCIO_ID INT(10) UNSIGNED,
 	FENTRADA DATE,
@@ -190,6 +222,7 @@ CREATE TABLE begudes (
 	PRIMARY KEY (BEGUDA_ID)  USING BTREE
 )ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+
 CREATE TABLE comandes (
 	COMANDA_ID INT(10) UNSIGNED,
 	HORA VARCHAR(5),
@@ -208,6 +241,7 @@ CREATE TABLE comandes (
 	PLATS_BORRATS VARCHAR(2000),
 	PRIMARY KEY (COMANDA_ID)  USING BTREE
 )ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
 
 CREATE TABLE  comanda_plats (	
 	COMANDA_ID INT(10) UNSIGNED, 
