@@ -175,7 +175,12 @@ if(adre!=null){
 	document.getElementById("adre").innerHTML=" "+getAddressFormat(adre)+". ";	
 }else{
 	var addressRestaurant = window.localStorage.getItem("restaurant.address");
-	document.getElementById("adre").innerHTML=" "+addressRestaurant+". ";
+	if(addressRestaurant==null){
+		document.getElementById("adre").innerHTML="  ";
+	}else{
+		document.getElementById("adre").innerHTML=" "+addressRestaurant+". ";	
+	}
+	
 	
 }
 

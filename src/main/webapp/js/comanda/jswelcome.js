@@ -465,7 +465,7 @@ menuRestaurantAction ={
 			var day = new Date();
 			window.localStorage.setItem("comanda.confirm",day.getTime());
 			window.localStorage.setItem("comanda.timeout.data",day.getTime());		
-			acceptComandaDialog();
+			menuRestaurantAction.acceptComandaDialog();
 		}else{
 			window.location.href="/"+context+"/comanda/Welcome.action?restaurantId="+id+"&data="+data;
 		}
@@ -636,7 +636,7 @@ welcomeAction ={
 	},
 	_setNumPlats: function(){
 		var numplats = window.localStorage.getItem("comanda.numplats");
-		if(!isNaN(numplats) || numplats == null){
+		if(isNaN(numplats) || numplats == null){
 			numplats=0;
 			window.localStorage.setItem("comanda.numplats","0");
 		}else{

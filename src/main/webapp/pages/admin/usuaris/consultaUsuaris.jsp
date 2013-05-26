@@ -39,6 +39,7 @@
 					<thead>
 						<tr>
 							<th><s:text name="mant.user.table.username" /></th>
+							<th>PROMO</th>
 							<th><s:text name="mant.user.table.estado" /></th>
 							<th width="40px"></th>
 						</tr>

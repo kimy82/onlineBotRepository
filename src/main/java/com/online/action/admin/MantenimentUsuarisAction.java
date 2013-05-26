@@ -270,7 +270,7 @@ public class MantenimentUsuarisAction extends ActionSuportOnline{
 			usersTable.setAccio("<a href=\"#\" onclick=\"deleteUser(" + users.getId() + ")\" ><img src=\"../images/delete.png\"></a>");
 			subusersTableList.add(usersTable);
 		}
-		Gson gson = new GsonBuilder().setPrettyPrinting().excludeFieldsWithoutExposeAnnotation().create();
+		Gson gson = new GsonBuilder().serializeNulls().setPrettyPrinting().excludeFieldsWithoutExposeAnnotation().create();
 		String json = gson.toJson(subusersTableList);
 		StringBuffer jsonSB = new StringBuffer("{");
 		jsonSB.append("\"sEcho\": " + sEcho + ", \"iTotalRecords\":\"" + usersList.size() + "\", \"iTotalDisplayRecords\":\""

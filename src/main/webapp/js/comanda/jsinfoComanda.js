@@ -1005,7 +1005,7 @@ platsOBJ ={
 			console.log(error);
 		}
 	},
-	eliminaPlat: function(){
+	eliminaPlat: function(id){
 		try{
 			 window.localStorage.setItem("comanda.plat_"+id,"0");
 			 var n = $("#labelnum_"+id).text();

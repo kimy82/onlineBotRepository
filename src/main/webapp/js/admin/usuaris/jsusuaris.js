@@ -175,6 +175,7 @@ $(document).ready(function() {
 					"iDisplayLength": 20,
 					 "aoColumns" : [
 					                  { "mDataProp":"username","bSortable": false, sWidth: '130px' },
+					                  { "mDataProp":"codePromo", "bSortable": false, sWidth: '120px' },
 					                  { "mDataProp":"enabled", "bSortable": false, sWidth: '120px' },
 					                  { "mDataProp":"accio", "bSortable": false, sWidth: '120px' }
 					                  

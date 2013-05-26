@@ -177,74 +177,106 @@ function checkPassword(){
 	}
 }
 
-function goToRestaurantMenu(id){
-	var comanda = window.localStorage.getItem("comanda");
-	var data = window.localStorage.getItem("comanda.data");
-	var comandaConfirm = window.localStorage.getItem("comanda.confirm");
+//OBJ for disches management 
+var platOBJ ={
+}
+platOBJ._self=null;
+
+
+platOBJ ={
 	
-	if(comandaConfirm !='undefined' && comandaConfirm!=null){
-		var currentDay = new Date();
-		if((currentDay.getTime()-comandaConfirm)>60*confirmTime){
-			window.localStorage.removeItem("comanda.confirm");
+	_init: function (){
+		this._self =this;
+	},
+	closeInfoPlat: function(){
+		$("#votaPlats_dialog").dialog("close");
+	}	
+}
+
+
+//OBJ for managment of menu restaurant 
+var menuRestaurantAction ={
+}
+menuRestaurantAction._self=null;
+
+
+menuRestaurantAction ={
+	
+	_init: function (){
+		this._self =this;
+	},
+	goToRestaurantMenu: function(id){
+		if(isNaN(id)){window.location.href="https://www.portamu.com/elteurestaurantacasa/Welcome.action";	}
+		var comanda = window.localStorage.getItem("comanda");
+		var data = window.localStorage.getItem("comanda.data");
+		var comandaConfirm = menuRestaurantAction.getConfirm();
+		
+		if( comanda != null && comandaConfirm == null){
+			var day = new Date();
+			window.localStorage.setItem("comanda.confirm",day.getTime());
+			menuRestaurantAction.acceptComandaDialog();
+		}else{
+			window.location.href="/"+context+"/comanda/Welcome.action?restaurantId="+id+"&data="+data;
 		}
+	},
+	getConfirm: function(){
+		var comandaConfirm = window.localStorage.getItem("comanda.confirm");
+		
+		if( comandaConfirm!=null){
+			var currentDay = new Date();
+			if((currentDay.getTime()-comandaConfirm)>60*confirmTime){
+				window.localStorage.removeItem("comanda.confirm");
+			}
+		}
+		return window.localStorage.getItem("comanda.confirm");
+	},
+	actionCloseConfirm: function(){
+		var data = window.localStorage.getItem("comanda.data");
+		var idRestaurant = window.localStorage.getItem("comanda.restaurant");
+		if(idRestaurant==null) return;
+		window.localStorage.clear();	
+		window.localStorage.setItem("comanda.data",data);
+		window.localStorage.setItem("comanda.restaurant",idRestaurant);
+		window.location.href="/"+context+"/comanda/Welcome.action?restaurantId="+idRestaurant+"&data="+data;
+	},
+	acceptComandaDialog: function(){
+		try{
+			confirmOnline.closeSetFunc(_self.actionCloseConfirm);
+			confirmOnline.confirm(initParams.txtconfirmcontinuar,_self.confirmComanda);
+		}catch(error){
+			console.log(error);
+		}
+	},
+	confirmComanda: function(){
+		var comanda = window.localStorage.getItem("comanda");
+		var idRestaurant = window.localStorage.getItem("comanda.restaurant");
+		if(idRestaurant==null) return;
+		if($("#list_rest_"+idRestaurant).hasClass("tancat")){
+			alertOnline.alertes(initParams.txtavisrestauranttancat);	
+		}
+		if(comanda != null){
+			var data = window.localStorage.getItem("comanda.data");
+			window.location.href = "/"+context+"/comanda/goToPas1Action.action?idComanda="+comanda+"&data="+data;
+		}
+	},
+	confirmComandaBox: function(){
+		try{
+			var comanda = window.localStorage.getItem("comanda");
+			var idRestaurant = window.localStorage.getItem("comanda.restaurant");
+			if(isNaN(idRestaurant) || isNaN(comanda)) return;
+			if($("#list_rest_"+idRestaurant).hasClass("tancat")){
+				alertOnline.alertes(initParams.txtavisrestauranttancat);	
+			}
+			if(comanda != null){
+				var data = window.localStorage.getItem("comanda.data");
+				window.location.href = "/"+context+"/comanda/goToPas1Action.action?idComanda="+comanda+"&data="+data;
+			}
+		}catch(error){
+			console.log(error);
+		}
+		
 	}
-	
-	comandaConfirm = window.localStorage.getItem("comanda.confirm");
-	
-	if(comanda != 'undefined' && comanda != null && comandaConfirm == null){
-		var day = new Date();
-		window.localStorage.setItem("comanda.confirm",day.getTime());
-		acceptComandaDialog();
-	}else{
-		window.location.href="/"+context+"/comanda/Welcome.action?restaurantId="+id+"&data="+data;
-	}
-}
-
-var actionCloseConfirm = function(){
-	var data = window.localStorage.getItem("comanda.data");
-	var idRestaurant = window.localStorage.getItem("comanda.restaurant");
-	if(idRestaurant=='undefined' || idRestaurant==null) return;
-	window.localStorage.clear();	
-	window.localStorage.setItem("comanda.data",data);
-	window.localStorage.setItem("comanda.restaurant",idRestaurant);
-	window.location.href="/"+context+"/comanda/Welcome.action?restaurantId="+idRestaurant+"&data="+data;
-}
-
-function acceptComandaDialog(){
-	confirmOnline.closeSetFunc(actionCloseConfirm);
-	confirmOnline.confirm(initParams.txtconfirmcontinuar,confirmComanda);
-}
-
-var confirmComanda = function (){
-									var comanda = window.localStorage.getItem("comanda");
-									var idRestaurant = window.localStorage.getItem("comanda.restaurant");
-									if(idRestaurant=='undefined' || idRestaurant==null) return;
-									if($("#list_rest_"+idRestaurant).hasClass("tancat")){
-										alertOnline.alertes(initParams.txtavisrestauranttancat);	
-									}
-									if(comanda != 'undefined' && comanda != null){
-										var data = window.localStorage.getItem("comanda.data");
-										window.location.href = "/"+context+"/comanda/goToPas1Action.action?idComanda="+comanda+"&data="+data;
-										//window.location.href="/"+context+"/comanda/Welcome.action?restaurantId="+idRestaurant+"&idComanda="+comanda+"&data="+data;
-									}
-								}
-var confirmComandaBox = function (){
-									var comanda = window.localStorage.getItem("comanda");
-									var idRestaurant = window.localStorage.getItem("comanda.restaurant");
-									if(idRestaurant=='undefined' || idRestaurant==null) return;
-									if($("#list_rest_"+idRestaurant).hasClass("tancat")){
-										alertOnline.alertes(initParams.txtavisrestauranttancat);	
-									}
-									if(comanda != 'undefined' && comanda != null){
-										var data = window.localStorage.getItem("comanda.data");
-										window.location.href = "/"+context+"/comanda/goToPas1Action.action?idComanda="+comanda+"&data="+data;
-										//window.location.href="/"+context+"/comanda/Welcome.action?restaurantId="+idRestaurant+"&idComanda="+comanda+"&data="+data;
-									}
-}
-
-function closeInfoPlat(){
-	$("#votaPlats_dialog").dialog("close");
-}
+}	
 
 var  oTablecomandes=null;
 
@@ -336,3 +368,6 @@ $(document).ready(function() {
 		$("#numProduct").text(initParams.txtconfirm+" 0 "+initParams.txtproductes);
 	}
 });
+
+platOBJ._init();
+menuRestaurantAction._init();

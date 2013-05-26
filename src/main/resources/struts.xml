@@ -68,8 +68,7 @@
 		<action name="paymentPOK" class="com.online.action.payment.PaymentAction" method="paymentOK">
 			<result name="success" >/pages/payment/paymentOK.jsp</result>				
 		</action>
-		<action name="paymentTpvDone" class="com.online.action.payment.PaymentAction" method="paymentTpvDone">
-			<result name="success" >/pages/payment/paymentOK.jsp</result>				
+		<action name="paymentTpvDone" class="com.online.action.payment.PaymentAction" method="paymentTpvDone">						
 		</action>
 		<action name="paymentPKO">
 			<result>/pages/payment/paymentKO.jsp</result>		

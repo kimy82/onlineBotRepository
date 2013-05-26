@@ -32,6 +32,7 @@ public class Users implements Serializable{
 	
 	private String				nom;
 	
+	@Expose
 	private String				codePromo;
 
 	// CONSTRUCTORS
