@@ -36,7 +36,7 @@
 		<div id="content_seccion">
 			<div id="seccion">
 				<div id="rest">
-					<s:text name="txt.begudes.title" />
+					<s:text name="txt.begudes.title.vins" />
 				</div>
 				<hr class="sep2">
 				<s:iterator value="begudaList" var="beguda">

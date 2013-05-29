@@ -34,35 +34,35 @@
 			<div class="poli">
 
 <span class="negrete">
-Com funciona?
+<s:text name="txt.funciona1" />
 </span></br></br>
 
 <span class="negrete">
-Tria restaurant
+<s:text name="txt.funciona2" />
 </span></br></br>
-Disposem d’una selecció de restaurants de Girona que no ofereixen servei d’entrega a domicili. La nostra voluntat es tenir una oferta àmplia i de qualitat. Periòdicament anirem incorporant nous restaurants per ampliar la nostra oferta.</br></br>
+<s:text name="txt.funciona3" /></br></br>
 
 <span class="negrete">
-Tria els plats
+<s:text name="txt.funciona4" />
 </span></br></br>
-Les fotos dels plats són reals. T’informem sobre els al·lèrgens (llet, ous i fruits secs) així com si son aptes per a celíacs i vegetarians. Els preus dels plats són els mateixos a les cartes dels restaurants.
+<s:text name="txt.funciona5" />
 </br></br>
 <span class="negrete">
-Tria les begudes
+<s:text name="txt.funciona6" />
 </span></br></br>
-Pots escollir entre una varietat de vins, cerveses i altres begudes. Tenim vins de la DO Empordà, Rueda, Ribera, també Lambrusco i cerveses artesanes. </br></br>
+<s:text name="txt.funciona7" /></br></br>
 
 <span class="negrete">
-Tria l’hora a la que vols que t’ho portem
+<s:text name="txt.funciona8" />
 </span></br></br>
-T’ho posem molt fàcil: pots escollir l’hora a la que vulguis que t’ho portem. Et recomanem fer la comanda amb previsió perquè la disponibilitat horària va en funció del número de comandes que tenim. Si vols també tens l’opció d’anar a recollir la comanda al restaurant.</br></br>
+<s:text name="txt.funciona9" /></br></br>
 
-Aprofita els avantatges de fer la comanda abans de les 16h del mateix dia!</br></br>
+<s:text name="txt.funciona10" /></br></br>
 
 <span class="negrete">
-Confirma la comanda.
+<s:text name="txt.funciona11" />
 </span></br></br>
-Pots pagar amb targeta de crèdit a la web o en efectiu quan el repartidor et porti la comanda. Inmediatament després de confirmar la comanda nosaltres la transmetem al restaurant i planifiquem les rutes per tal d’entregar-te-la a l’hora que has triat.
+<s:text name="txt.funciona12" />
 
 
 

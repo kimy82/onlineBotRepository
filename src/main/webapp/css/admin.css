@@ -111,3 +111,16 @@ body {
 .forward {
     background-image: url(../images/calendar/next.png) !important;
 }
+#user_dialog h1{
+    font-family:raleway;
+    font-weight:bold;
+    text-transform:uppercase;
+    color:#b7b7b7;
+    margin-top:7px;
+}
+#user_dialog{
+    font-family:arial;
+    color:#111;
+    margin-top:-4px;
+	background-color:#f9f9f9;
+}

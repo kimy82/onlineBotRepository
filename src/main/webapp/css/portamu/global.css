@@ -915,7 +915,7 @@ filter: Gray(); /* IE4-8 and 9 */
 	vertical-align:text-top;	
 }
 #pagination{
-	margin: 10px 0;
+	margin: 10px 0px 60px;
     text-align: center;
     float: left;
     width: 764px;
