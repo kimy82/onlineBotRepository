@@ -6,6 +6,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Locale;
 import java.util.ResourceBundle;
 
 import javax.servlet.ServletOutputStream;
@@ -400,8 +401,10 @@ public class WelcomeComandaAction extends ActionSuportOnlineSession {
 						comanda.setPlats(platList);
 					}
 					this.comandaBo.update(comanda);
+					Locale locale = (Locale) this.session.get("WW_TRANS_I18N_LOCALE");
+					if(locale==null)locale=new Locale("ca");
 					json = this.comandaService.createJSONForShoppingCart(
-							comanda.getPlats(), comanda.getId(), resource);
+							comanda.getPlats(), comanda.getId(), resource,locale.getLanguage());
 				} else {
 					json = Utils.createAlertJSON(resource
 							.getString("txt.alerta.moreRests"));
@@ -419,9 +422,10 @@ public class WelcomeComandaAction extends ActionSuportOnlineSession {
 				platList.add(platComanda);
 				comanda.setPlats(platList);
 				this.comandaBo.save(comanda);
-
+				Locale locale = (Locale) this.session.get("WW_TRANS_I18N_LOCALE");
+				if(locale==null)locale=new Locale("ca");
 				json = this.comandaService.createJSONForShoppingCart(platList,
-						comanda.getId(), resource);
+						comanda.getId(), resource,locale.getLanguage());
 
 			}
 		} catch (ComandaException ce) {

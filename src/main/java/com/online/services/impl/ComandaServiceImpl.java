@@ -8,6 +8,7 @@ import java.util.HashSet;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Locale;
 import java.util.ResourceBundle;
 import java.util.Set;
 
@@ -867,7 +868,7 @@ public class ComandaServiceImpl implements ComandaService{
 		}
 	}
 
-	public String createJSONForShoppingCart( List<PlatComanda> platList, Long id, ResourceBundle resource ) throws ComandaException{
+	public String createJSONForShoppingCart( List<PlatComanda> platList, Long id, ResourceBundle resource,String locale ) throws ComandaException{
 		
 		this.resource=resource;
 		
@@ -880,6 +881,10 @@ public class ComandaServiceImpl implements ComandaService{
 				preuComanda = preuComanda + (pl.getPlat().getPreu() * pl.getNumPlats());
 				numPlats = numPlats + pl.getNumPlats();
 				String nomPlat=Utils.escapeUTF(pl.getPlat().getNom());
+				if(!locale.equals("ca")){
+					nomPlat=Utils.escapeUTF(pl.getPlat().getNomES());
+				}
+				
 				if(!pl.getPlat().isActiu()){
 					nomPlat = nomPlat+"<font color=\"red\" >"+this.resource.getString("txt.plat.no.actiu")+"</font>";
 				}

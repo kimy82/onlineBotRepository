@@ -24,7 +24,7 @@ public interface ComandaService{
 	
 	public String removeAllBegudaInListGetJson();
 	 
-	public String createJSONForShoppingCart(List<PlatComanda> platList, Long id, ResourceBundle resource) throws ComandaException;
+	public String createJSONForShoppingCart(List<PlatComanda> platList, Long id, ResourceBundle resource, String locale) throws ComandaException;
 	
 	public String createJSONForBegudaList(List<BegudaComanda> listBeguda) throws ComandaException;
 	
