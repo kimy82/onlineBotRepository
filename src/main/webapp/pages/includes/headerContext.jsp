@@ -2,6 +2,8 @@
 <%@ taglib prefix="s" uri="/struts-tags"%>
 
 <script type="text/javascript" >
+var entorn="${initParam.entorn}";
+var locale = "${sessionScope.WW_TRANS_I18N_LOCALE}";
 var context= "${initParam.app}";
 var confirmTime=parseInt(${initParam.confirmTime});
 var transportPreu=parseFloat(${initParam.transport}).toFixed(2);

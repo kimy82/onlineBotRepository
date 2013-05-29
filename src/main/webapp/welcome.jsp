@@ -11,8 +11,7 @@
 	<meta name="viewport" content="width=device-width,initial-scale=0.99,maximum-scale=0.99" />
 	<link rel="shortcut icon" href="<c:url value='/img/elements/logo_portamu16.jpg' />"> 
 	<link href='https://fonts.googleapis.com/css?family=Raleway:800,400' rel='stylesheet' type='text/css'>
-	<link type="text/css" rel="stylesheet" href="<c:url value='/css/welcome.min.css' />" />	
-	<script src="<c:url value='/js/jswelcome.ini.first.min.js'/>" type="text/javascript"></script>
+	<link type="text/css" rel="stylesheet" href="<c:url value='/css/welcome.min.css' />" />		
 	<title> <s:text name="txt.welcome.principal" />	</title>
 	<script>
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
@@ -27,6 +26,7 @@
 </head>
 <body id=indexPor>
 <c:import url="/pages/includes/headerContext.jsp" />
+<script src="<c:url value='/js/jswelcome.ini.first.min.js'/>" type="text/javascript"></script>
 <c:import url="/pages/includes/divLogin.jsp" />
 <div id="container">
 	<div id="content">

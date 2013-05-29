@@ -294,7 +294,7 @@ $(function() {
 				       					var lis= "";
 				       					$.each(plats, function(index, value) { 		 
 				       						
-				       							var li= value.numPlats+" <span class='plats' id='span_p_"+value.idPlat+"'>x</span> "+changeHTML(value.nomPlat)+"&nbsp;<a href='#' onclick='eliminaPlat("+value.idPlat+")' ><img class='dele' src='/"+context+"/images/delete2.png'></a><br><br>";
+				       							var li= value.numPlats+" <span class='plats' id='span_p_"+value.idPlat+"'>x</span> "+changeHTML(value.nomPlat)+"&nbsp;<a href='#' onclick='platOBJ.eliminaPlat("+value.idPlat+")' ><img class='dele' src='/"+context+"/images/delete2.png'></a><br><br>";
 				       							 lis=lis+li;		       					
 				    							$("#disp_plate").append(li);		       						
 				       					});

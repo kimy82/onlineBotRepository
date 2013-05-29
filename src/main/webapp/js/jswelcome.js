@@ -63,7 +63,7 @@ welcomeAction ={
 	saveEmail: function(self){
 		$(self).attr('disabled','disabled');
 		var email = $("#email").val();
-		if(!_self._validateEmail(email)){
+		if(!welcomeAction._validateEmail(email)){
 			$("#error").text(initParams.txtwrongemail);
 			return;
 		}
@@ -151,8 +151,8 @@ menuRestaurantAction ={
 	},
 	acceptComandaDialog: function(){
 		try{
-			confirmOnline.closeSetFunc(_self.actionCloseConfirm);
-			confirmOnline.confirm(initParams.txtconfirmcontinuar,_self.confirmComanda);
+			confirmOnline.closeSetFunc(menuRestaurantAction.actionCloseConfirm);
+			confirmOnline.confirm(initParams.txtconfirmcontinuar,menuRestaurantAction.confirmComanda);
 		}catch(error){
 			console.log(error);
 		}
