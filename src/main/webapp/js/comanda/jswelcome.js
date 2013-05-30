@@ -480,8 +480,8 @@ menuRestaurantAction ={
 		window.location.href="/"+context+"/comanda/Welcome.action?restaurantId="+idRestaurant+"&data="+data;
 	},
 	acceptComandaDialog: function(){
-		confirmOnline.closeSetFunc(_self.actionCloseConfirm);
-		confirmOnline.confirm(initParams.txtconfirmcontinuar,_self.confirmComanda);		
+		confirmOnline.closeSetFunc(menuRestaurantAction.actionCloseConfirm);
+		confirmOnline.confirm(initParams.txtconfirmcontinuar,menuRestaurantAction.confirmComanda);		
 	},
 	confirmComanda: function(){
 		var comanda = window.localStorage.getItem("comanda");

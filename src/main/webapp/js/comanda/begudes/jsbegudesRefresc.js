@@ -242,8 +242,8 @@ menuRestaurantAction ={
 	},
 	acceptComandaDialog: function(){
 		try{
-			confirmOnline.closeSetFunc(_self.actionCloseConfirm);
-			confirmOnline.confirm(initParams.txtconfirmcontinuar,_self.confirmComanda);
+			confirmOnline.closeSetFunc(menuRestaurantAction.actionCloseConfirm);
+			confirmOnline.confirm(initParams.txtconfirmcontinuar,menuRestaurantAction.confirmComanda);
 		}catch(error){
 			console.log(error);
 		}

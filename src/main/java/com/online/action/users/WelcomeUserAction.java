@@ -120,7 +120,7 @@ public class WelcomeUserAction extends ActionSuportOnline{
 			userFromDB.setIndicacions(this.user.getIndicacions());
 			userFromDB.setTelNumber(this.user.getTelNumber());
 			this.usersBo.update(userFromDB);
-
+			this.restaurantList = this.restaurantsBo.getAll(true, false, false);
 		} catch (BOException e) {
 			return ERROR;
 		} catch (NoSuchAlgorithmException e) {
