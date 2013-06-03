@@ -258,6 +258,8 @@ public class MantenimentRestaurantsAction extends ActionSuportOnline{
 					+ "</a>");
 			RestaurantTable restaurantTable = new RestaurantTable();
 			BeanUtils.copyProperties(restaurant, restaurantTable);
+			restaurantTable.setDescripcio(Utils.escapeUTF(restaurantTable.getDescripcio()));
+			restaurantTable.setDescripcioES(Utils.escapeUTF(restaurantTable.getDescripcioES()));
 			restaurantTable.setAccio("<a href=\"#\" onclick=\"deleteRestaurant(" + restaurant.getId()
 					+ ")\" ><img src=\"../images/delete.png\"></a>");
 			subrestaurantTableList.add(restaurantTable);
@@ -288,6 +290,8 @@ public class MantenimentRestaurantsAction extends ActionSuportOnline{
 				platTable.setPrioritatPlat("<input type=\"text\" id=\"prior_" + platTable.getId() + "\" value=\""
 						+ platTable.getPrioritat() + "\" /><a href=\"#\" onclick=\"changePrioritat(" + plat.getId()
 						+ ")\" ><img src=\"../images/save.png\"></a>");
+				platTable.setDescripcio(Utils.escapeUTF(platTable.getDescripcioES()));
+				platTable.setDescripcioES(Utils.escapeUTF(platTable.getDescripcioES()));
 				platTable.setActiuPlat((plat.isActiu()) ? "SI" : "NO");
 				subPlatTableList.add(platTable);
 			}

@@ -11,6 +11,10 @@
 	<import resource="../database/DataSource.xml"/>
 	<import resource="../database/Hibernate.xml"/>
 	
+	<bean id="localeResolver"
+		class="org.springframework.web.servlet.i18n.SessionLocaleResolver">
+		<property name="defaultLocale" value="ca" />
+	</bean>
 	
  	<!-- Beans Declaration -->
  	<bean id="sendingEmailService" class="com.online.services.impl.SendingEmailServiceImpl">
