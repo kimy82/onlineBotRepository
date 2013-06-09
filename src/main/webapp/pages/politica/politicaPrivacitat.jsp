@@ -37,8 +37,8 @@
 </div>
 <c:import url="/pages/includes/endPage.jsp" />
 </div>
-
+<script src="https://maps.google.com/maps/api/js?sensor=false" type="text/javascript"></script>
 <script src="<c:url value='/js/jsdivlogin.min.js' />" type="text/javascript"></script>
-<script src="<c:url value='/js/auxiliars/jsauxiliars.js' />" type="text/javascript"></script>
+<script src="<c:url value='/js/jsauxiliars.min.js' />" type="text/javascript"></script>
 </body>
 </html>

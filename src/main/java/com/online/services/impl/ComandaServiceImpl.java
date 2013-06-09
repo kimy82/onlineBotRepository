@@ -718,6 +718,7 @@ public class ComandaServiceImpl implements ComandaService{
 	public List<BegudaComanda> removeBegudaInList(List<BegudaComanda> begudaList, Beguda beguda,boolean promo) throws ComandaException{
 		
 		try {
+			List<BegudaComanda> newbegudaList= new ArrayList<BegudaComanda>();
 			
 			if (begudaList.size() > 0) {
 				for (BegudaComanda bg : begudaList) {
@@ -726,12 +727,15 @@ public class ComandaServiceImpl implements ComandaService{
 							bg.setNumBegudesPromo(bg.getNumBegudesPromo() -1 );
 						} else {
 							bg.setNumBegudes(bg.getNumBegudes() -1);
-						}				
+						}	
+						if((bg.getNumBegudes()!=null && bg.getNumBegudes()>0) || (bg.getNumBegudesPromo()!=null && bg.getNumBegudesPromo()>0)){
+							newbegudaList.add(bg);
+						}
 					}
 				}
 			}
 			
-			return begudaList;
+			return newbegudaList;
 
 		} catch (Exception e) {
 			throw new ComandaException(e, "Error adding beguda in list");

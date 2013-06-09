@@ -115,6 +115,7 @@
 <div id="infoBeguda_dialog" class="filtres filtres-oberts">	 		
 </div>  
 <c:import url="/pages/includes/endPage.jsp" />
+<script src="https://maps.google.com/maps/api/js?sensor=false" type="text/javascript"></script>
 <script src="<c:url value='/js/jsbegudes.min.js'/>" type="text/javascript"></script>	
 	<script type="text/javascript" >
 		var initParams = new InitParams("<s:text name='txt.welcome.confirmar' />","<s:text name='txt.welcome.productes' />",

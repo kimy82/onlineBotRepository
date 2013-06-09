@@ -42,9 +42,9 @@ var addressInside=false;
 
 		//POsem address al form
         $("#comandaddressbis").val(Addressbis.addressValidation.prototype.addressToSave);
-        $("#addressOKbis").text(Address.addressValidation.prototype._addressOK);		
+        $("#addressOKbis").text(Addressbis.addressValidation.prototype._addressOK);		
 	}else{
-		$("#addressOKbis").text(Address.addressValidation.prototype._addressKO);
+		$("#addressOKbis").text(Addressbis.addressValidation.prototype._addressKO);
 	}
   
     
@@ -126,7 +126,7 @@ Addressbis.addressValidation.prototype.checkAdd = function(){
 
                 
              }else{
-            		$("#addressOKbis").text(Address.addressValidation.prototype._addressKO);
+            		$("#addressOKbis").text(Addressbis.addressValidation.prototype._addressKO);
              }
     	 }else{
     		 $("#addressOKbis").text("KO Address");

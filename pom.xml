@@ -873,9 +873,13 @@
 								<jsSourceFile>jquery/jquery.ui.droppable.js</jsSourceFile>
 								<jsSourceFile>jquery/jquery.ui.resizable.js</jsSourceFile>
 								<jsSourceFile>jquery/jquery.effects.core.js</jsSourceFile>
-								<jsSourceFile>jquery/jquery.bgiframe-2.1.1.js</jsSourceFile>			
+								<jsSourceFile>jquery/jquery.bgiframe-2.1.1.js</jsSourceFile>
+								<jsSourceFile>jquery/jquery-ui.js</jsSourceFile>			
 								<jsSourceFile>utils/jshttpsredirect.js</jsSourceFile>
-								<jsSourceFile>utils/jsutils.js</jsSourceFile>															
+								<jsSourceFile>utils/jsutils.js</jsSourceFile>				
+								<jsSourceFile>address/autocompleteStreet.js</jsSourceFile>	
+								<jsSourceFile>address/autocompleteCodi.js</jsSourceFile>									
+								<jsSourceFile>address/addressValidationFormbis.js</jsSourceFile>											
 								<jsSourceFile>comanda/begudes/jsbegudes.js</jsSourceFile>																																														
 							</jsSourceFiles>
 							<jsFinalFile>jsbegudes.js</jsFinalFile>
@@ -912,12 +916,52 @@
 								<jsSourceFile>jquery/jquery.ui.droppable.js</jsSourceFile>
 								<jsSourceFile>jquery/jquery.ui.resizable.js</jsSourceFile>
 								<jsSourceFile>jquery/jquery.effects.core.js</jsSourceFile>
-								<jsSourceFile>jquery/jquery.bgiframe-2.1.1.js</jsSourceFile>			
+								<jsSourceFile>jquery/jquery.bgiframe-2.1.1.js</jsSourceFile>
+								<jsSourceFile>jquery/jquery-ui.js</jsSourceFile>			
 								<jsSourceFile>utils/jshttpsredirect.js</jsSourceFile>	
-								<jsSourceFile>utils/jsutils.js</jsSourceFile>												
+								<jsSourceFile>utils/jsutils.js</jsSourceFile>		
+								<jsSourceFile>address/autocompleteStreet.js</jsSourceFile>	
+								<jsSourceFile>address/autocompleteCodi.js</jsSourceFile>									
+								<jsSourceFile>address/addressValidationFormbis.js</jsSourceFile>										
 								<jsSourceFile>comanda/begudes/jsbegudesRefresc.js</jsSourceFile>																																														
 							</jsSourceFiles>
 							<jsFinalFile>jsbegudesRefresc.js</jsFinalFile>
+						</configuration>
+						<goals>
+							<goal>minify</goal>
+						</goals>
+					</execution>
+					<execution>
+						<id>aux</id>
+						<phase>process-sources</phase>
+						<configuration>
+							<linebreak>4000</linebreak>
+							<nomunge>true</nomunge>
+         					<verbose>false</verbose>
+          					<preserveAllSemiColons>true</preserveAllSemiColons>
+							<disableOptimizations>true</disableOptimizations>
+							<jsSourceDir>js</jsSourceDir>
+							<jsSourceFiles>							
+								<jsSourceFile>jquery/jquery.js</jsSourceFile>
+								<jsSourceFile>jquery/jquery.ui.core.js</jsSourceFile>
+								<jsSourceFile>jquery/jquery.ui.widget.js</jsSourceFile>
+								<jsSourceFile>jquery/jquery.ui.mouse.js</jsSourceFile>
+								<jsSourceFile>jquery/jquery.ui.dialog.js</jsSourceFile>
+								<jsSourceFile>jquery/jquery.ui.position.js</jsSourceFile>
+								<jsSourceFile>jquery/jquery.ui.draggable.js</jsSourceFile>
+								<jsSourceFile>jquery/jquery.ui.droppable.js</jsSourceFile>
+								<jsSourceFile>jquery/jquery.ui.resizable.js</jsSourceFile>
+								<jsSourceFile>jquery/jquery.effects.core.js</jsSourceFile>
+								<jsSourceFile>jquery/jquery.bgiframe-2.1.1.js</jsSourceFile>
+								<jsSourceFile>jquery/jquery-ui.js</jsSourceFile>			
+								<jsSourceFile>utils/jshttpsredirect.js</jsSourceFile>	
+								<jsSourceFile>utils/jsutils.js</jsSourceFile>		
+								<jsSourceFile>address/autocompleteStreet.js</jsSourceFile>	
+								<jsSourceFile>address/autocompleteCodi.js</jsSourceFile>									
+								<jsSourceFile>address/addressValidationFormbis.js</jsSourceFile>										
+								<jsSourceFile>auxiliars/jsauxiliars.js</jsSourceFile>																																														
+							</jsSourceFiles>
+							<jsFinalFile>jsauxiliars.js</jsFinalFile>
 						</configuration>
 						<goals>
 							<goal>minify</goal>

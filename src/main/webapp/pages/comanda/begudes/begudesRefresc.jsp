@@ -103,11 +103,13 @@
 <div id="infoBeguda_dialog" class="filtres filtres-oberts">	 		
 </div>  
 <c:import url="/pages/includes/endPage.jsp" /> 
+	<script src="https://maps.google.com/maps/api/js?sensor=false" type="text/javascript"></script>
 	<script src="<c:url value='/js/jsbegudesRefresc.min.js'/>" type="text/javascript"></script>
 	<script type="text/javascript" >
 		var initParams = new InitParams("<s:text name='txt.welcome.confirmar' />","<s:text name='txt.welcome.productes' />",
 										"<s:text name='txt.welcome.producte' />","<s:text name='txt.avis.restaurant.tancat' />",
 										"<s:text name='txt.comanda.existeix.vol.continuar' />");
+		
 	</script>
 	<c:import url="/pages/includes/confirmOnline.jsp" />
 	<c:import url="/pages/includes/errorAjax.jsp" />

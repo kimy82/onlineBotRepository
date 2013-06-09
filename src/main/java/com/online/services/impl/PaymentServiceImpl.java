@@ -511,7 +511,11 @@ public class PaymentServiceImpl implements PaymentService {
 			Integer horaComanda =calculMinutsHora(String.valueOf(Calendar.getInstance().get(Calendar.HOUR_OF_DAY))+String.valueOf(Calendar.getInstance().get(Calendar.MINUTE)));
 			
 			if(0<=(hlimit-horaComanda-tempsPlat-tmoter) && (hlimit-horaComanda-tempsPlat-tmoter)<30){
-				hEntrega=calculHorafromMinuts(horaComanda+tempsPlat);
+				if(horaComanda+tempsPlat-tmoter>hlimit){
+					hEntrega=calculHorafromMinuts(hlimit-5);
+				}else{
+					hEntrega=calculHorafromMinuts(horaComanda+tempsPlat);
+				}
 			}else if(30<=(hlimit-horaComanda-tempsPlat-tmoter)){
 				hEntrega=calculHorafromMinuts(hlimit-30);
 			}

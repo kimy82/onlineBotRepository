@@ -741,8 +741,16 @@ generalManagerObj ={
 		}catch(error){
 			console.log(error);
 		}
+	},
+	deleteAndGoToIni: function(){
+		window.localStorage.clear();
+		window.location.href="/Welcome.action";
 	}
 }
+
+
+
+
 
 //OBJ for managment of hours
 var horesManagerObj ={
@@ -980,6 +988,7 @@ platsOBJ ={
 				 window.localStorage.setItem("comanda.numplats",platsAra);       			
 					if(platsAra<=0){
 						alertOnline.alertes(initTxtPromos.txtnoplats);
+						generalManagerObj.deleteAndGoToIni();
 					}
 					var lis= window.localStorage.getItem("comanda.plats.lis");
 					var lista="";
@@ -1027,6 +1036,7 @@ platsOBJ ={
 			window.localStorage.setItem("comanda.numplats",platsAra);       			
 				if(platsAra<=0){
 					alertOnline.alertes(initTxtPromos.txtnoplats);
+					generalManagerObj.deleteAndGoToIni();
 				}
 			 $('#plat_'+id).remove();	 
 				var lis= window.localStorage.getItem("comanda.plats.lis");
@@ -1146,6 +1156,7 @@ comandaOBJ ={
 			if(plats<=0){
 				alertOnline.alertes(initTxtPromos.txtnoplats);
 				$("#botopagarcomanda").removeAttr('disabled');
+				generalManagerObj.deleteAndGoToIni();
 				return;
 			}									
 			if(comanda!= null){
@@ -1444,8 +1455,8 @@ begudaOBJ ={
 									var transportOnTheFly=generalManagerObj.getTransPortOnTheFly();	
 									
 									var preuFinal = validationsOBJ.getFloatParsed2(preuComanda) + validationsOBJ.getFloatParsed2(preuBegudes)+ validationsOBJ.getFloatParsed2(transportOnTheFly);
-									$("#preu").text(preuFinal);
-									$("#labelpreutotalPromo").text(preuFinal);
+									$("#preu").text( validationsOBJ.getFloatParsed2(preuFinal));
+									$("#labelpreutotalPromo").text( validationsOBJ.getFloatParsed2(preuFinal));
 									promosManagerObj.initPromoDescompteFromStorage();
 									$(".mores").removeAttr("disabled");
 							}   
