@@ -316,7 +316,7 @@
 <div id="dialog_promo" class="filtres filtres-oberts" style="visibility: hidden;" title="Promo">
 
 		<div class="al_com">
-			<s:text name="txt.login.title" />
+			<s:text name="txt.promos.title" />
 			<table>
 	 	<tr>
 	 		<input class="tancarBot" type="button" id="cancel" value="X"  onclick="promosManagerObj.closeDialogPromos();" />
