@@ -55,7 +55,7 @@ $(document).ready(function() {
 				
 	//taula dels usuaris
 	oTableLetterUsuaris =$("#tbl_letterusuaris").dataTable( {					
-					"iDisplayLength": 3,
+					"iDisplayLength": 20,
 					 "aoColumns" : [
 					                  { "mDataProp":"email","bSortable": false, sWidth: '130px' },					                 
 					                  { "mDataProp":"accio", "bSortable": false, sWidth: '120px' }					                  
