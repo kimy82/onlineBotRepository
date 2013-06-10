@@ -156,7 +156,7 @@
 			<artifactId>tools</artifactId>
 			<version>1.5</version>
 			<scope>system</scope>
-			<systemPath>C:/Program Files/Java/jdk1.7.0_02/lib/tools.jar</systemPath>
+			<systemPath>/Library/Java/JavaVirtualMachines/jdk1.7.0_21.jdk/Contents/Home/lib/tools.jar</systemPath>
 		</dependency>
 		<dependency>
 			<groupId>javax.mail</groupId>
@@ -330,7 +330,10 @@
 							<disableOptimizations>true</disableOptimizations>
 							<cssSourceDir>css</cssSourceDir>
 							<cssSourceFiles>
+								<cssSourceFile>admin.css</cssSourceFile>
+								<cssSourceFile>portamu/reset.css</cssSourceFile>
 								<cssSourceFile>demo_table.css</cssSourceFile>
+								<cssSourceFile>TableTools.css</cssSourceFile>
 								<cssSourceFile>components.css</cssSourceFile>
 							</cssSourceFiles>
 							<cssFinalFile>admin.presentacio.css</cssFinalFile>
