@@ -343,8 +343,8 @@ public class WelcomeComandaAction extends ActionSuportOnlineSession {
 				}
 				
 				this.comandaBo.update(comanda);
-
-				json = null;
+				boolean morethanOne = this.comandaService.checkMoreThanOneRestaurant(comanda);
+				json = "{\"morethanone\": \""+morethanOne+"\"}";
 
 			}
 		} catch (ComandaException ce) {

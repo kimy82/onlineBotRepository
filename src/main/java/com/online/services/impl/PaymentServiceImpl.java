@@ -2,6 +2,7 @@ package com.online.services.impl;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.text.Normalizer;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.HashMap;
@@ -28,6 +29,7 @@ public class PaymentServiceImpl implements PaymentService {
 	private Comandes 		comanda;
 	private final String	CODI_MAQUINA_ADMIN="AC001";
 	private ClauBo			clauBo;
+	final int SHA1_DIGEST_LENGTH = 20;
 	
 	public boolean CheckOrderOK(String order, String entorn,String orderID) throws PaymentException, NoSuchAlgorithmException{
 		boolean check=false;
@@ -38,27 +40,61 @@ public class PaymentServiceImpl implements PaymentService {
 		return check;
 	}
 	
-	public String  SHA(String Ds_Merchant_Amount, String Ds_Merchant_Order,String Ds_Merchant_MerchantCode, String DS_Merchant_Currency, String Ds_Merchant_TransactionType,String Ds_Merchant_MerchantURL,String entorn) throws PaymentException, NoSuchAlgorithmException {
+	public String  SHA(String ds_Merchant_Amount, String ds_Merchant_Order,String ds_Merchant_MerchantCode, String ds_Merchant_Currency, String ds_Merchant_TransactionType,String ds_Merchant_MerchantURL,String entorn) throws PaymentException, NoSuchAlgorithmException {
 		try{
-		Clau clau = this.clauBo.getClau(entorn);
-		
-		String cadena = Ds_Merchant_Amount+Ds_Merchant_Order+Ds_Merchant_MerchantCode+DS_Merchant_Currency+Ds_Merchant_TransactionType+Ds_Merchant_MerchantURL+clau.getCode();
-		MessageDigest md;
-		byte[] buffer, digest;
-		String hash = "";
-
-		
-		  buffer = cadena.getBytes();
-	        md = MessageDigest.getInstance("SHA1");
-	        md.update(buffer);
-	        digest = md.digest();
-
-	        for(byte aux : digest) {
-	            int b = aux & 0xff;
-	            if (Integer.toHexString(b).length() == 1) hash += "0";
-	            hash += Integer.toHexString(b);
+		   Clau clau = this.clauBo.getClau(entorn);
+		   byte bAmount[]   = new byte[ds_Merchant_Amount.length()];  
+	       byte bOrder[]    = new byte[ds_Merchant_Order.length()];  
+	       byte bCode[]     = new byte[ds_Merchant_MerchantCode.length()];  
+	       byte bCurrency[] = new byte[ds_Merchant_Currency.length()];
+	       byte bTransactionType[] = new byte[ds_Merchant_TransactionType.length()];  
+	       byte bMerchantURL[] = new byte[ds_Merchant_MerchantURL.length()];  
+	       byte bPassword[] = new byte[clau.getCode().length()];   
+	       
+	       MessageDigest sha = MessageDigest.getInstance("SHA-1");
+	       sha.update(bAmount);
+	       sha.update(bOrder);
+	       sha.update(bCode); 
+	       sha.update(bCurrency);
+	       sha.update(bTransactionType);
+	       sha.update(bMerchantURL);
+	       byte[] hash = sha.digest(bPassword);
+	 
+	       String merchant_Signature = new String();
+	 
+	       int h = 0;
+	       String s = new String();
+	              
+	       for(int i = 0; i < SHA1_DIGEST_LENGTH; i++)
+	        {         
+	         h = (int) hash[i];          // Convertir de byte a int
+	         if(h < 0) h += 256;  // Si son valores negativos, pueden haber problemas de conversi¢n.
+	         s = Integer.toHexString(h); // Devuelve el valor hexadecimal como un String        
+	         if (s.length() < 2) merchant_Signature = merchant_Signature.concat("0"); // A¤ade un 0 si es necesario
+	         merchant_Signature = merchant_Signature.concat(s); // A¤ade la conversi¢n a la cadena ya existente
 	        }
-	     return hash;
+
+			merchant_Signature = merchant_Signature.toUpperCase();
+			
+			return merchant_Signature;
+		
+//		String cadena = Ds_Merchant_Amount+Ds_Merchant_Order+Ds_Merchant_MerchantCode+DS_Merchant_Currency+Ds_Merchant_TransactionType+Ds_Merchant_MerchantURL+clau.getCode();
+//		MessageDigest md;
+//		byte[] buffer, digest;
+//		String hash = "";
+//
+//		
+//		  buffer = cadena.getBytes();
+//	        md = MessageDigest.getInstance("SHA1");
+//	        md.update(buffer);
+//	        digest = md.digest();
+//
+//	        for(byte aux : digest) {
+//	            int b = aux & 0xff;
+//	            if (Integer.toHexString(b).length() == 1) hash += "0";
+//	            hash += Integer.toHexString(b);
+//	        }
+//	     return hash;
 		}catch(Exception e){
 			e.printStackTrace();
 			throw new PaymentException(e,"payment");
@@ -448,8 +484,9 @@ public class PaymentServiceImpl implements PaymentService {
 				comandaOrderSB.append("&nomRest=Restaurant:"+infoRestaurant[1]);
 				
 				
-				
-				orders.add(comandaOrderSB.toString());
+				String order  = Normalizer.normalize(comandaOrderSB.toString(), Normalizer.Form.NFD);
+				order = order.replaceAll("[^\\p{ASCII}]", "");
+				orders.add(order);
 				
 				numRest++;
 			}
@@ -496,14 +533,16 @@ public class PaymentServiceImpl implements PaymentService {
 	}
 	
 	private  String getHEntregraPlats(String iniRang, int tempsPlat,String tempsMoter){
-		String hEntrega=null;
+	
 		if(iniRang==null || iniRang.equals("")){
 			throw new PaymentException( "No hi ha hora limit");
 		}
+		
+		String hEntrega=iniRang;
 	
 		try{
 			if(tempsMoter==null || tempsMoter.equals("")){
-				tempsMoter="15";
+				tempsMoter="7";
 			}
 			
 			Integer hlimit= calculMinutsHora(iniRang)+30;
@@ -575,6 +614,11 @@ public class PaymentServiceImpl implements PaymentService {
 		return hora;
 	}
 	
+	/**
+	 * Torna la hora formatada mes 30 minuts
+	 * @param hora
+	 * @return
+	 */
 	private String rangHora(String hora){
 		if(hora==null)return "";
 		String[] horaVec = hora.split("(?<!^)");
