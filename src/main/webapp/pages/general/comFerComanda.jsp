@@ -33,38 +33,8 @@
 			<c:import url="/pages/includes/divLanguage.jsp" />
 			<div class="poli">
 
-<span class="negrete">
+
 <s:text name="txt.funciona1" />
-</span></br></br>
-
-<span class="negrete">
-<s:text name="txt.funciona2" />
-</span></br></br>
-<s:text name="txt.funciona3" /></br></br>
-
-<span class="negrete">
-<s:text name="txt.funciona4" />
-</span></br></br>
-<s:text name="txt.funciona5" />
-</br></br>
-<span class="negrete">
-<s:text name="txt.funciona6" />
-</span></br></br>
-<s:text name="txt.funciona7" /></br></br>
-
-<span class="negrete">
-<s:text name="txt.funciona8" />
-</span></br></br>
-<s:text name="txt.funciona9" /></br></br>
-
-<s:text name="txt.funciona10" /></br></br>
-
-<span class="negrete">
-<s:text name="txt.funciona11" />
-</span></br></br>
-<s:text name="txt.funciona12" />
-
-
 
 </div>
 
