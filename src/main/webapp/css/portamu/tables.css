@@ -425,3 +425,6 @@ TABLE.dataTable TD {
     position: fixed;
     top: 100px;
 }
+.dataTables_scrollBody { Ê
+	overflow:hideen;
+ }

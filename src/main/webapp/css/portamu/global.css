@@ -558,7 +558,7 @@ background: #F7931E;
 	cursor: pointer;
 }
 .newsin{
-	width: 157px;
+	width: 189px;
 	height: 30px;
 	margin-top: 4px;
 	margin-bottom: 20px;
@@ -1809,6 +1809,14 @@ vertical-align:middle;
     font-family: raleway;
     font-weight: bold;
 }
+#esp, #esp a {
+    color: #9fc465 !important;
+    font-weight: bold;
+    text-transform: uppercase;
+    margin-top:15px;
+    font-family: raleway;
+    font-weight: bold;
+}
 #prm li {
     margin-bottom:10px;
     
@@ -1831,6 +1839,7 @@ vertical-align:middle;
     margin-bottom: 10px;
     margin-top: 20px;
     text-transform: uppercase;
+    width:200px;
 }
 
 #footer_left {
@@ -2155,4 +2164,8 @@ color:#BF0808;
 	padding:20px;
 	text-transform: uppercase;
 	border-bottom: 1px solid #999;
+}
+#disp_plate{
+	margin-top:14px;
+	text-transform: uppercase;
 }
