@@ -628,7 +628,7 @@ generalManagerObj ={
 	},
 	addDomicili: function(){
 		try{
-			var preu = $("#preu").text();
+			 var preu = $("#preu").text();
 			 var preuT = $("#labelpreutotalPromo").text();
 			 $("#arecollir_div").hide('slow'); 
 			if($("#adomicili").is(':checked')){		
@@ -942,7 +942,21 @@ platsOBJ ={
 				  if(json!=null && json.error!=null){
 					console.log(json.error);	
 				  }else{				
-					$(self).removeAttr("disabled");
+					  $(self).removeAttr("disabled");					
+					  if(json!=null && (json.morethanone=='true'||json.morethanone=='false'  )){
+						  if($("#adomicili").is(':checked') && morethanone!=json.morethanone){								  
+						  						  							 																		 
+								 if(morethanone=="true" && json.morethanone=='false'){
+									 $("#transport_lb").text(transportPreu);
+									 var preu =  $("#preu").text();
+									 var preuT = $("#labelpreutotalPromo").text();
+									 $("#preu").text(validationsOBJ.getFloatParsed2(validationsOBJ.getFloatParsed2(preu)-validationsOBJ.getFloatParsed2(transportPreuDouble)+validationsOBJ.getFloatParsed2(transportPreu)));		 
+									 $("#labelpreutotalPromo").text(validationsOBJ.getFloatParsed2(validationsOBJ.getFloatParsed2(preuT)-validationsOBJ.getFloatParsed2(transportPreuDouble)+validationsOBJ.getFloatParsed2(transportPreu)));										 
+								 }
+								 morethanone= json.morethanone;																		 									 								
+						  }
+					  }	
+					  	
 				  }			
 			  },
 			  error: function(e){  window.location.href="https://www.portamu.com/elteurestaurantacasa/Welcome.action";	
@@ -1066,7 +1080,21 @@ platsOBJ ={
 				  success: function(json){	
 					  if(json!=null && json.error!=null){
 						console.log(json.error);	
-					  }			
+					  }else{
+						  if(json!=null && (json.morethanone=='true'||json.morethanone=='false'  )){
+							  if($("#adomicili").is(':checked') && morethanone!=json.morethanone){								  
+							  						  							 																		 
+									 if(morethanone=="true" && json.morethanone=='false'){
+										 $("#transport_lb").text(transportPreu);
+										 var preu =  $("#preu").text();
+										 var preuT = $("#labelpreutotalPromo").text();
+										 $("#preu").text(validationsOBJ.getFloatParsed2(validationsOBJ.getFloatParsed2(preu)-validationsOBJ.getFloatParsed2(transportPreuDouble)+validationsOBJ.getFloatParsed2(transportPreu)));		 
+										 $("#labelpreutotalPromo").text(validationsOBJ.getFloatParsed2(validationsOBJ.getFloatParsed2(preuT)-validationsOBJ.getFloatParsed2(transportPreuDouble)+validationsOBJ.getFloatParsed2(transportPreu)));										 
+									 }
+									 morethanone= json.morethanone;																		 									 								
+						  }
+					  }		
+					  } 
 				  },
 				  error: function(e){  window.location.href="https://www.portamu.com/elteurestaurantacasa/Welcome.action";	
 									}
