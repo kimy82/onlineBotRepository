@@ -244,7 +244,7 @@ promosManagerObj ={
 				if(item.descompteImport!=null && item.descompteImport!="0"){			
 					//promocio descompte de pasta
 					var tipus=promosManagerObj.getTipoDesCompte(item.tipuDescompte);
-					var liToAppend = "<li><a href='#' onclick=\"promosManagerObj.addPromoImport('"+item.descompteImport+"','"+item.tipuDescompte+"','"+item.id+"','gen')\" >"+initTxtPromos.txtteundescompte+"  "+item.descompteImport +" "+initTxtPromos.txten+" "+tipus+"</a>";
+					var liToAppend = "<li><a href='#' onclick=\"promosManagerObj.addPromoImport('"+item.descompteImport+"','"+item.tipuDescompte+"','"+item.id+"','gen')\" >"+initTxtPromos.txtteundescompte+"  "+item.descompteImport +" "+tipus+"</a>";
 					$("#dialog_promo ul#prm").append(liToAppend);
 				}
 			});	
