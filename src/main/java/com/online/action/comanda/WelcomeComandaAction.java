@@ -199,12 +199,27 @@ public class WelcomeComandaAction extends ActionSuportOnlineSession {
 				Users user = this.usersBo.findByUsername(this.nameAuth);
 				if (user != null){
 					List<Promocio> promo = this.promocionsBo.loadByCode(this.code);
+					ResourceBundle resource = getTexts("MessageResources");
 					if(promo!=null && !promo.isEmpty()){
 						Gson gson = new GsonBuilder().setPrettyPrinting()
 								.excludeFieldsWithoutExposeAnnotation().create();
-						json = gson.toJson(promo);
+						Promocio promotoCheck= promo.get(0);
+						
+						if(promotoCheck!=null && promotoCheck.getNumUses()!=null && promotoCheck.getNumUsed()!=null){
+							if(promo.get(0).getNumUses()<promo.get(0).getNumUsed()){
+								json = gson.toJson(promo);
+							}else{
+								
+								String alert = resource.getString("txt.no.promo.for.code");
+								json="{\"alert\":\""+alert+"\"}";
+							}
+						}else{
+							resource = getTexts("MessageResources");
+							String alert = resource.getString("txt.no.promo.for.code");
+							json="{\"alert\":\""+alert+"\"}";
+						}
 					}else{
-						ResourceBundle resource = getTexts("MessageResources");
+						resource = getTexts("MessageResources");
 						String alert = resource.getString("txt.no.promo.for.code");
 						json="{\"alert\":\""+alert+"\"}";
 					} 
