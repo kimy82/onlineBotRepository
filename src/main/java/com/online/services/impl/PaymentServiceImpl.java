@@ -43,58 +43,58 @@ public class PaymentServiceImpl implements PaymentService {
 	public String  SHA(String ds_Merchant_Amount, String ds_Merchant_Order,String ds_Merchant_MerchantCode, String ds_Merchant_Currency, String ds_Merchant_TransactionType,String ds_Merchant_MerchantURL,String entorn) throws PaymentException, NoSuchAlgorithmException {
 		try{
 		   Clau clau = this.clauBo.getClau(entorn);
-		   byte bAmount[]   = new byte[ds_Merchant_Amount.length()];  
-	       byte bOrder[]    = new byte[ds_Merchant_Order.length()];  
-	       byte bCode[]     = new byte[ds_Merchant_MerchantCode.length()];  
-	       byte bCurrency[] = new byte[ds_Merchant_Currency.length()];
-	       byte bTransactionType[] = new byte[ds_Merchant_TransactionType.length()];  
-	       byte bMerchantURL[] = new byte[ds_Merchant_MerchantURL.length()];  
-	       byte bPassword[] = new byte[clau.getCode().length()];   
-	       
-	       MessageDigest sha = MessageDigest.getInstance("SHA-1");
-	       sha.update(bAmount);
-	       sha.update(bOrder);
-	       sha.update(bCode); 
-	       sha.update(bCurrency);
-	       sha.update(bTransactionType);
-	       sha.update(bMerchantURL);
-	       byte[] hash = sha.digest(bPassword);
-	 
-	       String merchant_Signature = new String();
-	 
-	       int h = 0;
-	       String s = new String();
-	              
-	       for(int i = 0; i < SHA1_DIGEST_LENGTH; i++)
-	        {         
-	         h = (int) hash[i];          // Convertir de byte a int
-	         if(h < 0) h += 256;  // Si son valores negativos, pueden haber problemas de conversi¢n.
-	         s = Integer.toHexString(h); // Devuelve el valor hexadecimal como un String        
-	         if (s.length() < 2) merchant_Signature = merchant_Signature.concat("0"); // A¤ade un 0 si es necesario
-	         merchant_Signature = merchant_Signature.concat(s); // A¤ade la conversi¢n a la cadena ya existente
-	        }
-
-			merchant_Signature = merchant_Signature.toUpperCase();
-			
-			return merchant_Signature;
-		
-//		String cadena = Ds_Merchant_Amount+Ds_Merchant_Order+Ds_Merchant_MerchantCode+DS_Merchant_Currency+Ds_Merchant_TransactionType+Ds_Merchant_MerchantURL+clau.getCode();
-//		MessageDigest md;
-//		byte[] buffer, digest;
-//		String hash = "";
-//
-//		
-//		  buffer = cadena.getBytes();
-//	        md = MessageDigest.getInstance("SHA1");
-//	        md.update(buffer);
-//	        digest = md.digest();
-//
-//	        for(byte aux : digest) {
-//	            int b = aux & 0xff;
-//	            if (Integer.toHexString(b).length() == 1) hash += "0";
-//	            hash += Integer.toHexString(b);
+//		   byte bAmount[]   = new byte[ds_Merchant_Amount.length()];  
+//	       byte bOrder[]    = new byte[ds_Merchant_Order.length()];  
+//	       byte bCode[]     = new byte[ds_Merchant_MerchantCode.length()];  
+//	       byte bCurrency[] = new byte[ds_Merchant_Currency.length()];
+//	       byte bTransactionType[] = new byte[ds_Merchant_TransactionType.length()];  
+//	       byte bMerchantURL[] = new byte[ds_Merchant_MerchantURL.length()];  
+//	       byte bPassword[] = new byte[clau.getCode().length()];   
+//	       
+//	       MessageDigest sha = MessageDigest.getInstance("SHA-1");
+//	       sha.update(bAmount);
+//	       sha.update(bOrder);
+//	       sha.update(bCode); 
+//	       sha.update(bCurrency);
+//	       sha.update(bTransactionType);
+//	       sha.update(bMerchantURL);
+//	       byte[] hash = sha.digest(bPassword);
+//	 
+//	       String merchant_Signature = new String();
+//	 
+//	       int h = 0;
+//	       String s = new String();
+//	              
+//	       for(int i = 0; i < SHA1_DIGEST_LENGTH; i++)
+//	        {         
+//	         h = (int) hash[i];          // Convertir de byte a int
+//	         if(h < 0) h += 256;  // Si son valores negativos, pueden haber problemas de conversi¢n.
+//	         s = Integer.toHexString(h); // Devuelve el valor hexadecimal como un String        
+//	         if (s.length() < 2) merchant_Signature = merchant_Signature.concat("0"); // A¤ade un 0 si es necesario
+//	         merchant_Signature = merchant_Signature.concat(s); // A¤ade la conversi¢n a la cadena ya existente
 //	        }
-//	     return hash;
+//
+//			merchant_Signature = merchant_Signature.toUpperCase();
+//			
+//			return merchant_Signature;
+		
+		String cadena = ds_Merchant_Amount+ds_Merchant_Order+ds_Merchant_MerchantCode+ds_Merchant_Currency+ds_Merchant_TransactionType+ds_Merchant_MerchantURL+clau.getCode();
+		MessageDigest md;
+		byte[] buffer, digest;
+		String hash = "";
+
+		
+		  buffer = cadena.getBytes();
+	        md = MessageDigest.getInstance("SHA1");
+	        md.update(buffer);
+	        digest = md.digest();
+
+	        for(byte aux : digest) {
+	            int b = aux & 0xff;
+	            if (Integer.toHexString(b).length() == 1) hash += "0";
+	            hash += Integer.toHexString(b);
+	        }
+	     return hash;
 		}catch(Exception e){
 			e.printStackTrace();
 			throw new PaymentException(e,"payment");
