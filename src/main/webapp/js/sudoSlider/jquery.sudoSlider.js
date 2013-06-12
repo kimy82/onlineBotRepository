@@ -54,8 +54,8 @@
 			afteranifunc:      FALSE, /* option[29]/*afteranifunc*/
 			uncurrentfunc:     FALSE, /* option[30]/*uncurrentfunc*/
 			currentfunc:       FALSE, /* option[31]/*currentfunc*/
-			prevhtml:          '<a href="#" class="prevBtn">  </a>', /* option[32]/*prevhtml*/
-			nexthtml:          '<a href="#" class="nextBtn">  </a>', /* option[33]/*nexthtml*/
+			prevhtml:          '<a href="#" class="prevBtn">  > </a>', /* option[32]/*prevhtml*/
+			nexthtml:          '<a href="#" class="nextBtn"> < </a>', /* option[33]/*nexthtml*/
 			loadingtext:       'Loading Content...', /* option[34]/*loadingtext*/
 			firsthtml:         '<a href="#" class="firstBtn"> first </a>', /* option[35]/*firsthtml*/
 			controlsattr:      'id="controls"', /* option[36]/*controlsattr*/
