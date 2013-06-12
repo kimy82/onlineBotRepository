@@ -1792,6 +1792,9 @@ vertical-align:middle;
     padding: 40px;
     text-transform: uppercase;
 }
+#promosCom a {
+    color: #9fc465;
+}
 .titleCom {
     color: #F7931E;
     font-family: raleway;
@@ -1816,6 +1819,7 @@ vertical-align:middle;
     margin-top:15px;
     font-family: raleway;
     font-weight: bold;
+    margin-bottom:10px;
 }
 #prm li {
     margin-bottom:10px;
