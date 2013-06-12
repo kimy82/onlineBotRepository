@@ -23,9 +23,10 @@ function InitParams(txtBegudaNoPromocio,txtNoMoreDrinksToAddinPromo,txtAddDrinks
 
 var initTxtPromos=null ;
 
-function InitTxtPromos(txtnoplats,txtteundescompte,txtbegudesdetipus,txtregalde,txten){		
+function InitTxtPromos(txtnoplats,txtteundescompte,txtteundescomptebis,txtbegudesdetipus,txtregalde,txten){		
 		this.txtnoplats=txtnoplats;
 		this.txtteundescompte=txtteundescompte;
+		this.txtteundescomptebis=txtteundescomptebis;
 		this.txtbegudesdetipus=txtbegudesdetipus;
 		this.txtregalde=txtregalde;
 		this.txten=txten;
@@ -199,14 +200,20 @@ promosManagerObj ={
 			$.each(json, function(index,item){
 				if(item.numBegudes!=null && json.numBegudes!= "0"){
 					//Promocio de begudes
-					var liToAppend = "<li><a href='#' onclick=\"promosManagerObj.addPromoBeguda('"+item.numBegudes+"','"+item.tipusBeguda+"','"+item.id+"','gen')\" >"+initTxtPromos.txtteundescompte+" "+item.numBegudes +" "+initTxtPromos.txtbegudesdetipus+" "+item.tipusBeguda+"</a>";
+					var liToAppend = "<li><a href='#' onclick=\"promosManagerObj.addPromoBeguda('"+item.numBegudes+"','"+item.tipusBeguda+"','"+item.id+"','gen')\" >"+initTxtPromos.txtregalde+" "+item.numBegudes +" "+item.tipusBeguda+"</a>";
 					$("#dialog_promo ul#visp").append(liToAppend);									
 				}
 				if(item.descompteImport!=null && item.descompteImport!="0"){			
 					//promocio descompte de pasta
 					var tipus=promosManagerObj.getTipoDesCompte(item.tipuDescompte);
-					var liToAppend = "<li><a href='#' onclick=\"promosManagerObj.addPromoImport('"+item.descompteImport+"','"+item.tipuDescompte+"','"+item.id+"','gen')\" >"+initTxtPromos.txtteundescompte+"  "+item.descompteImport +" "+initTxtPromos.txten+" "+tipus+"</a>";
-					$("#dialog_promo ul#visp").append(liToAppend);
+					if(item.tipuDescompte=='C1'){
+						var liToAppend = "<li><a href='#' onclick=\"promosManagerObj.addPromoImport('"+item.descompteImport+"','"+item.tipuDescompte+"','"+item.id+"','gen')\" >"+initTxtPromos.txtteundescompte+"  "+item.descompteImport +" "+tipus+"</a>";
+						$("#dialog_promo ul#visp").append(liToAppend);
+					}else{
+						var liToAppend = "<li><a href='#' onclick=\"promosManagerObj.addPromoImport('"+item.descompteImport+"','"+item.tipuDescompte+"','"+item.id+"','gen')\" >"+initTxtPromos.txtteundescomptebis+"  "+item.descompteImport +" "+tipus+"</a>";
+						$("#dialog_promo ul#visp").append(liToAppend);
+					}
+				
 
 				}
 			});	
@@ -219,14 +226,20 @@ promosManagerObj ={
 			$.each(json, function(index,item){
 				if(item.numBegudes!=null && json.numBegudes!= "0"){
 					//Promocio de begudes
-					var liToAppend = "<li><a href='#' onclick=\"promosManagerObj.addPromoBeguda('"+item.numBegudes+"','"+item.tipusBeguda+"','"+item.id+"','esp')\" >"+initTxtPromos.txtteundescompte+" "+item.numBegudes +" "+initTxtPromos.txtbegudesdetipus+" "+item.tipusBeguda+"</a>";
+					var liToAppend = "<li><a href='#' onclick=\"promosManagerObj.addPromoBeguda('"+item.numBegudes+"','"+item.tipusBeguda+"','"+item.id+"','esp')\" >"+initTxtPromos.txtregalde+" "+item.numBegudes +" "+item.tipusBeguda+"</a>";
 					$("#dialog_promo ul#esp").append(liToAppend);									
 				}
 				if(item.descompteImport!=null && item.descompteImport!= 'undefined' && item.descompteImport!="0"){			
 					//promocio descompte de pasta
 					var tipus=promosManagerObj.getTipoDesCompte(item.tipuDescompte);
-					var liToAppend = "<li><a href='#' onclick=\"promosManagerObj.addPromoImport('"+item.descompteImport+"','"+item.tipuDescompte+"','"+item.id+"','esp')\" >"+initTxtPromos.txtteundescompte+"  "+item.descompteImport +" "+initTxtPromos.txten+" "+tipus+"</a>";
-					$("#dialog_promo ul#esp").append(liToAppend);
+					if(item.tipuDescompte=='C1'){
+						var liToAppend = "<li><a href='#' onclick=\"promosManagerObj.addPromoImport('"+item.descompteImport+"','"+item.tipuDescompte+"','"+item.id+"','esp')\" >"+initTxtPromos.txtteundescompte+"  "+item.descompteImport +" "+tipus+"</a>";
+						$("#dialog_promo ul#esp").append(liToAppend);
+					}else{
+						var liToAppend = "<li><a href='#' onclick=\"promosManagerObj.addPromoImport('"+item.descompteImport+"','"+item.tipuDescompte+"','"+item.id+"','esp')\" >"+initTxtPromos.txtteundescomptebis+"  "+item.descompteImport +" "+tipus+"</a>";
+						$("#dialog_promo ul#esp").append(liToAppend);
+					}
+					
 				}
 			});	
 		}catch(error){
@@ -244,8 +257,14 @@ promosManagerObj ={
 				if(item.descompteImport!=null && item.descompteImport!="0"){			
 					//promocio descompte de pasta
 					var tipus=promosManagerObj.getTipoDesCompte(item.tipuDescompte);
-					var liToAppend = "<li><a href='#' onclick=\"promosManagerObj.addPromoImport('"+item.descompteImport+"','"+item.tipuDescompte+"','"+item.id+"','gen')\" >"+initTxtPromos.txtteundescompte+"  "+item.descompteImport +" "+tipus+"</a>";
-					$("#dialog_promo ul#prm").append(liToAppend);
+					if(item.tipuDescompte=='C1'){
+						var liToAppend = "<li><a href='#' onclick=\"promosManagerObj.addPromoImport('"+item.descompteImport+"','"+item.tipuDescompte+"','"+item.id+"','gen')\" >"+initTxtPromos.txtteundescompte+"  "+item.descompteImport +" "+tipus+"</a>";
+						$("#dialog_promo ul#prm").append(liToAppend);
+					}else{
+						var liToAppend = "<li><a href='#' onclick=\"promosManagerObj.addPromoImport('"+item.descompteImport+"','"+item.tipuDescompte+"','"+item.id+"','gen')\" >"+initTxtPromos.txtteundescomptebis+"  "+item.descompteImport +" "+tipus+"</a>";
+						$("#dialog_promo ul#prm").append(liToAppend);
+					}
+			
 				}
 			});	
 		}catch(error){
