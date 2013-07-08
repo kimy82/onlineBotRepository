@@ -19,7 +19,7 @@
 			</div>
 			<div class="foro_top">
 				<s:text name="txt.foro.votacio" />
-				<input class="tancarBot" type="button" onclick="closeInfoBeguda()"  value="X" />
+				<input class="tancarBot" type="button" onclick="begudaOBJ.closeInfoBeguda()"  value="X" />
 			</div>
 		<hr class="sep8" />
 		<div class="light_body">
