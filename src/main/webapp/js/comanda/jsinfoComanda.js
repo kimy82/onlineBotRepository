@@ -200,17 +200,17 @@ promosManagerObj ={
 			$.each(json, function(index,item){
 				if(item.numBegudes!=null && json.numBegudes!= "0"){
 					//Promocio de begudes
-					var liToAppend = "<li><a href='#' onclick=\"promosManagerObj.addPromoBeguda('"+item.numBegudes+"','"+item.tipusBeguda+"','"+item.id+"','gen')\" ><img width='160px' src=\"<c:url value='../img/elements/begudes.png'/>\"  ><br>"+initTxtPromos.txtregalde+" "+item.numBegudes +" "+item.tipusBeguda+"</a>";
+					var liToAppend = "<li><a href='#' onclick=\"promosManagerObj.addPromoBeguda('"+item.numBegudes+"','"+item.tipusBeguda+"','"+item.id+"','gen')\" ><img width='160px' src=\"../img/elements/begudes.png\"  ><br>"+initTxtPromos.txtregalde+" "+item.numBegudes +" "+item.tipusBeguda+"</a>";
 					$("#dialog_promo ul#visp").append(liToAppend);									
 				}
 				if(item.descompteImport!=null && item.descompteImport!="0"){			
 					//promocio descompte de pasta
 					var tipus=promosManagerObj.getTipoDesCompte(item.tipuDescompte);
 					if(item.tipuDescompte=='C1'){
-						var liToAppend = "<li><a href='#' onclick=\"promosManagerObj.addPromoImport('"+item.descompteImport+"','"+item.tipuDescompte+"','"+item.id+"','gen')\" > <img width='160px' src=\"<c:url value='../img/elements/descompte.png'/>\"  ><br>"+initTxtPromos.txtteundescompte+"  "+item.descompteImport +" "+tipus+"</a>";
+						var liToAppend = "<li><a href='#' onclick=\"promosManagerObj.addPromoImport('"+item.descompteImport+"','"+item.tipuDescompte+"','"+item.id+"','gen')\" > <img width='160px' src=\"../img/elements/descompte.png\"  ><br>"+initTxtPromos.txtteundescompte+"  "+item.descompteImport +" "+tipus+"</a>";
 						$("#dialog_promo ul#visp").append(liToAppend);
 					}else{
-						var liToAppend = "<li><a href='#' onclick=\"promosManagerObj.addPromoImport('"+item.descompteImport+"','"+item.tipuDescompte+"','"+item.id+"','gen')\" > <img width='160px' src=\"<c:url value='../img/elements/descompte.png'/>\"  ><br>"+initTxtPromos.txtteundescomptebis+"  "+item.descompteImport +" "+tipus+"</a>";
+						var liToAppend = "<li><a href='#' onclick=\"promosManagerObj.addPromoImport('"+item.descompteImport+"','"+item.tipuDescompte+"','"+item.id+"','gen')\" > <img width='160px' src=\"../img/elements/descompte.png\"  ><br>"+initTxtPromos.txtteundescomptebis+"  "+item.descompteImport +" "+tipus+"</a>";
 						$("#dialog_promo ul#visp").append(liToAppend);
 					}
 				
@@ -226,17 +226,17 @@ promosManagerObj ={
 			$.each(json, function(index,item){
 				if(item.numBegudes!=null && json.numBegudes!= "0"){
 					//Promocio de begudes
-					var liToAppend = "<li><a href='#' onclick=\"promosManagerObj.addPromoBeguda('"+item.numBegudes+"','"+item.tipusBeguda+"','"+item.id+"','esp')\" ><img width='160px' src=\"<c:url value='../img/elements/begudes.png'/>\"  > <br>"+initTxtPromos.txtregalde+" "+item.numBegudes +" "+item.tipusBeguda+"</a>";
+					var liToAppend = "<li><a href='#' onclick=\"promosManagerObj.addPromoBeguda('"+item.numBegudes+"','"+item.tipusBeguda+"','"+item.id+"','esp')\" ><img width='160px' src=\"../img/elements/begudes.png\"  > <br>"+initTxtPromos.txtregalde+" "+item.numBegudes +" "+item.tipusBeguda+"</a>";
 					$("#dialog_promo ul#esp").append(liToAppend);									
 				}
 				if(item.descompteImport!=null && item.descompteImport!= 'undefined' && item.descompteImport!="0"){			
 					//promocio descompte de pasta
 					var tipus=promosManagerObj.getTipoDesCompte(item.tipuDescompte);
 					if(item.tipuDescompte=='C1'){
-						var liToAppend = "<li><a href='#' onclick=\"promosManagerObj.addPromoImport('"+item.descompteImport+"','"+item.tipuDescompte+"','"+item.id+"','esp')\" > <img width='160px' src=\"<c:url value='../img/elements/descompte.png'/>\"  > <br>"+initTxtPromos.txtteundescompte+"  "+item.descompteImport +" "+tipus+"</a>";
+						var liToAppend = "<li><a href='#' onclick=\"promosManagerObj.addPromoImport('"+item.descompteImport+"','"+item.tipuDescompte+"','"+item.id+"','esp')\" > <img width='160px' src=\"../img/elements/descompte.png\"  > <br>"+initTxtPromos.txtteundescompte+"  "+item.descompteImport +" "+tipus+"</a>";
 						$("#dialog_promo ul#esp").append(liToAppend);
 					}else{
-						var liToAppend = "<li><a href='#' onclick=\"promosManagerObj.addPromoImport('"+item.descompteImport+"','"+item.tipuDescompte+"','"+item.id+"','esp')\" > <img width='160px' src=\"<c:url value='../img/elements/descompte.png'/>\"  > <br>"+initTxtPromos.txtteundescomptebis+"  "+item.descompteImport +" "+tipus+"</a>";
+						var liToAppend = "<li><a href='#' onclick=\"promosManagerObj.addPromoImport('"+item.descompteImport+"','"+item.tipuDescompte+"','"+item.id+"','esp')\" > <img width='160px' src=\"../img/elements/descompte.png\"  > <br>"+initTxtPromos.txtteundescomptebis+"  "+item.descompteImport +" "+tipus+"</a>";
 						$("#dialog_promo ul#esp").append(liToAppend);
 					}
 					
@@ -251,17 +251,17 @@ promosManagerObj ={
 			$.each(json, function(index,item){
 				if(item.numBegudes!=null && json.numBegudes!= "0"){
 					//Promocio de begudes
-					var liToAppend = "<li><a href='#' onclick=\"promosManagerObj.addPromoBeguda('"+item.numBegudes+"','"+item.tipusBeguda+"','"+item.id+"','gen')\" > <img width='160px' src=\"<c:url value='../img/elements/begudes.png'/>\"  > <br>"+initTxtPromos.txtregalde+" "+item.numBegudes +"  "+item.tipusBeguda+"</a>";
+					var liToAppend = "<li><a href='#' onclick=\"promosManagerObj.addPromoBeguda('"+item.numBegudes+"','"+item.tipusBeguda+"','"+item.id+"','gen')\" > <img width='160px' src=\"../img/elements/begudes.png\"  > <br>"+initTxtPromos.txtregalde+" "+item.numBegudes +"  "+item.tipusBeguda+"</a>";
 					$("#dialog_promo ul#prm").append(liToAppend);									
 				}
 				if(item.descompteImport!=null && item.descompteImport!="0"){			
 					//promocio descompte de pasta
 					var tipus=promosManagerObj.getTipoDesCompte(item.tipuDescompte);
 					if(item.tipuDescompte=='C1'){
-						var liToAppend = "<li><a href='#' onclick=\"promosManagerObj.addPromoImport('"+item.descompteImport+"','"+item.tipuDescompte+"','"+item.id+"','gen')\" > <img width='160px' src=\"<c:url value='../img/elements/descompte.png'/>\"  > <br>"+initTxtPromos.txtteundescompte+"  "+item.descompteImport +" "+tipus+"</a>";
+						var liToAppend = "<li><a href='#' onclick=\"promosManagerObj.addPromoImport('"+item.descompteImport+"','"+item.tipuDescompte+"','"+item.id+"','gen')\" > <img width='160px' src=\"../img/elements/descompte.png\"  > <br>"+initTxtPromos.txtteundescompte+"  "+item.descompteImport +" "+tipus+"</a>";
 						$("#dialog_promo ul#prm").append(liToAppend);
 					}else{
-						var liToAppend = "<li><a href='#' onclick=\"promosManagerObj.addPromoImport('"+item.descompteImport+"','"+item.tipuDescompte+"','"+item.id+"','gen')\" > <img width='160px' src=\"<c:url value='../img/elements/descompte.png'/>\"  > <br>"+initTxtPromos.txtteundescomptebis+"  "+item.descompteImport +" "+tipus+"</a>";
+						var liToAppend = "<li><a href='#' onclick=\"promosManagerObj.addPromoImport('"+item.descompteImport+"','"+item.tipuDescompte+"','"+item.id+"','gen')\" > <img width='160px' src=\"../img/elements/descompte.png\"  > <br>"+initTxtPromos.txtteundescomptebis+"  "+item.descompteImport +" "+tipus+"</a>";
 						$("#dialog_promo ul#prm").append(liToAppend);
 					}
 			
@@ -541,7 +541,7 @@ promosManagerObj ={
 				var preu =  validationsOBJ.getFloatParsed2(preuPlats)+ validationsOBJ.getFloatParsed2(preuBegudes)+ validationsOBJ.getFloatParsed2(transportOnTheFly);
 				
 				$("#promoImp").text("");
-				$("#labelpreutotalPromo").text(preu);
+				$("#labelpreutotalPromo").text(validationsOBJ.getFloatParsed2(preu));
 				
 			}
 			if(isPromoBeguda!='undefined' && isPromoBeguda!=null){
