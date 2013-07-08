@@ -1,6 +1,7 @@
 package com.online.services.impl;
 
 import java.text.DecimalFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Calendar;
@@ -929,7 +930,7 @@ public class ComandaServiceImpl implements ComandaService{
 	
 	public void sendComandaToPortamu(Comandes comanda,Double transportDouble, Double transport,String app, String entorn){
 		try{			
-			
+			SimpleDateFormat dtES = new SimpleDateFormat("dd-MM-yyyy"); 
 			StringBuffer emailToPortamu= new StringBuffer("");
 			emailToPortamu.append("<h1>S'ha realitzat una Comanda</h1><br> L'usuari és : "+comanda.getUser().getUsername()+" ("+comanda.getUser().getNom()+"  tel."+comanda.getUser().getTelNumber()+")");
 			if(comanda.getaDomicili()!=null && comanda.getaDomicili()==true){
@@ -939,7 +940,7 @@ public class ComandaServiceImpl implements ComandaService{
 			}
 			
 			emailToPortamu.append("<br> Els plats són: "+this.getListOfPlatsAndDrinks(comanda));
-			emailToPortamu.append("<br> Dia i hora: "+comanda.getDia()+ " "+comanda.getHora());
+			emailToPortamu.append("<br> Dia i hora: "+dtES.format(comanda.getDia())+ " "+comanda.getHora());
 			emailToPortamu.append("<br>El preu total és:"+this.calculPreuTotal(comanda,transportDouble, transport));
 			if(entorn.equals("local")){
 				this.usersBo.sendEmail(emailToPortamu.toString(),"joaquim.orra@gmail.com",app,"PORTAMU");

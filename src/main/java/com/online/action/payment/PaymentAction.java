@@ -37,7 +37,7 @@ public class PaymentAction extends ActionSuportOnline{
 	private Comandes			comanda;
 	private MotersBo			motersBo;
 	
-	SimpleDateFormat dtES = new SimpleDateFormat("dd-mm-yyyy"); 
+	SimpleDateFormat dtES = new SimpleDateFormat("dd-MM-yyyy"); 
 
 	
 	private Payment  payment = new Payment();
