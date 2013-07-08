@@ -57,7 +57,8 @@ alter table foroB add column NOM_USU varchar(100);
 
 alter table  promocions add column CODE VARCHAR(10);
 alter table  promocions add column VISIBILITY tinyint(1) NOT NULL DEFAULT 1;
-	
+
+ alter table comandes add column HORA_ENTREGA varchar(45);
 /* alters finish*/
 /*nova taula per les promos assignables*/
 CREATE TABLE claus(
@@ -226,6 +227,7 @@ CREATE TABLE begudes (
 CREATE TABLE comandes (
 	COMANDA_ID INT(10) UNSIGNED,
 	HORA VARCHAR(5),
+	HORA_ENTREGA VARCHAR(45) default null,
 	DIA DATE,
 	FENTRADA DATE,
 	OBSERVACIONS VARCHAR(1000),	

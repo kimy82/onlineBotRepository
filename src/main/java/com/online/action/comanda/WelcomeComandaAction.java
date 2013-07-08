@@ -67,6 +67,7 @@ public class WelcomeComandaAction extends ActionSuportOnlineSession {
 	private Integer idRestaurant = null;
 	private Integer nplats = null;
 	private String data;
+	private String dataFormatES;
 	private String dataActual;
 	private boolean promo;
 	private HoresDTO horesDTO;
@@ -162,8 +163,17 @@ public class WelcomeComandaAction extends ActionSuportOnlineSession {
 				Users user = this.usersBo.findByUsername(this.nameAuth);
 				if (user != null && user.getCodePromo() != null
 						&& !user.getCodePromo().equals("")) {
-					List<PromocioAssociada> promo = this.promocionsBo
-							.loadAssociadaByCode(user.getCodePromo());
+					List<PromocioAssociada> promo = new ArrayList<PromocioAssociada>();
+					if(user.getCodePromo()!=null && !user.getCodePromo().equals("")){
+						String[] codes = user.getCodePromo().split("&");
+						for(String code : codes){
+							promo.addAll(this.promocionsBo
+									.loadAssociadaByCode(code));
+						}
+						
+					}
+
+
 					Gson gson = new GsonBuilder().setPrettyPrinting()
 							.excludeFieldsWithoutExposeAnnotation().create();
 					json = gson.toJson(promo);
@@ -580,6 +590,7 @@ public class WelcomeComandaAction extends ActionSuportOnlineSession {
 
 			this.comanda = this.comandaBo.load(this.idComanda);
 			horesDTO = new HoresDTO();
+			horesDTO.setDataFormatES(dataFormatES);
 			horesDTO.setData(data);
 			Integer motertime = Integer.parseInt(this.request.getSession()
 					.getServletContext().getInitParameter("moterTime"));
@@ -617,6 +628,7 @@ public class WelcomeComandaAction extends ActionSuportOnlineSession {
 		
 		if(this.data==null){
 			this.data=Utils.formatDate2(new Date());
+			this.dataFormatES=Utils.formatDate(new Date());
 		}else{
 			String[] dia = this.data.split("-");
 			if(dia.length==3){
@@ -633,18 +645,22 @@ public class WelcomeComandaAction extends ActionSuportOnlineSession {
 							
 						}else{
 							this.data=Utils.formatDate2(new Date());
+							this.dataFormatES=Utils.formatDate(new Date());
 						}
 					}else{
 						this.data=Utils.formatDate2(new Date());
+						this.dataFormatES=Utils.formatDate(new Date());
 					}
 				}else{
 					this.data=Utils.formatDate2(new Date());
+					this.dataFormatES=Utils.formatDate(new Date());
 				}
 			}
 			
 		}
 		horesDTO = new HoresDTO();
 		horesDTO.setData(data);
+		horesDTO.setDataFormatES(dataFormatES);
 		horesDTO = this.comandaService.setHoresFeature(horesDTO, this.data,
 				this.comanda, false, 0);
 		setAuthenticationUser();
@@ -801,6 +817,9 @@ public class WelcomeComandaAction extends ActionSuportOnlineSession {
 
 		if (this.data == null || this.data.equals("null") || this.data.equals("")) {
 			this.data=Calendar.getInstance().get(Calendar.YEAR)+"-"+(Calendar.getInstance().get(Calendar.MONTH)+1)+"-"+Calendar.getInstance().get(Calendar.DAY_OF_MONTH);			
+			this.dataFormatES=Calendar.getInstance().get(Calendar.DAY_OF_MONTH)+"-"+(Calendar.getInstance().get(Calendar.MONTH)+1)+"-"+Calendar.getInstance().get(Calendar.YEAR);
+		}else{
+		    this.dataFormatES= Utils.formatDate(Utils.getDate2(data));
 		}
 	}
 

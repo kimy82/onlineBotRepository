@@ -12,6 +12,9 @@
 		<property name="hora" type="string">
 			<column name="HORA" length="45" /> 
 		</property>
+		<property name="horaEntrega" type="string">
+			<column name="HORA_ENTREGA" length="45" /> 
+		</property>
 		<property name="dia" type="date">
 			<column name="DIA"  />
 		</property>

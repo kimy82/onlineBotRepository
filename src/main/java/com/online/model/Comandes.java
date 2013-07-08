@@ -19,6 +19,8 @@ public class Comandes implements Serializable{
 
 	@Expose
 	private String					hora;
+		
+	private String					horaEntrega;
 
 	@Expose
 	private Date					dia;
@@ -236,7 +238,19 @@ public class Comandes implements Serializable{
 
 	public void setPlatsBorrats(String platsBorrats) {
 		this.platsBorrats = platsBorrats;
+	}
+
+	public String getHoraEntrega(){
+	
+		return horaEntrega;
+	}
+
+	public void setHoraEntrega( String horaEntrega ){
+	
+		this.horaEntrega = horaEntrega;
 	}			
+	
+	
 	
 	
 }

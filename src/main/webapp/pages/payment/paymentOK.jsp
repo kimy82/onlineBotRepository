@@ -169,7 +169,13 @@ margin-top:-90px;
 <script src="<c:url value='/js/auxiliars/jsauxiliars.js' />" type="text/javascript"></script>
 <script type="text/javascript">
 var hora = window.localStorage.getItem("comanda.hora");
-document.getElementById("hora").innerHTML=" "+getHoraDosPunts(hora)+"-"+getNextHora(hora)+" ";
+var horaEntrega = "${requestScope.horaEntrega}";
+if(horaEntrega!=""){
+	document.getElementById("hora").innerHTML=" "+horaEntrega+" ";	
+}else{
+	document.getElementById("hora").innerHTML=" "+getHoraDosPunts(hora)+"-"+getNextHora(hora)+" ";
+}
+
 var adre = window.localStorage.getItem("comanda.address");
 if(adre!=null){
 	document.getElementById("adre").innerHTML=" "+getAddressFormat(adre)+". ";	

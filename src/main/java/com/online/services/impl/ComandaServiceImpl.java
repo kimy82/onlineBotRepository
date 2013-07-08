@@ -1,5 +1,6 @@
 package com.online.services.impl;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Calendar;
@@ -21,6 +22,7 @@ import com.online.bo.MotersBo;
 import com.online.bo.PlatsBo;
 import com.online.bo.PromocionsBo;
 import com.online.bo.RestaurantsBo;
+import com.online.bo.UsersBo;
 import com.online.exceptions.ComandaException;
 import com.online.model.Beguda;
 import com.online.model.BegudaComanda;
@@ -34,6 +36,7 @@ import com.online.model.PromocioAPartirDe;
 import com.online.model.PromocioNumComandes;
 import com.online.model.Restaurant;
 import com.online.services.ComandaService;
+import com.online.utils.Constants;
 import com.online.utils.Utils;
 
 public class ComandaServiceImpl implements ComandaService{
@@ -44,6 +47,7 @@ public class ComandaServiceImpl implements ComandaService{
 	private PromocionsBo		promocionsBo;
 	private ComandaBo			comandaBo;
 	private PlatsBo				platsBo;
+	private UsersBo				usersBo;
 	private String 				jsonBegudaDeleted;   
 
 	private ResourceBundle		resource;
@@ -922,6 +926,63 @@ public class ComandaServiceImpl implements ComandaService{
 			throw new ComandaException(e, "Error checking plat in list");
 		}
 	}
+	
+	public void sendComandaToPortamu(Comandes comanda,Double transportDouble, Double transport,String app, String entorn){
+		try{			
+			
+			StringBuffer emailToPortamu= new StringBuffer("");
+			emailToPortamu.append("<h1>S'ha realitzat una Comanda</h1><br> L'usuari és : "+comanda.getUser().getUsername()+" ("+comanda.getUser().getNom()+"  tel."+comanda.getUser().getTelNumber()+")");
+			if(comanda.getaDomicili()!=null && comanda.getaDomicili()==true){
+				emailToPortamu.append("<br> La comanda és a domicili a la direcció: "+comanda.getAddress());	
+			}else{
+				emailToPortamu.append("<br> La comanda NO és a domicili i la direcció del restaurant és: "+comanda.getAddress());
+			}
+			
+			emailToPortamu.append("<br> Els plats són: "+this.getListOfPlatsAndDrinks(comanda));
+			emailToPortamu.append("<br> Dia i hora: "+comanda.getDia()+ " "+comanda.getHora());
+			emailToPortamu.append("<br>El preu total és:"+this.calculPreuTotal(comanda,transportDouble, transport));
+			if(entorn.equals("local")){
+				this.usersBo.sendEmail(emailToPortamu.toString(),"joaquim.orra@gmail.com",app,"PORTAMU");
+				this.usersBo.sendEmail(emailToPortamu.toString(),"adp.alex@gmail.com",app,"PORTAMU");
+			}else if(entorn.equals("produccio")){
+				this.usersBo.sendEmail(emailToPortamu.toString(),"hola@portamu.com",app,"PORTAMU");
+			}
+		}catch(Exception e){
+			
+		}
+		
+	}
+	
+	public String calculPreuTotal(Comandes comanda,Double transportDouble, Double transport){
+		try{
+			DecimalFormat formateadorDecimals = new DecimalFormat("####.##");
+			
+			Double preu = this.getPreuOfComanda(comanda);
+			
+			if(comanda.getImportDescomte()!=null && comanda.getTipuDescomte()!=null){
+				if(comanda.getTipuDescomte().equals(Constants.TIPUS_DESCOMPTE_CENT_1)){
+					preu = preu-((comanda.getImportDescomte()*preu)/100);
+				}else if(comanda.getTipuDescomte().equals(Constants.TIPUS_DESCOMPTE_AMOUNT_2)){
+					preu = preu-comanda.getImportDescomte();
+				}else{
+					
+				}
+			}
+			
+			if(comanda.getaDomicili()!=null && comanda.getaDomicili()==true){
+				boolean morethanOne =this.checkMoreThanOneRestaurant(comanda);
+				if(morethanOne){					
+					preu= preu+transportDouble;
+				}else{				
+					preu= preu+transport;
+				}
+			}
+			if(preu==null){return "0.0";}
+			return formateadorDecimals.format(preu);
+		}catch(Exception e){
+			return "0.0";
+		}
+	}
 
 	public class PlatComandaCart{
 		
@@ -1223,4 +1284,10 @@ public class ComandaServiceImpl implements ComandaService{
 	
 		this.platsBo = platsBo;
 	}
+
+	public void setUsersBo( UsersBo usersBo ){
+	
+		this.usersBo = usersBo;
+	}
+	
 }

@@ -56,7 +56,7 @@
 										</c:if>
 										<c:if test="${config.data ne dataAvui }">	
 											<c:set var="close" value="true"/>				
-											<a href="#" id="${restaurant.id}" class="entrar_CLOSE selector_jq" ><s:text name="txt.inicia.comanda.tal.dia" />&nbsp; ${fn:substring(config.data, 5, 10)}</a>
+											<a href="#" id="${restaurant.id}" class="entrar_CLOSE selector_jq" ><s:text name="txt.inicia.comanda.tal.dia" />&nbsp; ${fn:substring(config.data, 8, 10)}-${fn:substring(config.data, 5, 7)}</a>
 											<input type="hidden" id="dataObert_${restaurant.id}" value="${config.data}" />
 										</c:if> 
 										<c:set var="doneLoop" value="true"/>
@@ -103,7 +103,7 @@
 		</div>		
 		<div id="left">
 				<div id="bar_left">
-					<img src="img/elements/bar3.png">
+					<img src="img/elements/bar3.png"  >
 				</div>
 				<div id="bar_right">
 					<div id="form_arribem">

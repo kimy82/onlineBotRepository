@@ -1,12 +1,13 @@
 ///////////////////////////////////
 //variables per textos en locale
 var initParams=null ;
-function InitParams(txtconfirm,txtproductes,txtproducte, txtconfirmcontinuar,txtavisrestauranttancat){		
+function InitParams(txtconfirm,txtproductes,txtproducte, txtconfirmcontinuar,txtavisrestauranttancat,txtdma){		
 	this.txtconfirm = txtconfirm;
 	this.txtproductes = txtproductes;
 	this.txtproducte = txtproducte;
 	this.txtconfirmcontinuar= txtconfirmcontinuar;
 	this.txtavisrestauranttancat = txtavisrestauranttancat;
+	this.txtdma=txtdma;
 }
 
 //events 
@@ -566,8 +567,12 @@ welcomeAction ={
 				  if(json!=null && json.error!=null){           				
 	   				console.log(json.error);	
 	   			}else{
-	   				if(json!=null){   					
-	   					$("#hora_int").text(json.hora+ "H");   				
+	   				if(json!=null){   		
+	   					var hora =initParams.txtdma;
+	   					if(json.hora!=""){
+	   						hora = json.hora+ "H";
+	   					}
+	   					$("#hora_int").text(hora);   				
 	   				}
 	   			}				
 			  },

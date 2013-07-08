@@ -15,6 +15,7 @@ import org.apache.wink.client.Resource;
 import org.apache.wink.client.RestClient;
 
 import com.online.bo.ClauBo;
+import com.online.bo.ComandaBo;
 import com.online.exceptions.ComandaException;
 import com.online.exceptions.PaymentException;
 import com.online.model.BegudaComanda;
@@ -29,6 +30,7 @@ public class PaymentServiceImpl implements PaymentService {
 	private Comandes 		comanda;
 	private final String	CODI_MAQUINA_ADMIN="AC001";
 	private ClauBo			clauBo;
+	private ComandaBo	    comandaBo;
 	final int SHA1_DIGEST_LENGTH = 20;
 	
 	public boolean CheckOrderOK(String order, String entorn,String orderID) throws PaymentException, NoSuchAlgorithmException{
@@ -464,10 +466,16 @@ public class PaymentServiceImpl implements PaymentService {
 				comandaOrderSB.append("&comandaEntregaRang=H.Entrega:"+prepareHoraFormat(this.comanda.getHora())+" "+rangHora(this.comanda.getHora()));
 				
 				if(dayComanda>dayAvui){
+					this.comanda.setHoraEntrega(this.prepareHoraFormat(this.comanda.getHora()));
+					comanda.setHoraEntrega(this.prepareHoraFormat(this.comanda.getHora()));
 					comandaOrderSB.append("&comandaEntregaRest=H.Entrega:"+prepareHoraFormat(this.comanda.getHora()));
 				}else{
-					comandaOrderSB.append("&comandaEntregaRest=H.Entrega:"+getHEntregraPlats(this.comanda.getHora(), tempsPreparacio, moterTime));
+					String hEntrega = getHEntregraPlats(this.comanda.getHora(), tempsPreparacio, moterTime);
+					this.comanda.setHoraEntrega(hEntrega);
+					comanda.setHoraEntrega(hEntrega);
+					comandaOrderSB.append("&comandaEntregaRest=H.Entrega:"+hEntrega);
 				}
+				this.comandaBo.update(this.comanda);
 				comandaOrderSB.append("&comandaLimit=H.Limit:"+rangHora(this.comanda.getHora()));
 				
 				if(this.comanda.getPagada()!=null && this.comanda.getPagada()==true){
@@ -653,5 +661,12 @@ public class PaymentServiceImpl implements PaymentService {
 
 	public void setClauBo(ClauBo clauBo) {
 		this.clauBo = clauBo;
-	}		
+	}
+
+	public void setComandaBo( ComandaBo comandaBo ){
+	
+		this.comandaBo = comandaBo;
+	}	
+	
+	
 }

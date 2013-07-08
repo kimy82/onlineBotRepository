@@ -305,7 +305,7 @@
 	<script type="text/javascript" >
 		var initParams = new InitParams("<s:text name='txt.welcome.confirmar' />","<s:text name='txt.welcome.productes' />",
 										"<s:text name='txt.welcome.producte' />","<s:text name='txt.comanda.existeix.vol.continuar' />",
-										"<s:text name='txt.avis.restaurant.tancat' />");
+										"<s:text name='txt.avis.restaurant.tancat' />","<s:text name='txt.avis.hora.dma' />");
 	</script>
 	<c:import url="/pages/includes/confirmOnline.jsp" />
 	<c:import url="/pages/includes/alertOnline.jsp" />

@@ -2,6 +2,7 @@ package com.online.action.admin;
 
 import java.io.IOException;
 import java.text.DecimalFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -39,6 +40,7 @@ public class MantenimentComandesAction extends ActionSuportOnline{
 	private UsersBo				usersBo;
 	private PaymentServiceImpl	paymentService;
 	private ComandaServiceImpl	comandaService;
+	SimpleDateFormat dtES = new SimpleDateFormat("dd-mm-yyyy"); 
 
 	private Long				idComanda;
 
@@ -62,6 +64,9 @@ public class MantenimentComandesAction extends ActionSuportOnline{
 		String transportDouble = this.request.getSession().getServletContext().getInitParameter("transport_double");
 		String moterTime = this.request.getSession().getServletContext().getInitParameter("moterTime");
 		String comandarest = this.request.getSession().getServletContext().getInitParameter("comandarest");
+		Double transportD = Double.parseDouble(this.request.getSession().getServletContext().getInitParameter("transport"));
+		Double transportDoubleD = Double.parseDouble(this.request.getSession().getServletContext().getInitParameter("transport_double"));
+		String entorn = this.request.getSession().getServletContext().getInitParameter("entorn");
 		DecimalFormat formateador = new DecimalFormat("####.##");
 		
 		try {
@@ -111,10 +116,13 @@ public class MantenimentComandesAction extends ActionSuportOnline{
 			
 			String app =this.request.getSession().getServletContext().getInitParameter("app");
 			if(comanda.getaDomicili()!=null && comanda.getaDomicili()==true){
-				this.usersBo.sendEmail("<h1>Gràcies per fer una comanda a PORTAMU</h1><br>El preu total és de:"+formateador.format(preu)+"&euro;. <br>La comanda estarà a punt el dia "+comanda.getDia()+" cap a les "+Utils.getHoraDosPunts(comanda.getHora())+"-"+Utils.getNextHora(comanda.getHora())+".<br> La direcció d'entrega és:"+comanda.getAddress(),comanda.getUser().getUsername(),app,"PORTAMU");
-			}else if(comanda.getaDomicili()!=null && comanda.getaDomicili()==false){									
-				this.usersBo.sendEmail("<h1>Gràcies per fer una comanda a PORTAMU</h1><br>El preu total és de:"+formateador.format(preu)+"&euro;. <br>La comanda estarà a punt en el restaurant el dia "+comanda.getDia()+" cap a les "+Utils.getHoraDosPunts(comanda.getHora())+"-"+Utils.getNextHora(comanda.getHora()),comanda.getUser().getUsername(),app,"PORTAMU");
-			}			
+				this.usersBo.sendEmail("<h1>Gràcies per fer una comanda a PORTAMU</h1><br>El preu total és de:"+formateador.format(preu)+"&euro;. <br>La comanda estarà a punt el dia "+this.dtES.format(comanda.getDia())+" cap a les "+Utils.getHoraDosPunts(comanda.getHora())+"-"+Utils.getNextHora(comanda.getHora())+".<br> La direcció d'entrega és:"+comanda.getAddress(),comanda.getUser().getUsername(),app,"PORTAMU");
+			}else if(comanda.getaDomicili()!=null && comanda.getaDomicili()==false){	
+				//TODO: posar hora del restaurant
+				this.usersBo.sendEmail("<h1>Gràcies per fer una comanda a PORTAMU</h1><br>El preu total és de:"+formateador.format(preu)+"&euro;. <br>La comanda estarà a punt en el restaurant el dia "+this.dtES.format(comanda.getDia())+" cap a les "+comanda.getHoraEntrega(),comanda.getUser().getUsername(),app,"PORTAMU");
+			}		
+			
+			this.comandaService.sendComandaToPortamu(comanda,transportDoubleD,transportD,app,entorn);
 
 		} catch (NumberFormatException e) {
 			json = Utils.createErrorJSON("error in ajax action: wrong params");
@@ -230,7 +238,7 @@ public class MantenimentComandesAction extends ActionSuportOnline{
 			for (Comandes comanda : subComandaList) {
 
 				ComandesTable comandaTable = new ComandesTable(comanda.getUser().getNom() + " (" + comanda.getUser() + ")", comanda
-						.getUser().getTelNumber(), comanda.getAddress(), Utils.formatDate2(comanda.getDia()) + " " + comanda.getHora(),
+						.getUser().getTelNumber(), comanda.getAddress(), Utils.formatDate(comanda.getDia()) + " " + comanda.getHora(),
 						comanda.getPreu().toString(), "", "");
 				comandaTable
 						.setAccioSend("<a href=\"#\" onclick=\"sendTo(this," + comanda.getId() + ")\" ><img src=\"../images/mail.png\"></a>");
@@ -271,7 +279,7 @@ public class MantenimentComandesAction extends ActionSuportOnline{
 				String tel = (comanda.getUser() == null || comanda.getUser().getTelNumber() == null) ? "-" : comanda.getUser()
 						.getTelNumber();
 				AllComandesTable allComandesTable = new AllComandesTable(comanda.getId(), username, tel, comanda.getAddress() == null ? ""
-						: comanda.getAddress(), (comanda.getDia() == null ? "-" : Utils.formatDate2(comanda.getDia())) + " "
+						: comanda.getAddress(), (comanda.getDia() == null ? "-" : Utils.formatDate(comanda.getDia())) + " "
 						+ (comanda.getHora() == null ? "-" : comanda.getHora()), (comanda.getPreu() == null ? "-" : String.valueOf(comanda
 						.getPreu())), nomRestaurant, metodePagament, plats);
 

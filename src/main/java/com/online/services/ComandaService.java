@@ -55,5 +55,9 @@ public interface ComandaService{
 	public String getListOfPlatsAndDrinks( Comandes comanda) throws ComandaException;
 	
 	public int calculaTempsPreparacioGlobal( Comandes comanda ) throws ComandaException;	
+	
+	public void sendComandaToPortamu(Comandes comanda,Double transportDouble, Double transport,String app, String entorn);
+	
+	public String calculPreuTotal(Comandes comanda,Double transportDouble, Double transport);
 }
  

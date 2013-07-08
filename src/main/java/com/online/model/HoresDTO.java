@@ -16,6 +16,7 @@ public class HoresDTO implements Serializable{
 
 	
 	private String				data;
+	private String				dataFormatES;
 	
 	@Expose
 	private String				_0800;	
@@ -466,6 +467,20 @@ public class HoresDTO implements Serializable{
 	public void set_1400( String _1400 ){
 	
 		this._1400 = _1400;
+	}
+
+
+
+	public String getDataFormatES(){
+	
+		return dataFormatES;
+	}
+
+
+
+	public void setDataFormatES( String dataFormatES ){
+	
+		this.dataFormatES = dataFormatES;
 	}
 
 

@@ -39,6 +39,9 @@ public class UsersDialog {
 	
 	@Expose
 	private List<Basic>			promos;
+	
+	@Expose
+	private String				promosLinked;
 
 	// CONSTRUCTORS
 
@@ -128,6 +131,18 @@ public class UsersDialog {
 	
 		this.promos = promos;
 	}
+
+	public String getPromosLinked(){
+	
+		return promosLinked;
+	}
+
+	public void setPromosLinked( String promosLinked ){
+	
+		this.promosLinked = promosLinked;
+	}
+	
+	
 	
 	
 	

@@ -358,7 +358,7 @@ var initTxtPromos = new InitTxtPromos("<s:text name='txt.info.noplats.comanda' /
 
 $("#idcomanda").val('${requestScope.idComanda}');
 $("#numComanda").text('${requestScope.idComanda}');
-$("#dia").val('${requestScope.horesDTO.data}');
+$("#dia").val('${requestScope.horesDTO.dataFormatES}');
 
 comandaOBJ.initNumBegudes();
 function submitLog(){

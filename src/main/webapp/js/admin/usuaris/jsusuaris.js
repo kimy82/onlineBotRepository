@@ -140,6 +140,9 @@ function infoUser(id){
 	   				if(json.numComandesSenseTargeta!=null){
 	   					$("#nComandesSenseTargeta").text(json.numComandesSenseTargeta);
 	   				}
+	   				if(json.promosLinked!=null){
+	   					$("#promosLinked").text(json.promosLinked);
+	   				}
 	   				
 	   				$("#promosAssociades").empty();
 	   				$("#promosAssociades").append("<option value=''></option>");

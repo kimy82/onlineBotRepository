@@ -67,7 +67,11 @@ public class MantenimentUsuarisAction extends ActionSuportOnline{
 			
 				PromocioAssociada promo = this.promocionsBo.loadAssociada(idPromo);
 				for(Users user : listUsers){	
-					user.setCodePromo(promo.getCode());
+					String code = user.getCodePromo();
+					if (code==null || code.equals("")){
+						user.setCodePromo(promo.getCode());
+					}
+					user.setCodePromo(code+"&"+promo.getCode());				
 					this.usersBo.update(user);
 				}
 			}else{
@@ -104,7 +108,11 @@ public class MantenimentUsuarisAction extends ActionSuportOnline{
 			if(this.idPromo!=null && this.username!=null){
 				Users user = this.usersBo.findByUsername(this.username);
 				PromocioAssociada promo = this.promocionsBo.loadAssociada(idPromo);
-				user.setCodePromo(promo.getCode());
+				String code = user.getCodePromo();
+				if (code==null || code.equals("")){
+					user.setCodePromo(promo.getCode());
+				}
+				user.setCodePromo(code+"&"+promo.getCode());
 				this.usersBo.update(user);
 			}
 
@@ -239,10 +247,12 @@ public class MantenimentUsuarisAction extends ActionSuportOnline{
 		}
 
 		List<PromocioAssociada> listAssociades = this.promocionsBo.getAllAssociades();
-
+		String code = user.getCodePromo();
 		for (PromocioAssociada promo : listAssociades) {
-			Basic basic = new Basic(promo.getId(), promo.getNom());
-			associadesList.add(basic);
+			if(!code.contains(promo.getCode())){
+				Basic basic = new Basic(promo.getId(), promo.getNom());
+				associadesList.add(basic);
+			}
 		}
 
 		UsersDialog userDialog = new UsersDialog();
@@ -251,6 +261,7 @@ public class MantenimentUsuarisAction extends ActionSuportOnline{
 		userDialog.setNumComandesRealitzades(numComandesRealitzades);
 		userDialog.setNumComandesSenseTargeta(numComandesSenseTargeta);
 		userDialog.setPromos(associadesList);
+		userDialog.setPromosLinked(user.getCodePromo());
 		Gson gson = new GsonBuilder().setPrettyPrinting().create();
 		return gson.toJson(userDialog);
 	}

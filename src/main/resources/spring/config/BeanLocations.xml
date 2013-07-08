@@ -25,10 +25,12 @@
  		<property name="motersBo" ref="motersBo" />
  		<property name="restaurantsBo" ref="restaurantsBo" />
  		<property name="promocionsBo" ref="promocionsBo" />
- 		<property name="comandaBo" ref="comandaBo" /> 				  		  	
+ 		<property name="comandaBo" ref="comandaBo" />
+ 		<property name="usersBo" ref="usersBo" />  				  		  	
  	</bean>
  	<bean id="paymentService" class="com.online.services.impl.PaymentServiceImpl">
- 		<property name="clauBo" ref="clauBo" /> 	 	  		
+ 		<property name="clauBo" ref="clauBo" /> 	 	 
+ 		<property name="comandaBo" ref="comandaBo" /> 		
  	</bean>
 	<import resource="../beans/Users.xml"/>
 	<import resource="../beans/Plats.xml"/>
