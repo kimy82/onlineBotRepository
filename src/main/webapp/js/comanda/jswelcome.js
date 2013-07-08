@@ -137,7 +137,7 @@ $(function() {
 			       					 	}else{
 			       					 		numBegudes= numBegudes+value.numBegudes;
 			       					 		preuBegudes=  parseFloat(preuBegudes) + (parseFloat(value.beguda.preu)*value.numBegudes);	       					 		
-			       							var li= value.numBegudes+" <span class='plats' id='span_b_"+value.beguda.id+"'>x</span> "+changeHTML(value.beguda.nom)+"&nbsp;<a href='#' onclick='eliminaBeguda("+value.beguda.id+")' ><img class='dele' src='/"+context+"/images/delete2.png'></a><br><br>";
+			       							var li= value.numBegudes+" <span class='plats' id='span_b_"+value.beguda.id+"'>x</span> "+changeHTML(value.beguda.nom)+"&nbsp;<a href='#' onclick='begudaOBJ.eliminaBeguda("+value.beguda.id+")' ><img class='dele' src='/"+context+"/images/delete2.png'></a><br><br>";
 			       							lis = lis+li;
 			    							$("#disp_beguda").append(li);
 			       						}	       				
