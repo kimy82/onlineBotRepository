@@ -59,6 +59,7 @@ alter table  promocions add column CODE VARCHAR(10);
 alter table  promocions add column VISIBILITY tinyint(1) NOT NULL DEFAULT 1;
 
  alter table comandes add column HORA_ENTREGA varchar(45);
+  alter table users modify column PROMO_DISP varchar(200);
 /* alters finish*/
 /*nova taula per les promos assignables*/
 CREATE TABLE claus(
@@ -92,7 +93,7 @@ CREATE TABLE `users` (
   `INDICACIONS` VARCHAR(200),
   `ADDRESS` VARCHAR(200),
   `TELEFON` VARCHAR(10),
-  `PROMO_DISP` VARCHAR(10),
+  `PROMO_DISP` VARCHAR(200),
   `ENABLED` tinyint(1) NOT NULL,
   PRIMARY KEY (`USER_ID`)
 )ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;

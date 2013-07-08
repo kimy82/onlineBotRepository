@@ -167,6 +167,7 @@ public class WelcomeComandaAction extends ActionSuportOnlineSession {
 					if(user.getCodePromo()!=null && !user.getCodePromo().equals("")){
 						String[] codes = user.getCodePromo().split("&");
 						for(String code : codes){
+							if(code==null || code.equals(""))continue;
 							promo.addAll(this.promocionsBo
 									.loadAssociadaByCode(code));
 						}

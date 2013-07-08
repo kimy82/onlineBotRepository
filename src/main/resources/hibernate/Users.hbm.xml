@@ -31,7 +31,7 @@
 			<column name="INDICACIONS" length="200" />
 		</property>
 		<property name="codePromo" type="string" lazy="false" >
-			<column name="PROMO_DISP" length="20" />
+			<column name="PROMO_DISP" length="200" />
 		</property>
 		
 		<many-to-one name="userRole" class="com.online.model.UserRole" 
