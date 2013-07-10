@@ -1,6 +1,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="s" uri="/struts-tags"%>
 <html>
 <head>
@@ -24,7 +25,7 @@
 
 </script>	
 </head>
-<body id=indexPor>
+<body id="indexPor" onload="inicio()">
 <c:import url="/pages/includes/headerContext.jsp" />
 <script src="<c:url value='/js/jswelcome.ini.first.min.js'/>" type="text/javascript"></script>
 <c:import url="/pages/includes/divLogin.jsp" />
@@ -56,7 +57,7 @@
 										</c:if>
 										<c:if test="${config.data ne dataAvui }">	
 											<c:set var="close" value="true"/>				
-											<a href="#" id="${restaurant.id}" class="entrar_CLOSE selector_jq" ><s:text name="txt.inicia.comanda.tal.dia" />&nbsp; ${fn:substring(config.data, 8, 10)}-${fn:substring(config.data, 5, 7)}</a>
+											<a href="#" id="${restaurant.id}" class="entrar_CLOSE selector_jq" ><s:text name="txt.inicia.comanda.tal.dia" />&nbsp;<fmt:formatDate value="${config.data}" pattern="dd-MMM"/></a>
 											<input type="hidden" id="dataObert_${restaurant.id}" value="${config.data}" />
 										</c:if> 
 										<c:set var="doneLoop" value="true"/>
@@ -145,10 +146,18 @@ var initParams = new InitParams("<s:text name='txt.comanda.existeix.vol.continua
 <c:import url="/pages/includes/confirmOnline.jsp" />
 <c:import url="/pages/includes/errorAjax.jsp" />
 <c:import url="/pages/includes/alertOnline.jsp" />
+<c:import url="/pages/includes/waiting.jsp"/>
 <script type="text/javascript" >
 	var userExist="${requestScope.userExist}";
 	if(userExist=='true'){
 		alertOnline.alertes("<s:text name='txt.user.exist' />");		
+	}
+	var infocomanda =window.localStorage.getItem("infocomanda.regist");
+	if(infocomanda=='yes'){
+		wait();
+		window.localStorage.removeItem("infocomanda.regist");
+		window.localStorage.removeItem("infocomanda");
+		menuRestaurantAction.confirmComandaBox();
 	}
 </script>
 </body>

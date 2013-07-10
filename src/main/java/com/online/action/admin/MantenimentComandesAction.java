@@ -40,7 +40,7 @@ public class MantenimentComandesAction extends ActionSuportOnline{
 	private UsersBo				usersBo;
 	private PaymentServiceImpl	paymentService;
 	private ComandaServiceImpl	comandaService;
-	SimpleDateFormat dtES = new SimpleDateFormat("dd-mm-yyyy"); 
+	SimpleDateFormat dtES = new SimpleDateFormat("dd-MMM-yyyy"); 
 
 	private Long				idComanda;
 
@@ -83,8 +83,8 @@ public class MantenimentComandesAction extends ActionSuportOnline{
 			
 			int tempsPreparacio = this.comandaService.calculaTempsPreparacioGlobal(comanda);
 			List<String> orders = this.paymentService.getComandaOrders(comanda, this.comandaService.checkMoreThanOneRestaurant(comanda),transport,transportDouble,moterTime, tempsPreparacio);
-			this.paymentService.sendOrder(true,true, orders,comandarest);
-			this.paymentService.sendOrder(false,false, orders,comandarest);
+			this.paymentService.sendOrder(Constants.SEND_RESTAURANT, orders,comandarest);
+			
 			
 			comanda.setRevisio(false);
 			comanda.setPagada(true);

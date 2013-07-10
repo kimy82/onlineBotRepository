@@ -5,6 +5,8 @@ import java.util.List;
 
 import com.online.bo.RestaurantsBo;
 import com.online.bo.UsersBo;
+import com.online.dao.HtmlDao;
+import com.online.model.Html;
 import com.online.model.Restaurant;
 import com.online.supplier.extend.ActionSuportOnlineSession;
 import com.online.utils.Utils;
@@ -15,6 +17,7 @@ public class WelcomeAction extends ActionSuportOnlineSession{
 	
 	private RestaurantsBo		restaurantsBo;
 	private UsersBo				usersBo;
+	private HtmlDao				htmlDao;
 	private List<Restaurant>	restaurantList;
 	
 	private String				 nameUser;
@@ -24,6 +27,7 @@ public class WelcomeAction extends ActionSuportOnlineSession{
 	private Integer				actualPage;
 	private Integer				totalPage;
 	private Integer				rppPage =9;
+	private String				innerHTML;
 
 	public String execute() {
 
@@ -49,7 +53,13 @@ public class WelcomeAction extends ActionSuportOnlineSession{
 		return SUCCESS;
 
 	}
-
+	public String menuPromos(){
+		Html html = this.htmlDao.load(1L);
+		if(html==null)
+			this.innerHTML="<h1>EN CONSTRUCCIÓ</h1>";
+		this.innerHTML=html.getHtml();
+		return SUCCESS;
+	}
 	
 	public String politicaPrivacitat() {
 
@@ -268,6 +278,19 @@ public class WelcomeAction extends ActionSuportOnlineSession{
 
 	public void setNameUser(String nameUser) {
 		this.nameUser = nameUser;
+	}
+	
+	public String getInnerHTML(){
+	
+		return innerHTML;
+	}
+	public void setInnerHTML( String innerHTML ){
+	
+		this.innerHTML = innerHTML;
+	}
+	public void setHtmlDao( HtmlDao htmlDao ){
+	
+		this.htmlDao = htmlDao;
 	}
 	
 }

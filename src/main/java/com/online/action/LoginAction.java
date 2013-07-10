@@ -70,11 +70,15 @@ public class LoginAction extends ActionSuportOnlineSession{
 			user.setIndicacions(this.altres);
 			
 			this.usersBo.save(user);
-			
+			try{
 			this.usersBo.sendEmail("<h1>Gràcies per registrar-te a PORTAMU</h1><br> Ja pots fer les teves comandes.",email,app,"PORTAMU");
-			
+			}catch(BOException e){
+				authenticateUserAndSetSession(user.getUsername(), this.password,this.request);
+				return SUCCESS;
+				
+			}
 			authenticateUserAndSetSession(user.getUsername(), this.password,this.request);
-
+			
 		} catch (NoSuchAlgorithmException e) {
 			addActionError("Error hashing password");
 			return ERROR;
@@ -204,8 +208,7 @@ public class LoginAction extends ActionSuportOnlineSession{
 
 	public void setAuthenticationManager(AuthenticationManager authenticationManager) {
 		this.authenticationManager = authenticationManager;
-	}		
-	
+	}
 	
 
 }

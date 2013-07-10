@@ -369,5 +369,14 @@
 		<action name="ajaxTableAllComandesAction"
 			class="com.online.action.admin.MantenimentComandesAction" method="ajaxTableAllComandesAction">
 		</action>
+		
+		<!-- actions per a l'HTML  -->	
+		<action name="htmlPromos" class="com.online.action.admin.MantenimentHtmlAction"
+			method="execute">
+			<result name="success">/pages/admin/html/html.jsp</result>		
+		</action>
+		<action name="saveHtml"
+			class="com.online.action.admin.MantenimentHtmlAction" method="saveHtml">			
+		</action>
 	</package>
 </struts>

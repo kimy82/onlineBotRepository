@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="com.online.model.Html" table="html" lazy="false" >
+		<cache usage="read-write" />
+		<id name="id" type="java.lang.Long">
+			<column name="ID" />
+			<generator class="increment" />
+		</id>
+		<property name="html" type="string" lazy="false" >
+			<column name="HTML" length="10000" not-null="false" />
+		</property>				
+	</class>
+</hibernate-mapping>

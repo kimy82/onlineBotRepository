@@ -95,7 +95,6 @@
 			<artifactId>hibernate3</artifactId>
 			<version>3.2.3.ga</version>
 		</dependency>
-
 		<!-- Hibernate library dependecy start -->
 		<dependency>
 			<groupId>dom4j</groupId>
@@ -156,7 +155,7 @@
 			<artifactId>tools</artifactId>
 			<version>1.5</version>
 			<scope>system</scope>
-			<systemPath>/Library/Java/JavaVirtualMachines/jdk1.7.0_21.jdk/Contents/Home/lib/tools.jar</systemPath>
+			<systemPath>C:/Program Files/Java/jdk1.6.0_27/lib/tools.jar</systemPath>
 		</dependency>
 		<dependency>
 			<groupId>javax.mail</groupId>
@@ -786,6 +785,31 @@
 							<goal>minify</goal>
 						</goals>
 					</execution>
+					
+					<execution>
+						<id>admin_html</id>
+						<phase>process-sources</phase>
+						<configuration>
+							<linebreak>4000</linebreak>
+							<nomunge>true</nomunge>
+         					<verbose>false</verbose>
+          					<preserveAllSemiColons>true</preserveAllSemiColons>
+							<disableOptimizations>true</disableOptimizations>							
+							<jsSourceDir>js</jsSourceDir>
+							<jsSourceFiles>							
+								<jsSourceFile>utils/jsutils.js</jsSourceFile>
+								<jsSourceFile>jquery/jquery.js</jsSourceFile>
+								<jsSourceFile>jquery/jquery.ui.core.js</jsSourceFile>		
+								<jsSourceFile>jquery/jquery.dataTables.js</jsSourceFile>
+								<jsSourceFile>admin/html/jshtml.js</jsSourceFile>
+								<jsSourceFile>htmlBox/htmlbox.min.js</jsSourceFile>																																								
+							</jsSourceFiles>
+							<jsFinalFile>jshtml.admin.js</jsFinalFile>
+						</configuration>
+						<goals>
+							<goal>minify</goal>
+						</goals>
+					</execution>
 					<execution>
 						<id>admin_usuaris</id>
 						<phase>process-sources</phase>
@@ -1149,7 +1173,7 @@
 								<jsSourceFile>jquery/jquery.ui.droppable.js</jsSourceFile>
 								<jsSourceFile>jquery/jquery.ui.resizable.js</jsSourceFile>
 								<jsSourceFile>jquery/jquery.effects.core.js</jsSourceFile>
-								<jsSourceFile>jquery/jquery.bgiframe-2.1.1.js</jsSourceFile>
+								<jsSourceFile>jquery/jquery.bgiframe-2.1.2.js</jsSourceFile>
 								<jsSourceFile>jquery/jquery-ui.js</jsSourceFile>		
 								<jsSourceFile>slider/coin-slider.js</jsSourceFile>			
 								<jsSourceFile>utils/jshttpsredirect.js</jsSourceFile>																																																								

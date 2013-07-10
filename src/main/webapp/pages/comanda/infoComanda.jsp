@@ -313,14 +313,14 @@
 <c:import url="/pages/includes/endPage.jsp" />
 
 
-<div id="dialog_promo" class="filtres filtres-oberts" style="visibility: hidden;" title="Promo">
+<div id="dialog_promo" class="filtres filtres-oberts" style="visibility: hidden; display: none;" title="Promo">
 
 		<div class="al_com">
 			<s:text name="txt.promos.title" />
 			<table>
-	 	<tr>
+	 	<!-- tr>
 	 		<input class="tancarBot" type="button" id="cancel" value="X"  onclick="promosManagerObj.closeDialogPromos();" />
-	 	</tr>
+	 	</tr -->
 	 </table>
 		</div>
 		<hr class="sep20">
@@ -348,7 +348,8 @@
 	<script type="text/javascript" src="<c:url value='/js/jsinfoComanda.primer.min.js'/>"></script>		
 	<script type="text/javascript" src="<c:url value='/js/sudoSlider/jquery.sudoSlider.min.js'/>"></script>	
 	<script type="text/javascript" src="<c:url value='/js/jsinfoComanda.segon.min.js'/>"></script>		
-<script type="text/javascript" >		  
+<script type="text/javascript" >		
+window.localStorage.setItem("infocomanda", "yes");
 var initParams = new InitParams("<s:text name='txt.beguda.no.tipus.promo' />","<s:text name='txt.beguda.no.more.promo' />","<s:text name='txt.add.beguda.to.box' />", 
 								"<s:text name='txt.promo.descompte.aplicat' />","<s:text name='txt.promo.deleted' />","<s:text name='comanda.falta.hora' />",
 								"<s:text name='comanda.check.address' />","<s:text name='comanda.user.check.ok' />","<s:text name='comanda.user.check.ko' />",

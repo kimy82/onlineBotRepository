@@ -96,6 +96,9 @@ function validate(){
 		$("#comandaddressbis").css('border', 'solid 1px rgb(135,155,179)');
 	}
 	
+	if(window.localStorage.getItem("infocomanda")!=null){
+		window.localStorage.setItem("infocomanda.regist","yes");
+	}
 	self.submit();
 		
 }

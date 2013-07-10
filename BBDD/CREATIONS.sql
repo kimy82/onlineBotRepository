@@ -59,13 +59,19 @@ alter table  promocions add column CODE VARCHAR(10);
 alter table  promocions add column VISIBILITY tinyint(1) NOT NULL DEFAULT 1;
 
  alter table comandes add column HORA_ENTREGA varchar(45);
-  alter table users modify column PROMO_DISP varchar(200);
+ alter table users modify column PROMO_DISP varchar(200);
+ insert into html (id,html) values (1,'Entra el text!!');
 /* alters finish*/
 /*nova taula per les promos assignables*/
 CREATE TABLE claus(
 	ID  INT(10) UNSIGNED,
 	ENTORN VARCHAR(10),
 	CODE VARCHAR(100)
+)ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE html(
+	ID  INT(10) UNSIGNED,
+	HTML VARCHAR(10000) default null	
 )ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 CREATE TABLE promos_associated (

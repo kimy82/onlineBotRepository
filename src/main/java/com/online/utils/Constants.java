@@ -36,5 +36,8 @@ public class Constants{
 	
 	public final static String	ENTORN_LOCAL			= "local";	
 	public final static String	ENTORN_PRO				= "produccio";
+	
+	public final static String	SEND_PORTAMU			= "portamu";
+	public final static String	SEND_RESTAURANT			= "restaurant";
 
 }

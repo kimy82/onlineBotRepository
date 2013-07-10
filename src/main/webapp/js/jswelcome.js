@@ -12,6 +12,15 @@ function InitParams(txtconfirmcontinuar,txtconfirm,txtproductes,txtproducte,txtg
 	this.txtavisrestauranttancat = txtavisrestauranttancat;
 }
 
+function inicio(){
+	$("#divCargando").hide();
+	$("#divCargandoImg").hide();
+}
+function wait(){
+	$("#divCargando").show();
+	$("#divCargandoImg").show();
+}
+
 //OBJ for managment of welcome page 
 var welcomeAction ={
 }

@@ -930,17 +930,40 @@ public class ComandaServiceImpl implements ComandaService{
 	
 	public void sendComandaToPortamu(Comandes comanda,Double transportDouble, Double transport,String app, String entorn){
 		try{			
-			SimpleDateFormat dtES = new SimpleDateFormat("dd-MM-yyyy"); 
+			SimpleDateFormat dtES = new SimpleDateFormat("dd-MMM-yyyy"); 
 			StringBuffer emailToPortamu= new StringBuffer("");
-			emailToPortamu.append("<h1>S'ha realitzat una Comanda</h1><br> L'usuari és : "+comanda.getUser().getUsername()+" ("+comanda.getUser().getNom()+"  tel."+comanda.getUser().getTelNumber()+")");
+			if(comanda.getTargeta())
+				emailToPortamu.append("<h1>S'ha realitzat una Comanda amb TARGETA amb identificador: "+comanda.getId()+"</h1>");
+			else
+				emailToPortamu.append("<h1>S'ha realitzat una Comanda CONTRAREEMBOLS amb identificador: "+comanda.getId()+"</h1>");
+			
+			emailToPortamu.append("<br>El rang horari és: "+Utils.getHoraDosPunts(comanda.getHora())+" "+Utils.getNextHora(comanda.getHora()));
+			emailToPortamu.append("<br>La hora d'entrega és: "+comanda.getHoraEntrega()+"</h1>");
+			emailToPortamu.append(" <br>Restaurants: ");
+			Set<Restaurant> restaurantSet = this.getRestaurants(comanda);
+			for(Restaurant rest : restaurantSet){
+				emailToPortamu.append(" <br> "+rest.getNom());
+			}
+			emailToPortamu.append("<br> L'usuari és : "+comanda.getUser().getUsername()+" ( Nom."+comanda.getUser().getNom()+"  tel."+comanda.getUser().getTelNumber()+")");
 			if(comanda.getaDomicili()!=null && comanda.getaDomicili()==true){
 				emailToPortamu.append("<br> La comanda és a domicili a la direcció: "+comanda.getAddress());	
 			}else{
 				emailToPortamu.append("<br> La comanda NO és a domicili i la direcció del restaurant és: "+comanda.getAddress());
 			}
 			
-			emailToPortamu.append("<br> Els plats són: "+this.getListOfPlatsAndDrinks(comanda));
-			emailToPortamu.append("<br> Dia i hora: "+dtES.format(comanda.getDia())+ " "+comanda.getHora());
+			emailToPortamu.append("<br> Els plats i les begues són: "+this.getListOfPlatsAndDrinks(comanda));
+			
+			emailToPortamu.append("<br> Dia: "+dtES.format(comanda.getDia()));
+			if(comanda.getImportDescomte()!=null && comanda.getTipuDescomte()!=null){
+				
+				if(comanda.getTipuDescomte().equals(Constants.TIPUS_DESCOMPTE_AMOUNT_2))
+					emailToPortamu.append("<br> Promoció: "+ comanda.getImportDescomte()+" del tipus import en EUROS");
+				else
+					emailToPortamu.append("<br> Promoció: "+ comanda.getImportDescomte()+" del tipus TAN PER CENT");
+				
+			}else{
+				emailToPortamu.append("<br> Promoció: NO EN TÉ");
+			}
 			emailToPortamu.append("<br>El preu total és:"+this.calculPreuTotal(comanda,transportDouble, transport));
 			if(entorn.equals("local")){
 				this.usersBo.sendEmail(emailToPortamu.toString(),"joaquim.orra@gmail.com",app,"PORTAMU");

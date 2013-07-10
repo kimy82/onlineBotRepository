@@ -65,7 +65,7 @@ function closeRegist(){
 }
 
 function goToRegist(){
-
+	
 	$("#regist_dialog").load("/"+context+"/preRegisterUser.action?dialog=true");	
 	$("#regist_dialog").dialog({ 
 		   autoOpen: false,

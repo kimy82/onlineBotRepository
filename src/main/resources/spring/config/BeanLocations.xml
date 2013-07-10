@@ -44,6 +44,7 @@
 	<import resource="../beans/Foro.xml"/>
 	<import resource="../beans/Votacions.xml"/>
 	<import resource="../beans/Clau.xml"/>
+	<import resource="../beans/Html.xml"/>
 	
 	<!-- JOB PER VOTACIONS -->
 	<bean id="job" class="org.springframework.scheduling.quartz.JobDetailBean">
