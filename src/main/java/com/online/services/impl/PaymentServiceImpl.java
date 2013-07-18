@@ -129,69 +129,9 @@ public class PaymentServiceImpl implements PaymentService {
 			throw new PaymentException(e,"payment");
 		}
 	}
-	public void  sendOrder(String toRestaurantPortamu, List<String> orders, String entorncomandarest) throws PaymentException {
-		
-		String resourceComanda =getResourceComanda(entorncomandarest);
-		boolean admin=true;
-		
-		if(toRestaurantPortamu!=null && toRestaurantPortamu.equals(Constants.SEND_PORTAMU)){
-			//Tiquet a portamu
-			admin=true;
-		}else if (toRestaurantPortamu!=null && toRestaurantPortamu.equals(Constants.SEND_RESTAURANT)){
-			//Tiquets  als restaurants
-			admin= false;			
-		}
-		
-		for(String order : orders){
-			RestClient client = new RestClient();
-			Resource resource = client.resource(resourceComanda);
-			String[] orderVec = order.split("&");
-			int iterador=0;
-			String begudes="";
-			for(String param : orderVec){
-				String[] params = param.split("=");
-				
-				if( admin==true && iterador==0){
-					
-					resource.queryParam(params[0],CODI_MAQUINA_ADMIN);
-				
-				}else if( params[0].equals("telnumber")){
-					
-					resource.queryParam(params[0],transformTel(params[1]));
-					
-				}else if(params[0].equals("orderNum")){
-					
-					resource.queryParam(params[0],params[1]);
-					
-				}else if ( params[0].equals("begudes")){
-					
-					begudes = (params.length==1)?"": (";"+params[1]);
-					
-				}else if ( params[0].equals("comanda")){
-					if(params.length==1){
-						resource.queryParam(params[0],begudes);
-					}else{
-						resource.queryParam(params[0],params[1]+""+begudes);
-					}
-					
-				}else{
-					
-					if(params.length==1){
-						resource.queryParam(params[0],"sense comentaris");
-					}else{
-					resource.queryParam(params[0],params[1]);
-					}
-				}
-				iterador=iterador+1;
-				
-			}		
-			resource.queryParam("admin",String.valueOf(admin));
-			String response = resource.accept("text/plain").get(String.class);
-		 }
 	
-	}
 
-	public void  sendOrder1(boolean toAdmins,boolean toAdminRestaurant, List<String> orders, String entorncomandarest) throws PaymentException {
+	public void  sendOrder(boolean toAdmins,boolean toAdminRestaurant, List<String> orders, String entorncomandarest) throws PaymentException {
 		
 		String resourceComanda =getResourceComanda(entorncomandarest);
 		
@@ -205,11 +145,7 @@ public class PaymentServiceImpl implements PaymentService {
 				String begudes="";
 				for(String param : orderVec){
 					String[] params = param.split("=");
-					if(toAdmins && iterador==0){
-						
-						resource.queryParam(params[0],CODI_MAQUINA_ADMIN);
-						
-					}
+					
 					if(!toAdmins && params[0].equals("telnumber")){
 						
 						resource.queryParam(params[0],transformTel(params[1]));
@@ -457,7 +393,7 @@ public class PaymentServiceImpl implements PaymentService {
 				String nomPlat = platComanda.getPlat().getNom();
 				String codiPlat = platComanda.getPlat().getCodi();
 				Double preuPlat = platComanda.getPlat().getPreu() * nPlats;
-				String comandaSinglePlat = nPlats + ";" + nomPlat + ";"
+				String comandaSinglePlat = nPlats + ";" +"("+codiPlat+")"+ nomPlat + ";"
 						+ preuPlat;
 				if (comandes.containsKey(codi)) {
 					String numIdsPlats = comandes.get(codi);
@@ -503,14 +439,6 @@ public class PaymentServiceImpl implements PaymentService {
 						comandaOrderSB.append("&deliveryCharge="+transport);
 				} else {
 					comandaOrderSB.append("&deliveryCharge=0.0");
-				}
-				if(this.comanda.getImportDescomte()!=null && this.comanda.getTipuDescomte()!=null){
-					if(this.comanda.getTipuDescomte().equals(Constants.TIPUS_DESCOMPTE_AMOUNT_2))
-						comandaOrderSB.append("&descompte=" + this.comanda.getImportDescomte()+" Euros");
-					else if(this.comanda.getTipuDescomte().equals(Constants.TIPUS_DESCOMPTE_CENT_1))
-						comandaOrderSB.append("&descompte=" + this.comanda.getImportDescomte()+" Tant per cent");
-					else
-						comandaOrderSB.append("&descompte=Sense descompte");
 				}
 
 				comandaOrderSB.append("&orderNum=" + this.comanda.getId()+numRest);
@@ -742,3 +670,4 @@ public class PaymentServiceImpl implements PaymentService {
 	
 	
 }
+

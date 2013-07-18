@@ -37,7 +37,7 @@ public class PaymentAction extends ActionSuportOnline{
 	private Comandes			comanda;
 	private MotersBo			motersBo;
 	
-	SimpleDateFormat dtES = new SimpleDateFormat("dd-MMM-yyyy"); 
+	SimpleDateFormat dtES = new SimpleDateFormat("dd-MM-yyyy"); 
 
 	
 	private Payment  payment = new Payment();
@@ -156,9 +156,9 @@ public class PaymentAction extends ActionSuportOnline{
 			this.comanda.setRevisio(false);
 			this.comanda.setPagada(true);
 			this.comandaBo.update(comanda);
-			this.paymentService.sendOrder(Constants.SEND_PORTAMU, orders,comandarest);
-			this.paymentService.sendOrder(Constants.SEND_RESTAURANT, orders,comandarest);
-			
+			this.paymentService.sendOrder(true,true, orders,comandarest);
+			this.paymentService.sendOrder(true,false, orders,comandarest);
+			this.paymentService.sendOrder(false,false, orders,comandarest);
 			
 			if(this.nameAuth!=null){
 				
@@ -203,7 +203,7 @@ public class PaymentAction extends ActionSuportOnline{
 			this.comanda.setRevisio(true);
 			this.comanda.setPagada(false);
 			this.comandaBo.update(comanda);
-			this.paymentService.sendOrder(Constants.SEND_PORTAMU, orders,comandarest);
+			this.paymentService.sendOrder(true,false, orders,comandarest);
 		}
 		
 	} catch (Exception e) {
@@ -253,9 +253,9 @@ public class PaymentAction extends ActionSuportOnline{
 					this.motersBo.update(moters);
 				}
 		
-				this.paymentService.sendOrder(Constants.SEND_RESTAURANT, orders,comandarest);
-				this.paymentService.sendOrder(Constants.SEND_PORTAMU, orders,comandarest);
-				
+				this.paymentService.sendOrder(true,true, orders,comandarest);
+				this.paymentService.sendOrder(true,false, orders,comandarest);
+				this.paymentService.sendOrder(false,false, orders,comandarest);
 				
 				DecimalFormat formateadorDecimals = new DecimalFormat("####.##");
 

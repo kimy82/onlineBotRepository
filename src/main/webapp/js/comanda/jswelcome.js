@@ -568,11 +568,8 @@ welcomeAction ={
 	   				console.log(json.error);	
 	   			}else{
 	   				if(json!=null){   		
-	   					var hora =initParams.txtdma;
-	   					if(json.hora!=""){
-	   						hora = json.hora+ "H";
-	   					}
-	   					$("#hora_int").text(hora);   				
+	   				
+	   					$("#hora_int").text(hora+" H");   				
 	   				}
 	   			}				
 			  },

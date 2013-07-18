@@ -39,8 +39,7 @@
 		  			 <li id="pestanya.mto"><a href="<c:url value='allComandes.action' />" ><s:text name="pestana.all.comanda" /></a></li> 
      				 <li id="pestanya.mto"><a href="<c:url value='primeresComandes.action' />" >Control comandes</a></li>     
 		       </ul></li>
-		   <li id="pestanya.mto" ><a href="<c:url value='htmlPromos.action' />" >HTML PROMOS</a>
-		      	</li>     	    	
+		    	    	
       </ul>
       
       

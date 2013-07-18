@@ -32,9 +32,7 @@
 				<li><a href="/${initParam.app}/comanda/getVins.action"><s:text name="menu.vins" /></a></li>
 				<li><img src="<c:url value='/img/elements/bar2.png' />"></li>
 				<li><a href="/${initParam.app}/comanda/getRefrescos.action"><s:text name="menu.refresc" /></a></li>
-				<li><img src="<c:url value='/img/elements/bar2.png' />"></li>
-				<li><a href="/${initParam.app}/menuPromos.action"><s:text name="menu.promos" /></a></li>
-				<li><img src="<c:url value='/img/elements/bar2.png' />"></li>
+				<li><img src="<c:url value='/img/elements/bar2.png' />"></li>				
 				<li><a href="/${initParam.app}/comFerComanda.action"><s:text name="menu.fercomanda" /></a></li>
 				<li><img src="<c:url value='/img/elements/bar2.png' />"></li>
 				<li class="confirm"><a href="#" onclick="menuRestaurantAction.confirmComandaBox()" ><label id="numProduct" ></label> </a></li>
