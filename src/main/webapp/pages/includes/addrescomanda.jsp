@@ -20,7 +20,7 @@
 							<s:text name="adreca.porta" />*:<br><input class="inputs_short" type="text" id="porta" onblur="addressManagerObj.emptyAddress();" onclick="focus()" >
 						</div>
 						<div class="inline2">
-						<s:text name="user.altres" />*:<br> <s:textfield cssClass="inputs" key="altres" id="altres" theme="simple" onblur="addressManagerObj.emptyAddress()"  onclick="focus()" /><br>
+						<s:text name="user.altres" />*:<br> <s:textfield cssClass="inputs" key="altres" id="altres" theme="simple"  onclick="focus()" /><br>
 						</div>
 						<select id="poble" class="inputs sepa" >
 							<option value="Girona" >Girona</option>
