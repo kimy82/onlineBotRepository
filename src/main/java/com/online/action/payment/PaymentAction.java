@@ -114,7 +114,7 @@ public class PaymentAction extends ActionSuportOnline{
 				this.payment.setDs_Merchant_Titular(this.nameAuth);
 				
 				if(comandarest!=null && comandarest.equals(Constants.ENTORN_LOCAL)){ 
-					this.payment.setDs_Merchant_Url("https://localhost/"+context+"/paymentTpvDone.action?orderId="+this.comanda.getId()+"&order="+this.paymentService.SHAOrder(String.valueOf(this.comanda.getId()), entorn));
+					this.payment.setDs_Merchant_Url("https://kimy82.dyndns.org/"+context+"/paymentTpvDone.action?orderId="+this.comanda.getId()+"&order="+this.paymentService.SHAOrder(String.valueOf(this.comanda.getId()), entorn));
 					this.payment.setDs_Merchant_UrlOK("https://localhost/"+context+"/paymentPOK.action?orderId="+this.comanda.getId()+"&order="+this.paymentService.SHAOrder(String.valueOf(this.comanda.getId()), entorn));
 					this.payment.setDs_Merchant_UrlKO("https://localhost/"+context+"/paymentPKO.action");
 				}else if (comandarest!=null && comandarest.equals(Constants.ENTORN_PRO)){
@@ -312,6 +312,7 @@ public class PaymentAction extends ActionSuportOnline{
 	public String paymentTpvDone() throws IOException, PaymentException, NoSuchAlgorithmException, BOException{
 		
 		try{
+			System.out.println("ARRIBA");
 //			String order = this.request.getParameter("order");
 //			String orderId = this.request.getParameter("orderId");
 //			String entorn = this.request.getSession().getServletContext().getInitParameter("entorn");

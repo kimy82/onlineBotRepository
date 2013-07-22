@@ -569,7 +569,7 @@ welcomeAction ={
 	   			}else{
 	   				if(json!=null){   		
 	   				
-	   					$("#hora_int").text(hora+" H");   				
+	   					$("#hora_int").text(json.hora+" H");   				
 	   				}
 	   			}				
 			  },

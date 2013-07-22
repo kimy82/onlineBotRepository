@@ -102,10 +102,17 @@ public class MantenimentUsuarisAction extends ActionSuportOnline{
 			out = this.response.getOutputStream();
 			initUserAndPromoId();
 			if(this.idPromo!=null && this.username!=null){
-				Users user = this.usersBo.findByUsername(this.username);
-				PromocioAssociada promo = this.promocionsBo.loadAssociada(idPromo);
-				user.setCodePromo(promo.getCode());
-				this.usersBo.update(user);
+				if(this.idPromo==6666){
+					Users user = this.usersBo.findByUsername(this.username);					
+					user.setCodePromo("");
+					this.usersBo.update(user);
+				}else{
+					Users user = this.usersBo.findByUsername(this.username);
+					PromocioAssociada promo = this.promocionsBo.loadAssociada(idPromo);
+					user.setCodePromo(promo.getCode());
+					this.usersBo.update(user);
+				}
+				
 			}
 
 		} catch (BOException boe) {

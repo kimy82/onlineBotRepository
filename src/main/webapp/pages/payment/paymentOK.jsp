@@ -177,11 +177,11 @@ if(horaEntrega!=""){
 }
 
 var adre = window.localStorage.getItem("comanda.address");
-if(adre!=null){
+if(adre!=null && adre!="null"){
 	document.getElementById("adre").innerHTML=" "+getAddressFormat(adre)+". ";	
 }else{
 	var addressRestaurant = window.localStorage.getItem("restaurant.address");
-	if(addressRestaurant==null){
+	if(addressRestaurant==null || addressRestaurant=="null"){
 		document.getElementById("adre").innerHTML="  ";
 	}else{
 		document.getElementById("adre").innerHTML=" "+addressRestaurant+". ";	

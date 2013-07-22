@@ -554,8 +554,12 @@ public class PaymentServiceImpl implements PaymentService {
 			}
 			
 			Integer hlimit= calculMinutsHora(iniRang)+30;
-			Integer tmoter =  Integer.parseInt(tempsMoter);					
-			Integer horaComanda =calculMinutsHora(String.valueOf(Calendar.getInstance().get(Calendar.HOUR_OF_DAY))+String.valueOf(Calendar.getInstance().get(Calendar.MINUTE)));
+			Integer tmoter =  Integer.parseInt(tempsMoter);		
+			String horaOfDay = String.valueOf(Calendar.getInstance().get(Calendar.HOUR_OF_DAY));
+			String minOfDay = String.valueOf(Calendar.getInstance().get(Calendar.MINUTE));
+			if(horaOfDay.length()==1)horaOfDay="0"+horaOfDay;
+			if(minOfDay.length()==1)minOfDay="0"+minOfDay;
+			Integer horaComanda =calculMinutsHora(horaOfDay+minOfDay);
 			
 			if(0<=(hlimit-horaComanda-tempsPlat-tmoter) && (hlimit-horaComanda-tempsPlat-tmoter)<30){
 				if(horaComanda+tempsPlat-tmoter>hlimit){

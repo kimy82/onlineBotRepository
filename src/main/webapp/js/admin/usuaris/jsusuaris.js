@@ -143,6 +143,7 @@ function infoUser(id){
 	   				
 	   				$("#promosAssociades").empty();
 	   				$("#promosAssociades").append("<option value=''></option>");
+	   				$("#promosAssociades").append("<option value='6666'>Reset promos</option>");
 	   				$.each(json.promos,function(index, value){
 	   					
        					$("#promosAssociades").append("<option value='"+value.id+"'>"+value.descripcio+"</option>");
