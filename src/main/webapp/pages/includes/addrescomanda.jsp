@@ -19,15 +19,16 @@
 						<div class="inline">
 							<s:text name="adreca.porta" />*:<br><input class="inputs_short" type="text" id="porta" onblur="addressManagerObj.emptyAddress();" onclick="focus()" >
 						</div>
-						<div class="inline2">
-						<s:text name="user.altres" />*:<br> <s:textfield cssClass="inputs" key="altres" id="altres" theme="simple"  onclick="focus()" /><br>
-						</div>
+						
 						<select id="poble" class="inputs sepa" >
 							<option value="Girona" >Girona</option>
 							<option value="Salt" >Salt</option>
 						</select>												
 						<input id="checkAdd" class="boton" value="<s:text name="txt.button.address.ok" />" type="button" />
-						<label id="addressOK" ></label>						                	
+						<label id="addressOK" ></label>		
+						<div class="inline2">
+						<s:text name="user.altres" />*:<br> <s:textfield cssClass="inputs" key="altres" id="altres" theme="simple"  onclick="focus()" /><br>
+						</div>				                	
 				</form>
 		</div>
 	</div>
