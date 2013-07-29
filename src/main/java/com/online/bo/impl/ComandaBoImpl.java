@@ -27,6 +27,11 @@ public class ComandaBoImpl implements ComandaBo{
 		
 	}
 	
+	public List<Comandes> getAllComandesWithPlat(Long id) throws BOException{
+		
+		return this.comandaDao.getAllComandesWithPlat(id);
+	}
+	
 	public void save( Comandes comanda ) throws BOException{
 
 		checkComanda(comanda);

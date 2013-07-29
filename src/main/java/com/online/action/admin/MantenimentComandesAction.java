@@ -57,7 +57,7 @@ public class MantenimentComandesAction extends ActionSuportOnline{
 	}
 
 	public String ajaxSendComanda(){
-
+		
 		ServletOutputStream out = null;
 		String json = "";
 		String transport = this.request.getSession().getServletContext().getInitParameter("transport");
@@ -69,8 +69,8 @@ public class MantenimentComandesAction extends ActionSuportOnline{
 		String entorn = this.request.getSession().getServletContext().getInitParameter("entorn");
 		DecimalFormat formateador = new DecimalFormat("####.##");
 		
+		
 		try {
-
 			out = this.response.getOutputStream();
 			inizializeIdComanda();
 			Comandes comanda = this.comandaBo.load(this.idComanda);
@@ -125,14 +125,18 @@ public class MantenimentComandesAction extends ActionSuportOnline{
 			this.comandaService.sendComandaToPortamu(comanda,transportDoubleD,transportD,app,entorn);
 
 		} catch (NumberFormatException e) {
+			e.printStackTrace();
 			json = Utils.createErrorJSON("error in ajax action: wrong params");
 		} catch (Exception e) {
+			e.printStackTrace();
+			
 			json = Utils.createErrorJSON("error in ajax action");
 		}
 
 		try {
 			out.print(json);
 		} catch (IOException e) {
+			e.printStackTrace();
 			throw new GeneralException(e, "possibly ServletOutputStream null");
 		}
 		return null;
@@ -176,9 +180,11 @@ public class MantenimentComandesAction extends ActionSuportOnline{
 			inizializeTableParams();
 			json =Utils.escapeUTF(searchInfoANDcreateJSONForComandes());
 		} catch (NumberFormatException e) {
-			json = Utils.createErrorJSONForDataTable("error in ajax action: wrong params", this.sEcho);
+			e.printStackTrace();
+			json = Utils.createErrorJSONForDataTable("error in ajax action: wrong params"+e.getMessage(), this.sEcho);
 		} catch (Exception e) {
-			json = Utils.createErrorJSONForDataTable("error in ajax action", this.sEcho);
+			e.printStackTrace();
+			json = Utils.createErrorJSONForDataTable("error in ajax action"+e.getMessage(), this.sEcho);
 		}
 
 		try {
@@ -200,10 +206,10 @@ public class MantenimentComandesAction extends ActionSuportOnline{
 			json = Utils.escapeUTF(searchInfoANDcreateJSONForAllComandes());
 		} catch (NumberFormatException e) {
 			e.printStackTrace();
-			json = Utils.createErrorJSONForDataTable("error in ajax action: wrong params", this.sEcho);
+			json = Utils.createErrorJSONForDataTable("error in ajax action: wrong params"+e.getMessage(), this.sEcho);
 		} catch (Exception e) {
 			e.printStackTrace();
-			json = Utils.createErrorJSONForDataTable("error in ajax action", this.sEcho);
+			json = Utils.createErrorJSONForDataTable("error in ajax action"+e.getMessage(), this.sEcho);
 		}
 
 		try {

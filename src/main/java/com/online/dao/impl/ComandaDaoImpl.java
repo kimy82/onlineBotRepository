@@ -8,6 +8,7 @@ import java.util.List;
 import org.hibernate.Hibernate;
 import org.hibernate.Query;
 import org.hibernate.Session;
+import org.hibernate.criterion.Restrictions;
 import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
 
 import com.online.dao.ComandaDao;
@@ -51,6 +52,21 @@ public class ComandaDaoImpl extends HibernateDaoSupport implements ComandaDao{
 		return comandaList;
 
 	}
+	
+	public List<Comandes> getAllComandesWithPlat(Long id){
+
+		List<Comandes> comandaList = new ArrayList<Comandes>();
+
+		Session session = this.getSessionFactory().openSession();
+		session.beginTransaction();
+
+		comandaList = session.createCriteria(Comandes.class).createAlias("plats","plats").add(Restrictions.eq("plats.plat.id", id)).list();
+	
+		session.close();
+		return comandaList; 
+		}
+
+
 
 	public void save( Comandes comanda ){
 

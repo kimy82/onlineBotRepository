@@ -144,7 +144,7 @@ public class PaymentAction extends ActionSuportOnline{
 		
 	try{	
 		
-		if (numComandes > 1) {
+		if (numComandes >= 1) {
 
 			if(this.comanda.getHora()!=null && this.comanda.getDia()!=null && this.comanda.getaDomicili()!=null && this.comanda.getaDomicili()==true){
 				Moters moters = this.motersBo.load(this.comanda.getHora(), this.comanda.getDia());

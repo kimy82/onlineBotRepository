@@ -969,7 +969,7 @@ public class ComandaServiceImpl implements ComandaService{
 				this.usersBo.sendEmail(emailToPortamu.toString(),"joaquim.orra@gmail.com",app,"PORTAMU");
 				this.usersBo.sendEmail(emailToPortamu.toString(),"adp.alex@gmail.com",app,"PORTAMU");
 			}else if(entorn.equals("produccio")){
-				this.usersBo.sendEmail(emailToPortamu.toString(),"hola@portamu.com",app,"PORTAMU");
+				this.usersBo.sendEmail(emailToPortamu.toString(),"holaportamu@gmail.com",app,"PORTAMU");
 			}
 		}catch(Exception e){
 			

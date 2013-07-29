@@ -22,4 +22,6 @@ public interface ComandaBo{
 	List<Comandes> getAllByUserAndTemps( Long id, Integer lastNdias ) throws BOException;
 	
 	List<Comandes> getAllToConfirm() throws BOException;
+	
+	List<Comandes> getAllComandesWithPlat(Long id) throws BOException;
 }

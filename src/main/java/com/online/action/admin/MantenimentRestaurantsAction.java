@@ -3,6 +3,7 @@ package com.online.action.admin;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 import javassist.Modifier;
 
@@ -12,10 +13,12 @@ import org.springframework.beans.BeanUtils;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.online.bo.ComandaBo;
 import com.online.bo.RestaurantsBo;
 import com.online.exceptions.BOException;
 import com.online.exceptions.GeneralException;
 import com.online.exceptions.ImageException;
+import com.online.model.Comandes;
 import com.online.model.Image;
 import com.online.model.Plat;
 import com.online.model.Restaurant;
@@ -25,29 +28,30 @@ import com.online.supplier.extend.ActionSuportOnline;
 import com.online.utils.Utils;
 import com.opensymphony.xwork2.Action;
 
-public class MantenimentRestaurantsAction extends ActionSuportOnline{
+public class MantenimentRestaurantsAction extends ActionSuportOnline {
 
 	/**
 	 * 
 	 */
-	private static final long	serialVersionUID	= 1L;
-	private RestaurantsBo		restaurantsBo;
-	private Integer				idRestaurant		= null;
-	private Restaurant			restaurant			= new Restaurant();
+	private static final long serialVersionUID = 1L;
+	private RestaurantsBo restaurantsBo;
+	private Integer idRestaurant = null;
+	private Restaurant restaurant = new Restaurant();
+	private ComandaBo			comandaBo;
 
-	public String execute(){
-
-		return Action.SUCCESS;
-
-	}
-
-	public String consultaRestaurants(){
+	public String execute() {
 
 		return Action.SUCCESS;
 
 	}
 
-	public String saveRestaurant(){
+	public String consultaRestaurants() {
+
+		return Action.SUCCESS;
+
+	}
+
+	public String saveRestaurant() {
 
 		try {
 
@@ -55,7 +59,8 @@ public class MantenimentRestaurantsAction extends ActionSuportOnline{
 				addActionError("Error updating restaurant");
 				return Action.ERROR;
 			}
-			Restaurant restaurant = this.restaurantsBo.load(this.restaurant.getId(), true, false, false);
+			Restaurant restaurant = this.restaurantsBo.load(
+					this.restaurant.getId(), true, false, false);
 
 			if (restaurant == null)
 				return Action.SUCCESS;
@@ -85,13 +90,13 @@ public class MantenimentRestaurantsAction extends ActionSuportOnline{
 
 	}
 
-	public String newRestaurant(){
+	public String newRestaurant() {
 
 		return Action.SUCCESS;
 
 	}
 
-	public String saveNewRestaurant(){
+	public String saveNewRestaurant() {
 
 		try {
 			if (this.restaurant == null) {
@@ -125,10 +130,11 @@ public class MantenimentRestaurantsAction extends ActionSuportOnline{
 		return Action.SUCCESS;
 	}
 
-	public String ajaxLoadRestaurantAction(){
+	public String ajaxLoadRestaurantAction() {
 
 		ServletOutputStream out = null;
-		this.idRestaurant = (request.getParameter("id") != null && !request.getParameter("id").equals("")) ? Integer.parseInt(request
+		this.idRestaurant = (request.getParameter("id") != null && !request
+				.getParameter("id").equals("")) ? Integer.parseInt(request
 				.getParameter("id")) : null;
 		String json = "";
 		try {
@@ -136,11 +142,14 @@ public class MantenimentRestaurantsAction extends ActionSuportOnline{
 			if (this.idRestaurant == null) {
 				json = Utils.createErrorJSON("Not restaurant selected");
 			} else {
-				Restaurant restaurant = restaurantsBo.load(idRestaurant, true, false, false);
-				
-				Gson gson = new GsonBuilder().setPrettyPrinting().excludeFieldsWithModifiers(Modifier.PROTECTED).create();
-				
-				json =Utils.escapeUTF(gson.toJson(restaurant));
+				Restaurant restaurant = restaurantsBo.load(idRestaurant, true,
+						false, false);
+
+				Gson gson = new GsonBuilder().setPrettyPrinting()
+						.excludeFieldsWithModifiers(Modifier.PROTECTED)
+						.create();
+
+				json = Utils.escapeUTF(gson.toJson(restaurant));
 			}
 		} catch (Exception e) {
 			json = Utils.createErrorJSON("error in ajax action");
@@ -154,7 +163,7 @@ public class MantenimentRestaurantsAction extends ActionSuportOnline{
 		return null;
 	}
 
-	public String ajaxTableRestaurants(){
+	public String ajaxTableRestaurants() {
 
 		ServletOutputStream out = null;
 		String json = "";
@@ -163,11 +172,13 @@ public class MantenimentRestaurantsAction extends ActionSuportOnline{
 			out = this.response.getOutputStream();
 			inizializeTableParams();
 			json = searchInfoANDcreateJSONForRestaurants();
-			
+
 		} catch (NumberFormatException e) {
-			json = Utils.createErrorJSONForDataTable("error in ajax action: wrong params", this.sEcho);
+			json = Utils.createErrorJSONForDataTable(
+					"error in ajax action: wrong params", this.sEcho);
 		} catch (Exception e) {
-			json = Utils.createErrorJSONForDataTable("error in ajax action", this.sEcho);
+			json = Utils.createErrorJSONForDataTable("error in ajax action",
+					this.sEcho);
 		}
 
 		try {
@@ -178,7 +189,7 @@ public class MantenimentRestaurantsAction extends ActionSuportOnline{
 		return null;
 	}
 
-	public String ajaxTablePlatsAction(){
+	public String ajaxTablePlatsAction() {
 
 		ServletOutputStream out = null;
 		String json = "";
@@ -186,13 +197,16 @@ public class MantenimentRestaurantsAction extends ActionSuportOnline{
 		try {
 			out = this.response.getOutputStream();
 			inizializeTableParams();
-			this.idRestaurant = (request.getParameter("id") != null && !request.getParameter("id").equals("")) ? Integer.parseInt(request
+			this.idRestaurant = (request.getParameter("id") != null && !request
+					.getParameter("id").equals("")) ? Integer.parseInt(request
 					.getParameter("id")) : 1;
 			json = searchInfoANDcreateJSONForPlats();
 		} catch (NumberFormatException e) {
-			json = Utils.createErrorJSONForDataTable("error in ajax action: wrong params", this.sEcho);
+			json = Utils.createErrorJSONForDataTable(
+					"error in ajax action: wrong params", this.sEcho);
 		} catch (Exception e) {
-			json = Utils.createErrorJSONForDataTable("error in ajax action", this.sEcho);
+			json = Utils.createErrorJSONForDataTable("error in ajax action",
+					this.sEcho);
 		}
 
 		try {
@@ -203,7 +217,7 @@ public class MantenimentRestaurantsAction extends ActionSuportOnline{
 		return null;
 	}
 
-	public String ajaxDeleteRestaurantAction(){
+	public String ajaxDeleteRestaurantAction() {
 
 		ServletOutputStream out = null;
 		String json = "";
@@ -212,7 +226,21 @@ public class MantenimentRestaurantsAction extends ActionSuportOnline{
 			out = this.response.getOutputStream();
 
 			inizializeParamTODeleteRestaurant();
-			Restaurant restaurant = this.restaurantsBo.load(this.idRestaurant, true, false, false);
+			Restaurant restaurant = this.restaurantsBo.load(this.idRestaurant,
+					true, false, false);
+			if (restaurant != null && restaurant.getPlats() != null) {
+				Set<Plat> restaurantPlatsList = restaurant.getPlats();
+				for (Plat plat : restaurantPlatsList) {
+					Long platId = plat.getId();
+					if (platId != null) {
+						List<Comandes> comandes = this.comandaBo
+								.getAllComandesWithPlat(platId);
+						for (Comandes comanda : comandes) {
+							this.comandaBo.delete(comanda);
+						}
+					}
+				}
+			}
 			this.restaurantsBo.delete(restaurant);
 
 		} catch (BOException boe) {
@@ -233,9 +261,11 @@ public class MantenimentRestaurantsAction extends ActionSuportOnline{
 
 	// PRIVATE METHODS
 
-	private void inizializeParamTODeleteRestaurant() throws NumberFormatException{
+	private void inizializeParamTODeleteRestaurant()
+			throws NumberFormatException {
 
-		this.idRestaurant = (request.getParameter("idRestaurant") != null && !request.getParameter("idRestaurant").equals("")) ? Integer
+		this.idRestaurant = (request.getParameter("idRestaurant") != null && !request
+				.getParameter("idRestaurant").equals("")) ? Integer
 				.parseInt(request.getParameter("idRestaurant")) : null;
 		if (this.idRestaurant == null) {
 			throw new NumberFormatException("Restaurant id null");
@@ -243,31 +273,43 @@ public class MantenimentRestaurantsAction extends ActionSuportOnline{
 
 	}
 
-	private String searchInfoANDcreateJSONForRestaurants(){
+	private String searchInfoANDcreateJSONForRestaurants() {
 
-		List<Restaurant> restaurantList = restaurantsBo.getAll(true, true, true);
-		
-		if(restaurantList==null || restaurantList.isEmpty()) return Utils.createEmptyJSONForDataTable(sEcho);
-		
-		List<Restaurant> subRestaurantList = restaurantList.subList(inici, ((inici + lenght) < restaurantList.size()) ? (inici + lenght)
-				: restaurantList.size());
+		List<Restaurant> restaurantList = restaurantsBo
+				.getAll(true, true, true);
+
+		if (restaurantList == null || restaurantList.isEmpty())
+			return Utils.createEmptyJSONForDataTable(sEcho);
+
+		List<Restaurant> subRestaurantList = restaurantList.subList(inici,
+				((inici + lenght) < restaurantList.size()) ? (inici + lenght)
+						: restaurantList.size());
 
 		List<RestaurantTable> subrestaurantTableList = new ArrayList<RestaurantTable>();
 		for (Restaurant restaurant : subRestaurantList) {
-			restaurant.setNom("<a href='#' onclick='showDivRestaurant(this.id)' id='" + restaurant.getId() + "' >" + Utils.escapeUTF(restaurant.getNom())
-					+ "</a>");
+			restaurant
+					.setNom("<a href='#' onclick='showDivRestaurant(this.id)' id='"
+							+ restaurant.getId()
+							+ "' >"
+							+ Utils.escapeUTF(restaurant.getNom()) + "</a>");
 			RestaurantTable restaurantTable = new RestaurantTable();
 			BeanUtils.copyProperties(restaurant, restaurantTable);
-			restaurantTable.setDescripcio(Utils.escapeUTF(restaurantTable.getDescripcio()));
-			restaurantTable.setDescripcioES(Utils.escapeUTF(restaurantTable.getDescripcioES()));
-			restaurantTable.setAccio("<a href=\"#\" onclick=\"deleteRestaurant(" + restaurant.getId()
-					+ ")\" ><img src=\"../images/delete.png\"></a>");
+			restaurantTable.setDescripcio(Utils.escapeUTF(restaurantTable
+					.getDescripcio()));
+			restaurantTable.setDescripcioES(Utils.escapeUTF(restaurantTable
+					.getDescripcioES()));
+			restaurantTable
+					.setAccio("<a href=\"#\" onclick=\"deleteRestaurant("
+							+ restaurant.getId()
+							+ ")\" ><img src=\"../images/delete.png\"></a>");
 			subrestaurantTableList.add(restaurantTable);
 		}
-		Gson gson = new GsonBuilder().setPrettyPrinting().excludeFieldsWithoutExposeAnnotation().create();
+		Gson gson = new GsonBuilder().setPrettyPrinting()
+				.excludeFieldsWithoutExposeAnnotation().create();
 		String json = gson.toJson(subrestaurantTableList);
 		StringBuffer jsonSB = new StringBuffer("{");
-		jsonSB.append("\"sEcho\": " + sEcho + ", \"iTotalRecords\":\"" + restaurantList.size() + "\", \"iTotalDisplayRecords\":\""
+		jsonSB.append("\"sEcho\": " + sEcho + ", \"iTotalRecords\":\""
+				+ restaurantList.size() + "\", \"iTotalDisplayRecords\":\""
 				+ restaurantList.size() + "\", \"aaData\":  ");
 		jsonSB.append(json);
 		jsonSB.append("}");
@@ -275,30 +317,44 @@ public class MantenimentRestaurantsAction extends ActionSuportOnline{
 
 	}
 
-	private String searchInfoANDcreateJSONForPlats(){
+	private String searchInfoANDcreateJSONForPlats() {
 
-		Restaurant restaurant = restaurantsBo.load(idRestaurant, true, false, false);
+		Restaurant restaurant = restaurantsBo.load(idRestaurant, true, false,
+				false);
 		if (!restaurant.getPlats().isEmpty()) {
 			List<Plat> platList = new ArrayList<Plat>(restaurant.getPlats());
-			List<Plat> subPlatList = platList.subList(inici, ((inici + lenght) < platList.size()) ? (inici + lenght) : platList.size());
+			List<Plat> subPlatList = platList.subList(inici,
+					((inici + lenght) < platList.size()) ? (inici + lenght)
+							: platList.size());
 			List<PlatTable> subPlatTableList = new ArrayList<PlatTable>();
 			for (Plat plat : subPlatList) {
-				plat.setNom("<a href='#' onclick='goToPlatInfo(this.id)' id='" + plat.getId() + "' >" +Utils.escapeUTF( plat.getNom()) + "</a>");
+				plat.setNom("<a href='#' onclick='goToPlatInfo(this.id)' id='"
+						+ plat.getId() + "' >" + Utils.escapeUTF(plat.getNom())
+						+ "</a>");
 				PlatTable platTable = new PlatTable();
 				BeanUtils.copyProperties(plat, platTable);
-				platTable.setAccio("<a href=\"#\" onclick=\"deletePlat(" + plat.getId() + ")\" ><img src=\"../images/delete.png\"></a>");
-				platTable.setPrioritatPlat("<input type=\"text\" id=\"prior_" + platTable.getId() + "\" value=\""
-						+ platTable.getPrioritat() + "\" /><a href=\"#\" onclick=\"changePrioritat(" + plat.getId()
+				platTable.setAccio("<a href=\"#\" onclick=\"deletePlat("
+						+ plat.getId()
+						+ ")\" ><img src=\"../images/delete.png\"></a>");
+				platTable.setPrioritatPlat("<input type=\"text\" id=\"prior_"
+						+ platTable.getId() + "\" value=\""
+						+ platTable.getPrioritat()
+						+ "\" /><a href=\"#\" onclick=\"changePrioritat("
+						+ plat.getId()
 						+ ")\" ><img src=\"../images/save.png\"></a>");
-				platTable.setDescripcio(Utils.escapeUTF(platTable.getDescripcioES()));
-				platTable.setDescripcioES(Utils.escapeUTF(platTable.getDescripcioES()));
+				platTable.setDescripcio(Utils.escapeUTF(platTable
+						.getDescripcioES()));
+				platTable.setDescripcioES(Utils.escapeUTF(platTable
+						.getDescripcioES()));
 				platTable.setActiuPlat((plat.isActiu()) ? "SI" : "NO");
 				subPlatTableList.add(platTable);
 			}
-			Gson gson = new GsonBuilder().setPrettyPrinting().excludeFieldsWithoutExposeAnnotation().create();
+			Gson gson = new GsonBuilder().setPrettyPrinting()
+					.excludeFieldsWithoutExposeAnnotation().create();
 			String json = gson.toJson(subPlatTableList);
 			StringBuffer jsonSB = new StringBuffer("{");
-			jsonSB.append("\"sEcho\": " + sEcho + ", \"iTotalRecords\":\"" + platList.size() + "\", \"iTotalDisplayRecords\":\""
+			jsonSB.append("\"sEcho\": " + sEcho + ", \"iTotalRecords\":\""
+					+ platList.size() + "\", \"iTotalDisplayRecords\":\""
 					+ platList.size() + "\", \"aaData\":  ");
 			jsonSB.append(json);
 			jsonSB.append("}");
@@ -309,29 +365,34 @@ public class MantenimentRestaurantsAction extends ActionSuportOnline{
 	}
 
 	// SETTERS
-	public void setRestaurantsBo( RestaurantsBo restaurantsBo ){
+	public void setRestaurantsBo(RestaurantsBo restaurantsBo) {
 
 		this.restaurantsBo = restaurantsBo;
 	}
 
-	public Integer getIdRestaurant(){
+	public Integer getIdRestaurant() {
 
 		return idRestaurant;
 	}
 
-	public void setIdRestaurant( Integer idRestaurant ){
+	public void setIdRestaurant(Integer idRestaurant) {
 
 		this.idRestaurant = idRestaurant;
 	}
 
-	public Restaurant getRestaurant(){
+	public Restaurant getRestaurant() {
 
 		return restaurant;
 	}
 
-	public void setRestaurant( Restaurant restaurant ){
+	public void setRestaurant(Restaurant restaurant) {
 
 		this.restaurant = restaurant;
 	}
 
+	public void setComandaBo(ComandaBo comandaBo) {
+		this.comandaBo = comandaBo;
+	}
+
+	
 }
