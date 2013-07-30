@@ -14,6 +14,7 @@ import com.online.exceptions.GeneralException;
 import com.online.exceptions.WrongParamException;
 import com.online.model.Comandes;
 import com.online.model.Promocio;
+import com.online.model.PromocioAssociada;
 import com.online.model.Users;
 import com.online.services.impl.ComandaServiceImpl;
 import com.online.supplier.extend.ActionSuportOnline;
@@ -90,13 +91,20 @@ public class FinalComandaAction extends ActionSuportOnline{
 				}
 				this.comanda.setPreu(this.comandaService.getPreuOfComanda(comanda));
 				updatePromoUses();
-				if(this.promoId!=null){
+				if(this.promoId!=null && this.tipusPromo.equals("gen")){
 				Promocio promo = this.promocionsBo.load(this.promoId);
 					if(promo!=null){
 						this.comanda.setImportDescomte(promo.getDescompteImport());
 						this.comanda.setTipuDescomte(promo.getTipuDescompte());
 					}
 				}
+				if(this.promoId!=null && this.tipusPromo.equals("esp")){
+					PromocioAssociada promo = this.promocionsBo.loadAssociada(this.promoId);
+						if(promo!=null){
+							this.comanda.setImportDescomte(promo.getDescompteImport());
+							this.comanda.setTipuDescomte(promo.getTipuDescompte());
+						}
+					}
 				this.comandaBo.update(this.comanda);
 				json = this.comandaService.checkComandaProblems(this.comanda, resource);
 				

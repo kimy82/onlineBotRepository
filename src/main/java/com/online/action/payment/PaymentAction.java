@@ -114,7 +114,7 @@ public class PaymentAction extends ActionSuportOnline{
 				this.payment.setDs_Merchant_Titular(this.nameAuth);
 				
 				if(comandarest!=null && comandarest.equals(Constants.ENTORN_LOCAL)){ 
-					this.payment.setDs_Merchant_Url("https://kimy82.dyndns.org/"+context+"/paymentTpvDone.action?orderId="+this.comanda.getId()+"&order="+this.paymentService.SHAOrder(String.valueOf(this.comanda.getId()), entorn));
+					this.payment.setDs_Merchant_Url("http://kimy82.dyndns.org/"+context+"/paymentTpvDone.action?orderId="+this.comanda.getId()+"&order="+this.paymentService.SHAOrder(String.valueOf(this.comanda.getId()), entorn));
 					this.payment.setDs_Merchant_UrlOK("https://localhost/"+context+"/paymentPOK.action?orderId="+this.comanda.getId()+"&order="+this.paymentService.SHAOrder(String.valueOf(this.comanda.getId()), entorn));
 					this.payment.setDs_Merchant_UrlKO("https://localhost/"+context+"/paymentPKO.action");
 				}else if (comandarest!=null && comandarest.equals(Constants.ENTORN_PRO)){
@@ -234,7 +234,7 @@ public class PaymentAction extends ActionSuportOnline{
 			
 		
 				this.comanda = this.comandaBo.load(Long.parseLong(orderId));
-				if(this.comanda.getPagada()!=null && this.comanda.getPagada()==true)return ERROR;
+				if(this.comanda.getPagada()!=null && this.comanda.getPagada()==true)return SUCCESS;
 				this.comanda.setPagada(true);
 				this.comandaBo.update(comanda);
 				try {
@@ -313,77 +313,104 @@ public class PaymentAction extends ActionSuportOnline{
 		
 		try{
 			System.out.println("ARRIBA");
-//			String order = this.request.getParameter("order");
-//			String orderId = this.request.getParameter("orderId");
-//			String entorn = this.request.getSession().getServletContext().getInitParameter("entorn");
-//			String transport = this.request.getSession().getServletContext().getInitParameter("transport");
-//			String transportDouble = this.request.getSession().getServletContext().getInitParameter("transport_double");
-//			String moterTime = this.request.getSession().getServletContext().getInitParameter("moterTime");
-//			String comandarest = this.request.getSession().getServletContext().getInitParameter("comandarest");
-//			
-//			this.request.setAttribute("order", order);
-//			this.request.setAttribute("orderId", orderId);
-//			if(this.paymentService.CheckOrderOK(order, entorn,orderId)){
-//				List<String> orders = new ArrayList<String>();
-//			
-//		
-//				this.comanda = this.comandaBo.load(Long.parseLong(orderId));
-//				if(this.comanda.getPagada()!=null && this.comanda.getPagada()==true)return "";
-//				this.comanda.setPagada(true);
-//				this.comandaBo.update(comanda);
-//				try {
-//					int tempsPreparacio = this.comandaService.calculaTempsPreparacioGlobal(comanda);
-//					orders = this.paymentService.getComandaOrders(this.comanda, this.comandaService.checkMoreThanOneRestaurant(this.comanda),transport , transportDouble,moterTime,tempsPreparacio);
-//		
-//				} catch (PaymentException pe) {
-//					return ERROR;
-//				} catch (Exception e) {
-//					return ERROR;
-//				}
-//				
-//				if(this.comanda.getHora()!=null && this.comanda.getDia()!=null && this.comanda.getaDomicili()!=null && this.getComanda().getaDomicili()==true){
-//					Moters moters = this.motersBo.load(this.comanda.getHora(), this.comanda.getDia());
-//					moters.setNumeroMotersUsed(moters.getNumeroMotersUsed()==null?1:(moters.getNumeroMotersUsed()+1));
-//					this.motersBo.update(moters);
-//				}
-//		
-//				this.paymentService.sendOrder(true,true, orders,comandarest);
-//				this.paymentService.sendOrder(true,false, orders,comandarest);
-//				this.paymentService.sendOrder(false,false, orders,comandarest);
-//				
-//				DecimalFormat formateadorDecimals = new DecimalFormat("####.##");
-//
-//				Double preu = this.comandaService.getPreuOfComanda(comanda);
-//				
-//				if(comanda.getImportDescomte()!=null && comanda.getTipuDescomte()!=null){
-//					if(comanda.getTipuDescomte().equals(Constants.TIPUS_DESCOMPTE_CENT_1)){
-//						preu = preu-((comanda.getImportDescomte()*preu)/100);
-//					}else if(comanda.getTipuDescomte().equals(Constants.TIPUS_DESCOMPTE_AMOUNT_2)){
-//						preu = preu-comanda.getImportDescomte();
-//					}else{
-//						
-//					}
-//				}
-//				
-//				if(comanda.getaDomicili()!=null && comanda.getaDomicili()==true){
-//					boolean morethanOne =this.comandaService.checkMoreThanOneRestaurant(comanda);
-//					if(morethanOne){
-//						Double add = Double.parseDouble(this.request.getSession().getServletContext().getInitParameter("transport_double"));
-//						preu= preu+add;
-//					}else{
-//						Double add = Double.parseDouble(this.request.getSession().getServletContext().getInitParameter("transport"));
-//						preu= preu+add;
-//					}
-//				}
-//				
-//				String app =this.request.getSession().getServletContext().getInitParameter("app");
-//				if(this.comanda.getaDomicili()!=null && this.comanda.getaDomicili()==true){
-//					this.usersBo.sendEmail("<h1>Gràcies per fer una comanda a PORTAMU</h1><br>El preu total és de:"+formateadorDecimals.format(preu)+"&euro;. <br>La comanda estarà a punt el dia "+this.comanda.getDia()+" cap a les "+Utils.getHoraDosPunts(comanda.getHora())+"-"+Utils.getNextHora(comanda.getHora())+".<br> La direcció d'entrega és:"+this.comanda.getAddress(),comanda.getUser().getUsername(),app,"PORTAMU");
-//				}else if(this.comanda.getaDomicili()!=null && this.comanda.getaDomicili()==false){									
-//					this.usersBo.sendEmail("<h1>Gràcies per fer una comanda a PORTAMU</h1><br>El preu total és de:"+formateadorDecimals.format(preu)+"&euro;. <br>La comanda estarà a punt en el restaurant el dia "+this.comanda.getDia()+" cap a les "+Utils.getHoraDosPunts(comanda.getHora())+"-"+Utils.getNextHora(comanda.getHora()),comanda.getUser().getUsername(),app,"PORTAMU");
-//				}
-		
-			//}
+			String amount = this.request.getParameter("Ds_Amount").toString();
+			String ord = this.request.getParameter("Ds_Order").toString();
+			String code = this.request.getParameter("Ds_MerchantCode").toString();
+			String curr = this.request.getParameter("Ds_Currency").toString();
+			String resp = this.request.getParameter("Ds_Response").toString();
+			String sig =  this.request.getParameter("Ds_Signature").toString();
+			
+			System.out.println("ARRIBA ::"+amount);
+			System.out.println("ARRIBA :::"+ord);
+			System.out.println("ARRIBA :::"+ code);
+			System.out.println("ARRIBA :::"+ curr);
+			System.out.println("ARRIBA :::"+ resp);
+			System.out.println("ARRIBA::::"+ sig);
+			
+			Integer respInt = Integer.parseInt(resp); 
+			
+			
+			
+			if(respInt<101){
+			
+				String order = this.request.getParameter("order");
+				String orderId = this.request.getParameter("orderId");
+				String entorn = this.request.getSession().getServletContext().getInitParameter("entorn");
+				String transport = this.request.getSession().getServletContext().getInitParameter("transport");
+				String transportDouble = this.request.getSession().getServletContext().getInitParameter("transport_double");
+				String moterTime = this.request.getSession().getServletContext().getInitParameter("moterTime");
+				String comandarest = this.request.getSession().getServletContext().getInitParameter("comandarest");
+				Double transportD = Double.parseDouble(this.request.getSession().getServletContext().getInitParameter("transport"));
+				Double transportDoubleD = Double.parseDouble(this.request.getSession().getServletContext().getInitParameter("transport_double"));
+				
+				this.request.setAttribute("order", order);
+				this.request.setAttribute("orderId", orderId);
+				if(this.paymentService.CheckOrderOK(order, entorn,orderId)){
+					List<String> orders = new ArrayList<String>();
+				
+			
+					this.comanda = this.comandaBo.load(Long.parseLong(orderId));
+					if(this.comanda.getPagada()!=null && this.comanda.getPagada()==true)return ERROR;
+					this.comanda.setPagada(true);
+					this.comandaBo.update(comanda);
+					try {
+						int tempsPreparacio = this.comandaService.calculaTempsPreparacioGlobal(comanda);
+						orders = this.paymentService.getComandaOrders(this.comanda, this.comandaService.checkMoreThanOneRestaurant(this.comanda),transport , transportDouble,moterTime,tempsPreparacio);
+			
+					} catch (PaymentException pe) {
+						return ERROR;
+					} catch (Exception e) {
+						return ERROR;
+					}
+					
+					if(this.comanda.getHora()!=null && this.comanda.getDia()!=null && this.comanda.getaDomicili()!=null && this.getComanda().getaDomicili()==true){
+						Moters moters = this.motersBo.load(this.comanda.getHora(), this.comanda.getDia());
+						moters.setNumeroMotersUsed(moters.getNumeroMotersUsed()==null?1:(moters.getNumeroMotersUsed()+1));
+						this.motersBo.update(moters);
+					}
+			
+					this.paymentService.sendOrder(true,true, orders,comandarest);
+					this.paymentService.sendOrder(true,false, orders,comandarest);
+					this.paymentService.sendOrder(false,false, orders,comandarest);
+					
+					DecimalFormat formateadorDecimals = new DecimalFormat("####.##");
+
+					Double preu = this.comandaService.getPreuOfComanda(comanda);
+					
+					if(comanda.getImportDescomte()!=null && comanda.getTipuDescomte()!=null){
+						if(comanda.getTipuDescomte().equals(Constants.TIPUS_DESCOMPTE_CENT_1)){
+							preu = preu-((comanda.getImportDescomte()*preu)/100);
+						}else if(comanda.getTipuDescomte().equals(Constants.TIPUS_DESCOMPTE_AMOUNT_2)){
+							preu = preu-comanda.getImportDescomte();
+						}else{
+							
+						}
+					}
+					
+					if(comanda.getaDomicili()!=null && comanda.getaDomicili()==true){
+						boolean morethanOne =this.comandaService.checkMoreThanOneRestaurant(comanda);
+						if(morethanOne){
+							Double add = Double.parseDouble(this.request.getSession().getServletContext().getInitParameter("transport_double"));
+							preu= preu+add;
+						}else{
+							Double add = Double.parseDouble(this.request.getSession().getServletContext().getInitParameter("transport"));
+							preu= preu+add;
+						}
+					}
+					
+					String app =this.request.getSession().getServletContext().getInitParameter("app");
+					if(this.comanda.getaDomicili()!=null && this.comanda.getaDomicili()==true){
+						this.usersBo.sendEmail("<h1>Gràcies per fer una comanda a PORTAMU</h1><br>El preu total és de:"+formateadorDecimals.format(preu)+"&euro;. <br>La comanda estarà a punt el dia "+this.dtES.format(this.comanda.getDia())+" cap a les "+Utils.getHoraDosPunts(comanda.getHora())+"-"+Utils.getNextHora(comanda.getHora())+".<br> La direcció d'entrega és:"+this.comanda.getAddress(),comanda.getUser().getUsername(),app,"PORTAMU");
+					}else if(this.comanda.getaDomicili()!=null && this.comanda.getaDomicili()==false){	
+						this.request.setAttribute("horaEntrega", this.comanda.getHoraEntrega());
+						this.usersBo.sendEmail("<h1>Gràcies per fer una comanda a PORTAMU</h1><br>El preu total és de:"+formateadorDecimals.format(preu)+"&euro;. <br>La comanda estarà a punt en el restaurant el dia "+this.dtES.format(this.comanda.getDia())+" cap a les "+comanda.getHoraEntrega(),comanda.getUser().getUsername(),app,"PORTAMU");
+					}
+					
+					
+					this.comandaService.sendComandaToPortamu(comanda,transportDoubleD,transportD,app,entorn);
+			
+				}
+			}
 		}catch(Exception e){
 			e.printStackTrace();
 		}
