@@ -167,6 +167,7 @@ public class MantenimentPromocionsAction extends ActionSuportOnline{
 			if (this.promocioNumComandes.getId() == null){
 				promoNumComandes.setFentrada(new Date());
 				promoNumComandes.setCode("PR_"+Calendar.getInstance().get(Calendar.DAY_OF_MONTH)+Calendar.getInstance().get(Calendar.HOUR_OF_DAY)+Calendar.getInstance().get(Calendar.MINUTE));
+				promoNumComandes.setNumUsed(0);
 				this.promocionsBo.save(promoNumComandes);
 			}else{
 				this.promocionsBo.update(promoNumComandes);
@@ -206,6 +207,7 @@ public class MantenimentPromocionsAction extends ActionSuportOnline{
 			if (promApartirDe.getId() == null){
 				promApartirDe.setFentrada(new Date());
 				promApartirDe.setCode("PR_"+Calendar.getInstance().get(Calendar.DAY_OF_MONTH)+Calendar.getInstance().get(Calendar.HOUR_OF_DAY)+Calendar.getInstance().get(Calendar.MINUTE));
+				promApartirDe.setNumUsed(0);
 				this.promocionsBo.save(promApartirDe);
 			}else{
 				this.promocionsBo.update(promApartirDe);

@@ -217,7 +217,7 @@ public class WelcomeComandaAction extends ActionSuportOnlineSession {
 						Promocio promotoCheck= promo.get(0);
 						
 						if(promotoCheck!=null && promotoCheck.getNumUses()!=null && promotoCheck.getNumUsed()!=null){
-							if(promo.get(0).getNumUses()<promo.get(0).getNumUsed()){
+							if(promotoCheck.getNumUsed()<promotoCheck.getNumUses()){
 								json = gson.toJson(promo);
 							}else{
 								
