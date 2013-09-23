@@ -77,7 +77,7 @@
 							<s:textfield key="promocioAssociada.importAPartirDe"  id="importAPartirDe"  onblur="onlyDouble(this.value,this.id)" ></s:textfield>							
 							<s:hidden key="promocioAssociada.id" id="id_promo" ></s:hidden>																					
 			
-								<s:submit></s:submit>
+							<tr><td><input type="button" value="submit" onclick="submitPromo('savePromocioAssociada','descompteImport')" ></input></td></tr>
 						</s:form>		
 					</div>										
 				<br>						

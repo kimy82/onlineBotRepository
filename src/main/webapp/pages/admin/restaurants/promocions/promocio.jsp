@@ -103,8 +103,9 @@
 							<img  src="<c:url value='/images/calendar/calendar_full.png'/>"  id="llencadorData" ></td>
 							</tr>
 							<s:hidden key="promocioAPartirDeDTF.id" id="id_apd" ></s:hidden>
-							<s:hidden key="promocioAPartirDeDTF.code" id="code_apd" ></s:hidden>			
-								<s:submit></s:submit>
+							<s:hidden key="promocioAPartirDeDTF.code" id="code_apd" ></s:hidden>		
+							<tr><td><input type="button" value="submit" onclick="submitPromo('savePromocioAPartirDe','descompteImport_apd')" ></input></td></tr>		
+							
 						</s:form>			
 					</div>					
 					<div id="pnc_div">
@@ -136,7 +137,8 @@
 							<s:textfield key="promocioNumComandes.temps"  id="temps"  onblur="onlyEntero(this.value,this.id)" ></s:textfield>
 							<s:hidden key="promocioNumComandes.id" id="id_pnc" ></s:hidden>
 							<s:hidden key="promocioNumComandes.code" id="code_pnc" ></s:hidden>
-								<s:submit></s:submit>
+							<tr><td><input type="button" value="submit" onclick="submitPromo('savePromocioNumComandes','descompteImport_pnc')" ></input></td></tr>	
+								
 						</s:form>		
 					</div>
 					

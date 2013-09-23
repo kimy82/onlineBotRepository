@@ -13,6 +13,21 @@ function InitTableParams(txtlast,txtnext,txtprevious,txtfirst,txtloading,txtborr
 		this.txterrornumber=txterrornumber;
 }
 
+function submitPromo(form,val){
+	
+	
+	
+	if($("#"+val).val() !=''){
+		$('#'+val).css('border', 'solid 1px rgb(135,155,179)');
+	}else{
+		$('#'+val).css('border', 'solid 1px red');
+		return;
+	}
+	changePreu(val);
+	document.getElementById(form).submit();
+}
+
+
 function opendivNewPromo(){
 	resetForm();
 	$("#infopromonew").show('slow');
