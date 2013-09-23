@@ -140,6 +140,8 @@ public class MantenimentPromosAssociadesAction extends ActionSuportOnline{
 				promocioAssociada.setCode("PR_"+Calendar.getInstance().get(Calendar.DAY_OF_MONTH)+Calendar.getInstance().get(Calendar.HOUR_OF_DAY)+Calendar.getInstance().get(Calendar.MINUTE));
 				this.promocionsBo.saveAssociada(promocioAssociada);
 			} else {
+				PromocioAssociada promo = this.promocionsBo.loadAssociada(promocioAssociada.getId());
+				promocioAssociada.setCode(promo.getCode());
 				this.promocionsBo.updateAssociada(promocioAssociada);
 			}
 
