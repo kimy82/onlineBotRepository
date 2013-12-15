@@ -65,22 +65,26 @@ public class PlatsDaoImpl extends HibernateDaoSupport implements PlatsDao{
 			
 			List<Integer> comandesToAlter = (List<Integer>) session.createSQLQuery("select c.COMANDA_ID from comandes c inner join  comanda_plats pltc ON (pltc.PLATCOMANDA_ID="+pltc.getId()+" and pltc.COMANDA_ID=c.COMANDA_ID )").list();
 			for(Object obCmd : comandesToAlter){
-				Integer id =(Integer)obCmd;
-				Comandes cmd = (Comandes) session.load(Comandes.class, Long.parseLong(String.valueOf(id)));
-				if(cmd.getPlatsBorrats()==null)
-					cmd.setPlatsBorrats(pltc.getPlat().getNom()+"(BORRAT) ");
-				else
-					cmd.setPlatsBorrats(cmd.getPlatsBorrats()+" "+pltc.getPlat().getNom()+"(BORRAT) ");
-				
-				List<PlatComanda> newPlatComandaList = new ArrayList<PlatComanda>();
-				for(PlatComanda platcomanda : cmd.getPlats()){
-					if(platcomanda==null)continue;
-					if(platcomanda.getId()!=pltc.getId()){
-						newPlatComandaList.add(platcomanda);
+				try{
+					Integer id =(Integer)obCmd;
+					Comandes cmd = (Comandes) session.load(Comandes.class, Long.parseLong(String.valueOf(id)));
+					if(cmd.getPlatsBorrats()==null)
+						cmd.setPlatsBorrats(pltc.getPlat().getNom()+"(BORRAT) ");
+					else
+						cmd.setPlatsBorrats(cmd.getPlatsBorrats()+" "+pltc.getPlat().getNom()+"(BORRAT) ");
+					
+					List<PlatComanda> newPlatComandaList = new ArrayList<PlatComanda>();
+					for(PlatComanda platcomanda : cmd.getPlats()){
+						if(platcomanda==null)continue;
+						if(platcomanda.getId()!=pltc.getId()){
+							newPlatComandaList.add(platcomanda);
+						}
 					}
+					cmd.setPlats(newPlatComandaList);
+					session.update(cmd);
+				}catch(Exception e){
+					continue;
 				}
-				cmd.setPlats(newPlatComandaList);
-				session.update(cmd);
 			}									
 		}	
 		session.getTransaction().commit();				
