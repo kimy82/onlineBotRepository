@@ -42,7 +42,7 @@ $("#deletePromoApplied").hide();
 
 //OBJ per l'adreca
 var addressManagerObj ={
-}
+};
 addressManagerObj._self=null;
 
 addressManagerObj ={
@@ -85,11 +85,11 @@ addressManagerObj ={
 		$("#checkAdd").click();
 	}
 	
-}
+};
 
 //OBJ for managment of promos
 var promosManagerObj ={
-}
+};
 promosManagerObj._self=null;
 
 promosManagerObj ={
@@ -273,7 +273,7 @@ promosManagerObj ={
 	},
 	checkBegudaToAddPromo: function(promo){
 		var idcomanda = $("#idcomanda").val();
-		if(isNaN(promo)){console.log("No promo")}
+		if(isNaN(promo)){console.log("No promo");}
 		if(isNaN(idcomanda)){
 			window.location.href="https://www.portamu.com/elteurestaurantacasa/Welcome.action";	
 		}
@@ -503,16 +503,16 @@ promosManagerObj ={
 			window.localStorage.setItem("comanda.beguda.preu","0.0");
 		}
 		var transportOnTheFly=generalManagerObj.getTransPortOnTheFly();		
-		var preu =  validationsOBJ.getFloatParsed2(preuPlats)+ validationsOBJ.getFloatParsed2(preuBegudes)+ validationsOBJ.getFloatParsed2(transportOnTheFly);
+		var preu =  validationsOBJ.getFloatParsed2(preuPlats)+ validationsOBJ.getFloatParsed2(preuBegudes);
 		
 		if(tipusDescompte=='1' || tipusDescompte=='C1' ){
 			var preuF = validationsOBJ.getFloatParsed2(preu)*((100-validationsOBJ.getFloatParsed2(importDescompte))/100);
 			$("#promoImp").text("-"+importDescompte+" %");
-			$("#labelpreutotalPromo").text(validationsOBJ.getFloatParsed2(preuF));
+			$("#labelpreutotalPromo").text(validationsOBJ.getFloatParsed2(preuF)+validationsOBJ.getFloatParsed2(transportOnTheFly));
 		}else{
 			var preuF = validationsOBJ.getFloatParsed2(preu)-validationsOBJ.getFloatParsed2(importDescompte);
 			$("#promoImp").text("-"+importDescompte+" Euros");
-			$("#labelpreutotalPromo").text(validationsOBJ.getFloatParsed2(preuF));
+			$("#labelpreutotalPromo").text(validationsOBJ.getFloatParsed2(preuF)+ validationsOBJ.getFloatParsed2(transportOnTheFly));
 		}
 		
 		$("#checkPromocionsDisponibles").hide();
@@ -614,14 +614,14 @@ promosManagerObj ={
 		if(tipuDescompte=="C1"){
 			return "%";
 		}else{
-			return "&euro;"
+			return "&euro;";
 		}
 	}
-}
+};
 
 //OBJ for general managment
 var generalManagerObj ={
-}
+};
 generalManagerObj._self=null;
 
 
@@ -756,7 +756,7 @@ generalManagerObj ={
 		window.localStorage.clear();
 	window.location.href="https://www.portamu.com/elteurestaurantacasa/Welcome.action";
 	}
-}
+};
 
 
 
@@ -764,7 +764,7 @@ generalManagerObj ={
 
 //OBJ for managment of hours
 var horesManagerObj ={
-}
+};
 horesManagerObj._self=null;
 
 
@@ -860,12 +860,12 @@ horesManagerObj ={
 		$("#"+id).addClass("checked");
 		$("#"+id).removeClass("notcheck");	
 	}
-}
+};
 
 
 //OBJ for managment of menu restaurant 
 var menuRestaurantAction ={
-}
+};
 menuRestaurantAction._self=null;
 
 
@@ -923,11 +923,11 @@ menuRestaurantAction ={
 			window.location.href="/"+context+"/comanda/Welcome.action?restaurantId="+idRestaurant+"&idComanda="+comanda+"&data="+data;
 		}
 	}
-}	
+};
 
 //OBJ for dishes managment 
 var platsOBJ ={
-}
+};
 platsOBJ._self=null;
 
 
@@ -1049,7 +1049,7 @@ platsOBJ ={
 			 var preuComanda = validationsOBJ.getFloatParsed2(preu)-validationsOBJ.getFloatParsed2(preuTotalPlat);
 			 var preuInStorage = window.localStorage.getItem("comanda.preu");
 			 if(preuInStorage!=null){
-				window.localStorage.setItem("comanda.preu",validationsOBJ.getFloatParsed2(validationsOBJ.getFloatParsed2(preuInStorage)- validationsOBJ.getFloatParsed2(preuTotalPlat)))
+				window.localStorage.setItem("comanda.preu",validationsOBJ.getFloatParsed2(validationsOBJ.getFloatParsed2(preuInStorage)- validationsOBJ.getFloatParsed2(preuTotalPlat)));
 			 }
 			 $("#preu").text(validationsOBJ.getFloatParsed2(preuComanda));
 			 $("#labelpreutotalPromo").text(validationsOBJ.getFloatParsed2(preuComanda));
@@ -1110,11 +1110,11 @@ platsOBJ ={
 									}
 			});	
 	}
-}	
+};
 
 //OBJ for comanda management 
 var comandaOBJ ={
-}
+};
 comandaOBJ._self=null;
 
 comandaOBJ ={
@@ -1314,11 +1314,11 @@ comandaOBJ ={
 				window.location.href="/"+context+"/payment/paymentEntry.action?"+data;
 		}		
 	}
-}	
+};	
 	
 //OBJ for drinks management 
 var begudaOBJ ={
-}
+};
 begudaOBJ._self=null;
 
 
@@ -1508,10 +1508,10 @@ begudaOBJ ={
 						console.log(error);
 		}			
 	},
-}	
+};	
 //OBJ for validations management 
 var validationsOBJ ={
-}
+};
 validationsOBJ._self=null;
 
 
@@ -1527,10 +1527,10 @@ validationsOBJ ={
 			var parsedFloat = parseFloat(vartoparseTransitorio).toFixed(2);
 			return parseFloat(parsedFloat);
 		}catch(error){
-						if(!isNaN(vartoparse) && vartoparse!=""){return parseFloat(parseFloat(vartoparse).toFixed(2))}else{return 0.0;};
+						if(!isNaN(vartoparse) && vartoparse!=""){return parseFloat(parseFloat(vartoparse).toFixed(2));}else{return 0.0;};
 		}				
 	},
-}
+};
 
 
 var func = $(function(){
