@@ -652,6 +652,8 @@ public class WelcomeComandaAction extends ActionSuportOnlineSession {
 						this.data=Utils.formatDate2(new Date());
 						this.dataFormatES=Utils.formatDate(new Date());
 					}
+				}else if(yearC==year+1){
+					
 				}else{
 					this.data=Utils.formatDate2(new Date());
 					this.dataFormatES=Utils.formatDate(new Date());
