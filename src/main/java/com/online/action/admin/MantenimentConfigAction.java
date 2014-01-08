@@ -173,19 +173,17 @@ public class MantenimentConfigAction extends ActionSuportOnline{
 					configRestToSave.setObert(true);
 					configRestToSave.setHores(this.configRestaurant.getHores());
 					configRestToSave.setIdRestaurant(restaurantBis.getId());
-
-					saveConfig(restaurantBis, dataToCheck, configRestToSave);									
+					saveConfig(restaurantBis, dataToCheck, configRestToSave);
 				}
-				if(lastClosed==null){
+				if(lastClosed==null || i>50){
 					continueLoop = false;
 				}
-				
+
 				if(Utils.formatDate2(dataToCheck).equals(Utils.formatDate2(lastClosed))){
 					Calendar lastObert = Calendar.getInstance();
 					lastObert.setTime(lastClosed);
 					int dayOfYear = lastObert.get(Calendar.DAY_OF_YEAR);
 					lastObert.set(Calendar.DAY_OF_YEAR, dayOfYear+1);
-					
 					ConfigRestaurant configRestToSave = new ConfigRestaurant();
 					configRestToSave.setData(lastObert.getTime());
 					configRestToSave.setObert(true);
@@ -197,8 +195,6 @@ public class MantenimentConfigAction extends ActionSuportOnline{
 					continueLoop = false;
 				}
 			}
-
-		
 	}
 
 	private void saveConfig( Restaurant restaurant, Date date, ConfigRestaurant configRestToSave ){
