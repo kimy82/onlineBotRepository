@@ -4,6 +4,8 @@ import java.io.IOException;
 import java.util.Calendar;
 import java.util.Collections;
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Set;
@@ -175,7 +177,7 @@ public class MantenimentConfigAction extends ActionSuportOnline{
 					configRestToSave.setIdRestaurant(restaurantBis.getId());
 					saveConfig(restaurantBis, dataToCheck, configRestToSave);
 				}
-				if(lastClosed==null || i>50){
+				if(lastClosed==null || i>35){
 					continueLoop = false;
 				}
 
@@ -194,6 +196,40 @@ public class MantenimentConfigAction extends ActionSuportOnline{
 					
 					continueLoop = false;
 				}
+			}
+			restaurantBis = this.restaurantsBo.load(restaurant.getId(), false, true, true);
+			setconfig = restaurantBis.getConfigRestaurants();
+			if (setconfig.isEmpty())
+				return;
+			
+			Iterator<ConfigRestaurant> itera = setconfig.iterator();
+			Date diaAvui = new Date();
+			Set<ConfigRestaurant> confRestaurantNew = new HashSet<ConfigRestaurant>();
+			Set<ConfigRestaurant> confRestaurantToDelete = new HashSet<ConfigRestaurant>();
+			
+			while(itera.hasNext()){
+				ConfigRestaurant cr= itera.next();
+				Calendar calConfig = Calendar.getInstance();
+				calConfig.setTime(cr.getData());
+				Calendar calAvui = Calendar.getInstance();
+				calAvui.setTime(diaAvui);
+				int dayConfig = calConfig.get(Calendar.DAY_OF_YEAR);
+				int dayAvui = calAvui.get(Calendar.DAY_OF_YEAR);
+				int yearAvui = calAvui.get(Calendar.YEAR);
+				int yearConfig = calConfig.get(Calendar.YEAR);
+				if(dayConfig>=dayAvui && yearAvui == yearConfig){
+					confRestaurantNew.add(cr);
+				}else if(dayConfig<dayAvui && yearAvui == yearConfig){
+					confRestaurantToDelete.add(cr);
+				}else if(yearAvui < yearConfig){
+					confRestaurantToDelete.add(cr);
+				}
+			}
+			
+			restaurant.setConfigRestaurants(confRestaurantNew);
+			restaurantsBo.update(restaurant);
+			for(ConfigRestaurant config : confRestaurantToDelete){
+				configRestaurantBo.delete(config);
 			}
 	}
 

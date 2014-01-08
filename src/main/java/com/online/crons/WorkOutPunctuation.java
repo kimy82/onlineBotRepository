@@ -135,9 +135,13 @@ public class WorkOutPunctuation implements Job
 			calAvui.setTime(diaAvui);
 			int dayConfig = calConfig.get(Calendar.DAY_OF_YEAR);
 			int dayAvui = calAvui.get(Calendar.DAY_OF_YEAR);
-			if(dayConfig>=dayAvui){
+			int yearAvui = calAvui.get(Calendar.YEAR);
+			int yearConfig = calConfig.get(Calendar.YEAR);
+			if(dayConfig>=dayAvui && yearAvui == yearConfig){
 				confRestaurantNew.add(cr);
-			}else{
+			}else if(dayConfig<dayAvui && yearAvui == yearConfig){
+				confRestaurantToDelete.add(cr);
+			}else if(yearAvui < yearConfig){
 				confRestaurantToDelete.add(cr);
 			}
 		}
