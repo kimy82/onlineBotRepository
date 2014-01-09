@@ -170,6 +170,7 @@ promosManagerObj ={
 	},
 	checkPromoVibility: function(value){
 		if(value=='')return;
+		window.scrollTo(0, 0);
 		var data="code="+value;
 		$.ajax({
 			  type: "POST",
@@ -1616,14 +1617,19 @@ var sudoSlider = $("#slider").sudoSlider({
 $("#dialog_promo").dialog( { autoOpen: false,
 	  modal: true,
 	  position: 'center',
-	  draggable: true,
+	  draggable: false,
 	  height: 390,
 	  width: 600,		
 	  open: function(event, ui) { 
 		 //carrega la taula del dialog
-		  promosManagerObj.checkPromocionsDisponibles(); 
-		  promosManagerObj.checkPromoEspecial();
+		 
 		$('#dialog_promo').css('visibility', '');
 		$('#dialog_promo').css('overflow', 'hidden');
+		
+		
+		 promosManagerObj.checkPromocionsDisponibles(); 
+		  promosManagerObj.checkPromoEspecial();
+		  setTimeout(function(){window.scrollTo(0, 0);},1000);
+		
 	 }
 });
