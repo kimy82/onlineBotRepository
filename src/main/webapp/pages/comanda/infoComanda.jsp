@@ -317,11 +317,9 @@
 
 		<div class="al_com">
 			<s:text name="txt.promos.title" />
-			<table>
-	 	<tr>
+			
 	 		<input class="tancarBot" type="button" id="cancel" value="X"  onclick="promosManagerObj.closeDialogPromos();" />
-	 	</tr>
-	 </table>
+	 	
 		</div>
 		<hr class="sep20">
 	    <div id="promosCom">
