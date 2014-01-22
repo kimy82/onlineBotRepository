@@ -243,6 +243,7 @@ promosManagerObj ={
 					
 				}
 			});	
+			
 		}catch(error){
 			console.log(error);
 		}	
@@ -404,13 +405,13 @@ promosManagerObj ={
 									window.localStorage.setItem("comanda.begudes.lis",lis);
 									window.localStorage.setItem("comanda.promo.nBegudes.added",numBegudesPromo);
 									window.localStorage.setItem("comanda.numbegudes",numBegudes);
-									window.localStorage.setItem("comanda.beguda.preu",preuBegudes);           					           				
+									window.localStorage.setItem("comanda.beguda.preu",validationsOBJ.getFloatParsed2(preuBegudes));           					           				
 									var preuComanda = window.localStorage.getItem("comanda.preu");
 									
 									var transportOnTheFly=generalManagerObj.getTransPortOnTheFly();	
 									var preuFinal = validationsOBJ.getFloatParsed2(preuComanda) + validationsOBJ.getFloatParsed2(preuBegudes)+ validationsOBJ.getFloatParsed2(transportOnTheFly);
-									$("#preu").text(preuFinal);
-									$("#labelpreutotalPromo").text(preuFinal);       					
+									$("#preu").text(validationsOBJ.getFloatParsed2(preuFinal));
+									$("#labelpreutotalPromo").text(validationsOBJ.getFloatParsed2(preuFinal));       					
 								}catch(error){
 									console.log(error);
 								}
@@ -509,11 +510,11 @@ promosManagerObj ={
 		if(tipusDescompte=='1' || tipusDescompte=='C1' ){
 			var preuF = validationsOBJ.getFloatParsed2(preu)*((100-validationsOBJ.getFloatParsed2(importDescompte))/100);
 			$("#promoImp").text("-"+importDescompte+" %");
-			$("#labelpreutotalPromo").text(validationsOBJ.getFloatParsed2(preuF)+validationsOBJ.getFloatParsed2(transportOnTheFly));
+			$("#labelpreutotalPromo").text(validationsOBJ.getFloatParsed2(validationsOBJ.getFloatParsed2(preuF)+validationsOBJ.getFloatParsed2(transportOnTheFly)));
 		}else{
 			var preuF = validationsOBJ.getFloatParsed2(preu)-validationsOBJ.getFloatParsed2(importDescompte);
 			$("#promoImp").text("-"+importDescompte+" Euros");
-			$("#labelpreutotalPromo").text(validationsOBJ.getFloatParsed2(preuF)+ validationsOBJ.getFloatParsed2(transportOnTheFly));
+			$("#labelpreutotalPromo").text(validationsOBJ.getFloatParsed2(validationsOBJ.getFloatParsed2(preuF)+ validationsOBJ.getFloatParsed2(transportOnTheFly)));
 		}
 		
 		$("#checkPromocionsDisponibles").hide();
@@ -541,7 +542,7 @@ promosManagerObj ={
 				var preu =  validationsOBJ.getFloatParsed2(preuPlats)+ validationsOBJ.getFloatParsed2(preuBegudes)+ validationsOBJ.getFloatParsed2(transportOnTheFly);
 				
 				$("#promoImp").text("");
-				$("#labelpreutotalPromo").text(preu);
+				$("#labelpreutotalPromo").text(validationsOBJ.getFloatParsed2(preu));
 				
 			}
 			if(isPromoBeguda!='undefined' && isPromoBeguda!=null){
@@ -1488,7 +1489,7 @@ begudaOBJ ={
 									window.localStorage.setItem("comanda.begudes.lis",lis);
 									window.localStorage.setItem("comanda.promo.nBegudes.added",numBegudesPromo);
 									window.localStorage.setItem("comanda.numbegudes",numBegudes);
-									window.localStorage.setItem("comanda.beguda.preu",preuBegudes);           					           				
+									window.localStorage.setItem("comanda.beguda.preu",validationsOBJ.getFloatParsed2(preuBegudes));           					           				
 									var preuComanda = window.localStorage.getItem("comanda.preu");
 									
 									var transportOnTheFly=generalManagerObj.getTransPortOnTheFly();	
@@ -1617,16 +1618,15 @@ var sudoSlider = $("#slider").sudoSlider({
 $("#dialog_promo").dialog( { autoOpen: false,
 	  modal: true,
 	  position: 'center',
-	  draggable: false,
+	  draggable: true,
 	  height: 390,
 	  width: 600,		
 	  open: function(event, ui) { 
 		 //carrega la taula del dialog
-		 
+		  promosManagerObj.checkPromocionsDisponibles(); 
+		  promosManagerObj.checkPromoEspecial();
 		$('#dialog_promo').css('visibility', '');
 		$('#dialog_promo').css('overflow', 'hidden');
-		
-		
 		 promosManagerObj.checkPromocionsDisponibles(); 
 		  promosManagerObj.checkPromoEspecial();
 		  setTimeout(function(){window.scrollTo(0, 0);},1000);
