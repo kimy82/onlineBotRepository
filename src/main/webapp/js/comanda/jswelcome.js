@@ -94,7 +94,7 @@ $(function() {
 	
 	//OBJ for drinks management 
 	var begudaOBJ ={
-	}
+	};
 	begudaOBJ._self=null;
 
 
@@ -238,11 +238,11 @@ $(function() {
 		}	
 
 
-	}
+	};
 	
 	//OBJ for disches management 
 	var platOBJ ={
-	}
+	};
 	platOBJ._self=null;
 
 
@@ -340,7 +340,7 @@ $(function() {
 		       		  }else{
 		       			try{
 			       			var platsAnterior = window.localStorage.getItem("comanda.numplats");
-			       			var numPlats = parseInt(platsAnterior)-parseInt(json.numPlats)
+			       			var numPlats = parseInt(platsAnterior)-parseInt(json.numPlats);
 			       			window.localStorage.setItem("comanda.numplats",numPlats);
 			       			$("#numplats").text(numPlats);	       			
 			       			window.localStorage.removeItem("comanda.plat_"+id);
@@ -423,13 +423,13 @@ $(function() {
 		closeInfoPlat: function(){
 			$("#infoPlat_dialog").dialog("close");
 		}	
-	}
+	};
 
 	
 
 //OBJ for managment of menu restaurant 
 var menuRestaurantAction ={
-}
+};
 menuRestaurantAction._self=null;
 
 
@@ -505,7 +505,7 @@ menuRestaurantAction ={
 		var data = window.localStorage.getItem("comanda.data");
 		window.location.href = "/"+context+"/comanda/goToPas1Action.action?idComanda="+$("#numComanda").text()+"&data="+data;
 	}
-}
+};
 
 
 var welcomeAction ={
@@ -607,7 +607,7 @@ welcomeAction ={
 		}
 	},
 	_setNumProducts: function(nProducts){
-		if(isNaN(nProducts)){console.log("numproducts not a number")}
+		if(isNaN(nProducts)){console.log("numproducts not a number");}
 		if(nProducts==1){
 			$("#numProduct").text(initParams.txtconfirm+" "+nProducts+" "+initParams.txtproducte);
 		}else if(nProducts>1){
@@ -655,7 +655,7 @@ welcomeAction ={
 		return numplats;
 	}
 
-}
+};
 
 function closeImage(){
 	$("#imageBig").dialog("close");
