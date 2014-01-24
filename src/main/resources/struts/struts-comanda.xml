@@ -84,6 +84,6 @@
 		<action name="ImageAction" class="com.online.image.ImageAction">
 			<result name="success" type="imageResult">
 			</result>
-		</action>		
+		</action>
 	</package>
 </struts>
