@@ -1,5 +1,92 @@
+//Acces a portamu
+
+_browser = {};
+function detectBrowser() {
+    var uagent = navigator.userAgent.toLowerCase();
+
+    _browser.firefox = /mozilla/.test(uagent) && /firefox/.test(uagent);
+    _browser.chrome = /webkit/.test(uagent) && /chrome/.test(uagent);
+    _browser.safari = /applewebkit/.test(uagent) && /safari/.test(uagent) 
+                                                    && !/chrome/.test(uagent);
+    _browser.opera = /opera/.test(uagent);
+    _browser.msie = /msie/.test(uagent);
+    _browser.version = '';
+
+    for (x in _browser) {
+        if (_browser[x]) {            
+            _browser.version = uagent.match(new RegExp("(" + x +
+                                                           ")( |/)([0-9]+)"))[3];
+            break;
+        }
+    }
+}
+detectBrowser();
+
+var tidakbagusPortamu = false;
+if(_browser.firefox ){
+
+	if(_browser.version>=20){
+		tidakbagusPortamu=true;
+	}
+}
+if(_browser.safari){
+	
+	if(_browser.version>=534){		
+		tidakbagusPortamu=true;
+	}
+}
+if(_browser.opera){
+
+	if(_browser.version>=9){
+		tidakbagusPortamu=true;
+	}
+}
+if(_browser.chrome){
+	tidakbagusPortamu=true;
+}
+
+function getInternetExplorerVersion()
+// Returns the version of Windows Internet Explorer or a -1
+// (indicating the use of another browser).
+{
+   var rv = -1; // Return value assumes failure.
+   if (navigator.appName == 'Microsoft Internet Explorer')
+   {
+      var ua = navigator.userAgent;
+      var re  = new RegExp("MSIE ([0-9]{1,}[\.0-9]{0,})");
+      if (re.exec(ua) != null)
+         rv = parseFloat( RegExp.$1 );
+   }
+   return rv;
+}
+
+function getInternetExplorerVersion()
+{
+   var rv = -1;
+   if (navigator.appName == 'Microsoft Internet Explorer')
+   {
+      var ua = navigator.userAgent;
+      var re  = new RegExp("MSIE ([0-9]{1,}[\.0-9]{0,})");
+      if (re.exec(ua) != null)
+         rv = parseFloat( RegExp.$1 );
+   }
+   return rv;
+}
+
+   var ver = getInternetExplorerVersion();
+   if ( ver> -1 )
+   {
+      if ( ver>= 9.0 )
+    	  tidakbagusPortamu= true;
+    }
+
+if(tidakbagusPortamu == false){
+	window.location.href="https://www.portamu.com/elteurestaurantacasa/canvia.action";
+}
+
 ///////////////////////////////////
 //variables per textos en locale
+
 var initParams=null ;
 function InitParams(txtconfirmcontinuar,txtconfirm,txtproductes,txtproducte,txtguardat,txtwrongemail, txtavisrestauranttancat){		
 	
@@ -23,7 +110,7 @@ function wait(){
 
 //OBJ for managment of welcome page 
 var welcomeAction ={
-}
+};
 welcomeAction._self=null;
 
 welcomeAction ={
@@ -103,14 +190,14 @@ welcomeAction ={
 		var d=new Date();
 		return d.getFullYear()+"-"+(d.getMonth()+1)+"-"+d.getDate();
 	}
-}
+};
 
 
 
 
 //OBJ for managment of menu restaurant 
 var menuRestaurantAction ={
-}
+};
 menuRestaurantAction._self=null;
 
 menuRestaurantAction ={
@@ -205,7 +292,7 @@ menuRestaurantAction ={
 		 return '';
 	}
 	
-}	
+};
 
 $( ".selector_jq" ).click(function() {
 	var id = $(this).attr("id");
